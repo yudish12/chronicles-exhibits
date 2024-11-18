@@ -1,5 +1,5 @@
 "use client";
-
+import { UploadButton } from "@/components/uploadthing";
 import React, { useState } from "react";
 
 // Props for the EditablePage
@@ -59,7 +59,18 @@ const EditablePage = ({ data, isAdmin }) => {
           </div>
         ))}
       </div>
-
+      <UploadButton
+        endpoint="imageUploader"
+        onClientUploadComplete={(res) => {
+          // Do something with the response
+          console.log("Files: ", res);
+          alert("Upload Completed");
+        }}
+        onUploadError={(error) => {
+          // Do something with the error.
+          alert(`ERROR! ${error.message}`);
+        }}
+      />
       {/* Sidebar Editor */}
       {isAdmin && currentEdit && (
         <div className="w-1/3 p-4 bg-white border-l">

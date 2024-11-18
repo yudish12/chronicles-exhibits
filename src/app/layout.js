@@ -2,6 +2,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import NextTopLoader from "nextjs-toploader";
+import "@uploadthing/react/styles.css";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

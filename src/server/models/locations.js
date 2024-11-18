@@ -13,3 +13,8 @@ const locationSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+const Locations =
+  mongoose.models.locations || mongoose.model("locations", locationSchema);
+
+export default Locations;

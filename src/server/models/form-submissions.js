@@ -47,6 +47,7 @@ const formSubmissionSchema = new mongoose.Schema(
 );
 
 const formsubmissions =
-  models.formSubmissions || model("formsubmissions", formSubmissionSchema);
+  mongoose.models.formSubmissions ||
+  mongoose.model("formsubmissions", formSubmissionSchema);
 
 export default formsubmissions;

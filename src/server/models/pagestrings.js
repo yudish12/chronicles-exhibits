@@ -14,6 +14,7 @@ const pageStringsSchema = new mongoose.Schema({
 });
 
 const pagestrings =
-  models.pagestrings || mongoose.model("pagestrings", pageStringsSchema);
+  mongoose.models.pagestrings ||
+  mongoose.model("pagestrings", pageStringsSchema);
 
 export default pagestrings;

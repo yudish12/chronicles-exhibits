@@ -22,6 +22,6 @@ const blogSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = models.blogs || model("blogs", blogSchema);
+const User = mongoose.models.blogs || mongoose.model("blogs", blogSchema);
 
 export default User;
