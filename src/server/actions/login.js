@@ -15,7 +15,7 @@ export const login = async ({ email, password }) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production", // Use secure cookies in production
       path: "/",
-      maxAge: 60 * 60 * 24,
+      maxAge: 60 * 60 * 48,
     });
 
     return true;

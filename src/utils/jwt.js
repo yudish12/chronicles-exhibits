@@ -14,7 +14,7 @@ if (!SECRET_KEY) {
  * @param expiresIn - The expiration time (e.g., "1h" for 1 hour)
  * @returns The signed JWT
  */
-export const signJWT = (payload, expiresIn = "1h") => {
+export const signJWT = (payload, expiresIn = "2d") => {
   return jwt.sign(payload, SECRET_KEY, { expiresIn });
 };
 

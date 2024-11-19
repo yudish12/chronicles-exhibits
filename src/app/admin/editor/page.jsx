@@ -1,5 +1,5 @@
 import EditablePage from "../components/Editor";
-import { homePageData } from "@/utils/constants/dev-data";
+import { homePageData } from "@/utils/constants/dev-data/home";
 
 export default function EditablePageView() {
   return (
