@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { addData, getAllData, updateData } from "@/server/actions/locations"; // Adjust the import path
+import { addData, getAllData, updateData , deleteData } from "@/server/actions/locations"; // Adjust the import path
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 
@@ -96,7 +96,12 @@ export default function Locations() {
     setSingleLocation(null);
   };
 
-  const handleDeleteConfirm = () => {
+  const handleDeleteConfirm = async () => {
+    const resp = await deleteData(deletingLocationId);
+    if (!resp.success) {
+      toast.error(resp.err);
+      return;
+    }
     const updatedLocations = locations.filter(
       (location) => location._id !== deletingLocationId
     );
