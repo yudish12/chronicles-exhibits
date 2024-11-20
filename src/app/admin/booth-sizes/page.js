@@ -21,7 +21,12 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { addData, getAllData, updateData } from "@/server/actions/booth-sizes";
+import {
+  addData,
+  deleteData,
+  getAllData,
+  updateData,
+} from "@/server/actions/booth-sizes";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 
@@ -101,9 +106,14 @@ export default function BoothSizesTable() {
     setSingleBoothSize(null);
   };
 
-  const handleDeleteConfirm = () => {
+  const handleDeleteConfirm = async () => {
+    const resp = await deleteData(deletingBoothSizeId);
+    if (!resp.success) {
+      toast.error(resp.err);
+      return;
+    }
     const updatedBoothSizes = boothSizes.filter(
-      (boothSize) => boothSize.id !== deletingBoothSizeId
+      (boothSize) => boothSize._id !== deletingBoothSizeId
     );
     setBoothSizes(updatedBoothSizes);
     setIsDeleteDialogOpen(false);
@@ -155,7 +165,7 @@ export default function BoothSizesTable() {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => handleDelete(boothSize.id)}
+                      onClick={() => handleDelete(boothSize._id)}
                     >
                       <Trash2 className="h-4 w-4" />
                       <span className="sr-only">Delete {boothSize.name}</span>

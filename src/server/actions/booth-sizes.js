@@ -58,3 +58,22 @@ export const addData = async (data) => {
     getActionFailureResponse(error.message, "toast");
   }
 };
+
+export const deleteData = async (id) => {
+  try {
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return getActionFailureResponse("Invalid id format", "toast");
+    }
+
+    const resp = await BoothSize.deleteOne({ _id: id });
+
+    if (!resp) {
+      return getActionFailureResponse("Document not found", "toast");
+    }
+
+    return getActionSuccessResponse(resp);
+  } catch (error) {
+    console.error("Error deleting data:", error);
+    return getActionFailureResponse(error.message, "toast");
+  }
+};
