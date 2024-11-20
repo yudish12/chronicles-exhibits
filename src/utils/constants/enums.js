@@ -20,6 +20,11 @@ export const collections = [
     icon: <Layout />,
   },
   {
+    slug: "locations",
+    name: "Locations",
+    icon: <Layout />,
+  },
+  {
     slug: "events",
     name: "Events",
     icon: <CalendarDays />,
