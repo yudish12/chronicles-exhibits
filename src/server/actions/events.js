@@ -6,9 +6,11 @@ import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import Locations from "../models/locations";
 import mongoose from "mongoose";
 
+await dbConnect()
 export const getAllData = async () => {
     try {
-      const data = await events.find().populate("location_id", "city continent").lean();
+      const data = await events.find().populate("location_id" , "city continent").lean();
+    //   console.log("[]" , data)
       return getActionSuccessResponse(data);
     } catch (error) {
       return getActionFailureResponse(error, "toast");
@@ -17,13 +19,45 @@ export const getAllData = async () => {
 
   export const getAllLocations = async () => {
     try {
-      const data = await Locations.find({}).lean();
-      console.log("==data==" , data)
+      const data = await Locations.find({}, { city: 1, continent: 1 }).lean();
+    //   console.log("==locations data==" , data)
       return getActionSuccessResponse(data);
     } catch (error) {
       return getActionFailureResponse(error, "toast");
     }
   };
+
+export const updateData = async (id, data) => {
+    try {
+      if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+        return getActionFailureResponse("Invalid id format", "toast");
+      }
+  
+      if (!data || typeof data !== "object") {
+        return getActionFailureResponse("Invalid data format", "toast");
+      }
+  
+      // Find and update the document, returning the updated version
+      const updatedEvent = await events.findOneAndUpdate(
+        { _id: id },
+        data,
+        {
+          new: true, // Return the updated document
+          runValidators: true, // Run validation
+        }
+      );
+  
+      if (!updatedEvent) {
+        return getActionFailureResponse("Document not found", "toast");
+      }
+  
+      return getActionSuccessResponse(updatedEvent);
+    } catch (error) {
+      console.error("Error updating data:", error);
+      return getActionFailureResponse(error.message, "toast");
+    }
+  };
+  
 
   export const addData = async (data) => {
     try {
@@ -37,13 +71,32 @@ export const getAllData = async () => {
         return getActionFailureResponse("End date is required", "description");
       }
 
-      if(!data.location){
+      if(!data.location_id){
         return getActionFailureResponse("Location is required", "description");
       }
 
       const resp = await events.create(data);
+      console.log("added data ",resp)
       return getActionSuccessResponse(resp);
     } catch (error) {
       getActionFailureResponse(error.message, "toast");
     }
   };
+  export const deleteData = async(id)=>{
+    try {
+        if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+          return getActionFailureResponse("Invalid id format", "toast");
+        }
+    
+        const resp = await events.deleteOne({ _id: id });
+    
+        if (!resp) {
+          return getActionFailureResponse("Document not found", "toast");
+        }
+    
+        return getActionSuccessResponse(resp);
+      } catch (error) {
+        console.error("Error deleting data:", error);
+        return getActionFailureResponse(error.message, "toast");
+      }
+  }
