@@ -41,7 +41,9 @@ export default function Events() {
     start_date: "",
     end_date: "",
     location_id: "",
+    icon : ""
   });
+  console.log("===single events ===", singleEvent)
   const fetchData = async () => {
     try {
       const eventResp = await getAllData();
@@ -79,7 +81,8 @@ export default function Events() {
       await fetchData();
       toast.success("Event added successfully");
       setIsAddDialogOpen(false);
-      setSingleEvent(null);
+    //   setSingleEvent(null);
+    setSingleEvent({ event_name: "", start_date: "", end_date: "", location_id: "" });
     } catch (error) {
       toast.error("Failed to add booth");
       console.error(error);
@@ -113,6 +116,7 @@ export default function Events() {
         start_date: singleEvent.start_date,
         end_date: singleEvent.end_date,
         location_id: singleEvent.location_id,
+        icon : singleEvent.icon
     });
 
     console.log("==resp===" , resp)
@@ -127,7 +131,7 @@ export default function Events() {
         )
       );
       await fetchData();
-      toast.success("Booth updated successfully");
+      toast.success("event updated successfully");
       setIsEditDialogOpen(false);
   };
   const handleDelete = (id) => {
@@ -155,21 +159,19 @@ export default function Events() {
     <div className="container mx-auto px-6 py-10">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold mb-4">Events</h1>
-        <Button
-          onClick={() => {
+        <Button onClick={() => {
             setSingleEvent({ event_name: "", start_date: "", end_date: "", location_id: "" });
-            setIsDialogOpen(true);
-          }}
-        >
-          Add Event
-        </Button>
+            setIsAddDialogOpen(true);
+          }}>
+            Add Event</Button>
       </div>
 
       <div className="rounded-md border">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Event Name</TableHead>
+              <TableHead>Icon</TableHead>
+              <TableHead>Name</TableHead>
               <TableHead>Start Date</TableHead>
               <TableHead>End Date</TableHead>
               <TableHead>Location</TableHead>
@@ -179,10 +181,19 @@ export default function Events() {
           <TableBody>
             {events.map((event) => (
               <TableRow key={event._id}>
-                <TableCell>{event.event_name}</TableCell>
+                <TableCell>
+                  {event.icon && (
+                    <img
+                      src={event.icon}
+                      alt={event.event_name}
+                      className="w-16 h-16 object-cover rounded"
+                    />
+                  )}
+                </TableCell>
+                <TableCell className="font-medium">{event.event_name}</TableCell>
                 <TableCell>{new Date(event.start_date).toLocaleDateString()}</TableCell>
                 <TableCell>{new Date(event.end_date).toLocaleDateString()}</TableCell>
-                <TableCell> {`${event.location_id.city}, ${event.location_id.continent}`}</TableCell>
+                <TableCell>{event.location_id?.city|| "N/A"}, {event.location_id?.continent|| "N/A"}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
                     <Button
@@ -196,7 +207,12 @@ export default function Events() {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => handleDelete(event._id)}
+                    //   onClick={() => {
+                    //     setSingleEvent(event);
+                    //     setIsDeleteDialogOpen(true);
+
+                    //   }}
+                    onClick={() => handleDelete(event._id)}
                     >
                       <Trash2 className="h-4 w-4" />
                       <span className="sr-only">Delete {event.event_name}</span>
@@ -209,46 +225,54 @@ export default function Events() {
         </Table>
       </div>
 
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      {/* Add/Edit Dialog */}
+      <Dialog open={isEditDialogOpen || isAddDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Add Event</DialogTitle>
+            <DialogTitle>{isEditDialogOpen ? "Edit Event" : "Add Event"}</DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={isEditDialogOpen ? handleEditSubmit : handleAddSubmit}
+          >
             <div className="grid gap-4 py-4">
-              <div>
-                <Label htmlFor="event_name">Event Name</Label>
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label>Name</Label>
                 <Input
-                  id="event_name"
-                  value={singleEvent.event_name}
+                  value={singleEvent?.event_name || ""}
                   onChange={(e) =>
                     setSingleEvent({ ...singleEvent, event_name: e.target.value })
                   }
+                  required
+                  className="col-span-3"
                 />
               </div>
-              <div>
-                <Label htmlFor="start_date">Start Date</Label>
+
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label>Start Date</Label>
                 <Input
-                  id="start_date"
                   type="date"
-                  value={singleEvent.start_date}
+                  value={singleEvent?.start_date || ""}
                   onChange={(e) =>
                     setSingleEvent({ ...singleEvent, start_date: e.target.value })
                   }
+                  required
+                  className="col-span-3"
                 />
               </div>
-              <div>
-                <Label htmlFor="end_date">End Date</Label>
+
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label>End Date</Label>
                 <Input
-                  id="end_date"
                   type="date"
-                  value={singleEvent.end_date}
+                  value={singleEvent?.end_date || ""}
                   onChange={(e) =>
                     setSingleEvent({ ...singleEvent, end_date: e.target.value })
                   }
+                  required
+                  className="col-span-3"
                 />
               </div>
-              <div>
+              <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="location">Location</Label>
                 <Select
                   value={singleEvent.location_id}
@@ -268,103 +292,49 @@ export default function Events() {
                   </SelectContent>
                 </Select>
               </div>
-            
+
+              <div className="grid grid-cols-4 items-center gap-4">
+                <Label>Icon</Label>
+                <div className="col-span-3">
+                  <UploadButton
+                    endpoint="imageUploader"
+                    onClientUploadComplete={(res) => {
+                      setSingleEvent({
+                        ...singleEvent,
+                        icon: res[0].url,
+                      });
+                      toast.success("Icon uploaded successfully");
+                    }}
+                    onUploadError={(error) => {
+                      toast.error(`Upload failed: ${error.message}`);
+                    }}
+                  />
+                  {singleEvent?.icon && (
+                    <img
+                      src={singleEvent.icon}
+                      alt="Event Icon"
+                      className="mt-2 w-16 h-16 object-cover rounded"
+                    />
+                  )}
+                </div>
+              </div>
             </div>
             <DialogFooter>
-              <Button type="submit">Save</Button>
+              <Button type="submit">
+                {isEditDialogOpen ? "Save Changes" : "Add Event"}
+              </Button>
             </DialogFooter>
           </form>
         </DialogContent>
       </Dialog>
- <Dialog
-  open={isEditDialogOpen || isAddDialogOpen}
-  onOpenChange={
-    isEditDialogOpen ? setIsEditDialogOpen : setIsAddDialogOpen
-  }
->
-  <DialogContent>
-    <DialogHeader>
-      <DialogTitle>
-        {isEditDialogOpen ? "Edit Event" : "Add Event"}
-      </DialogTitle>
-      <DialogDescription>
-        {isEditDialogOpen
-          ? "Make changes to the event here. Click save when you're done."
-          : "Enter the details of the event you want to add."}
-      </DialogDescription>
-    </DialogHeader>
-    <form
-      onSubmit={isEditDialogOpen ? handleEditSubmit : handleAddSubmit}
-    >
-      <div className="grid gap-4 py-4">
-        <div>
-          <Label htmlFor="event_name">Event Name</Label>
-          <Input
-            id="event_name"
-            value={singleEvent.event_name || ""}
-            onChange={(e) =>
-              setSingleEvent({ ...singleEvent, event_name: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          <Label htmlFor="start_date">Start Date</Label>
-          <Input
-            id="start_date"
-            type="date"
-            value={singleEvent.start_date || ""}
-            onChange={(e) =>
-              setSingleEvent({ ...singleEvent, start_date: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          <Label htmlFor="end_date">End Date</Label>
-          <Input
-            id="end_date"
-            type="date"
-            value={singleEvent.end_date || ""}
-            onChange={(e) =>
-              setSingleEvent({ ...singleEvent, end_date: e.target.value })
-            }
-          />
-        </div>
-        <div>
-          <Label htmlFor="location">Location</Label>
-          <Select
-            value={singleEvent.location_id || ""}
-            onValueChange={(value) =>
-              setSingleEvent({ ...singleEvent, location_id: value })
-            }
-          >
-            <SelectTrigger>
-              <SelectValue placeholder="Select a location" />
-            </SelectTrigger>
-            <SelectContent>
-              {locations.map((location) => (
-                <SelectItem key={location._id} value={location._id}>
-                  {`${location.city}, ${location.continent}`}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-      <DialogFooter>
-        <Button type="submit">
-          {isEditDialogOpen ? "Save Changes" : "Add Event"}
-        </Button>
-      </DialogFooter>
-    </form>
-  </DialogContent>
-</Dialog>
-<Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+
+      {/* Delete Dialog */}
+      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Confirm Deletion</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete this booth size? This action
-              cannot be undone.
+              Are you sure you want to delete this event? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
@@ -374,7 +344,10 @@ export default function Events() {
             >
               Cancel
             </Button>
-            <Button variant="destructive" onClick={handleDeleteConfirm}>
+            <Button
+              variant="destructive"
+              onClick={() => handleDeleteConfirm(singleEvent?._id)}
+            >
               Delete
             </Button>
           </DialogFooter>
