@@ -2,6 +2,7 @@
 
 import dbConnect from "@/config/db-connect";
 import Booth from "../models/booths";
+import mongoose from "mongoose";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 
 await dbConnect();
@@ -14,6 +15,7 @@ export const getAllData = async () => {
     return getActionFailureResponse(error, "toast");
   }
 };
+// src/server/actions/booths.js
 
 export const updateData = async (id, data) => {
   try {
@@ -25,10 +27,22 @@ export const updateData = async (id, data) => {
       return getActionFailureResponse("Invalid data format", "toast");
     }
 
-    const resp = await Booth.updateOne({ _id: id }, data, {
-      new: true,
-      runValidators: true,
-    });
+    // Use findByIdAndUpdate instead of updateOne to get the updated document
+    const resp = await Booth.findByIdAndUpdate(
+      id,
+      {
+        name: data.name,
+        description: data.description,
+        code: data.code,
+        boothSize: data.boothSize,
+        main_image: data.main_image,
+        images: data.images,
+      },
+      {
+        new: true, // Return the updated document
+        runValidators: true,
+      }
+    ).lean();
 
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
@@ -51,7 +65,21 @@ export const addData = async (data) => {
       return getActionFailureResponse("Description is required", "description");
     }
 
+    if (!data.boothSize) {
+      return getActionFailureResponse("Booth size is required", "boothSize");
+    }
+
+    if (!data.code) {
+      return getActionFailureResponse("Code is required", "code");
+    }
+
+    if (!data.main_image) {
+      return getActionFailureResponse("Main image is required", "main_image");
+    }
+
     const resp = await Booth.create(data);
+
+    console.log(resp);
     return getActionSuccessResponse(resp);
   } catch (error) {
     getActionFailureResponse(error.message, "toast");
