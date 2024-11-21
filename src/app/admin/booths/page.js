@@ -87,35 +87,45 @@ export default function BoothTable() {
     const resp = await updateData(singleBooth._id, {
       name: singleBooth.name,
       description: singleBooth.description,
+      code: singleBooth.code,
+      boothSize: singleBooth.boothSize,
+      main_image: singleBooth.main_image,
+      images: singleBooth.images || [],
     });
+
     if (!resp.success) {
       toast.error(resp.err);
       return;
     }
 
-    const updatedBooth = [
-      ...booths.map((boothSize) => {
-        if (boothSize._id === singleBooth._id) {
-          return singleBooth;
-        }
-        return boothSize;
-      }),
-    ];
-
-    setBooths(updatedBooth);
+    setBooths((prevBooths) =>
+      prevBooths.map((booth) =>
+        booth._id === singleBooth._id ? resp.data : booth
+      )
+    );
+    toast.success("Booth updated successfully");
     setIsEditDialogOpen(false);
   };
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
-    const resp = await addData(singleBooth);
-    if (!resp.success) {
-      toast.error(resp.err);
-      return;
+    try {
+      const resp = await addData(singleBooth);
+
+      if (!resp.success) {
+        toast.error(resp.err);
+        return;
+      }
+
+      // Add only the new booth to the state
+      setBooths((prevBooths) => [...prevBooths, resp.data]);
+      toast.success("Booth added successfully");
+      setIsAddDialogOpen(false);
+      setSingleBooth(null);
+    } catch (error) {
+      toast.error("Failed to add booth");
+      console.error(error);
     }
-    setBooths([...booths, resp.data]);
-    setIsAddDialogOpen(false);
-    setSingleBooth(null);
   };
 
   const handleDeleteConfirm = async () => {

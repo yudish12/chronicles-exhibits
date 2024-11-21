@@ -2,16 +2,16 @@ import * as jwtFuncs from "./jwt";
 
 const getActionSuccessResponse = (data) => {
   return {
-    data,
     success: true,
+    data: JSON.parse(JSON.stringify(data)),
   };
 };
 
-const getActionFailureResponse = (err, field) => {
+const getActionFailureResponse = (error, type) => {
   return {
-    err,
-    field,
     success: false,
+    err: error?.message || error,
+    type,
   };
 };
 
