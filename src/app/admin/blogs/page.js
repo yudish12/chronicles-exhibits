@@ -23,24 +23,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { UploadButton } from "@uploadthing/react";
 import { toast } from "sonner";
-// import ReactQuill from "react-quill"; // Import Quill
-// import "react-quill/dist/quill.snow.css"; // Import Quill CSS
+import ReactQuill from "react-quill"; // Import Quill
+import "react-quill/dist/quill.snow.css"; // Import Quill CSS
 import { getAllBlogs , updateData , addData , deleteData} from "@/server/actions/blogs";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { Pencil, Trash2, Eye } from "lucide-react";
 export default function Blogs() {
-//   const [blogs, setBlogs] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [isDialogOpen, setIsDialogOpen] = useState(false);
-//   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-//   const [singleBlog, setSingleBlog] = React.useState({
-//     title: "",
-//     short_description: "",
-//     long_description: "",
-//     image: "",
-//   });
-//   const [deletingBlogId, setDeletingBlogId] = useState(null);
-//   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 const [blogs, setBlogs] = React.useState([]);
 const [loading, setLoading] = React.useState(true);
 const [singleBlog, setSingleBlog] = React.useState(null);
@@ -226,15 +214,17 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
               </div>
 
               <div className="grid grid-cols-4 items-start gap-4">
-                <Label>Long Description</Label>
-                <Input
-                  value={singleBlog?.long_description || ""}
-                  onChange={(e) =>
-                    setSingleBlog({ ...singleBlog, long_description: e.target.value })
-                  }
-                  className="col-span-3"
-                />
-              </div>
+                    <Label>Long Description</Label>
+                    <div className="col-span-3">
+                    <ReactQuill
+                    theme="snow"
+                    value={singleBlog?.long_description || ""}
+                    onChange={(value) =>
+                    setSingleBlog({ ...singleBlog, long_description: value })
+                    }
+                    />
+                    </div>
+                    </div>
 
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label>Image</Label>
