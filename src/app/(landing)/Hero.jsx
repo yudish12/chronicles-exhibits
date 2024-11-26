@@ -2,7 +2,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="hero h-[89vh]">
+    <div className="hero h-[98vh]">
       <h6 className=" text-base mt-12 leading-5 font-medium text-center text-secondary">
         Ready to Revolutionize your Exhibit Displays?
       </h6>
