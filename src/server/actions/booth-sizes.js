@@ -5,10 +5,11 @@ import BoothSize from "../models/booth-sizes";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import mongoose from "mongoose";
 
-await dbConnect();
+// await dbConnect();
 
 export const getAllData = async () => {
   try {
+    await dbConnect();
     const data = await BoothSize.find().lean();
     return getActionSuccessResponse(data);
   } catch (error) {
@@ -18,6 +19,7 @@ export const getAllData = async () => {
 
 export const updateData = async (id, data) => {
   try {
+    await dbConnect();
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return getActionFailureResponse("Invalid id format", "toast");
     }
@@ -44,6 +46,7 @@ export const updateData = async (id, data) => {
 
 export const addData = async (data) => {
   try {
+    await dbConnect();
     if (!data.name) {
       return getActionFailureResponse("Name is required", "name");
     }
@@ -61,6 +64,7 @@ export const addData = async (data) => {
 
 export const deleteData = async (id) => {
   try {
+    await dbConnect();
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return getActionFailureResponse("Invalid id format", "toast");
     }

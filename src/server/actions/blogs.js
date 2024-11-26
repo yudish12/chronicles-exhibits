@@ -5,10 +5,11 @@ import User from "../models/blogs";
 import mongoose from "mongoose";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 
-await dbConnect();
+// await dbConnect();
 
 export const getAllBlogs = async () => {
   try {
+    await dbConnect();
     const data = await User.find().lean();
     return getActionSuccessResponse(data);
   } catch (error) {
@@ -19,6 +20,7 @@ export const getAllBlogs = async () => {
 
 export const updateData = async (id, data) => {
   try {
+    await dbConnect()
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return getActionFailureResponse("Invalid id format", "toast");
     }
@@ -55,6 +57,7 @@ export const updateData = async (id, data) => {
 
 export const addData = async (data) => {
   try {
+    await dbConnect()
     if (!data.title) {
       return getActionFailureResponse("title is required", "title");
     }
@@ -83,6 +86,7 @@ export const addData = async (data) => {
 
 export const deleteData = async (id) => {
   try {
+    await dbConnect();
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return getActionFailureResponse("Invalid id format", "toast");
     }

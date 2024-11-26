@@ -6,9 +6,10 @@ import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import Locations from "../models/locations";
 import mongoose from "mongoose";
 
-await dbConnect()
+// await dbConnect()
 export const getAllData = async () => {
     try {
+      await dbConnect();
       const data = await events.find().populate("location_id" , "city continent").lean();
     //   console.log("[]" , data)
       return getActionSuccessResponse(data);
@@ -19,6 +20,7 @@ export const getAllData = async () => {
 
   export const getAllLocations = async () => {
     try {
+      await dbConnect();
       const data = await Locations.find({}, { city: 1, continent: 1 }).lean();
     //   console.log("==locations data==" , data)
       return getActionSuccessResponse(data);
@@ -29,6 +31,7 @@ export const getAllData = async () => {
 
 export const updateData = async (id, data) => {
     try {
+      await dbConnect();
       if (!id || !mongoose.Types.ObjectId.isValid(id)) {
         return getActionFailureResponse("Invalid id format", "toast");
       }
@@ -61,6 +64,7 @@ export const updateData = async (id, data) => {
 
   export const addData = async (data) => {
     try {
+      await dbConnect();
       if(!data.event_name){
           return getActionFailureResponse("event name is required", "description");
       }
@@ -84,6 +88,7 @@ export const updateData = async (id, data) => {
   };
   export const deleteData = async(id)=>{
     try {
+      await dbConnect();
         if (!id || !mongoose.Types.ObjectId.isValid(id)) {
           return getActionFailureResponse("Invalid id format", "toast");
         }
