@@ -1,5 +1,13 @@
-import Image from "next/image";
+import Header from "@/components/ui/header";
+import SubHeader from "@/components/ui/sub-header";
+import Hero from "./(landing)/Hero";
 
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      <SubHeader />
+      <Header />
+      <Hero />
+    </>
+  );
 }
