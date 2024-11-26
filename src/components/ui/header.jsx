@@ -6,7 +6,7 @@ import { Button } from "./button";
 
 const RouteComponent = ({ link, name }) => {
   return (
-    <Link className=" text-sm" href={link}>
+    <Link className=" text-sm font-medium" href={link}>
       {name}
     </Link>
   );
