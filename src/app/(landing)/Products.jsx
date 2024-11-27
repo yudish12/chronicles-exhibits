@@ -1,73 +1,101 @@
-import React from 'react'
-import { Card , CardContent } from '@/components/ui/card'
+"use client";
+import React, { useState, useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import Link from "next/link";
 const Products = () => {
-  return (
-    <>
-   <div className="bg-[#400D25] py-16 sm:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h3 className="text-lg capitalize *:font-semibold text-[#D6FF43]">
-            Product Lineup
-          </h3>
-          <h2 className="mt-2 heading-font text-3xl font-bold text-white sm:text-4xl">
-            EYE-CATCHING TRADE SHOW BOOTH DESIGNS <br /> FOR SUCCESSFUL
-            EXHIBITIONS
-          </h2>
-          <p className="mt-6 text-lg text-[#EDEDED] font-light">
-            Explore over 1,000 trade show booth designs by selecting your booth
-            size. All designs are fully customizable.
-          </p>
-        </div>
+  const [activeIndex, setActiveIndex] = useState(0);
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[
-            {
-              imgSrc: 'path/to/image1.jpg',
-              size: '10X10',
-              link: '#',
-            },
-            {
-              imgSrc: 'path/to/image2.jpg',
-              size: '10X20',
-              link: '#',
-            },
-            {
-              imgSrc: 'path/to/image3.jpg',
-              size: '10X30',
-              link: '#',
-            },
-          ].map((item, index) => (
-            <Card
+  const cards = [
+    { imgSrc: "/what-we-do-1.png", size: "10X10", link: "#" },
+    { imgSrc: "/what-we-do-1.png", size: "10X20", link: "#" },
+    { imgSrc: "/what-we-do-1.png", size: "10X30", link: "#" },
+    { imgSrc: "/what-we-do-2.png", size: "20X20", link: "#" },
+    { imgSrc: "/what-we-do-2.png", size: "20X30", link: "#" },
+    { imgSrc: "/what-we-do-2.png", size: "30X30", link: "#" },
+    { imgSrc: "/what-we-do-3.png", size: "40X40", link: "#" },
+    { imgSrc: "/what-we-do-3.png", size: "40X50", link: "#" },
+    { imgSrc: "/what-we-do-2.png", size: "50X50", link: "#" },
+  ];
+
+  const visibleCards = 3;
+
+  const handleNext = () => {
+    setActiveIndex((prevIndex) =>
+      (prevIndex + visibleCards) % cards.length
+    );
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prevIndex) =>
+      prevIndex - visibleCards < 0
+        ? cards.length - visibleCards
+        : prevIndex - visibleCards
+    );
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleNext();
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [activeIndex]);
+
+  return (
+    <div className="bg-secondary w-full flex flex-col items-center py-14">
+      <h2 className="text-xl font-bold text-[#B0CB1F] pt-4 mb-4">
+        Product Lineup
+      </h2>
+      <h1 className="text-center heading-font text-white text-3xl font-bold">
+        EYE CATCHING TRADE SHOW BOOTH DESIGNS
+      </h1>
+      <h1 className="text-center heading-font text-white mb-2 text-3xl font-bold">
+        FOR SUCCESSFUL EXHIBITIONS
+      </h1>
+      <p className="text-center text-gray-300 text-md pt-4 ">
+        Explore over 1,000 trade show booth designs by selecting your booth size.
+        All designs are fully customizable.
+      </p>
+  
+      <div className="flex items-center justify-center w-full px-32 pt-6 relative my-6">
+        {/* Card Carousel */}
+        <div className="flex justify-center items-center gap-12 overflow-hidden">
+          {cards.map((item, index) => (
+            <div
               key={index}
-              className="group relative bg-[#5F1835] rounded-lg shadow-lg overflow-hidden transition-transform hover:bg-white"
+              className={`transition-all transform h-[370px] w-[370px] shadow-one ${
+                index >= activeIndex && index < activeIndex + visibleCards
+                  ? "scale-100 opacity-100 block"
+                  : "scale-0 opacity-0 hidden"
+              }`}
             >
-              <div className="w-full h-56 overflow-hidden">
+              <div
+                className="shadow-xl rounded-lg overflow-hidden w-[100%] h-[98.75%] bg-secondary flex flex-col"
+              >
+                {/* Image Section */}
                 <img
                   src={item.imgSrc}
-                  alt={`Booth ${item.size}`}
-                  className="w-full h-full object-cover"
+                  alt={item.size}
+                  className="w-full h-[80%] object-cover"
                 />
+                {/* Content Section */}
+                <div className="flex flex-col justify-center items-center bg-secondary/[.94] text-white h-[25%]">
+                  <div className="text-2xl font-bold  text-white heading-font pt-2">
+                    {item.size}
+                  </div>
+                  <Link
+                    href={item.link}
+                    className="text-[#B0CB1F] underline text-xsm font-light mt-2 mb-4"
+                  >
+                    View More
+                  </Link>
+                </div>
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-lg font-bold text-white group-hover:text-[#5F1835]">
-                  {item.size}
-                </h3>
-                <a
-                  href={item.link}
-                  className="mt-2 text-sm font-semibold text-[#D6FF43] group-hover:text-[#400D25]"
-                >
-                  View More
-                </a>
-              </CardContent>
-            </Card>
+            </div>
           ))}
         </div>
       </div>
     </div>
+  );
+  };
 
-
-    </>
-  )
-}
-
-export default Products
+export default Products;
