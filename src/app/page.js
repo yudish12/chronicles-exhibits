@@ -4,6 +4,7 @@ import Hero from "./(landing)/Hero";
 import About from "./(landing)/About";
 import Footer from "@/components/ui/footer";
 import Products from "./(landing)/Products";
+import FactsAndFigures from "./(landing)/FactsAndFigures";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <About/>
       <Products/>
+      <FactsAndFigures/>
       <Footer />
     </>
   );
