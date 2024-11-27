@@ -4,10 +4,10 @@ import { Card, CardContent } from "@/components/ui/card";
 const data = [
   {
     id: 1,
-    iconImage: "./Pin.png", // Replace with actual icons
+    iconImage: "./Pin.svg", // Replace with actual icons
     number: "2931",
     text: "Projects Completed",
-    hoverIconImage: "./globe.png",
+    hoverIconImage: "./Globe.svg",
     hoverNumber: "91",
     hoverText: "Locations Served",
     bgColor: "bg-white",
@@ -15,10 +15,10 @@ const data = [
   },
   {
     id: 2,
-    iconImage: "./heart.png",
+    iconImage: "./Heart.svg",
     number: "3717",
     text: "Trusted Partners",
-    hoverIconImage: "./person.png",
+    hoverIconImage: "./Person.svg",
     hoverNumber: "250",
     hoverText: "Expert Crew Members",
     bgColor: "bg-white",
@@ -26,10 +26,10 @@ const data = [
   },
   {
     id: 3,
-    iconImage: "./Star.png",
+    iconImage: "./Star.svg",
     number: "9182",
     text: "Featured Trade Shows",
-    hoverIconImage: "./gift.png",
+    hoverIconImage: "./Gift.svg",
     hoverNumber: "25",
     hoverText: "Services Offered",
     bgColor: "bg-white",
@@ -37,7 +37,7 @@ const data = [
   },
   {
     id: 4,
-    iconImage: "./Fire.png",
+    iconImage: "./Fire.svg",
     number: "10382",
     text: "Booths Designed",
     hoverIconImage: "./Like.png",
