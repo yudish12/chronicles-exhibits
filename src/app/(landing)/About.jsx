@@ -55,7 +55,7 @@ const About = () => {
 <div className="bg-[#FDF3ED] py-12 sm:py-16">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-      {/* Card 1: Display Exhibits */}
+      {/* Display Exhibits */}
       <div className="flex flex-col h-full">
         <Card className="h-full shadow-lg rounded-lg overflow-hidden flex flex-col">
           {/* Image */}
@@ -81,7 +81,7 @@ const About = () => {
           <CardFooter className="mt-auto flex justify-center">
             <Button
               variant="outline"
-              className="border-[#51374F] text-secondary hover:bg-[#51374F] hover:text-white p-4 border-2 "
+              className="border-[#51374F] text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
             >
               View All
             </Button>
@@ -89,7 +89,7 @@ const About = () => {
         </Card>
       </div>
 
-      {/* Card 2: Our Services */}
+      {/*Our Services */}
       <div className="flex flex-col h-full">
         <Card className="h-full shadow-lg rounded-lg overflow-hidden flex flex-col">
         <div className="w-full h-48 sm:h-64 overflow-hidden">
@@ -114,7 +114,7 @@ const About = () => {
           <CardFooter className="mt-auto flex justify-center">
             <Button
               variant="outline"
-              className="border-[#51374F] text-secondary hover:bg-[#51374F] hover:text-white p-4 border-2 "
+              className="border-[#51374F] text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
             >
               Know More
             </Button>
@@ -122,7 +122,7 @@ const About = () => {
         </Card>
       </div>
 
-      {/* Card 3: Our Work */}
+      {/* Our Work */}
       <div className="flex flex-col h-full">
         <Card className="h-full shadow-lg rounded-lg overflow-hidden flex flex-col">
         <div className="w-full h-48 sm:h-64 overflow-hidden">
@@ -147,7 +147,7 @@ const About = () => {
           <CardFooter className="mt-auto flex justify-center">
             <Button
               variant="outline"
-              className="border-[#51374F] text-secondary hover:bg-[#51374F] hover:text-white p-4 border-2 "
+              className="border-[#51374F] text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
             >
               View Portfolio
             </Button>
