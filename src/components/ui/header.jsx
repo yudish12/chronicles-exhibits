@@ -28,17 +28,13 @@ const Header = () => {
 
   return (
     <div className="bg-gradient-to-b sticky top-[-1px] z-10 from-[#5D2A42]/95 to-[#451e2f] border-t-2 border-t-white/60 border-b-2 border-b-primary w-full flex justify-between items-center pb-2 pt-3 text-white text-opacity-60 px-6 md:px-20 gap-4">
-      {/* Logo */}
       <Image alt="logo" src="/chronicle-logo.svg" width={110} height={80} />
-
-      {/* Desktop Navigation Menu */}
       <div className="hidden md:flex items-center gap-12">
         {headerRoutes.map((route, index) => (
           <RouteComponent key={index} link={route.link} name={route.name} />
         ))}
       </div>
 
-      {/* Buttons */}
       <div className="hidden md:flex gap-4">
         <Button>Get Quote</Button>
         <Button className="text-primary font-semibold border-2 bg-transparent border-primary">
