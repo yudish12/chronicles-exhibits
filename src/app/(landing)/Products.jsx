@@ -109,7 +109,7 @@ const Products = () => {
                   </div>
                   <Link
                     href={item.link}
-                    className="text-[#B0CB1F] underline text-xsm font-light mt-2 mb-4"
+                    className="text-[#B0CB1F] underline text-xsm font-light mt-2 mb-2"
                   >
                     View More
                   </Link>
@@ -118,6 +118,18 @@ const Products = () => {
             </div>
           ))}
         </div>
+      </div>
+      <div className="flex gap-2 ">
+        {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+          <div
+            key={slideIndex}
+            className={`w-[10px] h-[10px] rounded-full ${
+              slideIndex === Math.floor(activeIndex / 3)
+                ? "bg-white"
+                : "bg-gray-400"
+            }`}
+          ></div>
+        ))}
       </div>
     </div>
   );
