@@ -8,8 +8,8 @@ const Faq = () => {
         FAQs
       </h4>
       <div className={"grid grid-rows-3 gap-y-4"}>
-        {faqs.map((e) => (
-          <div className="bg-white shadow-lg overflow-hidden mb-6">
+        {faqs.map((e, index) => (
+          <div key={index} className="bg-white shadow-lg overflow-hidden mb-6">
             <div className="bg-[#5D2A42] h-[25%] flex items-center p-4">
               <h4 className="text-white font-bold text-base flex items-center">
                 <span className=" text-white flex justify-center items-center font-bold text-xl">

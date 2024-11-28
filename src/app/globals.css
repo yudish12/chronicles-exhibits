@@ -165,7 +165,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("../../public/bg-products.jpeg") no-repeat center center;
+  background: url("../../public/bg-products.jpg") no-repeat center center;
   background-size: cover;
   z-index: -2;
 }
@@ -177,7 +177,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(69, 30, 47, 0.93);
+  background-image: linear-gradient(
+    to top right,
+    rgba(57, 29, 40, 0.96),
+    rgba(65, 22, 40, 0.98)
+  );
   z-index: -1;
 }
 
@@ -253,4 +257,44 @@
   height: 100%;
   background: #fdf3ed0e;
   z-index: -1;
+}
+
+.portfolio-img {
+  background-color: transparent;
+  transition: all 0.3s ease-in-out; /* Add a transition effect */
+  position: relative; /* Ensure the ::after is positioned relative to the image */
+  display: block; /* Ensure the Image has block display for proper sizing */
+}
+
+.portfolio-img::after {
+  content: "";
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  top: 0;
+  left: 0;
+  border-radius: 12px;
+  width: 100%; /* Cover the entire image width */
+  height: 100%; /* Cover the entire image height */
+  background: #fdf3ed;
+  opacity: 0;
+  z-index: 4;
+}
+
+.portfolio-img:hover::after {
+  opacity: 0.9;
+}
+
+.portfolio-img .hover-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  z-index: 5;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.portfolio-img:hover .hover-content {
+  opacity: 1;
 }
