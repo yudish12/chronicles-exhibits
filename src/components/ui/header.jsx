@@ -6,9 +6,22 @@ import { Button } from "./button";
 
 const RouteComponent = ({ link, name }) => {
   return (
-    <Link className=" text-sm font-medium" href={link}>
+    <Link className=" text-base text-white font-medium" href={link}>
       {name}
     </Link>
+  );
+};
+
+const HeaderBtns = () => {
+  return (
+    <>
+      <Button className="rounded-md rounded-e-none py-[18px]  text-primary font-semibold border-2 bg-transparent border-primary">
+        Schedule A Call
+      </Button>
+      <Button className="rounded-md rounded-s-none  py-[18px] border-2 border-primary  text-secondary font-semibold">
+        Get Quote
+      </Button>
+    </>
   );
 };
 
@@ -22,10 +35,7 @@ const Header = () => {
         ))}
       </div>
       <div>
-        <Button>Get Quote</Button>
-        <Button className="text-primary font-semibold border-2 bg-transparent border-primary">
-          Schedule Call
-        </Button>
+        <HeaderBtns />
       </div>
     </div>
   );

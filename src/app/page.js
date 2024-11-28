@@ -4,7 +4,11 @@ import Hero from "./(landing)/Hero";
 import About from "./(landing)/About";
 import Footer from "@/components/ui/footer";
 import Products from "./(landing)/Products";
+import Faq from "./(landing)/Faq";
+import Leadingtrade from "./(landing)/Leadingtrade";
+import Ourworks from "./(landing)/Ourworks";
 import FactsAndFigures from "./(landing)/FactsAndFigures";
+import Queryform from "./(landing)/Queryform";
 
 export default function Home() {
   return (
@@ -12,9 +16,13 @@ export default function Home() {
       <SubHeader />
       <Header />
       <Hero />
-      <About/>
-      <Products/>
-      <FactsAndFigures/>
+      <About />
+      <Products />
+      <FactsAndFigures />
+      <Ourworks />
+      <Leadingtrade />
+      <Faq />
+      <Queryform />
       <Footer />
     </>
   );
