@@ -251,6 +251,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(237, 223, 213, 0.4), #fdf3ed);
+  background: #fdf3ed0e;
   z-index: -1;
 }
