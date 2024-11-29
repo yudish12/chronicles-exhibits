@@ -4,7 +4,7 @@ import ProductCarousel from "./product-carousel";
 const Products = () => {
   return (
     <div className="product-bg w-full flex flex-col items-center py-14">
-      <h2 className="text-xl font-bold text-[#B0CB1F] pt-4 mb-4">
+      <h2 className="text-xl font-bold text-primary pt-4 mb-4">
         Product Lineup
       </h2>
       <h1 className="text-center heading-font text-white text-3xl font-bold">

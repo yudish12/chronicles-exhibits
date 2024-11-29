@@ -18,7 +18,7 @@ const RouteComponent = ({ link, name }) => {
 const HeaderBtns = () => {
   return (
     <>
-      <Button className="rounded-md rounded-e-none py-[18px]  text-primary font-semibold border-2 bg-transparent border-primary">
+      <Button className="rounded-md rounded-e-none py-[18px] px-2 sm:px-4 text-primary font-semibold border-2 bg-transparent border-primary">
         Schedule A Call
       </Button>
       <Button className="rounded-md rounded-s-none  py-[18px] border-2 border-primary  text-secondary font-semibold">
@@ -47,7 +47,7 @@ const Header = () => {
           <RouteComponent key={index} link={route.link} name={route.name} />
         ))}
       </div>
-      <div>
+      <div className="hidden md:block">
         <HeaderBtns />
       </div>
 
@@ -73,7 +73,13 @@ const Header = () => {
           onClick={(e) => e.stopPropagation()}
         >
           {/* Close Button */}
-          <div className="flex flex-row absolut left-0 justify-items-end text-black ">
+          <div className="flex flex-row justify-between text-black ">
+            <Image
+              alt="logo"
+              src="/chronicle-logo.svg"
+              width={110}
+              height={80}
+            />
             <button
               onClick={closeMenu}
               className="text-white bg-secondary p-2 rounded-full"
@@ -83,15 +89,12 @@ const Header = () => {
           </div>
 
           {/* Menu Items */}
-          <div className="flex flex-col text-white gap-6">
+          <div className="flex flex-col justify-center h-full text-white gap-6">
             {headerRoutes.map((route, index) => (
               <RouteComponent key={index} link={route.link} name={route.name} />
             ))}
             <div className="mt-4">
-              <Button>Get Quote</Button>
-              <Button className="text-primary font-semibold border-2 bg-transparent border-primary">
-                Schedule Call
-              </Button>
+              <HeaderBtns />
             </div>
           </div>
         </div>

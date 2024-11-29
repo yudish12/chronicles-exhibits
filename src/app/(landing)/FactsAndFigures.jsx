@@ -51,10 +51,12 @@ const data = [
 const FactsAndFigures = () => {
   return (
     <div className="bg-[#FDF3ED] py-20 flex flex-col justify-center items-center">
-      <div className="text-[#B0CB1F] text-xl font-bold pt-4">Facts & Figures</div>
-      <div className="flex flex-row justify-center items-center gap-10 mt-8">
+      <div className="text-[#B0CB1F] text-xl font-bold pt-4">
+        Facts & Figures
+      </div>
+      <div className="flex flex-row flex-wrap justify-center items-center gap-10 mt-8">
         {data.map((item) => (
-            <Card
+          <Card
             key={item.id}
             className={`group w-[280px] h-[150px] transition-all duration-300 shadow-one ${item.bgColor} hover:${item.hoverBgColor}`}
           >
@@ -72,12 +74,20 @@ const FactsAndFigures = () => {
                 />
               </div>
               <div className="text-2xl font-bold transition-all duration-300">
-                <span className="hidden group-hover:block text-white pt-2 heading-font ">{item.hoverNumber}</span>
-                <span className="block group-hover:hidden text-secondary pt-2 heading-font">{item.number}</span>
+                <span className="hidden group-hover:block text-white pt-2 heading-font ">
+                  {item.hoverNumber}
+                </span>
+                <span className="block group-hover:hidden text-secondary pt-2 heading-font">
+                  {item.number}
+                </span>
               </div>
               <div className=" transition-all duration-300 font-light ">
-                <span className="hidden group-hover:block text-white pt-2 pb-4 ">{item.hoverText}</span>
-                <span className="block group-hover:hidden text-secondary pt-2 pb-4 ">{item.text}</span>
+                <span className="hidden group-hover:block text-white pt-2 pb-4 ">
+                  {item.hoverText}
+                </span>
+                <span className="block group-hover:hidden text-secondary pt-2 pb-4 ">
+                  {item.text}
+                </span>
               </div>
             </CardContent>
           </Card>
