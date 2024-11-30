@@ -1,7 +1,9 @@
 import React from "react";
 import ProductCarousel from "./product-carousel";
-
-const Products = () => {
+import { getAllData } from "@/server/actions/booths";
+const Products = async () => {
+  const data = await getAllData();
+  console.log(data)
   return (
     <div className="product-bg w-full flex flex-col items-center py-14">
       <h2 className="text-xl font-bold text-primary pt-4 mb-4">
