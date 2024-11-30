@@ -15,7 +15,14 @@ export const getAllData = async () => {
     return getActionFailureResponse(error, "toast");
   }
 };
-
+export const getBoothSizeByName = async (name)=>{
+try{
+  const data = await BoothSize.find({name}).lean();
+  return getActionSuccessResponse(data);
+}catch(error){
+  return getActionFailureResponse(error, "toast");  
+}
+}
 export const updateData = async (id, data) => {
   try {
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {

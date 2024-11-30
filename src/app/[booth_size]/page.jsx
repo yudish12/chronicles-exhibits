@@ -7,10 +7,12 @@ import SubHeader from "@/components/ui/sub-header";
 import BoothGrid from "./_components/AllBooths";
 import RequestDesign from "./_components/RequestDesign";
 import TradeShowSection from "./_components/TradeShowSection";
-
-const FeaturedPage = async ({ params }) => {
-  const boothSizes = await params.booth_size;
-
+import { getBoothSizeByName } from "@/server/actions/booth-sizes";
+async function FeaturedPage({ params }) {
+  const resolvedParams = await params;
+  const boothSize = resolvedParams.booth_size;
+  console.log(await getBoothSizeByName(boothSize));
+  const data = await getBoothSizeByName(boothSize);
   return (
     <>
       <SubHeader />
@@ -18,7 +20,7 @@ const FeaturedPage = async ({ params }) => {
       <div className=" featured-bg flex flex-col items-center justify-center bg-cover bg-center">
         <div className="flex flex-col justify-center items-center h-full text-center gap-6  px-4">
           <h2 className="heading-font font-bold text-[2rem] text-white drop-shadow-lg leading-relaxed ">
-            FEATURED {boothSizes} TRADE SHOW BOOTH RENTALS
+            FEATURED {boothSize} TRADE SHOW BOOTH RENTALS
           </h2>
           <div className="flex flex-col items-center justify-self-end gap-4">
             <div className="font-bold text-white text-2xl drop-shadow-sm leading-relaxed ">
@@ -33,13 +35,13 @@ const FeaturedPage = async ({ params }) => {
           </div>
         </div>
       </div>
-      <BoothGrid size={boothSizes} />
-      <RequestDesign size={boothSizes} />
-      <TradeShowSection size={boothSizes} />
+      <BoothGrid size={boothSize} />
+      <RequestDesign size={boothSize} />
+      <TradeShowSection size={boothSize} />
       <Queryform />
       <Footer />
     </>
   );
-};
+}
 
 export default FeaturedPage;
