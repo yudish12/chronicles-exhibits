@@ -49,8 +49,8 @@ const page = () => {
             to drive your brand value to new heights.
           </p>
           <div className="bg-transparent flex flex-col gap-6 overflow-hidden mb-6">
-            {accData.map((e) => (
-              <div>
+            {accData.map((e, ind) => (
+              <div key={ind}>
                 <Accordion heading={e.heading} description={e.description} />
               </div>
             ))}
@@ -70,7 +70,10 @@ const page = () => {
         </p>
         <div className="grid grid-cols-3 py-12 px-32 gap-x-12 gap-y-10">
           {cardData.map((item, index) => (
-            <div className="h-[370px] hover:scale-110 duration-300 transition-all rounded-xl shadow-one overflow-hidden w-full bg-secondary flex flex-col">
+            <div
+              key={index}
+              className="h-[370px] hover:scale-110 duration-300 transition-all rounded-xl shadow-one overflow-hidden w-full bg-secondary flex flex-col"
+            >
               {/* Image Section */}
               <img
                 src={item.imgSrc}

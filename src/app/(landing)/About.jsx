@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { CardContent, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CardHeader } from "@/components/ui/card";
+import Link from "next/link";
 const About = () => {
   return (
     <>
@@ -125,7 +126,9 @@ const About = () => {
                     variant="outline"
                     className="border-secondary bg-white font-semibold text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
                   >
-                    Know More
+                    <Link className="hover:underline" href="/services">
+                      Know More
+                    </Link>
                   </Button>
                 </CardFooter>
               </Card>
