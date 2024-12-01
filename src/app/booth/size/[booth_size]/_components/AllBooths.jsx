@@ -6,7 +6,7 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card"; // Import 
 const booths = [
   {
     id: 1,
-    image: "./what-we-do-1.png",
+    image: "/what-we-do-1.png",
     code: "TSI02030201",
   },
   {

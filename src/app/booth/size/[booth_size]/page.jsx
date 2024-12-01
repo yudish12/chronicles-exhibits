@@ -1,7 +1,8 @@
 import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
 import React from "react";
-import Queryform from "../(landing)/Queryform";
+import Queryform from "@/app/(landing)/Queryform";
+// import Queryform from "../(landing)/Queryform";
 import { Button } from "@/components/ui/button";
 import SubHeader from "@/components/ui/sub-header";
 import BoothGrid from "./_components/AllBooths";
