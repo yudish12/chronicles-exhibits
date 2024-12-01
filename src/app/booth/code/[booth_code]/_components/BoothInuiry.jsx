@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 const BoothEnquiry = () => {
   return (
-    <div className="flex flex-col items-center justify-center bg-gradient-to-b from-white to-pink-50 py-10 px-4">
+    <div className="flex flex-col items-center justify-center bg-gradient-to-b from-[#FFF7F1] to-[#FFFFFF] py-10 px-4">
       <div className="max-w-xl w-full">
         <h2 className="text-center text-2xl font-semibold mb-6 text-secondary">Booth Enquiry</h2>
 
