@@ -6,6 +6,34 @@
 @import url("https://db.onlinewebfonts.com/c/1f6ff2bc78822f67fe0ffe6dabf9b905?family=Nacelle+SemiBold");
 @import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Doto:wght@100..900&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
+@font-face {
+  font-family: "Optima";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Optima"), url("/OPTIMA.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Optima Italic";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Optima Italic"), url("/Optima_Italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Optima Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Optima Medium"), url("/Optima Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Optima Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Optima Bold"), url("/OPTIMA_B.woff") format("woff");
+}
+
 @layer base {
   :root {
     --background: 22, 80%, 96%; /*#FDF3ED*/
@@ -188,7 +216,7 @@
 }
 
 .heading-font {
-  font-family: "Optima", sans-serif;
+  font-family: "Optima Bold";
 }
 
 .footer-list > * {
