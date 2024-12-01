@@ -19,9 +19,9 @@ const page = () => {
         <p className="text-[17.5px] text-center">
           Chronicle Exhibits LLC – Your ultimate choice for custom and modular
           trade show booth displays. We pride ourselves on crafting bespoke
-          exhibition stands that perfectly embody your brand’s unique identity.
-          Elevate your trade show experience with Chronicle Exhibits LLC and
-          make a statement that sets you apart from the competition.
+          exhibition stands that perfectly embody your brand&apos;s unique
+          identity. Elevate your trade show experience with Chronicle Exhibits
+          LLC and make a statement that sets you apart from the competition.
         </p>
       </div>
       <div className="px-20 flex gap-20 pt-16 pb-20">
