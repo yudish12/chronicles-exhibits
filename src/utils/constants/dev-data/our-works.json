@@ -28,5 +28,20 @@
         "image": "/photo1-ourwork.png",
         "heading": "Professional Setup",
         "description": "Designed to leave a lasting impression"
+    },
+    {
+        "image": "/photo1-ourwork.png",
+        "heading": "Creative Booth Design",
+        "description": "Built to engage and captivate"
+    },
+    {
+        "image": "/photo1-ourwork.png",
+        "heading": "Custom Solutions",
+        "description": "Tailored to fit your trade show goals"
+    },
+    {
+        "image": "/photo1-ourwork.png",
+        "heading": "Professional Setup",
+        "description": "Designed to leave a lasting impression"
     }
 ]

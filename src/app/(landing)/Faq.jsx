@@ -7,7 +7,7 @@ const Faq = () => {
       <h4 className="text-primary text-[1.35rem] text-center font-semibold mb-8">
         FAQs
       </h4>
-      <div className={"grid grid-rows-3 gap-y-4"}>
+      <div className={"grid grid-rows-3"}>
         {faqs.map((e, index) => (
           <div key={index} className="bg-white shadow-lg overflow-hidden mb-6">
             <div className="bg-[#5D2A42] h-[25%] flex items-center p-4">

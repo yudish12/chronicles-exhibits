@@ -5,7 +5,7 @@ import ourWorksData from "../../utils/constants/dev-data/our-works.json";
 
 const Ourworks = () => {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col px-12  gap-5">
       <h5 className="text-primary text-[1.35rem] text-center font-semibold">
         Our Works
       </h5>
@@ -15,22 +15,19 @@ const Ourworks = () => {
       >
         TRADE SHOW BOOTH DESIGN PORTFOLIO
       </h3>
-      <div className="grid grid-cols-3 px-20 gap-x-6 py-6 gap-y-6">
+      <div className="grid grid-cols-[370px,370px,370px] w-max mx-auto bg-white rounded-xl gap-x-8 place-content-center py-8 gap-y-8 shadow-two px-8">
         {ourWorksData.map((item, index) => (
-          <div key={index} className="relative portfolio-img">
+          <div
+            key={index}
+            className="overflow-hidden rounded-xl w-[370px] h-[300px]" // Wrapper to constrain image scale
+          >
             <Image
-              width={500}
-              height={500}
-              className="shadow-one rounded-xl"
+              width={370}
+              height={300}
+              className="transition-transform min-h-[300px] duration-300 transform hover:scale-110"
               src="/photo1-ourwork.png"
-              alt="photo6"
+              alt={`photo-${index}`}
             />
-            <div className="hover-content">
-              <h4 className="text-3xl text-secondary heading-font font-semibold">
-                {item.heading}
-              </h4>
-              <p className="text-black">{item.description}</p>
-            </div>
           </div>
         ))}
       </div>
