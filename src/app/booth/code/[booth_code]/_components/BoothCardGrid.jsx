@@ -7,53 +7,24 @@ import Link from "next/link";
 const booths = [
   {
     id: 1,
-    image: "/what-we-do-1.png",
-    code: "TSI02030201",
-  },
-  {
-    id: 2,
-    image: "/what-we-do-2.png",
-    code: "TSI02030201",
+    image: "/booth-code-1.jpeg",
+    code: "CEL101001",
   },
   {
     id: 3,
-    image: "/what-we-do-3.png",
-    code: "TSI02030201",
-  },
-  {
-    id: 4,
-    image: "/what-we-do-1.png",
-    code: "TSI02030201",
-  },
-  {
-    id: 5,
-    image: "/what-we-do-3.png",
-    code: "TSI02030201",
+    image: "/booth-code-3.jpeg",
+    code: "CEL101002",
   },
   {
     id: 6,
-    image: "/what-we-do-2.png",
-    code: "TSI02030201",
-  },
-  {
-    id: 7,
-    image: "/what-we-do-3.png",
-    code: "TSI02030201",
-  },
-  {
-    id: 8,
-    image: "/what-we-do-1.png",
-    code: "TSI02030201",
-  },
-  {
-    id: 9,
-    image: "/what-we-do-2.png",
-    code: "TSI02030201",
+    image: "/booth-code-5.jpeg",
+    code: "CEL101003",
   },
 ];
 
-const BoothGrid = () => {
+const BoothGrid = ({ boothCode }) => {
   const [visibleCount, setVisibleCount] = useState(9);
+  const boothToRender = booths.filter((booth) => booth.code !== boothCode);
 
   return (
     <div className="py-12 bg-gradient-to-b bg-background">
@@ -67,8 +38,8 @@ const BoothGrid = () => {
       </p>
 
       {/* Booth Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1200px] mx-auto">
-        {booths.slice(0, visibleCount).map((booth) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center place-content-center max-w-[1200px] mx-auto">
+        {boothToRender.slice(0, visibleCount).map((booth) => (
           <Card
             key={booth.id}
             className="shadow-one rounded-lg overflow-hidden w-[380px]"

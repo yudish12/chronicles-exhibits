@@ -88,12 +88,14 @@ const About = () => {
                 </CardContent>
                 {/* Button */}
                 <CardFooter className="flex justify-center  p-4 pt-0 mt-6">
-                  <Button
-                    variant="outline"
-                    className="border-secondary bg-white font-semibold text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
-                  >
-                    View All
-                  </Button>
+                  <Link href={"/trade-show-booth-displays-designs"}>
+                    <Button
+                      variant="outline"
+                      className="border-secondary bg-white font-semibold text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
+                    >
+                      View All
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             </div>
@@ -158,12 +160,14 @@ const About = () => {
                 </CardContent>
                 {/* Button */}
                 <CardFooter className="p-4 pt-0 mt-6 flex justify-center">
-                  <Button
-                    variant="outline"
-                    className="border-secondary bg-white font-semibold text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
-                  >
-                    View Portfolio
-                  </Button>
+                  <Link href={"/portfolio"}>
+                    <Button
+                      variant="outline"
+                      className="border-secondary bg-white font-semibold text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
+                    >
+                      View Portfolio
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             </div>

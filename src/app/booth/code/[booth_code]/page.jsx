@@ -20,7 +20,7 @@ const BoothByCode = async ({ params }) => {
     </div> */}
       <BoothDetails boothCode={boothCode} />
       {/* <BoothEnquiry/> */}
-      <BoothGrid />
+      <BoothGrid boothCode={boothCode} />
       <Queryform />
       <Footer />
     </>

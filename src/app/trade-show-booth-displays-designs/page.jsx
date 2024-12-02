@@ -6,6 +6,7 @@ import React from "react";
 import cardData from "../../utils/constants/dev-data/product-card.json";
 import Accordion from "./_components/Accordion";
 import accData from "../../utils/constants/dev-data/booth-design-accordion.json";
+import Link from "next/link";
 
 const page = () => {
   return (
@@ -70,7 +71,8 @@ const page = () => {
         </p>
         <div className="grid grid-cols-3 py-12 px-32 gap-x-12 gap-y-10">
           {cardData.map((item, index) => (
-            <div
+            <Link
+              href={`/booth/size/${item.size}`}
               key={index}
               className="h-[370px] hover:scale-110 duration-300 transition-all rounded-xl shadow-one overflow-hidden w-full bg-secondary flex flex-col"
             >
@@ -89,7 +91,7 @@ const page = () => {
                   trade show booth rental
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

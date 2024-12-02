@@ -30,8 +30,8 @@ const TradeShowSection = ({ size }) => {
           While participating in a trade show, every business looks for stunning
           booth rentals that help it stand out from the crowd. It becomes a more
           challenging task for exhibitors who are new or have a low budget for
-          exhibition endeavors. Triumfo Inc. has the perfect solution for such
-          needs i.e. {size} trade show booth rentals.
+          exhibition endeavors. Chronicle Exhibits LLC. has the perfect solution
+          for such needs i.e. {size} trade show booth rentals.
         </p>
         <p className="text-secondary mb-6">
           A {size} booth exhibit rental empowers your business to have an
@@ -126,13 +126,13 @@ const TradeShowSection = ({ size }) => {
           GET IN TOUCH WITH US FOR CREATIVE {size} TRADE SHOW BOOTH IDEAS
         </h2>
         <p className="text-gray-800 ">
-          At Triumfo Inc., we believe in building long-lasting business
-          relationships by building trust. Our experts always strive to provide
-          impressive {size} trade show booth rentals at the best prices. We are
-          just a few clicks away from making your business stand out at the next
-          trade show with {size} trade show exhibit rentals that convert foot
-          traffic into customers. Call us or send your query to us directly
-          through our website now.
+          At Chronicle Exhibits LLC, we believe in building long-lasting
+          business relationships by building trust. Our experts always strive to
+          provide impressive {size} trade show booth rentals at the best prices.
+          We are just a few clicks away from making your business stand out at
+          the next trade show with {size} trade show exhibit rentals that
+          convert foot traffic into customers. Call us or send your query to us
+          directly through our website now.
         </p>
       </section>
     </div>
