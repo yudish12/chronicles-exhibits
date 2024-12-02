@@ -5,14 +5,29 @@
         "description": "Custom-designed for your brand"
     },
     {
-        "image": "/photo1-ourwork.png",
+        "image": "/what-we-do-1.png",
         "heading": "Innovative Booth Design",
         "description": "Tailored to make your brand stand out"
     },
     {
-        "image": "/photo1-ourwork.png",
+        "image": "/what-we-do-3.png",
         "heading": "Exquisite Displays",
         "description": "Designed for impactful presentations"
+    },
+    {
+        "image": "/what-we-do-2.png",
+        "heading": "Creative Booth Design",
+        "description": "Built to engage and captivate"
+    },
+    {
+        "image": "/what-we-do-1.png",
+        "heading": "Custom Solutions",
+        "description": "Tailored to fit your trade show goals"
+    },
+    {
+        "image": "/what-we-do-3.png",
+        "heading": "Professional Setup",
+        "description": "Designed to leave a lasting impression"
     },
     {
         "image": "/photo1-ourwork.png",
@@ -20,12 +35,12 @@
         "description": "Built to engage and captivate"
     },
     {
-        "image": "/photo1-ourwork.png",
+        "image": "/what-we-do-3.png",
         "heading": "Custom Solutions",
         "description": "Tailored to fit your trade show goals"
     },
     {
-        "image": "/photo1-ourwork.png",
+        "image": "/what-we-do-2.png",
         "heading": "Professional Setup",
         "description": "Designed to leave a lasting impression"
     }

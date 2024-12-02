@@ -40,7 +40,8 @@ const ProductCarousel = () => {
             }}
           >
             {cardData.map((item, index) => (
-              <div
+              <Link
+                href={`/booth/size/${item.size}`}
                 key={index}
                 className="min-w-[33.33%] max-w-[33.33%] flex-shrink-0 px-6"
               >
@@ -52,19 +53,14 @@ const ProductCarousel = () => {
                     className="w-full h-[75%] object-cover"
                   />
                   {/* Content Section */}
-                  <div className="flex flex-col justify-center items-center bg-secondary/[.94] text-white h-[25%]">
-                    <div className="text-[1.4rem] font-bold text-white heading-font pt-2">
-                      {item.size}
-                    </div>
-                    <Link
-                      href={item.link}
-                      className="text-[#B0CB1F] underline text-sm font-normal mt-2 mb-2"
-                    >
-                      View More
-                    </Link>
+                  <div className="flex h-1/4 heading-font bg-white flex-col justify-center items-center bg-secondary/[.94] text-secondary">
+                    <p className=" text-[1.65rem] font-semibold">{item.size}</p>
+                    <p className="uppercase text-lg font-semibold">
+                      trade show booth rental
+                    </p>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

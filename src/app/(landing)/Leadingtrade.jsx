@@ -5,18 +5,18 @@ const Leadingtrade = () => {
   return (
     <div className="p-20 flex gap-10">
       {/* Image Container */}
-      <div className="w-1/3">
+      <div className="w-1/2">
         <Image
           layout="responsive" // Ensures the image is responsive
           width={370} // Aspect ratio width
-          height={370} // Aspect ratio height
+          height={250} // Aspect ratio height
           src="/photo1.png"
           alt="photo1"
-          className="object-cover" // Ensures the image covers the container
+          className=" max-h-[530px]" // Ensures the image covers the container
         />
       </div>
       {/* Text Content */}
-      <div className="w-2/3">
+      <div className="w-1/2">
         <h3
           style={{ lineHeight: "1.2" }}
           className="heading-font uppercase font-semibold text-secondary text-[2rem]"

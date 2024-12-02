@@ -14,6 +14,11 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+// const optimaLT = localFont({
+//   src: "./fonts/OptimaLT.woff",
+//   variable: "--font-optima-lt",
+//   weight: "100 900",
+// });
 
 export const metadata = {
   title: "Create Next App",
