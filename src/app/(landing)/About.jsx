@@ -160,7 +160,7 @@ const About = () => {
                 </CardContent>
                 {/* Button */}
                 <CardFooter className="p-4 pt-0 mt-6 flex justify-center">
-                  <Link>
+                  <Link href={"/portfolio"}>
                     <Button
                       variant="outline"
                       className="border-secondary bg-white font-semibold text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
