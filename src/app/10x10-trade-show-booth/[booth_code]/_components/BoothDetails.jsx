@@ -29,6 +29,19 @@ const imagegroup4 = [
   "/booth-code-11.webp",
 ];
 
+const imagegroup5 = [
+  "/booth-code-13.webp",
+  "/booth-code-14.webp",
+  "/booth-code-15.webp",
+];
+
+const imagegroup6 = [
+  "/booth-code-16.webp",
+  "/booth-code-17.webp",
+  "/booth-code-18.webp",
+  "/booth-code-19.webp",
+];
+
 const packageDetails = [
   "Booth as per design",
   "Graphics as per client",
@@ -50,6 +63,8 @@ export function BoothDetails({ boothCode }) {
   else if (boothCode === "CEL101002") images = imagegroup2;
   else if (boothCode === "CEL101003") images = imagegroup3;
   else if (boothCode === "CEL101004") images = imagegroup4;
+  else if (boothCode === "CEL101005") images = imagegroup5;
+  else if (boothCode === "CEL101006") images = imagegroup6;
 
   const handlePrevious = () => {
     setSelectedIndex(

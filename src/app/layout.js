@@ -39,6 +39,10 @@ export default function RootLayout({ children }) {
     "/10X10-trade-show-booth/CEL101003",
     "/10x10-trade-show-booth/CEL101004",
     "/10X10-trade-show-booth/CEL101004",
+    "/10x10-trade-show-booth/CEL101005",
+    "/10X10-trade-show-booth/CEL101005",
+    "/10x10-trade-show-booth/CEL101006",
+    "/10X10-trade-show-booth/CEL101006",
   ];
   const currentPath = usePathname();
 

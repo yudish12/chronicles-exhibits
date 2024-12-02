@@ -25,6 +25,16 @@ const booths = [
     image: "/booth-code-9.webp",
     code: "CEL101004",
   },
+  {
+    id: 5,
+    image: "/booth-code-13.webp",
+    code: "CEL101005",
+  },
+  {
+    id: 7,
+    image: "/booth-code-17.webp",
+    code: "CEL101006",
+  },
 ];
 
 const BoothGrid = ({ boothCode }) => {
@@ -60,7 +70,7 @@ const BoothGrid = ({ boothCode }) => {
               <p className="font-semibold text-lg text-secondary">
                 Booth Code: {booth.code}
               </p>
-              <Link href={`/booth/code/${booth.code}`}>
+              <Link href={`/10x10-trade-show-booth/${booth.code}`}>
                 <Button
                   style={{ transitionDuration: "500ms" }}
                   className="mt-4 bg-transparent hover:bg-secondary border-2 border-[#B0CB1F] hover:border-secondary text-[#B0CB1F] hover:text-white px-6 py-2 font-bold text-sm"

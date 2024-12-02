@@ -25,6 +25,16 @@ const booths = [
     image: "/booth-code-9.webp",
     code: "CEL101004",
   },
+  {
+    id: 5,
+    image: "/booth-code-13.webp",
+    code: "CEL101005",
+  },
+  {
+    id: 7,
+    image: "/booth-code-17.webp",
+    code: "CEL101006",
+  },
 ];
 
 const BoothGrid = ({ size }) => {
