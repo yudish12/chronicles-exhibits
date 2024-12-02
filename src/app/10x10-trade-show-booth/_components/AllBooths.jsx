@@ -20,6 +20,11 @@ const booths = [
     image: "/booth-code-5.jpeg",
     code: "CEL101003",
   },
+  {
+    id: 7,
+    image: "/booth-code-9.webp",
+    code: "CEL101004",
+  },
 ];
 
 const BoothGrid = ({ size }) => {

@@ -23,6 +23,12 @@ const imagegroup2 = ["/booth-code-6.jpeg", "/booth-code-3.jpeg"];
 
 const imagegroup3 = ["/booth-code-4.jpeg", "/booth-code-5.jpeg"];
 
+const imagegroup4 = [
+  "/booth-code-9.webp",
+  "/booth-code-10.webp",
+  "/booth-code-11.webp",
+];
+
 const packageDetails = [
   "Booth as per design",
   "Graphics as per client",
@@ -42,7 +48,8 @@ export function BoothDetails({ boothCode }) {
 
   if (boothCode === "CEL101001") images = imagegroup1;
   else if (boothCode === "CEL101002") images = imagegroup2;
-  else images = imagegroup3;
+  else if (boothCode === "CEL101003") images = imagegroup3;
+  else if (boothCode === "CEL101004") images = imagegroup4;
 
   const handlePrevious = () => {
     setSelectedIndex(
