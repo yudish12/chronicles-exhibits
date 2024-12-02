@@ -7,9 +7,15 @@ const Faq = () => {
       <h4 className="heading-font text-secondary text-2xl text-center font-semibold">
         WHY CHOOSE CHRONICLE EXHIBITS AS YOUR NEXT
       </h4>
-      <h4 className="heading-font text-secondary text-2xl text-center font-semibold mb-8">
+      <h4 className="heading-font text-secondary text-2xl text-center font-semibold mb-6">
         EXHIBITING PARTNER IN THE USA?
       </h4>
+      <p className="text-center mb-6">
+        With more than 25 years of experience in the industry, we understand
+        each and every need of exhibitors and strive to provide quality custom
+        trade show booths and rentals with an unforgettable exhibiting
+        experience.
+      </p>
       <div className={"grid grid-rows-3"}>
         {faqs.map((e, index) => (
           <div key={index} className="bg-white shadow-lg overflow-hidden mb-6">
