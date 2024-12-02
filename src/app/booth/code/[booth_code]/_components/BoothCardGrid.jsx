@@ -7,48 +7,48 @@ import Link from "next/link";
 const booths = [
   {
     id: 1,
-    image: "/what-we-do-1.png",
-    code: "TSI02030201",
+    image: "/booth-code-1.jpeg",
+    code: "CEL101001",
   },
   {
     id: 2,
-    image: "/what-we-do-2.png",
-    code: "TSI02030201",
+    image: "/booth-code-2.jpeg",
+    code: "CEL101001",
   },
   {
     id: 3,
-    image: "/what-we-do-3.png",
-    code: "TSI02030201",
+    image: "/booth-code-3.jpeg",
+    code: "CEL101001",
   },
   {
     id: 4,
-    image: "/what-we-do-1.png",
-    code: "TSI02030201",
+    image: "/booth-code-4.jpeg",
+    code: "CEL101001",
   },
   {
     id: 5,
-    image: "/what-we-do-3.png",
-    code: "TSI02030201",
+    image: "/booth-code-5.jpeg",
+    code: "CEL101001",
   },
   {
     id: 6,
-    image: "/what-we-do-2.png",
-    code: "TSI02030201",
+    image: "/booth-code-6.jpeg",
+    code: "CEL101001",
   },
   {
     id: 7,
-    image: "/what-we-do-3.png",
-    code: "TSI02030201",
+    image: "/booth-3.jpeg",
+    code: "CEL101001",
   },
   {
     id: 8,
-    image: "/what-we-do-1.png",
-    code: "TSI02030201",
+    image: "/booth-1.jpeg",
+    code: "CEL101001",
   },
   {
     id: 9,
-    image: "/what-we-do-2.png",
-    code: "TSI02030201",
+    image: "/booth-2.jpeg",
+    code: "CEL101001",
   },
 ];
 
