@@ -52,10 +52,8 @@ const booths = [
 ];
 
 const BoothGrid = () => {
-  const [visibleCount, setVisibleCount] = useState(6);
-  const handleShowMore = () => {
-    setVisibleCount(booths.length);
-  };
+  const [visibleCount, setVisibleCount] = useState(9);
+
   return (
     <div className="py-12 bg-gradient-to-b bg-background">
       {/* Title and Subtitle */}
@@ -95,16 +93,6 @@ const BoothGrid = () => {
           </Card>
         ))}
       </div>
-      {visibleCount < booths.length && (
-        <div className="text-center mt-8">
-          <Button
-            onClick={handleShowMore}
-            className="bg-[#B0CB1F] hover:bg-secondary text-white px-6 py-2 font-bold text-sm"
-          >
-            Show More
-          </Button>
-        </div>
-      )}
     </div>
   );
 };

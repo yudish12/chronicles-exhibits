@@ -230,6 +230,10 @@
   box-shadow: 0 0 42px rgba(93, 42, 66, 0.36);
 }
 
+.shadow-two {
+  box-shadow: 0 0 12px rgba(93, 42, 66, 0.36);
+}
+
 .queryform {
   position: relative;
   overflow: hidden;
@@ -302,7 +306,7 @@
   width: 100%;
   opacity: 1;
   height: 100%;
-  background: url("../../public/bg-gradient.png");
+  background: url("../../public/portfolio-bg.png");
   background-blend-mode: darken;
   background-size: cover;
   z-index: -2;
@@ -378,6 +382,6 @@
   z-index: -1;
 }
 
-.shadow-two {
+/* .shadow-two {
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
+} */

@@ -16,7 +16,7 @@ const images = [
   "/what-we-do-1.png", // Replace with actual image URLs
   "/what-we-do-2.png",
   "/what-we-do-3.png",
-  "/what-we-do-1.png",
+  "/booth-design-2.png",
 ];
 
 const packageDetails = [
@@ -56,7 +56,7 @@ export function BoothDetails({ boothCode }) {
   };
 
   return (
-    <div className="bg-background gap-12 flex py-7 px-40">
+    <div className="bg-background gap-12 flex justify-center pr-16 py-7 px-40">
       {/*Thumbnails */}
       <div className="flex flex-col items-start gap-8">
         <h3 className="text-[1.4rem] text-secondary font-semibold ">
@@ -68,7 +68,7 @@ export function BoothDetails({ boothCode }) {
               key={index}
               src={src}
               alt={`Thumbnail ${index + 1}`}
-              className={`w-full h-20 object-cover rounded cursor-pointer ${
+              className={`w-full h-20 object-cover rounded cursor-pointer object-cover ${
                 index === selectedIndex ? "ring-2 ring-secondary" : ""
               }`}
               onClick={() => handleThumbnailClick(index)}
@@ -78,29 +78,29 @@ export function BoothDetails({ boothCode }) {
       </div>
 
       {/* Carousel */}
-      <div className="relative pt-16 min-w-[700px] col-span-2 py-6">
-        <Carousel className="w-full h-[53%] ">
+      <div className="relative col-span-2 bg-secondary mt-16 px-4 py-4">
+        <Carousel className="w-full ">
           <CarouselContent className="h-full">
             {images.map((src, index) => (
               <CarouselItem
                 key={index}
                 className={cn(
                   index === selectedIndex ? "block" : "hidden",
-                  "h-full"
+                  "h-full rounded-none"
                 )}
               >
-                <Card className="w-full h-full">
+                <Card className="w-full h-full rounded-none">
                   <img
                     src={src}
                     alt={`Carousel ${index + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-none"
                   />
                 </Card>
               </CarouselItem>
             ))}
           </CarouselContent>
         </Carousel>
-        <div className="flex flex-col items-center justify-center border-[1px] border-secondary bg-[#ffffff] py-10 px-10">
+        <div className="flex flex-col items-center justify-center  py-10 px-10">
           <div className="w-full">
             <div className="flex justify-between mb-4">
               <label className="flex items-center space-x-2">
@@ -171,7 +171,7 @@ export function BoothDetails({ boothCode }) {
               rows="4"
             ></textarea>
           </div>
-          <Button className=" bg-transparent border-2 border-primary text-primary hover:text-white font-semibold mt-8 rounded hover:bg-secondary ">
+          <Button className="border-2 border-primary bg-transparent transition-all duration-150 hover:text-white hover:bg-primary font-semibold mt-8 rounded text-primary">
             Get Quote
           </Button>
         </div>

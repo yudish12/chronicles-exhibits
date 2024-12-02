@@ -15,7 +15,7 @@ const Ourworks = () => {
       >
         TRADE SHOW BOOTH DESIGN PORTFOLIO
       </h3>
-      <div className="grid grid-cols-[370px,370px,370px] w-max mx-auto bg-white rounded-xl gap-x-8 place-content-center py-8 gap-y-8 shadow-two px-8">
+      <div className="grid grid-cols-[370px,370px,370px] shadow-two  w-max mx-auto bg-white rounded-xl gap-x-8 place-content-center p-8 gap-y-8">
         {ourWorksData.map((item, index) => (
           <div
             key={index}
