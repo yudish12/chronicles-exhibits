@@ -13,10 +13,10 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const images = [
-  "/what-we-do-1.png", // Replace with actual image URLs
-  "/what-we-do-2.png",
-  "/what-we-do-3.png",
-  "/what-we-do-2.png",
+  "/booth-1.jpeg", // Replace with actual image URLs
+  "/booth-2.jpeg",
+  "/booth-3.jpeg",
+  "/booth-4.jpeg",
 ];
 
 const packageDetails = [
