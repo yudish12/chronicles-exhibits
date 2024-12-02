@@ -11,8 +11,8 @@ const SocialIconContainer = ({ children }) => {
 
 export default function Footer() {
   return (
-    <div className="bg-secondary py-24 px-20">
-      <div className=" px-12 py-10 bg-[#451E2F] rounded-lg grid grid-cols-4 gap-20 text-white/80">
+    <div className="bg-secondary py-12 px-6 md:py-24 md:px-20">
+      <div className="px-6 py-8 md:px-12 md:py-10 bg-[#451E2F] rounded-lg grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
         {/* Company Section */}
         <div>
           <h3 className="font-semibold text-base mb-4">Company</h3>
@@ -100,7 +100,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth-rental/30x30">
+              <Link className="hover:underline" href="/booth-rental/30x40">
                 30x40 Booth Rental
               </Link>
             </li>
@@ -201,11 +201,11 @@ export default function Footer() {
       </div>
       <div className="mt-12">
         <h4 className="text-lg font-semibold text-white/80">Follow Us</h4>
-        <div className="bg-secondary/[.94] w-full flex justify-between items-center gap-4">
+        <div className="bg-secondary/[.94] w-full flex flex-wrap justify-between items-center gap-4">
           <div className="flex items-center mt-4 gap-3">
             <SocialIconContainer>
               <Image
-                alt="pinterest"
+                alt="facebook"
                 src="/facebook.svg"
                 width={30}
                 height={30}
@@ -213,7 +213,7 @@ export default function Footer() {
             </SocialIconContainer>
             <SocialIconContainer>
               <Image
-                alt="pinterest"
+                alt="youtube"
                 src="/youtube.svg"
                 width={30}
                 height={30}
@@ -221,7 +221,7 @@ export default function Footer() {
             </SocialIconContainer>
             <SocialIconContainer>
               <Image
-                alt="pinterest"
+                alt="twitter"
                 src="/twitter.svg"
                 width={30}
                 height={30}
@@ -229,7 +229,7 @@ export default function Footer() {
             </SocialIconContainer>
             <SocialIconContainer>
               <Image
-                alt="pinterest"
+                alt="linkedin"
                 src="/linkedin.svg"
                 width={30}
                 height={30}
@@ -244,8 +244,8 @@ export default function Footer() {
               />
             </SocialIconContainer>
           </div>
-          <span className="text-white/80 text-sm font-medium">
-            © Copyright 2024. Triumfo Inc. All Right Reserved. Privacy Policy
+          <span className="text-white/80 text-sm font-medium text-center">
+            © Copyright 2024. Triumfo Inc. All Rights Reserved. Privacy Policy
           </span>
         </div>
       </div>
