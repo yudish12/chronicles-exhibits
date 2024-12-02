@@ -72,7 +72,7 @@ export function BoothDetails({ boothCode }) {
       </div>
 
       {/* Carousel */}
-      <div className="relative col-span-2 bborder-[1px] mt-16 bg-[#FCF8F3] border-[1px] px-4 py-4">
+      <div className="relative col-span-2 bborder-[1px] mt-16 bg-[#FCF8F3] border-[1px] px-4 pt-4 pb-0">
         <Carousel className="w-full ">
           <CarouselContent className="h-full">
             {images.map((src, index) => (
@@ -165,7 +165,7 @@ export function BoothDetails({ boothCode }) {
               rows="4"
             ></textarea>
           </div>
-          <Button className="transition-all py-4 px-6 duration-150 bg-secondary hover:text-white hover:bg-secondary font-semibold mt-8 rounded text-white">
+          <Button className="transition-all py-4 px-6 duration-150 bg-secondary hover:text-white hover:bg-secondary font-semibold mt-4 self-end rounded text-white">
             Get Quote
           </Button>
         </div>
