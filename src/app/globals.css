@@ -205,7 +205,7 @@
 .queryform {
   position: relative;
   overflow: hidden;
-  height: 600px;
+  height: 600px; /* Default height for larger screens */
 }
 
 .queryform::before {
@@ -213,7 +213,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 1470px;
+  width: 100%; /* Set width to 100% for responsiveness */
   height: 100%;
   background: url("../../public/photo1.png") no-repeat center center;
   background-size: cover;
@@ -227,8 +227,32 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(69, 30, 47, 0.8);
+  background: rgba(69, 30, 47, 0.8); /* Overlay color */
   z-index: -1;
+}
+
+@media (max-width: 768px) {
+  .queryform {
+    height: auto; /* Allow height to adjust based on content */
+    padding: 20px; /* Add padding for better spacing */
+  }
+
+  .queryform::before {
+    background-size: cover; /* Ensure the image scales properly */
+    background-position: center; /* Center the image on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .queryform {
+    height: auto; /* Adjust for very small screens */
+    padding: 16px; /* Smaller padding for narrow screens */
+  }
+
+  .queryform::before {
+    background-size: contain; /* Adjust background size for small screens */
+    background-position: center;
+  }
 }
 
 .service-bg {
