@@ -21,11 +21,11 @@ async function FeaturedPage({ params }) {
       <div className=" featured-bg flex flex-col items-center justify-center bg-cover bg-center">
         <div className="flex flex-col justify-center items-center h-full text-center gap-6  px-4">
           <h2 className="heading-font font-bold text-[2rem] text-white drop-shadow-lg leading-relaxed ">
-            FEATURED {boothSize} TRADE SHOW BOOTH RENTALS
+            FEATURED 10x10 TRADE SHOW BOOTH RENTALS
           </h2>
           <div className="flex flex-col items-center justify-self-end gap-4">
             <div className="font-bold text-white text-2xl drop-shadow-sm leading-relaxed ">
-              TUIOW202039002
+              {boothSize}
             </div>
             <Button
               style={{ transitionDuration: "500ms" }}
