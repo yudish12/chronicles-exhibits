@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
 import ourWorksData from "../../utils/constants/dev-data/our-works.json";
+import Link from "next/link";
 
 const Ourworks = () => {
   return (
@@ -40,12 +41,14 @@ const Ourworks = () => {
           project. Get inspired by our work and let us create a standout
           experience for your brand.
         </p>
-        <Button
-          style={{ transitionDuration: "500ms" }}
-          className="bg-transparent hover:bg-secondary hover:text-white mx-auto mt-4 border-2 border-secondary font-semibold text-secondary"
-        >
-          View Complete Portfolio
-        </Button>
+        <Link href="/portfolio">
+          <Button
+            style={{ transitionDuration: "500ms" }}
+            className="bg-transparent hover:bg-secondary hover:text-white mx-auto mt-4 border-2 border-secondary font-semibold text-secondary"
+          >
+            View Complete Portfolio
+          </Button>
+        </Link>
       </div>
     </div>
   );

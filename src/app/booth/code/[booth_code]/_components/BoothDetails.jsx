@@ -16,7 +16,7 @@ const images = [
   "/what-we-do-1.png", // Replace with actual image URLs
   "/what-we-do-2.png",
   "/what-we-do-3.png",
-  "/booth-design-2.png",
+  "/what-we-do-2.png",
 ];
 
 const packageDetails = [
@@ -34,13 +34,6 @@ const packageDetails = [
 
 export function BoothDetails({ boothCode }) {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setSelectedIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Adjust timing as needed
-    return () => clearInterval(interval);
-  }, []);
 
   const handlePrevious = () => {
     setSelectedIndex(
@@ -68,9 +61,10 @@ export function BoothDetails({ boothCode }) {
               key={index}
               src={src}
               alt={`Thumbnail ${index + 1}`}
-              className={`w-full h-20 object-cover rounded cursor-pointer object-cover ${
-                index === selectedIndex ? "ring-2 ring-secondary" : ""
-              }`}
+              className={cn(
+                "w-full grayscale h-20 object-cover rounded cursor-pointer",
+                index === selectedIndex ? "grayscale-0" : ""
+              )}
               onClick={() => handleThumbnailClick(index)}
             />
           ))}
@@ -78,7 +72,7 @@ export function BoothDetails({ boothCode }) {
       </div>
 
       {/* Carousel */}
-      <div className="relative col-span-2 bg-secondary mt-16 px-4 py-4">
+      <div className="relative col-span-2 bborder-[1px] mt-16 bg-[#FCF8F3] border-[1px] px-4 py-4">
         <Carousel className="w-full ">
           <CarouselContent className="h-full">
             {images.map((src, index) => (
@@ -100,7 +94,7 @@ export function BoothDetails({ boothCode }) {
             ))}
           </CarouselContent>
         </Carousel>
-        <div className="flex flex-col items-center justify-center  py-10 px-10">
+        <div className="flex flex-col items-center justify-center py-6">
           <div className="w-full">
             <div className="flex justify-between mb-4">
               <label className="flex items-center space-x-2">
@@ -108,7 +102,7 @@ export function BoothDetails({ boothCode }) {
                   type="checkbox"
                   className="h-4 w-4 border-gray-300 rounded "
                 />
-                <span className="text-primary font-semibold">
+                <span className="text-secondary font-semibold">
                   Rental Quotation
                 </span>
               </label>
@@ -117,7 +111,7 @@ export function BoothDetails({ boothCode }) {
                   type="checkbox"
                   className="h-4 w-4 border-secondary rounded text-primary "
                 />
-                <span className="text-primary font-semibold">
+                <span className="text-secondary font-semibold">
                   Purchase Request
                 </span>
               </label>
@@ -126,7 +120,7 @@ export function BoothDetails({ boothCode }) {
                   type="checkbox"
                   className="h-4 w-4 border-gray-300 rounded text-purple-600 focus:ring-2 focus:ring-purple-500"
                 />
-                <span className="text-primary font-semibold">
+                <span className="text-secondary font-semibold">
                   Customization Request
                 </span>
               </label>
@@ -171,7 +165,7 @@ export function BoothDetails({ boothCode }) {
               rows="4"
             ></textarea>
           </div>
-          <Button className="border-2 border-primary bg-transparent transition-all duration-150 hover:text-white hover:bg-primary font-semibold mt-8 rounded text-primary">
+          <Button className="transition-all py-4 px-6 duration-150 bg-secondary hover:text-white hover:bg-secondary font-semibold mt-8 rounded text-white">
             Get Quote
           </Button>
         </div>

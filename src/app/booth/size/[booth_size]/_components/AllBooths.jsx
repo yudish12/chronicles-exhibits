@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card"; // Import Card components from shadcn
+import Link from "next/link";
 
 const booths = [
   {
@@ -83,12 +84,14 @@ const BoothGrid = ({ size }) => {
               <p className="font-semibold text-lg text-secondary">
                 Booth Code: {booth.code}
               </p>
-              <Button
-                style={{ transitionDuration: "500ms" }}
-                className="mt-4 bg-transparent hover:bg-secondary border-2 border-[#B0CB1F] hover:border-secondary text-[#B0CB1F] hover:text-white px-6 py-2 font-bold text-sm"
-              >
-                Customize Now!
-              </Button>
+              <Link href={"/booth/code/" + booth.code}>
+                <Button
+                  style={{ transitionDuration: "500ms" }}
+                  className="mt-4 bg-transparent hover:bg-secondary border-2 border-[#B0CB1F] hover:border-secondary text-[#B0CB1F] hover:text-white px-6 py-2 font-bold text-sm"
+                >
+                  Customize Now!
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         ))}
