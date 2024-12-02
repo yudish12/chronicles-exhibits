@@ -192,8 +192,9 @@ export default function Footer() {
           <div className="mt-6">
             <h3 className="font-bold text-lg mb-4">Address</h3>
             <p className="text-sm leading-relaxed">
-              500 N Rainbow Blvd Suite #300 <br />
-              Las Vegas, NV 89107 <br />
+              Sahara Ave, Suite 111 Unit #1183
+              <br />
+              Las Vegas, NV 89117, <br />
               United States
             </p>
           </div>
