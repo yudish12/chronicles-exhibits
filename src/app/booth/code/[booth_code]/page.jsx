@@ -1,4 +1,5 @@
 import React from "react";
+import "../../../globals.css";
 import SubHeader from "@/components/ui/sub-header";
 import Header from "@/components/ui/header";
 import Queryform from "@/app/(landing)/Queryform";

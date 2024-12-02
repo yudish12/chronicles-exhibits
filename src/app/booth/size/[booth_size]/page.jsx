@@ -1,5 +1,6 @@
 import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
+import "../../../globals.css";
 import React from "react";
 import Queryform from "@/app/(landing)/Queryform";
 // import Queryform from "../(landing)/Queryform";
