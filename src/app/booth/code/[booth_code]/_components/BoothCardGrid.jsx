@@ -11,49 +11,20 @@ const booths = [
     code: "CEL101001",
   },
   {
-    id: 2,
-    image: "/booth-code-2.jpeg",
-    code: "CEL101001",
-  },
-  {
     id: 3,
     image: "/booth-code-3.jpeg",
-    code: "CEL101001",
-  },
-  {
-    id: 4,
-    image: "/booth-code-4.jpeg",
-    code: "CEL101001",
-  },
-  {
-    id: 5,
-    image: "/booth-code-5.jpeg",
-    code: "CEL101001",
+    code: "CEL101002",
   },
   {
     id: 6,
-    image: "/booth-code-6.jpeg",
-    code: "CEL101001",
-  },
-  {
-    id: 7,
-    image: "/booth-3.jpeg",
-    code: "CEL101001",
-  },
-  {
-    id: 8,
-    image: "/booth-1.jpeg",
-    code: "CEL101001",
-  },
-  {
-    id: 9,
-    image: "/booth-2.jpeg",
-    code: "CEL101001",
+    image: "/booth-code-5.jpeg",
+    code: "CEL101003",
   },
 ];
 
-const BoothGrid = () => {
+const BoothGrid = ({ boothCode }) => {
   const [visibleCount, setVisibleCount] = useState(9);
+  const boothToRender = booths.filter((booth) => booth.code !== boothCode);
 
   return (
     <div className="py-12 bg-gradient-to-b bg-background">
@@ -67,8 +38,8 @@ const BoothGrid = () => {
       </p>
 
       {/* Booth Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1200px] mx-auto">
-        {booths.slice(0, visibleCount).map((booth) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center place-content-center max-w-[1200px] mx-auto">
+        {boothToRender.slice(0, visibleCount).map((booth) => (
           <Card
             key={booth.id}
             className="shadow-one rounded-lg overflow-hidden w-[380px]"

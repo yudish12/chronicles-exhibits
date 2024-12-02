@@ -12,12 +12,16 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const images = [
+const imagegroup1 = [
   "/booth-2.jpeg", // Replace with actual image URLs
   "/booth-4.jpeg",
   "/booth-3.jpeg",
   "/booth-1.jpeg",
 ];
+
+const imagegroup2 = ["/booth-code-6.jpeg", "/booth-code-3.jpeg"];
+
+const imagegroup3 = ["/booth-code-4.jpeg", "/booth-code-5.jpeg"];
 
 const packageDetails = [
   "Booth as per design",
@@ -34,6 +38,11 @@ const packageDetails = [
 
 export function BoothDetails({ boothCode }) {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  let images;
+
+  if (boothCode === "CEL101001") images = imagegroup1;
+  else if (boothCode === "CEL101002") images = imagegroup2;
+  else images = imagegroup3;
 
   const handlePrevious = () => {
     setSelectedIndex(

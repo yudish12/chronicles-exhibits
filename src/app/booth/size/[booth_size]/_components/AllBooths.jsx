@@ -11,44 +11,14 @@ const booths = [
     code: "CEL101001",
   },
   {
-    id: 2,
-    image: "/booth-code-2.jpeg",
-    code: "CEL101001",
-  },
-  {
     id: 3,
     image: "/booth-code-3.jpeg",
-    code: "CEL101001",
-  },
-  {
-    id: 4,
-    image: "/booth-code-4.jpeg",
-    code: "CEL101001",
-  },
-  {
-    id: 5,
-    image: "/booth-code-5.jpeg",
-    code: "CEL101001",
+    code: "CEL101002",
   },
   {
     id: 6,
-    image: "/booth-code-6.jpeg",
-    code: "CEL101001",
-  },
-  {
-    id: 7,
-    image: "/booth-2.jpeg",
-    code: "CEL101001",
-  },
-  {
-    id: 8,
-    image: "/booth-3.jpeg",
-    code: "CEL101001",
-  },
-  {
-    id: 9,
-    image: "/booth-4.jpeg",
-    code: "CEL101001",
+    image: "/booth-code-5.jpeg",
+    code: "CEL101003",
   },
 ];
 

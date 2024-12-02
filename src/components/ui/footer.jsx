@@ -245,7 +245,8 @@ export default function Footer() {
             </SocialIconContainer>
           </div>
           <span className="text-white/80 text-sm font-medium">
-            © Copyright 2024. Triumfo Inc. All Right Reserved. Privacy Policy
+            © Copyright 2024. Chronicle Exhibits LLC All Right Reserved. Privacy
+            Policy
           </span>
         </div>
       </div>
