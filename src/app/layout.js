@@ -29,11 +29,14 @@ const geistMono = localFont({
 
 export default function RootLayout({ children }) {
   const allowedPaths = [
-    "/booth/size/10x10",
-    "/booth/size/10X10",
-    "/booth/code/CEL101001",
-    "/booth/code/CEL101002",
-    "/booth/code/CEL101003",
+    "/10x10-trade-show-booth",
+    "/10X10-trade-show-booth",
+    "/10x10-trade-show-booth/CEL101001",
+    "/10x10-trade-show-booth/CEL101002",
+    "/10x10-trade-show-booth/CEL101003",
+    "/10X10-trade-show-booth/CEL101001",
+    "/10X10-trade-show-booth/CEL101002",
+    "/10X10-trade-show-booth/CEL101003",
   ];
   const currentPath = usePathname();
 
