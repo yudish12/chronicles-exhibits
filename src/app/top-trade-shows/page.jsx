@@ -76,7 +76,7 @@ const Page = () => {
                   </span>
                 </p>
               </div>
-              <Link href={"/trade-show"}>
+              <Link className="w-full" href={"/trade-show"}>
                 <Button
                   variant="outline"
                   className="text-secondary w-full hover:bg-secondary hover:text-white border-secondary border-2 bg-transparent font-semibold py-[18px] text-[16px]"
