@@ -70,7 +70,7 @@ const Page = () => {
         </div>
       </div>
       <Image
-        className="rounded-full mx-auto mt-[-80px] z-10"
+        className="rounded-full shadow-xl border-white border-[6px] mx-auto mt-[-80px] z-10"
         width={170}
         height={170}
         src={"/aaep-show.png"}
