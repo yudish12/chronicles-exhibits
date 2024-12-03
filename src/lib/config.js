@@ -1,7 +1,7 @@
 export const headerRoutes = [
   {
-    link: "/upcoming-trade-shows",
-    name: "Upcoming Trade Shows",
+    link: "/top-trade-shows",
+    name: "Top Trade Shows",
   },
   {
     link: "/trade-show-booth-displays-designs",
