@@ -3,27 +3,27 @@ import React from "react";
 
 const Leadingtrade = () => {
   return (
-    <div className="p-20 flex gap-10">
+    <div className="p-6 md:p-20 flex flex-col md:flex-row gap-6 md:gap-10">
       {/* Image Container */}
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2">
         <Image
           layout="responsive" // Ensures the image is responsive
           width={370} // Aspect ratio width
           height={250} // Aspect ratio height
           src="/photo1.png"
           alt="photo1"
-          className=" max-h-[530px]" // Ensures the image covers the container
+          className="max-h-[300px] md:max-h-[530px] object-cover"
         />
       </div>
       {/* Text Content */}
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2">
         <h3
           style={{ lineHeight: "1.2" }}
-          className="heading-font uppercase font-semibold text-secondary text-[2rem]"
+          className="heading-font uppercase font-semibold text-secondary text-lg sm:text-xl md:text-[2rem]"
         >
           Leading Trade Show Booth Builders for Events Across America
         </h3>
-        <p className="text-black mt-6 text-base">
+        <p className="text-black mt-4 sm:mt-6 text-base ">
           Welcome to Chronicle, your prominent partner for trade show booth
           displays and exhibits. With 25+ years&apos; worth of experience and an
           excellent team, we have been providing exclusive trade show booth
@@ -45,7 +45,7 @@ const Leadingtrade = () => {
           installing, dismantling, storing.
           <br />
           <br />
-          You are important to us, and we will never compromise on your work.We
+          You are important to us, and we will never compromise on your work. We
           believe in building long-lasting relationships and will support you
           throughout your trade show journey.
         </p>

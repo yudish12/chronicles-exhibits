@@ -36,19 +36,19 @@ const About = () => {
         </div>
       </div>
 
-      <div className="bg-[#FDF3ED] pt-4 sm:pt-6">
+      <div className="bg-[#FDF3ED] pt-4 sm:pt-6 ">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <h2 className=" text-[22px] font-bold text-[#B0CB1F] ">
               What We Do
             </h2>
-            <p className="mt-4 text-2xl heading-font font-bold text-secondary ">
+            <p className="mt-4 sm:text-3xl heading-font font-bold text-secondary ">
               END-TO-END TRADE SHOW BOOTH DESIGN & PRODUCTION
             </p>
           </div>
           <div className="mt-6 bg-[#FDF3ED]">
             <div className="py-2 sm:p-4">
-              <h3 className=" text-base text-black text-center">
+              <h3 className=" text-base text-black text-center px-4 ">
                 Our recent work in the USA showcases stunning images of our
                 exceptional projects. From trade show booths to eye-catching
                 displays, our portfolio reflects the expertise and creativity we
@@ -60,7 +60,7 @@ const About = () => {
         </div>
       </div>
 
-      <div className="bg-[#FDF3ED] pt-8 pb-16">
+      <div className="bg-[#FDF3ED] pt-8 pb-16 px-4 ">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
             {/* Display Exhibits */}
@@ -138,7 +138,7 @@ const About = () => {
 
             {/* Our Work */}
             <div className="flex flex-col h-full">
-              <Card className="h-full  shadow-one rounded-xl overflow-hidden max-h-[400px] flex flex-col">
+              <Card className="h-full  shadow-one rounded-xl overflow-hidden max-h-[400px] flex flex-col ">
                 <div className="w-full h-28 sm:h-48 overflow-hidden">
                   <img
                     src="/what-we-do-3.png"
