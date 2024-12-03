@@ -24,16 +24,17 @@ const imagegroup2 = ["/booth-code-6.jpeg", "/booth-code-3.jpeg"];
 const imagegroup3 = ["/booth-code-4.jpeg", "/booth-code-5.jpeg"];
 
 const packageDetails = [
-  "Booth as per design",
-  "Graphics as per client",
-  "Lights (as shown)",
-  "Counter (as per stock)",
-  "Flooring (single colour carpet/vinyl)",
-  "Furniture (as per stock)",
+  "Design renders ",
+  "Stand construction and installation ",
+  "Carpet flooring (single colour carpet/Vinyl)",
+  "Furniture (as per ready stock)",
   "Audio-Visual (as per design)",
-  "Shipping/Installation/Dismantling",
-  "Booth Vacuuming",
-  "Project Management",
+  "Counter with Branding",
+  "Graphic Print and Installation (ready to print files by client)",
+  "Lights and Sockets (sufficient for the given size)",
+  "Logistic includes (Shippings to and Fro our facility)",
+  "Labour (Workshop , Installation and Dismantling)",
+  "Booth cleaning (once during the delivery)",
 ];
 
 export function BoothDetails({ boothCode }) {
