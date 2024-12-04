@@ -9,6 +9,7 @@ import Link from "next/link";
 import recentShows from "../../../utils/constants/dev-data/trade-shows.json";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/ui/footer";
+import { Input } from "@/components/ui/input";
 
 const points = [
   "With hundreds of exhibiting companies and thousands of attendees, CES Las Vegas has unparalleled scale and reach within the industry.",
@@ -61,9 +62,10 @@ const Page = () => {
           <p className="flex text-center items-center gap-4">
             <Calendar color="#FFFFFF" />
             <span className=" text-white font-semibold text-xl">
-              {moment(targetDate).format("DD")}-
               {moment(targetDate).format("DD")}{" "}
-              {moment(targetDate).format("MMMM")}{" "}
+              {moment(targetDate).format("MMM")} -{" "}
+              {moment(targetDate).format("DD")}{" "}
+              {moment(targetDate).format("MMM")}{" "}
               {moment(targetDate).format("YYYY")}
             </span>
           </p>
@@ -117,68 +119,131 @@ const Page = () => {
             ))}
           </ul>
         </div>
-        <div className="flex flex-col gap-8 items-center">
-          <div className="h-[320px] w-[350px] bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6">
-            <h4 className="text-secondary heading-font text-2xl uppercase font-semibold">
-              The ASI Show 2025
-            </h4>
-            <Image
-              className="rounded-full"
-              width={120}
-              height={120}
-              src={"/aaep-show.png"}
-              alt={"show.title"}
-            />
-            <div className="flex flex-col items-center gap-2 w-full px-4">
-              <p className="flex gap-2">
-                <MapPin color="#B0CB1F" />
-                <span className="text-[16px]">New York | NY</span>
-              </p>
-              <p className="flex  gap-2">
-                <Calendar color="#B0CB1F" />
-                <span className="text-[16px]">
-                  {moment(targetDate).format("DD")}-
-                  {moment(targetDate).format("DD")}{" "}
-                  {moment(targetDate).format("MMMM")}{" "}
-                  {moment(targetDate).format("YYYY")}
-                </span>
-              </p>
+        <div className="w-[30%] flex flex-col gap-6">
+          <div className="shadow-one h-max bg-white p-6 rounded-xl w-full">
+            <p className="text-center text-secondary">
+              Need exhibit displays for the ASI Show?Reach out to us for a
+              hassle-free experience.
+            </p>
+            <h5 className="text-3xl mt-4 text-center font-semibold heading-font text-secondary">
+              Enquiry Form
+            </h5>
+            <div className="mt-4 flex flex-col gap-5">
+              <Input
+                className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+                type="text"
+                placeholder="Enter Your Name"
+              />
+              <Input
+                className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+                type="email"
+                placeholder="Enter Your Email"
+              />
+              <Input
+                className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+                type="number"
+                placeholder="Enter Your Phone Number"
+              />
+              <Input
+                className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+                type="file"
+                placeholder="Choose A File"
+              />
+              <Input
+                className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+                placeholder="Booth Size"
+              />
+              <Input
+                className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+                placeholder="Enter Event Name"
+              />
+              <textarea
+                rows={4}
+                className="border p-2 border-secondary/70 placeholder:text-secondary/70 rounded-lg"
+                placeholder="Message"
+              />
+              <Button className="w-1/3 mx-auto bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary ">
+                Get Quote
+              </Button>
             </div>
           </div>
-
-          <div className="w-full">
-            <h4 className="text-secondary text-center heading-font font-semibold text-2xl">
-              RELATED TRADE SHOWS
-            </h4>
-            {recentShows.map((e, ind) => (
-              <div
-                key={ind}
-                className="bg-white flex shadow-one rounded-xl p-6 mt-8"
+          <div className="grid grid-cols-2 border-2 border-dashed border-secondary/70 rounded-lg">
+            <div
+              style={{ transitionDuration: "500ms" }}
+              className="group bg-white border-r-2 border-b-2 border-dashed border-secondary/70 hover:bg-secondary p-6 flex flex-col items-center gap-5 rounded-tl-lg"
+            >
+              <Image
+                src={"/layers-stacked.svg"}
+                width={30}
+                height={30}
+                alt="cube"
+              />
+              <h4
+                style={{ transitionDuration: "500ms" }}
+                className="text-secondary group-hover:text-white text-center text-lg heading-font font-semibold"
               >
-                <Image
-                  src={"/aaep-show.png"}
-                  alt="show.title"
-                  width={80}
-                  height={80}
-                />
-                <div className="w-full">
-                  <h4 className="text-xl text-center font-semibold heading-font">
-                    AAEP 25 ORLANDO
-                  </h4>
-                  <Link
-                    className="w-4/5 flex justify-center mt-3 mx-auto"
-                    href={"/trade-show"}
-                  >
-                    <Button
-                      variant="outline"
-                      className="text-secondary w-4/5 hover:bg-secondary hover:text-white border-secondary border-2 bg-transparent font-semibold py-[12px] text-[16px]"
-                    >
-                      View Details
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            ))}
+                New York
+                <br />
+                USA
+              </h4>
+            </div>
+            <div
+              style={{ transitionDuration: "500ms" }}
+              className="group bg-white border-b-2 border-dashed border-secondary/70 hover:bg-secondary p-6 flex flex-col items-center gap-5 rounded-tr-lg"
+            >
+              <Image
+                src={"/layers-stacked.svg"}
+                width={30}
+                height={30}
+                alt="cube"
+              />
+              <h4
+                style={{ transitionDuration: "500ms" }}
+                className="text-secondary group-hover:text-white text-center text-lg heading-font font-semibold"
+              >
+                {moment(targetDate).format("DD")}{" "}
+                {moment(targetDate).format("MMM")} -{" "}
+                {moment(targetDate).format("DD")}{" "}
+                {moment(targetDate).format("MMM")}{" "}
+                {moment(targetDate).format("YYYY")}
+              </h4>
+            </div>
+            <div
+              style={{ transitionDuration: "500ms" }}
+              className="group bg-white  border-r-2 border-dashed border-secondary/70 hover:bg-secondary p-6 flex flex-col items-center gap-5 rounded-bl-lg"
+            >
+              <Image
+                src={"/layers-stacked.svg"}
+                width={30}
+                height={30}
+                alt="cube"
+              />
+              <h4
+                style={{ transitionDuration: "500ms" }}
+                className="text-secondary group-hover:text-white text-center text-lg heading-font font-semibold"
+              >
+                Official Website
+              </h4>
+            </div>
+            <div
+              style={{ transitionDuration: "500ms" }}
+              className="group bg-white hover:bg-secondary p-6 flex flex-col items-center gap-5 rounded-br-lg"
+            >
+              <Image
+                src={"/layers-stacked.svg"}
+                width={30}
+                height={30}
+                alt="cube"
+              />
+              <h4
+                style={{ transitionDuration: "500ms" }}
+                className="text-secondary group-hover:text-white text-center text-lg heading-font font-semibold"
+              >
+                New York
+                <br />
+                USA
+              </h4>
+            </div>
           </div>
         </div>
       </div>
