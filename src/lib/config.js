@@ -8,7 +8,7 @@ export const headerRoutes = [
     name: "Exhibit Displays",
   },
   {
-    link: "/location",
+    link: "/locations",
     name: "Location",
   },
   {
