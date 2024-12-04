@@ -10,6 +10,7 @@ import recentShows from "../../../utils/constants/dev-data/trade-shows.json";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/ui/footer";
 import { Input } from "@/components/ui/input";
+import Products from "@/app/(landing)/Products";
 
 const points = [
   "With hundreds of exhibiting companies and thousands of attendees, CES Las Vegas has unparalleled scale and reach within the industry.",
@@ -260,6 +261,7 @@ const Page = () => {
           </Button>
         </div>
       </div>
+      <Products />
       <Footer />
     </>
   );
