@@ -290,7 +290,7 @@
 .service-bg {
   position: relative;
   overflow: hidden;
-  height: 500px;
+  height: 480px;
 }
 
 .service-bg::before {
