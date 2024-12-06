@@ -141,7 +141,7 @@ const Page = () => {
                   {blog.description}
                 </CardDescription>
                 <div className="mt-4">
-                  <Link href={`/blog/${index}`}>
+                  <Link href={`/blogs/${index}`}>
                     <Button
                       variant="outline"
                       className="text-secondary font-bold bg-transparent border-2 border-secondary hover:bg-secondary hover:text-white"
