@@ -22,6 +22,7 @@ import Footer from "@/components/ui/footer";
 import Queryform from "@/app/(landing)/Queryform";
 import { Calendar, MapPin } from "lucide-react";
 import moment from "moment";
+import { majorExhibitingCities } from "../page";
 
 const Page = async ({ params }) => {
   const city = (await params).location_name;
@@ -40,31 +41,31 @@ const Page = async ({ params }) => {
         <div className="flex px-20 mt-6 justify-center w-[78%] mx-auto">
           <Select>
             <SelectTrigger className="text-secondary font-semibold bg-white rounded-none py-6">
-              <SelectValue placeholder="Select a fruit" />
+              <SelectValue placeholder="Select a City" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Fruits</SelectLabel>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
+                <SelectLabel>Cities</SelectLabel>
+                {majorExhibitingCities.map((city, index) => (
+                  <SelectItem value={city} key={index}>
+                    {city}
+                  </SelectItem>
+                ))}
               </SelectGroup>
             </SelectContent>
           </Select>
           <Select>
             <SelectTrigger className="text-secondary font-semibold bg-white rounded-none py-6">
-              <SelectValue placeholder="Select a fruit" />
+              <SelectValue placeholder="Select a Booth Size" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Fruits</SelectLabel>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
+                <SelectItem value="apple">10x10</SelectItem>
+                <SelectItem value="banana">10x20</SelectItem>
+                <SelectItem value="blueberry">10x30</SelectItem>
+                <SelectItem value="grapes">20x20</SelectItem>
+                <SelectItem value="pineapple">20x30</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
