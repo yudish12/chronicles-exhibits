@@ -12,7 +12,7 @@ const SocialIconContainer = ({ children }) => {
 export default function Footer() {
   return (
     <div className="bg-secondary py-12 px-6 md:py-24 md:px-20">
-      <div className="px-6 py-8 md:px-12 md:py-10 bg-[#451E2F] rounded-lg grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
+      <div className="px-6 py-8 md:px-12 md:py-10 rounded-lg grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
         {/* Company Section */}
         <div>
           <h3 className="font-semibold text-base mb-4">Company</h3>
@@ -190,61 +190,61 @@ export default function Footer() {
             </li>
           </ul>
           <div className="mt-6">
-            <h3 className="font-bold text-lg mb-4">Address</h3>
+            <h3 className="font-bold text-lg mb-3">Address</h3>
             <p className="text-sm leading-relaxed">
               500 N Rainbow Blvd Suite #300 <br />
               Las Vegas, NV 89107 <br />
               United States
             </p>
+            <h3 className="font-bold text-lg my-4">Follow Us</h3>
+            <div className="flex items-center mt-4 gap-3">
+              <SocialIconContainer>
+                <Image
+                  alt="facebook"
+                  src="/facebook.svg"
+                  width={30}
+                  height={30}
+                />
+              </SocialIconContainer>
+              <SocialIconContainer>
+                <Image
+                  alt="youtube"
+                  src="/youtube.svg"
+                  width={30}
+                  height={30}
+                />
+              </SocialIconContainer>
+              <SocialIconContainer>
+                <Image
+                  alt="twitter"
+                  src="/twitter.svg"
+                  width={30}
+                  height={30}
+                />
+              </SocialIconContainer>
+              <SocialIconContainer>
+                <Image
+                  alt="linkedin"
+                  src="/linkedin.svg"
+                  width={30}
+                  height={30}
+                />
+              </SocialIconContainer>
+              <SocialIconContainer>
+                <Image
+                  alt="pinterest"
+                  src="/pinterest.svg"
+                  width={30}
+                  height={30}
+                />
+              </SocialIconContainer>
+            </div>
           </div>
         </div>
       </div>
-      <div className="mt-12">
-        <h4 className="text-lg font-semibold text-white/80">Follow Us</h4>
+      <div className="mt-12 mx-auto">
         <div className="bg-secondary/[.94] w-full flex flex-wrap justify-between items-center gap-4">
-          <div className="flex items-center mt-4 gap-3">
-            <SocialIconContainer>
-              <Image
-                alt="facebook"
-                src="/facebook.svg"
-                width={30}
-                height={30}
-              />
-            </SocialIconContainer>
-            <SocialIconContainer>
-              <Image
-                alt="youtube"
-                src="/youtube.svg"
-                width={30}
-                height={30}
-              />
-            </SocialIconContainer>
-            <SocialIconContainer>
-              <Image
-                alt="twitter"
-                src="/twitter.svg"
-                width={30}
-                height={30}
-              />
-            </SocialIconContainer>
-            <SocialIconContainer>
-              <Image
-                alt="linkedin"
-                src="/linkedin.svg"
-                width={30}
-                height={30}
-              />
-            </SocialIconContainer>
-            <SocialIconContainer>
-              <Image
-                alt="pinterest"
-                src="/pinterest.svg"
-                width={30}
-                height={30}
-              />
-            </SocialIconContainer>
-          </div>
-          <span className="text-white/80 text-sm font-medium">
+          <span className="text-white/80 text-sm mx-auto font-medium">
             © Copyright 2024. Chronicle Exhibits LLC All Right Reserved. Privacy
             Policy
           </span>
