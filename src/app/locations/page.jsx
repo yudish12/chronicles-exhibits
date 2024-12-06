@@ -2,6 +2,7 @@ import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
 import SubHeader from "@/components/ui/sub-header";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const majorExhibitingCities = [
@@ -85,21 +86,23 @@ const Page = () => {
       </div>
       <div className="us-bg px-20 py-6 grid grid-cols-4 gap-4">
         {majorExhibitingCities.map((city, index) => (
-          <div
-            key={index}
-            className="flex flex-col max-w-[250px] transition-all duration-300 hover:bg-[#FDF3ED] hover:shadow-xl hover:scale-110 rounded-xl items-center gap-4 py-6 text-center"
-          >
-            <Image
-              src={`/location-2955.svg`}
-              width={40}
-              height={40}
-              alt="location-bg"
-              className="object-cover"
-            />
-            <h3 className="text-secondary heading-font font-bold text-2xl">
-              {city}
-            </h3>
-          </div>
+          <Link href={`/locations/${city}`} key={index}>
+            <div
+              key={index}
+              className="flex flex-col max-w-[250px] transition-all duration-300 hover:bg-[#FDF3ED] hover:shadow-xl hover:scale-110 rounded-xl items-center gap-4 py-6 text-center"
+            >
+              <Image
+                src={`/location-2955.svg`}
+                width={40}
+                height={40}
+                alt="location-bg"
+                className="object-cover"
+              />
+              <h3 className="text-secondary heading-font font-bold text-2xl">
+                {city}
+              </h3>
+            </div>
+          </Link>
         ))}
       </div>
       <Footer />

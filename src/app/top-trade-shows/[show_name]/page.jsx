@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import Footer from "@/components/ui/footer";
 import { Input } from "@/components/ui/input";
 import Products from "@/app/(landing)/Products";
+import { DiamondSvg } from "@/app/booth/size/[booth_size]/_components/TradeShowSection";
 
 const points = [
   "With hundreds of exhibiting companies and thousands of attendees, CES Las Vegas has unparalleled scale and reach within the industry.",
@@ -24,24 +25,6 @@ const points = [
   "For all exhibitors, the benefits include connecting with clients/partners, evaluating competitors face-to-face, gauging technological trends, and solidifying thought leadership status.",
   "Participation lends credibility to brands and allows them to test new ideas directly with their target audience before launching products globally.",
 ];
-
-const DiamondSvg = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 100 100"
-      width="16"
-      height="16"
-    >
-      <polygon
-        points="50,0 100,50 50,100 0,50"
-        fill="#B0CB1F"
-        stroke="#B0CB1F"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-};
 
 const Page = () => {
   const targetDate = "2024-12-31T23:59:59";
