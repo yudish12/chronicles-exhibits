@@ -94,15 +94,16 @@ const Page = async ({ params }) => {
           for top-quality exhibition booth design in Switzerland.
         </p>
       </div>
-      <div className="product-bg flex gap-8 px-20 py-12">
+      <div className="product-bg flex gap-12 px-20 py-16">
         <Image
+          height={300}
+          width={200}
+          className="w-1/2 rounded-lg max-h-[520px]"
           src={"/specific-location-2.png"}
           alt="specific-location-2"
-          width={650}
-          height={400}
         />
         <div className="w-1/2 flex flex-col gap-4">
-          <h2 className="text-primary uppercase heading-font text-[2.1rem] font-semibold">
+          <h2 className="text-primary uppercase heading-font text-4xl font-semibold">
             captivating Trade Show Booth designs for unique brand experiences
           </h2>
           <p className="text-white font-medium">
@@ -116,13 +117,15 @@ const Page = async ({ params }) => {
             a fantastic opportunity for companies like you to display your
             products and services to potential customers. For this reason, we
             build visually attractive custom trade show booth designs that can
-            make your brand stand out from the crowd.As a trusted trade show
-            booth builder, we have completed 20800+ trade show booth displays
-            design and building projects successfully. Our team of dedicated
-            professionals will handle all your shows with efficiency and
-            precision. We will guide you at every step, from laying the concept,
-            outlining the trade show booth design, and fabricating to
-            installing, dismantling, storing.
+            make your brand stand out from the crowd.
+          </p>
+          <p className="text-white font-medium">
+            As a trusted trade show booth builder, we have completed 20800+
+            trade show booth displays design and building projects successfully.
+            Our team of dedicated professionals will handle all your shows with
+            efficiency and precision. We will guide you at every step, from
+            laying the concept, outlining the trade show booth design, and
+            fabricating to installing, dismantling, storing.
           </p>
           <p className="text-white font-medium">
             You are important to us and we will never compromise on your work.We
@@ -131,12 +134,12 @@ const Page = async ({ params }) => {
           </p>
         </div>
       </div>
-      <div className="py-10 px-20">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[370px,370px,370px] shadow-two w-full md:w-max mx-auto bg-white rounded-xl gap-x-4 sm:gap-x-6 md:gap-x-8 p-4 sm:p-6 md:p-8 gap-y-6">
+      <div className="p-20 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[420px,420px,420px] w-full md:w-max mx-auto gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6">
           {ourWorksData.map((item, index) => (
             <div
               key={index}
-              className="overflow-hidden rounded-xl w-full sm:w-[370px] h-[200px] sm:h-[250px] md:h-[300px]"
+              className="overflow-hidden rounded-xl w-full sm:w-[420px] h-[200px] sm:h-[250px] md:h-[230px]"
             >
               <Image
                 width={370}
@@ -314,6 +317,11 @@ const Page = async ({ params }) => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="flex justify-center">
+          <Button className="text-white p-4 py-[22px] duration-300 transition-all text-lg hover:bg-primary hover:text-secondary font-semibold bg-secondary">
+            View All Trade Shows in {city}
+          </Button>
         </div>
       </div>
       <Queryform />

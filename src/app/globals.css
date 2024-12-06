@@ -247,20 +247,9 @@
   left: 0;
   width: 100%; /* Set width to 100% for responsiveness */
   height: 100%;
-  background: url("../../public/photo1.png") no-repeat center center;
+  background: url("../../public/form-bg.png") no-repeat center center;
   background-size: cover;
   z-index: -2;
-}
-
-.queryform::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(69, 30, 47, 0.8); /* Overlay color */
-  z-index: -1;
 }
 
 @media (max-width: 768px) {
