@@ -1,22 +1,30 @@
 export const headerRoutes = [
   {
+    link: "/",
+    name: "Home",
+  },
+  {
     link: "/top-trade-shows",
-    name: "Top Trade Shows",
+    name: "Trade Show Display",
   },
   {
-    link: "/trade-show-booth-displays-designs",
-    name: "Exhibit Displays",
+    link: "/custom-trade-show-booth-ideas",
+    name: "Custom Booth",
   },
   {
-    link: "/locations",
-    name: "Location",
+    link: "/services",
+    name: "Service",
   },
   {
     link: "/portfolio",
     name: "Portfolio",
   },
   {
-    link: "/blog",
-    name: "Blog",
+    link: "/contact-us",
+    name: "Contact Us",
+  },
+  {
+    link: "/about-us",
+    name: "About Us",
   },
 ];
