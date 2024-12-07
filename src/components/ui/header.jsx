@@ -9,7 +9,7 @@ import { Menu, X } from "lucide-react"; // Import Lucide Icons
 
 const RouteComponent = ({ link, name }) => {
   return (
-    <Link className=" text-base text-white font-medium" href={link}>
+    <Link className=" text-[16.5px]  text-white font-medium" href={link}>
       {name}
     </Link>
   );
