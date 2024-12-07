@@ -53,7 +53,7 @@ const page = async ({ params }) => {
 
       <div className="bg-background  text-gray-800 ">
         {/* Main Content Section */}
-        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-[40px] py-20 ">
+        <div className="px-20 w-full grid grid-cols-1 lg:grid-cols-3 gap-[40px] py-20 ">
           {/* Left Section */}
           <div className="lg:col-span-2">
             {/* Hero Image */}
@@ -182,12 +182,12 @@ const page = async ({ params }) => {
                         alt={blog.title}
                         width={400}
                         height={200}
-                        className="rounded-t-lg max-h-[165px] w-full object-cover"
+                        className="rounded-t-lg max-h-[155px] w-full object-cover"
                       />
                     </div>
 
                     {/* Title Section */}
-                    <CardContent className="p-2 flex flex-col h-full">
+                    <CardContent className="p-4 flex flex-col h-full">
                       <CardTitle className="text-[1.35rem] font-medium heading-font text-secondary text-center">
                         {blog.title}
                       </CardTitle>
