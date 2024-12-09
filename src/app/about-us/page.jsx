@@ -7,6 +7,7 @@ import FactsAndFigures from '../(landing)/FactsAndFigures'
 import Ourworks from '../(landing)/Ourworks'
 import Leadingtrade from '../(landing)/Leadingtrade'
 import Introduction from './_components/Introduction'
+import WhyChooseUs from './_components/WhyChooseUs'
 const page = () => {
   return (
     <>
@@ -25,6 +26,7 @@ const page = () => {
         </h3>
       </div>
       <Introduction/>
+      <WhyChooseUs/>
       <FactsAndFigures/>
       <Footer/>
       </>
