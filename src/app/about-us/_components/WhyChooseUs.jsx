@@ -59,7 +59,7 @@ const WhyChooseUs = () => {
           }
         </p>
       <div>
-        <Button className="border-2 border-[#B0CB1F] text-[#B0CB1F] p-2 bg-transparent mt-4 ">Get Quote</Button>
+        <Button className="border-2 font-bold border-[#B0CB1F] text-[#B0CB1F] p-4 bg-transparent hover:bg-[#B0CB1F] hover:text-secondary mt-4  text-lg">Get Quotes</Button>
       </div>
       </div>
 

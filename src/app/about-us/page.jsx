@@ -4,10 +4,9 @@ import Header from '@/components/ui/header'
 import Footer from '@/components/ui/footer'
 import Image from 'next/image'
 import FactsAndFigures from '../(landing)/FactsAndFigures'
-import Ourworks from '../(landing)/Ourworks'
-import Leadingtrade from '../(landing)/Leadingtrade'
 import Introduction from './_components/Introduction'
 import WhyChooseUs from './_components/WhyChooseUs'
+import ManufacturingUnit from './_components/ManufacturingUnit'
 const page = () => {
   return (
     <>
@@ -28,6 +27,7 @@ const page = () => {
       <Introduction/>
       <WhyChooseUs/>
       <FactsAndFigures/>
+      <ManufacturingUnit/>
       <Footer/>
       </>
   )
