@@ -27,7 +27,7 @@ const Page = () => {
     <SubHeader/>
     <Header/>
     <div className=" flex items-center justify-center bg-white px-10  ">
-    <div className="container py-12 px-4 lg:px-24">
+    <div className="container py-12 px-10 lg:px-24">
       <h1 className="text-4xl font-bold  mb-6 heading-font ">
         Privacy Policy
       </h1>
