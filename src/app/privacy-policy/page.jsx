@@ -26,7 +26,7 @@ const Page = () => {
     <>
     <SubHeader/>
     <Header/>
-    <div className=" flex items-center justify-center bg-white ">
+    <div className=" flex items-center justify-center bg-white px-10  ">
     <div className="container py-12 px-4 lg:px-24">
       <h1 className="text-4xl font-bold  mb-6 heading-font ">
         Privacy Policy
@@ -63,7 +63,8 @@ const Page = () => {
                 <Image
                 width={10}
                 height={10}
-                src="/Rectangle 99.svg"/>
+                src="/Rectangle 99.svg"
+                alt='bullet icon'/>
                 <span className="px-2">{bullet.pt}</span>
               </li>
             ))
@@ -108,7 +109,7 @@ const Page = () => {
           <h2 className="text-lg font-semibold text-secondary py-4">
             Contact Us
           </h2>
-          <p className="py-2 leading-relaxed">
+          <p className="py-2 leading-relaxed mb-6 ">
             If you have any questions about this Privacy Policy, please contact us by email at [enquiry@triumfous] 
           </p>
         </div>
