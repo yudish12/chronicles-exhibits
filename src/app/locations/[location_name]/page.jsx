@@ -135,17 +135,17 @@ const Page = async ({ params }) => {
         </div>
       </div>
       <div className="p-20 pb-10">
-        <h2 className="uppercase text-3xl text-secondary">
+        <h2 className="uppercase text-3xl heading-font-600 text-primary text-center font-semibold">
           HAVE A LOOK AT OUR TRADE SHOW EXHIBIT RENTAL WORK IN {city}
         </h2>
-        <p>
+        <p className="text-center mt-4">
           We have always considered the opinions of our clients while building a
           trade show booth. It has helped us in meeting their expectation in the
           best possible manner. Let us take a look at various that we have built
           for our clients. All these designs have met the goals and requirements
           of the clients.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[420px,420px,420px] w-full md:w-max mx-auto gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[420px,420px,420px] w-full md:w-max mx-auto gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6">
           {ourWorksData.map((item, index) => (
             <div
               key={index}
