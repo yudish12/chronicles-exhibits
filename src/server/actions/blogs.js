@@ -9,7 +9,7 @@ await dbConnect();
 
 export const getAllBlogs = async () => {
   try {
-    const data = await User.find().lean();
+    const data = await User.find().sort({ createdAt : -1}).lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

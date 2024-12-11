@@ -14,8 +14,12 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { getAllBlogs } from "@/server/actions/blogs";
 const page = async ({ params }) => {
   const blogId = (await params).blog_id;
+  const blogFromDb = await getAllBlogs()
+  const blogsToBeMapped = blogFromDb.data.slice(0,3);
+  console.log("==blog from db ==" , blogFromDb)
   const relatedBlogs = [
     {
       title: "2025: BIGGEST TRADE SHOWS IN VEGAS",
@@ -170,7 +174,7 @@ const page = async ({ params }) => {
                 Related Blogs
               </h3>
               <div className="space-y-8">
-                {relatedBlogs.map((blog, index) => (
+                {blogsToBeMapped.map((blog, index) => (
                   <Card
                     key={index}
                     className="shadow-one relative h-full w-full flex flex-col justify-between"
@@ -178,7 +182,7 @@ const page = async ({ params }) => {
                     {/* Image Section */}
                     <div className="w-full border-b-2 border-primary">
                       <Image
-                        src={blog.imageUrl}
+                        src={blog.image}
                         alt={blog.title}
                         width={400}
                         height={200}
