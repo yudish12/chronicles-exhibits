@@ -5,10 +5,10 @@ const HeaderBtns = () => {
   const [hover, setHover] = React.useState(false);
   return (
     <>
-      <Button className="rounded-e-none text-primary font-semibold border-2 bg-transparent border-primary">
+      <Button className="rounded-full px-8 py-4 font-thin text text-lg rounded-e-none text-black border bg-transparent border-primary">
         Schedule Call
       </Button>
-      <Button className="rounded-s-none text-secondary font-semibold">
+      <Button className="rounded-full px-8 py-4 font-thin text text-lg rounded-s-none text-black border border-l-0 bg-transparent border-primary">
         Get Quote
       </Button>
     </>

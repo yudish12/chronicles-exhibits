@@ -6,6 +6,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "./button";
 import { Menu, X } from "lucide-react"; // Import Lucide Icons
+import useScrollPosition from "../useScroll";
+import { cn } from "@/lib/utils";
 
 const RouteComponent = ({ link, name }) => {
   return (
@@ -15,7 +17,7 @@ const RouteComponent = ({ link, name }) => {
   );
 };
 
-const HeaderBtns = () => {
+export const HeaderBtns = () => {
   return (
     <>
       <Button className="rounded-md rounded-e-none py-[18px] px-2 sm:px-4 text-primary font-semibold border-2 bg-transparent border-primary">
@@ -30,6 +32,9 @@ const HeaderBtns = () => {
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const scrollPosition = useScrollPosition();
+
+  console.log(scrollPosition);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -40,25 +45,32 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b sticky top-[-1px] z-10 from-[#5D2A42]/95 to-[#451e2f] border-t-2 border-t-white/60 border-b-2 border-b-primary w-full flex justify-between items-center pb-2 pt-3 text-white text-opacity-60 px-6 md:px-20 gap-4">
+    <div className="bg-gradient-to-b sticky top-[-1px] z-10 bg-secondary border-t-2 border-t-white/60 border-b-2 border-b-primary w-full flex justify-between items-center pb-2 pt-3 text-white text-opacity-60 px-6 md:px-20 gap-4">
       <Link href={"/"}>
         <Image alt="logo" src="/chronicle-logo.svg" width={110} height={80} />
       </Link>
-      <div className="hidden md:flex items-center gap-12">
+      <div
+        className={cn(
+          "hidden md:flex items-center gap-12",
+          scrollPosition > 55 && "opacity-0"
+        )}
+      >
         {headerRoutes.map((route, index) => (
           <RouteComponent key={index} link={route.link} name={route.name} />
         ))}
-      </div>
-      <div className="hidden md:block">
-        <HeaderBtns />
-      </div>
-
-      {/* Hamburger Menu Button for Mobile */}
-      <div className="md:hidden flex items-center">
-        <button onClick={toggleMenu} className="text-white">
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
-          {/* Lucide Icons */}
-        </button>
+        {/* Hamburger Menu Button for Mobile */}
+        <div
+          className={
+            scrollPosition < 55
+              ? `opacity-0 hidden items-center transition-all duration-700 ease-in-out md:flex`
+              : `opacity-100 flex items-center transition-all duration-700 ease-in-out`
+          }
+        >
+          <button onClick={toggleMenu} className="text-white">
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+            {/* Lucide Icons */}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu (Full-Screen Overlay) */}
@@ -95,9 +107,6 @@ const Header = () => {
             {headerRoutes.map((route, index) => (
               <RouteComponent key={index} link={route.link} name={route.name} />
             ))}
-            <div className="mt-4">
-              <HeaderBtns />
-            </div>
           </div>
         </div>
       </div>

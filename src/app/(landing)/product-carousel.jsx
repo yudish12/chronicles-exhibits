@@ -76,7 +76,7 @@ const ProductCarousel = () => {
                   alt={item.size}
                   className="w-full h-[75%] object-cover"
                 />
-                <div className="flex h-1/4 heading-font bg-white flex-col justify-center items-center bg-secondary/[.94] text-secondary">
+                <div className="flex h-1/4 heading-font-700 bg-white flex-col justify-center items-center bg-secondary/[.94] text-secondary">
                   <p className="text-[1.65rem] font-semibold">{item.size}</p>
                   <p className="uppercase text-lg font-semibold">
                     trade show booth rental
@@ -95,11 +95,10 @@ const ProductCarousel = () => {
             <div
               key={slideIndex}
               onClick={() => handleDotClick(slideIndex)}
-              className={`w-[10px] h-[10px] rounded-full cursor-pointer ${
-                slideIndex === Math.floor(activeIndex / visibleCards)
-                  ? "bg-white"
-                  : "bg-gray-400"
-              }`}
+              className={`w-[10px] h-[10px] rounded-full cursor-pointer ${slideIndex === Math.floor(activeIndex / visibleCards)
+                ? "bg-white"
+                : "bg-gray-400"
+                }`}
             ></div>
           )
         )}

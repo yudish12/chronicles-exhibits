@@ -50,10 +50,11 @@ const data = [
 
 const FactsAndFigures = () => {
   return (
-    <div className="bg-[#FDF3ED] py-20 flex flex-col justify-center items-center">
-      <div className="text-[#B0CB1F] text-xl font-bold pt-4">
+    <div className="bg-white py-16 flex flex-col justify-center items-center">
+      <div className="text-secondary heading-font-700 text-2xl leading-10 uppercase font-bold">
         Facts & Figures
       </div>
+      <div className="py-4">13+ Years in Industry</div>
       <div className="flex flex-row flex-wrap justify-center items-center gap-10 mt-8">
         {data.map((item) => (
           <Card
