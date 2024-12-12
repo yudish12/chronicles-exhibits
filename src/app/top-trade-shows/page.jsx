@@ -9,8 +9,11 @@ import Footer from "@/components/ui/footer";
 import { MapPin, Calendar } from "lucide-react";
 import RequestDesign from "../booth/size/[booth_size]/_components/RequestDesign";
 import Link from "next/link";
+import { getAllData } from "@/server/actions/events";
 
-const Page = () => {
+const Page = async () => {
+  let tradeShows = await getAllData();
+  console.log("==trade shows ==" , tradeShows.data)
   return (
     <>
       <SubHeader />
@@ -46,20 +49,20 @@ const Page = () => {
         </p>
 
         <div className="grid lg:grid-cols-[290px,290px,290px,290px] md:grid-cols-3 gap-x-12 gap-y-12 sm:grid-cols-2 gap-4 px-20 mt-12">
-          {tradeShows.map((show) => (
+          {tradeShows.data.map((show) => (
             <div
-              key={show.id}
+              key={show._id}
               className="h-[360px] bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
             >
               <h4 className="text-secondary heading-font text-2xl uppercase font-semibold">
-                {show.title}
+                {show.event_name}
               </h4>
               <Image
                 className="rounded-full"
                 width={120}
                 height={120}
-                src={show.image}
-                alt={show.title}
+                src={show.icon}
+                alt={show.event_name}
               />
               <div className="flex flex-col gap-2 w-full px-4">
                 <p className="flex gap-4">
