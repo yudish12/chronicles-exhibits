@@ -16,15 +16,15 @@ const Faq = () => {
         trade show booths and rentals with an unforgettable exhibiting
         experience.
       </p>
-      <div className="grid grid-cols-1 md:grid-rows-3 gap-0">
+      <div className="grid w-[90%] mx-auto grid-cols-1 md:grid-rows-3 gap-0">
         {faqs.map((e, index) => (
           <div
             key={index}
             className="bg-white shadow-lg overflow-hidden mb-4 md:mb-6"
           >
-            <div className="bg-[#5D2A42] h-auto flex items-center p-4">
-              <h4 className="text-white font-bold text-sm md:text-base flex items-center">
-                <span className="text-white flex justify-center items-center font-bold text-lg md:text-xl">
+            <div className="bg-black h-10 flex items-center p-4">
+              <h4 className="text-primary font-bold text-sm md:text-base flex items-center">
+                <span className="text-primary flex justify-center items-center font-bold text-lg md:text-xl">
                   0{e.id}
                 </span>
                 <span className="border-r-2 border-gray-300 mx-3 h-5"></span>

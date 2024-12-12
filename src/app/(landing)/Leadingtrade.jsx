@@ -19,7 +19,7 @@ const Leadingtrade = () => {
       <div className="w-full md:w-1/2">
         <h3
           style={{ lineHeight: "1.2" }}
-          className="heading-font uppercase font-semibold text-secondary text-lg sm:text-xl md:text-[2rem]"
+          className="heading-font-700 uppercase font-semibold text-secondary text-lg sm:text-xl md:text-[2rem]"
         >
           Leading Trade Show Booth Builders for Events Across America
         </h3>
