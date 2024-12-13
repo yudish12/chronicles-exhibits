@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 
 await dbConnect();
 
-export const getAllData = async () => {
+export const getAllBoothSizes = async () => {
   try {
     const data = await BoothSize.find().lean();
     return getActionSuccessResponse(data);
