@@ -18,7 +18,7 @@ const Hero = () => {
         </p>
         <Button
           style={{ transitionDuration: "500ms" }}
-          className="rounded-full w-1/4 mx-auto px-12 py-6 font-thin text text-xl text-black border  bg-transparent border-primary"
+          className="rounded-full w-1/4 mx-auto px-12 py-6 font-thin text text-xl text-black border hover:bg-primary hover:text-white  bg-transparent border-primary"
         >
           Get Personalised Quote
         </Button>
