@@ -9,9 +9,12 @@ import { Menu, X } from "lucide-react"; // Import Lucide Icons
 import useScrollPosition from "../useScroll";
 import { cn } from "@/lib/utils";
 
-const RouteComponent = ({ link, name }) => {
+const RouteComponent = ({ link, name, className }) => {
   return (
-    <Link className=" text-[16.5px]  text-white font-medium" href={link}>
+    <Link
+      className={cn(" text-[16.5px]  text-white font-medium", className)}
+      href={link}
+    >
       {name}
     </Link>
   );
@@ -49,26 +52,25 @@ const Header = () => {
       <Link href={"/"}>
         <Image alt="logo" src="/chronicle-logo.svg" width={110} height={80} />
       </Link>
-      <div
-        className={cn(
-          "hidden md:flex items-center gap-12",
-          scrollPosition > 55 && "opacity-0"
-        )}
-      >
+      <div className="flex gap-4">
         {headerRoutes.map((route, index) => (
-          <RouteComponent key={index} link={route.link} name={route.name} />
+          <RouteComponent
+            className={scrollPosition > 55 ? "opacity-0" : ""}
+            key={index}
+            link={route.link}
+            name={route.name}
+          />
         ))}
         {/* Hamburger Menu Button for Mobile */}
         <div
           className={
             scrollPosition < 55
-              ? `opacity-0 hidden items-center transition-all duration-700 ease-in-out md:flex`
+              ? `opacity-0 items-center transition-all duration-700 ease-in-out md:flex`
               : `opacity-100 flex items-center transition-all duration-700 ease-in-out`
           }
         >
           <button onClick={toggleMenu} className="text-white">
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
-            {/* Lucide Icons */}
           </button>
         </div>
       </div>
