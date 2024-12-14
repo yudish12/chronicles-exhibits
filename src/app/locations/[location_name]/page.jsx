@@ -22,10 +22,13 @@ import Footer from "@/components/ui/footer";
 import Queryform from "@/app/(landing)/Queryform";
 import { Calendar, MapPin } from "lucide-react";
 import moment from "moment";
-import { majorExhibitingCities } from "../page";
-
+// import { majorExhibitingCities } from "../page";
+import { getAllData } from "@/server/actions/locations";
+import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 const Page = async ({ params }) => {
   const city = (await params).location_name;
+  let majorExhibitingCities = await getAllData();
+  let boothSizes = await getAllBoothSizes();
   const shows = tradeShows.splice(0, 4);
   return (
     <>
@@ -46,9 +49,9 @@ const Page = async ({ params }) => {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Cities</SelectLabel>
-                {majorExhibitingCities.map((city, index) => (
-                  <SelectItem value={city} key={index}>
-                    {city}
+                {majorExhibitingCities.data.map((city, index) => (
+                  <SelectItem value={city.city} key={index}>
+                    {city.city}
                   </SelectItem>
                 ))}
               </SelectGroup>
@@ -60,12 +63,16 @@ const Page = async ({ params }) => {
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>Fruits</SelectLabel>
-                <SelectItem value="apple">10x10</SelectItem>
-                <SelectItem value="banana">10x20</SelectItem>
+                <SelectLabel>Booth Sizes</SelectLabel>
+                { 
+                boothSizes.data.map((sizes,index)=>(
+                  <SelectItem value={sizes.name} key={index} >{sizes.name}</SelectItem>
+                ))
+}
+                {/* <SelectItem value="banana">10x20</SelectItem>
                 <SelectItem value="blueberry">10x30</SelectItem>
                 <SelectItem value="grapes">20x20</SelectItem>
-                <SelectItem value="pineapple">20x30</SelectItem>
+                <SelectItem value="pineapple">20x30</SelectItem> */}
               </SelectGroup>
             </SelectContent>
           </Select>
