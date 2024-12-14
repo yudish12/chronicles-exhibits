@@ -56,14 +56,14 @@ export const majorExhibitingCities = [
   "Washington DC",
 ];
 
-const Page =  async () => {
+const Page = async () => {
   let locations = await getAllData();
-  console.log("==locations==" , locations.data)
+  console.log("==locations==", locations.data);
   return (
     <>
       <SubHeader />
       <Header />
-      <div className="bg-[url('/location-bg.png')] px-20 text-white gap-8 h-[420px] justify-center items-center flex flex-col">
+      <div className="bg-[url('/location-bg.png')] grayscale-[70%] px-20 text-white gap-8 h-[420px] justify-center items-center flex flex-col">
         <Image
           src={"/location-bg-icon.png"}
           width={40}
@@ -88,12 +88,11 @@ const Page =  async () => {
         </p>
       </div>
       <div className="us-bg px-20 py-6 grid grid-cols-4 gap-4">
-        {locations.data.map((city, index) => 
-        (
-          <Link href={`/locations/${city.city}`} key={index}>
+        {majorExhibitingCities.map((city, index) => (
+          <Link href={`/locations/${city}`} key={index}>
             <div
               key={index}
-              className="flex flex-col max-w-[250px] transition-all duration-300 hover:bg-[#FDF3ED] hover:shadow-xl hover:scale-110 rounded-xl items-center gap-4 py-6 text-center"
+              className="flex flex-col max-w-[250px] transition-all duration-300  hover:shadow-xl hover:scale-110 rounded-xl items-center gap-4 py-6 text-center"
             >
               <Image
                 src={`/location-2955.svg`}
@@ -103,7 +102,7 @@ const Page =  async () => {
                 className="object-cover"
               />
               <h3 className="text-secondary heading-font font-bold text-2xl">
-                {city.city}
+                {city}
               </h3>
             </div>
           </Link>

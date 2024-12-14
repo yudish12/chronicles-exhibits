@@ -4,6 +4,7 @@ import SubHeader from "@/components/ui/sub-header";
 import React from "react";
 import ourWorksData from "../../utils/constants/dev-data/our-works.json";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 const Page = () => {
   return (
@@ -11,16 +12,13 @@ const Page = () => {
       <SubHeader />
       <Header />
       <div className=" featured-bg flex flex-col items-center justify-center bg-cover bg-center">
-        <div className="flex flex-col justify-center items-center h-full text-center gap-10  px-4">
-          <h2 className="heading-font font-bold text-[2rem] text-white drop-shadow-lg leading-relaxed ">
+        <div className="flex flex-col items-center h-full text-center gap-10  px-4">
+          <h2 className="heading-font font-semibold text-[2rem] mt-16 text-white drop-shadow-lg leading-relaxed ">
             OUR PORTFOLIO
           </h2>
-          <p className="text-white text-lg font-medium">
+          <p className="text-white text-[2.5rem] w-[1000px] uppercase font-medium text-center">
             Have a look at our impeccable trade show booths that made our
             clients stand out from their competitors.
-            <br />
-            Gain a high ROI while exhibiting in various major trade shows across
-            the USA!
           </p>
         </div>
       </div>
@@ -36,16 +34,21 @@ const Page = () => {
           Whatever your business will be, Chronicle Exhibits can help you design
           your booth that is certain to bring excitement to your trade event.
         </p>
-        <div className="grid grid-cols-[400px,400px,400px] w-max mx-auto gap-x-4 place-content-center p-8 gap-y-4">
+        <div className="grid grid-cols-4  mx-auto gap-x-8 place-content-center p-8 px-20 gap-y-8">
           {ourWorksData.map((item, index) => (
             <div
               key={index}
-              className="overflow-hidden w-[400px] h-[300px]" // Wrapper to constrain image scale
+              className={cn(
+                "overflow-hidden rounded-3xl",
+                (index + 1) % 3 === 0 ? "col-span-4" : "col-span-2"
+              )} // Wrapper to constrain image scale
             >
               <Image
                 width={400}
                 height={300}
-                className="transition-transform min-h-[300px] duration-300 transform scale-110 hover:scale-125"
+                className={cn(
+                  `transition-transform min-h-[300px] max-h-[450px] w-full duration-300 transform scale-110 hover:scale-125`
+                )}
                 src={item.image}
                 alt={`photo-${index}`}
               />
