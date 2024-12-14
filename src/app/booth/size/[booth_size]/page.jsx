@@ -9,11 +9,16 @@ import BoothGrid from "./_components/AllBooths";
 import RequestDesign from "./_components/RequestDesign";
 import TradeShowSection from "./_components/TradeShowSection";
 import { getBoothSizeByName } from "@/server/actions/booth-sizes";
+import { getAllData } from "@/server/actions/booths";
 async function FeaturedPage({ params }) {
   const resolvedParams = await params;
   const boothSize = resolvedParams.booth_size;
-  console.log(await getBoothSizeByName(boothSize));
+  console.log("==boothsize==",boothSize)
   const data = await getBoothSizeByName(boothSize);
+  const booth = await getAllData();
+  console.log("==booth data ", booth)
+  let booths = booth.data.filter(booth => booth.boothSize.name === boothSize )
+  console.log("data",booths);
   return (
     <>
       <SubHeader />
@@ -36,7 +41,7 @@ async function FeaturedPage({ params }) {
           </div>
         </div>
       </div>
-      <BoothGrid size={boothSize} />
+      <BoothGrid size={boothSize} booths={booths}/>
       <RequestDesign size={boothSize} />
       <TradeShowSection size={boothSize} />
       <Queryform />

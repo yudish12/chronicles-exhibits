@@ -12,6 +12,7 @@ import Footer from "@/components/ui/footer";
 import { Input } from "@/components/ui/input";
 import Products from "@/app/(landing)/Products";
 import { DiamondSvg } from "@/app/booth/size/[booth_size]/_components/TradeShowSection";
+import { getAllData } from "@/server/actions/events";
 
 const points = [
   "With hundreds of exhibiting companies and thousands of attendees, CES Las Vegas has unparalleled scale and reach within the industry.",
@@ -26,9 +27,10 @@ const points = [
   "Participation lends credibility to brands and allows them to test new ideas directly with their target audience before launching products globally.",
 ];
 
-const Page = () => {
+const Page = async () => {
   const targetDate = "2024-12-31T23:59:59";
-  recentShows = recentShows.slice(0, 3);
+  const recentShows = await getAllData();
+  recentShows = recentShows.data.slice(0, 3);
   return (
     <>
       <SubHeader />
