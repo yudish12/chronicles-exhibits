@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
 const EnquiryForm = () => {
   const [countryCode, setCountryCode] = useState("us");
@@ -51,27 +53,30 @@ const EnquiryForm = () => {
   return (
     <div
       style={{
-        maxWidth: "600px",
-        margin: "50px auto",
+        width: "100%",
+        margin: "16px auto",
         padding: "20px",
-        boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
       }}
     >
-      <h2 style={{ textAlign: "center" }}>Enquiry Form</h2>
-      <form onSubmit={handleSubmit}>
-        <input
+      <h5 className="text-3xl mt-4 text-center font-semibold heading-font text-secondary">
+        Enquiry Form
+      </h5>
+      <div className="mt-4 flex flex-col gap-5">
+        <Input
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
           type="text"
-          name="name"
           placeholder="Enter Your Name"
           onChange={handleChange}
           required
+          name="name"
         />
-        <input
+        <Input
+          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
           type="email"
-          name="email"
           placeholder="Enter Your Email"
           onChange={handleChange}
           required
+          name="email"
         />
         <PhoneInput
           country={countryCode}
@@ -79,34 +84,31 @@ const EnquiryForm = () => {
           onChange={handlePhoneChange}
           inputStyle={{ width: "100%", marginBottom: "10px" }}
         />
-        <input
+        <Input
+          className=" border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
           type="text"
           name="boothSize"
           placeholder="Booth Size"
           onChange={handleChange}
           required
         />
-        <input
+        <Input
+          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
+          placeholder="Enter Event Name"
           type="text"
           name="eventName"
-          placeholder="Enter Event Name"
           onChange={handleChange}
           required
         />
         <textarea
-          name="message"
+          rows={4}
+          className="border p-2 border-[#CACACA] placeholder:text-secondary/70 rounded-lg"
           placeholder="Message"
-          onChange={handleChange}
-          rows="4"
-          required
-        ></textarea>
-        <button
-          type="submit"
-          style={{ width: "100%", padding: "10px", marginTop: "10px" }}
-        >
+        />
+        <Button className="w-1/3 mx-auto bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary ">
           Get Quote
-        </button>
-      </form>
+        </Button>
+      </div>
     </div>
   );
 };
