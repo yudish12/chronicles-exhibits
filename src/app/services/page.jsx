@@ -12,7 +12,7 @@ const ServicePage = () => {
     <>
       <SubHeader />
       <Header />
-      <div className="service-bg flex flex-col gap-16 items-center justify-center">
+      {/* <div className="service-bg flex flex-col gap-16 items-center justify-center">
         <h2 className="text-secondary text-5xl font-semibold heading-font text-center">
           Design | Build | Services
         </h2>
@@ -90,6 +90,12 @@ const ServicePage = () => {
             </p>
           </div>
         </div>
+      </div> */}
+      <div className="text-center mt-8">
+        <h2 className="scale-110 text-2xl text-[#B0CB1F] ">Services</h2>
+        <p className="mt-6 sm:text-4xl heading-font-700 uppercase text-secondary ">
+          eye catching trade show booth solutions
+        </p>
       </div>
       <Carousel />
       <Queryform />

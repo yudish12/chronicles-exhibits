@@ -52,7 +52,7 @@ const Header = () => {
       <Link href={"/"}>
         <Image alt="logo" src="/chronicle-logo.svg" width={110} height={80} />
       </Link>
-      <div className="flex gap-4">
+      <div className="flex gap-8">
         {headerRoutes.map((route, index) => (
           <RouteComponent
             className={scrollPosition > 55 ? "opacity-0" : ""}

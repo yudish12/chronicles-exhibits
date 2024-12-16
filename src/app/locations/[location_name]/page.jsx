@@ -41,9 +41,9 @@ const Page = async ({ params }) => {
         <h2 className="text-center font-bold text-[2.5rem] heading-font uppercase text-primary">
           {city}
         </h2>
-        <div className="flex px-20 mt-6 justify-center w-[78%] mx-auto">
+        <div className="flex relative mt-6 gap-4 bg-black/40 rounded-full p-4 justify-center w-4/5 mx-auto">
           <Select>
-            <SelectTrigger className="text-secondary font-semibold bg-white rounded-none py-6">
+            <SelectTrigger className="text-secondary text-lg font-semibold bg-white rounded-full p-6">
               <SelectValue placeholder="Select a City" />
             </SelectTrigger>
             <SelectContent>
@@ -58,17 +58,17 @@ const Page = async ({ params }) => {
             </SelectContent>
           </Select>
           <Select>
-            <SelectTrigger className="text-secondary font-semibold bg-white rounded-none py-6">
+            <SelectTrigger className="text-secondary text-lg  font-semibold bg-white rounded-full p-6">
               <SelectValue placeholder="Select a Booth Size" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Booth Sizes</SelectLabel>
-                { 
-                boothSizes.data.map((sizes,index)=>(
-                  <SelectItem value={sizes.name} key={index} >{sizes.name}</SelectItem>
-                ))
-}
+                {boothSizes.data.map((sizes, index) => (
+                  <SelectItem value={sizes.name} key={index}>
+                    {sizes.name}
+                  </SelectItem>
+                ))}
                 {/* <SelectItem value="banana">10x20</SelectItem>
                 <SelectItem value="blueberry">10x30</SelectItem>
                 <SelectItem value="grapes">20x20</SelectItem>
@@ -76,7 +76,8 @@ const Page = async ({ params }) => {
               </SelectGroup>
             </SelectContent>
           </Select>
-          <Button className="bg-transparent border-2 font-semibold text-lg border-white py-[1.45rem] px-6 rounded-none">
+
+          <Button className="bg-transparent border-2 font-semibold text-lg border-white py-5 self-center hover:bg-white transition-all duration-300 hover:text-secondary px-6 rounded-full">
             Search
           </Button>
         </div>
@@ -139,6 +140,12 @@ const Page = async ({ params }) => {
             believe in building long lasting relationships and will support you
             throughout your trade show journey.
           </p>
+          <Button
+            style={{ transitionDuration: "500ms" }}
+            className="rounded-full w-[30%] mx-auto px-16 py-6 font-thin text text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4  bg-transparent border-primary"
+          >
+            Get Personalised Quote
+          </Button>
         </div>
       </div>
       <div className="p-20 pb-10">
@@ -178,10 +185,10 @@ const Page = async ({ params }) => {
         </Link>
       </div>
       <Products />
-      <div className="bg-[#FFF7F1] py-12 px-8 md:px-20 lg:px-32">
+      <div className="bg-background py-12 px-8 md:px-20 lg:px-32">
         {/* Section 1 */}
         <section className="py-10 text-secondary">
-          <h2 className="text-2xl md:text-3xl font-bold heading-font text-secondary mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold uppercase heading-font text-secondary mb-4">
             FINEST QUALITY {city} TRADE SHOW DISPLAYS FOR IMPACTFUL BRAND
             PRESENCE
           </h2>
@@ -341,7 +348,7 @@ const Page = async ({ params }) => {
           </Button>
         </div>
       </div>
-      <Queryform />
+      {/* <Queryform /> */}
       <Footer />
     </>
   );
