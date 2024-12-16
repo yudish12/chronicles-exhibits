@@ -222,11 +222,11 @@
 }
 
 .shadow-one {
-  box-shadow: 0 0 42px rgba(93, 42, 66, 0.36);
+  box-shadow: 0 0 42px rgba(0, 0, 0, 0.36);
 }
 
 .shadow-two {
-  box-shadow: 0 0 12px rgba(93, 42, 66, 0.156);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.156);
 }
 
 .queryform {
