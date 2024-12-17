@@ -3,26 +3,26 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card"; // Import Card components from shadcn
 import Link from "next/link";
+import Image from "next/image";
+// const booths = [
+//   {
+//     id: 1,
+//     image: "/booth-code-1.jpeg",
+//     code: "CEL101001",
+//   },
+//   {
+//     id: 3,
+//     image: "/booth-code-3.jpeg",
+//     code: "CEL101002",
+//   },
+//   {
+//     id: 6,
+//     image: "/booth-code-5.jpeg",
+//     code: "CEL101003",
+//   },
+// ];
 
-const booths = [
-  {
-    id: 1,
-    image: "/booth-code-1.jpeg",
-    code: "CEL101001",
-  },
-  {
-    id: 3,
-    image: "/booth-code-3.jpeg",
-    code: "CEL101002",
-  },
-  {
-    id: 6,
-    image: "/booth-code-5.jpeg",
-    code: "CEL101003",
-  },
-];
-
-const BoothGrid = ({ size }) => {
+const BoothGrid = ({ size, booths }) => {
   const [visibleCount, setVisibleCount] = useState(9);
 
   return (
@@ -38,14 +38,16 @@ const BoothGrid = ({ size }) => {
 
       {/* Booth Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto px-4">
-        {booths.slice(0, visibleCount).map((booth) => (
+        {booths.slice(0, visibleCount).map((booth,index) => (
           <Card
-            key={booth.id}
+            key={index}
             className="shadow-one rounded-lg overflow-hidden w-full max-w-[380px] mx-auto"
           >
             <CardHeader className="p-0">
-              <img
-                src={booth.image}
+              <Image
+                height={100}
+                width={100}
+                src={booth.main_image}
                 alt={`Booth ${booth.code}`}
                 className="w-full h-[250px] object-cover"
               />
