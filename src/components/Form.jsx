@@ -4,6 +4,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { submitCallForm } from "@/server/actions/forms";
 
 const EnquiryForm = () => {
   const [countryCode, setCountryCode] = useState("us");
@@ -44,10 +45,11 @@ const EnquiryForm = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
-    alert("Form submitted successfully!");
+    const resp = await submitCallForm(formData, "home");
+    console.log(resp);
   };
 
   return (
@@ -104,8 +106,13 @@ const EnquiryForm = () => {
           rows={4}
           className="border p-2 border-[#CACACA] placeholder:text-secondary/70 rounded-lg"
           placeholder="Message"
+          name="message"
+          onChange={handleChange}
         />
-        <Button className="w-1/3 mx-auto bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary ">
+        <Button
+          onClick={handleSubmit}
+          className="w-1/3 mx-auto bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
+        >
           Get Quote
         </Button>
       </div>
