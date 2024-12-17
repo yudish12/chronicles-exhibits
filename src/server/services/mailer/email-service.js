@@ -32,7 +32,7 @@ export class EmailService {
 
     // Await the result of templateFunc since it is likely async
     const html = await templateFunc(fields, this.page_source);
-    let logoPath = path.join(process.cwd(), "public/chronicle-logo.svg");
+    let logoPath = path.join(process.cwd(), "public/chronicle-exhibits-dark-bg.png");
     console.log(logoPath);
     const mailOptions = {
       from: this.from,
@@ -40,7 +40,7 @@ export class EmailService {
       subject: subject,
       attachments: [
         {
-          filename: "logo.svg",
+          filename: "chronicle-exhibits-dark-bg.png",
           path: logoPath,
           cid: "logo",
         },
