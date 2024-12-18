@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 import {
   Table,
   TableBody,
@@ -28,6 +29,7 @@ import { toast } from "sonner";
 import { Pencil, Trash2 } from "lucide-react";
 
 export default function Events() {
+  const router = useRouter();
   const [events, setEvents] = React.useState([]);
   const [locations, setLocations] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -47,7 +49,7 @@ export default function Events() {
   const fetchData = async () => {
     try {
       const eventResp = await getAllData();
-      console.log("===events===",eventResp.data[0])
+      console.log("===events===",eventResp)
       const locationResp = await getAllLocations();
       console.log('====locations===' , locationResp.data[0])
     //   if (!eventResp.success || !locationResp.success) {
@@ -93,9 +95,10 @@ export default function Events() {
     fetchData();
   }, []);
   const handleEdit = (event) => {
-    setIsDialogOpen(false);
-    setSingleEvent(event);
-    setIsEditDialogOpen(true);
+    // setIsDialogOpen(false);
+    // setSingleEvent(event);
+    // setIsEditDialogOpen(true);
+    router.push(`/admin/events/edit/${event._id}`);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -160,8 +163,11 @@ export default function Events() {
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold mb-4">Events</h1>
         <Button onClick={() => {
-            setSingleEvent({ event_name: "", start_date: "", end_date: "", location_id: "" });
-            setIsAddDialogOpen(true);
+            // setSingleEvent({ event_name: "", start_date: "", end_date: "", location_id: "" });
+            // setIsAddDialogOpen(true);
+            router.push(`/admin/events/add/`);
+
+
           }}>
             Add Event</Button>
       </div>

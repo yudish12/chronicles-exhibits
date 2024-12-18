@@ -16,6 +16,14 @@ export const getAllData = async () => {
       return getActionFailureResponse(error, "toast");
     }
   };
+  export const findEventById = async ({id})=>{
+    try{
+    const data = await events.find({_id : id}).lean();
+    return getActionSuccessResponse(data);
+    }catch(error){
+      return getActionFailureResponse(error, "toast");
+    }
+  }
 
   export const getAllLocations = async () => {
     try {

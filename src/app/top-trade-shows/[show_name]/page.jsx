@@ -29,7 +29,7 @@ const points = [
 
 const Page = async () => {
   const targetDate = "2024-12-31T23:59:59";
-  const recentShows = await getAllData();
+  let recentShows = await getAllData();
   recentShows = recentShows.data.slice(0, 3);
   return (
     <>
