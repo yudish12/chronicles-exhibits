@@ -24,7 +24,7 @@ import { Label } from "@/components/ui/label";
 import {
   addData,
   deleteData,
-  getAllData,
+  getAllBoothSizes,
   updateData,
 } from "@/server/actions/booth-sizes";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
@@ -41,7 +41,7 @@ export default function BoothSizesTable() {
 
   const getData = async () => {
     try {
-      const resp = await getAllData();
+      const resp = await getAllBoothSizes();
       console.log(resp);
       if (!resp.success) {
         toast.error(resp.err);

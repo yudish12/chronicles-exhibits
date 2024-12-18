@@ -27,7 +27,7 @@ import {
   getAllData,
   updateData,
 } from "@/server/actions/booths";
-import { getAllData as getAllBoothSizes } from "@/server/actions/booth-sizes";
+import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 import { UploadButton } from "@uploadthing/react";

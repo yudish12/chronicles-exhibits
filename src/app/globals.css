@@ -281,6 +281,7 @@
 .service-bg::before {
   content: "";
   position: absolute;
+  filter: grayscale(70%);
   top: 0;
   left: 0;
   width: 100%;
@@ -374,6 +375,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  filter: grayscale(70%);
   opacity: 0.3;
   height: 100%;
   background: url("../../public/booth-design-bg.png") no-repeat center center;
@@ -401,6 +403,7 @@
 .trade-show-bg::before {
   content: "";
   position: absolute;
+  filter: grayscale(70%);
   top: 0;
   left: 0;
   width: 100%;
@@ -420,6 +423,7 @@
   content: "";
   position: absolute;
   top: 0;
+  filter: grayscale(70%);
   left: 0;
   width: 100%;
   height: 100%;
@@ -440,6 +444,7 @@
 .us-bg::before {
   content: "";
   position: absolute;
+
   top: -400px;
   left: 0;
   width: 100%;
@@ -469,6 +474,7 @@
   content: "";
   position: absolute;
   top: 0;
+  filter: grayscale(70%);
   left: 0;
   width: 100%;
   filter: grayscale(70%);
