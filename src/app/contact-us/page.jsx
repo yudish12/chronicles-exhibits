@@ -1,18 +1,18 @@
-import Footer from '@/components/ui/footer';
-import Header from '@/components/ui/header';
-import SubHeader from '@/components/ui/sub-header';
-import React from 'react';
-import Image from 'next/image';
-import EnquiryForm from './_components/EnquiryForm';
-import LocateUs from './_components/LocateUs';
-import OtherOffices from './_components/OtherOffices';
+import Footer from "@/components/ui/footer";
+import Header from "@/components/ui/header";
+import SubHeader from "@/components/ui/sub-header";
+import React from "react";
+import Image from "next/image";
+import EnquiryForm from "./_components/EnquiryForm";
+import LocateUs from "./_components/LocateUs";
+import OtherOffices from "./_components/OtherOffices";
 
 const Page = () => {
   return (
     <>
       <SubHeader />
       <Header />
-      <div className="bg-[url('/location-bg.png')] px-20 text-white gap-8 h-[360px] justify-center items-center flex flex-col">
+      <div className="bg-[url('/location-bg.png')] grayscale-[70%] m px-20 text-white gap-8 h-[360px] justify-center items-center flex flex-col">
         <Image
           src="/Phone.png"
           width={80}
@@ -68,7 +68,9 @@ const Page = () => {
             />
             <div>
               <p className="text-lg font-semibold text-[#4B224C]">Email</p>
-              <p className="text-sm text-gray-600">info@chronicleexhibits.com</p>
+              <p className="text-sm text-gray-600">
+                info@chronicleexhibits.com
+              </p>
             </div>
           </div>
         </div>
@@ -82,7 +84,9 @@ const Page = () => {
             className="object-contain"
           />
           <div>
-            <p className="text-lg font-semibold text-[#4B224C]">US Office Address</p>
+            <p className="text-lg font-semibold text-[#4B224C]">
+              US Office Address
+            </p>
             <p className="text-sm text-gray-600">
               8465, W. Sahara Ave, Suite 111 Unit #1183, Las Vegas, NV 89117, US
             </p>
@@ -97,7 +101,9 @@ const Page = () => {
             height={120}
             className="object-contain"
           />
-          <p className="mt-4 text-lg text-[#9CCC4A] font-semibold">Scan QR Code</p>
+          <p className="mt-4 text-lg text-[#9CCC4A] font-semibold">
+            Scan QR Code
+          </p>
         </div>
       </div>
 
@@ -105,8 +111,8 @@ const Page = () => {
       <div className="flex justify-center py-16 bg-background px-10 ">
         <EnquiryForm />
       </div>
-      <LocateUs/>
-      <OtherOffices/>    
+      <LocateUs />
+      <OtherOffices />
       <Footer />
     </>
   );

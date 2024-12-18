@@ -8,6 +8,8 @@ import { Button } from "./button";
 import { Menu, X } from "lucide-react"; // Import Lucide Icons
 import useScrollPosition from "../useScroll";
 import { cn } from "@/lib/utils";
+import { Dialog, DialogContent, DialogTrigger } from "./dialog";
+import EnquiryForm from "../Form";
 
 const RouteComponent = ({ link, name, className }) => {
   return (
@@ -23,9 +25,16 @@ const RouteComponent = ({ link, name, className }) => {
 export const HeaderBtns = () => {
   return (
     <>
-      <Button className="rounded-md rounded-e-none py-[18px] px-2 sm:px-4 text-primary font-semibold border-2 bg-transparent border-primary">
-        Schedule A Call
-      </Button>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button className="rounded-md rounded-e-none py-[18px] px-2 sm:px-4 text-primary font-semibold border-2 bg-transparent border-primary">
+            Schedule A Call
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="">
+          <EnquiryForm />
+        </DialogContent>
+      </Dialog>
       <Button className="rounded-md rounded-s-none  py-[18px] border-2 border-primary  text-secondary font-semibold">
         Get Quote
       </Button>
@@ -77,13 +86,13 @@ const Header = () => {
 
       {/* Mobile Menu (Full-Screen Overlay) */}
       <div
-        className={`md:hidden fixed top-0 left-0 w-full h-full  bg-opacity-70 z-30 transition-opacity ${
+        className={`fixed top-0 left-0 w-full h-full  bg-opacity-70 z-30 transition-opacity ${
           isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={closeMenu}
       >
         <div
-          className={`fixed top-0 left-0 w-3/4 h-full bg-secondary p-6 text-black flex flex-col gap-6 transform transition-transform ${
+          className={`fixed top-0 left-0 md:w-1/3 h-full bg-secondary p-6 text-black flex flex-col gap-6 transform transition-transform ${
             isMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}
@@ -110,6 +119,9 @@ const Header = () => {
               <RouteComponent key={index} link={route.link} name={route.name} />
             ))}
           </div>
+        </div>
+        <div className="fixed bottom-10 left-5">
+          <HeaderBtns />
         </div>
       </div>
     </div>

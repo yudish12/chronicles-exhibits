@@ -2,11 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import {
-  Card,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Pagination } from "./_components/Pagination";
 
@@ -22,7 +18,7 @@ const BlogsPagination = ({ blogs }) => {
   );
   // const actionCallforPagination = async () => {
   //   //fetch blogs from server action
-    
+
   // };
 
   // useEffect(() => {
@@ -35,7 +31,7 @@ const BlogsPagination = ({ blogs }) => {
 
   return (
     <>
-      <div className="bg-[url('/blog-hero-bg-small.png')] bg-cover bg-no-repeat px-20 text-white gap-4 h-[300px] justify-center items-center flex flex-col">
+      <div className="bg-[url('/blog-hero-bg-small.png')] grayscale-[70%] bg-cover bg-no-repeat px-20 text-white gap-4 h-[300px] justify-center items-center flex flex-col">
         <Image
           src={"/Book-open.png"}
           width={60}
@@ -76,7 +72,10 @@ const BlogsPagination = ({ blogs }) => {
                   {blog.title}
                 </CardTitle>
                 <CardDescription className="text-sm text-gray-600 mt-2">
-                  {blog.description}
+                  {/* {blog.description} */}
+                  Welcome to Chronicle, your prominent partner for trade show
+                  booth displays and exhibits. With 25+ years’ worth of
+                  experience and an excellent team
                 </CardDescription>
                 <div className="mt-4">
                   <Link href={`/blogs/${blog.id}`}>
