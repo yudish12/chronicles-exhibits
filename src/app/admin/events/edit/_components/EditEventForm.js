@@ -38,8 +38,8 @@ const EditEventForm = ({ singleEvent, locations }) => {
   };
 
   return (
-    <form onSubmit={handleEditSubmit} className="w-full max-w-3xl bg-white p-6 shadow-md rounded-lg">
-      <div className="grid gap-6">
+    <form onSubmit={handleEditSubmit} className="w-full  bg-white p-6 ">
+      <div className="grid grid-cols-2 gap-6">
         <div>
           <Label>Name</Label>
           <Input

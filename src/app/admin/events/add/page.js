@@ -4,6 +4,8 @@ import { addData } from "@/server/actions/events";
 import { UploadButton } from "@uploadthing/react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
 import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
@@ -78,10 +80,10 @@ const Page = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen bg-gray-50 py-8 px-4 overflow-auto w-full ">
+    <div className="flex flex-col items-center justify-start min-h-screen bg-white py-8 px-4 overflow-auto w-full ">
       <h1 className="text-2xl font-bold text-center mb-6">Add Event</h1>
-      <form onSubmit={handleAddSubmit} className="w-full max-w-3xl bg-white p-6 shadow-md rounded-lg">
-        <div className="grid gap-6">
+      <form onSubmit={handleAddSubmit} className="w-full  p-6 ">
+        <div className="grid grid-cols-2 gap-6">
           <div>
             <Label>Name</Label>
             <Input
@@ -92,18 +94,6 @@ const Page = () => {
               required
             />
           </div>
-
-          <div>
-            <Label>Title</Label>
-            <Input
-              value={singleEvent.title}
-              onChange={(e) =>
-                setSingleEvent({ ...singleEvent, title: e.target.value })
-              }
-              required
-            />
-          </div>
-
           <div>
             <Label>Slug (No spaces, only lowercase)</Label>
             <Input
@@ -116,18 +106,62 @@ const Page = () => {
               title="No spaces, only lowercase letters and dashes"
             />
           </div>
-
           <div>
-            <Label>Body</Label>
-            <Textarea
-              value={singleEvent.body}
+            <Label>Country</Label>
+            <Input
+              value={singleEvent.country}
               onChange={(e) =>
-                setSingleEvent({ ...singleEvent, body: e.target.value })
+                setSingleEvent({ ...singleEvent, country: e.target.value })
               }
               required
             />
           </div>
-
+          <div>
+            <Label>City</Label>
+            <Input
+              value={singleEvent.city}
+              onChange={(e) =>
+                setSingleEvent({ ...singleEvent, city: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div>
+            <Label>Icon</Label>
+            <UploadButton
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                setSingleEvent({
+                  ...singleEvent,
+                  icon: res[0]?.url || "",
+                });
+                toast.success("Icon uploaded successfully");
+              }}
+              onUploadError={(error) =>
+                toast.error(`Upload failed: ${error.message}`)
+              }
+            />
+            {singleEvent.icon && (
+              <img
+                src={singleEvent.icon}
+                alt="Event Icon"
+                className="mt-2 w-16 h-16 object-cover rounded"
+              />
+            )}
+          </div>
+          <div>
+            <Label>Icon Alt Text</Label>
+            <Input
+              value={singleEvent.icon_alt_text}
+              onChange={(e) =>
+                setSingleEvent({
+                  ...singleEvent,
+                  icon_alt_text: e.target.value,
+                })
+              }
+              required
+            />
+          </div>
           <div>
             <Label>Start Date</Label>
             <Input
@@ -167,27 +201,28 @@ const Page = () => {
               required
             />
           </div>
-
-          <div>
-            <Label>Country</Label>
+          <div className="col-span-2">
+            <Label>Title</Label>
             <Input
-              value={singleEvent.country}
+              value={singleEvent.title}
               onChange={(e) =>
-                setSingleEvent({ ...singleEvent, country: e.target.value })
+                setSingleEvent({ ...singleEvent, title: e.target.value })
               }
               required
             />
           </div>
 
-          <div>
-            <Label>City</Label>
-            <Input
-              value={singleEvent.city}
-              onChange={(e) =>
-                setSingleEvent({ ...singleEvent, city: e.target.value })
-              }
-              required
-            />
+          
+
+          <div className="col-span-2">
+            <Label>Body</Label>
+            <ReactQuill
+                  theme="snow"
+                    value={singleEvent?.body || ""}
+                    onChange={(value) =>
+                    setSingleEvent({ ...singleEvent, body: value })
+                    }
+                />
           </div>
 
           <div>
@@ -213,20 +248,6 @@ const Page = () => {
           </div>
 
           <div>
-            <Label>Icon Alt Text</Label>
-            <Input
-              value={singleEvent.icon_alt_text}
-              onChange={(e) =>
-                setSingleEvent({
-                  ...singleEvent,
-                  icon_alt_text: e.target.value,
-                })
-              }
-              required
-            />
-          </div>
-
-          <div>
             <Label>Meta Title</Label>
             <Input
               value={singleEvent.meta_title}
@@ -237,10 +258,9 @@ const Page = () => {
             />
           </div>
 
-          <div>
+          <div className="col-span-2">
             <Label>Meta Description</Label>
-            <Textarea
-              rows={4}
+            <Input
               value={singleEvent.meta_description}
               onChange={(e) =>
                 setSingleEvent({
@@ -252,33 +272,15 @@ const Page = () => {
             />
           </div>
 
-          <div>
-            <Label>Icon</Label>
-            <UploadButton
-              endpoint="imageUploader"
-              onClientUploadComplete={(res) => {
-                setSingleEvent({
-                  ...singleEvent,
-                  icon: res[0]?.url || "",
-                });
-                toast.success("Icon uploaded successfully");
-              }}
-              onUploadError={(error) =>
-                toast.error(`Upload failed: ${error.message}`)
-              }
-            />
-            {singleEvent.icon && (
-              <img
-                src={singleEvent.icon}
-                alt="Event Icon"
-                className="mt-2 w-16 h-16 object-cover rounded"
-              />
-            )}
-          </div>
+          
         </div>
-        <Button type="submit" className="mt-6 w-full">
-          Add Event
-        </Button>
+        <Button
+        type="submit"
+        variant="outline"
+         className="border-secondary mt-4 bg-white font-semibold text-secondary bg-secondary text-white p-4 border-2 "
+        >
+         Add Event
+       </Button>
       </form>
     </div>
   );

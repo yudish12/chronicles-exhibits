@@ -5,11 +5,12 @@ import User from "../models/blogs";
 import mongoose from "mongoose";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 
-await dbConnect();
+// await dbConnect();
 
 export const getAllBlogs = async () => {
   try {
-    const data = await User.find().sort({ createdAt : -1}).lean();
+    await dbConnect();
+    const data = await User.find().lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
@@ -19,6 +20,7 @@ export const getAllBlogs = async () => {
 
 export const updateData = async (id, data) => {
   try {
+    await dbConnect()
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return getActionFailureResponse("Invalid id format", "toast");
     }
@@ -55,17 +57,18 @@ export const updateData = async (id, data) => {
 
 export const addData = async (data) => {
   try {
+    await dbConnect()
     if (!data.title) {
       return getActionFailureResponse("title is required", "title");
     }
 
-    if (!data.short_description) {
-      return getActionFailureResponse("short description is required", "short_description");
-    }
+    // if (!data.short_description) {
+    //   return getActionFailureResponse("short description is required", "short_description");
+    // }
 
-    if (!data.long_description) {
-      return getActionFailureResponse("long description is required", "long_description");
-    }
+    // if (!data.long_description) {
+    //   return getActionFailureResponse("long description is required", "long_description");
+    // }
 
     if (!data.image) {
       return getActionFailureResponse("image is required", "image");
@@ -80,9 +83,22 @@ export const addData = async (data) => {
     getActionFailureResponse(error.message, "toast");
   }
 };
-
+export const findBlogById = async (id)=>{
+  try{
+    await dbConnect();
+    const resp = await User.find({ _id: id });
+    if (!resp) {
+      return getActionFailureResponse("Document not found", "toast");
+    }
+    return getActionSuccessResponse(resp);
+  }catch(error){
+    console.error("Error deleting data:", error);
+    return getActionFailureResponse(error.message, "toast");
+  }
+}
 export const deleteData = async (id) => {
   try {
+    await dbConnect();
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return getActionFailureResponse("Invalid id format", "toast");
     }
