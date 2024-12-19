@@ -483,3 +483,19 @@
   background-size: cover;
   z-index: -2;
 }
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeInOut {
+  animation: fadeInOut 1s ease-in-out;
+}
