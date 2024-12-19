@@ -6,6 +6,9 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    slug: {
+      type:String
+    },
     short_description: {
       type: String,
       required: true,
@@ -14,7 +17,22 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    image: {
+    // slug: {
+    //   type : String // regex : spaces not allowed , only small case allowed 
+    // },
+    body: {
+      type : String
+    },
+    image_alt_text : {
+      type : String
+    },
+    meta_title: {
+      type : String
+    },
+    meta_description: {
+      type : String
+    },
+    image: {                // logo is image 
       type: String,
       required: true,
     },
@@ -22,6 +40,6 @@ const blogSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.models.blogs || mongoose.model("blogs", blogSchema);
+const User = mongoose.models.blogs || mongoose.model("blogs", blogSchema); // make this blog and change everywhere 
 
 export default User;

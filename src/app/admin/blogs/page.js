@@ -28,6 +28,7 @@ import { toast } from "sonner";
 import { getAllBlogs , updateData , addData , deleteData} from "@/server/actions/blogs";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { Pencil, Trash2, Eye } from "lucide-react";
+import { useRouter } from "next/navigation";
 export default function Blogs() {
 //   const [blogs, setBlogs] = useState([]);
 //   const [loading, setLoading] = useState(true);
@@ -41,6 +42,7 @@ export default function Blogs() {
 //   });
 //   const [deletingBlogId, setDeletingBlogId] = useState(null);
 //   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+const router = useRouter();
 const [blogs, setBlogs] = React.useState([]);
 const [loading, setLoading] = React.useState(true);
 const [singleBlog, setSingleBlog] = React.useState(null);
@@ -129,8 +131,9 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
         <h1 className="text-2xl font-bold mb-4">Blogs</h1>
         <Button
           onClick={() => {
-            setSingleBlog({ title: "", short_description: "", long_description: "", image: "" });
-            setIsDialogOpen(true);
+            // setSingleBlog({ title: "", short_description: "", long_description: "", image: "" });
+            // setIsDialogOpen(true);
+            router.push('/admin/blogs/add')
           }}
         >
           Add Blog
