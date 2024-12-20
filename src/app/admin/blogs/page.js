@@ -50,7 +50,6 @@ const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
 const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
 const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 const [deletingBlogId, setDeletingBlogId] = React.useState(null);
-
   const fetchData = async () => {
     try {
       const resp = await getAllBlogs();
@@ -172,8 +171,12 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
                       variant="outline"
                       size="icon"
                       onClick={() => {
-                        setSingleBlog(blog);
-                        setIsEditDialogOpen(true);
+                        // setSingleBlog(blog);
+                        // setIsEditDialogOpen(true);
+                        // console.log('blog:', blog);
+                        // console.log('blog._id:', blog?._id);
+                        router.push(`/admin/blogs/edit/${blog._id}`)
+
                       }}
                     >
                       <Pencil className="h-4 w-4" />

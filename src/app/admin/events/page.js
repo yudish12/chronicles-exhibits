@@ -253,31 +253,24 @@ export default function Events() {
                 />
               </div>
 
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label>Start Date</Label>
-                <Input
-                  type="date"
-                  value={singleEvent?.start_date || ""}
-                  onChange={(e) =>
-                    setSingleEvent({ ...singleEvent, start_date: e.target.value })
-                  }
-                  required
-                  className="col-span-3"
-                />
-              </div>
+              <div>
+          <Label>Start Date</Label>
+          <Input
+            type="date"
+            value={singleEvent.start_date}
+            onChange={(e) => setSingleEvent({ ...singleEvent, start_date: e.target.value })}
+            required
+          />
+        </div>
 
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label>End Date</Label>
-                <Input
-                  type="date"
-                  value={singleEvent?.end_date || ""}
-                  onChange={(e) =>
-                    setSingleEvent({ ...singleEvent, end_date: e.target.value })
-                  }
-                  required
-                  className="col-span-3"
-                />
-              </div>
+        <div>
+          <Label>End Date</Label>
+          <Input
+            type="date"
+            min={singleEvent.start_date}
+            value={singleEvent.end_date}
+            onChange={(e) => setSingleEvent({ ...singleEvent, end_date: e.target.value })}/>
+            </div>
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="location">Location</Label>
                 <Select

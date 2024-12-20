@@ -163,44 +163,24 @@ const Page = () => {
             />
           </div>
           <div>
-            <Label>Start Date</Label>
-            <Input
-              type="date"
-              value={singleEvent.start_date}
-              onChange={(e) =>
-                {
-                console.log(e)
-                if(!singleEvent.end_date){
-                    console.log("oooo")
-                    setSingleEvent({
-                        ...singleEvent,
-                        end_date: e.target.value
-                    })
-                }
-                setSingleEvent({
-                  ...singleEvent,
-                  start_date: e.target.value,
-                })
-            }
-              }
-              required
-            />
-          </div>
+          <Label>Start Date</Label>
+          <Input
+            type="date"
+            value={singleEvent.start_date}
+            onChange={(e) => setSingleEvent({ ...singleEvent, start_date: e.target.value })}
+            required
+          />
+        </div>
 
-          <div>
-            <Label>End Date</Label>
-            <Input
-              type="date"
-              value={singleEvent.end_date}
-              onChange={(e) =>
-                setSingleEvent({
-                  ...singleEvent,
-                  end_date: e.target.value,
-                })
-              }
-              required
-            />
-          </div>
+        <div>
+          <Label>End Date</Label>
+          <Input
+            type="date"
+            min={singleEvent.start_date}
+            value={singleEvent.end_date}
+            onChange={(e) => setSingleEvent({ ...singleEvent, end_date: e.target.value })}/>
+            </div>
+
           <div className="col-span-2">
             <Label>Title</Label>
             <Input
@@ -211,8 +191,6 @@ const Page = () => {
               required
             />
           </div>
-
-          
 
           <div className="col-span-2">
             <Label>Body</Label>
