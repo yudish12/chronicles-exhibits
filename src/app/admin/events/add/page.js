@@ -4,8 +4,8 @@ import { addData } from "@/server/actions/events";
 import { UploadButton } from "@uploadthing/react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import ReactQuill from 'react-quill-new';
-import 'react-quill-new/dist/quill.snow.css';
+import ReactQuill from "react-quill-new";
+import "react-quill-new/dist/quill.snow.css";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { getAllLocations } from "@/server/actions/events";
+import CkeEditor from "@/components/CkEditor";
 
 const Page = () => {
   const [locations, setLocations] = React.useState([]);
@@ -163,23 +164,28 @@ const Page = () => {
             />
           </div>
           <div>
-          <Label>Start Date</Label>
-          <Input
-            type="date"
-            value={singleEvent.start_date}
-            onChange={(e) => setSingleEvent({ ...singleEvent, start_date: e.target.value })}
-            required
-          />
-        </div>
+            <Label>Start Date</Label>
+            <Input
+              type="date"
+              value={singleEvent.start_date}
+              onChange={(e) =>
+                setSingleEvent({ ...singleEvent, start_date: e.target.value })
+              }
+              required
+            />
+          </div>
 
-        <div>
-          <Label>End Date</Label>
-          <Input
-            type="date"
-            min={singleEvent.start_date}
-            value={singleEvent.end_date}
-            onChange={(e) => setSingleEvent({ ...singleEvent, end_date: e.target.value })}/>
-            </div>
+          <div>
+            <Label>End Date</Label>
+            <Input
+              type="date"
+              min={singleEvent.start_date}
+              value={singleEvent.end_date}
+              onChange={(e) =>
+                setSingleEvent({ ...singleEvent, end_date: e.target.value })
+              }
+            />
+          </div>
 
           <div className="col-span-2">
             <Label>Title</Label>
@@ -194,13 +200,12 @@ const Page = () => {
 
           <div className="col-span-2">
             <Label>Body</Label>
-            <ReactQuill
-                  theme="snow"
-                    value={singleEvent?.body || ""}
-                    onChange={(value) =>
-                    setSingleEvent({ ...singleEvent, body: value })
-                    }
-                />
+            <CkeEditor
+              value={singleEvent.body}
+              onChange={(value) => {
+                setSingleBlog({ ...singleEvent, body: value });
+              }}
+            />
           </div>
 
           <div>
@@ -249,16 +254,20 @@ const Page = () => {
               required
             />
           </div>
-
-          
         </div>
         <Button
-        type="submit"
-        variant="outline"
-         className="border-secondary mt-4 bg-white font-semibold text-secondary bg-secondary text-white p-4 border-2 "
+          type="submit"
+          variant="outline"
+          className="border-secondary bg-secondary text-white font-semibold px-4 py-2 mr-4"
         >
-         Add Event
-       </Button>
+          Add Blog
+        </Button>
+        <Button
+          variant="outline"
+          className="border-secondary bg-secondary text-white font-semibold px-4 py-2"
+        >
+          Save Draft
+        </Button>
       </form>
     </div>
   );

@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { addData } from "@/server/actions/blogs";
+import CkeEditor from "@/components/CkEditor";
 
 const AddBlogPage = () => {
   const [blogs, setBlogs] = React.useState([]);
@@ -40,7 +41,7 @@ const AddBlogPage = () => {
         toast.error(resp.error);
         return;
       }
-    //   setBlogs((prevBlogs) => [...prevBlogs, resp.data]);
+      //   setBlogs((prevBlogs) => [...prevBlogs, resp.data]);
       toast.success("Blog added successfully");
       setSingleBlog({
         title: "",
@@ -54,7 +55,7 @@ const AddBlogPage = () => {
         body: "",
       });
     } catch (error) {
-        console.log("error==", error)
+      console.log("error==", error);
       toast.error("Failed to add blog");
     }
   };
@@ -82,7 +83,7 @@ const AddBlogPage = () => {
                 setSingleBlog({ ...singleBlog, slug: e.target.value })
               }
               required
-            //   pattern="^[a-z0-9-]+$"
+              //   pattern="^[a-z0-9-]+$"
               title="No spaces, only lowercase letters and dashes"
             />
           </div>
@@ -150,12 +151,11 @@ const AddBlogPage = () => {
           </div>
           <div className="col-span-2">
             <Label>Body</Label>
-            <ReactQuill
-              theme="snow"
+            <CkeEditor
               value={singleBlog.body}
-              onChange={(value) =>
-                setSingleBlog({ ...singleBlog, body: value })
-              }
+              onChange={(value) => {
+                setSingleBlog({ ...singleBlog, body: value });
+              }}
             />
           </div>
           <div>
@@ -203,3 +203,55 @@ const AddBlogPage = () => {
 };
 
 export default AddBlogPage;
+
+// () => {
+//   const [startDate, setStartDate] = useState();
+//   const [endDate, setEndDate] = useState();
+//   return (
+//     <>
+//       <DatePicker
+//         selected={startDate}
+//         onChange={(date) => setStartDate(date)}
+//         selectsStart
+//         showIcon
+//         startDate={startDate}
+//         endDate={endDate}
+//       />
+//       <DatePicker
+//         selected={endDate}
+//         onChange={(date) => setEndDate(date)}
+//         selectsEnd
+//         showIcon
+//         startDate={startDate}
+//         endDate={endDate}
+//         minDate={startDate}
+//       />
+//     </>
+//   );
+// };
+{
+  /* <div className="flex flex-col">
+          <Label>Start Date</Label>
+          <DatePicker
+            selected={event.start_date}
+            onChange={(date) => setEvent({ ...event, start_date: date })}
+            selectsStart
+            showIcon
+            startDate={event.start_date}
+            endDate={event.end_date}
+          />
+        </div>
+
+        <div>
+          <Label>End Date</Label>
+          <DatePicker
+            selected={event.end_date}
+            onChange={(date) => setEvent({ ...event, end_date: date })}
+            selectsEnd
+            showIcon
+            startDate={event.start_date}
+            endDate={event.end_date}
+            minDate={event.start_date}
+          />
+        </div> */
+}
