@@ -39,7 +39,7 @@ const Layout = async ({ children }) => {
           <SidebarHeader>
             <h2 className="text-xl font-bold p-4">Admin Panel</h2>
           </SidebarHeader>
-          <SidebarContent className="px-4">
+          <SidebarContent className="px-4 justify-between">
             <SidebarMenu>
               {collections.map((collection, ind) => (
                 <SidebarMenuItem key={ind}>
