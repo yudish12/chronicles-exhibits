@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 import { collections } from "@/utils/constants/enums";
 import Link from "next/link";
+import Image from "next/image";
 
 const Layout = async ({ children }) => {
   const cookieStore = await cookies();
@@ -38,34 +39,37 @@ const Layout = async ({ children }) => {
     <div className="flex h-screen">
       <SidebarProvider>
         <Sidebar>
-          <SidebarHeader>
-            <h2 className="text-xl font-bold p-4">Admin Panel</h2>
+          <SidebarHeader className="p-6">
+            <Link href={"/admin"}>
+              <Image
+                src={"/chronicle-logo.svg"}
+                alt="Chronicle Logo"
+                width={100}
+                height={100}
+              />
+            </Link>
           </SidebarHeader>
           <SidebarContent className="px-4 justify-between">
-            <SidebarMenu>
+            <SidebarMenu className="mt-6">
               {collections.map((collection, ind) => (
-                <SidebarMenuItem key={ind}>
-                  <SidebarMenuButton>
-                    {collection.icon}
-                    <Link href={`/admin/${collection.slug}`}>
-                      {collection.name}
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+                <Link
+                  key={ind}
+                  className="text-primary tracking-wider text-[16px] font-semibold"
+                  href={`/admin/${collection.slug}`}
+                >
+                  <SidebarMenuItem>
+                    <SidebarMenuButton>
+                      <>
+                        {collection.icon}
 
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <span>Profile</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <span>Settings</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
+                        {collection.name}
+                      </>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </Link>
+              ))}
             </SidebarMenu>
-          <LogoutButton/>
+            <LogoutButton />
           </SidebarContent>
         </Sidebar>
         {children}

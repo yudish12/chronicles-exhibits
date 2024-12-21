@@ -58,11 +58,16 @@ const AddBlogPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen bg-gray-200 p-8 gap-y-6 w-full">
-      <form onSubmit={handleAddSubmit} className="w-full flex flex-col justify-around gap-y-10  ">
+    <div className="flex flex-col items-center justify-start min-h-screen bg-gray-200 overflow-auto p-8 gap-y-6 w-full">
+      <form
+        onSubmit={handleAddSubmit}
+        className="w-full flex flex-col justify-around gap-y-10  "
+      >
         <Card className="w-full">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">Add Page Data</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center">
+              Add Page Data
+            </CardTitle>
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-6">
             <div>
@@ -78,7 +83,7 @@ const AddBlogPage = () => {
             </div>
             <div>
               <Label className="mb-4 block">Slug</Label>
-              <Input 
+              <Input
                 className="rounded-sm"
                 value={singleBlog.slug}
                 onChange={(e) =>
@@ -167,7 +172,9 @@ const AddBlogPage = () => {
 
         <Card className="w-full">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">Add SEO Data</CardTitle>
+            <CardTitle className="text-2xl font-bold text-center">
+              Add SEO Data
+            </CardTitle>
           </CardHeader>
           <CardContent className="grid grid-cols-1 gap-6">
             <div>

@@ -24,6 +24,10 @@
   src: url("/Oswald-Light.ttf");
 }
 
+.cke_notifications_area {
+  display: none;
+}
+
 @layer base {
   :root {
     --background: 255, 100%, 100%; /*#FDF3ED*/

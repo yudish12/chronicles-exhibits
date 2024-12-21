@@ -17,31 +17,31 @@ export const collections = [
   {
     slug: "booth-sizes",
     name: "Booth Sizes",
-    icon: <Layout />,
+    icon: <Layout className="hover:stroke-black" color="#B0CB1F" />,
   },
   {
     slug: "locations",
     name: "Locations",
-    icon: <Layout />,
+    icon: <Layout color="#B0CB1F" />,
   },
   {
     slug: "events",
     name: "Events",
-    icon: <CalendarDays />,
+    icon: <CalendarDays color="#B0CB1F" />,
   },
   {
     slug: "booths",
     name: "Booths",
-    icon: <ShoppingBag />,
+    icon: <ShoppingBag color="#B0CB1F" />,
   },
   {
     slug: "blogs",
     name: "Blogs",
-    icon: <Newspaper />,
+    icon: <Newspaper color="#B0CB1F" />,
   },
   {
     slug: "form-submissions",
     name: "Form Submissions",
-    icon: <FormInput />,
+    icon: <FormInput color="#B0CB1F" />,
   },
 ];

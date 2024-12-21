@@ -245,8 +245,8 @@ export default function Footer() {
       <div className="mt-12 mx-auto">
         <div className="bg-secondary/[.94] w-full flex flex-wrap justify-between items-center gap-4">
           <span className="text-white/80 text-sm mx-auto font-medium">
-            © Copyright 2024. Chronicle Exhibits LLC All Right Reserved. Privacy
-            Policy
+            © Copyright {new Date().getFullYear()}. Chronicle Exhibits LLC All
+            Right Reserved. Privacy Policy
           </span>
         </div>
       </div>

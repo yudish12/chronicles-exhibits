@@ -151,14 +151,6 @@ const EditEventForm = ({ singleEvent, locations }) => {
         </div>
         <div className="col-span-2">
           <Label>Body</Label>
-          {/* <ReactQuill
-                  theme="snow"
-                    value={event?.body || ""}
-                    onChange={(value) =>
-                    setEvent
-                    ({ ...event, body: value })
-                    }
-                /> */}
           <CKEditorDemo
             value={event.body}
             onChange={(value) => {
