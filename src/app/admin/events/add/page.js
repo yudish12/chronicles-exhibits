@@ -1,27 +1,15 @@
 "use client";
 import React from "react";
-import { addData } from "@/server/actions/events";
-import { UploadButton } from "@uploadthing/react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import ReactQuill from "react-quill-new";
-import "react-quill-new/dist/quill.snow.css";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectItem,
-  SelectTrigger,
-  SelectContent,
-  SelectValue,
-} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { UploadButton } from "@uploadthing/react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
-import { getAllLocations } from "@/server/actions/events";
 import CkeEditor from "@/components/CkEditor";
+import { addData } from "@/server/actions/events";
 
-const Page = () => {
-  const [locations, setLocations] = React.useState([]);
-
+const AddEventPage = () => {
   const [singleEvent, setSingleEvent] = React.useState({
     event_name: "",
     title: "",
@@ -31,21 +19,12 @@ const Page = () => {
     end_date: "",
     country: "",
     city: "",
+    icon: "",
     icon_alt_text: "",
     meta_title: "",
     meta_description: "",
-    icon: "",
+    location_id : {_id : "673ddf7373d5a44da64ffe0d" , city:"Boston" , country : "America"}
   });
-
-  const fetchData = async () => {
-    try {
-      const locationResp = await getAllLocations();
-      setLocations(locationResp.data || []);
-    } catch (error) {
-      console.error(error);
-      toast.error("An error occurred while fetching data");
-    }
-  };
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
@@ -65,10 +44,10 @@ const Page = () => {
         end_date: "",
         country: "",
         city: "",
+        icon: "",
         icon_alt_text: "",
         meta_title: "",
         meta_description: "",
-        icon: "",
       });
     } catch (error) {
       toast.error("Failed to add event");
@@ -76,201 +55,192 @@ const Page = () => {
     }
   };
 
-  React.useEffect(() => {
-    fetchData();
-  }, []);
-
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen bg-white py-8 px-4 overflow-auto w-full ">
-      <h1 className="text-2xl font-bold text-center mb-6">Add Event</h1>
-      <form onSubmit={handleAddSubmit} className="w-full  p-6 ">
-        <div className="grid grid-cols-2 gap-6">
-          <div>
-            <Label>Name</Label>
-            <Input
-              value={singleEvent.event_name}
-              onChange={(e) =>
-                setSingleEvent({ ...singleEvent, event_name: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div>
-            <Label>Slug (No spaces, only lowercase)</Label>
-            <Input
-              value={singleEvent.slug}
-              onChange={(e) =>
-                setSingleEvent({ ...singleEvent, slug: e.target.value })
-              }
-              required
-              pattern="^[a-z0-9-]+$"
-              title="No spaces, only lowercase letters and dashes"
-            />
-          </div>
-          <div>
-            <Label>Country</Label>
-            <Input
-              value={singleEvent.country}
-              onChange={(e) =>
-                setSingleEvent({ ...singleEvent, country: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div>
-            <Label>City</Label>
-            <Input
-              value={singleEvent.city}
-              onChange={(e) =>
-                setSingleEvent({ ...singleEvent, city: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div>
-            <Label>Icon</Label>
-            <UploadButton
-              endpoint="imageUploader"
-              onClientUploadComplete={(res) => {
-                setSingleEvent({
-                  ...singleEvent,
-                  icon: res[0]?.url || "",
-                });
-                toast.success("Icon uploaded successfully");
-              }}
-              onUploadError={(error) =>
-                toast.error(`Upload failed: ${error.message}`)
-              }
-            />
-            {singleEvent.icon && (
-              <img
-                src={singleEvent.icon}
-                alt="Event Icon"
-                className="mt-2 w-16 h-16 object-cover rounded"
+    <div className="flex flex-col items-center justify-start min-h-screen bg-gray-200 p-8 gap-y-6 w-full">
+      <form onSubmit={handleAddSubmit} className="w-full flex flex-col gap-y-10">
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold text-center">Add Event</CardTitle>
+          </CardHeader>
+          <CardContent className="grid grid-cols-2 gap-6">
+            <div>
+              <Label className="mb-2 block">Event Name</Label>
+              <Input
+              className="rounded-sm"
+                value={singleEvent.event_name}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, event_name: e.target.value })
+                }
+                required
               />
-            )}
-          </div>
-          <div>
-            <Label>Icon Alt Text</Label>
-            <Input
-              value={singleEvent.icon_alt_text}
-              onChange={(e) =>
-                setSingleEvent({
-                  ...singleEvent,
-                  icon_alt_text: e.target.value,
-                })
-              }
-              required
-            />
-          </div>
-          <div>
-            <Label>Start Date</Label>
-            <Input
-              type="date"
-              value={singleEvent.start_date}
-              onChange={(e) =>
-                setSingleEvent({ ...singleEvent, start_date: e.target.value })
-              }
-              required
-            />
-          </div>
-
-          <div>
-            <Label>End Date</Label>
-            <Input
-              type="date"
-              min={singleEvent.start_date}
-              value={singleEvent.end_date}
-              onChange={(e) =>
-                setSingleEvent({ ...singleEvent, end_date: e.target.value })
-              }
-            />
-          </div>
-
-          <div className="col-span-2">
-            <Label>Title</Label>
-            <Input
-              value={singleEvent.title}
-              onChange={(e) =>
-                setSingleEvent({ ...singleEvent, title: e.target.value })
-              }
-              required
-            />
-          </div>
-
-          <div className="col-span-2">
-            <Label>Body</Label>
-            <CkeEditor
-              value={singleEvent.body}
-              onChange={(value) => {
-                setSingleBlog({ ...singleEvent, body: value });
-              }}
-            />
-          </div>
-
-          <div>
-            <Label>Location</Label>
-            <Select
-              value={singleEvent.location_id}
-              onValueChange={(value) =>
-                setSingleEvent({ ...singleEvent, location_id: value })
-              }
-              required
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select a location" />
-              </SelectTrigger>
-              <SelectContent>
-                {locations.map((location) => (
-                  <SelectItem key={location._id} value={location._id}>
-                    {`${location.city}, ${location.country}`}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div>
-            <Label>Meta Title</Label>
-            <Input
-              value={singleEvent.meta_title}
-              onChange={(e) =>
-                setSingleEvent({ ...singleEvent, meta_title: e.target.value })
-              }
-              required
-            />
-          </div>
-
-          <div className="col-span-2">
-            <Label>Meta Description</Label>
-            <Input
-              value={singleEvent.meta_description}
-              onChange={(e) =>
-                setSingleEvent({
-                  ...singleEvent,
-                  meta_description: e.target.value,
-                })
-              }
-              required
-            />
-          </div>
+            </div>
+            <div>
+              <Label className="mb-2 block">Slug</Label>
+              <Input
+              className="rounded-sm"
+                value={singleEvent.slug}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, slug: e.target.value })
+                }
+                required
+                pattern="^[a-z0-9-]+$"
+                title="No spaces, only lowercase letters and dashes"
+              />
+            </div>
+            <div>
+              <Label className="mb-2 block">Country</Label>
+              <Input
+              className="rounded-sm"
+                value={singleEvent.country}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, country: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div>
+              <Label className="mb-2 block">City</Label>
+              <Input
+              className="rounded-sm"
+                value={singleEvent.city}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, city: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div>
+              <Label className="mb-2 block">Icon</Label>
+              <UploadButton
+                endpoint="imageUploader"
+                onClientUploadComplete={(res) => {
+                  setSingleEvent({
+                    ...singleEvent,
+                    icon: res[0]?.url || "",
+                  });
+                  toast.success("Icon uploaded successfully");
+                }}
+                onUploadError={(error) =>
+                  toast.error(`Upload failed: ${error.message}`)
+                }
+              />
+              {singleEvent.icon && (
+                <img
+                  src={singleEvent.icon}
+                  alt="Event Icon"
+                  className="mt-2 w-16 h-16 object-cover rounded"
+                />
+              )}
+            </div>
+            <div>
+              <Label className="mb-2 block">Icon Alt Text</Label>
+              <Input
+              className="rounded-sm"
+                value={singleEvent.icon_alt_text}
+                onChange={(e) =>
+                  setSingleEvent({
+                    ...singleEvent,
+                    icon_alt_text: e.target.value,
+                  })
+                }
+                required
+              />
+            </div>
+            <div>
+              <Label className="mb-2 block">Start Date</Label>
+              <Input
+              className="rounded-sm"
+                type="date"
+                value={singleEvent.start_date}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, start_date: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div>
+              <Label className="mb-2 block">End Date</Label>
+              <Input
+              className="rounded-sm"
+                type="date"
+                min={singleEvent.start_date}
+                value={singleEvent.end_date}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, end_date: e.target.value })
+                }
+              />
+            </div>
+            <div className="col-span-2">
+              <Label className="mb-2 block">Title</Label>
+              <Input
+              className="rounded-sm"
+                value={singleEvent.title}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, title: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div className="col-span-2">
+              <Label className="mb-2 block">Body</Label>
+              <CkeEditor
+                value={singleEvent.body}
+                onChange={(value) => {
+                  setSingleEvent({ ...singleEvent, body: value });
+                }}
+              />
+            </div>
+            </CardContent>
+            </Card>
+            <Card>
+            <CardHeader>
+            <CardTitle className="text-2xl font-bold text-center">Add Event</CardTitle>
+          </CardHeader>
+          <CardContent className="grid grid-cols-2 gap-6" >
+            <div className="col-span-2">
+              <Label className="mb-2 block">Meta Title</Label>
+              <Input
+              className="rounded-sm"
+                value={singleEvent.meta_title}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, meta_title: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div className="col-span-2">
+              <Label className="mb-2 block">Meta Description</Label>
+              <Input
+              className="rounded-sm"
+                value={singleEvent.meta_description}
+                onChange={(e) =>
+                  setSingleEvent({
+                    ...singleEvent,
+                    meta_description: e.target.value,
+                  })
+                }
+                required
+              />
+            </div>
+            </CardContent>
+          </Card>
+        <div className="flex justify-end gap-4 mb-4 ">
+          <Button
+            type="submit"
+            className="bg-secondary hover:bg-secondary text-white hover:text-white font-semibold px-4 py-2"
+          >
+            Add SEO Data
+          </Button>
+          <Button
+            variant="outline"
+            className="border-secondary text-secondary font-semibold px-4 py-2"
+          >
+            Save Draft
+          </Button>
         </div>
-        <Button
-          type="submit"
-          variant="outline"
-          className="border-secondary bg-secondary text-white font-semibold px-4 py-2 mr-4"
-        >
-          Add Blog
-        </Button>
-        <Button
-          variant="outline"
-          className="border-secondary bg-secondary text-white font-semibold px-4 py-2"
-        >
-          Save Draft
-        </Button>
       </form>
     </div>
   );
 };
 
-export default Page;
+export default AddEventPage;
