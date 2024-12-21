@@ -64,7 +64,7 @@ const AddEventPage = () => {
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-6">
             <div>
-              <Label className="mb-2 block">Event Name</Label>
+              <Label className="mb-4 block">Event Name</Label>
               <Input
               className="rounded-sm"
                 value={singleEvent.event_name}
@@ -75,7 +75,7 @@ const AddEventPage = () => {
               />
             </div>
             <div>
-              <Label className="mb-2 block">Slug</Label>
+              <Label className="mb-4 block">Slug</Label>
               <Input
               className="rounded-sm"
                 value={singleEvent.slug}
@@ -88,7 +88,7 @@ const AddEventPage = () => {
               />
             </div>
             <div>
-              <Label className="mb-2 block">Country</Label>
+              <Label className="mb-4 block">Country</Label>
               <Input
               className="rounded-sm"
                 value={singleEvent.country}
@@ -99,7 +99,7 @@ const AddEventPage = () => {
               />
             </div>
             <div>
-              <Label className="mb-2 block">City</Label>
+              <Label className="mb-4 block">City</Label>
               <Input
               className="rounded-sm"
                 value={singleEvent.city}
@@ -110,7 +110,7 @@ const AddEventPage = () => {
               />
             </div>
             <div>
-              <Label className="mb-2 block">Icon</Label>
+              <Label className="mb-4 block">Icon</Label>
               <UploadButton
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
@@ -133,7 +133,7 @@ const AddEventPage = () => {
               )}
             </div>
             <div>
-              <Label className="mb-2 block">Icon Alt Text</Label>
+              <Label className="mb-4 block">Icon Alt Text</Label>
               <Input
               className="rounded-sm"
                 value={singleEvent.icon_alt_text}
@@ -147,7 +147,7 @@ const AddEventPage = () => {
               />
             </div>
             <div>
-              <Label className="mb-2 block">Start Date</Label>
+              <Label className="mb-4 block">Start Date</Label>
               <Input
               className="rounded-sm"
                 type="date"
@@ -159,7 +159,7 @@ const AddEventPage = () => {
               />
             </div>
             <div>
-              <Label className="mb-2 block">End Date</Label>
+              <Label className="mb-4 block">End Date</Label>
               <Input
               className="rounded-sm"
                 type="date"
@@ -182,7 +182,7 @@ const AddEventPage = () => {
               />
             </div>
             <div className="col-span-2">
-              <Label className="mb-2 block">Body</Label>
+              <Label className="mb-4 block">Body</Label>
               <CkeEditor
                 value={singleEvent.body}
                 onChange={(value) => {
@@ -198,7 +198,7 @@ const AddEventPage = () => {
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-6" >
             <div className="col-span-2">
-              <Label className="mb-2 block">Meta Title</Label>
+              <Label className="mb-4 block">Meta Title</Label>
               <Input
               className="rounded-sm"
                 value={singleEvent.meta_title}
@@ -209,7 +209,7 @@ const AddEventPage = () => {
               />
             </div>
             <div className="col-span-2">
-              <Label className="mb-2 block">Meta Description</Label>
+              <Label className="mb-4 block">Meta Description</Label>
               <Input
               className="rounded-sm"
                 value={singleEvent.meta_description}
