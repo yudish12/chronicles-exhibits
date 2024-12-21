@@ -64,10 +64,12 @@ const AddBlogPage = () => {
         className="w-full flex flex-col justify-around gap-y-10  "
       >
         <Card className="w-full">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">
+          <CardHeader className="flex flex-row gap-2 items-center">
+            <hr className="w-[40%]" />
+            <CardTitle className="text-2xl w-[20%] font-bold text-center">
               Add Page Data
             </CardTitle>
+            <hr className="w-[40%]" />
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-6">
             <div>
@@ -171,10 +173,12 @@ const AddBlogPage = () => {
         </Card>
 
         <Card className="w-full">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">
+          <CardHeader className="flex flex-row gap-2 items-center">
+            <hr className="w-[40%]" />
+            <CardTitle className="text-2xl w-[20%] font-bold text-center">
               Add SEO Data
             </CardTitle>
+            <hr className="w-[40%]" />
           </CardHeader>
           <CardContent className="grid grid-cols-1 gap-6">
             <div>
