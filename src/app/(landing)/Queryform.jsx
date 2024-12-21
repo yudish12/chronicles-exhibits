@@ -44,7 +44,7 @@ const Queryform = () => {
       </div>
       <Button
         style={{ transitionDuration: "500ms" }}
-        className="bg-transparent mt-2 border-2 border-primary text-primary transition-all hover:bg-primary hover:text-secondary font-semibold px-6 py-2"
+        className="bg-transparent rounded-full mt-2 border-2 border-primary text-primary transition-all hover:bg-primary hover:text-secondary font-semibold px-6 py-2"
       >
         Customize Now
       </Button>

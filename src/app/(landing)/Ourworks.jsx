@@ -39,7 +39,7 @@ const Ourworks = () => {
       <Link className="flex" href="/portfolio">
         <Button
           style={{ transitionDuration: "500ms" }}
-          className="bg-primary heading-font-700 py-5 hover:bg-white hover:text-secondary mx-auto border-2 border-secondary font-semibold text-white text-sm"
+          className="bg-primary rounded-full heading-font-700 py-5 hover:bg-white hover:text-secondary mx-auto border-2 border-secondary font-semibold text-white text-sm"
         >
           View Complete Portfolio
         </Button>

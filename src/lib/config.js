@@ -4,7 +4,7 @@ export const headerRoutes = [
     name: "Home",
   },
   {
-    link: "/top-trade-shows",
+    link: "/trade-show-booth-displays-designs",
     name: "Trade Show Display",
   },
   {

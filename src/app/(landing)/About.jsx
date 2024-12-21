@@ -59,10 +59,14 @@ const About = () => {
                 </CardContent>
                 {/* Button */}
                 <CardFooter className="flex justify-center  p-4 pt-0 mt-6">
-                  <Link href={"/trade-show-booth-displays-designs"}>
+                  <Link
+                    className="flex justify-center"
+                    href={"/trade-show-booth-displays-designs"}
+                  >
                     <Button
                       variant="outline"
-                      className="border-secondary bg-white font-semibold text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
+                      style={{ transitionDuration: "500ms" }}
+                      className="rounded-full w-1/3 mx-auto px-16  py-4 font-thin text text-xl text-black border hover:bg-primary hover:text-white  bg-transparent border-primary"
                     >
                       View All
                     </Button>
@@ -95,14 +99,15 @@ const About = () => {
                 </CardContent>
                 {/* Button */}
                 <CardFooter className="flex justify-center p-4 pt-0 mt-6">
-                  <Button
-                    variant="outline"
-                    className="border-secondary bg-white font-semibold text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
-                  >
-                    <Link className="hover:underline" href="/services">
+                  <Link className="flex justify-center" href="/services">
+                    <Button
+                      variant="outline"
+                      style={{ transitionDuration: "500ms" }}
+                      className="rounded-full w-1/3 mx-auto px-16  py-4 font-thin text text-xl text-black border hover:bg-primary hover:text-white  bg-transparent border-primary"
+                    >
                       Know More
-                    </Link>
-                  </Button>
+                    </Button>
+                  </Link>
                 </CardFooter>
               </Card>
             </div>
@@ -131,10 +136,11 @@ const About = () => {
                 </CardContent>
                 {/* Button */}
                 <CardFooter className="p-4 pt-0 mt-6 flex justify-center">
-                  <Link href={"/portfolio"}>
+                  <Link className="flex justify-center" href={"/portfolio"}>
                     <Button
                       variant="outline"
-                      className="border-secondary bg-white font-semibold text-secondary hover:bg-secondary hover:text-white p-4 border-2 "
+                      style={{ transitionDuration: "500ms" }}
+                      className="rounded-full w-1/3 mx-auto px-16 py-4 font-thin text text-xl text-black border hover:bg-primary hover:text-white  bg-transparent border-primary"
                     >
                       View Portfolio
                     </Button>

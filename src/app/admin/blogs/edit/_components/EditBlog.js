@@ -33,144 +33,153 @@ const EditBlog = ({ singleBlog }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen bg-gray-200 p-8 gap-y-6 w-full">
-      <form onSubmit={handleEditSubmit} className="w-full flex flex-col justify-around gap-y-10">
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">Edit Blog Data</CardTitle>
+    <form
+      onSubmit={handleEditSubmit}
+      className="w-full flex flex-col justify-around gap-y-10"
+    >
+      <Card className="w-full">
+        <CardHeader>
+          <CardHeader className="flex flex-row gap-2 items-center">
+            <hr className="w-[40%]" />
+            <CardTitle className="text-2xl w-[20%] font-bold text-center">
+              Edit Page Data
+            </CardTitle>
+            <hr className="w-[40%]" />
           </CardHeader>
-          <CardContent className="grid grid-cols-2 gap-6">
-            <div>
-              <Label className="mb-4 block">Title</Label>
-              <Input
-                className="rounded-sm"
-                value={blog.title}
-                onChange={(e) => setBlog({ ...blog, title: e.target.value })}
-                required
+        </CardHeader>
+        <CardContent className="grid grid-cols-2 gap-6">
+          <div>
+            <Label className="mb-4 block">Title</Label>
+            <Input
+              className="rounded-sm"
+              value={blog.title}
+              onChange={(e) => setBlog({ ...blog, title: e.target.value })}
+              required
+            />
+          </div>
+          <div>
+            <Label className="mb-4 block">Slug</Label>
+            <Input
+              className="rounded-sm"
+              value={blog.slug}
+              onChange={(e) => setBlog({ ...blog, slug: e.target.value })}
+              required
+              title="No spaces, only lowercase letters and dashes"
+            />
+          </div>
+          <div>
+            <Label className="mb-4 block">Icon</Label>
+            <UploadButton
+              endpoint="imageUploader"
+              onClientUploadComplete={(res) => {
+                setBlog({ ...blog, image: res[0]?.url || "" });
+                toast.success("Icon uploaded successfully");
+              }}
+              onUploadError={(error) =>
+                toast.error(`Upload failed: ${error.message}`)
+              }
+            />
+            {blog.image && (
+              <img
+                src={blog.image}
+                alt="Blog Icon"
+                className="mt-2 w-16 h-16 object-cover rounded"
               />
-            </div>
-            <div>
-              <Label className="mb-4 block">Slug</Label>
-              <Input
-                className="rounded-sm"
-                value={blog.slug}
-                onChange={(e) => setBlog({ ...blog, slug: e.target.value })}
-                required
-                title="No spaces, only lowercase letters and dashes"
-              />
-            </div>
-            <div>
-              <Label className="mb-4 block">Icon</Label>
-              <UploadButton
-                endpoint="imageUploader"
-                onClientUploadComplete={(res) => {
-                  setBlog({ ...blog, image: res[0]?.url || "" });
-                  toast.success("Icon uploaded successfully");
-                }}
-                onUploadError={(error) =>
-                  toast.error(`Upload failed: ${error.message}`)
-                }
-              />
-              {blog.image && (
-                <img
-                  src={blog.image}
-                  alt="Blog Icon"
-                  className="mt-2 w-16 h-16 object-cover rounded"
-                />
-              )}
-            </div>
-            <div>
-              <Label className="mb-4 block">Icon Alt Text</Label>
-              <Input
-                className="rounded-sm"
-                value={blog.image_alt_text}
-                onChange={(e) =>
-                  setBlog({ ...blog, image_alt_text: e.target.value })
-                }
-                required
-              />
-            </div>
-            <div>
-              <Label className="mb-4 block">Short description</Label>
-              <Input
-                className="rounded-sm"
-                value={blog.short_description}
-                onChange={(e) =>
-                  setBlog({ ...blog, short_description: e.target.value })
-                }
-                required
-              />
-            </div>
-            <div>
-              <Label className="mb-4 block">Long description</Label>
-              <Input
-                className="rounded-sm"
-                value={blog.long_description}
-                onChange={(e) =>
-                  setBlog({ ...blog, long_description: e.target.value })
-                }
-                required
-              />
-            </div>
-            <div className="col-span-2">
-              <Label className="mb-4 block">Body</Label>
-              <CkeEditor
-                value={blog.body}
-                onChange={(value) => {
-                  setBlog({ ...blog, body: value });
-                }}
-              />
-            </div>
-          </CardContent>
-        </Card>
+            )}
+          </div>
+          <div>
+            <Label className="mb-4 block">Icon Alt Text</Label>
+            <Input
+              className="rounded-sm"
+              value={blog.image_alt_text}
+              onChange={(e) =>
+                setBlog({ ...blog, image_alt_text: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div>
+            <Label className="mb-4 block">Short description</Label>
+            <Input
+              className="rounded-sm"
+              value={blog.short_description}
+              onChange={(e) =>
+                setBlog({ ...blog, short_description: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div>
+            <Label className="mb-4 block">Long description</Label>
+            <Input
+              className="rounded-sm"
+              value={blog.long_description}
+              onChange={(e) =>
+                setBlog({ ...blog, long_description: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className="col-span-2">
+            <Label className="mb-4 block">Body</Label>
+            <CkeEditor
+              value={blog.body}
+              onChange={(value) => {
+                setBlog({ ...blog, body: value });
+              }}
+            />
+          </div>
+        </CardContent>
+      </Card>
 
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">Edit SEO Data</CardTitle>
-          </CardHeader>
-          <CardContent className="grid grid-cols-1 gap-6">
-            <div>
-              <Label className="mb-4 block">Meta Title</Label>
-              <Input
-                className="rounded-sm"
-                value={blog.meta_title}
-                onChange={(e) =>
-                  setBlog({ ...blog, meta_title: e.target.value })
-                }
-                required
-              />
-            </div>
-            <div>
-              <Label className="mb-4 block">Meta Description</Label>
-              <Input
-                className="rounded-sm"
-                value={blog.meta_description}
-                onChange={(e) =>
-                  setBlog({ ...blog, meta_description: e.target.value })
-                }
-                required
-              />
-            </div>
-          </CardContent>
-        </Card>
+      <Card className="w-full">
+        <CardHeader className="flex flex-row gap-2 items-center">
+          <hr className="w-[40%]" />
+          <CardTitle className="text-2xl w-[20%] font-bold text-center">
+            Edit SEO Data
+          </CardTitle>
+          <hr className="w-[40%]" />
+        </CardHeader>
+        <CardContent className="grid grid-cols-1 gap-6">
+          <div>
+            <Label className="mb-4 block">Meta Title</Label>
+            <Input
+              className="rounded-sm"
+              value={blog.meta_title}
+              onChange={(e) => setBlog({ ...blog, meta_title: e.target.value })}
+              required
+            />
+          </div>
+          <div>
+            <Label className="mb-4 block">Meta Description</Label>
+            <Input
+              className="rounded-sm"
+              value={blog.meta_description}
+              onChange={(e) =>
+                setBlog({ ...blog, meta_description: e.target.value })
+              }
+              required
+            />
+          </div>
+        </CardContent>
+      </Card>
 
-        <div className="flex items-end justify-end mb-4 gap-x-4">
-          <Button
-            type="submit"
-            variant="outline"
-            className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
-          >
-            Save Changes
-          </Button>
-          <Button
-            variant="outline"
-            className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
-          >
-            Cancel
-          </Button>
-        </div>
-      </form>
-    </div>
+      <div className="flex items-end justify-end mb-4 gap-x-4">
+        <Button
+          type="submit"
+          variant="outline"
+          className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
+        >
+          Save Changes
+        </Button>
+        <Button
+          variant="outline"
+          className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
+        >
+          Cancel
+        </Button>
+      </div>
+    </form>
   );
 };
 

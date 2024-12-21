@@ -63,7 +63,7 @@ const Accordion = ({ heading, description }) => {
 
   return (
     <>
-      <div className="bg-[#5D2A42] h-[50px] flex items-center p-4">
+      <div className="bg-secondary h-[50px] flex items-center p-4">
         <h4 className="text-white font-bold text-base flex items-center">
           <span className=" text-white flex justify-center items-center font-bold text-2xl">
             {open ? (

@@ -38,11 +38,6 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/testimonials">
-                Testimonials
-              </Link>
-            </li>
-            <li>
               <Link className="hover:underline" href="/faqs">
                 FAQs
               </Link>
@@ -59,7 +54,57 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-
+        {/* Location Section */}
+        <div>
+          <h3 className="font-bold text-lg mb-4">Location</h3>
+          <ul className="space-y-2 footer-list">
+            <li>
+              <Link className="hover:underline" href="/locations/las-vegas">
+                Las Vegas
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="/locations/chicago">
+                Chicago
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="/locations/orlando">
+                Orlando
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="/locations/anaheim">
+                Anaheim
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="/locations/san-diego">
+                San Diego
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="/locations/los-angeles">
+                Los Angeles
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="/locations/atlanta">
+                Atlanta
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="/locations/new-york">
+                New York
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="/locations">
+                View More Cities
+              </Link>
+            </li>
+          </ul>
+        </div>
         {/* Booth By Size Section */}
         <div>
           <h3 className="font-bold text-lg mb-4">Booth By Size</h3>
@@ -112,58 +157,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Location Section */}
-        <div>
-          <h3 className="font-bold text-lg mb-4">Location</h3>
-          <ul className="space-y-2 footer-list">
-            <li>
-              <Link className="hover:underline" href="/locations/las-vegas">
-                Las Vegas
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/locations/chicago">
-                Chicago
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/locations/orlando">
-                Orlando
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/locations/anaheim">
-                Anaheim
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/locations/san-diego">
-                San Diego
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/locations/los-angeles">
-                Los Angeles
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/locations/atlanta">
-                Atlanta
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/locations/new-york">
-                New York
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/locations">
-                View More Cities
-              </Link>
-            </li>
-          </ul>
-        </div>
-
         {/* Resources Section */}
         <div>
           <h3 className="font-bold text-lg mb-4">Resources</h3>
@@ -181,11 +174,6 @@ export default function Footer() {
             <li>
               <Link className="hover:underline" href="/schedule-a-call">
                 Schedule A Call
-              </Link>
-            </li>
-            <li>
-              <Link className="hover:underline" href="/get-free-3d-design">
-                Get Free 3D Design
               </Link>
             </li>
           </ul>
