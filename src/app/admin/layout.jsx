@@ -2,6 +2,8 @@ import { cookies } from "next/headers";
 import React from "react";
 import { jwtFuncs } from "@/utils";
 import LoginPage from "./components/login-form";
+import { Button } from "@/components/ui/button";
+import LogoutButton from "./components/logout-button";
 import {
   Sidebar,
   SidebarContent,
@@ -63,6 +65,7 @@ const Layout = async ({ children }) => {
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
+          <LogoutButton/>
           </SidebarContent>
         </Sidebar>
         {children}

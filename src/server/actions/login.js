@@ -23,3 +23,13 @@ export const login = async ({ email, password }) => {
 
   return false;
 };
+
+export const logout = async ()=>{
+  cookies().set({
+    name : "authorization",
+    value: "",
+    path: "/",
+    maxAge : -1
+  })
+  return true ;
+}
