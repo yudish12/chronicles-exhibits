@@ -20,8 +20,7 @@ const Page = async ({ params }) => {
   const locations = locationResponse.data;
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen  py-8 px-4 overflow-auto w-full">
-      <h1 className="text-2xl font-bold text-center mb-6">Edit Event</h1>
+    <div className="flex flex-col items-center justify-start overflow-auto min-h-full bg-gray-200 p-8 w-full">
       <EditEventForm singleEvent={singleEvent} locations={locations} />
     </div>
   );

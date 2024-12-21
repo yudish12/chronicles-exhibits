@@ -23,7 +23,11 @@ const AddEventPage = () => {
     icon_alt_text: "",
     meta_title: "",
     meta_description: "",
-    location_id : {_id : "673ddf7373d5a44da64ffe0d" , city:"Boston" , country : "America"}
+    location_id: {
+      _id: "673ddf7373d5a44da64ffe0d",
+      city: "Boston",
+      country: "America",
+    },
   });
 
   const handleAddSubmit = async (e) => {
@@ -56,17 +60,24 @@ const AddEventPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen bg-gray-200 p-8 gap-y-6 w-full">
-      <form onSubmit={handleAddSubmit} className="w-full flex flex-col gap-y-10">
+    <div className="flex flex-col items-center justify-start overflow-auto min-h-screen bg-gray-200 p-8 gap-y-6 w-full">
+      <form
+        onSubmit={handleAddSubmit}
+        className="w-full flex flex-col gap-y-10"
+      >
         <Card className="w-full">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">Add Event</CardTitle>
+          <CardHeader className="flex flex-row gap-2 items-center">
+            <hr className="w-[40%]" />
+            <CardTitle className="text-2xl w-[20%] font-bold text-center">
+              Add Page Data
+            </CardTitle>
+            <hr className="w-[40%]" />
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-6">
             <div>
               <Label className="mb-4 block">Event Name</Label>
               <Input
-              className="rounded-sm"
+                className="rounded-sm"
                 value={singleEvent.event_name}
                 onChange={(e) =>
                   setSingleEvent({ ...singleEvent, event_name: e.target.value })
@@ -77,7 +88,7 @@ const AddEventPage = () => {
             <div>
               <Label className="mb-4 block">Slug</Label>
               <Input
-              className="rounded-sm"
+                className="rounded-sm"
                 value={singleEvent.slug}
                 onChange={(e) =>
                   setSingleEvent({ ...singleEvent, slug: e.target.value })
@@ -90,7 +101,7 @@ const AddEventPage = () => {
             <div>
               <Label className="mb-4 block">Country</Label>
               <Input
-              className="rounded-sm"
+                className="rounded-sm"
                 value={singleEvent.country}
                 onChange={(e) =>
                   setSingleEvent({ ...singleEvent, country: e.target.value })
@@ -101,7 +112,7 @@ const AddEventPage = () => {
             <div>
               <Label className="mb-4 block">City</Label>
               <Input
-              className="rounded-sm"
+                className="rounded-sm"
                 value={singleEvent.city}
                 onChange={(e) =>
                   setSingleEvent({ ...singleEvent, city: e.target.value })
@@ -135,7 +146,7 @@ const AddEventPage = () => {
             <div>
               <Label className="mb-4 block">Icon Alt Text</Label>
               <Input
-              className="rounded-sm"
+                className="rounded-sm"
                 value={singleEvent.icon_alt_text}
                 onChange={(e) =>
                   setSingleEvent({
@@ -149,7 +160,7 @@ const AddEventPage = () => {
             <div>
               <Label className="mb-4 block">Start Date</Label>
               <Input
-              className="rounded-sm"
+                className="rounded-sm"
                 type="date"
                 value={singleEvent.start_date}
                 onChange={(e) =>
@@ -161,7 +172,7 @@ const AddEventPage = () => {
             <div>
               <Label className="mb-4 block">End Date</Label>
               <Input
-              className="rounded-sm"
+                className="rounded-sm"
                 type="date"
                 min={singleEvent.start_date}
                 value={singleEvent.end_date}
@@ -173,7 +184,7 @@ const AddEventPage = () => {
             <div className="col-span-2">
               <Label className="mb-2 block">Title</Label>
               <Input
-              className="rounded-sm"
+                className="rounded-sm"
                 value={singleEvent.title}
                 onChange={(e) =>
                   setSingleEvent({ ...singleEvent, title: e.target.value })
@@ -190,17 +201,21 @@ const AddEventPage = () => {
                 }}
               />
             </div>
-            </CardContent>
-            </Card>
-            <Card>
-            <CardHeader>
-            <CardTitle className="text-2xl font-bold text-center">Add Event</CardTitle>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row gap-2 items-center">
+            <hr className="w-[40%]" />
+            <CardTitle className="text-2xl w-[20%] font-bold text-center">
+              Add SEO Data
+            </CardTitle>
+            <hr className="w-[40%]" />
           </CardHeader>
-          <CardContent className="grid grid-cols-2 gap-6" >
+          <CardContent className="grid grid-cols-2 gap-6">
             <div className="col-span-2">
               <Label className="mb-4 block">Meta Title</Label>
               <Input
-              className="rounded-sm"
+                className="rounded-sm"
                 value={singleEvent.meta_title}
                 onChange={(e) =>
                   setSingleEvent({ ...singleEvent, meta_title: e.target.value })
@@ -211,7 +226,7 @@ const AddEventPage = () => {
             <div className="col-span-2">
               <Label className="mb-4 block">Meta Description</Label>
               <Input
-              className="rounded-sm"
+                className="rounded-sm"
                 value={singleEvent.meta_description}
                 onChange={(e) =>
                   setSingleEvent({
@@ -222,14 +237,14 @@ const AddEventPage = () => {
                 required
               />
             </div>
-            </CardContent>
-          </Card>
+          </CardContent>
+        </Card>
         <div className="flex justify-end gap-4 mb-4 ">
           <Button
             type="submit"
             className="bg-secondary hover:bg-secondary text-white hover:text-white font-semibold px-4 py-2"
           >
-            Add SEO Data
+            Add Event
           </Button>
           <Button
             variant="outline"

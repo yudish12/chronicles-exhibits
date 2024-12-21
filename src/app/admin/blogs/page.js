@@ -23,33 +23,24 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { UploadButton } from "@uploadthing/react";
 import { toast } from "sonner";
-// import ReactQuill from "react-quill"; // Import Quill
-// import "react-quill/dist/quill.snow.css"; // Import Quill CSS
-import { getAllBlogs , updateData , addData , deleteData} from "@/server/actions/blogs";
+import {
+  getAllBlogs,
+  updateData,
+  addData,
+  deleteData,
+} from "@/server/actions/blogs";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { Pencil, Trash2, Eye } from "lucide-react";
 import { useRouter } from "next/navigation";
 export default function Blogs() {
-//   const [blogs, setBlogs] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [isDialogOpen, setIsDialogOpen] = useState(false);
-//   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
-//   const [singleBlog, setSingleBlog] = React.useState({
-//     title: "",
-//     short_description: "",
-//     long_description: "",
-//     image: "",
-//   });
-//   const [deletingBlogId, setDeletingBlogId] = useState(null);
-//   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-const router = useRouter();
-const [blogs, setBlogs] = React.useState([]);
-const [loading, setLoading] = React.useState(true);
-const [singleBlog, setSingleBlog] = React.useState(null);
-const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
-const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
-const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-const [deletingBlogId, setDeletingBlogId] = React.useState(null);
+  const router = useRouter();
+  const [blogs, setBlogs] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const [singleBlog, setSingleBlog] = React.useState(null);
+  const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+  const [deletingBlogId, setDeletingBlogId] = React.useState(null);
   const fetchData = async () => {
     try {
       const resp = await getAllBlogs();
@@ -69,14 +60,19 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
     e.preventDefault();
     try {
       const resp = await addData(singleBlog);
-      console.log("add data response" , resp)
+      console.log("add data response", resp);
       if (!resp.success) {
         toast.error(resp.error);
         return;
       }
       setBlogs((prevBlogs) => [...prevBlogs, resp.data]);
       toast.success("Blog added successfully");
-      setSingleBlog({ title: "", short_description: "", long_description: "", image: "" });
+      setSingleBlog({
+        title: "",
+        short_description: "",
+        long_description: "",
+        image: "",
+      });
       setIsDialogOpen(false);
     } catch (error) {
       toast.error("Failed to add blog");
@@ -92,7 +88,9 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
         return;
       }
       setBlogs((prevBlogs) =>
-        prevBlogs.map((blog) => (blog._id === singleBlog._id ? resp.data : blog))
+        prevBlogs.map((blog) =>
+          blog._id === singleBlog._id ? resp.data : blog
+        )
       );
       toast.success("Blog updated successfully");
       setIsEditDialogOpen(false);
@@ -108,7 +106,9 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
         toast.error(resp.error);
         return;
       }
-      setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== deletingBlogId));
+      setBlogs((prevBlogs) =>
+        prevBlogs.filter((blog) => blog._id !== deletingBlogId)
+      );
       toast.success("Blog deleted successfully");
       setIsDeleteDialogOpen(false);
     } catch (error) {
@@ -132,7 +132,7 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
           onClick={() => {
             // setSingleBlog({ title: "", short_description: "", long_description: "", image: "" });
             // setIsDialogOpen(true);
-            router.push('/admin/blogs/add')
+            router.push("/admin/blogs/add");
           }}
         >
           Add Blog
@@ -153,7 +153,11 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
             {blogs.map((blog) => (
               <TableRow key={blog._id}>
                 <TableCell>
-                  <img src={blog.image} alt={blog.title} className="w-16 h-16 object-cover rounded" />
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    className="w-16 h-16 object-cover rounded"
+                  />
                 </TableCell>
                 <TableCell>{blog.title}</TableCell>
                 <TableCell>{blog.short_description}</TableCell>
@@ -175,8 +179,7 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
                         // setIsEditDialogOpen(true);
                         // console.log('blog:', blog);
                         // console.log('blog._id:', blog?._id);
-                        router.push(`/admin/blogs/edit/${blog._id}`)
-
+                        router.push(`/admin/blogs/edit/${blog._id}`);
                       }}
                     >
                       <Pencil className="h-4 w-4" />
@@ -202,18 +205,27 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
       </div>
 
       {/* Add/Edit Dialog */}
-      <Dialog open={isDialogOpen || isEditDialogOpen} onOpenChange={setIsDialogOpen}>
+      <Dialog
+        open={isDialogOpen || isEditDialogOpen}
+        onOpenChange={setIsDialogOpen}
+      >
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{isEditDialogOpen ? "Edit Blog" : "Add Blog"}</DialogTitle>
+            <DialogTitle>
+              {isEditDialogOpen ? "Edit Blog" : "Add Blog"}
+            </DialogTitle>
           </DialogHeader>
-          <form onSubmit={isEditDialogOpen ? handleEditSubmit : handleAddSubmit}>
+          <form
+            onSubmit={isEditDialogOpen ? handleEditSubmit : handleAddSubmit}
+          >
             <div className="grid gap-4 py-4">
               <div className="grid grid-cols-4 items-center gap-4">
                 <Label>Title</Label>
                 <Input
                   value={singleBlog?.title || ""}
-                  onChange={(e) => setSingleBlog({ ...singleBlog, title: e.target.value })}
+                  onChange={(e) =>
+                    setSingleBlog({ ...singleBlog, title: e.target.value })
+                  }
                   required
                   className="col-span-3"
                 />
@@ -224,7 +236,10 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
                 <Input
                   value={singleBlog?.short_description || ""}
                   onChange={(e) =>
-                    setSingleBlog({ ...singleBlog, short_description: e.target.value })
+                    setSingleBlog({
+                      ...singleBlog,
+                      short_description: e.target.value,
+                    })
                   }
                   required
                   className="col-span-3"
@@ -236,7 +251,10 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
                 <Input
                   value={singleBlog?.long_description || ""}
                   onChange={(e) =>
-                    setSingleBlog({ ...singleBlog, long_description: e.target.value })
+                    setSingleBlog({
+                      ...singleBlog,
+                      long_description: e.target.value,
+                    })
                   }
                   className="col-span-3"
                 />
@@ -248,24 +266,24 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
                   endpoint="imageUploader"
                   onClientUploadComplete={(res) => {
                     if (res && res.length > 0) {
-                        console.log("Upload response:", res);
-                        setSingleBlog({ ...singleBlog, image: res[0].url });
-                        toast.success("Image uploaded successfully");
-                      } else {
-                        toast.error("Upload failed: No file returned.");
-                      }
+                      console.log("Upload response:", res);
+                      setSingleBlog({ ...singleBlog, image: res[0].url });
+                      toast.success("Image uploaded successfully");
+                    } else {
+                      toast.error("Upload failed: No file returned.");
+                    }
                   }}
                   onUploadError={(error) => {
                     toast.error(`Upload failed: ${error.message}`);
                   }}
                 />
                 {singleBlog?.image && (
-                    <img
-                      src={singleBlog.image}
-                      alt="Blog Image"
-                      className="mt-2 w-16 h-16 object-cover rounded"
-                    />
-                  )}
+                  <img
+                    src={singleBlog.image}
+                    alt="Blog Image"
+                    className="mt-2 w-16 h-16 object-cover rounded"
+                  />
+                )}
               </div>
             </div>
             <DialogFooter>
@@ -283,11 +301,15 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
           <DialogHeader>
             <DialogTitle>Delete Blog</DialogTitle>
             <DialogDescription>
-              Are you sure you want to delete this blog? This action cannot be undone.
+              Are you sure you want to delete this blog? This action cannot be
+              undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsDeleteDialogOpen(false)}>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteDialogOpen(false)}
+            >
               Cancel
             </Button>
             <Button variant="destructive" onClick={handleDeleteConfirm}>
@@ -300,13 +322,7 @@ const [deletingBlogId, setDeletingBlogId] = React.useState(null);
   );
 }
 
-
-
-
-
-
-
-// quill code 
+// quill code
 // "use client";
 // import * as React from "react";
 
