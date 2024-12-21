@@ -156,7 +156,7 @@ const Page = async ({ params }) => {
       </form>
     </div> */}
     
-    <div className="flex flex-col items-center justify-start min-h-screen  py-8 px-4 overflow-auto w-full">
+    <div className="flex flex-col items-center justify-start min-h-screen bg-gray-200 py-8 px-4 overflow-auto w-full">
       <h1 className="text-2xl font-bold text-center mb-6">Edit Blog</h1>
       <EditBlog singleBlog={singleBlog} />
     </div>
