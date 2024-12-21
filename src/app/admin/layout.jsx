@@ -2,6 +2,8 @@ import { cookies } from "next/headers";
 import React from "react";
 import { jwtFuncs } from "@/utils";
 import LoginPage from "./components/login-form";
+import { Button } from "@/components/ui/button";
+import LogoutButton from "./components/logout-button";
 import {
   Sidebar,
   SidebarContent,
@@ -39,7 +41,7 @@ const Layout = async ({ children }) => {
           <SidebarHeader>
             <h2 className="text-xl font-bold p-4">Admin Panel</h2>
           </SidebarHeader>
-          <SidebarContent className="px-4">
+          <SidebarContent className="px-4 justify-between ">
             <SidebarMenu>
               {collections.map((collection, ind) => (
                 <SidebarMenuItem key={ind}>
@@ -63,6 +65,7 @@ const Layout = async ({ children }) => {
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
+          <LogoutButton/>
           </SidebarContent>
         </Sidebar>
         {children}
