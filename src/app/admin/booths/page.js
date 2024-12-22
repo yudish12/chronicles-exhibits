@@ -12,32 +12,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2 } from "lucide-react";
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
   addData,
   deleteData,
   getAllData,
   updateData,
 } from "@/server/actions/booths";
+import { useRouter } from "next/navigation";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
-import { UploadButton } from "@uploadthing/react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectValue,
-  SelectTrigger,
-} from "@/components/ui/select";
 import { Card } from "@/components/ui/card";
 
 export default function BoothTable() {
@@ -49,6 +32,8 @@ export default function BoothTable() {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
   const [isAddDialogOpen, setIsAddDialogOpen] = React.useState(false);
   const [deletingBoothId, setDeletingBoothId] = React.useState(null);
+
+  const router = useRouter();
 
   const getData = async () => {
     try {
@@ -152,9 +137,7 @@ export default function BoothTable() {
         <h1 className="text-2xl font-bold">Booths</h1>
         <Button
           onClick={() => {
-            setSingleBooth({ images: [] });
-            setIsEditDialogOpen(false);
-            setIsAddDialogOpen(true);
+            router.push("/admin/booths/add");
           }}
         >
           Add Booth
@@ -233,198 +216,6 @@ export default function BoothTable() {
           </TableBody>
         </Table>
       </Card>
-
-      <Dialog
-        open={isEditDialogOpen || isAddDialogOpen}
-        onOpenChange={
-          isEditDialogOpen ? setIsEditDialogOpen : setIsAddDialogOpen
-        }
-      >
-        <DialogContent className="max-w-3xl">
-          <DialogHeader>
-            <DialogTitle>
-              {isEditDialogOpen ? "Edit Booth" : "Add Booth"}
-            </DialogTitle>
-          </DialogHeader>
-          <form
-            onSubmit={isEditDialogOpen ? handleEditSubmit : handleAddSubmit}
-          >
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
-                  Name
-                </Label>
-                <Input
-                  id="name"
-                  value={singleBooth?.name || ""}
-                  onChange={(e) =>
-                    setSingleBooth({ ...singleBooth, name: e.target.value })
-                  }
-                  className="col-span-3"
-                  required
-                />
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="description" className="text-right">
-                  Description
-                </Label>
-                <Input
-                  id="description"
-                  value={singleBooth?.description || ""}
-                  onChange={(e) =>
-                    setSingleBooth({
-                      ...singleBooth,
-                      description: e.target.value,
-                    })
-                  }
-                  className="col-span-3"
-                  required
-                />
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="code" className="text-right">
-                  Code
-                </Label>
-                <Input
-                  id="code"
-                  value={singleBooth?.code || ""}
-                  onChange={(e) =>
-                    setSingleBooth({ ...singleBooth, code: e.target.value })
-                  }
-                  className="col-span-3"
-                  required
-                />
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="boothSize" className="text-right">
-                  Booth Size
-                </Label>
-                <Select
-                  value={singleBooth?.boothSize || ""}
-                  onValueChange={(value) =>
-                    setSingleBooth({ ...singleBooth, boothSize: value })
-                  }
-                  required
-                >
-                  <SelectTrigger className="col-span-3">
-                    <SelectValue placeholder="Select booth size" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {boothSizes.map((size) => (
-                      <SelectItem key={size._id} value={size._id}>
-                        {size.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label className="text-right">Main Image</Label>
-                <div className="col-span-3">
-                  <UploadButton
-                    endpoint="imageUploader"
-                    onClientUploadComplete={(res) => {
-                      setSingleBooth({
-                        ...singleBooth,
-                        main_image: res[0].url,
-                      });
-                      toast.success("Main image uploaded successfully");
-                    }}
-                    onUploadError={(error) => {
-                      toast.error(`Upload failed: ${error.message}`);
-                    }}
-                  />
-                  {singleBooth?.main_image && (
-                    <img
-                      src={singleBooth.main_image}
-                      alt="Main preview"
-                      className="mt-2 w-32 h-32 object-cover rounded"
-                    />
-                  )}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label className="text-right">Gallery Images</Label>
-                <div className="col-span-3">
-                  <UploadButton
-                    endpoint="imageUploader"
-                    onClientUploadComplete={(res) => {
-                      setSingleBooth({
-                        ...singleBooth,
-                        images: [...(singleBooth?.images || []), res[0].url],
-                      });
-                      toast.success("Gallery image uploaded successfully");
-                    }}
-                    onUploadError={(error) => {
-                      toast.error(`Upload failed: ${error.message}`);
-                    }}
-                  />
-                  <div className="grid grid-cols-4 gap-2 mt-2">
-                    {singleBooth?.images?.map((img, index) => (
-                      <div key={index} className="relative">
-                        <img
-                          src={img}
-                          alt={`Gallery ${index + 1}`}
-                          className="w-full h-24 object-cover rounded"
-                        />
-                        <Button
-                          variant="destructive"
-                          size="icon"
-                          className="absolute top-1 right-1 w-6 h-6"
-                          onClick={() => {
-                            const newImages = singleBooth.images.filter(
-                              (_, i) => i !== index
-                            );
-                            setSingleBooth({
-                              ...singleBooth,
-                              images: newImages,
-                            });
-                          }}
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </Button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <DialogFooter>
-              <Button type="submit">
-                {isEditDialogOpen ? "Save Changes" : "Add Booth"}
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Confirm Deletion</DialogTitle>
-            <DialogDescription>
-              Are you sure you want to delete this booth size? This action
-              cannot be undone.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={() => setIsDeleteDialogOpen(false)}
-            >
-              Cancel
-            </Button>
-            <Button variant="destructive" onClick={handleDeleteConfirm}>
-              Delete
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

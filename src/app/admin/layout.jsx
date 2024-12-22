@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import React from "react";
 import { jwtFuncs } from "@/utils";
+import "../globals.css";
 import LoginPage from "./components/login-form";
 import { Button } from "@/components/ui/button";
 import LogoutButton from "./components/logout-button";
