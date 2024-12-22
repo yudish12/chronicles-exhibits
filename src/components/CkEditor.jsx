@@ -4,7 +4,10 @@ import React from "react";
 const CkEditor = ({ value, onChange }) => {
   return (
     <CKEditor
-      onChange={(event, editor) => onChange(editor.getData())}
+      onChange={(event, editor) => {
+        console.log(event, event.editor.getData());
+        onChange(event.editor.getData());
+      }}
       data={value}
     />
   );
