@@ -38,6 +38,7 @@ import {
   SelectValue,
   SelectTrigger,
 } from "@/components/ui/select";
+import { Card } from "@/components/ui/card";
 
 export default function BoothTable() {
   const [booths, setBooths] = React.useState([]);
@@ -146,9 +147,9 @@ export default function BoothTable() {
   }
 
   return (
-    <div className="container mx-auto px-6 py-10">
-      <div className="flex justify-between">
-        <h1 className="text-2xl font-bold mb-4">Booths</h1>
+    <div className="container bg-border overflow-auto mx-auto p-8">
+      <Card className="flex justify-between items-center bg-white p-4">
+        <h1 className="text-2xl font-bold">Booths</h1>
         <Button
           onClick={() => {
             setSingleBooth({ images: [] });
@@ -158,9 +159,9 @@ export default function BoothTable() {
         >
           Add Booth
         </Button>
-      </div>
+      </Card>
 
-      <div className="rounded-md border">
+      <Card className="mt-6 bg-white p-4 border">
         <Table>
           <TableHeader>
             <TableRow>
@@ -231,7 +232,7 @@ export default function BoothTable() {
             ))}
           </TableBody>
         </Table>
-      </div>
+      </Card>
 
       <Dialog
         open={isEditDialogOpen || isAddDialogOpen}

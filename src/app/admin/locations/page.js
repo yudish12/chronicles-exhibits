@@ -21,9 +21,15 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { addData, getAllData, updateData , deleteData } from "@/server/actions/locations"; // Adjust the import path
+import {
+  addData,
+  getAllData,
+  updateData,
+  deleteData,
+} from "@/server/actions/locations"; // Adjust the import path
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
+import { Card } from "@/components/ui/card";
 
 export default function Locations() {
   const [locations, setLocations] = React.useState([]);
@@ -114,9 +120,9 @@ export default function Locations() {
   }
 
   return (
-    <div className="container mx-auto px-6 py-10">
-      <div className="flex justify-between">
-        <h1 className="text-2xl font-bold mb-4">Locations</h1>
+    <div className="container bg-border overflow-auto mx-auto p-8">
+      <Card className="flex justify-between items-center bg-white p-4">
+        <h1 className="text-2xl font-bold">Locations</h1>
         <Button
           onClick={() => {
             setSingleLocation(null);
@@ -126,9 +132,9 @@ export default function Locations() {
         >
           Add Location
         </Button>
-      </div>
+      </Card>
 
-      <div className="rounded-md border">
+      <Card className="mt-6 bg-white p-4 border">
         <Table>
           <TableHeader>
             <TableRow>
@@ -140,7 +146,9 @@ export default function Locations() {
           <TableBody>
             {locations.map((location) => (
               <TableRow key={location._id}>
-                <TableCell className="font-medium">{location.continent}</TableCell>
+                <TableCell className="font-medium">
+                  {location.continent}
+                </TableCell>
                 <TableCell>{location.city}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
@@ -166,7 +174,7 @@ export default function Locations() {
             ))}
           </TableBody>
         </Table>
-      </div>
+      </Card>
 
       <Dialog
         open={isEditDialogOpen || isAddDialogOpen}

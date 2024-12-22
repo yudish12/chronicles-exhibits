@@ -32,6 +32,7 @@ import {
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { Pencil, Trash2, Eye } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Card } from "@/components/ui/card";
 export default function Blogs() {
   const router = useRouter();
   const [blogs, setBlogs] = React.useState([]);
@@ -125,9 +126,9 @@ export default function Blogs() {
   }
 
   return (
-    <div className="container mx-auto px-6 py-10">
-      <div className="flex justify-between">
-        <h1 className="text-2xl font-bold mb-4">Blogs</h1>
+    <div className="container bg-border overflow-auto mx-auto p-8">
+      <Card className="flex justify-between items-center bg-white p-4">
+        <h1 className="text-2xl font-bold ">Blogs</h1>
         <Button
           onClick={() => {
             // setSingleBlog({ title: "", short_description: "", long_description: "", image: "" });
@@ -137,9 +138,9 @@ export default function Blogs() {
         >
           Add Blog
         </Button>
-      </div>
+      </Card>
 
-      <div className="rounded-md border">
+      <Card className="mt-6 bg-white p-4 border">
         <Table>
           <TableHeader>
             <TableRow>
@@ -202,7 +203,7 @@ export default function Blogs() {
             ))}
           </TableBody>
         </Table>
-      </div>
+      </Card>
 
       {/* Add/Edit Dialog */}
       <Dialog
