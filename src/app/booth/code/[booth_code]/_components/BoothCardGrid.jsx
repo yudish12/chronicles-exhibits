@@ -7,17 +7,17 @@ import Link from "next/link";
 const booths = [
   {
     id: 1,
-    image: "https://utfs.io/f/MRDf3hQQKORGQtw4nFgGbPOC9Hlvu1JNkBYXwaDeVpndKm3c",
+    image: "https://utfs.io/f/MRDf3hQQKORGV85tUYXQj0geIpfqlvAEdS1zU24ywMCtKb5G",
     code: "CEL101001",
   },
   {
     id: 3,
-    image: "https://utfs.io/f/MRDf3hQQKORGQtw4nFgGbPOC9Hlvu1JNkBYXwaDeVpndKm3c",
+    image: "https://utfs.io/f/MRDf3hQQKORGV85tUYXQj0geIpfqlvAEdS1zU24ywMCtKb5G",
     code: "CEL101002",
   },
   {
     id: 6,
-    image: "https://utfs.io/f/MRDf3hQQKORGQtw4nFgGbPOC9Hlvu1JNkBYXwaDeVpndKm3c",
+    image: "https://utfs.io/f/MRDf3hQQKORGV85tUYXQj0geIpfqlvAEdS1zU24ywMCtKb5G",
     code: "CEL101003",
   },
 ];
@@ -48,7 +48,7 @@ const BoothGrid = ({ boothCode }) => {
               <img
                 src={booth.image}
                 alt={`Booth ${booth.code}`}
-                className="w-full h-[250px] object-cover"
+                className="w-full h-[250px]"
               />
             </CardHeader>
             <CardContent className="p-4 text-center">
