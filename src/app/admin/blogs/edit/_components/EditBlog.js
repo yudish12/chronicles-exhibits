@@ -23,6 +23,7 @@ const EditBlog = ({ singleBlog }) => {
       body: blog.body,
       meta_title: blog.meta_title,
       meta_description: blog.meta_description,
+      meta_keywords: blog.meta_keywords,
       blog_count: blog.blog_count,
     });
     if (!resp.success) {

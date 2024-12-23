@@ -21,6 +21,7 @@ const blogSchema = new mongoose.Schema(
     meta_description: {
       type: String,
     },
+    meta_keywords: [String],
     image: {
       // logo is image
       type: String,

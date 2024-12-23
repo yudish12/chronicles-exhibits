@@ -9,6 +9,7 @@ const boothSizesSchema = new mongoose.Schema({
   image_alt_text: String,
   meta_title: String,
   meta_description: String,
+  meta_keywords: [String],
 });
 
 const BoothSize =

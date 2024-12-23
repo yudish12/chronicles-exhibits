@@ -39,6 +39,7 @@ const EditEventForm = ({ singleEvent, locations }) => {
       icon_alt_text: event.icon_alt_text,
       meta_description: event.meta_description,
       meta_title: event.meta_title,
+      meta_keywords: event.meta_keywords,
     });
 
     if (!resp.success) {

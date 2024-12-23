@@ -33,6 +33,7 @@ const AddBoothPage = () => {
     packge_description: "",
     meta_title: "",
     meta_description: "",
+    meta_keywords: [],
   });
 
   const [boothSizes, setBoothSizes] = React.useState([]);
@@ -78,6 +79,7 @@ const AddBoothPage = () => {
         packge_description: "",
         meta_title: "",
         meta_description: "",
+        meta_keywords: [],
       });
     } catch (error) {
       toast.error("Failed to add booth");

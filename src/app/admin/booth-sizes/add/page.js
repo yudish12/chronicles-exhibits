@@ -17,6 +17,7 @@ const AddBoothSizePage = () => {
     image_alt_text: "",
     meta_title: "",
     meta_description: "",
+    meta_keywords: [],
   });
 
   const handleAddSubmit = async (e) => {
@@ -34,6 +35,7 @@ const AddBoothSizePage = () => {
         image_alt_text: "",
         meta_title: "",
         meta_description: "",
+        meta_keywords: [],
       });
     } catch (error) {
       console.log("error==", error);

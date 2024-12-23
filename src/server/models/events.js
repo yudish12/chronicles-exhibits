@@ -37,6 +37,7 @@ const eventSchema = new mongoose.Schema({
   meta_description: {
     type: String,
   },
+  meta_keywords: [String],
   icon: {
     type: String,
     default: "/event-sample.png",

@@ -38,6 +38,7 @@ const Editbooth = ({ boothData }) => {
       packge_description: singleBooth.packge_description,
       meta_title: singleBooth.meta_title,
       meta_description: singleBooth.meta_description,
+      meta_keywords: singleBooth.meta_keywords,
     });
     if (!resp.success) {
       toast.error(resp.err);

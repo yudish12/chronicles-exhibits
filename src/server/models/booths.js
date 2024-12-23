@@ -48,6 +48,7 @@ const boothSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  meta_keywords: [String],
 });
 
 const Booth = mongoose.models.booths || mongoose.model("booths", boothSchema);

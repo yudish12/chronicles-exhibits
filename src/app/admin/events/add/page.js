@@ -33,6 +33,7 @@ const AddEventPage = () => {
     icon_alt_text: "",
     meta_title: "",
     meta_description: "",
+    meta_keywords: [],
   });
 
   const handleAddSubmit = async (e) => {
@@ -57,6 +58,7 @@ const AddEventPage = () => {
         icon_alt_text: "",
         meta_title: "",
         meta_description: "",
+        meta_keywords: [],
       });
     } catch (error) {
       toast.error("Failed to add event");

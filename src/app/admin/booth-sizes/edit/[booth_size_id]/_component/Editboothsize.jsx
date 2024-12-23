@@ -16,6 +16,7 @@ const Editboothsize = ({ singleBoothsizeData }) => {
     image_alt_text: singleBoothsizeData.image_alt_text,
     meta_title: singleBoothsizeData.meta_title,
     meta_description: singleBoothsizeData.meta_description,
+    meta_keywords: singleBoothsizeData.meta_keywords,
   });
 
   const handleEditSubmit = async (e) => {

@@ -20,6 +20,7 @@ const AddBlogPage = () => {
     image_alt_text: "",
     meta_title: "",
     meta_description: "",
+    meta_keywords: [],
     body: "",
     blog_count: "",
   });
@@ -40,6 +41,7 @@ const AddBlogPage = () => {
         image_alt_text: "",
         meta_title: "",
         meta_description: "",
+        meta_keywords: [],
         body: "",
         blog_count: "",
       });
@@ -152,7 +154,7 @@ const AddBlogPage = () => {
             <div>
               <Label className="mb-4 block">Blog Count</Label>
               <Input
-              type="number"
+                type="number"
                 className="rounded-sm"
                 value={singleBlog.blog_count}
                 onChange={(e) =>
