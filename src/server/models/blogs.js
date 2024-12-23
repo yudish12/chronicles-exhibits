@@ -7,32 +7,22 @@ const blogSchema = new mongoose.Schema(
       required: true,
     },
     slug: {
-      type:String
-    },
-    short_description: {
       type: String,
-      required: true,
     },
-    long_description: {
-      type: String,
-      required: true,
-    },
-    // slug: {
-    //   type : String // regex : spaces not allowed , only small case allowed 
-    // },
     body: {
-      type : String
+      type: String,
     },
-    image_alt_text : {
-      type : String
+    image_alt_text: {
+      type: String,
     },
     meta_title: {
-      type : String
+      type: String,
     },
     meta_description: {
-      type : String
+      type: String,
     },
-    image: {                // logo is image 
+    image: {
+      // logo is image
       type: String,
       required: true,
     },
@@ -40,6 +30,6 @@ const blogSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.models.blogs || mongoose.model("blogs", blogSchema); // make this blog and change everywhere 
+const User = mongoose.models.blogs || mongoose.model("blogs", blogSchema); // make this blog and change everywhere
 
 export default User;

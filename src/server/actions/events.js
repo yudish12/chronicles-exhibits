@@ -9,10 +9,7 @@ import mongoose from "mongoose";
 await dbConnect();
 export const getAllData = async () => {
   try {
-    const data = await events
-      .find()
-      .populate("location_id", "city continent")
-      .lean();
+    const data = await events.find().lean();
     //   console.log("[]" , data)
     return getActionSuccessResponse(data);
   } catch (error) {
@@ -97,6 +94,20 @@ export const deleteData = async (id) => {
 
     const resp = await events.deleteOne({ _id: id });
 
+    if (!resp) {
+      return getActionFailureResponse("Document not found", "toast");
+    }
+
+    return getActionSuccessResponse(resp);
+  } catch (error) {
+    console.error("Error deleting data:", error);
+    return getActionFailureResponse(error.message, "toast");
+  }
+};
+
+export const getSingleEvent = async (show_name) => {
+  try {
+    const resp = await events.findOne({ slug: show_name });
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
