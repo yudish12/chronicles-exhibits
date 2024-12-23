@@ -9,6 +9,7 @@ import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { addData } from "@/server/actions/booth-sizes";
+import { Trash2 } from "lucide-react";
 
 const AddBoothSizePage = () => {
   const [singleBoothSize, setSingleBoothSize] = React.useState({
