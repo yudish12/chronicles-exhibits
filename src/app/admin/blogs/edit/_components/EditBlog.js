@@ -10,8 +10,9 @@ import { Button } from "@/components/ui/button";
 import CkeEditor from "@/components/CkEditor";
 
 const EditBlog = ({ singleBlog }) => {
+  
   const [blog, setBlog] = useState(singleBlog);
-
+  console.log("blog" , blog)
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     const resp = await updateData(blog._id, {
@@ -24,6 +25,7 @@ const EditBlog = ({ singleBlog }) => {
       body: blog.body,
       meta_title: blog.meta_title,
       meta_description: blog.meta_description,
+      blog_count: blog.blog_count,
     });
     if (!resp.success) {
       toast.error(resp.err);
@@ -99,6 +101,17 @@ const EditBlog = ({ singleBlog }) => {
             />
           </div>
           <div>
+            <Label className="mb-4 block">Blog Count</Label>
+            <Input
+              className="rounded-sm"
+              value={blog.blog_count}
+              onChange={(e) =>
+                setBlog({ ...blog, blog_count: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div>
             <Label className="mb-4 block">Short description</Label>
             <Input
               className="rounded-sm"
@@ -109,7 +122,7 @@ const EditBlog = ({ singleBlog }) => {
               required
             />
           </div>
-          <div>
+          <div className="col-span-2">
             <Label className="mb-4 block">Long description</Label>
             <Input
               className="rounded-sm"

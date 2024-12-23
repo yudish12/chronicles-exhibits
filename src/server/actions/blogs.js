@@ -41,7 +41,8 @@ export const updateData = async (id, data) => {
         meta_title : data.meta_title,
         meta_description : data.meta_description,
         image_alt_text : data.image_alt_text,
-        slug : data.slug
+        slug : data.slug,
+        blog_count : data.blog_count
       },
       {
         new: true, // Return the updated document
