@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import "@uploadthing/react/styles.css";
 import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css";
 import { toast } from "sonner";
 import CkeEditor from "@/components/CkEditor";
 import { addData } from "@/server/actions/events";
@@ -274,6 +276,15 @@ const AddEventPage = () => {
                   })
                 }
                 required
+              />
+            </div>
+            <div>
+              <Label className="mb-4 block">Meta Keywords</Label>
+              <TagsInput
+                value={singleEvent.meta_keywords}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, meta_keywords: e })
+                }
               />
             </div>
           </CardContent>

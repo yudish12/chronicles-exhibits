@@ -5,6 +5,8 @@ import "../../../globals.css";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import "@uploadthing/react/styles.css";
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css";
 import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
@@ -170,6 +172,15 @@ const AddBoothSizePage = () => {
                   })
                 }
                 required
+              />
+            </div>
+            <div>
+              <Label className="mb-4 block">Meta Keywords</Label>
+              <TagsInput
+                value={singleBoothSize.meta_keywords}
+                onChange={(e) =>
+                  setSingleBoothSize({ ...singleBoothSize, meta_keywords: e })
+                }
               />
             </div>
           </CardContent>

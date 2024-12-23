@@ -24,6 +24,7 @@ export async function generateMetadata({ params }) {
   return {
     title: data?.meta_title || "Default Title",
     description: data?.meta_description || "Default Description",
+    keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
   };
 }
 

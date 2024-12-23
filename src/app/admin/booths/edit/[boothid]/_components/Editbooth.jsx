@@ -5,6 +5,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import "@uploadthing/react/styles.css";
 import { UploadButton } from "@uploadthing/react";
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import CkeEditor from "@/components/CkEditor";
@@ -38,7 +40,7 @@ const Editbooth = ({ boothData }) => {
       packge_description: singleBooth.packge_description,
       meta_title: singleBooth.meta_title,
       meta_description: singleBooth.meta_description,
-      meta_keywords: singleBooth.meta_keywords,
+      meta_keywords: singleBooth.meta_keywords ?? [],
     });
     if (!resp.success) {
       toast.error(resp.err);
@@ -302,6 +304,15 @@ const Editbooth = ({ boothData }) => {
                   })
                 }
                 required
+              />
+            </div>
+            <div>
+              <Label className="mb-4 block">Meta Keywords</Label>
+              <TagsInput
+                value={singleBooth.meta_keywords}
+                onChange={(e) =>
+                  setsingleBooth({ ...singleBooth, meta_keywords: e })
+                }
               />
             </div>
           </CardContent>

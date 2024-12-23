@@ -12,6 +12,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css";
 import { UploadButton } from "@uploadthing/react";
 
 import CKEditorDemo from "@/components/CkEditor";
@@ -38,7 +40,7 @@ const EditEventForm = ({ singleEvent, locations }) => {
       icon_alt_text: event.icon_alt_text,
       meta_description: event.meta_description,
       meta_title: event.meta_title,
-      meta_keywords: event.meta_keywords,
+      meta_keywords: event.meta_keywords ?? [],
     });
 
     if (!resp.success) {
@@ -245,6 +247,13 @@ const EditEventForm = ({ singleEvent, locations }) => {
                 })
               }
               required
+            />
+          </div>
+          <div>
+            <Label className="mb-4 block">Meta Keywords</Label>
+            <TagsInput
+              value={event.meta_keywords}
+              onChange={(e) => setEvent({ ...event, meta_keywords: e })}
             />
           </div>
         </CardContent>

@@ -8,6 +8,8 @@ import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import "../../../globals.css";
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css";
 import CkeEditor from "@/components/CkEditor";
 import {
   Select,
@@ -322,6 +324,15 @@ const AddBoothPage = () => {
                   })
                 }
                 required
+              />
+            </div>
+            <div>
+              <Label className="mb-4 block">Meta Keywords</Label>
+              <TagsInput
+                value={singleBooth.meta_keywords}
+                onChange={(e) =>
+                  setsingleBooth({ ...singleBooth, meta_keywords: e })
+                }
               />
             </div>
           </CardContent>

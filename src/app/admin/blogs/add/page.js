@@ -3,6 +3,8 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css";
 import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -213,6 +215,15 @@ const AddBlogPage = () => {
                   })
                 }
                 required
+              />
+            </div>
+            <div>
+              <Label className="mb-4 block">Meta Keywords</Label>
+              <TagsInput
+                value={singleBlog.meta_keywords}
+                onChange={(e) =>
+                  setSingleBlog({ ...singleBlog, meta_keywords: e })
+                }
               />
             </div>
           </CardContent>

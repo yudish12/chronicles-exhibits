@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import TagsInput from "react-tagsinput";
+import "react-tagsinput/react-tagsinput.css";
 import { updateData } from "@/server/actions/blogs";
 import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
@@ -23,7 +25,7 @@ const EditBlog = ({ singleBlog }) => {
       body: blog.body,
       meta_title: blog.meta_title,
       meta_description: blog.meta_description,
-      meta_keywords: blog.meta_keywords,
+      meta_keywords: blog.meta_keywords ?? [],
       blog_count: blog.blog_count,
     });
     if (!resp.success) {
@@ -133,28 +135,6 @@ const EditBlog = ({ singleBlog }) => {
               required
             />
           </div>
-          <div>
-            <Label className="mb-4 block">Short description</Label>
-            <Input
-              className="rounded-sm"
-              value={blog.short_description}
-              onChange={(e) =>
-                setBlog({ ...blog, short_description: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div className="col-span-2">
-            <Label className="mb-4 block">Long description</Label>
-            <Input
-              className="rounded-sm"
-              value={blog.long_description}
-              onChange={(e) =>
-                setBlog({ ...blog, long_description: e.target.value })
-              }
-              required
-            />
-          </div>
           <div className="col-span-2">
             <Label className="mb-4 block">Body</Label>
             <CkeEditor
@@ -194,6 +174,13 @@ const EditBlog = ({ singleBlog }) => {
                 setBlog({ ...blog, meta_description: e.target.value })
               }
               required
+            />
+          </div>
+          <div>
+            <Label className="mb-4 block">Meta Keywords</Label>
+            <TagsInput
+              value={blog.meta_keywords}
+              onChange={(e) => setBlog({ ...blog, meta_keywords: e })}
             />
           </div>
         </CardContent>

@@ -40,6 +40,7 @@ export const updateData = async (id, data) => {
         body: data.body,
         meta_title: data.meta_title,
         meta_description: data.meta_description,
+        meta_keywords: data.meta_keywords,
         image_alt_text: data.image_alt_text,
         slug: data.slug,
         blog_count: data.blog_count,
