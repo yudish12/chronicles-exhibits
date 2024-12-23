@@ -5,31 +5,23 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import {
-  Select,
-  SelectItem,
-  SelectTrigger,
-  SelectContent,
-  SelectValue,
-} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { addData } from "@/server/actions/blogs";
 import CkeEditor from "@/components/CkEditor";
+import { Trash2 } from "lucide-react";
 
 const AddBlogPage = () => {
   const [blogs, setBlogs] = React.useState([]);
   const [singleBlog, setSingleBlog] = React.useState({
     title: "",
-    short_description: "",
-    long_description: "",
     image: "",
     slug: "",
     image_alt_text: "",
     meta_title: "",
     meta_description: "",
     body: "",
-    blog_count: ""
+    blog_count: "",
   });
 
   const handleAddSubmit = async (e) => {
@@ -43,15 +35,13 @@ const AddBlogPage = () => {
       toast.success("Blog added successfully");
       setSingleBlog({
         title: "",
-        short_description: "",
-        long_description: "",
         image: "",
         slug: "",
         image_alt_text: "",
         meta_title: "",
         meta_description: "",
         body: "",
-        blog_count: ""
+        blog_count: "",
       });
     } catch (error) {
       console.log("error==", error);
@@ -91,7 +81,10 @@ const AddBlogPage = () => {
                 className="rounded-sm"
                 value={singleBlog.slug}
                 onChange={(e) =>
-                  setSingleBlog({ ...singleBlog, slug: e.target.value })
+                  setSingleBlog({
+                    ...singleBlog,
+                    slug: e.target.value.replace(" ", "-").toLowerCase(),
+                  })
                 }
                 required
                 title="No spaces, only lowercase letters and dashes"
@@ -113,11 +106,33 @@ const AddBlogPage = () => {
                 }
               />
               {singleBlog.image && (
-                <img
-                  src={singleBlog.image}
-                  alt="Blog Icon"
-                  className="mt-2 w-16 h-16 object-cover rounded"
-                />
+                <div className="relative w-max">
+                  <Button
+                    variant="destructive"
+                    size="icon"
+                    className="absolute z-50 top-1 -right-8 w-6 h-6"
+                    onClick={() => {
+                      console.log(
+                        singleBlog.image.split("f/")[1],
+                        singleBlog.image
+                      );
+                      const res = deleteUTFiles([
+                        singleBlog.image.split("f/")[1],
+                      ]);
+                      setSingleBlog({
+                        ...singleBlog,
+                        image: null,
+                      });
+                    }}
+                  >
+                    <Trash2 className="h-3 w-3" />
+                  </Button>
+                  <img
+                    src={singleBlog.image}
+                    alt="Event Icon"
+                    className="mt-2 w-16 h-16 object-cover rounded"
+                  />
+                </div>
               )}
             </div>
             <div>
@@ -151,34 +166,7 @@ const AddBlogPage = () => {
                 required
               />
             </div>
-            <div>
-              <Label className="mb-4 block">Short description</Label>
-              <Input
-                className="rounded-sm"
-                value={singleBlog.short_description}
-                onChange={(e) =>
-                  setSingleBlog({
-                    ...singleBlog,
-                    short_description: e.target.value,
-                  })
-                }
-                required
-              />
-            </div>
-            <div className="col-span-2">
-              <Label className="mb-4 block">Long description</Label>
-              <Input
-                className="rounded-sm"
-                value={singleBlog.long_description}
-                onChange={(e) =>
-                  setSingleBlog({
-                    ...singleBlog,
-                    long_description: e.target.value,
-                  })
-                }
-                required
-              />
-            </div>
+
             <div className="col-span-2">
               <Label className="mb-4 block">Body</Label>
               <CkeEditor

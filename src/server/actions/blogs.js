@@ -1,7 +1,7 @@
 "use server";
 
 import dbConnect from "@/config/db-connect";
-import User from "../models/blogs";
+import Blog from "../models/blogs";
 import mongoose from "mongoose";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 
@@ -10,7 +10,7 @@ import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 export const getAllBlogs = async () => {
   try {
     await dbConnect();
-    const data = await User.find().lean();
+    const data = await Blog.find().lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
@@ -20,7 +20,7 @@ export const getAllBlogs = async () => {
 
 export const updateData = async (id, data) => {
   try {
-    await dbConnect()
+    await dbConnect();
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return getActionFailureResponse("Invalid id format", "toast");
     }
@@ -30,19 +30,19 @@ export const updateData = async (id, data) => {
     }
 
     // Use findByIdAndUpdate instead of updateOne to get the updated document
-    const resp = await User.findByIdAndUpdate(
+    const resp = await Blog.findByIdAndUpdate(
       id,
       {
         title: data.title,
         short_description: data.short_description,
         long_description: data.long_description,
         image: data.image,
-        body : data.body,
-        meta_title : data.meta_title,
-        meta_description : data.meta_description,
-        image_alt_text : data.image_alt_text,
-        slug : data.slug,
-        blog_count : data.blog_count
+        body: data.body,
+        meta_title: data.meta_title,
+        meta_description: data.meta_description,
+        image_alt_text: data.image_alt_text,
+        slug: data.slug,
+        blog_count: data.blog_count,
       },
       {
         new: true, // Return the updated document
@@ -63,7 +63,7 @@ export const updateData = async (id, data) => {
 
 export const addData = async (data) => {
   try {
-    await dbConnect()
+    await dbConnect();
     if (!data.title) {
       return getActionFailureResponse("title is required", "title");
     }
@@ -80,28 +80,28 @@ export const addData = async (data) => {
       return getActionFailureResponse("image is required", "image");
     }
 
-    const resp = await User.create(data);
+    const resp = await Blog.create(data);
 
-    console.log("====add data resp===",resp);
+    console.log("====add data resp===", resp);
     return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error in addData:", error.message);
     getActionFailureResponse(error.message, "toast");
   }
 };
-export const findBlogById = async (id)=>{
-  try{
+export const findBlogById = async (id) => {
+  try {
     await dbConnect();
-    const resp = await User.find({ _id: id });
+    const resp = await Blog.find({ _id: id });
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
     return getActionSuccessResponse(resp);
-  }catch(error){
+  } catch (error) {
     console.error("Error deleting data:", error);
     return getActionFailureResponse(error.message, "toast");
   }
-}
+};
 export const deleteData = async (id) => {
   try {
     await dbConnect();
@@ -109,12 +109,22 @@ export const deleteData = async (id) => {
       return getActionFailureResponse("Invalid id format", "toast");
     }
 
-    const resp = await User.deleteOne({ _id: id });
+    const resp = await Blog.deleteOne({ _id: id });
 
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
 
+    return getActionSuccessResponse(resp);
+  } catch (error) {
+    console.error("Error deleting data:", error);
+    return getActionFailureResponse(error.message, "toast");
+  }
+};
+
+export const getSingleBlog = async (query) => {
+  try {
+    const resp = await Blog.findOne(query);
     return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error deleting data:", error);

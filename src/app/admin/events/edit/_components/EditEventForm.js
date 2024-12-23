@@ -17,6 +17,8 @@ import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
 import CKEditorDemo from "@/components/CkEditor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { majorExhibitingCities } from "@/app/admin/cities";
+import { Trash2 } from "lucide-react";
 const EditEventForm = ({ singleEvent, locations }) => {
   console.log(singleEvent);
   const [event, setEvent] = useState(singleEvent);
@@ -93,12 +95,29 @@ const EditEventForm = ({ singleEvent, locations }) => {
             />
           </div>
           <div>
-            <Label>City</Label>
-            <Input
-              value={event.city}
-              onChange={(e) => setEvent({ ...event, city: e.target.value })}
+            <Label className="mb-4 block">City</Label>
+            <Select
+              value={event?.city || ""}
+              onValueChange={(value) => {
+                console.log(value);
+                setEvent({
+                  ...event,
+                  city: value,
+                });
+              }}
               required
-            />
+            >
+              <SelectTrigger className="col-span-3">
+                {!event.city ? "Select a city" : event.city}
+              </SelectTrigger>
+              <SelectContent>
+                {majorExhibitingCities?.map((city) => (
+                  <SelectItem key={city} value={city}>
+                    {city}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div>
             <Label>Icon</Label>
@@ -115,13 +134,31 @@ const EditEventForm = ({ singleEvent, locations }) => {
                 toast.error(`Upload failed: ${error.message}`)
               }
             />
-            {event.icon && (
-              <img
-                src={event.icon}
-                alt="Event Icon"
-                className="mt-2 w-16 h-16 object-cover rounded"
-              />
-            )}
+            <div className="grid grid-cols-4 gap-2">
+              {event.icon && (
+                <div className="relative">
+                  <img
+                    src={event.icon}
+                    alt={`Gallery`}
+                    className="w-full h-24 object-cover rounded"
+                  />
+                  <Button
+                    variant="destructive"
+                    size="icon"
+                    className="absolute z-50 top-1 right-1 w-6 h-6"
+                    onClick={() => {
+                      deleteUTFiles([event.icon.split("/").pop()]);
+                      setEvent({
+                        ...event,
+                        icon: "",
+                      });
+                    }}
+                  >
+                    <Trash2 className="h-3 w-3" />
+                  </Button>
+                </div>
+              )}
+            </div>
           </div>
           <div>
             <Label>Icon Alt Text</Label>

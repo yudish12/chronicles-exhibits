@@ -12,24 +12,6 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
-import { UploadButton } from "@uploadthing/react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectItem,
-  SelectTrigger,
-  SelectContent,
-  SelectValue,
-} from "@/components/ui/select"; // Use your select component
-import {
   getAllData,
   addData,
   getAllLocations,
@@ -82,32 +64,6 @@ export default function Events() {
       toast.error("An error occurred while fetching data");
     }
   };
-  const handleAddSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const resp = await addData(singleEvent);
-      console.log("==add response ===");
-      if (!resp.success) {
-        toast.error(resp.err);
-        return;
-      }
-      // Add only the new event to the state
-      setEvents((prevEvent) => [...prevEvent, resp.data]);
-      await fetchData();
-      toast.success("Event added successfully");
-      setIsAddDialogOpen(false);
-      //   setSingleEvent(null);
-      setSingleEvent({
-        event_name: "",
-        start_date: "",
-        end_date: "",
-        location_id: "",
-      });
-    } catch (error) {
-      toast.error("Failed to add booth");
-      console.error(error);
-    }
-  };
   React.useEffect(() => {
     console.log("~fetch data");
     fetchData();
@@ -118,68 +74,19 @@ export default function Events() {
     // setIsEditDialogOpen(true);
     router.push(`/admin/events/edit/${event._id}`);
   };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const resp = await addData(singleEvent);
 
-    if (!resp.success) {
-      toast.error(resp.err);
-      return;
+  const getEventStatus = (start_date, end_date) => {
+    const today = new Date();
+    const startDate = new Date(start_date);
+    const endDate = new Date(end_date);
+    if (today > startDate && today < endDate) {
+      return { text: "Upcoming", color: "bg-green-700" };
+    } else if (today > endDate) {
+      return { text: "Expired", color: "bg-red-600" };
+    } else {
+      return { text: "Ongoing", color: "bg-amber-600" };
     }
-    setEvents([...events, resp.data]);
-    setIsDialogOpen(false);
-    setSingleEvent({
-      event_name: "",
-      start_date: "",
-      end_date: "",
-      location_id: "",
-    });
   };
-  const handleEditSubmit = async (e) => {
-    e.preventDefault();
-    const resp = await updateData(singleEvent._id, {
-      event_name: singleEvent.event_name,
-      start_date: singleEvent.start_date,
-      end_date: singleEvent.end_date,
-      location_id: singleEvent.location_id,
-      icon: singleEvent.icon,
-    });
-
-    console.log("==resp===", resp);
-    if (!resp.success) {
-      toast.error(resp.err);
-      return;
-    }
-    console.log("==resp update ==", resp.data);
-    setEvents((prevEvents) =>
-      prevEvents.map((event) =>
-        event._id === singleEvent._id ? resp.data : event
-      )
-    );
-    await fetchData();
-    toast.success("event updated successfully");
-    setIsEditDialogOpen(false);
-  };
-  const handleDelete = (id) => {
-    setDeletingEventId(id);
-    setIsDeleteDialogOpen(true);
-  };
-  const handleDeleteConfirm = async () => {
-    const resp = await deleteData(deletingEventId);
-    if (!resp.success) {
-      toast.error(resp.err);
-      return;
-    }
-    const updatedEvents = events.filter(
-      (event) => event._id !== deletingEventId
-    );
-    setEvents(updatedEvents);
-    setIsDeleteDialogOpen(false);
-  };
-
-  if (loading) {
-    return <TableSkeletonLoader />;
-  }
 
   return (
     <div className="container bg-border overflow-auto mx-auto p-8">
@@ -200,41 +107,50 @@ export default function Events() {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Icon</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Start Date</TableHead>
-              <TableHead>End Date</TableHead>
-              <TableHead>Location</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+              <TableHead className="text-center">Icon</TableHead>
+              <TableHead className="text-center">Name</TableHead>
+              <TableHead className="text-center">Start Date</TableHead>
+              <TableHead className="text-center">End Date</TableHead>
+              <TableHead className="text-center">City</TableHead>
+              <TableHead className="text-center">Status</TableHead>
+              <TableHead className="text-center">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {events.map((event) => (
               <TableRow key={event._id}>
-                <TableCell>
+                <TableCell className="text-center ">
                   {event.icon && (
                     <img
                       src={event.icon}
                       alt={event.event_name}
-                      className="w-16 h-16 object-cover rounded"
+                      className="w-16 mx-auto h-16 object-cover rounded"
                     />
                   )}
                 </TableCell>
-                <TableCell className="font-medium">
+                <TableCell className="font-medium text-center">
                   {event.event_name}
                 </TableCell>
-                <TableCell>
+                <TableCell className="text-center">
                   {new Date(event.start_date).toLocaleDateString()}
                 </TableCell>
-                <TableCell>
+                <TableCell className="text-center">
                   {new Date(event.end_date).toLocaleDateString()}
                 </TableCell>
-                <TableCell>
-                  {event.location_id?.city || "N/A"},{" "}
-                  {event.location_id?.continent || "N/A"}
+                <TableCell className="text-center">
+                  {event.city || "N/A"}, USA{" "}
                 </TableCell>
-                <TableCell className="text-right">
-                  <div className="flex justify-end space-x-2">
+                <TableCell className="text-center">
+                  <div
+                    className={`${
+                      getEventStatus(event.start_date, event.end_date).color
+                    } text-white p-2 px-6 mx-auto  w-max rounded-lg`}
+                  >
+                    {getEventStatus(event.start_date, event.end_date).text}
+                  </div>
+                </TableCell>
+                <TableCell className="text-center">
+                  <div className="flex mx-auto justify-center space-x-2">
                     <Button
                       variant="outline"
                       size="icon"
@@ -263,145 +179,6 @@ export default function Events() {
           </TableBody>
         </Table>
       </Card>
-
-      {/* Add/Edit Dialog */}
-      <Dialog
-        open={isEditDialogOpen || isAddDialogOpen}
-        onOpenChange={setIsEditDialogOpen}
-      >
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>
-              {isEditDialogOpen ? "Edit Event" : "Add Event"}
-            </DialogTitle>
-          </DialogHeader>
-          <form
-            onSubmit={isEditDialogOpen ? handleEditSubmit : handleAddSubmit}
-          >
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label>Name</Label>
-                <Input
-                  value={singleEvent?.event_name || ""}
-                  onChange={(e) =>
-                    setSingleEvent({
-                      ...singleEvent,
-                      event_name: e.target.value,
-                    })
-                  }
-                  required
-                  className="col-span-3"
-                />
-              </div>
-
-              <div>
-                <Label>Start Date</Label>
-                <Input
-                  type="date"
-                  value={singleEvent.start_date}
-                  onChange={(e) =>
-                    setSingleEvent({
-                      ...singleEvent,
-                      start_date: e.target.value,
-                    })
-                  }
-                  required
-                />
-              </div>
-
-              <div>
-                <Label>End Date</Label>
-                <Input
-                  type="date"
-                  min={singleEvent.start_date}
-                  value={singleEvent.end_date}
-                  onChange={(e) =>
-                    setSingleEvent({ ...singleEvent, end_date: e.target.value })
-                  }
-                />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="location">Location</Label>
-                <Select
-                  value={singleEvent.location_id}
-                  onValueChange={(value) =>
-                    setSingleEvent({ ...singleEvent, location_id: value })
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a location" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {locations.map((location) => (
-                      <SelectItem key={location._id} value={location._id}>
-                        {`${location.city}, ${location.continent}`}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label>Icon</Label>
-                <div className="col-span-3">
-                  <UploadButton
-                    endpoint="imageUploader"
-                    onClientUploadComplete={(res) => {
-                      setSingleEvent({
-                        ...singleEvent,
-                        icon: res[0].url,
-                      });
-                      toast.success("Icon uploaded successfully");
-                    }}
-                    onUploadError={(error) => {
-                      toast.error(`Upload failed: ${error.message}`);
-                    }}
-                  />
-                  {singleEvent?.icon && (
-                    <img
-                      src={singleEvent.icon}
-                      alt="Event Icon"
-                      className="mt-2 w-16 h-16 object-cover rounded"
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-            <DialogFooter>
-              <Button type="submit">
-                {isEditDialogOpen ? "Save Changes" : "Add Event"}
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      {/* Delete Dialog */}
-      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Confirm Deletion</DialogTitle>
-            <DialogDescription>
-              Are you sure you want to delete this event? This action cannot be
-              undone.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={() => setIsDeleteDialogOpen(false)}
-            >
-              Cancel
-            </Button>
-            <Button
-              variant="destructive"
-              onClick={() => handleDeleteConfirm(singleEvent?._id)}
-            >
-              Delete
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

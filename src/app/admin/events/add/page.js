@@ -10,6 +10,13 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import CkeEditor from "@/components/CkEditor";
 import { addData } from "@/server/actions/events";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
+import { majorExhibitingCities } from "../../cities";
 
 const AddEventPage = () => {
   const [singleEvent, setSingleEvent] = React.useState({
@@ -19,17 +26,12 @@ const AddEventPage = () => {
     body: "",
     start_date: "",
     end_date: "",
-    country: "",
+    country: "USA",
     city: "",
     icon: "",
     icon_alt_text: "",
     meta_title: "",
     meta_description: "",
-    location_id: {
-      _id: "673ddf7373d5a44da64ffe0d",
-      city: "Boston",
-      country: "America",
-    },
   });
 
   const handleAddSubmit = async (e) => {
@@ -113,14 +115,18 @@ const AddEventPage = () => {
             </div>
             <div>
               <Label className="mb-4 block">City</Label>
-              <Input
-                className="rounded-sm"
-                value={singleEvent.city}
-                onChange={(e) =>
-                  setSingleEvent({ ...singleEvent, city: e.target.value })
-                }
-                required
-              />
+              <Select
+                onChange={(e) => setSingleEvent({ ...singleEvent, city: e })}
+              >
+                <SelectTrigger>Select a city</SelectTrigger>
+                <SelectContent>
+                  {majorExhibitingCities.map((city, index) => (
+                    <SelectItem key={index} value={city}>
+                      {city}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <div>
               <Label className="mb-4 block">Icon</Label>

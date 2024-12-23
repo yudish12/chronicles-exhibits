@@ -2,6 +2,7 @@ import Header from "@/components/ui/header";
 import SubHeader from "@/components/ui/sub-header";
 import Image from "next/image";
 import React from "react";
+import "./styles.css";
 import Timer from "./_components/Timer";
 import { Calendar, MapPin } from "lucide-react";
 import moment from "moment";
@@ -12,7 +13,19 @@ import Footer from "@/components/ui/footer";
 import { Input } from "@/components/ui/input";
 import Products from "@/app/(landing)/Products";
 import { DiamondSvg } from "@/app/booth/size/[booth_size]/_components/TradeShowSection";
-import { getAllData } from "@/server/actions/events";
+import { getAllData, getSingleEvent } from "@/server/actions/events";
+import Head from "next/head";
+
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const show_name = resolvedParams.show_name;
+
+  const { data } = await getSingleEvent(show_name);
+  return {
+    title: data?.meta_title || "Default Title",
+    description: data?.meta_description || "Default Description",
+  };
+}
 
 const points = [
   "With hundreds of exhibiting companies and thousands of attendees, CES Las Vegas has unparalleled scale and reach within the industry.",
@@ -27,30 +40,42 @@ const points = [
   "Participation lends credibility to brands and allows them to test new ideas directly with their target audience before launching products globally.",
 ];
 
-const Page = async () => {
-  const targetDate = "2024-12-31T23:59:59";
-  let recentShows = await getAllData();
-  recentShows = recentShows.data.slice(0, 3);
+const Page = async ({ params }) => {
+  const resolvedParams = await params;
+  const show_name = resolvedParams.show_name;
+
+  // let recentShows = await getAllData();
+  // recentShows = recentShows.data.slice(0, 3);
+
+  const data = await getSingleEvent(show_name);
+  console.log(data);
+  const startDate = data.data.start_date;
+  const targetDate = data.data.end_date;
+
   return (
     <>
+      <Head>
+        <title>{data?.meta_title || "Default Title"}</title>
+      </Head>
       <SubHeader />
       <Header />
       <div className="trade-show-bg flex flex-col items-center gap-8 px-20 py-12">
         <h2 className=" text-4xl text-center text-white uppercase font-semibold heading-font">
-          The Asi Show
+          {data.data.title}
         </h2>
         <Timer targetDate={targetDate} />
         <div className="flex flex-col w-full items-center gap-2">
           <p className="flex text-center gap-4 items-center text-white font-semibold">
             <MapPin color="#FFFFFF" />
-            <span className="text-xl">New York | NY</span>
+            <span className="text-xl">
+              {data.data.city} | {data.data.city.slice(0, 2).toUpperCase()}
+            </span>
           </p>
           <p className="flex text-center items-center gap-4">
             <Calendar color="#FFFFFF" />
             <span className=" text-white font-semibold text-xl">
-              {moment(targetDate).format("DD")}{" "}
-              {moment(targetDate).format("MMM")} -{" "}
-              {moment(targetDate).format("DD")}{" "}
+              {moment(startDate).format("DD")} {moment(startDate).format("MMM")}{" "}
+              - {moment(targetDate).format("DD")}{" "}
               {moment(targetDate).format("MMM")}{" "}
               {moment(targetDate).format("YYYY")}
             </span>
@@ -61,15 +86,19 @@ const Page = async () => {
         className="rounded-full shadow-xl border-white border-[6px] mx-auto mt-[-80px] z-10"
         width={170}
         height={170}
-        src={"/aaep-show.png"}
+        src={data.data.icon}
         alt={"show.title"}
       />
       <div className="px-20 gap-12 py-12 flex">
         <div className="w-[70%] bg-white p-6 rounded-xl shadow-one">
           <h3 className="text-3xl heading-font text-secondary font-semibold">
-            About: The ASI Show 2025
+            About: {data.data.title}
           </h3>
-          <p className="text-[16px] mt-4 leading-[26px]">
+          <div
+            id="show_name_desc"
+            dangerouslySetInnerHTML={{ __html: data.data.body }}
+          ></div>
+          {/* <p className="text-[16px] mt-4 leading-[26px]">
             The Live Design International (LDI) is a major conference and trade
             show for professionals in the live entertainment industry, including
             lighting designers, sound technicians, stage designers, and more. It
@@ -103,7 +132,7 @@ const Page = async () => {
                 <span>{e}</span>
               </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
         <div className="w-[30%] flex flex-col gap-6">
           <div className="shadow-one h-max bg-white p-6 rounded-xl w-full">
@@ -187,8 +216,8 @@ const Page = async () => {
                 style={{ transitionDuration: "500ms" }}
                 className="text-secondary group-hover:text-white text-center text-lg heading-font font-semibold"
               >
-                {moment(targetDate).format("DD")}{" "}
-                {moment(targetDate).format("MMM")} -{" "}
+                {moment(startDate).format("DD")}{" "}
+                {moment(startDate).format("MMM")} -{" "}
                 {moment(targetDate).format("DD")}{" "}
                 {moment(targetDate).format("MMM")}{" "}
                 {moment(targetDate).format("YYYY")}

@@ -1,18 +1,18 @@
 import mongoose from "mongoose";
-// make all fields required 
+// make all fields required
 const eventSchema = new mongoose.Schema({
   event_name: {
     type: String,
     required: true,
   },
-  title : {
-    type : String
-  }, 
+  title: {
+    type: String,
+  },
   slug: {
-    type : String // regex : spaces not allowed , only small case allowed 
+    type: String, // regex : spaces not allowed , only small case allowed
   },
   body: {
-    type : String
+    type: String,
   },
   start_date: {
     type: Date,
@@ -22,26 +22,20 @@ const eventSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  location_id: {
-    type: mongoose.Types.ObjectId,
-    ref: "locations",
-    required: true,
+  country: {
+    type: String,
   },
-  country : {
-    type : String,
-
-  },
-  city : {
-    type: String 
+  city: {
+    type: String,
   },
   icon_alt_text: {
-    type : String
+    type: String,
   },
   meta_title: {
-    type : String
+    type: String,
   },
   meta_description: {
-    type : String
+    type: String,
   },
   icon: {
     type: String,
