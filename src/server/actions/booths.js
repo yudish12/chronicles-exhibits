@@ -9,7 +9,7 @@ await dbConnect();
 
 export const getAllData = async () => {
   try {
-    const data = await Booth.find().populate('boothSize').lean();
+    const data = await Booth.find().populate("boothSize").lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
@@ -57,24 +57,51 @@ export const updateData = async (id, data) => {
 
 export const addData = async (data) => {
   try {
-    if (!data.name) {
-      return getActionFailureResponse("Name is required", "name");
+    if (!data.booth_code) {
+      return getActionFailureResponse("Booth code is required", "booth_code");
     }
 
-    if (!data.description) {
-      return getActionFailureResponse("Description is required", "description");
+    if (!data.slug) {
+      return getActionFailureResponse("Slug is required", "slug");
     }
 
-    if (!data.boothSize) {
-      return getActionFailureResponse("Booth size is required", "boothSize");
+    if (!data.thumbnail_image) {
+      return getActionFailureResponse(
+        "Thumbnail image is required",
+        "thumbnail_image"
+      );
     }
 
-    if (!data.code) {
-      return getActionFailureResponse("Code is required", "code");
+    if (!data.image_alt_text) {
+      return getActionFailureResponse(
+        "Image alt text is required",
+        "image_alt_text"
+      );
     }
 
-    if (!data.main_image) {
-      return getActionFailureResponse("Main image is required", "main_image");
+    if (!data.packge_title) {
+      return getActionFailureResponse(
+        "Package title is required",
+        "packge_title"
+      );
+    }
+
+    if (!data.packge_description) {
+      return getActionFailureResponse(
+        "Package description is required",
+        "packge_description"
+      );
+    }
+
+    if (!data.meta_title) {
+      return getActionFailureResponse("Meta title is required", "meta_title");
+    }
+
+    if (!data.meta_description) {
+      return getActionFailureResponse(
+        "Meta description is required",
+        "meta_description"
+      );
     }
 
     const resp = await Booth.create(data);
@@ -102,5 +129,14 @@ export const deleteData = async (id) => {
   } catch (error) {
     console.error("Error deleting data:", error);
     return getActionFailureResponse(error.message, "toast");
+  }
+};
+
+export const getDataByCode = async (boothCode) => {
+  try {
+    const data = await Booth.findOne({ booth_code: boothCode }).lean();
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
   }
 };

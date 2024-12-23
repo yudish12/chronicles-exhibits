@@ -7,9 +7,13 @@ import BoothGrid from "./_components/BoothCardGrid";
 import BoothEnquiry from "./_components/BoothInuiry";
 import { BoothDetails } from "./_components/BoothDetails";
 import Footer from "@/components/ui/footer";
+import { getDataByCode } from "@/server/actions/booths";
 const BoothByCode = async ({ params }) => {
   const resolvedParams = await params;
   const boothCode = resolvedParams.booth_code;
+
+  const resp = await getDataByCode(boothCode);
+  console.log(resp);
 
   return (
     <>
@@ -18,7 +22,7 @@ const BoothByCode = async ({ params }) => {
       {/* <div>
 
     </div> */}
-      <BoothDetails boothCode={boothCode} />
+      <BoothDetails boothData={resp.data} boothCode={boothCode} />
       {/* <BoothEnquiry/> */}
       <BoothGrid boothCode={boothCode} />
       <Queryform />

@@ -117,27 +117,21 @@
 }
 
 /* Tiptap Editor Styling */
-.ProseMirror {
-  outline: none;
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
 }
 
-.ProseMirror ul {
-  list-style: none; /* Remove default bullet points */
-  padding-left: 1.5rem; /* Add spacing for bullets */
+li {
+  padding-left: 1em;
+  text-indent: -1em;
 }
 
-.ProseMirror ul li {
-  position: relative;
-  padding-left: 1.5rem; /* Add space for custom bullets */
-}
-
-.ProseMirror ul li::before {
-  content: "●"; /* Unicode for a solid red circle */
-  color: red;
-  font-size: 16px;
-  position: absolute;
-  left: 0;
-  top: 0.25rem; /* Align the bullet vertically */
+li:before {
+  content: "◆";
+  padding-right: 10px;
+  color: #b0cb1f;
 }
 
 .hero {

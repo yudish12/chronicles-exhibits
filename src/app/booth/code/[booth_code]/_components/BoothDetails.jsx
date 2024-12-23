@@ -256,7 +256,7 @@ const packageDetails = [
   "Project Management",
 ];
 
-export function BoothDetails({ boothCode }) {
+export function BoothDetails({ boothCode, boothData }) {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   let images;
 
@@ -266,6 +266,7 @@ export function BoothDetails({ boothCode }) {
   else if (boothCode === "CEL101004") images = imagegroup4;
   else if (boothCode === "CEL101005") images = imagegroup5;
   else if (boothCode === "CEL101006") images = imagegroup6;
+  else images = [boothData.thumbnail_image, ...boothData.all_images];
 
   const handlePrevious = () => {
     setSelectedIndex(
@@ -411,12 +412,10 @@ export function BoothDetails({ boothCode }) {
           <span>10x10/</span>
         </div>
         <h2 className="text-xl font-semibold mb-4">Package Includes:</h2>
-        {packageDetails.map((detail, index) => (
-          <li key={index} className="flex items-center gap-2">
-            <span className="text-[#B0CB1F]">◆</span>
-            {detail}
-          </li>
-        ))}
+        <div
+          className="font-medium text-lg"
+          dangerouslySetInnerHTML={{ __html: boothData.packge_description }}
+        ></div>
       </ul>
     </div>
   );

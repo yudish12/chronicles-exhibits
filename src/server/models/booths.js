@@ -1,33 +1,53 @@
 import mongoose from "mongoose";
 
 const boothSchema = new mongoose.Schema({
-  name: {
+  booth_code: {
     type: String,
     required: true,
   },
-  description: {
+  slug: {
     type: String,
     required: true,
   },
-  boothSize: {
+  booth_size: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "boothsizes",
     required: true,
   },
-  code: {
+  booth_code: {
     type: String,
     required: true,
   },
-  main_image: {
+  thumbnail_image: {
     type: String,
     required: true,
   },
-  images: [
+  all_images: [
     {
       type: String,
       required: true,
     },
   ],
+  image_alt_text: {
+    type: String,
+    required: true,
+  },
+  packge_title: {
+    type: String,
+    required: true,
+  },
+  packge_description: {
+    type: String,
+    required: true,
+  },
+  meta_title: {
+    type: String,
+    required: true,
+  },
+  meta_description: {
+    type: String,
+    required: true,
+  },
 });
 
 const Booth = mongoose.models.booths || mongoose.model("booths", boothSchema);

@@ -9,15 +9,17 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import "../../../globals.css";
 import CkeEditor from "@/components/CkEditor";
-import { addData } from "@/server/actions/events";
 import {
   Select,
   SelectContent,
+  SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { getAllData } from "@/server/actions/booths";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
+import { Trash2 } from "lucide-react";
+import { deleteUTFiles } from "@/server/services/uploadthing";
+import { addData } from "@/server/actions/booths";
 
 const AddBoothPage = () => {
   const [singleBooth, setsingleBooth] = React.useState({
@@ -34,16 +36,18 @@ const AddBoothPage = () => {
   });
 
   const [boothSizes, setBoothSizes] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
   const getData = async () => {
     try {
-      const boothSizesResp = await getAllBoothSizes();
+      const resp = await getAllBoothSizes();
+      console.log(resp);
       if (!resp.success) {
         toast.error(resp.err);
         setLoading(false);
         return;
       }
-      setBoothSizes(boothSizesResp.data);
+      setBoothSizes(resp.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -113,24 +117,33 @@ const AddBoothPage = () => {
                 className="rounded-sm"
                 value={singleBooth.slug}
                 onChange={(e) =>
-                  setsingleBooth({ ...singleBooth, slug: e.target.value })
+                  setsingleBooth({
+                    ...singleBooth,
+                    slug: e.target.value.trim().toLowerCase(),
+                  })
                 }
                 required
-                pattern="^[a-z0-9-]+$"
                 title="No spaces, only lowercase letters and dashes"
               />
             </div>
             <div>
               <Label className="mb-4 block">Booth Size</Label>
               <Select
-                value={singleBooth?.boothSize || ""}
-                onValueChange={(value) =>
-                  setSingleBooth({ ...singleBooth, boothSize: value })
-                }
+                value={singleBooth?.booth_size || ""}
+                onValueChange={(value) => {
+                  console.log(value);
+                  setsingleBooth({
+                    ...singleBooth,
+                    booth_size: value,
+                  });
+                }}
                 required
               >
                 <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="Select booth size" />
+                  {!singleBooth.booth_size
+                    ? "Select Booth Size"
+                    : boothSizes.find((e) => e._id === singleBooth.booth_size)
+                        ?.name}
                 </SelectTrigger>
                 <SelectContent>
                   {boothSizes?.map((size) => (
@@ -158,11 +171,33 @@ const AddBoothPage = () => {
                 }
               />
               {singleBooth.thumbnail_image && (
-                <img
-                  src={singleBooth.icon}
-                  alt="Event Icon"
-                  className="mt-2 w-16 h-16 object-cover rounded"
-                />
+                <div className="relative w-max">
+                  <Button
+                    variant="destructive"
+                    size="icon"
+                    className="absolute z-50 top-1 -right-8 w-6 h-6"
+                    onClick={() => {
+                      console.log(
+                        singleBooth.thumbnail_image.split("f/")[1],
+                        singleBooth.thumbnail_image
+                      );
+                      const res = deleteUTFiles([
+                        singleBooth.thumbnail_image.split("f/")[1],
+                      ]);
+                      setsingleBooth({
+                        ...singleBooth,
+                        thumbnail_image: null,
+                      });
+                    }}
+                  >
+                    <Trash2 className="h-3 w-3" />
+                  </Button>
+                  <img
+                    src={singleBooth.thumbnail_image}
+                    alt="Event Icon"
+                    className="mt-2 w-16 h-16 object-cover rounded"
+                  />
+                </div>
               )}
             </div>
             <div>
@@ -171,11 +206,12 @@ const AddBoothPage = () => {
                 className="ut-label:bg-black"
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
+                  console.log(res);
                   setsingleBooth({
                     ...singleBooth,
                     all_images: [
                       ...(singleBooth?.all_images || []),
-                      res[0].url,
+                      ...res.map((e) => e.url),
                     ],
                   });
                   toast.success("Icon uploaded successfully");
@@ -184,31 +220,34 @@ const AddBoothPage = () => {
                   toast.error(`Upload failed: ${error.message}`)
                 }
               />
-              {singleBooth.all_images?.map((img, index) => (
-                <div key={index} className="relative">
-                  <img
-                    src={img}
-                    alt={`Gallery ${index + 1}`}
-                    className="w-full h-24 object-cover rounded"
-                  />
-                  <Button
-                    variant="destructive"
-                    size="icon"
-                    className="absolute top-1 right-1 w-6 h-6"
-                    onClick={() => {
-                      const newImages = singleBooth.all_images.filter(
-                        (_, i) => i !== index
-                      );
-                      setsingleBooth({
-                        ...singleBooth,
-                        all_images: newImages,
-                      });
-                    }}
-                  >
-                    <Trash2 className="h-3 w-3" />
-                  </Button>
-                </div>
-              ))}
+              <div className="grid grid-cols-4 gap-2">
+                {singleBooth.all_images?.map((img, index) => (
+                  <div key={index} className="relative">
+                    <img
+                      src={img}
+                      alt={`Gallery ${index + 1}`}
+                      className="w-full h-24 object-cover rounded"
+                    />
+                    <Button
+                      variant="destructive"
+                      size="icon"
+                      className="absolute z-50 top-1 right-1 w-6 h-6"
+                      onClick={() => {
+                        const newImages = singleBooth.all_images.filter(
+                          (_, i) => i !== index
+                        );
+                        deleteUTFiles([img.split("/").pop()]);
+                        setsingleBooth({
+                          ...singleBooth,
+                          all_images: newImages,
+                        });
+                      }}
+                    >
+                      <Trash2 className="h-3 w-3" />
+                    </Button>
+                  </div>
+                ))}
+              </div>
             </div>
             <div>
               <Label className="mb-4 block">Image Alt Text</Label>
@@ -228,7 +267,7 @@ const AddBoothPage = () => {
               <Label className="mb-4 block">Package Title</Label>
               <Input
                 className="rounded-sm"
-                value={singleBooth.slug}
+                value={singleBooth.packge_title}
                 onChange={(e) =>
                   setsingleBooth({
                     ...singleBooth,
@@ -290,7 +329,7 @@ const AddBoothPage = () => {
             type="submit"
             className="bg-secondary hover:bg-secondary text-white hover:text-white font-semibold px-4 py-2"
           >
-            Add Event
+            Add Booth
           </Button>
           <Button
             variant="outline"
