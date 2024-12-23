@@ -18,7 +18,9 @@ async function FeaturedPage({ params }) {
   const data = await getBoothSizeByName(boothSize);
   const booth = await getAllData();
   console.log("==booth data ", booth);
-  let booths = booth.data.filter((booth) => booth.boothSize.name === boothSize);
+  let booths = booth.data?.filter(
+    (booth) => booth.boothSize.name === boothSize
+  );
   console.log("data", booths);
   return (
     <>

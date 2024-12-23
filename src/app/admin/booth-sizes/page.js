@@ -177,7 +177,6 @@ export default function BoothSizesTable() {
           </TableBody>
         </Table>
       </div>
-
       <Dialog
         open={isEditDialogOpen || isAddDialogOpen}
         onOpenChange={

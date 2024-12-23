@@ -281,6 +281,8 @@ export function BoothDetails({ boothCode, boothData }) {
     setSelectedIndex(index);
   };
 
+  if (!boothData) return <div>No Data Found</div>;
+
   return (
     <div className="bg-background gap-12 flex justify-center pr-16 py-7 px-40">
       {/*Thumbnails */}

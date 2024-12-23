@@ -117,18 +117,18 @@
 }
 
 /* Tiptap Editor Styling */
-ul {
+.ul {
   list-style: none;
   margin-left: 0;
   padding-left: 0;
 }
 
-li {
+.li {
   padding-left: 1em;
   text-indent: -1em;
 }
 
-li:before {
+.li:before {
   content: "◆";
   padding-right: 10px;
   color: #b0cb1f;
