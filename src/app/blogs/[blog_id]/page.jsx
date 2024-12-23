@@ -16,6 +16,18 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { getAllBlogs, getSingleBlog } from "@/server/actions/blogs";
+
+export async function generateMetadata({ params }) {
+  const blog_slug = (await params).blog_id;
+
+  const { data } = await getSingleBlog({ slug: blog_slug });
+
+  return {
+    title: data?.meta_title || "Default Title",
+    description: data?.meta_description || "Default Description",
+  };
+}
+
 const page = async ({ params }) => {
   const blog_slug = (await params).blog_id;
 

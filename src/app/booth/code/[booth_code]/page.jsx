@@ -8,6 +8,18 @@ import BoothEnquiry from "./_components/BoothInuiry";
 import { BoothDetails } from "./_components/BoothDetails";
 import Footer from "@/components/ui/footer";
 import { getDataByCode } from "@/server/actions/booths";
+
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const booth_code = resolvedParams.booth_code;
+
+  const { data } = await getDataByCode(booth_code);
+  return {
+    title: data?.meta_title || "Default Title",
+    description: data?.meta_description || "Default Description",
+  };
+}
+
 const BoothByCode = async ({ params }) => {
   const resolvedParams = await params;
   const boothCode = resolvedParams.booth_code;
