@@ -5,10 +5,13 @@ const portfolioSchema = new mongoose.Schema(
         image : {
         type :String
         },
-        heading : {
-            type: String,
-        },
-        description: {
+        // heading : {
+        //     type: String,
+        // },
+        // description: {
+        //     type : String
+        // }
+        image_alt_text: {
             type : String
         }
     },

@@ -52,12 +52,12 @@ try{
 if(!data.image){
     return getActionFailureResponse("Image is required", "image");
 }
-if(!data.heading){
-    return getActionFailureResponse("Heading is required", "heading");
+if(!data.image_alt_text){
+    return getActionFailureResponse("alt text is required", "image_alt_text");
 }
-if(!data.description){
-    return getActionFailureResponse("Description is required", "description");
-}
+// if(!data.description){
+//     return getActionFailureResponse("Description is required", "description");
+// }
 const resp = await Portfolio.create(data);
 return getActionSuccessResponse(resp);
 }catch(error){
