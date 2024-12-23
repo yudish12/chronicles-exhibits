@@ -7,17 +7,17 @@ import Link from "next/link";
 const booths = [
   {
     id: 1,
-    image: "/booth-code-1.jpeg",
+    image: "https://utfs.io/f/MRDf3hQQKORGQtw4nFgGbPOC9Hlvu1JNkBYXwaDeVpndKm3c",
     code: "CEL101001",
   },
   {
     id: 3,
-    image: "/booth-code-3.jpeg",
+    image: "https://utfs.io/f/MRDf3hQQKORGQtw4nFgGbPOC9Hlvu1JNkBYXwaDeVpndKm3c",
     code: "CEL101002",
   },
   {
     id: 6,
-    image: "/booth-code-5.jpeg",
+    image: "https://utfs.io/f/MRDf3hQQKORGQtw4nFgGbPOC9Hlvu1JNkBYXwaDeVpndKm3c",
     code: "CEL101003",
   },
 ];

@@ -9,7 +9,7 @@ await dbConnect();
 
 export const getAllData = async () => {
   try {
-    const data = await Booth.find().populate("boothSize").lean();
+    const data = await Booth.find().populate("booth_size").lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

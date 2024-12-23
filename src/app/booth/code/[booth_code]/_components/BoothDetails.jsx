@@ -266,7 +266,7 @@ export function BoothDetails({ boothCode, boothData }) {
   else if (boothCode === "CEL101004") images = imagegroup4;
   else if (boothCode === "CEL101005") images = imagegroup5;
   else if (boothCode === "CEL101006") images = imagegroup6;
-  else images = [boothData.thumbnail_image, ...boothData.all_images];
+  else images = [...boothData.all_images];
 
   const handlePrevious = () => {
     setSelectedIndex(
@@ -415,6 +415,7 @@ export function BoothDetails({ boothCode, boothData }) {
         </div>
         <h2 className="text-xl font-semibold mb-4">Package Includes:</h2>
         <div
+          id="package"
           className="font-medium text-lg"
           dangerouslySetInnerHTML={{ __html: boothData.packge_description }}
         ></div>
