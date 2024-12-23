@@ -37,7 +37,7 @@ const EditPortfolio = ({singlePortfolio})=>{
         </CardHeader>
         <CardContent className="grid grid-cols-2 gap-6">
           
-          <div>
+          <div className="col-span-2">
             <Label className="mb-4 block">Image</Label>
             <UploadButton
               endpoint="imageUploader"
@@ -57,7 +57,7 @@ const EditPortfolio = ({singlePortfolio})=>{
               />
             )}
           </div>
-          <div>
+          <div className="col-span-2">
             <Label className="mb-4 block">Icon Alt Text</Label>
             <Input
               className="rounded-sm"
