@@ -13,8 +13,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { UploadButton } from "@uploadthing/react";
-import ReactQuill from "react-quill-new";
-import "react-quill-new/dist/quill.snow.css";
+
 import CKEditorDemo from "@/components/CkEditor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { majorExhibitingCities } from "@/app/admin/cities";
