@@ -48,10 +48,10 @@ const Page = async ({ params }) => {
   // recentShows = recentShows.data.slice(0, 3);
 
   const data = await getSingleEvent(show_name);
+  console.log(data);
   const startDate = data.data.start_date;
   const targetDate = data.data.end_date;
 
-  console.log(data);
   return (
     <>
       <Head>
