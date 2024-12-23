@@ -26,13 +26,13 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    blog_count : {
-      type : Number
-    }
+    blog_count: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );
 
-const User = mongoose.models.blogs || mongoose.model("blogs", blogSchema); // make this blog and change everywhere
+const Blog = mongoose.models.blogs || mongoose.model("blogs", blogSchema); // make this blog and change everywhere
 
-export default User;
+export default Blog;

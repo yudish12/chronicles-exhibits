@@ -8,11 +8,11 @@ import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CkeEditor from "@/components/CkEditor";
+import { Trash2 } from "lucide-react";
 
 const EditBlog = ({ singleBlog }) => {
-  
   const [blog, setBlog] = useState(singleBlog);
-  console.log("blog" , blog)
+  console.log("blog", blog);
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     const resp = await updateData(blog._id, {
@@ -20,8 +20,6 @@ const EditBlog = ({ singleBlog }) => {
       slug: blog.slug,
       image: blog.image,
       image_alt_text: blog.image_alt_text,
-      short_description: blog.short_description,
-      long_description: blog.long_description,
       body: blog.body,
       meta_title: blog.meta_title,
       meta_description: blog.meta_description,
@@ -64,7 +62,12 @@ const EditBlog = ({ singleBlog }) => {
             <Input
               className="rounded-sm"
               value={blog.slug}
-              onChange={(e) => setBlog({ ...blog, slug: e.target.value })}
+              onChange={(e) =>
+                setBlog({
+                  ...blog,
+                  slug: e.target.value.replace(" ", "-").toLowerCase(),
+                })
+              }
               required
               title="No spaces, only lowercase letters and dashes"
             />
@@ -74,7 +77,10 @@ const EditBlog = ({ singleBlog }) => {
             <UploadButton
               endpoint="imageUploader"
               onClientUploadComplete={(res) => {
-                setBlog({ ...blog, image: res[0]?.url || "" });
+                setBlog({
+                  ...blog,
+                  image: res[0]?.url || "",
+                });
                 toast.success("Icon uploaded successfully");
               }}
               onUploadError={(error) =>
@@ -82,11 +88,28 @@ const EditBlog = ({ singleBlog }) => {
               }
             />
             {blog.image && (
-              <img
-                src={blog.image}
-                alt="Blog Icon"
-                className="mt-2 w-16 h-16 object-cover rounded"
-              />
+              <div className="relative w-max">
+                <Button
+                  variant="destructive"
+                  size="icon"
+                  className="absolute z-50 top-1 -right-8 w-6 h-6"
+                  onClick={() => {
+                    console.log(blog.image.split("f/")[1], blog.image);
+                    const res = deleteUTFiles([blog.image.split("f/")[1]]);
+                    setBlog({
+                      ...blog,
+                      image: null,
+                    });
+                  }}
+                >
+                  <Trash2 className="h-3 w-3" />
+                </Button>
+                <img
+                  src={blog.image}
+                  alt="Event Icon"
+                  className="mt-2 w-16 h-16 object-cover rounded"
+                />
+              </div>
             )}
           </div>
           <div>
@@ -105,9 +128,7 @@ const EditBlog = ({ singleBlog }) => {
             <Input
               className="rounded-sm"
               value={blog.blog_count}
-              onChange={(e) =>
-                setBlog({ ...blog, blog_count: e.target.value })
-              }
+              onChange={(e) => setBlog({ ...blog, blog_count: e.target.value })}
               required
             />
           </div>

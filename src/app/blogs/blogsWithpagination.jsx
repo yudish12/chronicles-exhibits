@@ -78,7 +78,7 @@ const BlogsPagination = ({ blogs }) => {
                   experience and an excellent team
                 </CardDescription>
                 <div className="mt-4">
-                  <Link href={`/blogs/${blog.id}`}>
+                  <Link href={`/blogs/${blog.slug}`}>
                     <Button
                       variant="outline"
                       className="text-secondary font-bold bg-transparent border-2 border-secondary hover:bg-secondary hover:text-white"
