@@ -6,7 +6,14 @@ import mongoose from "mongoose";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 
 await dbConnect();
-
+export const findPortfolioById = async (id) =>{
+    try{
+    const data = await Portfolio.find({_id : id}).lean();
+    return getActionSuccessResponse(data);
+    }catch(error){
+        return getActionFailureResponse(error, "toast");
+    }
+}
 export const getAllPortfolios = async () => {
     try {
       const data = await Portfolio.find().lean();
@@ -28,8 +35,8 @@ export const updateAllPortfolios = async(id , data)=>{
             id, 
             {
                 image : data.image , 
-                heading : data.heading, 
-                description : data.description
+                image_alt_text : data.image_alt_text
+                // description : data.description
             },
             {
                 new: true, 
@@ -52,12 +59,12 @@ try{
 if(!data.image){
     return getActionFailureResponse("Image is required", "image");
 }
-if(!data.heading){
-    return getActionFailureResponse("Heading is required", "heading");
+if(!data.image_alt_text){
+    return getActionFailureResponse("alt text is required", "image_alt_text");
 }
-if(!data.description){
-    return getActionFailureResponse("Description is required", "description");
-}
+// if(!data.description){
+//     return getActionFailureResponse("Description is required", "description");
+// }
 const resp = await Portfolio.create(data);
 return getActionSuccessResponse(resp);
 }catch(error){

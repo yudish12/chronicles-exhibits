@@ -152,6 +152,7 @@ const AddBlogPage = () => {
             <div>
               <Label className="mb-4 block">Blog Count</Label>
               <Input
+              type="number"
                 className="rounded-sm"
                 value={singleBlog.blog_count}
                 onChange={(e) =>
@@ -160,6 +161,8 @@ const AddBlogPage = () => {
                     blog_count: e.target.value,
                   })
                 }
+                min="0"
+                step="1"
                 required
               />
             </div>

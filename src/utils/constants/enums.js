@@ -5,6 +5,7 @@ import {
   Layout,
   FileText,
   FormInput,
+  GalleryThumbnails
 } from "lucide-react";
 
 export const continents = {
@@ -43,5 +44,10 @@ export const collections = [
     slug: "form-submissions",
     name: "Form Submissions",
     icon: <FormInput color="#B0CB1F" />,
+  },
+  {
+    slug: "portfolio",
+    name: "Portfolio",
+    icon: <GalleryThumbnails color="#B0CB1F" />,
   },
 ];
