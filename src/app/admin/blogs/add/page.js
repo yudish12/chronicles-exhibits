@@ -29,6 +29,7 @@ const AddBlogPage = () => {
     meta_title: "",
     meta_description: "",
     body: "",
+    blog_count: ""
   });
 
   const handleAddSubmit = async (e) => {
@@ -50,6 +51,7 @@ const AddBlogPage = () => {
         meta_title: "",
         meta_description: "",
         body: "",
+        blog_count: ""
       });
     } catch (error) {
       console.log("error==", error);
@@ -133,6 +135,20 @@ const AddBlogPage = () => {
               />
             </div>
             <div>
+              <Label className="mb-4 block">Blog Count</Label>
+              <Input
+                className="rounded-sm"
+                value={singleBlog.blog_count}
+                onChange={(e) =>
+                  setSingleBlog({
+                    ...singleBlog,
+                    blog_count: e.target.value,
+                  })
+                }
+                required
+              />
+            </div>
+            <div>
               <Label className="mb-4 block">Short description</Label>
               <Input
                 className="rounded-sm"
@@ -146,7 +162,7 @@ const AddBlogPage = () => {
                 required
               />
             </div>
-            <div>
+            <div className="col-span-2">
               <Label className="mb-4 block">Long description</Label>
               <Input
                 className="rounded-sm"
