@@ -10,19 +10,32 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { getAllPortfolios } from "@/server/actions/portfolio";
+import { Pencil, Trash2 } from "lucide-react";
+import { deletePortfolio } from "@/server/actions/portfolio";
+import {
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+  } from "@/components/ui/dialog";
 export default function PortfolioTable() {
 const router = useRouter();
 const [portfolios, setPortfolios] = React.useState([]);
 const [loading, setLoading] = React.useState(true);
+const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
+const [deletingPortfolioId, setDeletingPortfolioId] = React.useState(null);
+
 const fetchData = async ()=>{
  try{
   const resp = await getAllPortfolios();
+  console.log("Resp" , resp)
   if(!resp.success){
     toast.error(resp.error);
     return;
@@ -40,7 +53,22 @@ if(loading){
 React.useEffect(() => {
     fetchData();
   }, []);
-
+const handleDeleteConfirm = async ()=>{
+    try {
+        const resp = await deletePortfolio(deletingBlogId);
+        if (!resp.success) {
+          toast.error(resp.error);
+          return;
+        }
+        setPortfolios((prevPortfolios) =>
+            prevPortfolios.filter((portfolio) => portfolio._id !== deletingPortfolioId)
+        );
+        toast.success("Portfolio deleted successfully");
+        setIsDeleteDialogOpen(false);
+      } catch (error) {
+        toast.error("Failed to delete blog");
+      }
+}
     return (
         <div className="container bg-border overflow-auto mx-auto p-8">
         <Card className="flex justify-between items-center bg-white p-4">
@@ -76,10 +104,11 @@ React.useEffect(() => {
                   <TableCell>{portfolio.image_alt_text}</TableCell>
                   <TableCell className="text-right">
                     <Button
+                      className="mr-2"
                       variant="outline"
                       size="icon"
                       onClick={() => {
-                        router.push(`/admin/portfolios/edit/${portfolio._id}`);
+                        router.push(`/admin/portfolio/edit/${portfolio._id}`);
                       }}
                     >
                       <Pencil className="h-4 w-4" />
@@ -89,7 +118,7 @@ React.useEffect(() => {
                       variant="outline"
                       size="icon"
                       onClick={() => {
-                        setDeletingBlogId(portfolio._id);
+                        setDeletingPortfolioId(portfolio._id);
                         setIsDeleteDialogOpen(true);
                       }}
                     >
@@ -102,6 +131,29 @@ React.useEffect(() => {
             </TableBody>
           </Table>
         </Card>
+        {/* delete dialog */}
+        <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Delete Blog</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to delete this blog? This action cannot be
+              undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={handleDeleteConfirm}>
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
       </div>
     )
 }

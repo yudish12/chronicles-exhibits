@@ -29,7 +29,7 @@ const AddPortfolioPage = () => {
         toast.error("Failed to add blog");
     }
     
-    // Add your form submission logic here
+   
   };
 
   return (
@@ -84,7 +84,7 @@ const AddPortfolioPage = () => {
             </div>
           </CardContent>
         </Card>
-        <Button type="submit" className="mt-4">
+        <Button type="submit" className="mt-4 hover:bg-secondary hover:text-white bg-secondary text-white">
           Submit
         </Button>
       </form>

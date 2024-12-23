@@ -6,7 +6,14 @@ import mongoose from "mongoose";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 
 await dbConnect();
-
+export const findPortfolioById = async (id) =>{
+    try{
+    const data = await Portfolio.find({_id : id}).lean();
+    return getActionSuccessResponse(data);
+    }catch(error){
+        return getActionFailureResponse(error, "toast");
+    }
+}
 export const getAllPortfolios = async () => {
     try {
       const data = await Portfolio.find().lean();
@@ -28,8 +35,8 @@ export const updateAllPortfolios = async(id , data)=>{
             id, 
             {
                 image : data.image , 
-                heading : data.heading, 
-                description : data.description
+                image_alt_text : data.image_alt_text
+                // description : data.description
             },
             {
                 new: true, 
