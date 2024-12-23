@@ -20,7 +20,7 @@ export const DiamondSvg = () => {
 
 const TradeShowSection = ({ size }) => {
   return (
-    <div className="bg-[#FFF7F1] py-12 px-8 md:px-20 lg:px-32">
+    <div className="bg-white py-12 px-8 md:px-20 lg:px-32">
       {/* Section 1 */}
       <section className="py-10 text-secondary">
         <h2 className="text-2xl md:text-3xl font-bold heading-font text-secondary mb-4">

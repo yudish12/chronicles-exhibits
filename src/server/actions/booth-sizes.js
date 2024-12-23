@@ -15,14 +15,14 @@ export const getAllBoothSizes = async () => {
     return getActionFailureResponse(error, "toast");
   }
 };
-export const getBoothSizeByName = async (name)=>{
-try{
-  const data = await BoothSize.find({name}).lean();
-  return getActionSuccessResponse(data);
-}catch(error){
-  return getActionFailureResponse(error, "toast");  
-}
-}
+export const getBoothSizeByName = async (name) => {
+  try {
+    const data = await BoothSize.find({ name }).lean();
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
 export const updateData = async (id, data) => {
   try {
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
@@ -55,8 +55,8 @@ export const addData = async (data) => {
       return getActionFailureResponse("Name is required", "name");
     }
 
-    if (!data.description) {
-      return getActionFailureResponse("Description is required", "description");
+    if (!data.image) {
+      return getActionFailureResponse("Image is required", "image");
     }
 
     const resp = await BoothSize.create(data);
@@ -82,5 +82,14 @@ export const deleteData = async (id) => {
   } catch (error) {
     console.error("Error deleting data:", error);
     return getActionFailureResponse(error.message, "toast");
+  }
+};
+
+export const getSingleBoothSize = async (query) => {
+  try {
+    const data = await BoothSize.findOne(query).lean();
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
   }
 };

@@ -9,18 +9,26 @@ import BoothGrid from "./_components/AllBooths";
 import RequestDesign from "./_components/RequestDesign";
 import TradeShowSection from "./_components/TradeShowSection";
 import { getBoothSizeByName } from "@/server/actions/booth-sizes";
-import { getAllData } from "@/server/actions/booths";
-import { BoothDetails } from "../../code/[booth_code]/_components/BoothDetails";
+import { getAllData, getBoothsBySize } from "@/server/actions/booths";
+
+export const generateMetadata = async ({ params }) => {
+  const resolvedParams = await params;
+  const boothSize = resolvedParams.booth_size;
+
+  const { data } = await getBoothSizeByName(boothSize);
+  return {
+    title: data?.meta_title || "Default Title",
+    description: data?.meta_description || "Default Description",
+  };
+};
+
 async function FeaturedPage({ params }) {
   const resolvedParams = await params;
   const boothSize = resolvedParams.booth_size;
   console.log("==boothsize==", boothSize);
   const data = await getBoothSizeByName(boothSize);
-  const booth = await getAllData();
-  console.log("==booth data ", booth);
-  let booths = booth.data?.filter(
-    (booth) => booth.boothSize.name === boothSize
-  );
+  const booths = await getBoothsBySize(data.data._id);
+
   console.log("data", booths);
   return (
     <>

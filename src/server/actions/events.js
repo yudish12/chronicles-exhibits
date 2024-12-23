@@ -75,10 +75,6 @@ export const addData = async (data) => {
       return getActionFailureResponse("End date is required", "description");
     }
 
-    if (!data.location_id) {
-      return getActionFailureResponse("Location is required", "description");
-    }
-
     const resp = await events.create(data);
     console.log("added data ", resp);
     return getActionSuccessResponse(resp);

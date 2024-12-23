@@ -5,10 +5,10 @@ const boothSizesSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description: {
-    type: String,
-    required: true,
-  },
+  image: String,
+  image_alt_text: String,
+  meta_title: String,
+  meta_description: String,
 });
 
 const BoothSize =

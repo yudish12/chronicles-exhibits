@@ -18,6 +18,14 @@ import {
   updateData,
   deleteData,
 } from "@/server/actions/events";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 import { Pencil, Trash2 } from "lucide-react";
@@ -75,16 +83,33 @@ export default function Events() {
     router.push(`/admin/events/edit/${event._id}`);
   };
 
+  const handleDelete = (id) => {
+    setDeletingEventId(id);
+    setIsDeleteDialogOpen(true);
+  };
+  const handleDeleteConfirm = async () => {
+    const resp = await deleteData(deletingEventId);
+    if (!resp.success) {
+      toast.error(resp.err);
+      return;
+    }
+    const updatedEvents = events.filter(
+      (event) => event._id !== deletingEventId
+    );
+    setEvents(updatedEvents);
+    setIsDeleteDialogOpen(false);
+  };
+
   const getEventStatus = (start_date, end_date) => {
     const today = new Date();
     const startDate = new Date(start_date);
     const endDate = new Date(end_date);
     if (today > startDate && today < endDate) {
-      return { text: "Upcoming", color: "bg-green-700" };
+      return { text: "Ongoing", color: "bg-amber-700" };
     } else if (today > endDate) {
       return { text: "Expired", color: "bg-red-600" };
     } else {
-      return { text: "Ongoing", color: "bg-amber-600" };
+      return { text: "Upcoming", color: "bg-green-600" };
     }
   };
 
@@ -179,6 +204,32 @@ export default function Events() {
           </TableBody>
         </Table>
       </Card>
+      {/* Delete Dialog */}
+      <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Confirm Deletion</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to delete this event? This action cannot be
+              undone.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsDeleteDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => handleDeleteConfirm(singleEvent?._id)}
+            >
+              Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

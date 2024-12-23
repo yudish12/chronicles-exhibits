@@ -17,6 +17,7 @@ import {
   SelectTrigger,
 } from "@/components/ui/select";
 import { majorExhibitingCities } from "../../cities";
+import { Trash2 } from "lucide-react";
 
 const AddEventPage = () => {
   const [singleEvent, setSingleEvent] = React.useState({
@@ -116,12 +117,22 @@ const AddEventPage = () => {
             <div>
               <Label className="mb-4 block">City</Label>
               <Select
-                onChange={(e) => setSingleEvent({ ...singleEvent, city: e })}
+                value={singleEvent?.city || ""}
+                onValueChange={(value) => {
+                  console.log(value);
+                  setSingleEvent({
+                    ...singleEvent,
+                    city: value,
+                  });
+                }}
+                required
               >
-                <SelectTrigger>Select a city</SelectTrigger>
+                <SelectTrigger className="col-span-3">
+                  {!singleEvent.city ? "Select a city" : singleEvent.city}
+                </SelectTrigger>
                 <SelectContent>
-                  {majorExhibitingCities.map((city, index) => (
-                    <SelectItem key={index} value={city}>
+                  {majorExhibitingCities?.map((city) => (
+                    <SelectItem key={city} value={city}>
                       {city}
                     </SelectItem>
                   ))}
@@ -129,9 +140,8 @@ const AddEventPage = () => {
               </Select>
             </div>
             <div>
-              <Label className="mb-4 block">Icon</Label>
+              <Label>Icon</Label>
               <UploadButton
-                className="ut-label:bg-black"
                 endpoint="imageUploader"
                 onClientUploadComplete={(res) => {
                   setSingleEvent({
@@ -144,13 +154,31 @@ const AddEventPage = () => {
                   toast.error(`Upload failed: ${error.message}`)
                 }
               />
-              {singleEvent.icon && (
-                <img
-                  src={singleEvent.icon}
-                  alt="Event Icon"
-                  className="mt-2 w-16 h-16 object-cover rounded"
-                />
-              )}
+              <div className="grid grid-cols-4 gap-2">
+                {singleEvent.icon && (
+                  <div className="relative">
+                    <img
+                      src={singleEvent.icon}
+                      alt={`Gallery`}
+                      className=" object-cover rounded"
+                    />
+                    <Button
+                      variant="destructive"
+                      size="icon"
+                      className="absolute z-50 top-1 right-1 w-6 h-6"
+                      onClick={() => {
+                        deleteUTFiles([singleEvent.icon.split("/").pop()]);
+                        setEvent({
+                          ...singleEvent,
+                          icon: "",
+                        });
+                      }}
+                    >
+                      <Trash2 className="h-3 w-3" />
+                    </Button>
+                  </div>
+                )}
+              </div>
             </div>
             <div>
               <Label className="mb-4 block">Icon Alt Text</Label>

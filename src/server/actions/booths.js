@@ -28,21 +28,10 @@ export const updateData = async (id, data) => {
     }
 
     // Use findByIdAndUpdate instead of updateOne to get the updated document
-    const resp = await Booth.findByIdAndUpdate(
-      id,
-      {
-        name: data.name,
-        description: data.description,
-        code: data.code,
-        boothSize: data.boothSize,
-        main_image: data.main_image,
-        images: data.images,
-      },
-      {
-        new: true, // Return the updated document
-        runValidators: true,
-      }
-    ).lean();
+    const resp = await Booth.findByIdAndUpdate(id, data, {
+      new: true, // Return the updated document
+      runValidators: true,
+    }).lean();
 
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
@@ -135,6 +124,24 @@ export const deleteData = async (id) => {
 export const getDataByCode = async (boothCode) => {
   try {
     const data = await Booth.findOne({ booth_code: boothCode }).lean();
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
+export const findSingleBooth = async (query) => {
+  try {
+    const data = await Booth.findOne(query).lean();
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
+export const getBoothsBySize = async (boothSize) => {
+  try {
+    const data = await Booth.find({ booth_size: boothSize }).lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

@@ -19,25 +19,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  addData,
-  deleteData,
-  getAllBoothSizes,
-  updateData,
-} from "@/server/actions/booth-sizes";
+import { deleteData, getAllBoothSizes } from "@/server/actions/booth-sizes";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function BoothSizesTable() {
   const [boothSizes, setBoothSizes] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  const [singleBoothSize, setSingleBoothSize] = React.useState(null);
-  const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
-  const [isAddDialogOpen, setIsAddDialogOpen] = React.useState(false);
   const [deletingBoothSizeId, setDeletingBoothSizeId] = React.useState(null);
+
+  const router = useRouter();
 
   const getData = async () => {
     try {
@@ -59,51 +52,9 @@ export default function BoothSizesTable() {
     getData();
   }, []);
 
-  const handleEdit = (boothSize) => {
-    setIsAddDialogOpen(false);
-    setSingleBoothSize(boothSize);
-    setIsEditDialogOpen(true);
-  };
-
   const handleDelete = (id) => {
     setDeletingBoothSizeId(id);
     setIsDeleteDialogOpen(true);
-  };
-
-  const handleEditSubmit = async (e) => {
-    e.preventDefault();
-    const resp = await updateData(singleBoothSize._id, {
-      name: singleBoothSize.name,
-      description: singleBoothSize.description,
-    });
-    if (!resp.success) {
-      toast.error(resp.err);
-      return;
-    }
-
-    const updatedBoothSizes = [
-      ...boothSizes.map((boothSize) => {
-        if (boothSize._id === singleBoothSize._id) {
-          return singleBoothSize;
-        }
-        return boothSize;
-      }),
-    ];
-
-    setBoothSizes(updatedBoothSizes);
-    setIsEditDialogOpen(false);
-  };
-
-  const handleAddSubmit = async (e) => {
-    e.preventDefault();
-    const resp = await addData(singleBoothSize);
-    if (!resp.success) {
-      toast.error(resp.err);
-      return;
-    }
-    setBoothSizes([...boothSizes, resp.data]);
-    setIsAddDialogOpen(false);
-    setSingleBoothSize(null);
   };
 
   const handleDeleteConfirm = async () => {
@@ -129,9 +80,7 @@ export default function BoothSizesTable() {
         <h1 className="text-2xl font-bold mb-4">Booth Sizes</h1>
         <Button
           onClick={() => {
-            setSingleBoothSize(null);
-            setIsEditDialogOpen(false);
-            setIsAddDialogOpen(true);
+            router.push("/admin/booth-sizes/add");
           }}
         >
           Add Booth Size
@@ -142,22 +91,32 @@ export default function BoothSizesTable() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>Image</TableHead>
               <TableHead>Name</TableHead>
-              <TableHead>Description</TableHead>
+              <TableHead>Meta Title</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {boothSizes.map((boothSize) => (
               <TableRow key={boothSize.id}>
+                <TableCell>
+                  <img
+                    src={boothSize.image}
+                    alt={boothSize.image_alt_text}
+                    className="w-16 h-16 object-cover rounded"
+                  />
+                </TableCell>
                 <TableCell className="font-medium">{boothSize.name}</TableCell>
-                <TableCell>{boothSize.description}</TableCell>
+                <TableCell>{boothSize.meta_title}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => handleEdit(boothSize)}
+                      onClick={() =>
+                        router.push(`/admin/booth-sizes/edit/${boothSize._id}`)
+                      }
                     >
                       <Pencil className="h-4 w-4" />
                       <span className="sr-only">Edit {boothSize.name}</span>
@@ -177,66 +136,6 @@ export default function BoothSizesTable() {
           </TableBody>
         </Table>
       </div>
-      <Dialog
-        open={isEditDialogOpen || isAddDialogOpen}
-        onOpenChange={
-          isEditDialogOpen ? setIsEditDialogOpen : setIsAddDialogOpen
-        }
-      >
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>
-              {isEditDialogOpen ? "Edit Booth Size" : "Add Booth Size"}
-            </DialogTitle>
-            <DialogDescription>
-              {isEditDialogOpen
-                ? "Make changes to the booth size here. Click save when you&apos;re done."
-                : "Enter the details of the booth size you want to add."}
-            </DialogDescription>
-          </DialogHeader>
-          <form
-            onSubmit={isEditDialogOpen ? handleEditSubmit : handleAddSubmit}
-          >
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="name" className="text-right">
-                  Name
-                </Label>
-                <Input
-                  id="name"
-                  value={singleBoothSize?.name || ""}
-                  onChange={(e) =>
-                    setSingleBoothSize({
-                      ...singleBoothSize,
-                      name: e.target.value,
-                    })
-                  }
-                  className="col-span-3"
-                />
-              </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="description" className="text-right">
-                  Description
-                </Label>
-                <Input
-                  id="description"
-                  value={singleBoothSize?.description || ""}
-                  onChange={(e) =>
-                    setSingleBoothSize({
-                      ...singleBoothSize,
-                      description: e.target.value,
-                    })
-                  }
-                  className="col-span-3"
-                />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button type="submit">Save changes</Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
 
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
