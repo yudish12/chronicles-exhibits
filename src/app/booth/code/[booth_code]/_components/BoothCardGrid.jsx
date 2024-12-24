@@ -50,7 +50,7 @@ const BoothGrid = ({ boothCode }) => {
                 width={378}
                 src={booth.image}
                 alt={`Booth ${booth.code}`}
-                className="w-full h-full"
+                className="w-full h-[250px]"
               />
             </CardHeader>
             <CardContent className="p-4 text-center">

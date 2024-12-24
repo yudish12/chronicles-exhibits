@@ -284,7 +284,7 @@ export function BoothDetails({ boothCode, boothData }) {
   if (!boothData) return <div>No Data Found</div>;
 
   return (
-    <div className="bg-background gap-12 flex justify-center pr-16 py-7 px-40">
+    <div className="bg-background gap-12 flex justify-center pr-16 py-7 px-32">
       {/*Thumbnails */}
       <div className="flex flex-col mt-16 items-start gap-8">
         <h3 className="text-[1.4rem] text-secondary font-semibold ">
@@ -309,7 +309,7 @@ export function BoothDetails({ boothCode, boothData }) {
       </div>
 
       {/* Carousel */}
-      <div className="relative flex-[3.5_3.5_0%] mt-16 bg-[#FCF8F3] border-[1px] px-4 pt-4 pb-0">
+      <div className="relative flex-[3_3_0%] mt-16 bg-[#FCF8F3] border-[1px] px-4 pt-4 pb-0">
         <Carousel className="w-full ">
           <CarouselContent className="h-full">
             {images.map((src, index) => (

@@ -7,7 +7,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { getAllPortfolios } from "@/server/actions/portfolio";
 const Page = async () => {
-  const ourWorksData = await getAllPortfolios()
+  const ourWorksData = await getAllPortfolios();
   return (
     <>
       <SubHeader />
@@ -48,7 +48,7 @@ const Page = async () => {
                 width={400}
                 height={300}
                 className={cn(
-                  `transition-transform min-h-[300px] max-h-[450px] w-full duration-300 transform scale-110 hover:scale-125`
+                  `transition-transform h-full min-h-[300px] max-h-[450px] w-full duration-300 transform scale-110 hover:scale-125`
                 )}
                 src={item.image}
                 alt={item.image_alt_text}
