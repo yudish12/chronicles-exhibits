@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import cardData from "../../utils/constants/dev-data/product-card.json";
 import Link from "next/link";
-
+import Image from "next/image";
 const ProductCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(1);
@@ -71,10 +71,13 @@ const ProductCarousel = () => {
               className={`min-w-full md:min-w-[33.33%] max-w-full md:max-w-[33.33%] flex-shrink-0 px-2 md:px-6`}
             >
               <div className="rounded-lg h-[400px] shadow-xl overflow-hidden w-full bg-secondary flex flex-col">
-                <img
+              <Image
+                  height={75}
+                  width={100}
                   src={item.imgSrc}
                   alt={item.size}
-                  className="w-full h-[75%] object-cover"
+                  className="w-full h-full object-cover"
+                  // layout="fill" // Ensures the image covers the parent container
                 />
                 <div className="flex h-1/4 heading-font-700 bg-white flex-col justify-center items-center bg-secondary/[.94] text-secondary">
                   <p className="text-[1.65rem] font-semibold">{item.size}</p>

@@ -212,7 +212,7 @@ import {
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
+import Image from "next/image";
 const imagegroup1 = [
   "/booth-2.jpeg", // Replace with actual image URLs
   "/booth-4.jpeg",
@@ -292,7 +292,9 @@ export function BoothDetails({ boothCode, boothData }) {
         </h3>
         <div className="flex w-full flex-col gap-6">
           {images.map((src, index) => (
-            <img
+            <Image
+              width={150}
+              height={100}
               key={index}
               src={src}
               alt={`Thumbnail ${index + 1}`}

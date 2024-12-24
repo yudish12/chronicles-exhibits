@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card"; // Import Card components from shadcn
 import Link from "next/link";
-
+import Image from "next/image";
 const booths = [
   {
     id: 1,
@@ -45,10 +45,12 @@ const BoothGrid = ({ boothCode }) => {
             className="shadow-one rounded-lg overflow-hidden w-[380px]"
           >
             <CardHeader className="p-0">
-              <img
+              <Image
+                height={250}
+                width={378}
                 src={booth.image}
                 alt={`Booth ${booth.code}`}
-                className="w-full h-[250px]"
+                className="w-full h-full"
               />
             </CardHeader>
             <CardContent className="p-4 text-center">

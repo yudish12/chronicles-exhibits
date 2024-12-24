@@ -77,7 +77,7 @@ const page = () => {
               className="h-[370px] hover:scale-110 duration-300 transition-all rounded-xl shadow-one overflow-hidden w-full bg-secondary flex flex-col"
             >
               {/* Image Section */}
-              <img
+              <Image
                 src={item.imgSrc}
                 width={350}
                 height={300}

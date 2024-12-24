@@ -4,6 +4,7 @@ import { CardContent, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CardHeader } from "@/components/ui/card";
 import Link from "next/link";
+import Image from "next/image";
 const About = () => {
   return (
     <>
@@ -39,7 +40,9 @@ const About = () => {
               <Card className="h-full shadow-one rounded-xl overflow-hidden max-h-[400px] flex flex-col">
                 {/* Image */}
                 <div className="w-full h-28 sm:h-48 border-b-2 border-b-primary overflow-hidden">
-                  <img
+                  <Image
+                    height={100}
+                    width={150}
                     src="/what-we-do-1.png"
                     alt="Exhibit Display"
                     className="w-full h-full object-cover"
@@ -79,7 +82,9 @@ const About = () => {
             <div className="flex flex-col h-full">
               <Card className="h-full  shadow-one rounded-xl overflow-hidden max-h-[400px] flex flex-col">
                 <div className="w-full h-28 sm:h-48 overflow-hidden">
-                  <img
+                  <Image
+                    height={100}
+                    width={150}
                     src="/what-we-do-2.png"
                     alt="Exhibit Display"
                     className="w-full h-full object-cover"
@@ -116,7 +121,9 @@ const About = () => {
             <div className="flex flex-col h-full">
               <Card className="h-full  shadow-one rounded-xl overflow-hidden max-h-[400px] flex flex-col ">
                 <div className="w-full h-28 sm:h-48 overflow-hidden">
-                  <img
+                  <Image
+                    height={100}
+                    width={150}
                     src="/what-we-do-3.png"
                     alt="Exhibit Display"
                     className="w-full h-full object-cover"

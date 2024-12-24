@@ -5,8 +5,9 @@ import React from "react";
 import ourWorksData from "../../utils/constants/dev-data/our-works.json";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-
-const Page = () => {
+import { getAllPortfolios } from "@/server/actions/portfolio";
+const Page = async () => {
+  const ourWorksData = await getAllPortfolios()
   return (
     <>
       <SubHeader />
@@ -35,7 +36,7 @@ const Page = () => {
           your booth that is certain to bring excitement to your trade event.
         </p>
         <div className="grid grid-cols-4  mx-auto gap-x-8 place-content-center p-8 px-20 gap-y-8">
-          {ourWorksData.map((item, index) => (
+          {ourWorksData.data.map((item, index) => (
             <div
               key={index}
               className={cn(
@@ -50,7 +51,7 @@ const Page = () => {
                   `transition-transform min-h-[300px] max-h-[450px] w-full duration-300 transform scale-110 hover:scale-125`
                 )}
                 src={item.image}
-                alt={`photo-${index}`}
+                alt={item.image_alt_text}
               />
             </div>
           ))}

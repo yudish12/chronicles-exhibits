@@ -25,6 +25,7 @@ import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { Pencil, Trash2, Eye } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
+import Image from "next/image";
 export default function Blogs() {
   const router = useRouter();
   const [blogs, setBlogs] = React.useState([]);
@@ -100,10 +101,12 @@ export default function Blogs() {
             {blogs.map((blog) => (
               <TableRow key={blog._id}>
                 <TableCell>
-                  <img
+                <Image
+                    width={100}
+                    height={100}
                     src={blog.image}
                     alt={blog.title}
-                    className="w-16 h-16 object-cover rounded"
+                    className=" object-cover rounded"
                   />
                 </TableCell>
                 <TableCell>{blog.title}</TableCell>
