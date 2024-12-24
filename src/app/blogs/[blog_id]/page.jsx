@@ -68,8 +68,8 @@ const page = async ({ params }) => {
           alt="location-bg"
           className="object-cover"
         />
-        <h3 className="text-white heading-font text-[2.35rem] font-bold">
-          MAXIMIZING THE USE OF SPACE IN TRADE SHOWS
+        <h3 className="text-white text-center uppercase heading-font text-[2.35rem] font-bold">
+          {data.title}
         </h3>
       </div>
 
