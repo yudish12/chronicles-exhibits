@@ -21,11 +21,14 @@ import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import { Trash2 } from "lucide-react";
 import { deleteUTFiles } from "@/server/services/uploadthing";
 import { updateData } from "@/server/actions/booths";
+import { useRouter } from "next/navigation";
 
 const Editbooth = ({ boothData }) => {
   const [boothSizes, setBoothSizes] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [singleBooth, setsingleBooth] = React.useState(boothData);
+
+  const router = useRouter();
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +50,7 @@ const Editbooth = ({ boothData }) => {
       return;
     }
     toast.success("Booth updated successfully");
+    router.push("/admin/booths");
   };
 
   const getData = async () => {

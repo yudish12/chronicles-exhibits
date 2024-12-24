@@ -11,6 +11,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { updateData } from "@/server/actions/booth-sizes";
 import { Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 const Editboothsize = ({ singleBoothsizeData }) => {
   const [singleBoothSize, setSingleBoothSize] = React.useState({
     name: singleBoothsizeData.name,
@@ -21,6 +22,8 @@ const Editboothsize = ({ singleBoothsizeData }) => {
     meta_keywords: singleBoothsizeData.meta_keywords ?? [],
   });
 
+  const router = useRouter();
+
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -30,6 +33,7 @@ const Editboothsize = ({ singleBoothsizeData }) => {
         return;
       }
       toast.success("Booth size added successfully");
+      router.push("/admin/booth-sizes");
     } catch (error) {
       console.log("error==", error);
       toast.error("Failed to add booth size");

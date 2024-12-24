@@ -11,10 +11,11 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CkeEditor from "@/components/CkEditor";
 import { Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const EditBlog = ({ singleBlog }) => {
   const [blog, setBlog] = useState(singleBlog);
-  console.log("blog", blog);
+  const router = useRouter();
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     const resp = await updateData(blog._id, {
@@ -33,6 +34,7 @@ const EditBlog = ({ singleBlog }) => {
       return;
     }
     toast.success("Blog updated successfully");
+    router.push("/admin/blogs");
   };
 
   return (

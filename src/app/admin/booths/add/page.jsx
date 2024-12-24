@@ -22,6 +22,7 @@ import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import { Trash2 } from "lucide-react";
 import { deleteUTFiles } from "@/server/services/uploadthing";
 import { addData } from "@/server/actions/booths";
+import { useRouter } from "next/navigation";
 
 const AddBoothPage = () => {
   const [singleBooth, setsingleBooth] = React.useState({
@@ -40,6 +41,8 @@ const AddBoothPage = () => {
 
   const [boothSizes, setBoothSizes] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+
+  const router = useRouter();
 
   const getData = async () => {
     try {
@@ -83,6 +86,7 @@ const AddBoothPage = () => {
         meta_description: "",
         meta_keywords: [],
       });
+      router.push("/admin/booths");
     } catch (error) {
       toast.error("Failed to add booth");
       console.error(error);
