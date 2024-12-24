@@ -1,5 +1,6 @@
 #blog_content p {
   color: black;
+  text-align: justify;
 }
 
 #blog_content h3 {
