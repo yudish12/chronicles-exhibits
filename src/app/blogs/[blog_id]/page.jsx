@@ -35,9 +35,9 @@ const page = async ({ params }) => {
   const { data } = await getSingleBlog({ slug: blog_slug });
   console.log("==blog data==", data);
 
-  // const blogFromDb = await getAllBlogs(3);
-  // const blogsToBeMapped = blogFromDb.data;
-  // console.log(blogsToBeMapped);
+  const blogFromDb = await getAllBlogs(3);
+  const blogsToBeMapped = blogFromDb.data;
+  console.log(blogsToBeMapped);
   const relatedBlogs = [
     {
       title: "2025: BIGGEST TRADE SHOWS IN VEGAS",
@@ -102,7 +102,7 @@ const page = async ({ params }) => {
                 Related Blogs
               </h3>
               <div className="space-y-8">
-                {relatedBlogs.map((blog, index) => (
+                {blogsToBeMapped.map((blog, index) => (
                   <Card
                     key={index}
                     className="shadow-one relative h-full w-full flex flex-col justify-between"
@@ -110,7 +110,7 @@ const page = async ({ params }) => {
                     {/* Image Section */}
                     <div className="w-full border-b-2 border-primary">
                       <Image
-                        src={blog.imageUrl}
+                        src={blog.image}
                         alt={blog.title}
                         width={400}
                         height={200}
