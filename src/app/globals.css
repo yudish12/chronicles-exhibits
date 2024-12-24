@@ -116,6 +116,10 @@
   font-style: normal;
 }
 
+#packge p {
+  text-align: justify;
+}
+
 /* Tiptap Editor Styling */
 #package ul {
   list-style: none;

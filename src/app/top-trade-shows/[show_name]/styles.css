@@ -3,6 +3,7 @@
   font-size: 16px; /* text-[16px] */
   margin-top: 1rem; /* mt-4 */
   line-height: 26px; /* leading-[26px] */
+  text-align: justify;
 }
 
 /* Style for <h3> tags */

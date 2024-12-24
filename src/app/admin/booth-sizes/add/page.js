@@ -12,8 +12,11 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { addData } from "@/server/actions/booth-sizes";
 import { Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const AddBoothSizePage = () => {
+  const router = useRouter();
+
   const [singleBoothSize, setSingleBoothSize] = React.useState({
     name: "",
     image: "",
@@ -40,6 +43,7 @@ const AddBoothSizePage = () => {
         meta_description: "",
         meta_keywords: [],
       });
+      router.push("/admin/booth-sizes");
     } catch (error) {
       console.log("error==", error);
       toast.error("Failed to add booth size");

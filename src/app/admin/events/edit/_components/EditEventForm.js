@@ -21,9 +21,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { majorExhibitingCities } from "@/app/admin/cities";
 import { Trash2 } from "lucide-react";
 import { CitySearchSelect } from "@/components/ui/city-search-select";
+import { useRouter } from "next/navigation";
 const EditEventForm = ({ singleEvent, locations }) => {
   console.log(singleEvent);
   const [event, setEvent] = useState(singleEvent);
+  const router = useRouter();
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
@@ -50,6 +52,7 @@ const EditEventForm = ({ singleEvent, locations }) => {
     }
 
     toast.success("Event updated successfully");
+    router.push("/admin/events");
   };
 
   return (

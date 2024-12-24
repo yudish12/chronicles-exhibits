@@ -21,6 +21,7 @@ import { addData } from "@/server/actions/events";
 import { majorExhibitingCities } from "../../cities";
 import { Trash2 } from "lucide-react";
 import { CitySearchSelect } from "@/components/ui/city-search-select";
+import { useRouter } from "next/navigation";
 
 const AddEventPage = () => {
   const [singleEvent, setSingleEvent] = React.useState({
@@ -38,6 +39,8 @@ const AddEventPage = () => {
     meta_description: "",
     meta_keywords: [],
   });
+
+  const router = useRouter();
 
   const cities = majorExhibitingCities.map((city) => ({
     label: city,
@@ -68,6 +71,7 @@ const AddEventPage = () => {
         meta_description: "",
         meta_keywords: [],
       });
+      router.push("/admin/events");
     } catch (error) {
       toast.error("Failed to add event");
       console.error(error);

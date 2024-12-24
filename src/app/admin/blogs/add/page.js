@@ -12,9 +12,11 @@ import { toast } from "sonner";
 import { addData } from "@/server/actions/blogs";
 import CkeEditor from "@/components/CkEditor";
 import { Trash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const AddBlogPage = () => {
   const [blogs, setBlogs] = React.useState([]);
+  const router = useRouter();
   const [singleBlog, setSingleBlog] = React.useState({
     title: "",
     image: "",
@@ -47,6 +49,7 @@ const AddBlogPage = () => {
         body: "",
         blog_count: "",
       });
+      router.push("/admin/blogs");
     } catch (error) {
       console.log("error==", error);
       toast.error("Failed to add blog");
@@ -235,7 +238,7 @@ const AddBlogPage = () => {
             variant="outline"
             className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
           >
-            Add Blog
+            Create Blog
           </Button>
           <Button
             variant="outline"
