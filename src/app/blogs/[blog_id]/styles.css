@@ -6,3 +6,27 @@
   color: black;
   font-weight: 700;
 }
+
+#blog_content ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* Style for <li> tags */
+#blog_content li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+#blog_content li:before {
+  content: "◆";
+  font-size: 21px;
+  padding-right: 10px;
+  color: #b0cb1f;
+}
+
+/* Style for <div> inside <li> (DiamondSvg container) */
+#blog_content li > div {
+  margin-top: 0.25rem; /* mt-1 */
+}
