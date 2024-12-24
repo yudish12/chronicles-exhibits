@@ -309,7 +309,7 @@ export function BoothDetails({ boothCode, boothData }) {
       </div>
 
       {/* Carousel */}
-      <div className="relative col-span-2 bborder-[1px] mt-16 bg-[#FCF8F3] border-[1px] px-4 pt-4 pb-0">
+      <div className="relative flex-[3.5_3.5_0%] mt-16 bg-[#FCF8F3] border-[1px] px-4 pt-4 pb-0">
         <Carousel className="w-full ">
           <CarouselContent className="h-full">
             {images.map((src, index) => (
@@ -321,7 +321,9 @@ export function BoothDetails({ boothCode, boothData }) {
                 )}
               >
                 <Card className="w-full h-full rounded-none">
-                  <img
+                  <Image
+                    width={1100}
+                    height={1000}
                     src={src}
                     alt={`Carousel ${index + 1}`}
                     className="w-full h-full object-cover rounded-none"
@@ -409,7 +411,7 @@ export function BoothDetails({ boothCode, boothData }) {
       </div>
 
       {/* Details */}
-      <ul className="flex flex-col gap-2 text-secondary">
+      <ul className="flex flex-1 flex-col gap-2 text-secondary">
         <div className="flex gap-3 mb-8 text-primary underline font-semibold text-sm">
           <span>Home/</span>
           <span>Booth By Size/</span>
