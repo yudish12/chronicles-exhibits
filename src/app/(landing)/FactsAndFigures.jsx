@@ -1,13 +1,13 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-
+import Image from "next/image";
 const data = [
   {
     id: 1,
-    iconImage: "./Pin.svg", // Replace with actual icons
+    iconImage: "/icons/Pin.svg",
     number: "2931",
     text: "Projects Completed",
-    hoverIconImage: "./Globe.svg",
+    hoverIconImage: "/icons/Globe.svg",
     hoverNumber: "91",
     hoverText: "Locations Served",
     bgColor: "bg-white",
@@ -15,10 +15,10 @@ const data = [
   },
   {
     id: 2,
-    iconImage: "./Heart.svg",
+    iconImage: "/icons/Heart.svg",
     number: "3717",
     text: "Trusted Partners",
-    hoverIconImage: "./Person.svg",
+    hoverIconImage: "/icons/Person.svg",
     hoverNumber: "250",
     hoverText: "Expert Crew Members",
     bgColor: "bg-white",
@@ -26,10 +26,10 @@ const data = [
   },
   {
     id: 3,
-    iconImage: "./Star.svg",
+    iconImage: "/icons/Star.svg",
     number: "9182",
     text: "Featured Trade Shows",
-    hoverIconImage: "./Gift.svg",
+    hoverIconImage: "/icons/Gift.svg",
     hoverNumber: "25",
     hoverText: "Services Offered",
     bgColor: "bg-white",
@@ -37,10 +37,10 @@ const data = [
   },
   {
     id: 4,
-    iconImage: "./Fire.svg",
+    iconImage: "/icons/Fire.svg",
     number: "10382",
     text: "Booths Designed",
-    hoverIconImage: "./Like.png",
+    hoverIconImage: "/icons/Like.png",
     hoverNumber: "3540",
     hoverText: "Recommendations",
     bgColor: "bg-white",
@@ -63,12 +63,16 @@ const FactsAndFigures = () => {
           >
             <CardContent className="flex flex-col justify-center items-center  text-center h-full">
               <div className="text-3xl transition-all duration-300 pt-8 ">
-                <img
+                <Image
+                  width={100}
+                  height={100}
                   alt="hover icon"
                   src={item.hoverIconImage}
                   className="w-12 h-12 hidden pt-2 group-hover:block"
                 />
-                <img
+                <Image
+                  width={100}
+                  height={100}
                   alt="icon"
                   src={item.iconImage}
                   className="w-12 h-12 block pt-2 group-hover:hidden"

@@ -212,7 +212,7 @@ import {
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
+import Image from "next/image";
 const imagegroup1 = [
   "/booth-2.jpeg", // Replace with actual image URLs
   "/booth-4.jpeg",
@@ -284,7 +284,7 @@ export function BoothDetails({ boothCode, boothData }) {
   if (!boothData) return <div>No Data Found</div>;
 
   return (
-    <div className="bg-background gap-12 flex justify-center pr-16 py-7 px-40">
+    <div className="bg-background gap-12 flex justify-center pr-16 py-7 px-32">
       {/*Thumbnails */}
       <div className="flex flex-col mt-16 items-start gap-8">
         <h3 className="text-[1.4rem] text-secondary font-semibold ">
@@ -292,7 +292,9 @@ export function BoothDetails({ boothCode, boothData }) {
         </h3>
         <div className="flex w-full flex-col gap-6">
           {images.map((src, index) => (
-            <img
+            <Image
+              width={150}
+              height={100}
               key={index}
               src={src}
               alt={`Thumbnail ${index + 1}`}
@@ -307,7 +309,7 @@ export function BoothDetails({ boothCode, boothData }) {
       </div>
 
       {/* Carousel */}
-      <div className="relative col-span-2 bborder-[1px] mt-16 bg-[#FCF8F3] border-[1px] px-4 pt-4 pb-0">
+      <div className="relative flex-[3_3_0%] mt-16 bg-[#FCF8F3] border-[1px] px-4 pt-4 pb-0">
         <Carousel className="w-full ">
           <CarouselContent className="h-full">
             {images.map((src, index) => (
@@ -319,7 +321,9 @@ export function BoothDetails({ boothCode, boothData }) {
                 )}
               >
                 <Card className="w-full h-full rounded-none">
-                  <img
+                  <Image
+                    width={1100}
+                    height={1000}
                     src={src}
                     alt={`Carousel ${index + 1}`}
                     className="w-full h-full object-cover rounded-none"
@@ -407,7 +411,7 @@ export function BoothDetails({ boothCode, boothData }) {
       </div>
 
       {/* Details */}
-      <ul className="flex flex-col gap-2 text-secondary">
+      <ul className="flex flex-1 flex-col gap-2 text-secondary">
         <div className="flex gap-3 mb-8 text-primary underline font-semibold text-sm">
           <span>Home/</span>
           <span>Booth By Size/</span>

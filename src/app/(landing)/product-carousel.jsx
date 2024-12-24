@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import cardData from "../../utils/constants/dev-data/product-card.json";
 import Link from "next/link";
-
+import Image from "next/image";
 const ProductCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(1);
@@ -20,9 +20,7 @@ const ProductCarousel = () => {
 
   const handleNext = () => {
     setActiveIndex((prevIndex) =>
-      prevIndex + visibleCards >= cardData.length
-        ? 0
-        : prevIndex + visibleCards
+      prevIndex + visibleCards >= cardData.length ? 0 : prevIndex + visibleCards
     );
   };
 
@@ -71,10 +69,13 @@ const ProductCarousel = () => {
               className={`min-w-full md:min-w-[33.33%] max-w-full md:max-w-[33.33%] flex-shrink-0 px-2 md:px-6`}
             >
               <div className="rounded-lg h-[400px] shadow-xl overflow-hidden w-full bg-secondary flex flex-col">
-                <img
+                <Image
                   src={item.imgSrc}
+                  width={350}
+                  height={300}
                   alt={item.size}
-                  className="w-full h-[75%] object-cover"
+                  className="w-full h-3/4 object-cover"
+                  // layout="fill" // Ensures the image covers the parent container
                 />
                 <div className="flex h-1/4 heading-font-700 bg-white flex-col justify-center items-center bg-secondary/[.94] text-secondary">
                   <p className="text-[1.65rem] font-semibold">{item.size}</p>
@@ -95,10 +96,11 @@ const ProductCarousel = () => {
             <div
               key={slideIndex}
               onClick={() => handleDotClick(slideIndex)}
-              className={`w-[10px] h-[10px] rounded-full cursor-pointer ${slideIndex === Math.floor(activeIndex / visibleCards)
-                ? "bg-white"
-                : "bg-gray-400"
-                }`}
+              className={`w-[10px] h-[10px] rounded-full cursor-pointer ${
+                slideIndex === Math.floor(activeIndex / visibleCards)
+                  ? "bg-white"
+                  : "bg-gray-400"
+              }`}
             ></div>
           )
         )}
