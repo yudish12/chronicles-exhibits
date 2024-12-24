@@ -35,7 +35,7 @@ const page = async ({ params }) => {
   const { data } = await getSingleBlog({ slug: blog_slug });
   console.log("==blog data==", data);
 
-  const blogFromDb = await getAllBlogs();
+  const blogFromDb = await getAllBlogs(3);
   const blogsToBeMapped = blogFromDb.data.slice(0, 3);
   console.log("==blog from db ==", blogFromDb);
   const relatedBlogs = [
@@ -125,7 +125,7 @@ const page = async ({ params }) => {
                       </CardTitle>
                       <Link
                         className="self-center mt-2 h-full"
-                        href={`/blog/${index}`}
+                        href={`/blog/${blog.slug}`}
                       >
                         <Button className="bg-white border-2 border-secondary text-secondary font-bold hover:bg-secondary hover:text-white">
                           Read More

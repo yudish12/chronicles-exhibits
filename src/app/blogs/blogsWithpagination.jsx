@@ -5,14 +5,12 @@ import React, { useState } from "react";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Pagination } from "./_components/Pagination";
-import { useRouter } from "next/navigation";
 
 const BlogsPagination = ({ blogs }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6; // Number of blogs per page
   const totalPages = Math.ceil(blogs.length / itemsPerPage);
 
-  const router = useRouter();
   // Slice the blogs array to get the items for the current page
   const paginatedBlogs = blogs.slice(
     (currentPage - 1) * itemsPerPage,
@@ -80,13 +78,14 @@ const BlogsPagination = ({ blogs }) => {
                   experience and an excellent team
                 </CardDescription>
                 <div className="mt-4">
-                  <Button
-                    onClick={() => router.push(`/blogs/${blog.slug}`)}
-                    variant="outline"
-                    className="text-secondary font-bold bg-transparent border-2 border-secondary hover:bg-secondary hover:text-white"
-                  >
-                    Read More
-                  </Button>
+                  <Link href={`/blogs/${blog.slug}`}>
+                    <Button
+                      variant="outline"
+                      className="text-secondary font-bold bg-transparent border-2 border-secondary hover:bg-secondary hover:text-white"
+                    >
+                      Read More
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </Card>

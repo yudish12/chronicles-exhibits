@@ -7,10 +7,12 @@ import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 
 // await dbConnect();
 
-export const getAllBlogs = async () => {
+export const getAllBlogs = async (limit) => {
   try {
     await dbConnect();
-    const data = await Blog.find().lean();
+    const data = await Blog.find()
+      .limit(limit ?? 10)
+      .lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

@@ -13,7 +13,7 @@ import { getAllData } from "@/server/actions/events";
 
 const Page = async () => {
   let tradeShows = await getAllData();
-  console.log("==trade shows ==" , tradeShows)
+  console.log("==trade shows ==", tradeShows);
   return (
     <>
       <SubHeader />
@@ -67,7 +67,10 @@ const Page = async () => {
               <div className="flex flex-col gap-2 w-full px-4">
                 <p className="flex gap-4">
                   <MapPin color="#B0CB1F" />
-                  <span className="text-[16px]">{show?.location_id?.city?? show.city},{show?.location_id?.continent?? show.country} </span>
+                  <span className="text-[16px]">
+                    {show?.location_id?.city ?? show.city},
+                    {show?.location_id?.continent ?? show.country}{" "}
+                  </span>
                 </p>
                 <p className="flex  gap-4">
                   <Calendar color="#B0CB1F" />
@@ -79,7 +82,7 @@ const Page = async () => {
                   </span>
                 </p>
               </div>
-              <Link className="w-full" href={"/trade-show"}>
+              <Link className="w-full" href={`/top-trade-shows/${show.slug}`}>
                 <Button
                   variant="outline"
                   className="text-secondary w-full hover:bg-secondary hover:text-white border-secondary border-2 bg-transparent font-semibold py-[18px] text-[16px]"
