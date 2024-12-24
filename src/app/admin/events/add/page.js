@@ -126,7 +126,7 @@ const AddEventPage = () => {
             </div>
             <div>
               <Label className="mb-4 block">City</Label>
-              {/* <Select
+              <Select
                 value={singleEvent?.city || ""}
                 onValueChange={(value) => {
                   console.log(value);
@@ -147,8 +147,7 @@ const AddEventPage = () => {
                     </SelectItem>
                   ))}
                 </SelectContent>
-              </Select> */}
-              <CommandSearch commands={cities} />
+              </Select>
             </div>
             <div>
               <Label>Icon</Label>
