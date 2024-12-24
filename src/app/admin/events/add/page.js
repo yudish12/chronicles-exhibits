@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/select";
 import { majorExhibitingCities } from "../../cities";
 import { Trash2 } from "lucide-react";
+import CommandSearch from "@/components/ui/CommandSearch";
 
 const AddEventPage = () => {
   const [singleEvent, setSingleEvent] = React.useState({
@@ -37,6 +38,11 @@ const AddEventPage = () => {
     meta_description: "",
     meta_keywords: [],
   });
+
+  const cities = majorExhibitingCities.map((city) => ({
+    label: city,
+    value: city,
+  }));
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
@@ -120,7 +126,7 @@ const AddEventPage = () => {
             </div>
             <div>
               <Label className="mb-4 block">City</Label>
-              <Select
+              {/* <Select
                 value={singleEvent?.city || ""}
                 onValueChange={(value) => {
                   console.log(value);
@@ -135,13 +141,14 @@ const AddEventPage = () => {
                   {!singleEvent.city ? "Select a city" : singleEvent.city}
                 </SelectTrigger>
                 <SelectContent>
-                  {majorExhibitingCities?.map((city) => (
+                  {cities?.map((city) => (
                     <SelectItem key={city} value={city}>
                       {city}
                     </SelectItem>
                   ))}
                 </SelectContent>
-              </Select>
+              </Select> */}
+              <CommandSearch commands={cities} />
             </div>
             <div>
               <Label>Icon</Label>
@@ -185,7 +192,7 @@ const AddEventPage = () => {
               </div>
             </div>
             <div>
-              <Label className="mb-4 block">Icon Alt Text</Label>
+              <Label className="mb-[4px] block">Icon Alt Text</Label>
               <Input
                 className="rounded-sm"
                 value={singleEvent.icon_alt_text}
