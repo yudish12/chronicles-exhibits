@@ -36,8 +36,8 @@ const page = async ({ params }) => {
   console.log("==blog data==", data);
 
   const blogFromDb = await getAllBlogs(3);
-  const blogsToBeMapped = blogFromDb.data.slice(0, 3);
-  console.log("==blog from db ==", blogFromDb);
+  const blogsToBeMapped = blogFromDb.data;
+  console.log(blogsToBeMapped);
   const relatedBlogs = [
     {
       title: "2025: BIGGEST TRADE SHOWS IN VEGAS",
