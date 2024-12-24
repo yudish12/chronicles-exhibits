@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/dialog";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
-import { Pencil, Trash2 } from "lucide-react";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 export default function Events() {
@@ -176,6 +176,16 @@ export default function Events() {
                 </TableCell>
                 <TableCell className="text-center">
                   <div className="flex mx-auto justify-center space-x-2">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() =>
+                        router.push(`/top-trade-shows/${event.slug}`)
+                      }
+                    >
+                      <Eye className="h-4 w-4" />
+                      <span className="sr-only">View {event.event_name}</span>
+                    </Button>
                     <Button
                       variant="outline"
                       size="icon"
