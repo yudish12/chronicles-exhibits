@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Pencil, Trash2 } from "lucide-react";
+import { Eye, Pencil, Trash2 } from "lucide-react";
 import { deleteData, getAllData } from "@/server/actions/booths";
 import {
   Dialog,
@@ -124,6 +124,16 @@ export default function BoothTable() {
                 <TableCell>{booth.slug}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() =>
+                        router.push(`/booth/code/${booth.booth_code}`)
+                      }
+                    >
+                      <Eye className="h-4 w-4" />
+                      <span className="sr-only">View {booth.booth_code}</span>
+                    </Button>
                     <Button
                       variant="outline"
                       size="icon"

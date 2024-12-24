@@ -113,7 +113,7 @@ export default function Blogs() {
                     <Button
                       variant="outline"
                       size="icon"
-                      onClick={() => toast.info(blog.long_description)}
+                      onClick={() => router.push(`/blogs/${blog.slug}`)}
                     >
                       <Eye className="h-4 w-4" />
                       <span className="sr-only">View {blog.title}</span>
