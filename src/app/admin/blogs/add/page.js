@@ -220,7 +220,7 @@ const AddBlogPage = () => {
             <div>
               <Label className="mb-4 block">Meta Keywords</Label>
               <TagsInput
-                value={singleBlog.meta_keywords}
+                value={singleBlog.meta_keywords ?? []}
                 onChange={(e) =>
                   setSingleBlog({ ...singleBlog, meta_keywords: e })
                 }

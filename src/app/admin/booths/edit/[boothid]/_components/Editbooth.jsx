@@ -309,7 +309,7 @@ const Editbooth = ({ boothData }) => {
             <div>
               <Label className="mb-4 block">Meta Keywords</Label>
               <TagsInput
-                value={singleBooth.meta_keywords}
+                value={singleBooth.meta_keywords ?? []}
                 onChange={(e) =>
                   setsingleBooth({ ...singleBooth, meta_keywords: e })
                 }

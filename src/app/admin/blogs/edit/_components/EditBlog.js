@@ -179,7 +179,7 @@ const EditBlog = ({ singleBlog }) => {
           <div>
             <Label className="mb-4 block">Meta Keywords</Label>
             <TagsInput
-              value={blog.meta_keywords}
+              value={blog.meta_keywords ?? []}
               onChange={(e) => setBlog({ ...blog, meta_keywords: e })}
             />
           </div>

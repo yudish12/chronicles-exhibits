@@ -20,6 +20,7 @@ import CKEditorDemo from "@/components/CkEditor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { majorExhibitingCities } from "@/app/admin/cities";
 import { Trash2 } from "lucide-react";
+import { CitySearchSelect } from "@/components/ui/city-search-select";
 const EditEventForm = ({ singleEvent, locations }) => {
   console.log(singleEvent);
   const [event, setEvent] = useState(singleEvent);
@@ -98,28 +99,21 @@ const EditEventForm = ({ singleEvent, locations }) => {
           </div>
           <div>
             <Label className="mb-4 block">City</Label>
-            <Select
+            <CitySearchSelect
+              className="w-full"
               value={event?.city || ""}
-              onValueChange={(value) => {
+              changeValue={(value) => {
                 console.log(value);
                 setEvent({
                   ...event,
                   city: value,
                 });
               }}
-              required
-            >
-              <SelectTrigger className="col-span-3">
-                {!event.city ? "Select a city" : event.city}
-              </SelectTrigger>
-              <SelectContent>
-                {majorExhibitingCities?.map((city) => (
-                  <SelectItem key={city} value={city}>
-                    {city}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              cities={majorExhibitingCities.map((city) => ({
+                label: city,
+                value: city,
+              }))}
+            />
           </div>
           <div>
             <Label>Icon</Label>
@@ -252,7 +246,7 @@ const EditEventForm = ({ singleEvent, locations }) => {
           <div>
             <Label className="mb-4 block">Meta Keywords</Label>
             <TagsInput
-              value={event.meta_keywords}
+              value={event?.meta_keywords ?? []}
               onChange={(e) => setEvent({ ...event, meta_keywords: e })}
             />
           </div>

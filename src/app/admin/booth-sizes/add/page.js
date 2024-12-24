@@ -177,7 +177,7 @@ const AddBoothSizePage = () => {
             <div>
               <Label className="mb-4 block">Meta Keywords</Label>
               <TagsInput
-                value={singleBoothSize.meta_keywords}
+                value={singleBoothSize.meta_keywords ?? []}
                 onChange={(e) =>
                   setSingleBoothSize({ ...singleBoothSize, meta_keywords: e })
                 }

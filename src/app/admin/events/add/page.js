@@ -12,15 +12,15 @@ import "react-tagsinput/react-tagsinput.css";
 import { toast } from "sonner";
 import CkeEditor from "@/components/CkEditor";
 import { addData } from "@/server/actions/events";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from "@/components/ui/select";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+// } from "@/components/ui/select";
 import { majorExhibitingCities } from "../../cities";
 import { Trash2 } from "lucide-react";
-import CommandSearch from "@/components/ui/CommandSearch";
+import { CitySearchSelect } from "@/components/ui/city-search-select";
 
 const AddEventPage = () => {
   const [singleEvent, setSingleEvent] = React.useState({
@@ -126,28 +126,21 @@ const AddEventPage = () => {
             </div>
             <div>
               <Label className="mb-4 block">City</Label>
-              <Select
+              <CitySearchSelect
+                className="w-full"
                 value={singleEvent?.city || ""}
-                onValueChange={(value) => {
+                changeValue={(value) => {
                   console.log(value);
                   setSingleEvent({
                     ...singleEvent,
                     city: value,
                   });
                 }}
-                required
-              >
-                <SelectTrigger className="col-span-3">
-                  {!singleEvent.city ? "Select a city" : singleEvent.city}
-                </SelectTrigger>
-                <SelectContent>
-                  {cities?.map((city) => (
-                    <SelectItem key={city} value={city}>
-                      {city}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                cities={majorExhibitingCities.map((city) => ({
+                  label: city,
+                  value: city,
+                }))}
+              />
             </div>
             <div>
               <Label>Icon</Label>
