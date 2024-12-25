@@ -109,6 +109,22 @@
     font-smooth: never;
   }
 }
+/* Custom styles for PhoneInput */
+/* .react-tel-input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.react-tel-input input {
+  border: 1px solid hsl(var(--secondary) / 0.7);
+  color: hsl(var(--secondary));
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.react-tel-input .flag-dropdown {
+  border: 1px solid hsl(var(--secondary) / 0.7);
+} */
 
 .funnel-sans {
   font-family: "Funnel Sans", sans-serif;
