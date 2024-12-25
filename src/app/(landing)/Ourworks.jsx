@@ -34,7 +34,7 @@ const Ourworks = async () => {
               height={300}
               className="transition-transform w-full h-full duration-300 transform hover:scale-110"
               src={item.image}
-              alt={item.image_alt_text}
+              alt={item.image_alt_text ?? "default"}
             />
           </div>
         ))}

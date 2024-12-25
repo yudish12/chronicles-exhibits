@@ -4,7 +4,7 @@ import { UploadThingError } from "uploadthing/server";
 const f = createUploadthing();
 
 export const ourFileRouter = {
-  imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 10 } })
+  imageUploader: f({ image: { maxFileSize: "1GB", maxFileCount: 40 } })
     .middleware(async ({ req }) => {
       const authToken = req.cookies.get("authorization");
       console.log(authToken);
