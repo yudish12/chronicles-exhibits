@@ -10,7 +10,7 @@ import Ourworks from "./(landing)/Ourworks";
 import FactsAndFigures from "./(landing)/FactsAndFigures";
 import Queryform from "./(landing)/Queryform";
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <SubHeader />

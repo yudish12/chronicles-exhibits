@@ -3,12 +3,15 @@ import Header from "@/components/ui/header";
 import SubHeader from "@/components/ui/sub-header";
 import Image from "next/image";
 import React from "react";
-import cardData from "../../utils/constants/dev-data/product-card.json";
 import Accordion from "./_components/Accordion";
 import accData from "../../utils/constants/dev-data/booth-design-accordion.json";
 import Link from "next/link";
+import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 
-const page = () => {
+const page = async () => {
+  const boothsizes = await getAllBoothSizes();
+  const cardData = boothsizes.data;
+
   return (
     <>
       <SubHeader />
@@ -72,13 +75,13 @@ const page = () => {
         <div className="grid grid-cols-3 py-12 px-32 gap-x-12 gap-y-10">
           {cardData.map((item, index) => (
             <Link
-              href={`/booth/size/${item.size}`}
+              href={`/booth/size/${item.name}`}
               key={index}
               className="h-[370px] hover:scale-110 duration-300 transition-all rounded-xl shadow-one overflow-hidden w-full bg-secondary flex flex-col"
             >
               {/* Image Section */}
               <Image
-                src={item.imgSrc}
+                src={item.image}
                 width={350}
                 height={300}
                 alt={item.size}
@@ -86,7 +89,7 @@ const page = () => {
               />
               {/* Content Section */}
               <div className="flex h-1/4 heading-font bg-white flex-col justify-center items-center bg-secondary/[.94] text-secondary">
-                <p className=" text-[1.65rem] font-semibold">{item.size}</p>
+                <p className=" text-[1.65rem] font-semibold">{item.name}</p>
                 <p className="uppercase text-lg font-semibold">
                   trade show booth rental
                 </p>

@@ -1,6 +1,6 @@
-import React from 'react'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import React from "react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const EnquiryForm = () => {
   return (
@@ -12,18 +12,15 @@ const EnquiryForm = () => {
       </div>
       <div className="text-secondary py-4 text-center">
         <p>
-          Looking for a brilliant partner for trade show booth design and construction? 
-          There is no need to look further, <br/>put your query here now!
+          Looking for a brilliant partner for trade show booth design and
+          construction? There is no need to look further, <br />
+          put your query here now!
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 w-full sm:w-4/5">
         <Input
-          placeholder="First Name"
-          className="bg-white border-secondary placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
-        />
-        <Input
-          placeholder="Last Name"
-          className="bg-white border-secondary placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
+          placeholder="Enter your name"
+          className="bg-white border-secondary  col-span-1 sm:col-span-3 placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
         />
         <Input
           placeholder="Email ID"
@@ -54,7 +51,7 @@ const EnquiryForm = () => {
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default EnquiryForm
+export default EnquiryForm;

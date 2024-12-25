@@ -1,9 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import cardData from "../../utils/constants/dev-data/product-card.json";
 import Link from "next/link";
 import Image from "next/image";
-const ProductCarousel = () => {
+const ProductCarousel = ({ boothsizes }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(1);
 
@@ -20,14 +19,16 @@ const ProductCarousel = () => {
 
   const handleNext = () => {
     setActiveIndex((prevIndex) =>
-      prevIndex + visibleCards >= cardData.length ? 0 : prevIndex + visibleCards
+      prevIndex + visibleCards >= boothsizes.length
+        ? 0
+        : prevIndex + visibleCards
     );
   };
 
   const handlePrev = () => {
     setActiveIndex((prevIndex) =>
       prevIndex - visibleCards < 0
-        ? cardData.length - visibleCards
+        ? boothsizes.length - visibleCards
         : prevIndex - visibleCards
     );
   };
@@ -62,15 +63,15 @@ const ProductCarousel = () => {
             transform: `translateX(-${(activeIndex * 100) / visibleCards}%)`,
           }}
         >
-          {cardData.map((item, index) => (
+          {boothsizes.map((item, index) => (
             <Link
-              href={`/booth/size/${item.size}`}
+              href={`/booth/size/${item.name}`}
               key={index}
               className={`min-w-full md:min-w-[33.33%] max-w-full md:max-w-[33.33%] flex-shrink-0 px-2 md:px-6`}
             >
               <div className="rounded-lg h-[400px] shadow-xl overflow-hidden w-full bg-secondary flex flex-col">
                 <Image
-                  src={item.imgSrc}
+                  src={item.image}
                   width={350}
                   height={300}
                   alt={item.size}
@@ -78,7 +79,7 @@ const ProductCarousel = () => {
                   // layout="fill" // Ensures the image covers the parent container
                 />
                 <div className="flex h-1/4 heading-font-700 bg-white flex-col justify-center items-center bg-secondary/[.94] text-secondary">
-                  <p className="text-[1.65rem] font-semibold">{item.size}</p>
+                  <p className="text-[1.65rem] font-semibold">{item.name}</p>
                   <p className="uppercase text-lg font-semibold">
                     trade show booth rental
                   </p>
@@ -91,19 +92,19 @@ const ProductCarousel = () => {
 
       {/* Navigation */}
       <div className="hidden md:flex justify-center gap-2 mt-4">
-        {Array.from({ length: Math.ceil(cardData.length / visibleCards) }).map(
-          (_, slideIndex) => (
-            <div
-              key={slideIndex}
-              onClick={() => handleDotClick(slideIndex)}
-              className={`w-[10px] h-[10px] rounded-full cursor-pointer ${
-                slideIndex === Math.floor(activeIndex / visibleCards)
-                  ? "bg-white"
-                  : "bg-gray-400"
-              }`}
-            ></div>
-          )
-        )}
+        {Array.from({
+          length: Math.ceil(boothsizes.length / visibleCards),
+        }).map((_, slideIndex) => (
+          <div
+            key={slideIndex}
+            onClick={() => handleDotClick(slideIndex)}
+            className={`w-[10px] h-[10px] rounded-full cursor-pointer ${
+              slideIndex === Math.floor(activeIndex / visibleCards)
+                ? "bg-white"
+                : "bg-gray-400"
+            }`}
+          ></div>
+        ))}
       </div>
     </div>
   );

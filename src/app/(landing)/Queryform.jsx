@@ -14,11 +14,7 @@ const Queryform = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full sm:w-[80%] md:w-[64%]">
         <Input
           placeholder="First Name"
-          className="bg-white border-primary placeholder:text-secondary/50 border-2 text-black py-5 rounded-lg"
-        />
-        <Input
-          placeholder="Last Name"
-          className="bg-white border-primary placeholder:text-secondary/50 border-2 text-black py-5 rounded-lg"
+          className="bg-white border-primary placeholder:text-secondary/50 border-2 text-black py-5 col-span-1 sm:col-span-2 rounded-lg"
         />
         <Input
           placeholder="Email ID"

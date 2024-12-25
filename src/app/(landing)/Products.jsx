@@ -1,9 +1,10 @@
 import React from "react";
 import ProductCarousel from "./product-carousel";
-import { getAllData } from "@/server/actions/booths";
+import { getAllBoothSizes } from "@/server/actions/booth-sizes";
+
 const Products = async () => {
-  const data = await getAllData();
-  console.log(data);
+  const boothsizes = await getAllBoothSizes();
+
   return (
     <div className="product-bg w-full flex flex-col items-center py-14">
       <h1 className="text-center heading-font-700 text-white text-3xl font-bold">
@@ -17,7 +18,7 @@ const Products = async () => {
         size. All designs are fully customizable.
       </p>
 
-      <ProductCarousel />
+      <ProductCarousel boothsizes={boothsizes.data} />
     </div>
   );
 };
