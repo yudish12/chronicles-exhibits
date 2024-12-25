@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { getAllPortfolios } from "@/server/actions/portfolio";
 const Page = async () => {
   const ourWorksData = await getAllPortfolios();
+  console.log(ourWorksData);
   return (
     <>
       <SubHeader />
