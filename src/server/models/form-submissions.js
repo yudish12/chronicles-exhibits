@@ -5,19 +5,22 @@ const formSubmissionSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
+      // required: true,
     },
     email: {
       type: String,
       match: [emailRegex, "Please fill a valid email address"],
-      required: true,
+      // required: true,
     },
-    phone_number: {
+    phoneNumber: {
       type: String,
-      required: true,
-      match: [phoneRegex, "Please fill a valid phone number"],
+      // required: true,
+      // match: [phoneRegex, "Please fill a valid phone number"],
     },
-    event_name: {
+    country : {
+      type: String
+    },
+    eventName: {
       type: String,
     },
     event_city: {
@@ -31,23 +34,29 @@ const formSubmissionSchema = new mongoose.Schema(
     },
     page_source: {
       type: String,
-      required: true,
+      // required: true,
     },
-    company_name: {
+    company: {
       type: String,
     },
-    booth_size: {
+    boothSize: {
       type: String,
     },
-    exhibition_name: {
+    exhibitionName: {
       type: String,
     },
+    url : {
+      type:String
+    },
+    callDate : {
+      type : Date
+    }, 
+    callTime : {
+      type: String
+    }
   },
   { timestamps: true }
 );
 
-const formsubmissions =
-  mongoose.models.formSubmissions ||
-  mongoose.model("formsubmissions", formSubmissionSchema);
-
-export default formsubmissions;
+const FormSubmission = mongoose.models.FormSubmission || mongoose.model('FormSubmission', formSubmissionSchema);
+export default FormSubmission;
