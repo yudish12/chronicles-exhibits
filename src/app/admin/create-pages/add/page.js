@@ -154,7 +154,7 @@ const AddPage = () => {
               />
             </div>
             {singlePage.fields.map((field, index) => (
-              <div className="relative">
+              <div key={index} className="relative">
                 <Label className="mb-4 block">Enter {field.key}</Label>
                 <Input
                   className="rounded-sm"
