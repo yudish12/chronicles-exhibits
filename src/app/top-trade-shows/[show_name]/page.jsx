@@ -15,7 +15,7 @@ import Products from "@/app/(landing)/Products";
 import { DiamondSvg } from "@/app/booth/size/[booth_size]/_components/TradeShowSection";
 import { getAllData, getSingleEvent } from "@/server/actions/events";
 import Head from "next/head";
-
+import BoothSizeForm from "./_components/BoothSizeForm";
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const show_name = resolvedParams.show_name;
@@ -134,7 +134,7 @@ const Page = async ({ params }) => {
           </ul> */}
         </div>
         <div className="w-[30%] flex flex-col gap-6">
-          <div className="shadow-one h-max bg-white p-6 rounded-xl w-full">
+          {/* <div className="shadow-one h-max bg-white p-6 rounded-xl w-full">
             <p className="text-center text-secondary">
               Need exhibit displays for the ASI Show?Reach out to us for a
               hassle-free experience.
@@ -180,7 +180,8 @@ const Page = async ({ params }) => {
                 Get Quote
               </Button>
             </div>
-          </div>
+          </div> */}
+          <BoothSizeForm/>
           <div className="grid grid-cols-2 border-2 border-dashed border-secondary/70 rounded-lg">
             <div
               style={{ transitionDuration: "500ms" }}
