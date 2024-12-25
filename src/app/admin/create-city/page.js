@@ -33,7 +33,7 @@ import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { majorExhibitingCities } from "../cities";
 
-export default function citys() {
+export default function Cities() {
   const [citys, setcitys] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [singlecity, setSinglecity] = React.useState(null);
