@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { getAllBlogs, getSingleBlog } from "@/server/actions/blogs";
+import BlogForm from "../_components/BlogForm";
 
 export async function generateMetadata({ params }) {
   const blog_slug = (await params).blog_id;
@@ -138,50 +139,7 @@ const page = async ({ params }) => {
             </div>
 
             {/* Enquiry Form */}
-            <div className="mt-6 space-y-4 bg-white shadow-one p-10  rounded-lg flex flex-col justify-center items-center ">
-              <div className="w-[98%] h-full bg-[#B0CB1F] rounded-lg py-2 ">
-                <h3 className="text-2xl text-center heading-font text-secondary ">
-                  ENQUIRY FORM
-                </h3>
-              </div>
-              <form className="gap-6 w-full mt-2 pt-4 flex flex-col ">
-                <Input
-                  placeholder="Your Name"
-                  className="w-full shadow-two py-2 border-0"
-                />
-                <Input
-                  placeholder="Your Email"
-                  className="w-full shadow-two py-2 border-0"
-                />
-                <Input
-                  placeholder="Phone Number"
-                  className="w-full shadow-two py-2 border-0"
-                />
-                <Input
-                  type="file"
-                  className="w-full shadow-two py-2 border-0"
-                />
-                <Input
-                  placeholder="Event Name"
-                  className="w-full shadow-two py-2 border-0 "
-                />
-                <Input
-                  placeholder="Booth Size"
-                  className="w-full shadow-two py-2 border-0"
-                />
-                <Textarea
-                  placeholder="Tell us about your requirements"
-                  className="w-full shadow-two py-2 border-0"
-                  rows={3}
-                />
-                <Button
-                  type="submit"
-                  className=" bg-secondary hover:bg-white hover:text-secondary text-white shadow-one font-bold "
-                >
-                  View Portfolio
-                </Button>
-              </form>
-            </div>
+              <BlogForm/>
           </div>
         </div>
       </div>

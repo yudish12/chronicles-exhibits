@@ -53,6 +53,15 @@ const formSubmissionSchema = new mongoose.Schema(
     }, 
     callTime : {
       type: String
+    }, 
+    rentalQuatation : {
+      type: Boolean
+    },
+    purchaseRequest : {
+      type: Boolean
+    },
+    customizationRequest : {
+      type: Boolean
     }
   },
   { timestamps: true }
