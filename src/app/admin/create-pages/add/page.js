@@ -11,7 +11,7 @@ import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";
 import { addData } from "@/server/actions/booth-sizes";
-import { Trash2 } from "lucide-react";
+import { Trash2, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import {
@@ -27,10 +27,15 @@ const AddPage = () => {
 
   const [open, setOpen] = React.useState(false);
 
+  const [addingField, setAddingField] = React.useState({
+    key: "",
+    value: "",
+  });
+
   const [singlePage, setSinglePage] = React.useState({
     name: "",
     slug: "",
-    fields: {},
+    fields: [],
     meta_description: "",
     meta_keywords: [],
     meta_title: "",
@@ -140,7 +145,7 @@ const AddPage = () => {
                 className="rounded-sm"
                 value={singlePage.image_alt_text}
                 onChange={(e) =>
-                  setSingleBoothSize({
+                  setSinglePage({
                     ...singlePage,
                     image_alt_text: e.target.value,
                   })
@@ -148,6 +153,42 @@ const AddPage = () => {
                 required
               />
             </div>
+            {singlePage.fields.map((field, index) => (
+              <div key={index} className="relative">
+                <Label className="mb-4 block">Enter {field.key}</Label>
+                <Input
+                  className="rounded-sm"
+                  value={field.value}
+                  onChange={(e) =>
+                    setSinglePage({
+                      ...singlePage,
+                      fields: [
+                        ...singlePage.fields.slice(0, index),
+                        { ...field, value: e.target.value },
+                        ...singlePage.fields.slice(index + 1),
+                      ],
+                    })
+                  }
+                  required
+                />
+                <div
+                  onClick={() =>
+                    setSinglePage({
+                      ...singlePage,
+                      fields: [
+                        ...singlePage.fields.slice(0, index),
+                        ...singlePage.fields.slice(index + 1),
+                      ],
+                    })
+                  }
+                >
+                  <X
+                    className="top-0 cursor-pointer absolute size-5 right-0 border-red-600 border-2 rounded-full"
+                    stroke="#ff0000"
+                  />
+                </div>
+              </div>
+            ))}
             <button
               style={{ minHeight: "150px" }}
               onClick={() => setOpen(!open)}
@@ -208,6 +249,7 @@ const AddPage = () => {
                 required
               />
             </div>
+
             <div>
               <Label className="mb-4 block">Image Alt Text</Label>
               <Input
@@ -249,13 +291,10 @@ const AddPage = () => {
             <Label className="mb-4 block">Field Key</Label>
             <Input
               className="rounded-sm"
-              // value={singleBoothSize.image_alt_text}
-              // onChange={(e) =>
-              //   setSingleBoothSize({
-              //     ...singleBoothSize,
-              //     image_alt_text: e.target.value,
-              //   })
-              // }
+              value={addingField.key}
+              onChange={(e) =>
+                setAddingField({ ...addingField, key: e.target.value })
+              }
               required
             />
           </div>
@@ -263,13 +302,10 @@ const AddPage = () => {
             <Label className="mb-4 block">Field Value</Label>
             <Input
               className="rounded-sm"
-              // value={singleBoothSize.image_alt_text}
-              // onChange={(e) =>
-              //   setSingleBoothSize({
-              //     ...singleBoothSize,
-              //     image_alt_text: e.target.value,
-              //   })
-              // }
+              value={addingField.value}
+              onChange={(e) =>
+                setAddingField({ ...addingField, value: e.target.value })
+              }
               required
             />
           </div>
@@ -279,12 +315,27 @@ const AddPage = () => {
               variant="outline"
               className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
               onClick={() => {
-                set;
+                setOpen(false);
               }}
             >
               Cancel
             </Button>
-            <Button variant="destructive">Add</Button>
+            <Button
+              onClick={() => {
+                setSinglePage({
+                  ...singlePage,
+                  fields: [...singlePage.fields, addingField],
+                });
+                setAddingField({
+                  key: "",
+                  value: "",
+                });
+                setOpen(false);
+              }}
+              variant="destructive"
+            >
+              Add
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

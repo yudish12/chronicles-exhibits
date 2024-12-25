@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,28 +8,28 @@ import { toast } from "sonner";
 import { UploadButton } from "@uploadthing/react";
 import { addPortfolio } from "@/server/actions/portfolio";
 const AddPortfolioPage = () => {
-  const [singlePortfolio, setSinglePortfolio] = useState({ image: "" , image_alt_text : ""});
+  const [singlePortfolio, setSinglePortfolio] = useState({
+    image: "",
+    image_alt_text: "",
+  });
 
-  const handleAddSubmit =async  (e) => {
+  const handleAddSubmit = async (e) => {
     e.preventDefault();
-    try{
-    const resp = await addPortfolio(singlePortfolio)
-    if (!resp.success) {
+    try {
+      const resp = await addPortfolio(singlePortfolio);
+      if (!resp.success) {
         toast.error(resp.error);
         return;
       }
       toast.success("Portfolio added successfully");
       setSinglePortfolio({
-        image : "",
-        image_alt_text : ""
-      })
-
-    }catch(error){
-        console.log("error==", error);
-        toast.error("Failed to add blog");
+        image: "",
+        image_alt_text: "",
+      });
+    } catch (error) {
+      console.log("error==", error);
+      toast.error("Failed to add blog");
     }
-    
-   
   };
 
   return (
@@ -47,7 +47,7 @@ const AddPortfolioPage = () => {
             <hr className="w-[40%]" />
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-6">
-          <div className="col-span-2">
+            <div className="col-span-2">
               <Label className="mb-4 block">Image</Label>
               <UploadButton
                 endpoint="imageUploader"
@@ -71,12 +71,15 @@ const AddPortfolioPage = () => {
               )}
             </div>
             <div className="col-span-2">
-                <Label className="mb-4 block">Image Alt Text</Label>
-                <Input
+              <Label className="mb-4 block">Image Alt Text</Label>
+              <Input
                 className="rounded-sm"
                 value={singlePortfolio.image_alt_text}
                 onChange={(e) =>
-                  setSinglePortfolio({ ...singlePortfolio, image_alt_text: e.target.value })
+                  setSinglePortfolio({
+                    ...singlePortfolio,
+                    image_alt_text: e.target.value,
+                  })
                 }
                 required
                 title="No spaces, only lowercase letters and dashes"
@@ -84,7 +87,10 @@ const AddPortfolioPage = () => {
             </div>
           </CardContent>
         </Card>
-        <Button type="submit" className="mt-4 hover:bg-secondary hover:text-white bg-secondary text-white">
+        <Button
+          type="submit"
+          className="mt-4 hover:bg-secondary hover:text-white bg-secondary text-white"
+        >
           Submit
         </Button>
       </form>
