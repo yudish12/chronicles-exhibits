@@ -10,3 +10,11 @@ export const submitCallForm = async (fields, page_source) => {
   );
   return resp;
 };
+export const submitScheduleCallForm = async (fields, page_source) => {
+  const email = new EmailService("home", "schedule-call");
+  const resp = await email.send(
+    fields,
+    `Get a Quote form filled from page: ${page_source}`
+  );
+  return resp;
+};

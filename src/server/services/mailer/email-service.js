@@ -28,6 +28,7 @@ export class EmailService {
 
   async send(fields, subject) {
     const templateModule = await import(`./templates/${this.template}.js`);
+    console.log("template",JSON.stringify(await templateModule))
     const templateFunc = templateModule.default; // Access the default export
 
     // Await the result of templateFunc since it is likely async
