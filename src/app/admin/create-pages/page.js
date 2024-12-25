@@ -78,7 +78,7 @@ export default function CreatePages() {
           onClick={() => {
             // setSingleBlog({ title: "", short_description: "", long_description: "", image: "" });
             // setIsDialogOpen(true);
-            router.push("/admin/blogs/add");
+            router.push("/admin/create-pages/add");
           }}
         >
           Add Page
