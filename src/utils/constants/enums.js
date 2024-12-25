@@ -5,7 +5,7 @@ import {
   Layout,
   FileText,
   FormInput,
-  GalleryThumbnails
+  GalleryThumbnails,
 } from "lucide-react";
 
 export const continents = {
@@ -15,6 +15,11 @@ export const continents = {
 };
 
 export const collections = [
+  {
+    slug: "create-pages",
+    name: "Create Pages",
+    icon: <FileText color="#B0CB1F" />,
+  },
   {
     slug: "booth-sizes",
     name: "Booth Sizes",
