@@ -130,7 +130,8 @@ const ScheduleCallForm = () => {
           className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
           placeholder="url"
           value={formData.url}
-          type="text"
+          type="hidden"
+          style={{display : "none"}}
           name="url"
           readOnly // Make it read-only since it's pre-filled
         />

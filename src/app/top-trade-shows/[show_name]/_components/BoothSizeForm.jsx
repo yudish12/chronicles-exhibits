@@ -114,6 +114,7 @@ useEffect(() => {
           />
           <Input
             className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+            style={{display:"none"}}
             placeholder="url"
             value={formData.url}
             type="text"
