@@ -68,9 +68,7 @@ const Page = async ({ params }) => {
         <div className="flex flex-col w-full items-center gap-2">
           <p className="flex text-center gap-4 items-center text-white font-semibold">
             <MapPin color="#FFFFFF" />
-            <span className="text-xl">
-              {data.data.city} | {data.data.city.slice(0, 2).toUpperCase()}
-            </span>
+            <span className="text-xl">{data.data.city} | United States</span>
           </p>
           <p className="flex text-center items-center gap-4">
             <Calendar color="#FFFFFF" />

@@ -12,4 +12,15 @@ const pageSchema = new mongoose.Schema({
     type: Object,
     required: true,
   },
+  meta_title: {
+    type: String,
+  },
+  meta_description: {
+    type: String,
+  },
+  meta_keywords: [String],
 });
+
+const pages = mongoose.models.pages || mongoose.model("pages", pageSchema);
+
+export default pages;

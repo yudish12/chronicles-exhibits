@@ -78,7 +78,7 @@ export default function CreatePages() {
           onClick={() => {
             // setSingleBlog({ title: "", short_description: "", long_description: "", image: "" });
             // setIsDialogOpen(true);
-            router.push("/admin/blogs/add");
+            router.push("/admin/create-pages/add");
           }}
         >
           Add Page
@@ -91,6 +91,8 @@ export default function CreatePages() {
             <TableRow>
               <TableHead>Name</TableHead>
               <TableHead>Slug</TableHead>
+              <TableHead>Meta Title</TableHead>
+              <TableHead>Meta Description</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -99,6 +101,8 @@ export default function CreatePages() {
               <TableRow key={page._id}>
                 <TableCell>{page.name}</TableCell>
                 <TableCell>{page.slug}</TableCell>
+                <TableCell>{page.meta_title}</TableCell>
+                <TableCell>{page.meta_description}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
                     <Button

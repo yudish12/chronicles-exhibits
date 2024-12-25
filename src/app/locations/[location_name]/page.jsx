@@ -13,7 +13,6 @@ import {
 import SubHeader from "@/components/ui/sub-header";
 import tradeShows from "../../../utils/constants/dev-data/trade-shows.json";
 import Image from "next/image";
-import ourWorksData from "../../../utils/constants/dev-data/our-works.json";
 import Link from "next/link";
 import React from "react";
 import Products from "@/app/(landing)/Products";
@@ -25,11 +24,15 @@ import moment from "moment";
 // import { majorExhibitingCities } from "../page";
 import { getAllData } from "@/server/actions/locations";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
+import { getAllPortfolios } from "@/server/actions/portfolio";
 const Page = async ({ params }) => {
   const city = (await params).location_name;
   let majorExhibitingCities = await getAllData();
   let boothSizes = await getAllBoothSizes();
   const shows = tradeShows.splice(0, 4);
+
+  const ourWorksData = await getAllPortfolios();
+
   return (
     <>
       <SubHeader />
@@ -160,7 +163,7 @@ const Page = async ({ params }) => {
           of the clients.
         </p>
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[420px,420px,420px] w-full md:w-max mx-auto gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6">
-          {ourWorksData.map((item, index) => (
+          {ourWorksData.data.map((item, index) => (
             <div
               key={index}
               className="overflow-hidden rounded-xl w-full sm:w-[420px] h-[200px] sm:h-[250px] md:h-[230px]"
@@ -169,8 +172,8 @@ const Page = async ({ params }) => {
                 width={370}
                 height={300}
                 className="transition-transform w-full h-full duration-300 transform hover:scale-110"
-                src="/photo1-ourwork.png"
-                alt={`photo-${index}`}
+                src={item.image}
+                alt={item.image_alt_text}
               />
             </div>
           ))}
