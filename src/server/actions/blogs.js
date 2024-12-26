@@ -11,6 +11,7 @@ export const getAllBlogs = async (limit) => {
   try {
     await dbConnect();
     const data = await Blog.find()
+      .sort({ createdAt: -1 })
       .limit(limit ?? 10)
       .lean();
     return getActionSuccessResponse(data);

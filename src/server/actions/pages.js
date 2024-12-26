@@ -4,12 +4,14 @@ import dbConnect from "@/config/db-connect";
 import Pages from "../models/pages";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import mongoose from "mongoose";
+import { boothsizePageFieldKeys } from "@/lib/config";
+import pages from "../models/pages";
 
 await dbConnect();
 
 export const getAllPages = async () => {
   try {
-    const data = await Pages.find().lean();
+    const data = await Pages.find().sort({ createdAt: -1 }).lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
@@ -24,9 +26,9 @@ export const getSinglePage = async (query) => {
   }
 };
 
-export const updateData = async (id, data) => {
+export const updateData = async (name, data) => {
   try {
-    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+    if (!name) {
       return getActionFailureResponse("Invalid id format", "toast");
     }
 
@@ -34,16 +36,39 @@ export const updateData = async (id, data) => {
       return getActionFailureResponse("Invalid data format", "toast");
     }
 
-    // Use findByIdAndUpdate instead of updateOne to get the updated document
-    const resp = await Pages.findByIdAndUpdate(id, data, {
-      new: true, // Return the updated document
-      runValidators: true,
+    if (!data.meta_title || !data.meta_description || !data.meta_keywords) {
+      return getActionFailureResponse("Invalid seo data format", "toast");
+    }
+
+    if (!data.fields) {
+      return getActionFailureResponse("Invalid fields data format", "toast");
+    }
+
+    Object.keys(data.fields).forEach((key) => {
+      if (!boothsizePageFieldKeys.includes(key)) {
+        return getActionFailureResponse("Invalid field key", "toast");
+      }
     });
+
+    Object.values(data.fields).forEach((value) => {
+      if (!value) {
+        return getActionFailureResponse("Invalid field value", "toast");
+      }
+    });
+
+    const resp = await pages
+      .updateOne({ name: name }, data, {
+        new: true, // Return the updated document
+        runValidators: true, // Run validation
+        upsert: true, // Create a new document if it doesn't exist
+        setDefaultsOnInsert: true, // Set default values on insert
+      })
+      .lean();
 
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
-
+    console.log("resp", resp);
     return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error updating data:", error);

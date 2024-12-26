@@ -16,7 +16,7 @@ export const findPortfolioById = async (id) => {
 };
 export const getAllPortfolios = async () => {
   try {
-    const data = await Portfolio.find().lean();
+    const data = await Portfolio.find().sort({ createdAt: -1 }).lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

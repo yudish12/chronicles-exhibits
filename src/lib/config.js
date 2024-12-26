@@ -28,3 +28,15 @@ export const headerRoutes = [
     name: "About Us",
   },
 ];
+
+export const boothsizePageFieldKeys = [
+  "top_title",
+  "top_btn_text",
+  "booth_size_title",
+  "booth_size_subtitle",
+  "second_title",
+  "second_subtitle",
+  "second_btn_text",
+  "third_title",
+  "third_body",
+];

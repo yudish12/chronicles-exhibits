@@ -34,6 +34,9 @@ const blogSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+blogSchema.index({ slug: 1 }, { unique: true });
+blogSchema.index({ createdAt: -1 });
+
 const Blog = mongoose.models.blogs || mongoose.model("blogs", blogSchema); // make this blog and change everywhere
 
 export default Blog;

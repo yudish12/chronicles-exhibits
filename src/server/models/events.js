@@ -44,6 +44,8 @@ const eventSchema = new mongoose.Schema({
   },
 });
 
+eventSchema.index({ slug: 1 }, { unique: true });
+
 const events = mongoose.models.events || mongoose.model("events", eventSchema);
 
 export default events;

@@ -78,13 +78,26 @@ export default function BoothSizesTable() {
     <div className="container mx-auto px-6 py-10">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold mb-4">Booth Sizes</h1>
-        <Button
-          onClick={() => {
-            router.push("/admin/booth-sizes/add");
-          }}
-        >
-          Add Booth Size
-        </Button>
+        <div className="flex gap-3">
+          <Button
+            variant="outline"
+            className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
+            onClick={() => {
+              router.push("/admin/booth-sizes/add");
+            }}
+          >
+            Add Booth Size
+          </Button>
+          <Button
+            variant="outline"
+            className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
+            onClick={() => {
+              router.push("/admin/booth-sizes/page/edit");
+            }}
+          >
+            Edit Booth Size Page
+          </Button>
+        </div>
       </div>
 
       <div className="rounded-md border">

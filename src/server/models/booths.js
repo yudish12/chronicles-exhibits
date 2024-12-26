@@ -51,6 +51,10 @@ const boothSchema = new mongoose.Schema({
   meta_keywords: [String],
 });
 
+boothSchema.index({ booth_code: 1 }, { unique: true });
+boothSchema.index({ createdAt: -1 });
+boothSchema.index({ slug: 1 }, { unique: true });
+
 const Booth = mongoose.models.booths || mongoose.model("booths", boothSchema);
 
 export default Booth;

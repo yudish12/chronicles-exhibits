@@ -15,4 +15,7 @@ const boothSizesSchema = new mongoose.Schema({
 const BoothSize =
   mongoose.models.boothsizes || mongoose.model("boothsizes", boothSizesSchema);
 
+boothSizesSchema.index({ name: 1 }, { unique: true });
+boothSizesSchema.index({ createdAt: -1 });
+
 export default BoothSize;

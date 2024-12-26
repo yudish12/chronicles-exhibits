@@ -9,7 +9,7 @@ import mongoose from "mongoose";
 await dbConnect();
 export const getAllData = async () => {
   try {
-    const data = await events.find().lean();
+    const data = await events.find().sort({ createdAt: -1 }).lean();
     //   console.log("[]" , data)
     return getActionSuccessResponse(data);
   } catch (error) {

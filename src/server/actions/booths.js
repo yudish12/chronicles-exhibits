@@ -9,7 +9,10 @@ await dbConnect();
 
 export const getAllData = async () => {
   try {
-    const data = await Booth.find().populate("booth_size").lean();
+    const data = await Booth.find()
+      .sort({ createdAt: 1 })
+      .populate("booth_size")
+      .lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

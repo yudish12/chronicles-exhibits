@@ -52,9 +52,9 @@ const Page = async () => {
           {tradeShows.data.map((show) => (
             <div
               key={show._id}
-              className="h-[360px] bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
+              className="min-h-[360px] justify-between bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
             >
-              <h4 className="text-secondary heading-font text-2xl uppercase font-semibold">
+              <h4 className="text-secondary text-center heading-font text-2xl uppercase font-semibold">
                 {show.event_name}
               </h4>
               <Image
@@ -82,7 +82,10 @@ const Page = async () => {
                   </span>
                 </p>
               </div>
-              <Link className="w-full" href={`/top-trade-shows/${show.slug}`}>
+              <Link
+                className="w-full justify0c"
+                href={`/top-trade-shows/${show.slug}`}
+              >
                 <Button
                   variant="outline"
                   className="text-secondary w-full hover:bg-secondary hover:text-white border-secondary border-2 bg-transparent font-semibold py-[18px] text-[16px]"
