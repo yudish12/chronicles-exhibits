@@ -181,7 +181,7 @@ const Page = async ({ params }) => {
               </Button>
             </div>
           </div> */}
-          <BoothSizeForm/>
+          <BoothSizeForm />
           <div className="grid grid-cols-2 border-2 border-dashed border-secondary/70 rounded-lg">
             <div
               style={{ transitionDuration: "500ms" }}
@@ -262,15 +262,15 @@ const Page = async ({ params }) => {
           </div>
         </div>
       </div>
-      <div className="w-full product-bg flex flex-col items-center justify-center py-14 px-4 text-center">
-        <div className="font-bold text-lg md:text-xl pt-10 text-[#B0CB1F]">
+      <div className="w-full  product-bg-white flex flex-col items-center justify-center py-14 px-4 text-center">
+        <div className="font-bold text-lg md:text-xl pt-10 text-black">
           Want your booth in one of these trade shows?
         </div>
-        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl uppercase heading-font text-white font-bold pt-10">
+        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl uppercase heading-font text-black font-bold pt-10">
           Contact us for a fully personalized trade fair experience.
         </div>
         <div className="py-10">
-          <Button className="bg-transparent rounded-xl text-base sm:text-lg border-2 border-[#B0CB1F] hover:bg-[#B0CB1F] px-6 py-4 sm:py-6 font-bold text-[#B0CB1F] transition-all duration-300 hover:text-secondary">
+          <Button className="bg-transparent rounded-xl text-base sm:text-lg border-2 border-black hover:bg-[#B0CB1F] px-6 py-4 sm:py-6 font-bold text-black transition-all duration-300 hover:text-secondary">
             Get Customized Quote
           </Button>
         </div>
