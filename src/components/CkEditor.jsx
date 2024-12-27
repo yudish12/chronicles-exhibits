@@ -6,7 +6,10 @@ const CkEditor = ({ value, onChange, index }) => {
     <CKEditor
       onChange={(event, editor) => {
         console.log(event, event.editor.getData());
-        if (index) onChange(index, event.editor.getData());
+        if (index) {
+          onChange(index, event.editor.getData());
+          return;
+        }
         onChange(event.editor.getData());
       }}
       data={value}
