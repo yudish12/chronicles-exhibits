@@ -4,27 +4,26 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent } from "@/components/ui/card"; // Import Card components from shadcn
 import Link from "next/link";
 import Image from "next/image";
-const booths = [
-  {
-    id: 1,
-    image: "https://utfs.io/f/MRDf3hQQKORGV85tUYXQj0geIpfqlvAEdS1zU24ywMCtKb5G",
-    code: "CEL101001",
-  },
-  {
-    id: 3,
-    image: "https://utfs.io/f/MRDf3hQQKORGV85tUYXQj0geIpfqlvAEdS1zU24ywMCtKb5G",
-    code: "CEL101002",
-  },
-  {
-    id: 6,
-    image: "https://utfs.io/f/MRDf3hQQKORGV85tUYXQj0geIpfqlvAEdS1zU24ywMCtKb5G",
-    code: "CEL101003",
-  },
-];
 
-const BoothGrid = ({ boothCode }) => {
+const BoothGrid = ({ boothCode, image }) => {
   const [visibleCount, setVisibleCount] = useState(9);
-  const boothToRender = booths.filter((booth) => booth.code !== boothCode);
+  const boothToRender = [
+    {
+      id: 1,
+      image: image,
+      code: "CEL101001",
+    },
+    {
+      id: 3,
+      image: image,
+      code: "CEL101002",
+    },
+    {
+      id: 6,
+      image: image,
+      code: "CEL101003",
+    },
+  ];
 
   return (
     <div className="py-12 bg-gradient-to-b bg-background">

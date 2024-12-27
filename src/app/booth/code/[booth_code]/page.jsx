@@ -37,7 +37,7 @@ const BoothByCode = async ({ params }) => {
     </div> */}
       <BoothDetails boothData={resp.data} boothCode={boothCode} />
       {/* <BoothEnquiry/> */}
-      <BoothGrid boothCode={boothCode} />
+      <BoothGrid image={resp.data.thumbnail_image} boothCode={boothCode} />
       <Footer />
     </>
   );
