@@ -6,7 +6,7 @@ import Link from "next/link";
 import { getAllPortfolios } from "@/server/actions/portfolio";
 
 const Ourworks = async () => {
-  const ourWorksData = await getAllPortfolios();
+  const ourWorksData = await getAllPortfolios(6, 0);
   console.log(ourWorksData);
   return (
     <div className="flex flex-col product-bg px-4 sm:px-8 md:px-12 py-12 gap-6">

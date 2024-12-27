@@ -38,7 +38,6 @@ const BoothByCode = async ({ params }) => {
       <BoothDetails boothData={resp.data} boothCode={boothCode} />
       {/* <BoothEnquiry/> */}
       <BoothGrid boothCode={boothCode} />
-      <Queryform />
       <Footer />
     </>
   );

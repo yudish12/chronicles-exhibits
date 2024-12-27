@@ -31,7 +31,7 @@ const Page = async ({ params }) => {
   let boothSizes = await getAllBoothSizes();
   const shows = tradeShows.splice(0, 4);
 
-  const ourWorksData = await getAllPortfolios();
+  const ourWorksData = await getAllPortfolios(6, 0);
 
   return (
     <>
@@ -187,7 +187,7 @@ const Page = async ({ params }) => {
           </Button>
         </Link>
       </div>
-      <Products />
+      <Products location={city} />
       <div className="bg-background py-12 px-8 md:px-20 lg:px-32">
         {/* Section 1 */}
         <section className="py-10 text-secondary">

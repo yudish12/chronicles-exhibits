@@ -7,6 +7,7 @@ import ourWorksData from "../../utils/constants/dev-data/our-works.json";
 import { StoreIcon } from "lucide-react";
 import Queryform from "../(landing)/Queryform";
 import Footer from "@/components/ui/footer";
+import Ourworks from "../(landing)/Ourworks";
 
 const Page = () => {
   return (
@@ -158,7 +159,7 @@ const Page = () => {
           address any issues concerning the exhibiting process.
         </p>
       </div>
-      <div className="flex flex-col px-20 py-8 gap-6">
+      <div className="flex flex-col pb-0 py-8 gap-6">
         <h3 className="text-secondary text-center text-4xl font-semibold heading-font">
           Recent Booth Designs & Displays in The USA
         </h3>
@@ -180,22 +181,7 @@ const Page = () => {
             className="border-b-[0.5px] text-center w-12 self-center border-secondary"
           />
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[370px,370px,370px] shadow-two w-full md:w-max mx-auto bg-white rounded-xl gap-x-4 sm:gap-x-6 md:gap-x-8 p-4 sm:p-6 md:p-8 gap-y-6">
-          {ourWorksData.map((item, index) => (
-            <div
-              key={index}
-              className="overflow-hidden rounded-xl w-full sm:w-[370px] h-[200px] sm:h-[250px] md:h-[300px]"
-            >
-              <Image
-                width={370}
-                height={300}
-                className="transition-transform w-full h-full duration-300 transform hover:scale-110"
-                src="/photo1-ourwork.png"
-                alt={`photo-${index}`}
-              />
-            </div>
-          ))}
-        </div>
+        <Ourworks />
       </div>
       <Queryform />
       <Footer />

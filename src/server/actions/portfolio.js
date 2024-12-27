@@ -14,9 +14,12 @@ export const findPortfolioById = async (id) => {
     return getActionFailureResponse(error, "toast");
   }
 };
-export const getAllPortfolios = async () => {
+export const getAllPortfolios = async (limit, skip) => {
   try {
-    const data = await Portfolio.find().sort({ createdAt: -1 }).lean();
+    let query = Portfolio.find().sort({ createdAt: -1 }).lean();
+    if (limit) query = await query.limit(limit);
+    if (skip) query = await query.skip(skip);
+    const data = await query;
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

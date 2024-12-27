@@ -22,9 +22,9 @@ const RouteComponent = ({ link, name, className }) => {
   );
 };
 
-export const HeaderBtns = () => {
+export const HeaderBtns = ({ scrollPosition }) => {
   return (
-    <>
+    <div className={cn(scrollPosition > 55 ? "flex" : "hidden")}>
       <Dialog>
         <DialogTrigger asChild>
           <Button className="rounded-md rounded-e-none py-[18px] px-2 sm:px-4 text-primary font-semibold border-2 bg-transparent border-primary">
@@ -35,10 +35,17 @@ export const HeaderBtns = () => {
           <EnquiryForm />
         </DialogContent>
       </Dialog>
-      <Button className="rounded-md rounded-s-none  py-[18px] border-2 border-primary  text-secondary font-semibold">
-        Get Quote
-      </Button>
-    </>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button className="rounded-md hover:bg-primary rounded-s-none  py-[18px] border-2 border-primary  text-secondary font-semibold">
+            Get Quote
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="">
+          <EnquiryForm />
+        </DialogContent>
+      </Dialog>
+    </div>
   );
 };
 
@@ -75,9 +82,10 @@ const Header = () => {
           className={
             scrollPosition < 55
               ? `opacity-0 items-center transition-all duration-700 ease-in-out md:flex`
-              : `opacity-100 flex items-center transition-all duration-700 ease-in-out`
+              : `opacity-100 flex items-center gap-10 transition-all duration-700 ease-in-out`
           }
         >
+          <HeaderBtns scrollPosition={scrollPosition} />
           <button onClick={toggleMenu} className="text-white">
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
           </button>

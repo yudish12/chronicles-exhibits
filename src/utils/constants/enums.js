@@ -76,7 +76,7 @@ export const collections = [
     icon: <GalleryThumbnails color="#B0CB1F" />,
   },
   {
-    slug: "majour-cities",
+    slug: "locations",
     name: "Major Cities",
     icon: <GalleryThumbnails color="#B0CB1F" />,
   },

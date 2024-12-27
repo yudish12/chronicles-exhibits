@@ -4,7 +4,7 @@ import dbConnect from "@/config/db-connect";
 import Pages from "../models/pages";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import mongoose from "mongoose";
-import { boothsizePageFieldKeys } from "@/lib/config";
+import { boothsizePageFields } from "@/lib/config";
 import pages from "../models/pages";
 
 await dbConnect();
@@ -45,7 +45,7 @@ export const updateData = async (name, data) => {
     }
 
     Object.keys(data.fields).forEach((key) => {
-      if (!boothsizePageFieldKeys.includes(key)) {
+      if (!boothsizePageFields.includes(key)) {
         return getActionFailureResponse("Invalid field key", "toast");
       }
     });

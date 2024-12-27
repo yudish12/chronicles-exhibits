@@ -9,8 +9,11 @@ import Leadingtrade from "./(landing)/Leadingtrade";
 import Ourworks from "./(landing)/Ourworks";
 import FactsAndFigures from "./(landing)/FactsAndFigures";
 import Queryform from "./(landing)/Queryform";
+import { getSinglePage } from "@/server/actions/pages";
 
 export default async function Home() {
+  const homePageData = await getSinglePage({ name: "home" });
+  console.log(homePageData);
   return (
     <>
       <SubHeader />

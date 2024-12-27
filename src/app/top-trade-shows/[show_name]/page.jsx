@@ -16,6 +16,7 @@ import { DiamondSvg } from "@/app/booth/size/[booth_size]/_components/TradeShowS
 import { getAllData, getSingleEvent } from "@/server/actions/events";
 import Head from "next/head";
 import BoothSizeForm from "./_components/BoothSizeForm";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const show_name = resolvedParams.show_name;
@@ -62,7 +63,7 @@ const Page = async ({ params }) => {
       <Header />
       <div className="trade-show-bg flex flex-col items-center gap-8 px-20 py-12">
         <h2 className=" text-4xl text-center text-white uppercase font-semibold heading-font">
-          {data.data.title}
+          {data.data.event_name}
         </h2>
         <Timer targetDate={targetDate} />
         <div className="flex flex-col w-full items-center gap-2">
@@ -90,8 +91,8 @@ const Page = async ({ params }) => {
       />
       <div className="px-20 gap-12 py-12 flex">
         <div className="w-[70%] bg-white p-6 rounded-xl shadow-one">
-          <h3 className="text-3xl heading-font text-secondary font-semibold">
-            About: {data.data.title}
+          <h3 className="text-2xl heading-font text-secondary font-semibold">
+            {data.data.title}
           </h3>
           <div
             id="show_name_desc"
@@ -182,7 +183,7 @@ const Page = async ({ params }) => {
             </div>
           </div> */}
           <BoothSizeForm />
-          <div className="grid grid-cols-2 border-2 border-dashed border-secondary/70 rounded-lg">
+          {/* <div className="grid grid-cols-2 border-2 border-dashed border-secondary/70 rounded-lg">
             <div
               style={{ transitionDuration: "500ms" }}
               className="group bg-white border-r-2 border-b-2 border-dashed border-secondary/70 hover:bg-secondary p-6 flex flex-col items-center gap-5 rounded-tl-lg"
@@ -259,23 +260,87 @@ const Page = async ({ params }) => {
                 USA
               </h4>
             </div>
+          </div> */}
+          <div className="grid grid-cols-1 gap-y-6 border-secondary/70">
+            <div
+              style={{ transitionDuration: "500ms" }}
+              className="group cursor-pointer shadow-two hover:bg-[#B0CB1F]  bg-white border-secondary/70 p-6 flex items-center gap-5"
+            >
+              <Image src={"/email.svg"} width={30} height={30} alt="cube" />
+              <Link
+                href={"mailto:example@example.com"}
+                style={{ transitionDuration: "500ms" }}
+                className="text-secondary text-center text-lg heading-font font-semibold"
+              >
+                Contact E-mail
+              </Link>
+            </div>
+
+            <div
+              style={{ transitionDuration: "500ms" }}
+              className="group cursor-pointer shadow-two hover:bg-[#B0CB1F] bg-white border-secondary/70  p-6 flex items-center gap-5"
+            >
+              <Image
+                src={"/website-thin.svg"}
+                width={30}
+                height={30}
+                alt="cube"
+              />
+              <h4
+                style={{ transitionDuration: "500ms" }}
+                className="text-secondary   text-center text-lg heading-font font-semibold"
+              >
+                Official Website
+              </h4>
+            </div>
+            <div
+              style={{ transitionDuration: "500ms" }}
+              className="group bg-white hover:bg-[#B0CB1F] cursor-pointer shadow-two   p-6 flex items-center gap-5"
+            >
+              <Image
+                src={"/location-pin.svg"}
+                width={30}
+                height={30}
+                alt="cube"
+              />
+              <h4
+                style={{ transitionDuration: "500ms" }}
+                className="text-secondary text-center text-lg heading-font font-semibold"
+              >
+                New York | USA
+              </h4>
+            </div>
           </div>
         </div>
       </div>
-      <div className="w-full  product-bg-white flex flex-col items-center justify-center py-14 px-4 text-center">
-        <div className="font-bold text-lg md:text-xl pt-10 text-black">
-          Want your booth in one of these trade shows?
-        </div>
-        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl uppercase heading-font text-black font-bold pt-10">
-          Contact us for a fully personalized trade fair experience.
+      <div className="w-full  product-bg flex flex-col items-center justify-center py-14 px-4 text-center">
+        <div className="font-bold text-lg md:text-xl pt-10 text-primary">
+          Are you looking for turnkey trade show booth services for
+          <br />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl uppercase heading-font text-white font-bold pt-10">
+            {data.data.title}?
+          </h2>
         </div>
         <div className="py-10">
-          <Button className="bg-transparent rounded-xl text-base sm:text-lg border-2 border-black hover:bg-[#B0CB1F] px-6 py-4 sm:py-6 font-bold text-black transition-all duration-300 hover:text-secondary">
-            Get Customized Quote
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="bg-transparent rounded-xl text-base sm:text-lg border-2 border-primary hover:bg-[#B0CB1F] px-6 py-4 sm:py-5 font-bold text-primary transition-all duration-300 hover:text-secondary">
+                Get Quote
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="w-full">
+              <BoothSizeForm />
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
-      <Products />
+      <Products
+        title={"Trade Show Booth Rental"}
+        subTitle={
+          "Chronicle Exhibits LLC. is the most famous trade show booth builder working since 2013. We build immersive brand experiences by providing complete exhibition stand management."
+        }
+        bgColor="white"
+      />
       <Footer />
     </>
   );

@@ -29,16 +29,12 @@ const BoothGrid = ({ boothCode }) => {
   return (
     <div className="py-12 bg-gradient-to-b bg-background">
       {/* Title and Subtitle */}
-      <h2 className="text-center text-lg md:text-xl font-bold text-[#B0CB1F] py-2">
-        Similar Designs
+      <h2 className="text-center text-xl md:text-3xl font-bold text-[#B0CB1F] py-2">
+        Similar Booth Designs
       </h2>
-      <p className="text-center text-secondary text-gray-700 py-2 mb-8">
-        Choose from our versatile collection of designs, all ready to be
-        customized endlessly!
-      </p>
 
       {/* Booth Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center place-content-center max-w-[1200px] mx-auto">
+      <div className="grid mt-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center place-content-center max-w-[1200px] mx-auto">
         {boothToRender.slice(0, visibleCount).map((booth) => (
           <Card
             key={booth.id}

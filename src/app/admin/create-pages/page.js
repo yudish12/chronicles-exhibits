@@ -111,7 +111,7 @@ export default function CreatePages() {
                       onClick={() => router.push(`/${page.slug}`)}
                     >
                       <Eye className="h-4 w-4" />
-                      <span className="sr-only">View {blog.name}</span>
+                      <span className="sr-only">View {page.name}</span>
                     </Button>
                     <Button
                       variant="outline"
@@ -121,7 +121,7 @@ export default function CreatePages() {
                         // setIsEditDialogOpen(true);
                         // console.log('blog:', blog);
                         // console.log('blog._id:', blog?._id);
-                        router.push(`/admin/create-pages/edit/${page._id}`);
+                        router.push(`/admin/create-pages/edit/${page._id}/`);
                       }}
                     >
                       <Pencil className="h-4 w-4" />

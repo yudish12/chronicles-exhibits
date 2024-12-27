@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=PT+Sans+Narrow:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 @font-face {
   font-family: "Jost-900";
@@ -103,10 +104,9 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "Jost-400";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-smooth: never;
+    font-family: "PT Sans Narrow", serif;
+    font-weight: 300;
+    font-style: normal;
   }
 }
 /* Custom styles for PhoneInput */
@@ -226,7 +226,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  /* background: url("../../public/bg-products.jpg") no-repeat center center; */
+  background: url("../../public/bg-products.jpg") no-repeat center center;
   background-size: cover;
   z-index: -2;
 }

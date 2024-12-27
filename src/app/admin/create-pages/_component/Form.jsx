@@ -7,139 +7,23 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import { getSinglePage } from "@/server/actions/pages";
 import { updateData } from "@/server/actions/pages";
 import { convertHumanReadableText } from "@/utils";
 import FieldRender from "@/components/FieldRender";
+import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 
-const Page = () => {
+const PageEditForm = ({ pageData }) => {
+  console.log(pageData);
   const router = useRouter();
-  const [boothSizePage, setBoothSizePage] = useState({
-    fields: [
-      {
-        key: "top_title",
-        type: "text",
-        value: "",
-      },
-      {
-        key: "top_btn_text",
-        type: "text",
-        value: "",
-      },
-      {
-        key: "booth_size_title",
-        type: "text",
-        value: "",
-      },
-      {
-        key: "booth_size_subtitle",
-        type: "textarea",
-        value: "",
-      },
-      {
-        key: "second_title",
-        type: "text",
-        value: "",
-      },
-      {
-        key: "second_subtitle",
-        type: "textarea",
-        value: "",
-      },
-      {
-        key: "second_btn_text",
-        type: "text",
-        value: "",
-      },
-      {
-        key: "third_title",
-        type: "text",
-        value: "",
-      },
-      {
-        key: "third_body",
-        type: "body",
-        value: "<p>Hello</p>",
-      },
-    ],
-    meta_title: "",
-    meta_description: "",
-    meta_keywords: [],
+  const [boothSizePage, setBoothSizePage] = React.useState({
+    name: pageData.name,
+    slug: pageData.slug ?? "",
+    fields: pageData.fields ?? [],
+    meta_description: pageData.meta_description ?? "",
+    meta_keywords: pageData.meta_keywords ?? [],
+    meta_title: pageData.meta_title ?? "",
   });
-  const [loading, setLoading] = React.useState(true);
-
-  const getBoothsizePageData = async () => {
-    try {
-      const pageData = await getSinglePage({ name: "booth-size" });
-      console.log("pageData", pageData);
-      if (!pageData.success) {
-        toast.error(pageData.error);
-        return;
-      }
-      setBoothSizePage(
-        pageData.data ?? {
-          fields: [
-            {
-              key: "top_title",
-              type: "text",
-              value: "",
-            },
-            {
-              key: "top_btn_text",
-              type: "text",
-              value: "",
-            },
-            {
-              key: "booth_size_title",
-              type: "text",
-              value: "",
-            },
-            {
-              key: "booth_size_subtitle",
-              type: "textarea",
-              value: "",
-            },
-            {
-              key: "second_title",
-              type: "text",
-              value: "",
-            },
-            {
-              key: "second_subtitle",
-              type: "textarea",
-              value: "",
-            },
-            {
-              key: "second_btn_text",
-              type: "text",
-              value: "",
-            },
-            {
-              key: "third_title",
-              type: "text",
-              value: "",
-            },
-            {
-              key: "third_body",
-              type: "body",
-              value: "<p>Hello</p>",
-            },
-          ],
-          meta_title: "",
-          meta_description: "",
-          meta_keywords: [],
-        }
-      );
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      toast.error("Failed to fetch booth size page");
-      setLoading(false);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleFieldChange = (index, value) => {
     setBoothSizePage({
@@ -155,22 +39,18 @@ const Page = () => {
   const handleEdit = async (e) => {
     e.preventDefault();
     try {
-      const resp = await updateData("booth-size", boothSizePage);
+      const resp = await updateData(pageData.name, boothSizePage);
       if (!resp.success) {
         toast.error(resp.err);
         return;
       }
-      toast.success("Booth size added successfully");
-      router.push("/admin/booth-sizes");
+      toast.success("Page updated successfully");
+      router.push("/admin/create-pages");
     } catch (error) {
       console.error("Error updating data:", error);
-      toast.error("Failed to add booth size");
+      toast.error("Failed to update page");
     }
   };
-
-  useEffect(() => {
-    getBoothsizePageData();
-  }, []);
 
   return (
     <div className="flex flex-col items-center justify-start overflow-auto min-h-full bg-gray-200 p-8 w-full">
@@ -190,7 +70,10 @@ const Page = () => {
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-6">
             {boothSizePage.fields.map((field, index) => (
-              <div key={index}>
+              <div
+                className={cn(field.type === "body" && "col-span-2")}
+                key={index}
+              >
                 <Label className="mb-4 block">
                   Enter {convertHumanReadableText(field.key)}
                 </Label>
@@ -274,4 +157,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default PageEditForm;

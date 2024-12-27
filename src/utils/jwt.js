@@ -2,12 +2,6 @@ import jwt from "jsonwebtoken";
 
 const SECRET_KEY = process.env.JWT_SECRET; // Your secret key
 
-if (!SECRET_KEY) {
-  throw new Error(
-    "Please define the JWT_SECRET environment variable in .env.local"
-  );
-}
-
 /**
  * Sign a JWT
  * @param payload - The payload to include in the JWT

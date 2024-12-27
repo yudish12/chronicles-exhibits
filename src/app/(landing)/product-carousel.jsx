@@ -1,10 +1,13 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-const ProductCarousel = ({ boothsizes }) => {
+import { cn } from "@/lib/utils";
+
+const ProductCarousel = ({ bgColor, boothsizes, location }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCards, setVisibleCards] = useState(1);
+  const slideInterval = useRef(null);
 
   useEffect(() => {
     const updateVisibleCards = () => {
@@ -16,6 +19,27 @@ const ProductCarousel = ({ boothsizes }) => {
 
     return () => window.removeEventListener("resize", updateVisibleCards);
   }, []);
+
+  useEffect(() => {
+    startAutoSlide();
+
+    return () => {
+      stopAutoSlide();
+    };
+  }, [activeIndex, visibleCards]);
+
+  const startAutoSlide = () => {
+    stopAutoSlide(); // Clear any existing interval before starting a new one
+    slideInterval.current = setInterval(() => {
+      handleNext();
+    }, 3000); // Change slides every 5 seconds
+  };
+
+  const stopAutoSlide = () => {
+    if (slideInterval.current) {
+      clearInterval(slideInterval.current);
+    }
+  };
 
   const handleNext = () => {
     setActiveIndex((prevIndex) =>
@@ -35,20 +59,31 @@ const ProductCarousel = ({ boothsizes }) => {
 
   const handleDotClick = (slideIndex) => {
     setActiveIndex(slideIndex * visibleCards);
+    startAutoSlide(); // Reset the interval on dot click
   };
 
   return (
-    <div className="relative w-full py-6 px-4 md:px-24">
+    <div
+      className="relative w-full py-6 px-4 md:px-24"
+      onMouseEnter={stopAutoSlide} // Pause auto-slide on mouse enter
+      onMouseLeave={startAutoSlide} // Resume auto-slide on mouse leave
+    >
       {/* Chevron Navigation */}
       <button
-        onClick={handlePrev}
+        onClick={() => {
+          handlePrev();
+          startAutoSlide(); // Reset the interval on manual navigation
+        }}
         aria-label="Previous Slide"
         className="flex md:hidden absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800 text-white rounded-full p-3"
       >
         &#8249;
       </button>
       <button
-        onClick={handleNext}
+        onClick={() => {
+          handleNext();
+          startAutoSlide(); // Reset the interval on manual navigation
+        }}
         aria-label="Next Slide"
         className="flex md:hidden absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800 text-white rounded-full p-3"
       >
@@ -69,19 +104,25 @@ const ProductCarousel = ({ boothsizes }) => {
               key={index}
               className={`min-w-full md:min-w-[33.33%] max-w-full md:max-w-[33.33%] flex-shrink-0 px-2 md:px-6`}
             >
-              <div className="rounded-lg h-[400px] shadow-xl overflow-hidden w-full bg-secondary flex flex-col">
+              <div
+                className={cn(
+                  "rounded-lg h-[400px] shadow-xl overflow-hidden w-full bg-secondary flex flex-col",
+                  bgColor === "white"
+                    ? "shadow-none border border-gray-400"
+                    : ""
+                )}
+              >
                 <Image
                   src={item.image}
                   width={350}
                   height={300}
                   alt={item.size}
                   className="w-full h-3/4 object-cover"
-                  // layout="fill" // Ensures the image covers the parent container
                 />
                 <div className="flex h-1/4 heading-font-700 bg-white flex-col justify-center items-center bg-secondary/[.94] text-secondary">
                   <p className="text-[1.65rem] font-semibold">{item.name}</p>
-                  <p className="uppercase text-lg font-semibold">
-                    trade show booth rental
+                  <p className="capitalize text-lg font-semibold">
+                    trade show booth rental {location?.toLowerCase() ?? ""}
                   </p>
                 </div>
               </div>
@@ -90,7 +131,7 @@ const ProductCarousel = ({ boothsizes }) => {
         </div>
       </div>
 
-      {/* Navigation */}
+      {/* Navigation Dots */}
       <div className="hidden md:flex justify-center gap-2 mt-4">
         {Array.from({
           length: Math.ceil(boothsizes.length / visibleCards),
@@ -100,7 +141,9 @@ const ProductCarousel = ({ boothsizes }) => {
             onClick={() => handleDotClick(slideIndex)}
             className={`w-[10px] h-[10px] rounded-full cursor-pointer ${
               slideIndex === Math.floor(activeIndex / visibleCards)
-                ? "bg-white"
+                ? bgColor === "white"
+                  ? "bg-primary"
+                  : "bg-white"
                 : "bg-gray-400"
             }`}
           ></div>
