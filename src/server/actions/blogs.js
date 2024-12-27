@@ -7,14 +7,27 @@ import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 
 // await dbConnect();
 
-export const getAllBlogs = async (limit) => {
+export const getAllBlogs = async (skip, limit, projection) => {
   try {
     await dbConnect();
-    const data = await Blog.find()
-      .sort({ createdAt: -1 })
-      .limit(limit ?? 10)
-      .lean();
-    return getActionSuccessResponse(data);
+
+    let query = Blog.find().sort({ createdAt: -1 });
+    if (skip) {
+      query = query.skip(skip);
+    }
+
+    if (limit) {
+      query = query.limit(limit);
+    }
+
+    if (projection) {
+      query = query.select(projection);
+    }
+
+    const data = await query.lean();
+    const count = await Blog.countDocuments();
+
+    return getActionSuccessResponse(data, count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }

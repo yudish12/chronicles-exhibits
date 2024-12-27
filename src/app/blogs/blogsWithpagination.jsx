@@ -1,34 +1,11 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Pagination } from "./_components/Pagination";
 
-const BlogsPagination = ({ blogs }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6; // Number of blogs per page
-  const totalPages = Math.ceil(blogs.length / itemsPerPage);
-
-  // Slice the blogs array to get the items for the current page
-  const paginatedBlogs = blogs.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
-  // const actionCallforPagination = async () => {
-  //   //fetch blogs from server action
-
-  // };
-
-  // useEffect(() => {
-  //   actionCallforPagination();
-  // }, [currentPage]);
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
+const BlogsPagination = ({ blogs, totalPages, currentPage, limit }) => {
   return (
     <>
       <div className="bg-[url('/blog-hero-bg-small.png')] grayscale-[70%] bg-cover bg-no-repeat px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
@@ -49,9 +26,9 @@ const BlogsPagination = ({ blogs }) => {
           Blog Directory
         </h2>
 
-        {/* Display paginated blogs */}
+        {/* Display blogs */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {paginatedBlogs.map((blog, index) => (
+          {blogs.map((blog, index) => (
             <Card
               key={index}
               className="flex flex-col bg-white/60 min-h-[230px] md:flex-row items-start shadow-two rounded-lg overflow-hidden py-2"
@@ -72,7 +49,7 @@ const BlogsPagination = ({ blogs }) => {
                   {blog.title}
                 </CardTitle>
                 <CardDescription className="text-sm text-gray-600 mt-2">
-                  {/* {blog.description} */}
+                  {/* Shortened blog description */}
                   Welcome to Chronicle, your prominent partner for trade show
                   booth displays and exhibits. With 25+ years’ worth of
                   experience and an excellent team
@@ -93,11 +70,7 @@ const BlogsPagination = ({ blogs }) => {
         </div>
 
         {/* Pagination Component */}
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
-        />
+        <Pagination currentPage={currentPage} totalPages={totalPages} />
       </div>
     </>
   );
