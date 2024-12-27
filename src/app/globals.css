@@ -358,7 +358,7 @@
 .featured-bg {
   position: relative;
   overflow: hidden;
-  height: 500px;
+  height: 450px;
 }
 
 .featured-bg::before {
@@ -563,4 +563,14 @@
   border-color: #000000 !important;
   width: 100% !important;
   height: 2.15rem !important;
+}
+.react-tel-input input:focus {
+  border: 1.5px solid black !important;
+}
+.flag-dropdown + input:focus {
+  border: 1.5px solid black !important; /* Styles for the input */
+}
+
+input:focus + .flag-dropdown {
+  border: 1.5px solid black !important; /* Add border to .flag-dropdown */
 }

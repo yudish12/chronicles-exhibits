@@ -16,7 +16,7 @@ export const Pagination = ({ currentPage, totalPages }) => {
       {/* Previous Button */}
       {currentPage > 1 && (
         <Link
-          href={`?page=${currentPage - 1}`}
+          href={`/blogs/?page=${currentPage - 1}`}
           className={`w-10 h-10 flex items-center text-secondary justify-center rounded-full border shadow-one bg-white hover:bg-gray-100`}
         >
           <ChevronLeft />
@@ -27,7 +27,7 @@ export const Pagination = ({ currentPage, totalPages }) => {
       {getPageNumbers().map((page) => (
         <Link
           key={page}
-          href={`?page=${page}`}
+          href={`/blogs/?page=${page}`}
           className={`w-10 h-10 flex items-center justify-center rounded-full shadow-one border-secondary border-0 ${
             page === currentPage
               ? "bg-secondary text-white"
@@ -41,7 +41,7 @@ export const Pagination = ({ currentPage, totalPages }) => {
       {/* Next Button */}
       {currentPage < totalPages && (
         <Link
-          href={`?page=${currentPage + 1}`}
+          href={`/blogs/?page=${currentPage + 1}`}
           className={`w-10 h-10 flex items-center text-secondary justify-center rounded-full border shadow-one bg-white hover:bg-gray-100`}
         >
           <ChevronRight />

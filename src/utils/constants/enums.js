@@ -46,8 +46,8 @@ export const collections = [
     icon: <Newspaper color="#B0CB1F" />,
   },
   {
-    slug: "form-submissions",
-    name: "Form Submissions",
+    slug: "enquiry",
+    name: "Enquiry",
     icon: <FormInput color="#B0CB1F" />,
   },
   {

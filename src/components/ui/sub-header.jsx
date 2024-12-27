@@ -31,7 +31,7 @@ const SubHeader = () => {
           <Image alt="pinterest" src="/pinterest.svg" width={30} height={30} />
         </SocialIconContainer>
       </div>
-      <div className="flex items-center justify-between w-full sm:justify-end sm:w-[320px] gap-0">
+      <div className="flex items-center w-full justify-end sm:w-[320px] md:gap-0 gap-4">
         <HeaderBtns />
       </div>
     </div>

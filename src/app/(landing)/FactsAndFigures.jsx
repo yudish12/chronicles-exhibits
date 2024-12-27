@@ -4,10 +4,10 @@ import Image from "next/image";
 const data = [
   {
     id: 1,
-    iconImage: "/icons/Pin.svg",
+    iconImage: "/projects-svgrepo-com.svg",
     number: "2931",
     text: "Projects Completed",
-    hoverIconImage: "/icons/Globe.svg",
+    hoverIconImage: "/icons/Location-green.svg",
     hoverNumber: "91",
     hoverText: "Locations Served",
     bgColor: "bg-white",
@@ -15,7 +15,7 @@ const data = [
   },
   {
     id: 2,
-    iconImage: "/icons/Heart.svg",
+    iconImage: "/partners-svgrepo-com.svg",
     number: "3717",
     text: "Trusted Partners",
     hoverIconImage: "/icons/Person.svg",
@@ -26,10 +26,10 @@ const data = [
   },
   {
     id: 3,
-    iconImage: "/icons/Star.svg",
+    iconImage: "/exhibition-museum-svgrepo-com.svg",
     number: "9182",
     text: "Featured Trade Shows",
-    hoverIconImage: "/icons/Gift.svg",
+    hoverIconImage: "/services-svgrepo-com.svg",
     hoverNumber: "25",
     hoverText: "Services Offered",
     bgColor: "bg-white",

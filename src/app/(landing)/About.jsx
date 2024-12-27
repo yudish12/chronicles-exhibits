@@ -49,8 +49,8 @@ const About = () => {
                   />
                 </div>
                 {/* Text Content */}
-                <CardHeader className="text-center p-4">
-                  <CardTitle className="text-[26px] heading-font-600 font-bold text-secondary">
+                <CardHeader className="text-center p-2">
+                  <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
                     DISPLAY EXHIBITS
                   </CardTitle>
                 </CardHeader>
@@ -61,7 +61,7 @@ const About = () => {
                   </p>
                 </CardContent>
                 {/* Button */}
-                <CardFooter className="flex justify-center  p-4 pt-0 mt-6">
+                <CardFooter className="flex justify-center  p-2 my-2">
                   <Link
                     className="flex justify-center"
                     href={"/trade-show-booth-displays-designs"}
@@ -81,7 +81,7 @@ const About = () => {
             {/*Our Services */}
             <div className="flex flex-col h-full">
               <Card className="h-full  shadow-one rounded-xl overflow-hidden max-h-[400px] flex flex-col">
-                <div className="w-full h-28 sm:h-48 overflow-hidden">
+                <div className="w-full  border-b-2 border-b-primary h-28 sm:h-48 overflow-hidden">
                   <Image
                     height={100}
                     width={150}
@@ -91,8 +91,8 @@ const About = () => {
                   />
                 </div>
                 {/* Text Content */}
-                <CardHeader className="text-center p-4">
-                  <CardTitle className="text-[26px] heading-font-600 font-bold text-secondary">
+                <CardHeader className="text-center p-2">
+                  <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
                     OUR SERVICES
                   </CardTitle>
                 </CardHeader>
@@ -103,7 +103,7 @@ const About = () => {
                   </p>
                 </CardContent>
                 {/* Button */}
-                <CardFooter className="flex justify-center p-4 pt-0 mt-6">
+                <CardFooter className="flex justify-center p-2 my-2">
                   <Link className="flex justify-center" href="/services">
                     <Button
                       variant="outline"
@@ -120,7 +120,7 @@ const About = () => {
             {/* Our Work */}
             <div className="flex flex-col h-full">
               <Card className="h-full  shadow-one rounded-xl overflow-hidden max-h-[400px] flex flex-col ">
-                <div className="w-full h-28 sm:h-48 overflow-hidden">
+                <div className="w-full  border-b-2 border-b-primary h-28 sm:h-48 overflow-hidden">
                   <Image
                     height={100}
                     width={150}
@@ -130,8 +130,8 @@ const About = () => {
                   />
                 </div>
                 {/* Text Content */}
-                <CardHeader className="text-center p-4">
-                  <CardTitle className="text-[26px] heading-font-600 font-bold text-secondary">
+                <CardHeader className="text-center p-2">
+                  <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
                     OUR WORK
                   </CardTitle>
                 </CardHeader>
@@ -142,7 +142,7 @@ const About = () => {
                   </p>
                 </CardContent>
                 {/* Button */}
-                <CardFooter className="p-4 pt-0 mt-6 flex justify-center">
+                <CardFooter className="p-2 my-2 flex justify-center">
                   <Link className="flex justify-center" href={"/portfolio"}>
                     <Button
                       variant="outline"

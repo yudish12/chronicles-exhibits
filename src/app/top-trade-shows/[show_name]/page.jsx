@@ -17,6 +17,7 @@ import { getAllData, getSingleEvent } from "@/server/actions/events";
 import Head from "next/head";
 import BoothSizeForm from "./_components/BoothSizeForm";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const show_name = resolvedParams.show_name;
@@ -54,6 +55,8 @@ const Page = async ({ params }) => {
   const startDate = data.data.start_date;
   const targetDate = data.data.end_date;
 
+  const isExpired = moment(targetDate).isBefore(moment());
+
   return (
     <>
       <Head>
@@ -65,15 +68,26 @@ const Page = async ({ params }) => {
         <h2 className=" text-4xl text-center text-white uppercase font-semibold heading-font">
           {data.data.event_name}
         </h2>
-        <Timer targetDate={targetDate} />
+        {!isExpired ? (
+          <Timer targetDate={targetDate} />
+        ) : (
+          <span className="text-red-600 font-semibold text-4xl">
+            No Date Announced Yet
+          </span>
+        )}
         <div className="flex flex-col w-full items-center gap-2">
           <p className="flex text-center gap-4 items-center text-white font-semibold">
             <MapPin color="#FFFFFF" />
             <span className="text-xl">{data.data.city} | United States</span>
           </p>
           <p className="flex text-center items-center gap-4">
-            <Calendar color="#FFFFFF" />
-            <span className=" text-white font-semibold text-xl">
+            <Calendar color={isExpired ? "#FF0000" : "#FFFFFF"} />
+            <span
+              className={cn(
+                "text-white font-semibold text-xl",
+                isExpired && "text-red-600 line-through	"
+              )}
+            >
               {moment(startDate).format("DD")} {moment(startDate).format("MMM")}{" "}
               - {moment(targetDate).format("DD")}{" "}
               {moment(targetDate).format("MMM")}{" "}

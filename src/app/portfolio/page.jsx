@@ -13,11 +13,11 @@ const Page = async () => {
       <SubHeader />
       <Header />
       <div className=" featured-bg flex flex-col items-center justify-center bg-cover bg-center">
-        <div className="flex flex-col items-center h-full text-center gap-10  px-4">
+        <div className="flex flex-col items-center h-full justify-center text-center gap-10  px-4">
           <h2 className="heading-font font-semibold text-[2rem] mt-16 text-white drop-shadow-lg leading-relaxed ">
             OUR PORTFOLIO
           </h2>
-          <p className="text-white text-[2.5rem] w-[1000px] uppercase font-medium text-center">
+          <p className="text-white text-[2rem] w-[1000px] uppercase font-medium text-center">
             Have a look at our impeccable trade show booths that made our
             clients stand out from their competitors.
           </p>

@@ -11,8 +11,13 @@ import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogTrigger } from "./dialog";
 import EnquiryForm from "../Form";
 import ScheduleCallForm from "../ScheduleCallForm";
+import BoothsizeDropdown from "../booth-size-dropdown";
 
 const RouteComponent = ({ link, name, className }) => {
+  if (link === "booth-sizes") {
+    return <BoothsizeDropdown className={className} />;
+  }
+
   return (
     <Link
       className={cn(" text-[16.5px]  text-white font-medium", className)}
@@ -69,7 +74,7 @@ const Header = () => {
       <Link href={"/"}>
         <Image alt="logo" src="/chronicle-logo.svg" width={110} height={80} />
       </Link>
-      <div className="flex gap-8">
+      <div className="hidden md:flex gap-8">
         {headerRoutes.map((route, index) => (
           <RouteComponent
             className={scrollPosition > 55 ? "opacity-0" : ""}
@@ -92,7 +97,11 @@ const Header = () => {
           </button>
         </div>
       </div>
-
+      <div className="md:hidden">
+        <button onClick={toggleMenu} className="text-white">
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+        </button>
+      </div>
       {/* Mobile Menu (Full-Screen Overlay) */}
       <div
         className={`fixed top-0 left-0 w-full h-full  bg-opacity-70 z-30 transition-opacity ${
