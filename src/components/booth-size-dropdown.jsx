@@ -28,7 +28,7 @@ const BoothsizeDropdown = ({ className }) => {
         <div className="w-48 h-2 bg-black"></div>
 
         {sizes.map((size, ind) => (
-          <Link href={`${size}-trade-show-booth`}>
+          <Link key={ind} href={`${size}-trade-show-booth`}>
             <span className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
               {size} Trade Show Booth
             </span>
