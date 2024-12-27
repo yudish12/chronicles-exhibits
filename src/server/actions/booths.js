@@ -7,12 +7,14 @@ import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 
 await dbConnect();
 
-export const getAllData = async () => {
+export const getAllData = async (limit, skip) => {
   try {
-    const data = await Booth.find()
-      .sort({ createdAt: 1 })
-      .populate("booth_size")
-      .lean();
+    let query = Booth.find().sort({ createdAt: 1 });
+
+    if (limit) query = query.limit(limit);
+    if (skip) query = query.skip(skip);
+    const data = await query.populate("booth_size").lean();
+
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

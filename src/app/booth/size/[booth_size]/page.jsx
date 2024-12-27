@@ -28,7 +28,8 @@ async function FeaturedPage({ params }) {
   const boothSize = resolvedParams.booth_size;
   console.log("==boothsize==", boothSize);
   const data = await getBoothSizeByName(boothSize);
-  const booths = await getBoothsBySize(data.data._id);
+  // const booths = await getBoothsBySize(data.data._id);
+  const booths = await getAllData(6, 0);
 
   console.log("data", booths);
   return (
@@ -53,7 +54,7 @@ async function FeaturedPage({ params }) {
           </div>
         </div>
       </div>
-      <BoothGrid size={boothSize} booths={booths} />
+      <BoothGrid size={boothSize} booths={booths.data} />
       <RequestDesign size={boothSize} />
       <TradeShowSection size={boothSize} />
       <Queryform />
