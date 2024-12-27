@@ -48,6 +48,7 @@ export const updateData = async (id, data) => {
 };
 
 export const addData = async (data) => {
+  console.log(data);
   try {
     if (!data.booth_code) {
       return getActionFailureResponse("Booth code is required", "booth_code");
