@@ -54,7 +54,7 @@ const BlogsPagination = ({ blogs }) => {
           {paginatedBlogs.map((blog, index) => (
             <Card
               key={index}
-              className="flex flex-col bg-white/60 h-[230px] md:flex-row items-start shadow-two rounded-lg overflow-hidden py-2"
+              className="flex flex-col bg-white/60 min-h-[230px] md:flex-row items-start shadow-two rounded-lg overflow-hidden py-2"
             >
               <div className="md:w-[45%] h-full p-4">
                 <Image
@@ -67,7 +67,7 @@ const BlogsPagination = ({ blogs }) => {
                 />
               </div>
 
-              <div className="md:w-[55%] h-full p-4 flex flex-col">
+              <div className="md:w-[55%] h-full p-4 flex flex-col justify-between">
                 <CardTitle className="text-2xl font-bold text-secondary heading-font">
                   {blog.title}
                 </CardTitle>

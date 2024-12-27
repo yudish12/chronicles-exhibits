@@ -284,7 +284,7 @@ export function BoothDetails({ boothCode, boothData }) {
   if (!boothData) return <div>No Data Found</div>;
 
   return (
-    <div className="bg-background gap-12 flex justify-center pr-16 py-7 px-32">
+    <div className="bg-background gap-12 flex flex-wrap justify-center pr-16 py-7 px-32">
       {/*Thumbnails */}
       <div className="flex flex-col mt-16 items-start gap-8">
         <h3 className="text-[1.4rem] text-secondary font-semibold ">
@@ -411,8 +411,8 @@ export function BoothDetails({ boothCode, boothData }) {
       </div>
 
       {/* Details */}
-      <ul className="flex flex-1 flex-col gap-2 text-secondary">
-        <div className="flex gap-3 mb-8 text-primary underline font-semibold text-sm">
+      <ul className="flex flex-1 md:w-max flex-col mx-auto gap-2 text-secondary">
+        <div className="flex text-center gap-3 mb-8 text-primary underline font-semibold text-sm">
           <span>Home/</span>
           <span>Booth By Size/</span>
           <span>10x10/</span>

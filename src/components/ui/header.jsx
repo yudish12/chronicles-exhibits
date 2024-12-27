@@ -10,6 +10,7 @@ import useScrollPosition from "../useScroll";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogTrigger } from "./dialog";
 import EnquiryForm from "../Form";
+import ScheduleCallForm from "../ScheduleCallForm";
 
 const RouteComponent = ({ link, name, className }) => {
   return (
@@ -32,7 +33,7 @@ export const HeaderBtns = ({ scrollPosition }) => {
           </Button>
         </DialogTrigger>
         <DialogContent className="">
-          <EnquiryForm />
+          <ScheduleCallForm />
         </DialogContent>
       </Dialog>
       <Dialog>

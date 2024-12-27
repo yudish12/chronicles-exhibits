@@ -14,6 +14,7 @@ const ScheduleCallForm = () => {
     phoneNumber: "",
     callDate: "",
     callTime: "",
+    timeZone: "",
     message: "",
     url: "",
   });
@@ -72,12 +73,11 @@ const ScheduleCallForm = () => {
     <div
       style={{
         width: "100%",
-        margin: "16px auto",
-        padding: "20px",
+        margin: "0px auto",
       }}
     >
       <h5 className="text-3xl mt-4 text-center font-semibold heading-font text-secondary">
-        Enquiry Form
+        Schedule a Call
       </h5>
       <div className="mt-4 flex flex-col gap-5">
         <Input
@@ -128,10 +128,17 @@ const ScheduleCallForm = () => {
         </select>
         <Input
           className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
+          placeholder="Timezone"
+          value={formData.timeZone}
+          onChange={handleChange}
+          name="timeZone"
+        />
+        <Input
+          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
           placeholder="url"
           value={formData.url}
           type="hidden"
-          style={{display : "none"}}
+          style={{ display: "none" }}
           name="url"
           readOnly // Make it read-only since it's pre-filled
         />
@@ -146,7 +153,7 @@ const ScheduleCallForm = () => {
           onClick={handleSubmit}
           className="w-1/3 mx-auto bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
         >
-          Get Quote
+          Send Enquiry
         </Button>
       </div>
     </div>

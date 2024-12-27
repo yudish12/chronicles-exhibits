@@ -5,6 +5,7 @@ import "react-phone-input-2/lib/style.css";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { submitCallForm } from "@/server/actions/forms";
+import { UploadButton } from "@uploadthing/react";
 
 const EnquiryForm = () => {
   const [countryCode, setCountryCode] = useState("us");
@@ -14,6 +15,9 @@ const EnquiryForm = () => {
     phoneNumber: "",
     boothSize: "",
     eventName: "",
+    eventCity: "",
+    budget: "",
+    file: "",
     message: "",
   });
 
@@ -56,14 +60,13 @@ const EnquiryForm = () => {
     <div
       style={{
         width: "100%",
-        margin: "16px auto",
-        padding: "20px",
+        margin: "0px auto",
       }}
     >
       <h5 className="text-3xl mt-4 text-center font-semibold heading-font text-secondary">
         Enquiry Form
       </h5>
-      <div className="mt-4 flex flex-col gap-5">
+      <div className="mt-4 grid md:grid-cols-1 grid-cols-2 gap-5">
         <Input
           className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
           type="text"
@@ -102,16 +105,39 @@ const EnquiryForm = () => {
           onChange={handleChange}
           required
         />
+        <Input
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+          type="text"
+          placeholder="Enter Event City"
+          onChange={handleChange}
+          required
+          name="eventCity"
+        />
+        <Input
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+          type="text"
+          placeholder="Enter Budget"
+          onChange={handleChange}
+          required
+          name="budget"
+        />
+        <Input
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+          type="file"
+          placeholder="Upload resources (optional)"
+          onChange={(e) => setFormData({ ...formData, file: e.target.files })}
+          name="file"
+        />
         <textarea
           rows={4}
-          className="border p-2 border-[#CACACA] placeholder:text-secondary/70 rounded-lg"
+          className="border col-span-2 p-2 border-[#CACACA] placeholder:text-secondary/70 rounded-lg"
           placeholder="Message"
           name="message"
           onChange={handleChange}
         />
         <Button
           onClick={handleSubmit}
-          className="w-1/3 mx-auto bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
+          className="w-1/3 mx-auto col-span-2 bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
         >
           Get Quote
         </Button>

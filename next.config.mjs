@@ -7,6 +7,10 @@ const nextConfig = {
         source: "/:size-trade-show-booth",
         destination: "/booth/size/:size",
       },
+      {
+        source: "/blog",
+        destination: "/blogs",
+      },
     ];
   },
   images: {

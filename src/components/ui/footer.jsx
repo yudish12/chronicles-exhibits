@@ -12,7 +12,7 @@ const SocialIconContainer = ({ children }) => {
 export default function Footer() {
   return (
     <div className="bg-secondary py-12 px-6 md:py-24 md:px-20">
-      <div className="px-6 py-8 md:px-12 md:py-10 rounded-lg grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
+      <div className="px-6 py-8 md:px-12 md:py-10 rounded-lg grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
         {/* Company Section */}
         <div>
           <h3 className="font-semibold text-base mb-4">Company</h3>
@@ -48,7 +48,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/contact">
+              <Link className="hover:underline" href="/contact-us">
                 Contact Us
               </Link>
             </li>
@@ -110,47 +110,47 @@ export default function Footer() {
           <h3 className="font-bold text-lg mb-4">Booth By Size</h3>
           <ul className="space-y-2 footer-list">
             <li>
-              <Link className="hover:underline" href="/booth-rental/10x10">
+              <Link className="hover:underline" href="/booth/size/10x10">
                 10x10 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth-rental/10x20">
+              <Link className="hover:underline" href="/booth/size/10x20">
                 10x20 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth-rental/10x30">
+              <Link className="hover:underline" href="/booth/size/10x30">
                 10x30 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth-rental/20x20">
+              <Link className="hover:underline" href="/booth/size/20x20">
                 20x20 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth-rental/20x30">
+              <Link className="hover:underline" href="/booth/size/20x30">
                 20x30 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth-rental/20x40">
+              <Link className="hover:underline" href="/booth/size/20x40">
                 20x40 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth-rental/30x30">
+              <Link className="hover:underline" href="/booth/size/30x30">
                 30x30 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth-rental/30x40">
+              <Link className="hover:underline" href="/booth/size/30x40">
                 30x40 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth-rental/40x40">
+              <Link className="hover:underline" href="/booth/size/40x40">
                 40x40 Booth Rental
               </Link>
             </li>

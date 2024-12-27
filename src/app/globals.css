@@ -140,6 +140,7 @@
 #package ul {
   list-style: none;
   margin-left: 0;
+  display: table;
   padding-left: 0;
 }
 
