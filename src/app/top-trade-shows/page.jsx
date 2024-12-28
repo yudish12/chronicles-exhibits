@@ -10,10 +10,17 @@ import { MapPin, Calendar } from "lucide-react";
 import RequestDesign from "../booth/size/[booth_size]/_components/RequestDesign";
 import Link from "next/link";
 import { getAllData } from "@/server/actions/events";
+import TradeShowGrid from "./_components/TradeShowGrid";
 
-const Page = async () => {
-  let tradeShows = await getAllData();
+const Page = async ({ params, searchParams }) => {
+  const searchparams = await searchParams;
+  const page = Number(searchparams?.page) ?? 1;
+  const limit = 8;
+  const skip = (page - 1) * limit;
+  let tradeShows = await getAllData(skip , limit , "start_date end_date title icon event_name country city");
+  const totalPages = Math.ceil(tradeShows.count / limit);
   console.log("==trade shows ==", tradeShows);
+  // project -> start_date , end_date , title , icon ,event_name , country , city 
   return (
     <>
       <SubHeader />
@@ -48,54 +55,8 @@ const Page = async () => {
           your competition.
         </p>
 
-        <div className="grid lg:grid-cols-[290px,290px,290px,290px] md:grid-cols-3 gap-x-12 gap-y-12 sm:grid-cols-2 gap-4 px-20 mt-12">
-          {tradeShows.data.map((show) => (
-            <div
-              key={show._id}
-              className="min-h-[360px] justify-between bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
-            >
-              <h4 className="text-secondary text-center heading-font text-2xl uppercase font-semibold">
-                {show.event_name}
-              </h4>
-              <Image
-                className="rounded-full"
-                width={120}
-                height={120}
-                src={show.icon}
-                alt={show.event_name}
-              />
-              <div className="flex flex-col gap-2 w-full px-4">
-                <p className="flex gap-4">
-                  <MapPin color="#B0CB1F" />
-                  <span className="text-[16px]">
-                    {show?.location_id?.city ?? show.city},
-                    {show?.location_id?.continent ?? show.country}{" "}
-                  </span>
-                </p>
-                <p className="flex  gap-4">
-                  <Calendar color="#B0CB1F" />
-                  <span className="text-[16px]">
-                    {moment(show.start_date).format("DD")}-
-                    {moment(show.end_date).format("DD")}{" "}
-                    {moment(show.start_date).format("MMMM")}{" "}
-                    {moment(show.end_date).format("YYYY")}
-                  </span>
-                </p>
-              </div>
-              <Link
-                className="w-full justify0c"
-                href={`/top-trade-shows/${show.slug}`}
-              >
-                <Button
-                  variant="outline"
-                  className="text-secondary w-full hover:bg-secondary hover:text-white border-secondary border-2 bg-transparent font-semibold py-[18px] text-[16px]"
-                >
-                  View Details
-                </Button>
-              </Link>
-            </div>
-          ))}
-        </div>
+        <TradeShowGrid tradeShows={tradeShows} totalPage={totalPages} currentPage={page}
+        limit={limit}/>
       </div>
       <Footer />
     </>
