@@ -108,7 +108,7 @@
 //           <div className="w-full">
 //             <div className="flex justify-between mb-4">
 //               <label className="flex items-center space-x-2">
-//                 <input
+//                 <Input
 //                   type="checkbox"
 //                   className="h-4 w-4 border-gray-300 rounded "
 //                 />
@@ -200,6 +200,7 @@
 //   );
 // }
 "use client";
+import { useState , useEffect } from "react";
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -210,9 +211,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import PhoneInput from "react-phone-input-2";
+import { submitBoothCodeForm } from "@/server/actions/forms";
 const imagegroup1 = [
   "/booth-2.jpeg", // Replace with actual image URLs
   "/booth-4.jpeg",
@@ -289,79 +294,172 @@ const CarouselImages = ({
 };
 
 const BoothForm = () => {
+
+  const [countryCode, setCountryCode] = useState("us");
+  const [selectedValue, setSelectedValue] = useState("");
+  const [formData, setFormData] = useState({
+    name : "",
+    company : "",
+    budget : "",
+    eventName : "",
+    eventCity : "",
+    file : "",
+    country: "",
+    eventDate : "",
+    email: "",
+    phoneNumber: "",
+    boothSize: "",
+    message: "",
+    url: "",
+    requestType: "",
+    country: ""
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleRadioChange = (event)=>{
+    const value = event.target.value ;
+    setSelectedValue((prevValue) => (prevValue === value ? "" : value));
+  }
+  // Handle phone number input
+  const handlePhoneChange = (value) => {
+    setFormData({ ...formData, phoneNumber: value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const { requestType, ...otherFields } = formData;
+  
+    const formattedData = {
+      ...otherFields,
+      rentalQuotation: requestType === "rental",
+      purchaseRequest: requestType === "purchase",
+      customizationRequest: requestType === "customization",
+    };
+  
+    console.log("Formatted Data Submitted:", formattedData);
+  
+    const resp = await submitBoothCodeForm(formattedData, "home");
+    console.log(resp);
+  };
+  useEffect(() => {
+    const fetchCountryCode = async () => {
+      try {
+        const response = await fetch("http://ip-api.com/json/");
+        const data = await response.json();
+        if (data && data.countryCode) {
+          setCountryCode(data.countryCode.toLowerCase());
+        }
+      } catch (error) {
+        console.error("Error fetching country code:", error);
+      }
+    };
+    fetchCountryCode();
+
+    setFormData((prevData) => ({
+      ...prevData,
+      url: window.location.href,
+    }));
+  }, []);
   return (
     <div className="flex flex-col items-center justify-center py-6">
       <div className="w-full">
-        <div className="flex justify-between mb-4">
-          <label className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              className="h-4 w-4 border-gray-300 rounded "
-            />
-            <span className="text-secondary font-semibold">
-              Rental Quotation
-            </span>
-          </label>
-          <label className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              className="h-4 w-4 border-secondary rounded text-primary "
-            />
-            <span className="text-secondary font-semibold">
-              Purchase Request
-            </span>
-          </label>
-          <label className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              className="h-4 w-4 border-gray-300 rounded text-purple-600 focus:ring-2 focus:ring-purple-500"
-            />
-            <span className="text-secondary font-semibold">
-              Customization Request
-            </span>
-          </label>
-        </div>
-
+      <div className="flex justify-between mb-4">
+  <label className="flex items-center gap-x-2">
+    <Input
+      type="radio"
+      name="requestType"
+      value="rental"
+      checked={selectedValue === "rental"}
+      className="h-4 w-4 border-gray-300 rounded"
+      onChange={handleRadioChange}
+    />
+    <span className="text-secondary font-semibold">Rental Quotation</span>
+  </label>
+  <label className="flex items-center gap-x-2">
+    <Input
+      type="radio"
+      name="requestType"
+      value="purchase"
+      checked={selectedValue === "purchase"}
+      className="h-4 w-4 border-gray-300 rounded text-primary"
+      onChange={handleRadioChange}
+    />
+    <span className="text-secondary font-semibold">Purchase Request</span>
+  </label>
+  <label className="flex items-center gap-x-2">
+    <Input
+      type="radio"
+      name="requestType"
+      value="customization"
+      checked={selectedValue === "customization"}
+      className="h-4 w-4 border-gray-300 rounded"
+      onChange={handleRadioChange}
+    />
+    <span className="text-secondary font-semibold">Customization Request</span>
+  </label>
+</div>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
-          <input
+          <Input
             type="text"
             placeholder="Contact Person"
-            className="w-full border border-secondary  rounded-lg px-3 py-2 "
+            className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
+            name="name"
+            onChange={handleChange}
           />
-          <input
-            type="text"
-            placeholder="Phone/Mobile Number"
-            className="w-full border border-secondary  rounded-lg px-3 py-2 "
+          <PhoneInput
+            country={countryCode}
+            value={formData.phoneNumber}
+            onChange={handlePhoneChange}
+            className="booth-code-phone-input"
           />
-          <input
+          <Input
             type="email"
             placeholder="Email Address"
-            className="w-full border border-secondary  rounded-lg px-3 py-2 "
+            className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
+            onChange={handleChange}
+            name="email"
           />
-          <input
+          <Input
             type="text"
             placeholder="Country"
-            className="w-full border border-secondary  rounded-lg px-3 py-2 "
+            className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
+            onChange={handleChange}
+            name="country"
           />
-          <input
+          <Input
             type="text"
             placeholder="Event Name"
-            className="w-full border border-secondary  rounded-lg px-3 py-2 "
+            className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white "
+            onChange={handleChange}
+            name="eventName"
           />
-          <input
+          <Input
             type="text"
             placeholder="Event City"
-            className="w-full border border-secondary  rounded-lg px-3 py-2 "
+            className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white "
+            onChange={handleChange}
+            name="eventCity"
+          />
+          <Input
+            type="text"
+            placeholder="Your Budget"
+            className="w-full border col-span-3  border-gray-300  rounded-lg px-3 py-2 bg-white "
+            onChange={handleChange}
+            name="budget"
           />
         </div>
-
         <textarea
           placeholder="Description/Message/Customizations"
-          className="w-full border border-secondary  rounded-lg px-3 py-2 "
+          className="w-full border border-gray-300  rounded-lg px-3 py-2 "
           rows="4"
+          onChange={handleChange}
+          name="message"
         ></textarea>
       </div>
-      <Button className="transition-all py-4 px-6 duration-150 bg-secondary hover:text-white hover:bg-secondary font-semibold mt-4 self-end rounded text-white">
+      <Button className="transition-all py-4 px-6 duration-150 bg-secondary hover:text-white hover:bg-secondary font-semibold mt-4 self-end rounded text-white"
+      onClick={handleSubmit}>
         Get Quote
       </Button>
     </div>

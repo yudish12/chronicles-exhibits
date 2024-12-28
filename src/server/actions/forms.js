@@ -90,7 +90,7 @@ export const submitGetFreeDesignForm = async (fields, page_source) => {
     };
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
-    await formSubmission.save();
+    await formSubmission.save().exec();
     const email = new EmailService("home", "free-design");
 
     const resp = await email.send(
@@ -185,14 +185,16 @@ export const submitBoothCodeForm = async (fields, page_source) => {
       callDate: "",
       callTime: "",
       country: "",
-      rentalQuotation: "",
-      purchaseRequest: "",
-      custromizationRequest: "",
-    };
+      rentalQuotation: false,
+      purchaseRequest: false,
+      customizationRequest: false,
+    };    
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
-    await formSubmission.save();
-    const email = new EmailService("booth", "blog-enquiry");
+    await formSubmission.save()
+    console.log(formSubmission)
+    console.log("data saved ", normalizedFields, await formSubmission.save());
+    const email = new EmailService("booth", "booth-code");
     const resp = await email.send(
       fields,
       `Get a Quote form filled from page: ${page_source}`
