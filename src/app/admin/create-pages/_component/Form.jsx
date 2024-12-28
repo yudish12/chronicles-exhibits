@@ -26,13 +26,12 @@ const PageEditForm = ({ pageData }) => {
   });
 
   const handleFieldChange = (index, value) => {
-    setBoothSizePage({
-      ...boothSizePage,
-      fields: [
-        ...boothSizePage.fields.slice(0, index),
-        { ...boothSizePage.fields[index], value },
-        ...boothSizePage.fields.slice(index + 1),
-      ],
+    setBoothSizePage((prev) => {
+      const temp = JSON.parse(JSON.stringify(prev));
+      console.log(value, index);
+      temp.fields[index].value = value;
+      console.log(temp);
+      return temp;
     });
   };
 

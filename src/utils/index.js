@@ -17,9 +17,9 @@ const getActionFailureResponse = (error, type) => {
 };
 const convertHumanReadableText = (text) =>
   text
-    .split("_")
-    .map((e) => e[0].toUpperCase() + e.slice(1))
-    .join(" ");
+    ?.split("_")
+    ?.map((e) => e[0].toUpperCase() + e.slice(1))
+    ?.join(" ");
 
 export {
   jwtFuncs,

@@ -36,7 +36,11 @@ const page = async ({ params }) => {
   const { data } = await getSingleBlog({ slug: blog_slug });
   console.log("==blog data==", data);
 
-  const blogFromDb = await getAllBlogs(3);
+  const blogFromDb = await getAllBlogs(
+    null,
+    data.blog_count,
+    "name title slug image image_alt_text"
+  );
   const blogsToBeMapped = blogFromDb.data;
   console.log(blogsToBeMapped);
   const relatedBlogs = [
@@ -139,7 +143,7 @@ const page = async ({ params }) => {
             </div>
 
             {/* Enquiry Form */}
-              <BlogForm/>
+            <BlogForm />
           </div>
         </div>
       </div>
