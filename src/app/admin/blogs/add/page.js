@@ -16,6 +16,7 @@ import { useRouter } from "next/navigation";
 
 const AddBlogPage = () => {
   const [blogs, setBlogs] = React.useState([]);
+  const [isUploading, setIsUploading] = React.useState(false);
   const router = useRouter();
   const [singleBlog, setSingleBlog] = React.useState({
     title: "",
@@ -179,6 +180,7 @@ const AddBlogPage = () => {
               <CkeEditor
                 value={singleBlog.body}
                 onChange={(value) => {
+                  console.log("body called");
                   setSingleBlog({ ...singleBlog, body: value });
                 }}
               />

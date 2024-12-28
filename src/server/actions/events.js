@@ -46,6 +46,52 @@ export const updateData = async (id, data) => {
       return getActionFailureResponse("Invalid data format", "toast");
     }
 
+    if (!data.event_name) {
+      return getActionFailureResponse("event name is required", "description");
+    }
+    if (!data.start_date) {
+      return getActionFailureResponse("Start date is required", "description");
+    }
+    if (!data.end_date) {
+      return getActionFailureResponse("End date is required", "description");
+    }
+    if (!data.slug) {
+      return getActionFailureResponse("Slug is required", "slug");
+    }
+    if (!data.country) {
+      return getActionFailureResponse("Country is required", "country");
+    }
+    if (!data.city) {
+      return getActionFailureResponse("City is required", "city");
+    }
+    if (!data.icon) {
+      return getActionFailureResponse("Icon is required", "icon");
+    }
+    if (!data.body) {
+      return getActionFailureResponse("Body is required", "body");
+    }
+    if (!data.icon_alt_text) {
+      return getActionFailureResponse(
+        "Icon alt text is required",
+        "icon_alt_text"
+      );
+    }
+    if (!data.meta_title) {
+      return getActionFailureResponse("Meta title is required", "meta_title");
+    }
+    if (!data.meta_description) {
+      return getActionFailureResponse(
+        "Meta description is required",
+        "meta_description"
+      );
+    }
+    if (!data.meta_keywords || !Array.isArray(data.meta_keywords)) {
+      return getActionFailureResponse(
+        "Meta keywords is required",
+        "meta_keywords"
+      );
+    }
+
     // Find and update the document, returning the updated version
     const updatedEvent = await events.findOneAndUpdate({ _id: id }, data, {
       new: true, // Return the updated document
