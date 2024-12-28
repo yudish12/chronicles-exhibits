@@ -26,7 +26,13 @@ const FieldRender = ({ field, value, onChange, index }) => {
         />
       );
     case "body":
-      return <CkEditor value={value} onChange={onChange} index={index} />;
+      return (
+        <CkEditor
+          value={value}
+          onChange={(value) => onChange(index, value)}
+          index={index}
+        />
+      );
     default:
       return <div>Field type not found</div>;
   }

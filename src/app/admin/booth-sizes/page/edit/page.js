@@ -142,13 +142,11 @@ const Page = () => {
   };
 
   const handleFieldChange = (index, value) => {
-    setBoothSizePage({
-      ...boothSizePage,
-      fields: [
-        ...boothSizePage.fields.slice(0, index),
-        { ...boothSizePage.fields[index], value },
-        ...boothSizePage.fields.slice(index + 1),
-      ],
+    setBoothSizePage((prev) => {
+      const temp = JSON.parse(JSON.stringify(prev));
+      temp[index].value = value;
+      console.log(temp);
+      return temp;
     });
   };
 
