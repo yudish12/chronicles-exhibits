@@ -1,9 +1,10 @@
 import React from "react";
 import faqs from "../../utils/constants/dev-data/faqs.json";
+import "./faq.css";
 
 const Faq = () => {
   return (
-    <div className="px-6 md:px-20 py-8 md:py-12">
+    <div id="faq-body" className="px-6 md:px-20 py-8 md:py-12">
       <h4 className="heading-font text-secondary text-xl md:text-3xl text-center font-semibold">
         WHY CHOOSE CHRONICLE EXHIBITS AS YOUR NEXT
       </h4>
