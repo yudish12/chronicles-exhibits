@@ -33,7 +33,7 @@ export const HeaderBtns = ({ scrollPosition }) => {
     <div className={cn(scrollPosition > 55 ? "flex" : "hidden")}>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="rounded-md rounded-e-none py-[18px] px-2 sm:px-4 text-primary font-semibold border-2 bg-transparent border-primary">
+          <Button className="rounded-md rounded-e-none py-[18px] px-2 sm:px-4 text-primary body-bold  border-2 bg-transparent border-primary">
             Schedule A Call
           </Button>
         </DialogTrigger>
@@ -43,7 +43,7 @@ export const HeaderBtns = ({ scrollPosition }) => {
       </Dialog>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="rounded-md hover:bg-primary rounded-s-none  py-[18px] border-2 border-primary  text-secondary font-semibold">
+          <Button className="rounded-md hover:bg-primary rounded-s-none  py-[18px] border-2 border-primary  text-secondary body-bold ">
             Get Quote
           </Button>
         </DialogTrigger>

@@ -142,6 +142,10 @@
   font-style: normal;
 }
 
+.body-bold {
+  font-family: "PT-sans-bold";
+}
+
 #packge p {
   text-align: justify;
 }

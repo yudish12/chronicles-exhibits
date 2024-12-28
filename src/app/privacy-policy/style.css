@@ -1,0 +1,111 @@
+/* Stylesheet for Privacy Policy Page */
+
+#privacy-policy-body h1 {
+  font-size: 2.25rem; /* Equivalent to text-4xl */
+  font-weight: bold; /* Equivalent to font-bold */
+  font-family: "Jost-900";
+  line-height: 2.5rem; /* line height for text-5xl */
+  margin-bottom: 1.5rem; /* Equivalent to mb-6 */
+
+  color: black;
+}
+
+#privacy-policy-body p {
+  font-size: 1.125rem; /* Equivalent to text-lg */
+  margin-bottom: 2rem; /* Equivalent to mb-8 */
+  line-height: 1.75rem; /* Equivalent to leading-relaxed */
+  text-align: justify;
+  color: black;
+}
+
+#privacy-policy-body p strong {
+  font-weight: 600;
+}
+
+#privacy-policy-body section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Equivalent to gap-y-8 */
+}
+
+#privacy-policy-body section > div {
+  padding-top: 2rem; /* Equivalent to py-4 */
+  padding-bottom: 2rem; /* Equivalent to py-4 */
+}
+
+#privacy-policy-body h2 {
+  font-size: 1.125rem; /* Equivalent to text-lg */
+  font-weight: bold; /* Equivalent to font-semibold */
+  color: black; /* Assuming text-secondary is defined globally */
+  font-family: "Jost-700"; /* Custom font */
+  margin-bottom: 1rem; /* Equivalent to mb-4 */
+  line-height: 2.25rem; /* line height for text-3xl */
+}
+
+#privacy-policy-body ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#privacy-policy-body li {
+  display: flex;
+  align-items: center;
+  padding-top: 0.5rem; /* Equivalent to py-2 */
+  padding-bottom: 0.5rem; /* Equivalent to py-2 */
+  padding-left: 1em; /* Indent */
+  text-indent: -1em;
+}
+
+#privacy-policy-body li:before {
+  content: "◆";
+  font-size: 21px;
+  padding-right: 10px;
+  color: #b0cb1f;
+}
+
+#privacy-policy-body li span {
+  padding-left: 0.5rem; /* Equivalent to px-2 */
+}
+
+#privacy-policy-body .contact-us {
+  margin-bottom: 1.5rem; /* Equivalent to mb-6 */
+}
+
+/* General table styles */
+#privacy-policy-body table {
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Remove spacing between cells */
+  margin: 20px 0; /* Add spacing around the table */
+  font-size: 16px; /* Adjust font size */
+  text-align: left; /* Align text to the left */
+  border: 1px solid #ddd; /* Border around the table */
+}
+
+/* Table header styles */
+#privacy-policy-body th {
+  font-weight: bold; /* Make header bold */
+  text-align: left; /* Align text to the left */
+  padding: 8px 12px; /* Add padding */
+  border: 1px solid #ddd; /* Border for each cell */
+  background-color: #f4f4f4; /* Light gray background */
+}
+
+/* Table data styles */
+#privacy-policy-body td {
+  padding: 8px 12px; /* Add padding */
+  border: 1px solid #ddd; /* Border for each cell */
+}
+
+/* Title styles */
+#privacy-policy-body caption {
+  font-size: 20px; /* Larger font size for the title */
+  font-weight: bold; /* Make it bold */
+  margin-bottom: 10px; /* Add spacing below the title */
+  text-align: center; /* Center the title */
+}
+
+/* Links */
+#privacy-policy-body a {
+  color: blue;
+}
