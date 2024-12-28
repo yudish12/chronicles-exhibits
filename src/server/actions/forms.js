@@ -66,6 +66,40 @@ export const submitScheduleCallForm = async (fields, page_source) => {
     console.error("Error submitting form:", error);
   }
 };
+export const submitGetFreeDesignForm = async (fields, page_source) => {
+  try {
+    const schemaKeys = {
+      name: "",
+      email: "",
+      phoneNumber: "",
+      eventName: "",
+      eventCity: "",
+      country:"",
+      company: "",
+      file: "",
+      message: "",
+      page_source: "",
+      company_name: "",
+      boothSize: "",
+      exhibition_name: "",
+      callDate: "",
+      callTime: "",
+      budget: ""
+    };
+    const normalizedFields = { ...schemaKeys, ...fields, page_source };
+    const formSubmission = new FormSubmission(normalizedFields);
+    await formSubmission.save();
+    const email = new EmailService("home", "free-design");
+
+    const resp = await email.send(
+      fields,
+      `Get a Quote form filled from page: ${page_source}`
+    );
+    return resp;
+  } catch (error) {
+    console.error("Error submitting form:", error);
+  }
+};
 export const submitBoothForm = async (fields, page_source) => {
   try {
     const schemaKeys = {

@@ -23,7 +23,7 @@ const formSubmissionSchema = new mongoose.Schema(
     eventName: {
       type: String,
     },
-    event_city: {
+    eventCity: {
       type: String,
     },
     file: {
@@ -62,7 +62,11 @@ const formSubmissionSchema = new mongoose.Schema(
     },
     customizationRequest : {
       type: Boolean
-    }
+    },
+    budget: {
+      type: String
+    },
+
   },
   { timestamps: true }
 );
