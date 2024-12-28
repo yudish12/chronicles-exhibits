@@ -2,7 +2,11 @@
 
 import dbConnect from "@/config/db-connect";
 import Pages from "../models/pages";
-import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
+import {
+  getActionFailureResponse,
+  getActionSuccessResponse,
+  getPageFieldsByName,
+} from "@/utils";
 import mongoose from "mongoose";
 import { boothsizePageFields } from "@/lib/config";
 import pages from "../models/pages";
@@ -27,6 +31,7 @@ export const getSinglePage = async (query) => {
 };
 
 export const updateData = async (name, data) => {
+  const pageFields = getPageFieldsByName(name);
   try {
     if (!name) {
       return getActionFailureResponse("Invalid id format", "toast");
@@ -44,24 +49,32 @@ export const updateData = async (name, data) => {
       return getActionFailureResponse("Invalid fields data format", "toast");
     }
 
-    Object.keys(data.fields).forEach((key) => {
-      if (!boothsizePageFields.includes(key)) {
-        return getActionFailureResponse("Invalid field key", "toast");
+    let valid = true;
+
+    pageFields.forEach((field) => {
+      const currentField = data.fields.find((f) => f.key === field.key);
+      console.log(currentField.type, currentField.value, currentField.key);
+      if (!currentField) {
+        valid = false;
+        return;
+      }
+      if (!currentField.type) {
+        valid = false;
+        return;
+      }
+      if (!currentField.value || typeof currentField.value !== "string") {
+        valid = false;
+        return;
       }
     });
 
-    Object.values(data.fields).forEach((value) => {
-      if (!value) {
-        return getActionFailureResponse("Invalid field value", "toast");
-      }
-    });
+    if (!valid) {
+      return getActionFailureResponse("Invalid fields data format", "toast");
+    }
 
     const resp = await pages
       .updateOne({ name: name }, data, {
         new: true, // Return the updated document
-        runValidators: true, // Run validation
-        upsert: true, // Create a new document if it doesn't exist
-        setDefaultsOnInsert: true, // Set default values on insert
       })
       .lean();
 

@@ -207,7 +207,12 @@ const EditEventForm = ({ singleEvent, locations }) => {
             <CKEditorDemo
               value={event.body}
               onChange={(value) => {
-                setEvent({ ...event, body: value });
+                console.log("body called");
+                setEvent((prev) => {
+                  const temp = JSON.parse(JSON.stringify(prev));
+                  temp.body = value;
+                  return temp;
+                });
               }}
             />
           </div>

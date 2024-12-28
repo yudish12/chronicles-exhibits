@@ -45,6 +45,47 @@ export const updateData = async (id, data) => {
       return getActionFailureResponse("Invalid data format", "toast");
     }
 
+    if (!data.title) {
+      return getActionFailureResponse("title is required", "title");
+    }
+    if (!data.body) {
+      return getActionFailureResponse("body is required", "body");
+    }
+    if (!data.image) {
+      return getActionFailureResponse("image is required", "image");
+    }
+
+    if (!data.slug) {
+      return getActionFailureResponse("slug is required", "slug");
+    }
+    if (!data.blog_count) {
+      return getActionFailureResponse("blog_count is required", "blog_count");
+    }
+    if (!data.title) {
+      return getActionFailureResponse("title is required", "title");
+    }
+    if (!data.image_alt_text) {
+      return getActionFailureResponse(
+        "image_alt_text is required",
+        "image_alt_text"
+      );
+    }
+    if (!data.meta_title) {
+      return getActionFailureResponse("meta_title is required", "meta_title");
+    }
+    if (!data.meta_description) {
+      return getActionFailureResponse(
+        "meta_description is required",
+        "meta_description"
+      );
+    }
+    if (!data.meta_keywords || !Array.isArray(data.meta_keywords)) {
+      return getActionFailureResponse(
+        "meta_keywords is required",
+        "meta_keywords"
+      );
+    }
+
     // Use findByIdAndUpdate instead of updateOne to get the updated document
     const resp = await Blog.findByIdAndUpdate(
       id,
@@ -84,17 +125,42 @@ export const addData = async (data) => {
     if (!data.title) {
       return getActionFailureResponse("title is required", "title");
     }
-
-    // if (!data.short_description) {
-    //   return getActionFailureResponse("short description is required", "short_description");
-    // }
-
-    // if (!data.long_description) {
-    //   return getActionFailureResponse("long description is required", "long_description");
-    // }
-
+    if (!data.body) {
+      return getActionFailureResponse("body is required", "body");
+    }
     if (!data.image) {
       return getActionFailureResponse("image is required", "image");
+    }
+
+    if (!data.slug) {
+      return getActionFailureResponse("slug is required", "slug");
+    }
+    if (!data.blog_count) {
+      return getActionFailureResponse("blog_count is required", "blog_count");
+    }
+    if (!data.title) {
+      return getActionFailureResponse("title is required", "title");
+    }
+    if (!data.image_alt_text) {
+      return getActionFailureResponse(
+        "image_alt_text is required",
+        "image_alt_text"
+      );
+    }
+    if (!data.meta_title) {
+      return getActionFailureResponse("meta_title is required", "meta_title");
+    }
+    if (!data.meta_description) {
+      return getActionFailureResponse(
+        "meta_description is required",
+        "meta_description"
+      );
+    }
+    if (!data.meta_keywords || !Array.isArray(data.meta_keywords)) {
+      return getActionFailureResponse(
+        "meta_keywords is required",
+        "meta_keywords"
+      );
     }
 
     const resp = await Blog.create(data);

@@ -240,6 +240,22 @@ export const homePageFields = [
   },
 ];
 
+export const FAQPageFields = [
+  {
+    key: "body",
+    type: "body",
+    value: "",
+  },
+];
+
+export const PrivacyPolicyPageFields = [
+  {
+    key: "body",
+    type: "body",
+    value: "",
+  },
+];
+
 export const locationPageFields = [
   {
     key: "top_title",
