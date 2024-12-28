@@ -90,6 +90,7 @@ export default function CreatePages() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>S.No.</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Slug</TableHead>
               <TableHead>Meta Title</TableHead>
@@ -98,8 +99,9 @@ export default function CreatePages() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {pages.map((page) => (
+            {pages.map((page, index) => (
               <TableRow key={page._id}>
+                <TableCell>{index + 1}</TableCell>
                 <TableCell>{page.name}</TableCell>
                 <TableCell>{page.slug}</TableCell>
                 <TableCell>{page.meta_title}</TableCell>

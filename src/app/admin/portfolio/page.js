@@ -92,14 +92,16 @@ export default function PortfolioTable() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>S.No.</TableHead>
               <TableHead>Image</TableHead>
               <TableHead>Image Alt Text</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {portfolios.map((portfolio) => (
+            {portfolios.map((portfolio, index) => (
               <TableRow key={portfolio._id}>
+                <TableCell>{index + 1}</TableCell>
                 <TableCell>
                   <img
                     src={portfolio.image}

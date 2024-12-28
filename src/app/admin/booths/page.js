@@ -97,6 +97,7 @@ export default function BoothTable() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>S.No.</TableHead>
               <TableHead>Thumbnail Image</TableHead>
               <TableHead>Code</TableHead>
               <TableHead>Booth Size</TableHead>
@@ -106,8 +107,9 @@ export default function BoothTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {booths.map((booth) => (
+            {booths.map((booth, index) => (
               <TableRow key={booth._id}>
+                <TableCell>{index + 1}</TableCell>
                 <TableCell>
                   {booth.thumbnail_image && (
                     <img

@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { getAllForms } from "@/server/actions/forms";
-import {  Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { deleteForm } from "@/server/actions/forms";
 import {
   Dialog,
@@ -83,6 +83,7 @@ export default function PortfolioTable() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>S.No.</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>E mail</TableHead>
               <TableHead>Phone Number</TableHead>
@@ -92,11 +93,10 @@ export default function PortfolioTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {portfolios.map((portfolio) => (
+            {portfolios.map((portfolio, index) => (
               <TableRow key={portfolio._id}>
-                <TableCell>
-                  {portfolio.name}
-                </TableCell>
+                <TableCell>{index + 1}</TableCell>
+                <TableCell>{portfolio.name}</TableCell>
                 <TableCell>{portfolio.email}</TableCell>
                 <TableCell>{portfolio.phoneNumber}</TableCell>
                 <TableCell>{portfolio.page_source}</TableCell>

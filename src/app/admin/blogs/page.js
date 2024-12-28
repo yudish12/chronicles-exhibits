@@ -92,6 +92,7 @@ export default function Blogs() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>S.No.</TableHead>
               <TableHead>Image</TableHead>
               <TableHead>Title</TableHead>
               <TableHead>Description</TableHead>
@@ -99,8 +100,9 @@ export default function Blogs() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {blogs.map((blog) => (
+            {blogs.map((blog, index) => (
               <TableRow key={blog._id}>
+                <TableCell>{index + 1}</TableCell>
                 <TableCell>
                   <Image
                     width={100}

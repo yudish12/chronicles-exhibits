@@ -133,6 +133,7 @@ export default function Events() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>S.No.</TableHead>
               <TableHead className="text-center">Icon</TableHead>
               <TableHead className="text-center">Name</TableHead>
               <TableHead className="text-center">Start Date</TableHead>
@@ -143,8 +144,9 @@ export default function Events() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {events.map((event) => (
+            {events.map((event, index) => (
               <TableRow key={event._id}>
+                <TableCell>{index + 1}</TableCell>
                 <TableCell className="text-center ">
                   {event.icon && (
                     <img

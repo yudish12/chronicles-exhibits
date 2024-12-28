@@ -93,7 +93,7 @@ export default function BoothSizesTable() {
             variant="outline"
             className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
             onClick={() => {
-              router.push("/admin/booth-sizes/page/edit");
+              router.push("/admin/create-page/edit/676cc14671418da5ce767335");
             }}
           >
             Edit Booth Size Page
@@ -105,6 +105,7 @@ export default function BoothSizesTable() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>S.No.</TableHead>
               <TableHead>Image</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Meta Title</TableHead>
@@ -112,8 +113,9 @@ export default function BoothSizesTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {boothSizes.map((boothSize) => (
+            {boothSizes.map((boothSize, index) => (
               <TableRow key={boothSize.id}>
+                <TableCell>{index + 1}</TableCell>
                 <TableCell>
                   <img
                     src={boothSize.image}

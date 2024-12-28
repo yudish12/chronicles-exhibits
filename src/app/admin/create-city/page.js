@@ -138,13 +138,15 @@ export default function Cities() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>S.No.</TableHead>
               <TableHead>City</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {citys.map((city) => (
+            {citys.map((city, index) => (
               <TableRow key={city._id}>
+                <TableCell>{index + 1}</TableCell>
                 <TableCell>{city.name}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
