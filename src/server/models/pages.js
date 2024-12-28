@@ -9,6 +9,7 @@ const pageSchema = new mongoose.Schema(
       type: Object,
       required: true,
     },
+    slug: String,
     meta_title: {
       type: String,
     },

@@ -6,7 +6,7 @@ import React from "react";
 import "./style.css";
 
 const page = async () => {
-  const data = await getSinglePage({ name: "privacy-policy" });
+  const data = await getSinglePage({ name: "faq" });
 
   return (
     <>
