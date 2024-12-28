@@ -7,11 +7,23 @@ import Locations from "../models/locations";
 import mongoose from "mongoose";
 
 await dbConnect();
-export const getAllData = async () => {
+export const getAllData = async (skip,limit,projection) => {
   try {
-    const data = await events.find().sort({ _id: -1 }).lean();
+    
+    let query = events.find().sort({ _id: -1 });
+    if(skip){
+      query = query.skip(skip);
+    }
+    if(limit){
+      query = query.limit(limit)
+    }
+    if(projection){
+      query = query.select(projection)
+    }
+    const data = await query.lean()
+    const count = await events.countDocuments()
     //   console.log("[]" , data)
-    return getActionSuccessResponse(data);
+    return getActionSuccessResponse(data , count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }
