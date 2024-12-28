@@ -26,6 +26,9 @@ const formSubmissionSchema = new mongoose.Schema(
     eventCity: {
       type: String,
     },
+    eventDate : {
+      type : Date
+    },
     file: {
       type: String,
     },

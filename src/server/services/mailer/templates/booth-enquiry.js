@@ -1,5 +1,5 @@
 const boothEnquiryTemplate = async (
-  { country, email, phoneNumber, callDate, boothSize, url ,  message },
+  { name , company ,eventName , eventCity , budget , country, email, phoneNumber, eventDate, boothSize, url , file ,  message },
   page_source
 ) => {
   const headerModule = await import("./header.js");
@@ -14,6 +14,51 @@ const boothEnquiryTemplate = async (
     </caption>
     <tbody>
         <!-- Name Row -->
+        <tr style="border-bottom: 2px solid #8FAF1B;">
+            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
+                Name:
+            </td>
+            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
+                ${name}
+            </td>
+        </tr>
+        <!-- Company Row -->
+        <tr style="border-bottom: 2px solid #8FAF1B;">
+            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
+                Company:
+            </td>
+            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
+                ${company}
+            </td>
+        </tr>
+        <!-- Event Name Row -->
+        <tr style="border-bottom: 2px solid #8FAF1B;">
+            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
+                Event Name:
+            </td>
+            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
+                ${eventName}
+            </td>
+        </tr>
+        <!-- Event City Row -->
+        <tr style="border-bottom: 2px solid #8FAF1B;">
+            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
+                Event City:
+            </td>
+            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
+                ${eventCity}
+            </td>
+        </tr>
+        <!-- Budget Row -->
+        <tr style="border-bottom: 2px solid #8FAF1B;">
+            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
+               Budget:
+            </td>
+            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
+                ${budget}
+            </td>
+        </tr>
+        <!-- Country Row -->
         <tr style="border-bottom: 2px solid #8FAF1B;">
             <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
                 Country:
@@ -40,13 +85,13 @@ const boothEnquiryTemplate = async (
                 ${phoneNumber}
             </td>
         </tr>
-        <!-- Call Date -->
+        <!-- Event Date -->
         <tr style="border-bottom: 2px solid #8FAF1B;">
             <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Call Date:
+                Event Date:
             </td>
             <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${callDate}
+                ${eventDate}
             </td>
         </tr>
         <!-- Booth Size -->
@@ -65,6 +110,15 @@ const boothEnquiryTemplate = async (
             </td>
             <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
                 ${url}
+            </td>
+        </tr>
+        <!-- File row -->
+        <tr style="border-bottom: 2px solid #8FAF1B;">
+            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
+                File:
+            </td>
+            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
+                ${file}
             </td>
         </tr>
         <!-- Message Row -->

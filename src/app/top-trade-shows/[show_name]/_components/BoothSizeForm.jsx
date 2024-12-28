@@ -7,7 +7,14 @@ import { submitBoothForm } from "@/server/actions/forms";
 const BoothSizeForm = () => {
   const [countryCode, setCountryCode] = useState("us");
   const [formData, setFormData] = useState({
+    name : "",
+    company : "",
+    budget : "",
+    eventName : "",
+    eventCity : "",
+    file : "",
     country: "",
+    eventDate : "",
     email: "",
     phoneNumber: "",
     boothSize: "",
@@ -59,12 +66,19 @@ const BoothSizeForm = () => {
         Enquiry Form
       </h5>
       <div className="mt-4 flex flex-col gap-5">
+      <Input
+          className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+          type="text"
+          placeholder="Enter Your Name"
+          onChange={handleChange}
+          name="name"
+        />
         <Input
           className="border-secondary/70 text-secondary placeholder:text-secondary/70"
           type="text"
-          placeholder="Country Name"
+          placeholder="Enter Your Company"
           onChange={handleChange}
-          name="country"
+          name="company"
         />
         <Input
           className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
@@ -74,35 +88,10 @@ const BoothSizeForm = () => {
           required
           name="email"
         />
-        {/* <Input
-            className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
-            type="number"
-            placeholder="Enter Your Phone Number"
-
-          /> */}
         <PhoneInput
           country={countryCode}
           value={formData.phoneNumber}
           onChange={handlePhoneChange}
-          // inputStyle={{
-          //   width: "100%",
-          //   marginBottom: "10px",
-          //   borderColor: "hsl(var(--secondary) / 0.7)",
-          //   color: "hsl(var(--secondary))",
-          //   borderRadius: "4px",
-          //   padding: "10px",
-          // }}
-          // containerStyle={{
-          //   margin: "10px 0",
-          // }}
-        />
-        <Input
-          className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
-          type="date"
-          name="callDate"
-          onChange={handleChange}
-          required
-          min={new Date().toISOString().split("T")[0]}
         />
         <Input
           className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
@@ -111,6 +100,56 @@ const BoothSizeForm = () => {
           onChange={handleChange}
           required
           name="boothSize"
+        />
+        <Input
+          className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+          type="text"
+          placeholder="Enter Your Budget"
+          onChange={handleChange}
+          name="budget"
+        />
+        <Input
+          className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+          type="text"
+          placeholder="Country Name"
+          onChange={handleChange}
+          name="country"
+        />
+        <Input
+          className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+          type="text"
+          placeholder="Event Name"
+          onChange={handleChange}
+          name="eventName"
+        />
+        <Input
+          className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+          placeholder="Event Date"
+          type="date"
+          name="eventDate"
+          onChange={handleChange}
+          required
+          min={new Date().toISOString().split("T")[0]}
+        />
+        <Input
+          className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+          type="text"
+          placeholder="Event City"
+          onChange={handleChange}
+          name="eventCity"
+        />
+        {/* <Input
+            className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+            type="number"
+            placeholder="Enter Your Phone Number"
+
+          /> */}
+        <Input
+          className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+          type="file"
+          placeholder="Choose File"
+          onChange={handleChange}
+          name="file"
         />
         <Input
           className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"

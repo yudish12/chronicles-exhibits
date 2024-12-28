@@ -80,7 +80,7 @@ const GetFreeDesignForm = () => {
       }}
     >
       <h5 className="text-3xl mt-4 text-center font-semibold heading-font text-secondary">
-        Schedule a Call
+       Get Free 3D Design 
       </h5>
       <div className="mt-4 flex flex-col gap-5">
         <Input

@@ -11,6 +11,7 @@ const EnquiryForm = () => {
   const [countryCode, setCountryCode] = useState("us");
   const [formData, setFormData] = useState({
     name: "",
+    company : "",
     email: "",
     phoneNumber: "",
     boothSize: "",
@@ -83,6 +84,13 @@ const EnquiryForm = () => {
           required
           name="email"
         />
+        <Input
+          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
+          placeholder="Enter Your Company"
+          onChange={handleChange}
+          required
+          name="company"
+        />
         <PhoneInput
           country={countryCode}
           value={formData.phoneNumber}
@@ -125,7 +133,7 @@ const EnquiryForm = () => {
           className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
           type="file"
           placeholder="Upload resources (optional)"
-          onChange={(e) => setFormData({ ...formData, file: e.target.files })}
+          onChange={(e) => setFormData({ ...formData, file: e.target.value })}
           name="file"
         />
         <textarea

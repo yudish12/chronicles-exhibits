@@ -1,5 +1,5 @@
 const boothEnquiryTemplate = async (
-  { name, email, phoneNumber, eventName, country,boothSize, url ,  message },
+  { name, email, phoneNumber, eventName, country,boothSize, url , file ,  message },
   page_source
 ) => {
   const headerModule = await import("./header.js");
@@ -57,6 +57,15 @@ const boothEnquiryTemplate = async (
             </td>
             <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
                 ${url}
+            </td>
+        </tr>
+        <!-- File Row -->
+        <tr>
+            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left; vertical-align: top;">
+                File:
+            </td>
+            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
+                ${file}
             </td>
         </tr>
         <!-- Message Row -->

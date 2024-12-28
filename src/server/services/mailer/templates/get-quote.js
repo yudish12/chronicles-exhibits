@@ -1,5 +1,5 @@
 const getQuoteTemplate = async (
-  { name, email, phoneNumber, boothSize, eventName, message },
+  { name,company,email, phoneNumber, boothSize, eventName, message , file },
   page_source
 ) => {
   const headerModule = await import("./header.js");
@@ -20,6 +20,15 @@ const getQuoteTemplate = async (
             </td>
             <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
                 ${name}
+            </td>
+        </tr>
+        <!-- Company Row -->
+        <tr style="border-bottom: 2px solid #8FAF1B;">
+            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
+                Company:
+            </td>
+            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
+                ${company}
             </td>
         </tr>
         <!-- Email Row -->
@@ -56,6 +65,15 @@ const getQuoteTemplate = async (
             </td>
             <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
                 ${eventName}
+            </td>
+        </tr>
+        <!-- file Row -->
+        <tr>
+            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left; vertical-align: top;">
+                File:
+            </td>
+            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
+                ${file}
             </td>
         </tr>
         <!-- Message Row -->

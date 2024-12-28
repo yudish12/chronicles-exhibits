@@ -1,5 +1,5 @@
 const scheduleCallTemplate = async (
-  { name, email, phoneNumber, callDate, callTime, url ,  message },
+  { name, email,country,  phoneNumber, callDate, callTime, url ,  message },
   page_source
 ) => {
   const headerModule = await import("./header.js");
@@ -29,6 +29,15 @@ const scheduleCallTemplate = async (
             </td>
             <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
                 ${email}
+            </td>
+        </tr>
+        <!-- Country Row -->
+        <tr style="border-bottom: 2px solid #8FAF1B;">
+            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
+                Country:
+            </td>
+            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
+                ${country}
             </td>
         </tr>
         <!-- Phone Number Row -->

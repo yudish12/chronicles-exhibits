@@ -12,6 +12,7 @@ const BlogForm = ()=>{
         email: "",
         phoneNumber: "",
         eventName: "",
+        file : "",
         boothSize : "",
         message: "",
         url: "",
@@ -95,6 +96,14 @@ return (
         onChange={handleChange}
         required
         name="eventName"
+      />
+      <Input
+        placeholder="Choose File"
+        className="w-full shadow-two py-2 border-0 "
+        type="file"
+        onChange={handleChange}
+        required
+        name="file"
       />
       <Input
         placeholder="Your Country Name"

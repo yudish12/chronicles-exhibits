@@ -8,6 +8,7 @@ export const submitCallForm = async (fields, page_source) => {
   try {
     const schemaKeys = {
       name: "",
+      company :"",
       email: "",
       phoneNumber: "",
       eventName: "",
@@ -16,7 +17,7 @@ export const submitCallForm = async (fields, page_source) => {
       message: "",
       page_source: "",
       budget: "",
-      company_name: "",
+      company: "",
       boothSize: "",
       exhibition_name: "",
       callDate: "",
@@ -51,6 +52,7 @@ export const submitScheduleCallForm = async (fields, page_source) => {
       exhibition_name: "",
       callDate: "",
       callTime: "",
+      country : ""
     };
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
@@ -117,6 +119,8 @@ export const submitBoothForm = async (fields, page_source) => {
       callDate: "",
       callTime: "",
       country: "",
+      budget: "",
+      eventDate : ""
     };
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);

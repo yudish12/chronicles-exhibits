@@ -96,6 +96,14 @@ const ScheduleCallForm = () => {
           required
           name="email"
         />
+        <Input
+          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
+          type="text"
+          placeholder="Enter Your Country"
+          onChange={handleChange}
+          required
+          name="country"
+        />
         <PhoneInput
           country={countryCode}
           value={formData.phoneNumber}
