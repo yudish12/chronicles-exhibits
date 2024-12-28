@@ -23,6 +23,7 @@ import { deleteData, getAllBoothSizes } from "@/server/actions/booth-sizes";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function BoothSizesTable() {
   const [boothSizes, setBoothSizes] = React.useState([]);
@@ -124,16 +125,15 @@ export default function BoothSizesTable() {
                 <TableCell>{boothSize.meta_title}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() =>
-                        router.push(`/booth/size/${boothSize.name}`)
-                      }
+                    <Link
+                      href={`/booth-size/${boothSize.slug}`}
+                      target="_blank"
                     >
-                      <Eye className="h-4 w-4" />
-                      <span className="sr-only">View {boothSize.name}</span>
-                    </Button>
+                      <Button variant="outline" size="icon">
+                        <Eye className="h-4 w-4" />
+                        <span className="sr-only">View {boothSize.name}</span>
+                      </Button>
+                    </Link>
                     <Button
                       variant="outline"
                       size="icon"

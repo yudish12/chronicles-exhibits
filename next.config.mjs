@@ -11,6 +11,10 @@ const nextConfig = {
         source: "/blog",
         destination: "/blogs",
       },
+      {
+        source: "/blog/:slug",
+        destination: "/blogs/:slug",
+      },
     ];
   },
   images: {

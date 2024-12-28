@@ -16,7 +16,7 @@ export const findPortfolioById = async (id) => {
 };
 export const getAllPortfolios = async (limit, skip) => {
   try {
-    let query = Portfolio.find().sort({ createdAt: -1 }).lean();
+    let query = Portfolio.find().sort({ _id: -1 }).lean();
     if (limit) query = await query.limit(limit);
     if (skip) query = await query.skip(skip);
     const data = await query;

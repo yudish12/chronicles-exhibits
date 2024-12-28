@@ -1,3 +1,10 @@
+import {
+  boothsizePageFields,
+  FAQPageFields,
+  homePageFields,
+  locationPageFields,
+  PrivacyPolicyPageFields,
+} from "@/lib/config";
 import * as jwtFuncs from "./jwt";
 
 const getActionSuccessResponse = (data, count) => {
@@ -21,9 +28,27 @@ const convertHumanReadableText = (text) =>
     ?.map((e) => e[0].toUpperCase() + e.slice(1))
     ?.join(" ");
 
+const getPageFieldsByName = (pageName) => {
+  switch (pageName) {
+    case "home":
+      return homePageFields;
+    case "location":
+      return locationPageFields;
+    case "booth-size":
+      return boothsizePageFields;
+    case "faq":
+      return FAQPageFields;
+    case "privacy-policy":
+      return PrivacyPolicyPageFields;
+    default:
+      return [];
+  }
+};
+
 export {
   jwtFuncs,
   convertHumanReadableText,
   getActionSuccessResponse,
   getActionFailureResponse,
+  getPageFieldsByName,
 };

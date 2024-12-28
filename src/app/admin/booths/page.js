@@ -25,6 +25,7 @@ import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
+import Link from "next/link";
 
 export default function BoothTable() {
   const [booths, setBooths] = React.useState([]);
@@ -124,16 +125,15 @@ export default function BoothTable() {
                 <TableCell>{booth.slug}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() =>
-                        router.push(`/booth/code/${booth.booth_code}`)
-                      }
+                    <Link
+                      href={`/booth/code/${booth.booth_code}`}
+                      target="_blank"
                     >
-                      <Eye className="h-4 w-4" />
-                      <span className="sr-only">View {booth.booth_code}</span>
-                    </Button>
+                      <Button variant="outline" size="icon">
+                        <Eye className="h-4 w-4" />
+                        <span className="sr-only">View {booth.booth_code}</span>
+                      </Button>
+                    </Link>
                     <Button
                       variant="outline"
                       size="icon"

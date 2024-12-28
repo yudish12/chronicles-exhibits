@@ -1,8 +1,11 @@
 import mongoose from "mongoose";
 
-const citySchema = new mongoose.Schema({
-  name: String,
-});
+const citySchema = new mongoose.Schema(
+  {
+    name: String,
+  },
+  { timestamps: true }
+);
 
 citySchema.index({ name: 1 }, { unique: true });
 citySchema.index({ createdAt: -1 });

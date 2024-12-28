@@ -69,7 +69,7 @@ const Page = async ({ params }) => {
           {data.data.event_name}
         </h2>
         {!isExpired ? (
-          <Timer targetDate={targetDate} />
+          <Timer targetDate={startDate} />
         ) : (
           <span className="text-red-600 font-semibold text-4xl">
             No Date Announced Yet

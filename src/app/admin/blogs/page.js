@@ -26,6 +26,7 @@ import { Pencil, Trash2, Eye } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
 export default function Blogs() {
   const router = useRouter();
   const [blogs, setBlogs] = React.useState([]);
@@ -101,7 +102,7 @@ export default function Blogs() {
             {blogs.map((blog) => (
               <TableRow key={blog._id}>
                 <TableCell>
-                <Image
+                  <Image
                     width={100}
                     height={100}
                     src={blog.image}
@@ -113,14 +114,12 @@ export default function Blogs() {
                 <TableCell>{blog.short_description}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => router.push(`/blogs/${blog.slug}`)}
-                    >
-                      <Eye className="h-4 w-4" />
-                      <span className="sr-only">View {blog.title}</span>
-                    </Button>
+                    <Link href={`/blog/${blog.slug}`} target="_blank">
+                      <Button variant="outline" size="icon">
+                        <Eye className="h-4 w-4" />
+                        <span className="sr-only">View {blog.title}</span>
+                      </Button>
+                    </Link>
                     <Button
                       variant="outline"
                       size="icon"

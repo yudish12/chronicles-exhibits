@@ -26,6 +26,7 @@ import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { deleteData, getAllPages } from "@/server/actions/pages";
+import Link from "next/link";
 export default function CreatePages() {
   const router = useRouter();
   const [pages, setPages] = React.useState([]);
@@ -105,14 +106,12 @@ export default function CreatePages() {
                 <TableCell>{page.meta_description}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => router.push(`/${page.slug}`)}
-                    >
-                      <Eye className="h-4 w-4" />
-                      <span className="sr-only">View {page.name}</span>
-                    </Button>
+                    <Link href={`/${page.slug}`} target="_blank">
+                      <Button variant="outline" size="icon">
+                        <Eye className="h-4 w-4" />
+                        <span className="sr-only">View {page.name}</span>
+                      </Button>
+                    </Link>
                     <Button
                       variant="outline"
                       size="icon"
