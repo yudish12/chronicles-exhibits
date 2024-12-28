@@ -71,7 +71,7 @@ export const collections = [
     icon: <GalleryThumbnails color="#B0CB1F" />,
   },
   {
-    slug: "faq",
+    slug: "/create-pages/edit/676fa86736db11bd3ee2200a",
     name: "FAQ",
     icon: <GalleryThumbnails color="#B0CB1F" />,
   },
@@ -81,7 +81,7 @@ export const collections = [
     icon: <GalleryThumbnails color="#B0CB1F" />,
   },
   {
-    slug: "privacy-policy",
+    slug: "/create-pages/edit/676f8d8736db11bd3ee22009",
     name: "Privacy Policy",
     icon: <GalleryThumbnails color="#B0CB1F" />,
   },
