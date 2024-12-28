@@ -11,7 +11,7 @@ await dbConnect();
 
 export const getAllPages = async () => {
   try {
-    const data = await Pages.find().sort({ createdAt: -1 }).lean();
+    const data = await Pages.find().sort({ _id: -1 }).lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

@@ -11,7 +11,7 @@ export const getAllBlogs = async (skip, limit, projection) => {
   try {
     await dbConnect();
 
-    let query = Blog.find().sort({ createdAt: -1 });
+    let query = Blog.find().sort({ _id: -1 });
     if (skip) {
       query = query.skip(skip);
     }

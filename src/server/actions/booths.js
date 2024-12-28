@@ -9,7 +9,7 @@ await dbConnect();
 
 export const getAllData = async (limit, skip) => {
   try {
-    let query = Booth.find().sort({ createdAt: 1 });
+    let query = Booth.find().sort({ _id: 1 });
 
     if (limit) query = query.limit(limit);
     if (skip) query = query.skip(skip);

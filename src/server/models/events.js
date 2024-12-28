@@ -48,6 +48,7 @@ const eventSchema = new mongoose.Schema(
 );
 
 eventSchema.index({ slug: 1 }, { unique: true });
+eventSchema.index({ createdAt: -1 });
 
 const events = mongoose.models.events || mongoose.model("events", eventSchema);
 
