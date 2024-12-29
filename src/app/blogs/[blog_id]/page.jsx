@@ -43,24 +43,7 @@ const page = async ({ params }) => {
   );
   const blogsToBeMapped = blogFromDb.data;
   console.log(blogsToBeMapped);
-  const relatedBlogs = [
-    {
-      title: "2025: BIGGEST TRADE SHOWS IN VEGAS",
-      imageUrl: "/what-we-do-2.png",
-    },
-    {
-      title: "2025: BIGGEST TRADE SHOWS IN VEGAS",
-      imageUrl: "/what-we-do-2.png",
-    },
-    {
-      title: "2025: BIGGEST TRADE SHOWS IN VEGAS",
-      imageUrl: "/what-we-do-2.png",
-    },
-    {
-      title: "2025: BIGGEST TRADE SHOWS IN VEGAS",
-      imageUrl: "/what-we-do-2.png",
-    },
-  ];
+
   return (
     <>
       <SubHeader />
