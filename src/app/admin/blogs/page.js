@@ -1,7 +1,5 @@
 "use client";
-import * as React from "react";
-
-// import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -27,24 +25,38 @@ import { useRouter } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import { Pagination } from "./_components/Pagination";
 export default function Blogs() {
   const router = useRouter();
-  const [blogs, setBlogs] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
-  const [deletingBlogId, setDeletingBlogId] = React.useState(null);
-  const fetchData = async () => {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [deletingBlogId, setDeletingBlogId] = useState(null);
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const limit = 6; // Number of blogs per page
+
+  const fetchData = async (page = 1) => {
     try {
-      const resp = await getAllBlogs();
+      setLoading(true);
+      const skip = (page - 1) * limit;
+
+      const resp = await getAllBlogs(skip, limit , "slug  _id title image");
+      console.log("resp" , resp)
       if (!resp.success) {
         toast.error(resp.error);
         return;
       }
+
       setBlogs(resp.data);
+      setTotalPages(Math.ceil(resp.count / limit));
       setLoading(false);
     } catch (error) {
       console.error(error);
       toast.error("Failed to fetch blogs");
+      setLoading(false);
     }
   };
 
@@ -65,9 +77,10 @@ export default function Blogs() {
     }
   };
 
-  React.useEffect(() => {
-    fetchData();
-  }, []);
+  // Fetch data on mount and when page changes
+  useEffect(() => {
+    fetchData(currentPage);
+  }, [currentPage]);
 
   if (loading) {
     return <TableSkeletonLoader />;
@@ -79,8 +92,6 @@ export default function Blogs() {
         <h1 className="text-2xl font-bold ">Blogs</h1>
         <Button
           onClick={() => {
-            // setSingleBlog({ title: "", short_description: "", long_description: "", image: "" });
-            // setIsDialogOpen(true);
             router.push("/admin/blogs/add");
           }}
         >
@@ -102,14 +113,14 @@ export default function Blogs() {
           <TableBody>
             {blogs.map((blog, index) => (
               <TableRow key={blog._id}>
-                <TableCell>{index + 1}</TableCell>
+                <TableCell>{(currentPage - 1) * limit + index + 1}</TableCell>
                 <TableCell>
                   <Image
                     width={100}
                     height={100}
                     src={blog.image}
                     alt={blog.title}
-                    className=" object-cover rounded"
+                    className="object-cover rounded"
                   />
                 </TableCell>
                 <TableCell>{blog.title}</TableCell>
@@ -126,10 +137,6 @@ export default function Blogs() {
                       variant="outline"
                       size="icon"
                       onClick={() => {
-                        // setSingleBlog(blog);
-                        // setIsEditDialogOpen(true);
-                        // console.log('blog:', blog);
-                        // console.log('blog._id:', blog?._id);
                         router.push(`/admin/blogs/edit/${blog._id}`);
                       }}
                     >
@@ -154,6 +161,14 @@ export default function Blogs() {
           </TableBody>
         </Table>
       </Card>
+
+      {/* Pagination */}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
+
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
           <DialogHeader>
