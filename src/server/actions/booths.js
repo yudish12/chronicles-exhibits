@@ -7,15 +7,20 @@ import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 
 await dbConnect();
 
-export const getAllData = async (limit, skip) => {
+export const getAllData = async (skip, limit) => {
   try {
     let query = Booth.find().sort({ _id: 1 });
 
-    if (limit) query = query.limit(limit);
-    if (skip) query = query.skip(skip);
-    const data = await query.populate("booth_size").lean();
+    if(skip){
+      query = query.skip(skip);
+    }
+    if(limit){
+      query = query.limit(limit)
+    }
 
-    return getActionSuccessResponse(data);
+    const data = await query.populate("booth_size").lean();
+    const count = await Booth.countDocuments()
+    return getActionSuccessResponse(data , count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }

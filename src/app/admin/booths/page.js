@@ -26,19 +26,25 @@ import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-
+import { useState , useEffect } from "react";
+import { Pagination } from "./_components/Pagination";
 export default function BoothTable() {
   const [booths, setBooths] = React.useState([]);
   const [boothSizes, setBoothSizes] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
   const [deletingBoothId, setDeletingBoothId] = React.useState(null);
-
+  const [currentPage , setCurrentPage] = useState(1);
+  const [totalPages , setTotalPages] = useState(0)
+  const limit = 6;
   const router = useRouter();
 
-  const getData = async () => {
+  const getData = async ( page = 1 ) => {
     try {
-      const resp = await getAllData();
+      setLoading(true);
+      const skip = (page - 1)*limit;
+      const resp = await getAllData(skip, limit);
+      console.log("resp booths" , resp)
       const boothSizesResp = await getAllBoothSizes();
       console.log(resp);
       if (!resp.success) {
@@ -47,6 +53,7 @@ export default function BoothTable() {
         return;
       }
       setBooths(resp.data);
+      setTotalPages(Math.ceil(resp.count/limit));
       setBoothSizes(boothSizesResp.data);
       setLoading(false);
     } catch (error) {
@@ -55,8 +62,8 @@ export default function BoothTable() {
   };
 
   React.useEffect(() => {
-    getData();
-  }, []);
+    getData(currentPage);
+  }, [currentPage]);
 
   const handleDelete = (id) => {
     setDeletingBoothId(id);
@@ -76,9 +83,9 @@ export default function BoothTable() {
     setIsDeleteDialogOpen(false);
   };
 
-  if (loading) {
-    return <TableSkeletonLoader />;
-  }
+  // if (loading) {
+  //   return <TableSkeletonLoader />;
+  // }
 
   return (
     <div className="container bg-border overflow-auto mx-auto p-8">
@@ -159,6 +166,11 @@ export default function BoothTable() {
           </TableBody>
         </Table>
       </Card>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
           <DialogHeader>
