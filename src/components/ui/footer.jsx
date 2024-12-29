@@ -28,7 +28,10 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/trade-show-booth-ideas">
+              <Link
+                className="hover:underline"
+                href="/trade-show-booth-displays-designs"
+              >
                 Trade Show Booth Ideas
               </Link>
             </li>
@@ -38,7 +41,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/faqs">
+              <Link className="hover:underline" href="/faq">
                 FAQs
               </Link>
             </li>
@@ -110,47 +113,47 @@ export default function Footer() {
           <h3 className="font-bold text-lg mb-4">Booth By Size</h3>
           <ul className="space-y-2 footer-list">
             <li>
-              <Link className="hover:underline" href="/booth/size/10x10">
+              <Link className="hover:underline" href="/10x10-trade-show-booth">
                 10x10 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth/size/10x20">
+              <Link className="hover:underline" href="/10x20-trade-show-booth">
                 10x20 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth/size/10x30">
+              <Link className="hover:underline" href="/10x30-trade-show-booth">
                 10x30 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth/size/20x20">
+              <Link className="hover:underline" href="/20x20-trade-show-booth">
                 20x20 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth/size/20x30">
+              <Link className="hover:underline" href="/20x30-trade-show-booth">
                 20x30 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth/size/20x40">
+              <Link className="hover:underline" href="/20x40-trade-show-booth">
                 20x40 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth/size/30x30">
+              <Link className="hover:underline" href="/30x30-trade-show-booth">
                 30x30 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth/size/30x40">
+              <Link className="hover:underline" href="/30x40-trade-show-booth">
                 30x40 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/booth/size/40x40">
+              <Link className="hover:underline" href="/40x40-trade-show-booth">
                 40x40 Booth Rental
               </Link>
             </li>
