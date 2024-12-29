@@ -87,7 +87,7 @@ const Page = async () => {
           your brand.
         </p>
       </div>
-  <div className="us-bg flex  items-center justify-center md:hidden py-6 px-4  text-sm ">
+  <div className="us-bg flex  items-center justify-center md:hidden py-6 px-6 text-sm ">
   <p className="text-center font-bold">
           Chronicle’s backbone is professionals and dealers located all around
           the U.S. that assist our partners with their trade shows. By renting
