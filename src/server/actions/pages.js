@@ -13,10 +13,18 @@ import pages from "../models/pages";
 
 await dbConnect();
 
-export const getAllPages = async () => {
+export const getAllPages = async (skip , limit) => {
   try {
-    const data = await Pages.find().sort({ _id: -1 }).lean();
-    return getActionSuccessResponse(data);
+    let query =  Pages.find().sort({ _id: -1 });
+    if(skip){
+      query =  query.skip(skip)
+    }
+    if(limit){
+      query =  query.limit(limit)
+    }
+    const data = await query.lean();
+    const count = await Pages.countDocuments()
+    return getActionSuccessResponse(data , count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }

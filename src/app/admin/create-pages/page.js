@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-
+import { useState , useEffect } from "react";
 // import React, { useState, useEffect } from "react";
 import {
   Table,
@@ -27,20 +27,27 @@ import { Card } from "@/components/ui/card";
 import Image from "next/image";
 import { deleteData, getAllPages } from "@/server/actions/pages";
 import Link from "next/link";
+import { Pagination } from "./_component/Pagination";
 export default function CreatePages() {
   const router = useRouter();
   const [pages, setPages] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
   const [deletePageId, setDeletingPageId] = React.useState(null);
-  const fetchData = async () => {
+  const [currentPage  , setCurrentPage] = React.useState(1);
+  const [totalPages , setTotalPages] = React.useState(0);
+  const limit = 6;
+  const fetchData = async (page = 1) => {
     try {
-      const resp = await getAllPages();
+      setLoading(true)
+      const skip = (currentPage -1)*limit;
+      const resp = await getAllPages(skip , limit);
       if (!resp.success) {
         toast.error(resp.error);
         return;
       }
       setPages(resp.data);
+      setTotalPages(Math.ceil(resp.count/limit))
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -64,8 +71,8 @@ export default function CreatePages() {
   };
 
   React.useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(currentPage);
+  }, [currentPage]);
 
   if (loading) {
     return <TableSkeletonLoader />;
@@ -146,6 +153,11 @@ export default function CreatePages() {
           </TableBody>
         </Table>
       </Card>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
           <DialogHeader>

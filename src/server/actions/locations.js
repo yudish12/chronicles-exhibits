@@ -76,10 +76,18 @@ export const addData = async (data) => {
   }
 };
 
-export const getCities = async () => {
+export const getCities = async (skip, limit) => {
   try {
-    const data = await Cities.find().lean();
-    return getActionSuccessResponse(data);
+    let query = Cities.find()
+    if(skip){
+      query = query.skip(skip)
+    }
+    if(limit){
+      query = query.limit(limit)
+    }
+    const count = await Cities.countDocuments();
+    const data = await query.lean();
+    return getActionSuccessResponse(data , count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }

@@ -32,7 +32,7 @@ import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { majorExhibitingCities } from "../cities";
-
+import { Pagination } from "./_components/Pagination";
 export default function Cities() {
   const [citys, setcitys] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -41,10 +41,14 @@ export default function Cities() {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
   const [isAddDialogOpen, setIsAddDialogOpen] = React.useState(false);
   const [deletingcityId, setDeletingcityId] = React.useState(null);
-
-  const getData = async () => {
+ const [totalPages , setTotalPages] = React.useState(0)
+ const [currentPage , setCurrentPage] = React.useState(1)
+ const limit = 6;
+  const getData = async (page = 1) => {
     try {
-      const resp = await getCities();
+      setLoading(true)
+      const skip = (currentPage-1)*limit;
+      const resp = await getCities(skip , limit);
       console.log(resp);
       if (!resp.success) {
         toast.error(resp.err);
@@ -52,6 +56,7 @@ export default function Cities() {
         return;
       }
       setcitys(resp.data);
+      setTotalPages(Math.ceil(resp.count/limit));
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -59,8 +64,8 @@ export default function Cities() {
   };
 
   React.useEffect(() => {
-    getData();
-  }, []);
+    getData(currentPage);
+  }, [currentPage]);
 
   const handleEdit = (city) => {
     setIsAddDialogOpen(false);
@@ -173,7 +178,11 @@ export default function Cities() {
           </TableBody>
         </Table>
       </Card>
-
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
       <Dialog
         open={isEditDialogOpen || isAddDialogOpen}
         onOpenChange={
