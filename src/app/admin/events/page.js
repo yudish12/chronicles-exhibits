@@ -1,11 +1,11 @@
 "use client";
-
+import { useState , useEffect } from "react";
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import {
   Table,
   TableBody,
-  TableCell,
+  TableCell, 
   TableHead,
   TableHeader,
   TableRow,
@@ -31,7 +31,7 @@ import { toast } from "sonner";
 import { Eye, Pencil, Trash2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
-
+import { Pagination } from "./_components/Pagination";
 export default function Events() {
   const router = useRouter();
   const [events, setEvents] = React.useState([]);
@@ -49,10 +49,15 @@ export default function Events() {
     location_id: "",
     icon: "",
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const limit = 6;
   console.log("===single events ===", singleEvent);
-  const fetchData = async () => {
+  const fetchData = async (page = 1) => {
     try {
-      const eventResp = await getAllData();
+      setLoading(true);
+      const skip = (page - 1) * limit;
+      const eventResp = await getAllData(skip , limit);
       console.log("===events===", eventResp);
       const locationResp = await getAllLocations();
       console.log("====locations===", locationResp.data[0]);
@@ -67,6 +72,7 @@ export default function Events() {
       }
       setEvents(eventResp.data);
       setLocations(locationResp.data);
+      setTotalPages(Math.ceil(eventResp.count / limit));
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -75,12 +81,9 @@ export default function Events() {
   };
   React.useEffect(() => {
     console.log("~fetch data");
-    fetchData();
-  }, []);
+    fetchData(currentPage);
+  }, [currentPage]);
   const handleEdit = (event) => {
-    // setIsDialogOpen(false);
-    // setSingleEvent(event);
-    // setIsEditDialogOpen(true);
     router.push(`/admin/events/edit/${event._id}`);
   };
 
@@ -113,6 +116,9 @@ export default function Events() {
       return { text: "Upcoming", color: "bg-green-600" };
     }
   };
+  if (loading) {
+    return <TableSkeletonLoader />;
+  }
 
   return (
     <div className="container bg-border overflow-auto mx-auto p-8">
@@ -216,6 +222,11 @@ export default function Events() {
           </TableBody>
         </Table>
       </Card>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+      />
       {/* Delete Dialog */}
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
