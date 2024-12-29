@@ -24,15 +24,19 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { deleteUTFiles } from "@/server/services/uploadthing";
+import { Pagination } from "./_components/Pagination";
 export default function PortfolioTable() {
   const [portfolios, setPortfolios] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
   const [deletingPortfolioId, setDeletingPortfolioId] = React.useState(null);
-
+  const [currentPage , setCurrentPage] = React.useState(1);
+  const [totalPages , setTotalPages] = React.useState(0);
+  const limit = 6;
   const fetchData = async () => {
     try {
       setLoading(true)
+      const skip = (currentPage-1)*limit;
       const resp = await getAllForms(skip,limit);
       console.log("Resp", resp);
       if (!resp.success) {
@@ -40,6 +44,7 @@ export default function PortfolioTable() {
         return;
       }
       setPortfolios(resp.data);
+      setTotalPages(Math.ceil(resp.count/limit))
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -49,7 +54,7 @@ export default function PortfolioTable() {
   if (loading) {
     <TableSkeletonLoader />;
   }
-  
+
   React.useEffect(() => {
     fetchData(currentPage);
   }, [currentPage]);
@@ -125,6 +130,11 @@ export default function PortfolioTable() {
           </TableBody>
         </Table>
       </Card>
+      <Pagination 
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={setCurrentPage}
+      />
       {/* delete dialog */}
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
         <DialogContent>
