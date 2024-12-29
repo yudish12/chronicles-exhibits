@@ -18,6 +18,10 @@
   color: black;
 }
 
+#faq-body > p {
+  text-align: center;
+}
+
 #faq-body p strong {
   font-weight: 600;
 }
