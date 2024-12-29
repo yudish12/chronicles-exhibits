@@ -17,10 +17,14 @@ const Page = async ({ params, searchParams }) => {
   const page = Number(searchparams?.page) ?? 1;
   const limit = 8;
   const skip = (page - 1) * limit;
-  let tradeShows = await getAllData(skip , limit , "start_date end_date title icon event_name country city");
+  let tradeShows = await getAllData(
+    skip,
+    limit,
+    "start_date end_date title icon event_name country city slug"
+  );
   const totalPages = Math.ceil(tradeShows.count / limit);
   console.log("==trade shows ==", tradeShows);
-  // project -> start_date , end_date , title , icon ,event_name , country , city 
+  // project -> start_date , end_date , title , icon ,event_name , country , city
   return (
     <>
       <SubHeader />
@@ -55,8 +59,12 @@ const Page = async ({ params, searchParams }) => {
           your competition.
         </p>
 
-        <TradeShowGrid tradeShows={tradeShows} totalPage={totalPages} currentPage={page}
-        limit={limit}/>
+        <TradeShowGrid
+          tradeShows={tradeShows}
+          totalPage={totalPages}
+          currentPage={page}
+          limit={limit}
+        />
       </div>
       <Footer />
     </>
