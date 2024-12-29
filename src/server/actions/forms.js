@@ -205,10 +205,21 @@ export const submitBoothCodeForm = async (fields, page_source) => {
   }
 };
 
-export const getAllForms = async () => {
+export const getAllForms = async (skip,limit , projection) => {
   try {
-    const data = await FormSubmission.find({});
-    return getActionSuccessResponse(data);
+    let query =  FormSubmission.find().sort({_id : -1});
+    if(skip){
+      query = query.skip(skip);
+    }
+    if(limit){
+      query = query.limit(limit)
+    }
+    if(projection){
+      query = query.select(projection)
+    }
+    const data = await query.lean();
+    const count = await FormSubmission.countDocuments()
+    return getActionSuccessResponse(data , count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }

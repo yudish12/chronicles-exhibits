@@ -46,11 +46,16 @@ const points = [
 const Page = async ({ params }) => {
   const resolvedParams = await params;
   const show_name = resolvedParams.show_name;
-
   // let recentShows = await getAllData();
   // recentShows = recentShows.data.slice(0, 3);
 
   const data = await getSingleEvent(show_name);
+  console.group("event data" , data.data.start_date)
+  const date = new Date(data.data.start_date).toISOString().split("T")[0];
+  const eventName = data.data.event_name;
+  const eventCity = data.data.city;
+  console.log("eventdata======" , date , eventName , eventCity)
+
   console.log(data);
   const startDate = data.data.start_date;
   const targetDate = data.data.end_date;
@@ -196,7 +201,7 @@ const Page = async ({ params }) => {
               </Button>
             </div>
           </div> */}
-          <BoothSizeForm />
+          <BoothSizeForm  eventName={eventName} eventCity={eventCity} date={date}/>
           {/* <div className="grid grid-cols-2 border-2 border-dashed border-secondary/70 rounded-lg">
             <div
               style={{ transitionDuration: "500ms" }}

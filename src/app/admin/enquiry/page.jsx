@@ -32,7 +32,8 @@ export default function PortfolioTable() {
 
   const fetchData = async () => {
     try {
-      const resp = await getAllForms();
+      setLoading(true)
+      const resp = await getAllForms(skip,limit);
       console.log("Resp", resp);
       if (!resp.success) {
         toast.error(resp.error);
@@ -48,9 +49,11 @@ export default function PortfolioTable() {
   if (loading) {
     <TableSkeletonLoader />;
   }
+  
   React.useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(currentPage);
+  }, [currentPage]);
+
   const handleDeleteConfirm = async () => {
     try {
       const uploadedImage = portfolios.find(

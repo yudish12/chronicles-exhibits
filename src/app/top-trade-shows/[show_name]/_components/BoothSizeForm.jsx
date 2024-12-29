@@ -4,17 +4,18 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
 import { submitBoothForm } from "@/server/actions/forms";
-const BoothSizeForm = () => {
+const BoothSizeForm = ({eventName , eventCity , date}) => {
+  console.lo
   const [countryCode, setCountryCode] = useState("us");
   const [formData, setFormData] = useState({
     name : "",
     company : "",
     budget : "",
-    eventName : "",
-    eventCity : "",
+    eventName : eventName,
+    eventCity : eventCity,
     file : "",
     country: "",
-    eventDate : "",
+    eventDate : date,
     email: "",
     phoneNumber: "",
     boothSize: "",
@@ -121,6 +122,9 @@ const BoothSizeForm = () => {
           placeholder="Event Name"
           onChange={handleChange}
           name="eventName"
+          style={{
+            display : "none"
+          }}
         />
         <Input
           className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
@@ -130,6 +134,9 @@ const BoothSizeForm = () => {
           onChange={handleChange}
           required
           min={new Date().toISOString().split("T")[0]}
+          style={{
+            display : "none"
+          }}
         />
         <Input
           className="border-secondary/70 text-secondary placeholder:text-secondary/70"
@@ -137,6 +144,9 @@ const BoothSizeForm = () => {
           placeholder="Event City"
           onChange={handleChange}
           name="eventCity"
+          style={{
+            display : "none"
+          }}
         />
         {/* <Input
             className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
