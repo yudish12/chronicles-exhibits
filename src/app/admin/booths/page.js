@@ -11,7 +11,11 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Eye, Pencil, Trash2 } from "lucide-react";
-import { deleteData, getAllData } from "@/server/actions/booths";
+import {
+  deleteData,
+  getAllData,
+  getAllDataBySearch,
+} from "@/server/actions/booths";
 import {
   Dialog,
   DialogContent,
@@ -24,27 +28,29 @@ import { useRouter } from "next/navigation";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Pagination } from "./_components/Pagination";
+import Search from "@/components/ui/search";
 export default function BoothTable() {
   const [booths, setBooths] = React.useState([]);
   const [boothSizes, setBoothSizes] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
   const [deletingBoothId, setDeletingBoothId] = React.useState(null);
-  const [currentPage , setCurrentPage] = useState(1);
-  const [totalPages , setTotalPages] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [searchValue, setSearchValue] = React.useState("");
   const limit = 6;
   const router = useRouter();
 
-  const getData = async ( page = 1 ) => {
+  const getData = async (page = 1) => {
     try {
       setLoading(true);
-      const skip = (page - 1)*limit;
+      const skip = (page - 1) * limit;
       const resp = await getAllData(skip, limit);
-      console.log("resp booths" , resp)
+      console.log("resp booths", resp);
       const boothSizesResp = await getAllBoothSizes();
       console.log(resp);
       if (!resp.success) {
@@ -53,7 +59,7 @@ export default function BoothTable() {
         return;
       }
       setBooths(resp.data);
-      setTotalPages(Math.ceil(resp.count/limit));
+      setTotalPages(Math.ceil(resp.count / limit));
       setBoothSizes(boothSizesResp.data);
       setLoading(false);
     } catch (error) {
@@ -83,9 +89,23 @@ export default function BoothTable() {
     setIsDeleteDialogOpen(false);
   };
 
-  // if (loading) {
-  //   return <TableSkeletonLoader />;
-  // }
+  const handleSearchClick = async () => {
+    if (!searchValue) return getData();
+    try {
+      const searchResp = await getAllDataBySearch(searchValue);
+      console.log("===searchResp===", searchResp);
+      setBooths(searchResp.data);
+      const count = searchResp.count ?? 0;
+      setTotalPages(Math.ceil(count / limit));
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while fetching data");
+    }
+  };
+
+  if (loading) {
+    return <TableSkeletonLoader />;
+  }
 
   return (
     <div className="container bg-border overflow-auto mx-auto p-8">
@@ -101,6 +121,20 @@ export default function BoothTable() {
       </Card>
 
       <Card className="mt-6 bg-white p-4 border">
+        <CardHeader className="flex mb-4 flex-row gap-6">
+          <Search
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <Button
+            onClick={handleSearchClick}
+            variant="outline"
+            style={{ marginTop: "0px", height: "35px" }}
+            className="border-secondary text-secondary mt-0 font-semibold px-4 py-"
+          >
+            Search
+          </Button>
+        </CardHeader>
         <Table>
           <TableHeader>
             <TableRow>

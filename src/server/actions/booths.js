@@ -11,16 +11,27 @@ export const getAllData = async (skip, limit) => {
   try {
     let query = Booth.find().sort({ _id: 1 });
 
-    if(skip){
+    if (skip) {
       query = query.skip(skip);
     }
-    if(limit){
-      query = query.limit(limit)
+    if (limit) {
+      query = query.limit(limit);
     }
 
     const data = await query.populate("booth_size").lean();
-    const count = await Booth.countDocuments()
-    return getActionSuccessResponse(data , count);
+    const count = await Booth.countDocuments();
+    return getActionSuccessResponse(data, count);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
+export const getAllDataBySearch = async (searchValue) => {
+  try {
+    const data = await Booth.find({
+      booth_code: { $regex: searchValue, $options: "i" },
+    }).lean();
+    return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }
