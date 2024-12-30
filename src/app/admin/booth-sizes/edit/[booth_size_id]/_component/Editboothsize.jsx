@@ -12,7 +12,11 @@ import { toast } from "sonner";
 import { updateData } from "@/server/actions/booth-sizes";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-const Editboothsize = ({ singleBoothsizeData }) => {
+import { updateData as updatePageData } from "@/server/actions/pages";
+import FieldRender from "@/components/FieldRender";
+import { cn } from "@/lib/utils";
+import { convertHumanReadableText } from "@/utils";
+const Editboothsize = ({ singleBoothsizeData, pageData }) => {
   const [singleBoothSize, setSingleBoothSize] = React.useState({
     name: singleBoothsizeData.name,
     image: singleBoothsizeData.image,
@@ -22,14 +26,35 @@ const Editboothsize = ({ singleBoothsizeData }) => {
     meta_keywords: singleBoothsizeData.meta_keywords ?? [],
   });
 
+  const [boothSizePage, setBoothSizePage] = React.useState({
+    name: pageData.name,
+    slug: pageData.slug ?? "",
+    fields: pageData.fields ?? [],
+    meta_description: pageData.meta_description ?? "",
+    meta_keywords: pageData.meta_keywords ?? [],
+    meta_title: pageData.meta_title ?? "",
+  });
+
   const router = useRouter();
+
+  const handleFieldChange = (index, value) => {
+    console.log(value, "vq");
+    setBoothSizePage((prev) => {
+      const temp = JSON.parse(JSON.stringify(prev));
+      temp.fields[index].value = value;
+      console.log(temp);
+      return temp;
+    });
+  };
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     try {
       const resp = await updateData(singleBoothsizeData._id, singleBoothSize);
-      if (!resp.success) {
-        toast.error(resp.err);
+      const resp2 = await updatePageData(pageData.name, boothSizePage);
+      console.log("resp2", resp2);
+      if (!resp.success || !resp2.success) {
+        toast.error(resp.err || resp2.err);
         return;
       }
       toast.success("Booth size added successfully");
@@ -50,7 +75,7 @@ const Editboothsize = ({ singleBoothsizeData }) => {
           <CardHeader className="flex flex-row gap-2 items-center">
             <hr className="w-[40%]" />
             <CardTitle className="text-2xl w-[20%] font-bold text-center">
-              Edit Page Data
+              Edit Size Data
             </CardTitle>
             <hr className="w-[40%]" />
           </CardHeader>
@@ -91,10 +116,6 @@ const Editboothsize = ({ singleBoothsizeData }) => {
                     size="icon"
                     className="absolute z-50 top-1 -right-8 w-6 h-6"
                     onClick={() => {
-                      console.log(
-                        singleBoothSize.image.split("f/")[1],
-                        singleBoothSize.image
-                      );
                       const res = deleteUTFiles([
                         singleBoothSize.image.split("f/")[1],
                       ]);
@@ -130,6 +151,35 @@ const Editboothsize = ({ singleBoothsizeData }) => {
             </div>
           </CardContent>
         </Card>
+        <Card className="w-full">
+          <CardHeader>
+            <CardHeader className="flex flex-row gap-2 items-center">
+              <hr className="w-[40%]" />
+              <CardTitle className="text-2xl w-[20%] font-bold text-center">
+                Edit Page Data
+              </CardTitle>
+              <hr className="w-[40%]" />
+            </CardHeader>
+          </CardHeader>
+          <CardContent className="grid grid-cols-2 gap-6">
+            {boothSizePage.fields.map((field, index) => (
+              <div
+                className={cn(field.type === "body" && "col-span-2")}
+                key={index}
+              >
+                <Label className="mb-4 block">
+                  Enter {convertHumanReadableText(field.key)}
+                </Label>
+                <FieldRender
+                  value={field.value}
+                  onChange={handleFieldChange}
+                  field={field}
+                  index={index}
+                />
+              </div>
+            ))}
+          </CardContent>
+        </Card>
 
         <Card className="w-full">
           <CardHeader className="flex flex-row gap-2 items-center">
@@ -144,10 +194,10 @@ const Editboothsize = ({ singleBoothsizeData }) => {
               <Label className="mb-4 block">Meta Title</Label>
               <Input
                 className="rounded-sm"
-                value={singleBoothSize.meta_title}
+                value={boothSizePage.meta_title}
                 onChange={(e) =>
-                  setSingleBoothSize({
-                    ...singleBoothSize,
+                  setBoothSizePage({
+                    ...boothSizePage,
                     meta_title: e.target.value,
                   })
                 }
@@ -158,10 +208,10 @@ const Editboothsize = ({ singleBoothsizeData }) => {
               <Label className="mb-4 block">Meta Description</Label>
               <Input
                 className="rounded-sm"
-                value={singleBoothSize.meta_description}
+                value={boothSizePage.meta_description}
                 onChange={(e) =>
-                  setSingleBoothSize({
-                    ...singleBoothSize,
+                  setBoothSizePage({
+                    ...boothSizePage,
                     meta_description: e.target.value,
                   })
                 }
@@ -171,14 +221,15 @@ const Editboothsize = ({ singleBoothsizeData }) => {
             <div>
               <Label className="mb-4 block">Meta Keywords</Label>
               <TagsInput
-                value={singleBoothSize.meta_keywords ?? []}
+                value={boothSizePage.meta_keywords ?? []}
                 onChange={(e) =>
-                  setSingleBoothSize({ ...singleBoothSize, meta_keywords: e })
+                  setBoothSizePage({ ...boothSizePage, meta_keywords: e })
                 }
               />
             </div>
           </CardContent>
         </Card>
+
         <div className="flex items-end justify-end mb-4 gap-x-4 ">
           <Button
             type="submit"

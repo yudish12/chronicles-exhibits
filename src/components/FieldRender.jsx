@@ -29,7 +29,7 @@ const FieldRender = ({ field, value, onChange, index }) => {
       return (
         <CkEditor
           value={value}
-          onChange={(value) => onChange(index, value)}
+          onChange={(index, value) => onChange(index, value)}
           index={index}
         />
       );
