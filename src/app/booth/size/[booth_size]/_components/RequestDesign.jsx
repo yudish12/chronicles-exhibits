@@ -11,7 +11,7 @@ const RequestDesign = ({ fields }) => {
         {fields[6].value}
       </div>
       <div className="py-10">
-        <Button className="bg-transparent text-base sm:text-lg border-2 border-[#B0CB1F] hover:bg-[#B0CB1F] px-6 sm:px-8 py-4 sm:py-6 font-bold text-[#B0CB1F] hover:text-white">
+        <Button className="bg-transparent text-wrap h-16 sm:h-auto text-base sm:text-lg border-2 border-[#B0CB1F] hover:bg-[#B0CB1F] px-6 sm:px-8 py-4 sm:py-6 font-bold text-[#B0CB1F] hover:text-white">
           {fields[7].value}
         </Button>
       </div>

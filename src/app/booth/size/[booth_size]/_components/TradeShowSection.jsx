@@ -24,7 +24,7 @@ const TradeShowSection = ({ fields, size }) => {
     <div className="bg-white py-12 px-8 md:px-20 lg:px-32">
       {/* Section 1 */}
       <section className="py-10 text-secondary">
-        <h2 className="text-2x text-center md:text-3xl font-bold heading-font text-secondary mb-4">
+        <h2 className="text-2xl text-center md:text-3xl font-bold heading-font text-secondary mb-4">
           {fields[7].value}
         </h2>
         <div

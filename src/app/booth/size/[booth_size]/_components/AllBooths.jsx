@@ -15,7 +15,7 @@ const BoothGrid = ({ fields, size, booths }) => {
         {booths.slice(0, visibleCount).map((booth, index) => (
           <Card
             key={booth.id}
-            className="shadow-one rounded-lg overflow-hidden w-[360px]"
+            className="shadow-one mx-auto rounded-lg overflow-hidden w-[360px]"
           >
             <CardHeader className="p-0">
               <Image

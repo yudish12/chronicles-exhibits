@@ -200,7 +200,7 @@
 //   );
 // }
 "use client";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -294,52 +294,51 @@ const CarouselImages = ({
 };
 
 const BoothForm = () => {
-
   const [countryCode, setCountryCode] = useState("us");
   const [selectedValue, setSelectedValue] = useState("");
   const [formData, setFormData] = useState({
-    name : "",
-    company : "",
-    budget : "",
-    eventName : "",
-    eventCity : "",
-    file : "",
+    name: "",
+    company: "",
+    budget: "",
+    eventName: "",
+    eventCity: "",
+    file: "",
     country: "",
-    eventDate : "",
+    eventDate: "",
     email: "",
     phoneNumber: "",
     boothSize: "",
     message: "",
     url: "",
     requestType: "",
-    country: ""
+    country: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const handleRadioChange = (event)=>{
-    const value = event.target.value ;
+  const handleRadioChange = (event) => {
+    const value = event.target.value;
     setSelectedValue((prevValue) => (prevValue === value ? "" : value));
-  }
+  };
   // Handle phone number input
   const handlePhoneChange = (value) => {
     setFormData({ ...formData, phoneNumber: value });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const { requestType, ...otherFields } = formData;
-  
+
     const formattedData = {
       ...otherFields,
       rentalQuotation: requestType === "rental",
       purchaseRequest: requestType === "purchase",
       customizationRequest: requestType === "customization",
     };
-  
+
     console.log("Formatted Data Submitted:", formattedData);
-  
+
     const resp = await submitBoothCodeForm(formattedData, "home");
     console.log(resp);
   };
@@ -365,90 +364,108 @@ const BoothForm = () => {
   return (
     <div className="flex flex-col items-center justify-center py-6">
       <div className="w-full">
-      <div className="flex justify-between mb-4">
-  <label className="flex items-center gap-x-2">
-    <Input
-      type="radio"
-      name="requestType"
-      value="rental"
-      checked={selectedValue === "rental"}
-      className="h-4 w-4 border-gray-300 rounded"
-      onChange={handleRadioChange}
-    />
-    <span className="text-secondary font-semibold">Rental Quotation</span>
-  </label>
-  <label className="flex items-center gap-x-2">
-    <Input
-      type="radio"
-      name="requestType"
-      value="purchase"
-      checked={selectedValue === "purchase"}
-      className="h-4 w-4 border-gray-300 rounded text-primary"
-      onChange={handleRadioChange}
-    />
-    <span className="text-secondary font-semibold">Purchase Request</span>
-  </label>
-  <label className="flex items-center gap-x-2">
-    <Input
-      type="radio"
-      name="requestType"
-      value="customization"
-      checked={selectedValue === "customization"}
-      className="h-4 w-4 border-gray-300 rounded"
-      onChange={handleRadioChange}
-    />
-    <span className="text-secondary font-semibold">Customization Request</span>
-  </label>
-</div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
-          <Input
-            type="text"
-            placeholder="Contact Person"
-            className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
-            name="name"
-            onChange={handleChange}
-          />
+        <div className="flex justify-between mb-4">
+          <label className="flex items-center gap-x-2">
+            <Input
+              type="radio"
+              name="requestType"
+              value="rental"
+              checked={selectedValue === "rental"}
+              className="h-4 w-4 border-gray-300 rounded"
+              onChange={handleRadioChange}
+            />
+            <span className="text-secondary font-semibold">
+              Rental Quotation
+            </span>
+          </label>
+          <label className="flex items-center gap-x-2">
+            <Input
+              type="radio"
+              name="requestType"
+              value="purchase"
+              checked={selectedValue === "purchase"}
+              className="h-4 w-4 border-gray-300 rounded text-primary"
+              onChange={handleRadioChange}
+            />
+            <span className="text-secondary font-semibold">
+              Purchase Request
+            </span>
+          </label>
+          <label className="flex items-center gap-x-2">
+            <Input
+              type="radio"
+              name="requestType"
+              value="customization"
+              checked={selectedValue === "customization"}
+              className="h-4 w-4 border-gray-300 rounded"
+              onChange={handleRadioChange}
+            />
+            <span className="text-secondary font-semibold">
+              Customization Request
+            </span>
+          </label>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+          <div>
+            <Input
+              type="text"
+              placeholder="Contact Person"
+              className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
+              name="name"
+              onChange={handleChange}
+            />
+          </div>
           <PhoneInput
             country={countryCode}
             value={formData.phoneNumber}
             onChange={handlePhoneChange}
             className="booth-code-phone-input"
           />
-          <Input
-            type="email"
-            placeholder="Email Address"
-            className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
-            onChange={handleChange}
-            name="email"
-          />
-          <Input
-            type="text"
-            placeholder="Country"
-            className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
-            onChange={handleChange}
-            name="country"
-          />
-          <Input
-            type="text"
-            placeholder="Event Name"
-            className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white "
-            onChange={handleChange}
-            name="eventName"
-          />
-          <Input
-            type="text"
-            placeholder="Event City"
-            className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white "
-            onChange={handleChange}
-            name="eventCity"
-          />
-          <Input
-            type="text"
-            placeholder="Your Budget"
-            className="w-full border col-span-3  border-gray-300  rounded-lg px-3 py-2 bg-white "
-            onChange={handleChange}
-            name="budget"
-          />
+          <div>
+            <Input
+              type="email"
+              placeholder="Email Address"
+              className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
+              onChange={handleChange}
+              name="email"
+            />
+          </div>
+          <div>
+            <Input
+              type="text"
+              placeholder="Country"
+              className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
+              onChange={handleChange}
+              name="country"
+            />
+          </div>
+          <div>
+            <Input
+              type="text"
+              placeholder="Event Name"
+              className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white "
+              onChange={handleChange}
+              name="eventName"
+            />
+          </div>
+          <div>
+            <Input
+              type="text"
+              placeholder="Event City"
+              className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white "
+              onChange={handleChange}
+              name="eventCity"
+            />
+          </div>
+          <div className="md:col-span-3 col-span-2">
+            <Input
+              type="text"
+              placeholder="Your Budget"
+              className="w-full border col-span-3  border-gray-300  rounded-lg px-3 py-2 bg-white "
+              onChange={handleChange}
+              name="budget"
+            />
+          </div>
         </div>
         <textarea
           placeholder="Description/Message/Customizations"
@@ -458,8 +475,10 @@ const BoothForm = () => {
           name="message"
         ></textarea>
       </div>
-      <Button className="transition-all py-4 px-6 duration-150 bg-secondary hover:text-white hover:bg-secondary font-semibold mt-4 self-end rounded text-white"
-      onClick={handleSubmit}>
+      <Button
+        className="transition-all py-4 px-6 duration-150 bg-secondary hover:text-white hover:bg-secondary font-semibold mt-4 self-end rounded text-white"
+        onClick={handleSubmit}
+      >
         Get Quote
       </Button>
     </div>

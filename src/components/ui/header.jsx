@@ -59,8 +59,6 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const scrollPosition = useScrollPosition();
 
-  console.log(scrollPosition);
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
