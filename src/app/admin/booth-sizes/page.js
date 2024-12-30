@@ -93,7 +93,7 @@ export default function BoothSizesTable() {
             variant="outline"
             className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
             onClick={() => {
-              router.push("/admin/create-page/edit/676cc14671418da5ce767335");
+              router.push("/admin/create-pages/edit/676cc14671418da5ce767335");
             }}
           >
             Edit Booth Size Page
