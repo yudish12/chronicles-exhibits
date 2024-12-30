@@ -5,18 +5,18 @@ const Leadingtrade = () => {
   return (
     <div className="p-6 md:p-20 flex flex-col md:flex-row gap-6 md:gap-10">
       {/* Image Container */}
-      <div className="w-full md:w-1/2">
+      <div className="w-full md:w-1/2 sm:rounded-lg md:rounded-none ">
         <Image
           layout="responsive" // Ensures the image is responsive
           width={370} // Aspect ratio width
           height={250} // Aspect ratio height
           src="/photo1.png"
           alt="photo1"
-          className="max-h-[300px] md:max-h-[530px] object-cover"
+          className="max-h-[300px] md:max-h-[530px] object-cover sm:rounded-lg md:rounded-none "
         />
       </div>
       {/* Text Content */}
-      <div className="w-full md:w-1/2">
+      <div className="w-full md:w-1/2 sm:text-center">
         <h3
           style={{ lineHeight: "1.2" }}
           className="heading-font-700 uppercase font-semibold text-secondary text-lg sm:text-xl md:text-[2rem]"

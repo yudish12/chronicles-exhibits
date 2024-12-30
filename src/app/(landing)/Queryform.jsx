@@ -14,7 +14,7 @@ const Queryform = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full sm:w-[80%] md:w-[64%]">
         <Input
           placeholder="First Name"
-          className="bg-white border-primary placeholder:text-secondary/50 border-2 text-black py-5 col-span-1 sm:col-span-2 rounded-lg"
+          className="bg-white border-primary placeholder:text-secondary/50 border-2 text-black py-5 rounded-lg"
         />
         <Input
           placeholder="Email ID"
@@ -30,12 +30,12 @@ const Queryform = () => {
         />
         <Input
           placeholder="Choose File"
-          className="bg-white border-primary placeholder:text-secondary/50 border-2 text-black py-5 rounded-lg"
+          className="bg-white border-primary placeholder:text-secondary/50 border-2 text-black py-5 rounded-lg sm:col-span-2"
         />
         <textarea
           rows={3}
           placeholder="Message/Customisations"
-          className="bg-white border-primary placeholder:text-secondary/50 p-4 border-2 rounded-lg col-span-1 sm:col-span-2"
+          className="bg-white border-primary placeholder:text-secondary/50 p-4 border-2 rounded-lg sm:col-span-2"
         ></textarea>
       </div>
       <Button

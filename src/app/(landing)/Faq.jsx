@@ -17,7 +17,7 @@ const Faq = () => {
         trade show booths and rentals with an unforgettable exhibiting
         experience.
       </p>
-      <div className="grid w-[90%] mx-auto grid-cols-1 md:grid-rows-3 gap-0">
+      <div className="grid sm:w-[95%] md:w-[90%] mx-auto grid-cols-1 md:grid-rows-3 sm:gap-6 md:gap-0">
         {faqs.map((e, index) => (
           <div
             key={index}

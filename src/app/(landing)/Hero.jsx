@@ -7,7 +7,7 @@ const Hero = () => {
       <h2 className="heading-font mt-6 uppercase text-center text-black font-medium text-[3.2rem]">
         State of the Art Exhibit Displays
       </h2>
-      <div className="hero mt-6 h-1/2 w-2/3 mx-auto shadow-xl rounded-[32px] relative"></div>
+      <div className="hidden sm:block hero mt-6 h-1/2 w-2/3 mx-auto shadow-xl rounded-[32px] relative"></div>
       <div className="left-[20%] p-8 rounded-[32px] justify-center absolute flex flex-col gap-8 w-[60%] bg-white top-[59%] mt-16">
         <h3 className="text-4xl text-center text-primary uppercase font-medium">
           The leading exhibit display design studio in usa
