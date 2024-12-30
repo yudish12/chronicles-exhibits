@@ -1,21 +1,19 @@
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 export default function Search({ value, onChange, className }) {
   return (
     <div
       className={cn(
-        "flex items-center w-full max-w-sm rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-900 px-4 ",
+        "flex items-center h-[35px] gap-3 w-full max-w-sm rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-900 px-4",
         className
       )}
     >
       <SearchIcon className="h-4 w-4" />
-      <Input
+      <input
         value={value}
         onChange={onChange}
-        type="search"
         placeholder="Search"
-        className="w-full outline-none focus:outline-none focus:border-0 active:border-0 border-0 h-8 font-semibold"
+        className="w-full h-full font-semibold bg-transparent border-none outline-none focus:outline-none"
       />
     </div>
   );

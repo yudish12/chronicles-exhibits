@@ -14,7 +14,7 @@ export const findPortfolioById = async (id) => {
     return getActionFailureResponse(error, "toast");
   }
 };
-export const getAllPortfolios = async (skip , limit , projection) => {
+export const getAllPortfolios = async (skip, limit, projection) => {
   try {
     let query = Portfolio.find().sort({ _id: -1 });
     if (skip) {
@@ -31,7 +31,18 @@ export const getAllPortfolios = async (skip , limit , projection) => {
 
     const data = await query.lean();
     const count = await Portfolio.countDocuments();
-    return getActionSuccessResponse(data , count);
+    return getActionSuccessResponse(data, count);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
+export const getAllDataBySearch = async (searchValue) => {
+  try {
+    const data = await Portfolio.find({
+      image_alt_text: { $regex: searchValue, $options: "i" },
+    }).lean();
+    return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }

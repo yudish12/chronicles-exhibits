@@ -10,10 +10,13 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
-import { getAllPortfolios } from "@/server/actions/portfolio";
+import {
+  getAllDataBySearch,
+  getAllPortfolios,
+} from "@/server/actions/portfolio";
 import { Pencil, Trash2 } from "lucide-react";
 import { deletePortfolio } from "@/server/actions/portfolio";
 import {
@@ -26,33 +29,50 @@ import {
 } from "@/components/ui/dialog";
 import { deleteUTFiles } from "@/server/services/uploadthing";
 import { Pagination } from "../blogs/_components/Pagination";
+import Search from "@/components/ui/search";
 export default function PortfolioTable() {
   const router = useRouter();
   const [portfolios, setPortfolios] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
   const [deletingPortfolioId, setDeletingPortfolioId] = React.useState(null);
-  const [totalPages , setTotalPages] = React.useState(0)
-  const [currentPage , setCurrentPage] = React.useState(1);
+  const [totalPages, setTotalPages] = React.useState(0);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [searchValue, setSearchValue] = React.useState("");
   const limit = 6;
-  const fetchData = async (page =1) => {
+  const fetchData = async (page = 1) => {
     try {
-      setLoading(true)
-      const skip = (currentPage-1)*limit;
-      const resp = await getAllPortfolios(skip,limit);
+      setLoading(true);
+      const skip = (currentPage - 1) * limit;
+      const resp = await getAllPortfolios(skip, limit);
       console.log("Resp", resp);
       if (!resp.success) {
         toast.error(resp.error);
         return;
       }
       setPortfolios(resp.data);
-      setTotalPages(Math.ceil(resp.count/limit))
+      setTotalPages(Math.ceil(resp.count / limit));
       setLoading(false);
     } catch (error) {
       console.error(error);
       toast.error("Failed to fetch Portfolios");
     }
   };
+
+  const handleSearchClick = async () => {
+    if (!searchValue) return fetchData();
+    try {
+      const searchResp = await getAllDataBySearch(searchValue);
+      console.log("===searchResp===", searchResp);
+      setPortfolios(searchResp.data);
+      const count = searchResp.count ?? 0;
+      setTotalPages(Math.ceil(count / limit));
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while fetching data");
+    }
+  };
+
   if (loading) {
     <TableSkeletonLoader />;
   }
@@ -95,6 +115,20 @@ export default function PortfolioTable() {
       </Card>
 
       <Card className="mt-6 bg-white p-4 border">
+        <CardHeader className="flex mb-4 flex-row gap-6">
+          <Search
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <Button
+            onClick={handleSearchClick}
+            variant="outline"
+            style={{ marginTop: "0px", height: "35px" }}
+            className="border-secondary text-secondary mt-0 font-semibold px-4 py-"
+          >
+            Search
+          </Button>
+        </CardHeader>
         <Table>
           <TableHeader>
             <TableRow>
@@ -149,10 +183,10 @@ export default function PortfolioTable() {
           </TableBody>
         </Table>
       </Card>
-      <Pagination 
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={setCurrentPage}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
       />
       {/* delete dialog */}
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>

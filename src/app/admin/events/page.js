@@ -163,7 +163,8 @@ export default function Events() {
           <Button
             onClick={handleSearchClick}
             variant="outline"
-            className="border-secondary text-secondary font-semibold px-4 py-2"
+            style={{ marginTop: "0px", height: "35px" }}
+            className="border-secondary text-secondary mt-0 font-semibold px-4 py-"
           >
             Search
           </Button>
