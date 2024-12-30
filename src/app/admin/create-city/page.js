@@ -26,40 +26,43 @@ import {
   deleteCity,
   addCity,
   updateCity,
-  bulkInsertCities,
 } from "@/server/actions/locations";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
-import { majorExhibitingCities } from "../cities";
 import { Pagination } from "./_components/Pagination";
+
 export default function Cities() {
-  const [citys, setcitys] = React.useState([]);
+  const [cities, setCities] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
-  const [singlecity, setSinglecity] = React.useState(null);
+  const [singleCity, setSingleCity] = React.useState({ name: "" });
   const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
   const [isAddDialogOpen, setIsAddDialogOpen] = React.useState(false);
-  const [deletingcityId, setDeletingcityId] = React.useState(null);
- const [totalPages , setTotalPages] = React.useState(0)
- const [currentPage , setCurrentPage] = React.useState(1)
- const limit = 6;
+  const [deletingCityId, setDeletingCityId] = React.useState(null);
+  const [totalPages, setTotalPages] = React.useState(0);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const limit = 6;
+
   const getData = async (page = 1) => {
     try {
-      setLoading(true)
-      const skip = (currentPage-1)*limit;
-      const resp = await getCities(skip , limit);
-      console.log(resp);
+      setLoading(true);
+      const skip = (page - 1) * limit;
+      const resp = await getCities(skip, limit);
+
       if (!resp.success) {
         toast.error(resp.err);
         setLoading(false);
         return;
       }
-      setcitys(resp.data);
-      setTotalPages(Math.ceil(resp.count/limit));
+
+      setCities(resp.data);
+      setTotalPages(Math.ceil(resp.count / limit));
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      toast.error("Failed to fetch data. Please try again.");
+      console.error(error);
+      setLoading(false);
     }
   };
 
@@ -69,54 +72,56 @@ export default function Cities() {
 
   const handleEdit = (city) => {
     setIsAddDialogOpen(false);
-    setSinglecity(city);
+    setSingleCity({ ...city });
     setIsEditDialogOpen(true);
   };
 
   const handleDelete = (id) => {
-    setDeletingcityId(id);
+    setDeletingCityId(id);
     setIsDeleteDialogOpen(true);
   };
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    const resp = await updateData(singlecity._id, {
-      continent: singlecity.continent,
-      city: singlecity.city,
-    });
+    const resp = await updateCity(singleCity._id, { name: singleCity.name });
+
     if (!resp.success) {
       toast.error(resp.err);
       return;
     }
 
-    const updatedcitys = citys.map((city) =>
-      city._id === singlecity._id ? singlecity : city
+    const updatedCities = cities.map((city) =>
+      city._id === singleCity._id ? { ...city, name: singleCity.name } : city
     );
 
-    setcitys(updatedcitys);
+    setCities(updatedCities);
     setIsEditDialogOpen(false);
   };
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
-    const resp = await addData(singlecity);
+    const resp = await addCity(singleCity);
+
     if (!resp.success) {
       toast.error(resp.err);
       return;
     }
-    setcitys([...citys, resp.data]);
+
+    setCities([...cities, resp.data]);
     setIsAddDialogOpen(false);
-    setSinglecity(null);
+    setSingleCity({ name: "" });
   };
 
   const handleDeleteConfirm = async () => {
-    const resp = await deleteData(deletingcityId);
+    const resp = await deleteCity(deletingCityId);
+
     if (!resp.success) {
       toast.error(resp.err);
       return;
     }
-    const updatedcitys = citys.filter((city) => city._id !== deletingcityId);
-    setcitys(updatedcitys);
+
+    const updatedCities = cities.filter((city) => city._id !== deletingCityId);
+    setCities(updatedCities);
     setIsDeleteDialogOpen(false);
   };
 
@@ -127,15 +132,15 @@ export default function Cities() {
   return (
     <div className="container bg-border overflow-auto mx-auto p-8">
       <Card className="flex justify-between items-center bg-white p-4">
-        <h1 className="text-2xl font-bold">citys</h1>
+        <h1 className="text-2xl font-bold">Cities</h1>
         <Button
           onClick={() => {
-            setSinglecity(null);
+            setSingleCity({ name: "" });
             setIsEditDialogOpen(false);
             setIsAddDialogOpen(true);
           }}
         >
-          Add city
+          Add City
         </Button>
       </Card>
 
@@ -149,7 +154,7 @@ export default function Cities() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {citys.map((city, index) => (
+            {cities.map((city, index) => (
               <TableRow key={city._id}>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{city.name}</TableCell>
@@ -161,7 +166,7 @@ export default function Cities() {
                       onClick={() => handleEdit(city)}
                     >
                       <Pencil className="h-4 w-4" />
-                      <span className="sr-only">Edit {city.city}</span>
+                      <span className="sr-only">Edit {city.name}</span>
                     </Button>
                     <Button
                       variant="outline"
@@ -169,7 +174,7 @@ export default function Cities() {
                       onClick={() => handleDelete(city._id)}
                     >
                       <Trash2 className="h-4 w-4" />
-                      <span className="sr-only">Delete {city.city}</span>
+                      <span className="sr-only">Delete {city.name}</span>
                     </Button>
                   </div>
                 </TableCell>
@@ -178,25 +183,28 @@ export default function Cities() {
           </TableBody>
         </Table>
       </Card>
+
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
         onPageChange={setCurrentPage}
       />
+
       <Dialog
         open={isEditDialogOpen || isAddDialogOpen}
-        onOpenChange={
-          isEditDialogOpen ? setIsEditDialogOpen : setIsAddDialogOpen
-        }
+        onOpenChange={(isOpen) => {
+          if (isEditDialogOpen) setIsEditDialogOpen(isOpen);
+          else setIsAddDialogOpen(isOpen);
+        }}
       >
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
-              {isEditDialogOpen ? "Edit city" : "Add city"}
+              {isEditDialogOpen ? "Edit City" : "Add City"}
             </DialogTitle>
             <DialogDescription>
               {isEditDialogOpen
-                ? "Make changes to the city here. Click save when you&apos;re done."
+                ? "Make changes to the city here. Click save when you're done."
                 : "Enter the details of the city you want to add."}
             </DialogDescription>
           </DialogHeader>
@@ -210,12 +218,10 @@ export default function Cities() {
                 </Label>
                 <Input
                   id="city"
-                  value={singlecity?.name ?? ""}
+                  type="text"
+                  value={singleCity.name}
                   onChange={(e) =>
-                    setSinglecity({
-                      ...singlecity,
-                      city: e.target.value,
-                    })
+                    setSingleCity({ ...singleCity, name: e.target.value })
                   }
                   className="col-span-3"
                 />
