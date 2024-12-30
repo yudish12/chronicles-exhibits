@@ -30,7 +30,7 @@ async function FeaturedPage({ params }) {
   const boothSize = resolvedParams.booth_size;
   console.log("==boothsize==", boothSize);
   const data = await getBoothSizeByName(boothSize);
-  const pageData = await getSinglePage({ name: boothSize });
+  const pageData = await getSinglePage({ name: boothSize.toLowerCase() });
   console.log(pageData);
   // const booths = await getBoothsBySize(data.data._id);
   const booths = await getAllData(6, 0);
@@ -42,18 +42,15 @@ async function FeaturedPage({ params }) {
       <Header />
       <div className=" featured-bg flex flex-col items-center justify-center bg-cover bg-center">
         <div className="flex flex-col justify-center items-center h-full text-center gap-6  px-4">
-          <h2 className="heading-font font-bold text-[2rem] text-white drop-shadow-lg leading-relaxed ">
+          <h2 className="heading-font uppercase font-bold text-[2.25rem] text-white drop-shadow-lg leading-relaxed ">
             {pageData.data.fields[0].value}
           </h2>
           <div className="flex flex-col items-center justify-self-end gap-4">
-            <div className="font-bold text-white text-2xl drop-shadow-sm leading-relaxed ">
-              TUIOW202039002
-            </div>
             <Dialog>
               <DialogTrigger asChild>
                 <Button
                   style={{ transitionDuration: "500ms" }}
-                  className="bg-transparent hover:bg-[#B0CB1F] border-2 border-[#B0CB1F] text-[#B0CB1F] hover:text-secondary text-lg font-semibold px-[10px] py-6 "
+                  className="bg-transparent hover:bg-[#B0CB1F] border-2 border-[#B0CB1F] text-[#B0CB1F] hover:text-secondary text-lg font-semibold px-[20px] py-5 "
                 >
                   {pageData.data.fields[1].value}
                 </Button>
@@ -68,7 +65,6 @@ async function FeaturedPage({ params }) {
       <BoothGrid size={boothSize} booths={booths.data} />
       <RequestDesign fields={pageData.data.fields} size={boothSize} />
       <TradeShowSection fields={pageData.data.fields} size={boothSize} />
-      <Queryform />
       <Footer />
     </>
   );

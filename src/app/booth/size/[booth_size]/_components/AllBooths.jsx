@@ -35,7 +35,7 @@ const BoothGrid = ({ fields, size, booths }) => {
                   style={{ transitionDuration: "500ms" }}
                   className="mt-4 bg-transparent hover:bg-secondary border-2 border-[#B0CB1F] hover:border-secondary text-[#B0CB1F] hover:text-white px-6 py-2 font-bold text-sm"
                 >
-                  Customize Now!
+                  Contact Us
                 </Button>
               </Link>
             </CardContent>

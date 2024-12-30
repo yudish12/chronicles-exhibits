@@ -120,7 +120,9 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
                   className="w-full h-3/4 object-cover"
                 />
                 <div className="flex h-1/4 heading-font-700 bg-white flex-col justify-center items-center bg-secondary/[.94] text-secondary">
-                  <p className="text-[1.65rem] font-semibold">{item.name}</p>
+                  <p className="text-[1.65rem] uppercase font-semibold">
+                    {item.name.toUpperCase()}
+                  </p>
                   <p className="capitalize text-lg font-semibold">
                     trade show booth rental {location?.toLowerCase() ?? ""}
                   </p>

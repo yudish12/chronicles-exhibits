@@ -81,20 +81,6 @@ const Editboothsize = ({ singleBoothsizeData, pageData }) => {
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-6">
             <div>
-              <Label className="mb-4 block">Name</Label>
-              <Input
-                className="rounded-sm"
-                value={singleBoothSize.name}
-                onChange={(e) =>
-                  setSingleBoothSize({
-                    ...singleBoothSize,
-                    name: e.target.value,
-                  })
-                }
-                required
-              />
-            </div>
-            <div>
               <Label className="mb-4 block">Image</Label>
               <UploadButton
                 endpoint="imageUploader"
