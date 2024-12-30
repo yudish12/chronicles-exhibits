@@ -5,6 +5,7 @@ import events from "../models/events";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import Locations from "../models/locations";
 import mongoose from "mongoose";
+import Cities from "../models/cities";
 
 await dbConnect();
 export const getAllData = async (skip, limit, projection) => {
@@ -52,7 +53,7 @@ export const findEventById = async ({ id }) => {
 
 export const getAllLocations = async () => {
   try {
-    const data = await Locations.find({}, { city: 1, continent: 1 }).lean();
+    const data = await Cities.find();
     //   console.log("==locations data==" , data)
     return getActionSuccessResponse(data);
   } catch (error) {

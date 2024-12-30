@@ -22,7 +22,7 @@ import { majorExhibitingCities } from "@/app/admin/cities";
 import { Trash2 } from "lucide-react";
 import { CitySearchSelect } from "@/components/ui/city-search-select";
 import { useRouter } from "next/navigation";
-const EditEventForm = ({ singleEvent, locations }) => {
+const EditEventForm = ({ singleEvent, cities }) => {
   console.log(singleEvent);
   const [event, setEvent] = useState(singleEvent);
   const router = useRouter();
@@ -112,9 +112,9 @@ const EditEventForm = ({ singleEvent, locations }) => {
                   city: value,
                 });
               }}
-              cities={majorExhibitingCities.map((city) => ({
-                label: city,
-                value: city,
+              cities={cities.map((city) => ({
+                label: city.name,
+                value: city.name,
               }))}
             />
           </div>

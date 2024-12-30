@@ -21,7 +21,7 @@ const Page = async ({ params }) => {
 
   return (
     <div className="flex flex-col items-center justify-start overflow-auto min-h-full bg-gray-200 p-8 w-full">
-      <EditEventForm singleEvent={singleEvent} locations={locations} />
+      <EditEventForm singleEvent={singleEvent} cities={locations} />
     </div>
   );
 };
