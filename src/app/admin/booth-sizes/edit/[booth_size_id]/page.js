@@ -8,7 +8,14 @@ const Page = async ({ params }) => {
   const boothSizeId = resolvedParams.booth_size_id;
 
   const boothData = await getSingleBoothSize({ _id: boothSizeId });
-  const boothPageData = await getSinglePage({ name: boothData.data.name });
+
+  console.log(boothData);
+
+  const boothPageData = await getSinglePage({
+    name: boothData.data.name.toLowerCase(),
+  });
+
+  console.log(boothPageData);
 
   return (
     <div className="flex flex-col items-center justify-start overflow-auto min-h-full bg-gray-200 p-8 w-full">
