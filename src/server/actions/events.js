@@ -7,27 +7,40 @@ import Locations from "../models/locations";
 import mongoose from "mongoose";
 
 await dbConnect();
-export const getAllData = async (skip,limit,projection) => {
+export const getAllData = async (skip, limit, projection) => {
   try {
-    
     let query = events.find().sort({ _id: -1 });
-    if(skip){
+    if (skip) {
       query = query.skip(skip);
     }
-    if(limit){
-      query = query.limit(limit)
+    if (limit) {
+      query = query.limit(limit);
     }
-    if(projection){
-      query = query.select(projection)
+    if (projection) {
+      query = query.select(projection);
     }
-    const data = await query.lean()
-    const count = await events.countDocuments()
+    const data = await query.lean();
+    const count = await events.countDocuments();
     //   console.log("[]" , data)
-    return getActionSuccessResponse(data , count);
+    return getActionSuccessResponse(data, count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }
 };
+
+export const getAllDataBySearch = async (searchValue) => {
+  try {
+    const data = await events
+      .find({
+        event_name: { $regex: searchValue, $options: "i" },
+      })
+      .lean();
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
 export const findEventById = async ({ id }) => {
   try {
     const data = await events.find({ _id: id }).lean();

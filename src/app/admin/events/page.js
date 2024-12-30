@@ -1,11 +1,11 @@
 "use client";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import {
   Table,
   TableBody,
-  TableCell, 
+  TableCell,
   TableHead,
   TableHeader,
   TableRow,
@@ -17,6 +17,7 @@ import {
   getAllLocations,
   updateData,
   deleteData,
+  getAllDataBySearch,
 } from "@/server/actions/events";
 import {
   Dialog,
@@ -29,9 +30,11 @@ import {
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 import { Eye, Pencil, Trash2 } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import { Pagination } from "./_components/Pagination";
+import { Input } from "@/components/ui/input";
+import Search from "@/components/ui/search";
 export default function Events() {
   const router = useRouter();
   const [events, setEvents] = React.useState([]);
@@ -42,6 +45,7 @@ export default function Events() {
   const [isEditDialogOpen, setIsEditDialogOpen] = React.useState(false);
   const [deletingEventId, setDeletingEventId] = React.useState(null);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
+  const [searchValue, setSearchValue] = React.useState("");
   const [singleEvent, setSingleEvent] = React.useState({
     event_name: "",
     start_date: "",
@@ -57,7 +61,7 @@ export default function Events() {
     try {
       setLoading(true);
       const skip = (page - 1) * limit;
-      const eventResp = await getAllData(skip , limit);
+      const eventResp = await getAllData(skip, limit);
       console.log("===events===", eventResp);
       const locationResp = await getAllLocations();
       console.log("====locations===", locationResp.data[0]);
@@ -79,6 +83,21 @@ export default function Events() {
       toast.error("An error occurred while fetching data");
     }
   };
+
+  const handleSearchClick = async () => {
+    if (!searchValue) return fetchData();
+    try {
+      const searchResp = await getAllDataBySearch(searchValue);
+      console.log("===searchResp===", searchResp);
+      setEvents(searchResp.data);
+      const count = searchResp.count ?? 0;
+      setTotalPages(Math.ceil(count / limit));
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while fetching data");
+    }
+  };
+
   React.useEffect(() => {
     console.log("~fetch data");
     fetchData(currentPage);
@@ -136,6 +155,19 @@ export default function Events() {
       </Card>
 
       <Card className="mt-6 bg-white p-4 border">
+        <CardHeader className="flex mb-4 flex-row gap-6">
+          <Search
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <Button
+            onClick={handleSearchClick}
+            variant="outline"
+            className="border-secondary text-secondary font-semibold px-4 py-2"
+          >
+            Search
+          </Button>
+        </CardHeader>
         <Table>
           <TableHeader>
             <TableRow>
