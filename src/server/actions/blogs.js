@@ -32,6 +32,17 @@ export const getAllBlogs = async (skip, limit, projection) => {
     return getActionFailureResponse(error, "toast");
   }
 };
+
+export const getAllDataBySearch = async (searchValue) => {
+  try {
+    const data = await Blog.find({
+      title: { $regex: searchValue, $options: "i" },
+    }).lean();
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
 // src/server/actions/booths.js
 
 export const updateData = async (id, data) => {

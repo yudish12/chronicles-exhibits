@@ -18,20 +18,26 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { getAllBlogs, deleteData } from "@/server/actions/blogs";
+import {
+  getAllBlogs,
+  deleteData,
+  getAllDataBySearch,
+} from "@/server/actions/blogs";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { Pencil, Trash2, Eye } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Card } from "@/components/ui/card";
+import { Card, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import { Pagination } from "./_components/Pagination";
+import Search from "@/components/ui/search";
 export default function Blogs() {
   const router = useRouter();
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [deletingBlogId, setDeletingBlogId] = useState(null);
+  const [searchValue, setSearchValue] = React.useState("");
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,8 +49,8 @@ export default function Blogs() {
       setLoading(true);
       const skip = (page - 1) * limit;
 
-      const resp = await getAllBlogs(skip, limit , "slug  _id title image");
-      console.log("resp" , resp)
+      const resp = await getAllBlogs(skip, limit, "slug  _id title image");
+      console.log("resp", resp);
       if (!resp.success) {
         toast.error(resp.error);
         return;
@@ -77,6 +83,20 @@ export default function Blogs() {
     }
   };
 
+  const handleSearchClick = async () => {
+    if (!searchValue) return fetchData();
+    try {
+      const searchResp = await getAllDataBySearch(searchValue);
+      console.log("===searchResp===", searchResp);
+      setBlogs(searchResp.data);
+      const count = searchResp.count ?? 0;
+      setTotalPages(Math.ceil(count / limit));
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while fetching data");
+    }
+  };
+
   // Fetch data on mount and when page changes
   useEffect(() => {
     fetchData(currentPage);
@@ -100,6 +120,20 @@ export default function Blogs() {
       </Card>
 
       <Card className="mt-6 bg-white p-4 border">
+        <CardHeader className="flex mb-4 flex-row gap-6">
+          <Search
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+          />
+          <Button
+            onClick={handleSearchClick}
+            variant="outline"
+            style={{ marginTop: "0px", height: "35px" }}
+            className="border-secondary text-secondary mt-0 font-semibold px-4 py-"
+          >
+            Search
+          </Button>
+        </CardHeader>
         <Table>
           <TableHeader>
             <TableRow>
