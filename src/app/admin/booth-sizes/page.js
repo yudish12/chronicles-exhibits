@@ -115,7 +115,7 @@ export default function BoothSizesTable() {
           <TableBody>
             {boothSizes.map((boothSize, index) => (
               <TableRow key={boothSize.id}>
-                <TableCell>{index + 1}</TableCell>
+                <TableCell>{index + 1 + (currentPage - 1) * 6}</TableCell>
                 <TableCell>
                   <img
                     src={boothSize.image}

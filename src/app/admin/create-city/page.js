@@ -156,7 +156,7 @@ export default function Cities() {
           <TableBody>
             {cities.map((city, index) => (
               <TableRow key={city._id}>
-                <TableCell>{index + 1}</TableCell>
+                <TableCell>{index + 1 + (currentPage - 1) * 6}</TableCell>
                 <TableCell>{city.name}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">

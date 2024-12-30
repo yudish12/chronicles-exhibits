@@ -141,7 +141,7 @@ export default function PortfolioTable() {
           <TableBody>
             {portfolios.map((portfolio, index) => (
               <TableRow key={portfolio._id}>
-                <TableCell>{index + 1}</TableCell>
+                <TableCell>{index + 1 + (currentPage - 1) * 6}</TableCell>
                 <TableCell>
                   <img
                     src={portfolio.image}

@@ -150,7 +150,7 @@ export default function BoothTable() {
           <TableBody>
             {booths.map((booth, index) => (
               <TableRow key={booth._id}>
-                <TableCell>{index + 1}</TableCell>
+                <TableCell>{index + 1 + (currentPage - 1) * 6}</TableCell>
                 <TableCell>
                   {booth.thumbnail_image && (
                     <img

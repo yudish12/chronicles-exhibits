@@ -233,7 +233,7 @@ const AddBoothPage = () => {
                   <div key={index} className="relative">
                     <img
                       src={img}
-                      alt={`Gallery ${index + 1}`}
+                      alt={`Gallery ${index + 1 + (currentPage - 1) * 6}`}
                       className="w-full h-24 object-cover rounded"
                     />
                     <Button

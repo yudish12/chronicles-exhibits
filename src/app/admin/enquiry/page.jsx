@@ -30,21 +30,21 @@ export default function PortfolioTable() {
   const [loading, setLoading] = React.useState(true);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
   const [deletingPortfolioId, setDeletingPortfolioId] = React.useState(null);
-  const [currentPage , setCurrentPage] = React.useState(1);
-  const [totalPages , setTotalPages] = React.useState(0);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [totalPages, setTotalPages] = React.useState(0);
   const limit = 6;
   const fetchData = async () => {
     try {
-      setLoading(true)
-      const skip = (currentPage-1)*limit;
-      const resp = await getAllForms(skip,limit);
+      setLoading(true);
+      const skip = (currentPage - 1) * limit;
+      const resp = await getAllForms(skip, limit);
       console.log("Resp", resp);
       if (!resp.success) {
         toast.error(resp.error);
         return;
       }
       setPortfolios(resp.data);
-      setTotalPages(Math.ceil(resp.count/limit))
+      setTotalPages(Math.ceil(resp.count / limit));
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -103,7 +103,7 @@ export default function PortfolioTable() {
           <TableBody>
             {portfolios.map((portfolio, index) => (
               <TableRow key={portfolio._id}>
-                <TableCell>{index + 1}</TableCell>
+                <TableCell>{index + 1 + (currentPage - 1) * 6}</TableCell>
                 <TableCell>{portfolio.name}</TableCell>
                 <TableCell>{portfolio.email}</TableCell>
                 <TableCell>{portfolio.phoneNumber}</TableCell>
@@ -130,10 +130,10 @@ export default function PortfolioTable() {
           </TableBody>
         </Table>
       </Card>
-      <Pagination 
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={setCurrentPage}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
       />
       {/* delete dialog */}
       <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>

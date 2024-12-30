@@ -185,7 +185,7 @@ export default function Events() {
           <TableBody>
             {events.map((event, index) => (
               <TableRow key={event._id}>
-                <TableCell>{index + 1}</TableCell>
+                <TableCell>{index + 1 + (currentPage - 1) * 6}</TableCell>
                 <TableCell className="text-center ">
                   {event.icon && (
                     <img

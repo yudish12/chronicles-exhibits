@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 // import React, { useState, useEffect } from "react";
 import {
   Table,
@@ -34,20 +34,20 @@ export default function CreatePages() {
   const [loading, setLoading] = React.useState(true);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false);
   const [deletePageId, setDeletingPageId] = React.useState(null);
-  const [currentPage  , setCurrentPage] = React.useState(1);
-  const [totalPages , setTotalPages] = React.useState(0);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [totalPages, setTotalPages] = React.useState(0);
   const limit = 6;
   const fetchData = async (page = 1) => {
     try {
-      setLoading(true)
-      const skip = (currentPage -1)*limit;
-      const resp = await getAllPages(skip , limit);
+      setLoading(true);
+      const skip = (currentPage - 1) * limit;
+      const resp = await getAllPages(skip, limit);
       if (!resp.success) {
         toast.error(resp.error);
         return;
       }
       setPages(resp.data);
-      setTotalPages(Math.ceil(resp.count/limit))
+      setTotalPages(Math.ceil(resp.count / limit));
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -108,7 +108,7 @@ export default function CreatePages() {
           <TableBody>
             {pages.map((page, index) => (
               <TableRow key={page._id}>
-                <TableCell>{index + 1}</TableCell>
+                <TableCell>{index + 1 + (currentPage - 1) * 6}</TableCell>
                 <TableCell>{page.name}</TableCell>
                 <TableCell>{page.slug}</TableCell>
                 <TableCell>{page.meta_title}</TableCell>
