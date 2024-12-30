@@ -13,9 +13,9 @@ const GetFreeDesignForm = () => {
     email: "",
     phoneNumber: "",
     country: "",
-    eventName : "",
+    eventName: "",
     eventCity: "",
-    boothSize : "",
+    boothSize: "",
     file: "",
     timeZone: "",
     message: "",
@@ -80,7 +80,7 @@ const GetFreeDesignForm = () => {
       }}
     >
       <h5 className="text-3xl mt-4 text-center font-semibold heading-font text-secondary">
-       Get Free 3D Design 
+        Get Free 3D Design
       </h5>
       <div className="mt-4 flex flex-col gap-5">
         <Input
