@@ -269,11 +269,11 @@ const CarouselImages = ({
   handleThumbnailClick,
 }) => {
   return (
-    <div className="flex flex-col md:mt-16 items-start gap-8">
-      <h3 className="text-[1.4rem]  md:block hidden text-secondary font-semibold ">
+    <div className="flex flex-col lg:mt-16 items-start gap-8">
+      <h3 className="text-[1.4rem]  lg:block hidden text-secondary font-semibold ">
         {boothCode}
       </h3>
-      <div className="w-full mt-6 md:mt-0 grid md:grid-cols-1 grid-cols-3  gap-6">
+      <div className="w-full mt-6 lg:mt-0 grid lg:grid-cols-1 grid-cols-3  gap-6">
         {images.map((src, index) => (
           <Image
             width={150}
@@ -405,7 +405,7 @@ const BoothForm = () => {
             </span>
           </label>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
           <div>
             <Input
               type="text"
@@ -457,7 +457,7 @@ const BoothForm = () => {
               name="eventCity"
             />
           </div>
-          <div className="md:col-span-3 col-span-2">
+          <div className="lg:col-span-3 col-span-2">
             <Input
               type="text"
               placeholder="Your Budget"
@@ -487,13 +487,13 @@ const BoothForm = () => {
 
 const PackageDetails = ({ boothData }) => {
   return (
-    <ul className="flex flex-1 md:w-max flex-col mx-auto gap-2 text-secondary">
-      <div className="hidden md:flex text-center gap-3 mb-8 text-primary underline font-semibold text-sm">
+    <ul className="flex flex-1 lg:w-max flex-col mx-auto gap-2 text-secondary">
+      <div className="hidden lg:flex text-center gap-3 mb-8 text-primary underline font-semibold text-sm">
         <span>Home/</span>
         <span>Booth By Size/</span>
         <span>10x10/</span>
       </div>
-      <h2 className="text-xl mt-8 md:mt-0 font-semibold mb-4">
+      <h2 className="text-xl mt-8 lg:mt-0 font-semibold mb-4">
         Package Includes:
       </h2>
       <div
@@ -534,7 +534,7 @@ export function BoothDetails({ boothCode, boothData }) {
 
   return (
     <>
-      <div className="bg-background gap-12 hidden md:flex flex-wrap justify-center pr-16 py-7 px-32">
+      <div className="bg-background gap-12 hidden lg:flex flex-wrap justify-center pr-16 py-7 px-32">
         {/*Thumbnails */}
         <CarouselImages
           boothCode={boothCode}
@@ -574,7 +574,7 @@ export function BoothDetails({ boothCode, boothData }) {
         {/* Details */}
         <PackageDetails boothData={boothData} />
       </div>
-      <div className="flex md:hidden flex-col px-8 py-6">
+      <div className="flex lg:hidden flex-col px-8 py-6">
         <h3 className="text-[1.4rem] text-center text-secondary font-semibold ">
           {boothCode}
         </h3>

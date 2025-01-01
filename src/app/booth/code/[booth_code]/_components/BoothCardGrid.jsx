@@ -33,11 +33,11 @@ const BoothGrid = ({ boothCode, image }) => {
       </h2>
 
       {/* Booth Grid */}
-      <div className="grid mt-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center place-content-center max-w-[1200px] mx-auto">
+      <div className="grid mt-6 grid-cols-1 px-6 lg:p-0 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 place-items-center place-content-center max-w-[1200px] mx-auto">
         {boothToRender.slice(0, visibleCount).map((booth) => (
           <Card
             key={booth.id}
-            className="shadow-one rounded-lg overflow-hidden w-[380px]"
+            className="shadow-one rounded-lg overflow-hidden lg:w-[380px] w-full"
           >
             <CardHeader className="p-0">
               <Image
@@ -45,7 +45,7 @@ const BoothGrid = ({ boothCode, image }) => {
                 width={378}
                 src={booth.image}
                 alt={`Booth ${booth.code}`}
-                className="w-full h-[250px]"
+                className="w-full lg:h-[250px] h-[220px]"
               />
             </CardHeader>
             <CardContent className="p-4 text-center">
