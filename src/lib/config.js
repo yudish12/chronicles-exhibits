@@ -1,9 +1,5 @@
 export const headerRoutes = [
   {
-    link: "/",
-    name: "Home",
-  },
-  {
     link: "booth-sizes",
     name: "Booth Rental",
   },
@@ -305,6 +301,84 @@ export const locationPageFields = [
   {
     key: "last_section_body",
     type: "body",
+    value: "",
+  },
+];
+
+export const customTradeShowFields = [
+  {
+    key: "top_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "top_subtitle",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "section_1_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "section_1_para1",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "section_1_para2",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "section_2_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "section_2_para",
+    type: "body",
+    value: "",
+  },
+  {
+    key: "section_2_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "section_3_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "section_3_para",
+    type: "body",
+    value: "",
+  },
+  {
+    key: "section_3_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "section_4_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "section_4_para",
+    type: "body",
+    value: "",
+  },
+  {
+    key: "section_5_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "section_5_subtitle",
+    type: "text",
     value: "",
   },
 ];

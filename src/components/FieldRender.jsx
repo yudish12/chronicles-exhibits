@@ -3,11 +3,16 @@ import React, { useEffect } from "react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import CkEditor from "./CkEditor";
+import { UploadButton } from "@uploadthing/react";
+import { Trash2 } from "lucide-react";
+import { Button } from "./ui/button";
+import { deleteUTFiles } from "@/server/services/uploadthing";
 
 const FieldRender = ({ field, value, onChange, index }) => {
   useEffect(() => {
     if (!window) return <></>;
   }, []);
+  console.log(field, value, index);
 
   console.log(field, value);
   switch (field.type) {
@@ -32,6 +37,42 @@ const FieldRender = ({ field, value, onChange, index }) => {
           onChange={(index, value) => onChange(index, value)}
           index={index}
         />
+      );
+    case "upload":
+      return (
+        <div>
+          <UploadButton
+            endpoint="imageUploader"
+            onClientUploadComplete={(res) => {
+              onChange(index, res[0]?.url || "");
+              toast.success("Icon uploaded successfully");
+            }}
+            onUploadError={(error) =>
+              toast.error(`Upload failed: ${error.message}`)
+            }
+          />
+          {value && (
+            <div className="relative w-max">
+              <Button
+                variant="destructive"
+                size="icon"
+                className="absolute z-50 top-1 -right-8 w-6 h-6"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const res = deleteUTFiles([value.split("f/")[1]]);
+                  onChange(index, "");
+                }}
+              >
+                <Trash2 className="h-3 w-3" />
+              </Button>
+              <img
+                src={value}
+                alt="Image"
+                className="mt-2 w-16 h-16 object-cover rounded"
+              />
+            </div>
+          )}
+        </div>
       );
     default:
       return <div>Field type not found</div>;
