@@ -15,6 +15,10 @@ const nextConfig = {
         source: "/blog/:slug",
         destination: "/blogs/:slug",
       },
+      {
+        source: "/trade-show-booth-rental-and-exhibits-:city",
+        destination: "/locations/:city",
+      },
     ];
   },
   images: {
