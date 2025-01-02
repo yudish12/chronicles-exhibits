@@ -6,15 +6,7 @@ import Link from "next/link";
 import Footer from "@/components/ui/footer";
 import "./styles.css";
 import SubHeader from "@/components/ui/sub-header";
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardTitle,
-  CardFooter,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { getAllBlogs, getSingleBlog } from "@/server/actions/blogs";
 import BlogForm from "../_components/BlogForm";
 
@@ -30,7 +22,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const page = async ({ params }) => {
+const Blogpage = async ({ params }) => {
   const blog_slug = (await params).blog_id;
 
   const { data } = await getSingleBlog({ slug: blog_slug });
@@ -136,4 +128,4 @@ const page = async ({ params }) => {
   );
 };
 
-export default page;
+export default Blogpage;

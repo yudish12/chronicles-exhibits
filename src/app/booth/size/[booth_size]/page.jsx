@@ -1,7 +1,6 @@
 import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
 import React from "react";
-import Queryform from "@/app/(landing)/Queryform";
 // import Queryform from "../(landing)/Queryform";
 import { Button } from "@/components/ui/button";
 import SubHeader from "@/components/ui/sub-header";
@@ -13,11 +12,12 @@ import { getAllData } from "@/server/actions/booths";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import GetFreeDesignForm from "@/components/GetFreeDesignForm";
 import { getSinglePage } from "@/server/actions/pages";
+
 export const generateMetadata = async ({ params }) => {
   const resolvedParams = await params;
   const boothSize = resolvedParams.booth_size;
 
-  const { data } = await getBoothSizeByName(boothSize);
+  const { data } = await getSinglePage({ name: boothSize.toLowerCase() });
   return {
     title: data?.meta_title || "Default Title",
     description: data?.meta_description || "Default Description",

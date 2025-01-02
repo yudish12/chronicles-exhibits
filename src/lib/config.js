@@ -383,8 +383,77 @@ export const customTradeShowFields = [
   },
 ];
 
+export const tradeShowBoothDesignsPageFields = [
+  {
+    key: "top_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "top_title_body",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "2nd_section_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "2nd_section_body",
+    type: "body",
+    value: "",
+  },
+  {
+    key: "3rd_section_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "3rd_section_dropdown_1st_question",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "3rd_section_dropdown_1st_answer",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "3rd_section_dropdown_2nd_question",
+    type: "text",
+    value: "",
+  },
+
+  {
+    key: "3rd_section_dropdown_2nd_answer",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "3rd_section_dropdown_3rd_question",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "3rd_section_dropdown_3rd_answer",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "3rd_section_dropdown_4th_question",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "3rd_section_dropdown_4th_answer",
+    type: "textarea",
+    value: "",
+  },
+];
+
 // db.pages.updateOne(
-//   { name: "booth-size" },
+//   { name: "trade-show-booth-displays-designs" },
 //   {
 //     $set: {
 //       fields: [
@@ -394,44 +463,64 @@ export const customTradeShowFields = [
 //           value: "",
 //         },
 //         {
-//           key: "top_btn_text",
-//           type: "text",
-//           value: "",
-//         },
-//         {
-//           key: "booth_size_title",
-//           type: "text",
-//           value: "",
-//         },
-//         {
-//           key: "booth_size_subtitle",
+//           key: "top_title_body",
 //           type: "textarea",
 //           value: "",
 //         },
 //         {
-//           key: "second_title",
+//           key: "2nd_section_title",
 //           type: "text",
 //           value: "",
 //         },
 //         {
-//           key: "second_subtitle",
-//           type: "textarea",
-//           value: "",
-//         },
-//         {
-//           key: "second_btn_text",
-//           type: "text",
-//           value: "",
-//         },
-//         {
-//           key: "third_title",
-//           type: "text",
-//           value: "",
-//         },
-//         {
-//           key: "third_body",
+//           key: "2nd_section_body",
 //           type: "body",
-//           value: "<p>Hello</p>",
+//           value: "",
+//         },
+//         {
+//           key: "3rd_section_image",
+//           type: "upload",
+//           value: "",
+//         },
+//         {
+//           key: "3rd_section_dropdown_1st_question",
+//           type: "text",
+//           value: "",
+//         },
+//         {
+//           key: "3rd_section_dropdown_1st_answer",
+//           type: "textarea",
+//           value: "",
+//         },
+//         {
+//           key: "3rd_section_dropdown_2nd_question",
+//           type: "text",
+//           value: "",
+//         },
+//         {
+//           key: "3rd_section_dropdown_2nd_answer",
+//           type: "textarea",
+//           value: "",
+//         },
+//         {
+//           key: "3rd_section_dropdown_3rd_question",
+//           type: "text",
+//           value: "",
+//         },
+//         {
+//           key: "3rd_section_dropdown_3rd_answer",
+//           type: "textarea",
+//           value: "",
+//         },
+//         {
+//           key: "3rd_section_dropdown_4th_question",
+//           type: "text",
+//           value: "",
+//         },
+//         {
+//           key: "3rd_section_dropdown_4th_answer",
+//           type: "textarea",
+//           value: "",
 //         },
 //       ],
 //     },

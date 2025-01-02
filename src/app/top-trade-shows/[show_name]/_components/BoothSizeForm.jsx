@@ -4,18 +4,18 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
 import { submitBoothForm } from "@/server/actions/forms";
-const BoothSizeForm = ({eventName , eventCity , date}) => {
-  console.lo
+const BoothSizeForm = ({ eventName, eventCity, date }) => {
+  console.lo;
   const [countryCode, setCountryCode] = useState("us");
   const [formData, setFormData] = useState({
-    name : "",
-    company : "",
-    budget : "",
-    eventName : eventName,
-    eventCity : eventCity,
-    file : "",
+    name: "",
+    company: "",
+    budget: "",
+    eventName: eventName,
+    eventCity: eventCity,
+    file: "",
     country: "",
-    eventDate : date,
+    eventDate: date,
     email: "",
     phoneNumber: "",
     boothSize: "",
@@ -67,7 +67,7 @@ const BoothSizeForm = ({eventName , eventCity , date}) => {
         Enquiry Form
       </h5>
       <div className="mt-4 flex flex-col gap-5">
-      <Input
+        <Input
           className="border-secondary/70 text-secondary placeholder:text-secondary/70"
           type="text"
           placeholder="Enter Your Name"
@@ -105,7 +105,7 @@ const BoothSizeForm = ({eventName , eventCity , date}) => {
         <Input
           className="border-secondary/70 text-secondary placeholder:text-secondary/70"
           type="text"
-          placeholder="Enter Your Budget"
+          placeholder="Budget"
           onChange={handleChange}
           name="budget"
         />
@@ -123,7 +123,7 @@ const BoothSizeForm = ({eventName , eventCity , date}) => {
           onChange={handleChange}
           name="eventName"
           style={{
-            display : "none"
+            display: "none",
           }}
         />
         <Input
@@ -135,7 +135,7 @@ const BoothSizeForm = ({eventName , eventCity , date}) => {
           required
           min={new Date().toISOString().split("T")[0]}
           style={{
-            display : "none"
+            display: "none",
           }}
         />
         <Input
@@ -145,7 +145,7 @@ const BoothSizeForm = ({eventName , eventCity , date}) => {
           onChange={handleChange}
           name="eventCity"
           style={{
-            display : "none"
+            display: "none",
           }}
         />
         {/* <Input
@@ -181,7 +181,7 @@ const BoothSizeForm = ({eventName , eventCity , date}) => {
           className="w-1/3 mx-auto bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
           onClick={handleSubmit}
         >
-          Get Quote
+          Send Enquiry
         </Button>
       </div>
     </div>
