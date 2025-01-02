@@ -25,14 +25,23 @@ import moment from "moment";
 import { getAllData } from "@/server/actions/locations";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import { getAllPortfolios } from "@/server/actions/portfolio";
+import { headers } from "next/headers"; 
+import { userAgent } from "next/server";
+// import { useRouter } from "next/navigation";
+
 const Page = async ({ params }) => {
   const city = (await params).location_name;
   let majorExhibitingCities = await getAllData();
   let boothSizes = await getAllBoothSizes();
   const shows = tradeShows.splice(0, 4);
-
+  const ua = userAgent({ headers: headers() });
+  const isMobile = ua?.device?.type === "mobile";  
   const ourWorksData = await getAllPortfolios(6, 0);
-
+  const displayedData = isMobile ? ourWorksData.data.slice(0, 6) : ourWorksData.data;
+  // const router = useRouter();
+  // const handleSearch = (city)=>{
+  //   router.push(`/admin/locations/${city}`)
+  // }
   return (
     <>
       <SubHeader />
@@ -44,8 +53,8 @@ const Page = async ({ params }) => {
         <h2 className="text-center font-bold text-[2.5rem] heading-font uppercase text-primary">
           {city}
         </h2>
-        <div className="flex relative mt-6 gap-4 bg-black/40 rounded-full p-4 justify-center w-4/5 mx-auto">
-          <Select>
+        <div className="flex flex-col sm:flex-row relative mt-6 gap-4  sm:bg-black/40 rounded-full p-4 justify-center w-4/5 mx-auto">
+        <Select>
             <SelectTrigger className="text-secondary text-lg font-semibold bg-white rounded-full p-6">
               <SelectValue placeholder="Select a City" />
             </SelectTrigger>
@@ -88,7 +97,7 @@ const Page = async ({ params }) => {
           Request a Quote
         </Button>
       </div>
-      <div className="bg-background py-16 px-20 flex flex-col gap-8">
+      <div className="bg-background px-10 py-16 sm:px-20 flex flex-col gap-8">
         <h2 className="text-center uppercase leading-10 font-semibold text-secondary text-[2.1rem] heading-font">
           DISCOVER THE IDEAL PARTNER
           <br /> FOR YOUR TRADE SHOW EXHIBITS IN {city}
@@ -105,53 +114,53 @@ const Page = async ({ params }) => {
           for top-quality exhibition booth design in Switzerland.
         </p>
       </div>
-      <div className="product-bg flex gap-12 px-20 py-16">
-        <Image
-          height={300}
-          width={200}
-          className="w-1/2 rounded-lg max-h-[520px]"
-          src={"/specific-location-2.png"}
-          alt="specific-location-2"
-        />
-        <div className="w-1/2 flex flex-col gap-4">
-          <h2 className="text-primary uppercase heading-font text-4xl font-semibold">
-            captivating Trade Show Booth designs for unique brand experiences
-          </h2>
-          <p className="text-white font-medium">
-            Welcome to Chronicle, your prominent partner for trade show booth
-            displays and exhibits. With 25+ years’ worth of experience and an
-            excellent team we have been providing exclusive trade show booth
-            design services across the United States of America.
-          </p>
-          <p className="text-white font-medium">
-            At Chronicle, we are aware that exhibitions and trade shows serve as
-            a fantastic opportunity for companies like you to display your
-            products and services to potential customers. For this reason, we
-            build visually attractive custom trade show booth designs that can
-            make your brand stand out from the crowd.
-          </p>
-          <p className="text-white font-medium">
-            As a trusted trade show booth builder, we have completed 20800+
-            trade show booth displays design and building projects successfully.
-            Our team of dedicated professionals will handle all your shows with
-            efficiency and precision. We will guide you at every step, from
-            laying the concept, outlining the trade show booth design, and
-            fabricating to installing, dismantling, storing.
-          </p>
-          <p className="text-white font-medium">
-            You are important to us and we will never compromise on your work.We
-            believe in building long lasting relationships and will support you
-            throughout your trade show journey.
-          </p>
-          <Button
-            style={{ transitionDuration: "500ms" }}
-            className="rounded-full w-[30%] mx-auto px-16 py-6 font-thin text text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4  bg-transparent border-primary"
-          >
-            Get Personalised Quote
-          </Button>
-        </div>
-      </div>
-      <div className="p-20 pb-10">
+  <div className="product-bg flex flex-col md:flex-row gap-12 px-4 md:px-20 py-16">
+  <Image
+    height={300}
+    width={200}
+    className="w-full md:w-1/2 rounded-lg max-h-[520px]"
+    src={"/specific-location-2.png"}
+    alt="specific-location-2"
+  />
+  <div className="w-full md:w-1/2 flex flex-col gap-4">
+    <h2 className="text-primary uppercase heading-font text-3xl md:text-4xl font-semibold">
+      Captivating Trade Show Booth Designs for Unique Brand Experiences
+    </h2>
+    <p className="text-white font-medium">
+      Welcome to Chronicle, your prominent partner for trade show booth
+      displays and exhibits. With 25+ years’ worth of experience and an
+      excellent team, we have been providing exclusive trade show booth
+      design services across the United States of America.
+    </p>
+    <p className="text-white font-medium">
+      At Chronicle, we are aware that exhibitions and trade shows serve as
+      a fantastic opportunity for companies like you to display your
+      products and services to potential customers. For this reason, we
+      build visually attractive custom trade show booth designs that can
+      make your brand stand out from the crowd.
+    </p>
+    <p className="text-white font-medium">
+      As a trusted trade show booth builder, we have completed 20800+
+      trade show booth displays design and building projects successfully.
+      Our team of dedicated professionals will handle all your shows with
+      efficiency and precision. We will guide you at every step, from
+      laying the concept, outlining the trade show booth design, and
+      fabricating to installing, dismantling, and storing.
+    </p>
+    <p className="text-white font-medium">
+      You are important to us and we will never compromise on your work. We
+      believe in building long-lasting relationships and will support you
+      throughout your trade show journey.
+    </p>
+    <Button
+      style={{ transitionDuration: "500ms" }}
+      className="rounded-full w-full md:w-[30%] mx-auto px-16 py-6 font-thin text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4 bg-transparent border-primary"
+    >
+      Get Personalised Quote
+    </Button>
+  </div>
+</div>
+      <div className="p-10 md:p-20 pb-10">
         <h2 className="uppercase text-3xl heading-font-600 text-primary text-center font-semibold">
           HAVE A LOOK AT OUR TRADE SHOW EXHIBIT RENTAL WORK IN {city}
         </h2>
@@ -163,7 +172,7 @@ const Page = async ({ params }) => {
           of the clients.
         </p>
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[420px,420px,420px] w-full md:w-max mx-auto gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6">
-          {ourWorksData.data.map((item, index) => (
+          {displayedData.map((item, index) => (
             <div
               key={index}
               className="overflow-hidden rounded-xl w-full sm:w-[420px] h-[200px] sm:h-[250px] md:h-[230px]"

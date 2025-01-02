@@ -539,6 +539,13 @@
   height: 450px;
 }
 
+@media (max-width: 768px) {
+  .single-location-bg {
+    height: 650px;
+    border-radius: 0 0 60px 60px;
+  }
+}
+
 .single-location-bg::before {
   content: "";
   position: absolute;
