@@ -14,6 +14,7 @@ const Page = async () => {
   const { data } = await getSinglePage({
     name: "custom-trade-show-booth-ideas",
   });
+  console.log(data);
 
   return (
     <>
@@ -24,8 +25,7 @@ const Page = async () => {
           {data.fields[0].value}
         </h2>
         <h4 className="text-2xl font-semibold text-center heading-font text-white">
-          {data.fields[1].value.substr(0, 40)}
-          <br /> {data.fields[1].value.substr(40)}
+          {data.fields[1].value}
         </h4>
       </div>
       <div className="bg-background px-20 flex flex-col gap-6 py-12">
