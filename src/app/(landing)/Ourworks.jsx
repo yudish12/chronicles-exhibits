@@ -4,13 +4,15 @@ import React from "react";
 // import ourWorksData from "../../utils/constants/dev-data/our-works.json";
 import Link from "next/link";
 import { getAllPortfolios } from "@/server/actions/portfolio";
-import { headers } from "next/headers"; 
+import { headers } from "next/headers";
 import { userAgent } from "next/server";
 const Ourworks = async () => {
   const ua = userAgent({ headers: headers() });
-  const isMobile = ua?.device?.type === "mobile";  
+  const isMobile = ua?.device?.type === "mobile";
   const ourWorksData = await getAllPortfolios(6, 0);
-  const displayedData = isMobile ? ourWorksData.data.slice(0, 6) : ourWorksData.data;
+  const displayedData = isMobile
+    ? ourWorksData.data.slice(0, 6)
+    : ourWorksData.data.slice(0, 9);
   console.log(ourWorksData);
   return (
     <div className="flex flex-col product-bg px-4 sm:px-8 md:px-12 py-12 gap-6">
