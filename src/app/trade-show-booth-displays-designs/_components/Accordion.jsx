@@ -1,91 +1,87 @@
 "use client";
-import { cn } from "@/lib/utils";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
-const MinusSign = ({ setOpen }) => {
-  return (
-    <svg
-      onClick={() => setOpen(false)}
-      height="20"
-      className="cursor-pointer"
-      width="20"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-    >
-      <line
-        x1="4"
-        y1="10"
-        x2="16"
-        y2="10"
-        stroke="#fff"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-};
+// SVG Icon Components for Plus and Minus
+const MinusSign = () => (
+  <svg
+    height="20"
+    width="20"
+    className="cursor-pointer text-white"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+  >
+    <line
+      x1="4"
+      y1="10"
+      x2="16"
+      y2="10"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
 
-const PlusSign = ({ setOpen }) => {
-  return (
-    <svg
-      onClick={() => setOpen(true)}
-      height="20"
-      className="cursor-pointer"
-      width="20"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-    >
-      <line
-        x1="4"
-        y1="10"
-        x2="16"
-        y2="10"
-        stroke="#fff"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-      <line
-        x1="10"
-        y1="4"
-        x2="10"
-        y2="16"
-        stroke="#fff"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-};
+const PlusSign = () => (
+  <svg
+    height="20"
+    width="20"
+    className="cursor-pointer text-white"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 20 20"
+  >
+    <line
+      x1="4"
+      y1="10"
+      x2="16"
+      y2="10"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <line
+      x1="10"
+      y1="4"
+      x2="10"
+      y2="16"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
+);
 
-const Accordion = ({ heading, description }) => {
-  const [open, setOpen] = useState(false);
-  const contentRef = useRef(null);
-  console.log(heading, description);
+// Accordion Component
+const Accordion = ({ questions, answers }) => {
+  const [openIndex, setOpenIndex] = useState(null);
+
   return (
     <>
-      <div className="bg-secondary h-[50px] flex items-center p-4">
-        <h4 className="text-white font-bold text-base flex items-center">
-          <span className=" text-white flex justify-center items-center font-bold text-2xl">
-            {open ? (
-              <MinusSign setOpen={setOpen} />
-            ) : (
-              <PlusSign setOpen={setOpen} />
-            )}
-          </span>
-          <span className="border-r-2 border-gray-300 mx-2 h-5"></span>
-          {heading}
-        </h4>
-      </div>
-      <div
-        ref={contentRef}
-        className="transition-[max-height] bg-white duration-500 ease-in-out"
-        style={{
-          maxHeight: open ? `${contentRef?.current?.scrollHeight}px` : "0px",
-          overflow: "hidden",
-        }}
-      >
-        <p className="text-black p-4 text-[15px]">{description}</p>
-      </div>
+      {questions.map((item, index) => (
+        <div key={index} className="border-b last:border-none">
+          {/* Accordion Header */}
+          <div
+            className="flex justify-between items-center bg-secondary text-white font-bold p-3 cursor-pointer"
+            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            aria-expanded={openIndex === index}
+            role="button"
+          >
+            <h4 className="text-lg">{item}</h4>
+            <span className="ml-4">
+              {openIndex === index ? <MinusSign /> : <PlusSign />}
+            </span>
+          </div>
+
+          {/* Accordion Content */}
+          <div
+            className={`overflow-hidden transition-all px-3 duration-500 ease-in-out ${
+              openIndex === index ? "max-h-screen py-2 bg-white" : "max-h-0 "
+            }`}
+          >
+            <p className="text-gray-800 text-sm">{answers[index]}</p>
+          </div>
+        </div>
+      ))}
     </>
   );
 };

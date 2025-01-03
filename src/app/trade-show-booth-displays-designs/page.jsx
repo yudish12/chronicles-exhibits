@@ -55,8 +55,8 @@ const page = async () => {
           >
             {data.fields[2].value}
           </h3>
-          <div className="bg-transparent flex flex-col gap-6 overflow-hidden mb-6">
-            {questions.map((e, ind) => (
+          <div className="bg-transparent flex flex-col gap-4 overflow-hidden mb-6">
+            {/* {questions.map((e, ind) => (
               <div key={ind}>
                 <Accordion
                   questions={e}
@@ -65,7 +65,13 @@ const page = async () => {
                   description={answers[ind]}
                 />
               </div>
-            ))}
+            ))} */}
+            <Accordion
+              questions={questions}
+              answers={answers}
+              heading={questions}
+              description={answers}
+            />
           </div>
         </div>
       </div>
