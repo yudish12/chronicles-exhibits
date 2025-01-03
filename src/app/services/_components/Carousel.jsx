@@ -40,7 +40,7 @@ const Carousel = () => {
               <div className="embla__slide__number relative w-full h-full">
                 <Image
                   src={item.image}
-                  alt={item.heading}
+                  alt={item.heading ?? "heading"}
                   width={800}
                   height={450}
                   className="w-full h-full object-cover rounded-2xl"

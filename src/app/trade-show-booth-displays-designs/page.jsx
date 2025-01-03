@@ -92,7 +92,7 @@ const page = async () => {
                 src={item.image}
                 width={350}
                 height={300}
-                alt={item.size}
+                alt={item.size ?? "size"}
                 className="w-full h-3/4 object-cover"
               />
               {/* Content Section */}

@@ -23,7 +23,7 @@ const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
               width={120}
               height={120}
               src={show.icon}
-              alt={show.event_name}
+              alt={show.event_name ?? "event name"}
             />
             <div className="flex flex-col gap-2 w-full px-4">
               <p className="flex gap-4">

@@ -83,7 +83,7 @@ const Page = async ({ params }) => {
                       <div className="w-full border-b-2 border-primary">
                         <Image
                           src={blog.image}
-                          alt={blog.title}
+                          alt={blog.title ?? "booth title"}
                           width={400}
                           height={200}
                           className="rounded-t-lg max-h-[155px] w-full object-cover"
@@ -172,7 +172,7 @@ const Page = async ({ params }) => {
           width={170}
           height={170}
           src={eventData.icon}
-          alt={"show.title"}
+          alt={show.title ?? "show title"}
         />
         <div className="px-20 gap-12 py-12 flex">
           <div className="w-[70%] bg-white p-6 rounded-xl shadow-one">

@@ -116,7 +116,7 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
                   src={item.image}
                   width={350}
                   height={300}
-                  alt={item.size}
+                  alt={item.size ?? "size"}
                   className="w-full h-3/4 object-cover"
                 />
                 <div className="flex h-1/4 heading-font-700 bg-white flex-col justify-center items-center bg-secondary/[.94] text-secondary">
