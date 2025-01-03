@@ -1,0 +1,82 @@
+/* Style for <p> tags */
+#show_name_desc p {
+  font-size: 18px; /* text-[16px] */
+  margin-top: 1rem; /* mt-4 */
+  line-height: 26px; /* leading-[26px] */
+  text-align: justify;
+}
+
+#show_name_desc p strong {
+  font-weight: 600;
+}
+/* Style for <h3> tags */
+#show_name_desc h3 {
+  font-family: "Jost-700";
+  font-size: 22px; /* text-3xl */
+  line-height: 2.25rem; /* line height for 3xl */
+  margin-top: 1.5rem; /* mt-6 */
+  color: #000000; /* text-secondary */
+  font-weight: 600; /* font-semibold */
+}
+
+/* Style for <ul> tags */
+#show_name_desc ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* Style for <li> tags */
+#show_name_desc li {
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+#show_name_desc li:before {
+  content: "◆";
+  font-size: 21px;
+  padding-right: 10px;
+  color: #b0cb1f;
+}
+
+/* Style for <div> inside <li> (DiamondSvg container) */
+#show_name_desc li > div {
+  margin-top: 0.25rem; /* mt-1 */
+}
+
+#show_name_desc a {
+  color: blue;
+}
+
+#show_name_desc table {
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Remove spacing between cells */
+  margin: 20px 0; /* Add spacing around the table */
+  /* Use a clean font */
+  font-size: 16px; /* Adjust font size */
+  text-align: left; /* Align text to the left */
+  border: 1px solid #ddd; /* Border around the table */
+}
+
+/* Table header styles */
+#show_name_desc th {
+  font-weight: bold; /* Make header bold */
+  text-align: left; /* Align text to the left */
+  padding: 8px 12px; /* Add padding */
+  border: 1px solid #ddd; /* Border for each cell */
+  background-color: #f4f4f4; /* Light gray background */
+}
+
+/* Table data styles */
+#show_name_desc td {
+  padding: 8px 12px; /* Add padding */
+  border: 1px solid #ddd; /* Border for each cell */
+}
+
+/* Title styles */
+#show_name_desc caption {
+  font-size: 20px; /* Larger font size for the title */
+  font-weight: bold; /* Make it bold */
+  margin-bottom: 10px; /* Add spacing below the title */
+  text-align: center; /* Center the title */
+}
