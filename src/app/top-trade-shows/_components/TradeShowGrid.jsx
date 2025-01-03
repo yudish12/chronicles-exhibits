@@ -43,10 +43,7 @@ const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
                 </span>
               </p>
             </div>
-            <Link
-              className="w-full justify-center"
-              href={`/top-trade-shows/${show.slug}`}
-            >
+            <Link className="w-full justify-center" href={`/${show.slug}/`}>
               <Button
                 variant="outline"
                 className="text-secondary w-full hover:bg-secondary hover:text-white border-secondary border-2 bg-transparent font-semibold py-[18px] text-[16px]"

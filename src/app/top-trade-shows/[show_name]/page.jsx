@@ -50,11 +50,11 @@ const Page = async ({ params }) => {
   // recentShows = recentShows.data.slice(0, 3);
 
   const data = await getSingleEvent(show_name);
-  console.group("event data" , data.data.start_date)
+  console.group("event data", data.data.start_date);
   const date = new Date(data.data.start_date).toISOString().split("T")[0];
   const eventName = data.data.event_name;
   const eventCity = data.data.city;
-  console.log("eventdata======" , date , eventName , eventCity)
+  console.log("eventdata======", date, eventName, eventCity);
 
   console.log(data);
   const startDate = data.data.start_date;
@@ -117,169 +117,14 @@ const Page = async ({ params }) => {
             id="show_name_desc"
             dangerouslySetInnerHTML={{ __html: data.data.body }}
           ></div>
-          {/* <p className="text-[16px] mt-4 leading-[26px]">
-            The Live Design International (LDI) is a major conference and trade
-            show for professionals in the live entertainment industry, including
-            lighting designers, sound technicians, stage designers, and more. It
-            provides attendees opportunities to learn, see the latest in event
-            technologies, network, and conduct business. The event features a
-            wide range of educational programming, networking events, and
-            showcases of the latest technology and equipment in the industry.
-            The event is going to take place in Las Vegas, Nevada, the United
-            States , between 8-10 Dec 2024 .<br />
-            <br />
-            LDI attracts over 22,000 attendees, including producers, event
-            planners, architects, designers, technicians, engineers, and more
-            who work in live event production. Over 600 exhibitors showcase the
-            latest products, technologies, and services for live events in areas
-            like lighting, audio, staging, rigging, video, special effects, and
-            more. Networking opportunities abound, allowing attendees to meet
-            and interact with their peers in the industry. Educational sessions
-            and workshops cover topics related to designing, producing, and
-            executing live events effectively.If you are looking for a exhibit
-            design companies las vegas you can contact us.
-          </p>
-          <h3 className="text-3xl mt-6 heading-font text-secondary font-semibold">
-            Benefits of attending the ASI Show
-          </h3>
-          <ul className=" mt-3">
-            {points.map((e, ind) => (
-              <li key={ind} className="flex items-start gap-3 py-2 ">
-                <div className="mt-1">
-                  <DiamondSvg />
-                </div>
-                <span>{e}</span>
-              </li>
-            ))}
-          </ul> */}
         </div>
         <div className="w-[30%] flex flex-col gap-6">
-          {/* <div className="shadow-one h-max bg-white p-6 rounded-xl w-full">
-            <p className="text-center text-secondary">
-              Need exhibit displays for the ASI Show?Reach out to us for a
-              hassle-free experience.
-            </p>
-            <h5 className="text-3xl mt-4 text-center font-semibold heading-font text-secondary">
-              Enquiry Form
-            </h5>
-            <div className="mt-4 flex flex-col gap-5">
-              <Input
-                className="border-secondary/70 text-secondary placeholder:text-secondary/70"
-                type="text"
-                placeholder="Enter Your Name"
-              />
-              <Input
-                className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
-                type="email"
-                placeholder="Enter Your Email"
-              />
-              <Input
-                className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
-                type="number"
-                placeholder="Enter Your Phone Number"
-              />
-              <Input
-                className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
-                type="file"
-                placeholder="Choose A File"
-              />
-              <Input
-                className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
-                placeholder="Booth Size"
-              />
-              <Input
-                className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
-                placeholder="Enter Event Name"
-              />
-              <textarea
-                rows={4}
-                className="border p-2 border-secondary/70 placeholder:text-secondary/70 rounded-lg"
-                placeholder="Message"
-              />
-              <Button className="w-1/3 mx-auto bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary ">
-                Get Quote
-              </Button>
-            </div>
-          </div> */}
-          <BoothSizeForm  eventName={eventName} eventCity={eventCity} date={date}/>
-          {/* <div className="grid grid-cols-2 border-2 border-dashed border-secondary/70 rounded-lg">
-            <div
-              style={{ transitionDuration: "500ms" }}
-              className="group bg-white border-r-2 border-b-2 border-dashed border-secondary/70 hover:bg-secondary p-6 flex flex-col items-center gap-5 rounded-tl-lg"
-            >
-              <Image
-                src={"/layers-stacked.svg"}
-                width={30}
-                height={30}
-                alt="cube"
-              />
-              <h4
-                style={{ transitionDuration: "500ms" }}
-                className="text-secondary group-hover:text-white text-center text-lg heading-font font-semibold"
-              >
-                New York
-                <br />
-                USA
-              </h4>
-            </div>
-            <div
-              style={{ transitionDuration: "500ms" }}
-              className="group bg-white border-b-2 border-dashed border-secondary/70 hover:bg-secondary p-6 flex flex-col items-center gap-5 rounded-tr-lg"
-            >
-              <Image
-                src={"/layers-stacked.svg"}
-                width={30}
-                height={30}
-                alt="cube"
-              />
-              <h4
-                style={{ transitionDuration: "500ms" }}
-                className="text-secondary group-hover:text-white text-center text-lg heading-font font-semibold"
-              >
-                {moment(startDate).format("DD")}{" "}
-                {moment(startDate).format("MMM")} -{" "}
-                {moment(targetDate).format("DD")}{" "}
-                {moment(targetDate).format("MMM")}{" "}
-                {moment(targetDate).format("YYYY")}
-              </h4>
-            </div>
-            <div
-              style={{ transitionDuration: "500ms" }}
-              className="group bg-white  border-r-2 border-dashed border-secondary/70 hover:bg-secondary p-6 flex flex-col items-center gap-5 rounded-bl-lg"
-            >
-              <Image
-                src={"/layers-stacked.svg"}
-                width={30}
-                height={30}
-                alt="cube"
-              />
-              <h4
-                style={{ transitionDuration: "500ms" }}
-                className="text-secondary group-hover:text-white text-center text-lg heading-font font-semibold"
-              >
-                Official Website
-              </h4>
-            </div>
-            <div
-              style={{ transitionDuration: "500ms" }}
-              className="group bg-white hover:bg-secondary p-6 flex flex-col items-center gap-5 rounded-br-lg"
-            >
-              <Image
-                src={"/layers-stacked.svg"}
-                width={30}
-                height={30}
-                alt="cube"
-              />
-              <h4
-                style={{ transitionDuration: "500ms" }}
-                className="text-secondary group-hover:text-white text-center text-lg heading-font font-semibold"
-              >
-                New York
-                <br />
-                USA
-              </h4>
-            </div>
-          </div> */}
+          <BoothSizeForm
+            eventName={eventName}
+            eventCity={eventCity}
+            date={date}
+          />
+
           <div className="grid grid-cols-1 gap-y-6 border-secondary/70">
             <div
               style={{ transitionDuration: "500ms" }}
