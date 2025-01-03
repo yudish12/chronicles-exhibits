@@ -8,10 +8,24 @@ import Cities from "../models/cities";
 
 await dbConnect();
 
-export const getAllData = async () => {
+export const getAllData = async (skip, limit, projection) => {
   try {
-    const data = await Locations.find().lean();
-    return getActionSuccessResponse(data);
+    let query = Locations.find().lean();
+    if (skip) {
+      query = query.skip(skip);
+    }
+
+    if (limit) {
+      query = query.limit(limit);
+    }
+
+    if (projection) {
+      query = query.select(projection);
+    }
+
+    const data = await query.lean();
+    const count = await Locations.countDocuments();
+    return getActionSuccessResponse(data, count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }
@@ -78,16 +92,16 @@ export const addData = async (data) => {
 
 export const getCities = async (skip, limit) => {
   try {
-    let query = Cities.find()
-    if(skip){
-      query = query.skip(skip)
+    let query = Cities.find();
+    if (skip) {
+      query = query.skip(skip);
     }
-    if(limit){
-      query = query.limit(limit)
+    if (limit) {
+      query = query.limit(limit);
     }
     const count = await Cities.countDocuments();
     const data = await query.lean();
-    return getActionSuccessResponse(data , count);
+    return getActionSuccessResponse(data, count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }
@@ -159,4 +173,90 @@ export const bulkInsertCities = async (data) => {
     console.error("Error updating data:", error);
     return getActionFailureResponse(error.message, "toast");
   }
+};
+
+export const getAllDataBySearch = async (searchValue) => {
+  try {
+    const data = await Locations.find({
+      title: { $regex: searchValue, $options: "i" },
+    }).lean();
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
+export const getSingleLocationPage = async (query) => {
+  try {
+    const data = await Locations.findOne(query).lean();
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
+export const craeteLocationPageMigration = async () => {
+  const city = await Cities.find();
+  city.map((e) => {
+    const loc = Locations.create({
+      city_id: e._id,
+      fields: [
+        {
+          key: "top_title",
+          type: "text",
+          value: "sdas",
+        },
+        {
+          key: "top_btn_text",
+          type: "text",
+          value: "asbdj",
+        },
+        {
+          key: "2nd_section_first_h2",
+          type: "text",
+          value: "hbdasd",
+        },
+        {
+          key: "2nd_section_second_h2",
+          type: "text",
+          value: "bdajsh",
+        },
+        {
+          key: "2nd_section_first_para",
+          type: "textarea",
+          value: "bdajshd",
+        },
+        {
+          key: "2nd_section_second_para",
+          type: "textarea",
+          value: "bdahjsbd",
+        },
+        {
+          key: "3rd_section_image",
+          type: "upload",
+          value: "",
+        },
+        {
+          key: "3rd_section_h2",
+          type: "text",
+          value: "bajsdba",
+        },
+        {
+          key: "3rd_section_body",
+          type: "body",
+          value: "<p>basjda</p>\n",
+        },
+        {
+          key: "last_section_body",
+          type: "body",
+          value: "<p>asdas</p>\n",
+        },
+      ],
+      name: e.name,
+      meta_description: "adasd",
+      meta_keywords: ["dasdasd"],
+      meta_title: "location",
+      slug: "locations/chicago",
+    });
+  });
 };

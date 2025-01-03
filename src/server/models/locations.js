@@ -1,15 +1,58 @@
-import { continents } from "@/utils/constants/enums";
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
-const locationSchema = new mongoose.Schema(
-  {
-    title: String,
-    body: String,
+const FieldSchema = new mongoose.Schema({
+  key: {
+    type: String,
+    required: true,
   },
-  { timestamps: true }
-);
+  type: {
+    type: String,
+    enum: ["text", "textarea", "upload", "body"],
+    required: true,
+  },
+  value: {
+    type: mongoose.Schema.Types.Mixed,
+    default: "",
+  },
+});
+
+const LocationSchema = new mongoose.Schema({
+  city_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "cities",
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  fields: {
+    type: [FieldSchema],
+    required: true,
+  },
+  meta_description: {
+    type: String,
+    default: "",
+  },
+  meta_keywords: {
+    type: [String],
+    default: [],
+  },
+  meta_title: {
+    type: String,
+    default: "",
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
+  slug: {
+    type: String,
+    required: true,
+  },
+});
 
 const Locations =
-  mongoose.models.locations || mongoose.model("locations", locationSchema);
+  mongoose.models.Location || mongoose.model("Location", LocationSchema);
 
 export default Locations;
