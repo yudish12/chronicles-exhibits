@@ -172,7 +172,7 @@ const Page = async ({ params }) => {
           width={170}
           height={170}
           src={eventData.icon}
-          alt={show.title ?? "show title"}
+          alt={"show title"}
         />
         <div className="px-20 gap-12 py-12 flex">
           <div className="w-[70%] bg-white p-6 rounded-xl shadow-one">
