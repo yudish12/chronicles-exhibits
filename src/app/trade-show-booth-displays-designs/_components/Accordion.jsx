@@ -60,7 +60,7 @@ const PlusSign = ({ setOpen }) => {
 const Accordion = ({ heading, description }) => {
   const [open, setOpen] = useState(false);
   const contentRef = useRef(null);
-
+  console.log(heading, description);
   return (
     <>
       <div className="bg-secondary h-[50px] flex items-center p-4">

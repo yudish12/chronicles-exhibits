@@ -49,7 +49,6 @@ const page = async () => {
           height={800}
         />
         <div className="flex flex-col w-1/2 gap-6 ">
-          <h4 className="text-primary text-xl font-semibold">How It Works</h4>
           <h3
             style={{ lineHeight: "1.2" }}
             className="text-secondary uppercase font-bold heading-font text-[1.7rem]"
@@ -62,8 +61,8 @@ const page = async () => {
                 <Accordion
                   questions={e}
                   answers={answers[ind]}
-                  heading={e.heading}
-                  description={e.description}
+                  heading={e}
+                  description={answers[ind]}
                 />
               </div>
             ))}
@@ -71,14 +70,11 @@ const page = async () => {
         </div>
       </div>
       <div className="product-bg w-full flex flex-col items-center py-14">
-        <h4 className="text-[1.3rem] font-bold text-primary pt-4 mb-3">
-          Booth By Size
-        </h4>
         <h2 className="text-center uppercase heading-font text-white text-[2rem] font-bold">
-          {data.fields[14].value}
+          {data.fields[13].value}
         </h2>
         <p className="text-center text-gray-300 text-md pt-4">
-          {data.fields[15].value}
+          {data.fields[14].value}
         </p>
         <div className="grid grid-cols-3 py-12 px-32 gap-x-12 gap-y-10">
           {cardData.map((item, index) => (
@@ -108,7 +104,7 @@ const page = async () => {
       </div>
       <div className="p-20 flex flex-col gap-3 pb-28">
         <h3 className="heading-font text-[2.1rem] uppercase font-semibold text-secondary text-center">
-          {data.fields[13].value}
+          {data.fields[15].value}
         </h3>
         <div
           id="show_name_desc"
