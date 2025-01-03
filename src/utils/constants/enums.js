@@ -66,6 +66,11 @@ export const collections = [
     icon: <GalleryThumbnails color="#B0CB1F" />,
   },
   {
+    slug: "/create-pages/edit/6776bf779ea94ff65b6274b1",
+    name: "Top Trade Shows",
+    icon: <GalleryThumbnails color="#B0CB1F" />,
+  },
+  {
     slug: "/create-pages/edit/6775a3db9222c7c17399998c",
     name: "Custom Trade Show",
     icon: <GalleryThumbnails color="#B0CB1F" />,
