@@ -7,6 +7,7 @@ import ourWorksData from "../../utils/constants/dev-data/our-works.json";
 import { StoreIcon } from "lucide-react";
 import Queryform from "../(landing)/Queryform";
 import Footer from "@/components/ui/footer";
+import "./style.css";
 import Ourworks from "../(landing)/Ourworks";
 import { getSinglePage } from "@/server/actions/pages";
 
@@ -57,7 +58,10 @@ const Page = async () => {
           >
             {data.fields[4].value}
           </h3>
-          <div dangerouslySetInnerHTML={{ __html: data.fields[5].value }}></div>
+          <div
+            id="show_name_desc"
+            dangerouslySetInnerHTML={{ __html: data.fields[5].value }}
+          ></div>
         </div>
       </div>
       <div className="p-6 md:p-20 flex flex-col md:flex-row gap-6 md:gap-10">
@@ -68,7 +72,10 @@ const Page = async () => {
           >
             {data.fields[8].value}
           </h3>
-          <div dangerouslySetInnerHTML={{ __html: data.fields[9].value }}></div>
+          <div
+            id="show_name_desc"
+            dangerouslySetInnerHTML={{ __html: data.fields[9].value }}
+          ></div>
         </div>
         {/* Image Container */}
         <div className="w-full md:w-1/2">
@@ -87,7 +94,10 @@ const Page = async () => {
         <h3 className="text-secondary text-center text-4xl font-semibold heading-font">
           {data.fields[12].value}
         </h3>
-        <div dangerouslySetInnerHTML={{ __html: data.fields[13].value }}></div>
+        <div
+          id="show_name_desc"
+          dangerouslySetInnerHTML={{ __html: data.fields[13].value }}
+        ></div>
       </div>
       <div className="flex flex-col pb-0 py-8 gap-6">
         <h3 className="text-secondary text-center text-4xl font-semibold heading-font">
