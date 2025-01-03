@@ -130,7 +130,7 @@
   color: hsl(var(--secondary));
   border-radius: 4px;
   padding: 10px;
-  width : 100% !important;
+  width: 100% !important;
 }
 
 .react-tel-input .flag-dropdown {
@@ -595,4 +595,8 @@
 
 input:focus + .flag-dropdown {
   border: 1.5px solid black !important; /* Add border to .flag-dropdown */
+}
+
+#booth-form .react-tel-input {
+  margin-bottom: 0px !important;
 }

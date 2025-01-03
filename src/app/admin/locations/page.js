@@ -130,7 +130,6 @@ const LocationPage = () => {
             <TableRow>
               <TableHead>S.No.</TableHead>
               <TableHead>Name</TableHead>
-              <TableHead>Slug</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -139,7 +138,6 @@ const LocationPage = () => {
               <TableRow key={blog._id}>
                 <TableCell>{(currentPage - 1) * limit + index + 1}</TableCell>
                 <TableCell>{blog.name}</TableCell>
-                <TableCell>{blog.slug}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
                     <Link href={`/blog/${blog.slug}`} target="_blank">

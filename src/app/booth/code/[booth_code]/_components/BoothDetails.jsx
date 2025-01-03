@@ -405,8 +405,11 @@ const BoothForm = () => {
             </span>
           </label>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
-          <div>
+        <div
+          id="booth-form"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4"
+        >
+          <div className="lg:col-span-1 col-span-3">
             <Input
               type="text"
               placeholder="Contact Person"
@@ -419,9 +422,9 @@ const BoothForm = () => {
             country={countryCode}
             value={formData.phoneNumber}
             onChange={handlePhoneChange}
-            className="booth-code-phone-input"
+            className="booth-code-phone-input lg:col-span-1 col-span-3 mb-0"
           />
-          <div>
+          <div className="lg:col-span-1 col-span-3">
             <Input
               type="email"
               placeholder="Email Address"
@@ -430,7 +433,7 @@ const BoothForm = () => {
               name="email"
             />
           </div>
-          <div>
+          <div className="lg:col-span-1 col-span-3">
             <Input
               type="text"
               placeholder="Country"
@@ -439,7 +442,7 @@ const BoothForm = () => {
               name="country"
             />
           </div>
-          <div>
+          <div className="lg:col-span-1 col-span-3">
             <Input
               type="text"
               placeholder="Event Name"
@@ -448,7 +451,7 @@ const BoothForm = () => {
               name="eventName"
             />
           </div>
-          <div>
+          <div className="lg:col-span-1 col-span-3">
             <Input
               type="text"
               placeholder="Event City"
