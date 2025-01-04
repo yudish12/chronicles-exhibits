@@ -23,6 +23,10 @@ const nextConfig = {
         source: "/trade-show-booth-rental-and-exhibits-:city",
         destination: "/locations/:city",
       },
+      {
+        source: "/major-exhibiting-cities",
+        destination: "/locations",
+      },
     ];
   },
   images: {
