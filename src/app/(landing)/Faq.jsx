@@ -4,7 +4,7 @@ import "./faq.css";
 
 const Faq = () => {
   return (
-    <div id="faq-body" className="px-6 bg-gray-300 md:px-20 py-8 md:py-12">
+    <div id="faq-body" className="px-6 bg-gray-200 md:px-20 py-8 md:py-12">
       <h4 className="heading-font text-secondary text-xl md:text-3xl text-center font-semibold">
         WHY CHOOSE CHRONICLE EXHIBITS AS YOUR NEXT
       </h4>

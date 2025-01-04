@@ -85,6 +85,11 @@ export const homePageFields = [
     value: "",
   },
   {
+    key: "1st_section_gif_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
     key: "1st_section_h2",
     type: "text",
     value: "",
@@ -130,6 +135,16 @@ export const homePageFields = [
     value: "",
   },
   {
+    key: "2nd_section_card_1_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "2nd_section_card_1_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
     key: "2nd_section_card_2_title",
     type: "text",
     value: "",
@@ -145,6 +160,16 @@ export const homePageFields = [
     value: "",
   },
   {
+    key: "2nd_section_card_2_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "2nd_section_card_2_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
     key: "2nd_section_card_3_title",
     type: "text",
     value: "",
@@ -156,6 +181,16 @@ export const homePageFields = [
   },
   {
     key: "2nd_section_card_3_btn",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "2nd_section_card_3_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "2nd_section_card_3_image_alt-text",
     type: "text",
     value: "",
   },
@@ -215,6 +250,11 @@ export const homePageFields = [
     value: "",
   },
   {
+    key: "4th_section_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
     key: "5th_section_h3",
     type: "text",
     value: "",
@@ -229,8 +269,8 @@ export const homePageFields = [
     type: "key-value-array",
     value: [
       {
-        heading: "",
-        text: "",
+        question: "",
+        answer: "",
       },
     ],
   },
@@ -238,9 +278,19 @@ export const homePageFields = [
 
 export const FAQPageFields = [
   {
-    key: "body",
-    type: "body",
+    key: "heading",
+    type: "text",
     value: "",
+  },
+  {
+    key: "5th_section_faqs",
+    type: "key-value-array",
+    value: [
+      {
+        question: "",
+        answer: "",
+      },
+    ],
   },
 ];
 

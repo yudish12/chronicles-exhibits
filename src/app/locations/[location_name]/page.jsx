@@ -138,7 +138,7 @@ const Page = async ({ params }) => {
           src={data[0].fields[6].value}
           alt={data[0].fields[7].value}
         />
-        <div className="w-full md:w-1/2 flex flex-col gap-4">
+        <div className="w-full font-normal md:w-1/2 flex flex-col gap-4">
           <h2 className="text-primary uppercase heading-font text-3xl md:text-4xl font-semibold">
             {data[0].fields[8].value}
           </h2>

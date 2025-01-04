@@ -5,27 +5,23 @@ import { Button } from "@/components/ui/button";
 import { CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import Image from "next/image";
-const About = () => {
+const About = ({ fields }) => {
   return (
     <>
       <div className="bg-white pt-4 sm:pt-6 ">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <h2 className=" text-[22px] font-bold text-[#B0CB1F] ">
-              What We Do
+              {fields[6].value}
             </h2>
-            <p className="mt-4 sm:text-3xl heading-font-700 font-bold text-secondary ">
-              END-TO-END TRADE SHOW BOOTH DESIGN & PRODUCTION
+            <p className="mt-4 uppercase sm:text-3xl heading-font-700 font-bold text-secondary ">
+              {fields[7].value}
             </p>
           </div>
           <div className="mt-6 bg-white">
             <div className="py-2 sm:p-4">
               <h3 className=" text-base text-black text-center px-4 ">
-                Our recent work in the USA showcases stunning images of our
-                exceptional projects. From trade show booths to eye-catching
-                displays, our portfolio reflects the expertise and creativity we
-                bring to every project. Get inspired by our work and let us
-                create a standout experience for your brand.
+                {fields[8].value}
               </h3>
             </div>
           </div>

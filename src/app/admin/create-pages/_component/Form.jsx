@@ -12,9 +12,51 @@ import { convertHumanReadableText } from "@/utils";
 import FieldRender from "@/components/FieldRender";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+import Keyvalueinput from "@/components/ui/Keyvalueinput";
 
 const PageEditForm = ({ pageData, isLocationPage }) => {
-  console.log(pageData);
+  const addNewKeyValue = () => {
+    setBoothSizePage((prev) => {
+      const temp = JSON.parse(JSON.stringify(prev));
+      const keyValueField = temp.fields.find(
+        (e) => e.key === "5th_section_faqs"
+      );
+
+      keyValueField.value.push({
+        question: "",
+        answer: "",
+      });
+      return temp;
+    });
+  };
+
+  const changeKeyValue = (e, index, value) => {
+    setBoothSizePage((prev) => {
+      const temp = JSON.parse(JSON.stringify(prev));
+      const keyValueField = temp.fields.find(
+        (el) => el.key === "5th_section_faqs"
+      );
+      if (e.target.name === "question") {
+        keyValueField.value[index].question = value;
+      } else {
+        keyValueField.value[index].answer = value;
+      }
+
+      return temp;
+    });
+  };
+
+  const deleteKeyValue = (index) => {
+    setBoothSizePage((prev) => {
+      const temp = JSON.parse(JSON.stringify(prev));
+      const keyValueField = temp.fields.find(
+        (el) => el.key === "5th_section_faqs"
+      );
+      keyValueField.value.splice(index, 1);
+      return temp;
+    });
+  };
+
   const router = useRouter();
   const [boothSizePage, setBoothSizePage] = React.useState({
     name: pageData.name,
@@ -41,7 +83,7 @@ const PageEditForm = ({ pageData, isLocationPage }) => {
       const resp = await updateData(
         pageData.name,
         boothSizePage,
-        isLocationPage ?? false
+        isLocationPage
       );
       if (!resp.success) {
         toast.error(resp.err);
@@ -74,18 +116,32 @@ const PageEditForm = ({ pageData, isLocationPage }) => {
           <CardContent className="grid grid-cols-2 gap-6">
             {boothSizePage.fields.map((field, index) => (
               <div
-                className={cn(field.type === "body" && "col-span-2")}
+                className={cn(
+                  (field.type === "body" || field.type === "key-value-array") &&
+                    "col-span-2"
+                )}
                 key={index}
               >
-                <Label className="mb-4 block">
-                  Enter {convertHumanReadableText(field.key)}
-                </Label>
-                <FieldRender
-                  value={field.value}
-                  onChange={handleFieldChange}
-                  field={field}
-                  index={index}
-                />
+                {field.type !== "key-value-array" ? (
+                  <>
+                    <Label className="mb-4 block">
+                      Enter {convertHumanReadableText(field.key)}
+                    </Label>
+                    <FieldRender
+                      value={field.value}
+                      onChange={handleFieldChange}
+                      field={field}
+                      index={index}
+                    />
+                  </>
+                ) : (
+                  <Keyvalueinput
+                    deleteKeyValue={deleteKeyValue}
+                    field={field}
+                    onclick={addNewKeyValue}
+                    onChange={changeKeyValue}
+                  />
+                )}
               </div>
             ))}
           </CardContent>

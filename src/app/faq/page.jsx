@@ -3,21 +3,42 @@ import Header from "@/components/ui/header";
 import SubHeader from "@/components/ui/sub-header";
 import { getSinglePage } from "@/server/actions/pages";
 import React from "react";
-import "./style.css";
 
 const page = async () => {
-  const data = await getSinglePage({ name: "faq" });
+  const faqPageData = await getSinglePage({ name: "faq" });
+  const faqs = faqPageData.data.fields[1].value;
 
   return (
     <>
       <SubHeader />
       <Header />
       <div className="flex items-center justify-center py-4 ">
-        <div
-          id="faq-body"
-          dangerouslySetInnerHTML={{ __html: data.data.fields[0].value }}
-          className="container  py-12 px-12 "
-        ></div>
+        <div className="container py-8 px-12 ">
+          <h1 className="text-secondary font-bold text-4xl py-2 text-center ">
+            {faqPageData.data.fields[0].value}
+          </h1>
+          <div className="grid sm:w-[95%] md:w-[90%] mx-auto grid-cols-1 mt-8 md:grid-rows-3 sm:gap-6 md:gap-0">
+            {faqs.map((e, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-lg overflow-hidden mb-4 md:mb-6"
+              >
+                <div className="bg-black h-[52px] md:h-10 flex items-center p-4">
+                  <h4 className="text-primary body-bold  text-sm md:text-base flex items-center">
+                    <span className="text-primary flex justify-center items-center body-bold text-lg md:text-xl">
+                      0{index + 1}
+                    </span>
+                    <span className="border-r-2 border-gray-300 mx-3 h-5"></span>
+                    {e.question}
+                  </h4>
+                </div>
+                <p className="text-black p-4 text-sm md:text-[15px]">
+                  {e.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <Footer />
     </>

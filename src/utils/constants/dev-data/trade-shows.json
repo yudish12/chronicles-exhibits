@@ -16,14 +16,6 @@
         "image": "/ngwa-show.png"
     },
     {
-        "id": 3,
-        "start_date": "09/12/2024",
-        "end_date": "09/14/2024",
-        "location": "New York | NY",
-        "title": "The ASI Show",
-        "image": "/asi-show.png"
-    },
-    {
         "id": 4,
         "start_date": "04/03/2024",
         "end_date": "04/07/2024",
@@ -46,14 +38,6 @@
         "location": "Orlando | USA",
         "title": "NGWA 2024",
         "image": "/ngwa-show.png"
-    },
-    {
-        "id": 7,
-        "start_date": "09/12/2024",
-        "end_date": "09/14/2024",
-        "location": "New York | NY",
-        "title": "The ASI Show",
-        "image": "/asi-show.png"
     },
     {
         "id": 8,
