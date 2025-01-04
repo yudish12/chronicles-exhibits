@@ -7,24 +7,25 @@ import {
   getActionSuccessResponse,
   getPageFieldsByName,
 } from "@/utils";
-import mongoose from "mongoose";
+import mongoose, { get } from "mongoose";
 import { boothsizePageFields } from "@/lib/config";
 import pages from "../models/pages";
+import Locations from "../models/locations";
 
 await dbConnect();
 
-export const getAllPages = async (skip , limit) => {
+export const getAllPages = async (skip, limit) => {
   try {
-    let query =  Pages.find().sort({ _id: -1 });
-    if(skip){
-      query =  query.skip(skip)
+    let query = Pages.find().sort({ _id: -1 });
+    if (skip) {
+      query = query.skip(skip);
     }
-    if(limit){
-      query =  query.limit(limit)
+    if (limit) {
+      query = query.limit(limit);
     }
     const data = await query.lean();
-    const count = await Pages.countDocuments()
-    return getActionSuccessResponse(data , count);
+    const count = await Pages.countDocuments();
+    return getActionSuccessResponse(data, count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }
@@ -38,7 +39,46 @@ export const getSinglePage = async (query) => {
   }
 };
 
-export const updateData = async (name, data) => {
+export const updateData = async (name, data, islocation) => {
+  if (islocation) {
+    let isValid = true;
+
+    const locationPageFields = getPageFieldsByName("location");
+    console.log(locationPageFields);
+    locationPageFields.forEach((field) => {
+      const currentField = data.fields.find((f) => f.key === field.key);
+
+      if (!currentField) {
+        isValid = false;
+        return;
+      }
+
+      if (!currentField.type) {
+        isValid = false;
+        return;
+      }
+
+      if (!currentField.value || typeof currentField.value !== "string") {
+        isValid = false;
+        return;
+      }
+    });
+
+    if (!isValid) {
+      return getActionFailureResponse("Invalid fields data format", "toast");
+    }
+
+    const locPageResp = await Locations.updateMany(
+      {
+        name: name,
+      },
+      data,
+      { new: true }
+    );
+
+    return getActionSuccessResponse(locPageResp);
+  }
+
   const pageFields = getPageFieldsByName(name);
   try {
     if (!name) {

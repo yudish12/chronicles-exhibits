@@ -13,7 +13,7 @@ import FieldRender from "@/components/FieldRender";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-const PageEditForm = ({ pageData }) => {
+const PageEditForm = ({ pageData, isLocationPage }) => {
   console.log(pageData);
   const router = useRouter();
   const [boothSizePage, setBoothSizePage] = React.useState({
@@ -38,7 +38,11 @@ const PageEditForm = ({ pageData }) => {
   const handleEdit = async (e) => {
     e.preventDefault();
     try {
-      const resp = await updateData(pageData.name, boothSizePage);
+      const resp = await updateData(
+        pageData.name,
+        boothSizePage,
+        isLocationPage ?? false
+      );
       if (!resp.success) {
         toast.error(resp.err);
         return;

@@ -131,6 +131,7 @@ const Page = async ({ params }) => {
           </h2>
           <div
             id="show_name_desc"
+            className="text-white"
             dangerouslySetInnerHTML={{ __html: data[0].fields[9].value }}
           ></div>
           {/* <p className="text-white font-medium">
@@ -163,21 +164,15 @@ const Page = async ({ params }) => {
             style={{ transitionDuration: "500ms" }}
             className="rounded-full w-full md:w-[30%] mx-auto px-16 py-6 font-thin text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4 bg-transparent border-primary"
           >
-            Get Personalised Quote
+            {data[0].fields[10].value}
           </Button>
         </div>
       </div>
       <div className="p-10 md:p-20 pb-10">
         <h2 className="uppercase text-3xl heading-font-600 text-primary text-center font-semibold">
-          HAVE A LOOK AT OUR TRADE SHOW EXHIBIT RENTAL WORK IN {city}
+          {data[0].fields[11].value} {city}
         </h2>
-        <p className="text-center mt-4">
-          We have always considered the opinions of our clients while building a
-          trade show booth. It has helped us in meeting their expectation in the
-          best possible manner. Let us take a look at various that we have built
-          for our clients. All these designs have met the goals and requirements
-          of the clients.
-        </p>
+        <p className="text-center mt-4">{data[0].fields[12].value}</p>
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[420px,420px,420px] w-full md:w-max mx-auto gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6">
           {displayedData.map((item, index) => (
             <div
@@ -208,10 +203,13 @@ const Page = async ({ params }) => {
         {/* Section 1 */}
         <section className="py-10 text-secondary">
           <h2 className="text-2xl md:text-3xl font-bold uppercase heading-font text-secondary mb-4">
-            FINEST QUALITY {city} TRADE SHOW DISPLAYS FOR IMPACTFUL BRAND
-            PRESENCE
+            {data[0].fields[15].value}
           </h2>
-          <p className="text-gray-800  mb-6">
+          <div
+            id="show_name_desc"
+            dangerouslySetInnerHTML={{ __html: data[0].fields[16].value }}
+          ></div>
+          {/* <p className="text-gray-800  mb-6">
             While participating in a trade show, every business looks for
             stunning booth rentals that help it stand out from the crowd. It
             becomes a more challenging task for exhibitors who are new or have a
@@ -260,67 +258,7 @@ const Page = async ({ params }) => {
                 with our trade show booths.
               </span>
             </li>
-          </ul>
-        </section>
-
-        {/* Section 2 */}
-        <section className="py-10 text-secondary ">
-          <h2 className="text-2xl md:text-3xl font-bold uppercase heading-font text-secondary mb-4">
-            FINEST QUALITY {city} TRADE SHOW DISPLAYS FOR IMPACTFUL BRAND
-            PRESENCE
-          </h2>
-          <p className="text-gray-800 text-lg leading-relaxed mb-6">
-            Our proficient team follows a comprehensive approach to meet your{" "}
-            {city} rental booth requirements. When you collaborate with us for
-            {city} custom exhibit rentals, you gain an unbeatable edge over
-            other exhibitors.
-          </p>
-          <ul className="space-y-1">
-            <li className="flex items-center gap-2 py-2 ">
-              <DiamondSvg />
-              <span>
-                We use astonishing fabric, eye-catching graphics, and appealing
-                displays to give your {city} booth an elegant look.
-              </span>
-            </li>
-            <li className="flex items-center gap-2 py-2">
-              <DiamondSvg />
-              <span>
-                Every business has its requirements and that is why we offer
-                customized trade show booth rentals.
-              </span>
-            </li>
-            <li className="flex items-center gap-2 py-2">
-              <DiamondSvg />
-              <span>
-                We convert your brand essence and your vision into brilliant
-                exhibit booth rentals to help you achieve your branding goals.
-              </span>
-            </li>
-            <li className="flex items-center gap-2 text-secondary py-2 ">
-              <DiamondSvg />
-              <span>
-                Our expert team and latest manufacturing capabilities allow us
-                to attain excellent quality standards for every project.
-              </span>
-            </li>
-          </ul>
-        </section>
-
-        {/* Section 3 */}
-        <section className="py-10">
-          <h2 className="text-2xl md:text-3xl uppercase font-bold heading-font text-secondary mb-4">
-            GET IN TOUCH WITH US FOR CREATIVE {city} TRADE SHOW BOOTH IDEAS
-          </h2>
-          <p className="text-gray-800 ">
-            At Chronicle Exhibits LLC, we believe in building long-lasting
-            business relationships by building trust. Our experts always strive
-            to provide impressive {city} trade show booth rentals at the best
-            prices. We are just a few clicks away from making your business
-            stand out at the next trade show with {city} trade show exhibit
-            rentals that convert foot traffic into customers. Call us or send
-            your query to us directly through our website now.
-          </p>
+          </ul> */}
         </section>
       </div>
       <div className="bg-white py-10">
