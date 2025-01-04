@@ -20,7 +20,10 @@ export default async function Home() {
       <Header />
       <Hero fields={homePageData.data.fields} />
       <About fields={homePageData.data.fields} />
-      <Products fields={homePageData.data.fields} />
+      <Products
+        title={homePageData.data.fields[24].value}
+        subTitle={homePageData.data.fields[25].value}
+      />
       <FactsAndFigures fields={homePageData.data.fields} />
       <Ourworks fields={homePageData.data.fields} />
       <Leadingtrade fields={homePageData.data.fields} />
