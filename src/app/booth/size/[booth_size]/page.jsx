@@ -7,7 +7,7 @@ import SubHeader from "@/components/ui/sub-header";
 import BoothGrid from "./_components/AllBooths";
 import RequestDesign from "./_components/RequestDesign";
 import TradeShowSection from "./_components/TradeShowSection";
-import { getBoothSizeByName } from "@/server/actions/booth-sizes";
+import { getBoothByName } from "@/server/actions/booths";
 import { getAllData } from "@/server/actions/booths";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import GetFreeDesignForm from "@/components/GetFreeDesignForm";
@@ -29,11 +29,12 @@ async function FeaturedPage({ params }) {
   const resolvedParams = await params;
   const boothSize = resolvedParams.booth_size;
   console.log("==boothsize==", boothSize);
-  const data = await getBoothSizeByName(boothSize);
+  const booths = await getBoothByName(boothSize.toLowerCase());
+  // console.log("booth size by name ",data)
   const pageData = await getSinglePage({ name: boothSize.toLowerCase() });
   console.log(pageData);
   // const booths = await getBoothsBySize(data.data._id);
-  const booths = await getAllData(6, 0);
+  // const booths = await getAllData(6, 0);
 
   console.log("data", booths);
   return (

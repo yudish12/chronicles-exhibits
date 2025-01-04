@@ -6,7 +6,34 @@ import mongoose from "mongoose";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 
 await dbConnect();
-
+export const getBoothByName = async (name) => {
+  try {
+    const data = await Booth.aggregate([
+      {
+        $lookup: {
+          from: "boothsizes",
+          localField: "booth_size",
+          foreignField: "_id",
+          as: "boothSizeData"
+        }
+      },
+      {
+        $unwind: {
+          path: "$boothSizeData",
+          preserveNullAndEmptyArrays: true
+        }
+      },
+      {
+        $match: {
+          "boothSizeData.name": name
+        }
+      }
+    ]);
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
 export const getAllData = async (skip, limit) => {
   try {
     let query = Booth.find().sort({ _id: 1 });

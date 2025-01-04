@@ -36,8 +36,8 @@ const EnquiryForm = () => {
         />
         <Input
           type="file"
-          placeholder="Upload resources (optional)"
-          className="bg-white border-secondary placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
+          placeholder="Choose File"
+          className="bg-white col-span-3 flex items-center justify-center border-secondary placeholder:text-secondary/50 border-2 text-black py-[28px] mb-6 px-4 rounded-lg"
         />
         <textarea
           rows={3}
