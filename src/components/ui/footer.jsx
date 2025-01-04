@@ -62,42 +62,66 @@ export default function Footer() {
           <h3 className="font-bold text-lg mb-4">Location</h3>
           <ul className="space-y-2 footer-list">
             <li>
-              <Link className="hover:underline" href="/locations/las-vegas">
+              <Link
+                className="hover:underline"
+                href="trade-show-booth-rental-and-exhibits-las-vegas"
+              >
                 Las Vegas
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/locations/chicago">
+              <Link
+                className="hover:underline"
+                href="trade-show-booth-rental-and-exhibits-chicago"
+              >
                 Chicago
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/locations/orlando">
+              <Link
+                className="hover:underline"
+                href="trade-show-booth-rental-and-exhibits-orlando"
+              >
                 Orlando
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/locations/anaheim">
+              <Link
+                className="hover:underline"
+                href="trade-show-booth-rental-and-exhibits-anaheim"
+              >
                 Anaheim
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/locations/san-diego">
+              <Link
+                className="hover:underline"
+                href="trade-show-booth-rental-and-exhibits-san-diego"
+              >
                 San Diego
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/locations/los-angeles">
+              <Link
+                className="hover:underline"
+                href="trade-show-booth-rental-and-exhibits-los-angeles"
+              >
                 Los Angeles
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/locations/atlanta">
+              <Link
+                className="hover:underline"
+                href="trade-show-booth-rental-and-exhibits-atlanta"
+              >
                 Atlanta
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/locations/new-york">
+              <Link
+                className="hover:underline"
+                href="trade-show-booth-rental-and-exhibits-new-york"
+              >
                 New York
               </Link>
             </li>

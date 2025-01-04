@@ -263,7 +263,7 @@ export const craeteLocationPageMigration = async () => {
 
 export const getLocationPagebyCity = async (city) => {
   try {
-    const cityData = await Cities.findOne({ name: city }).select("_id");
+    const cityData = await Cities.findOne({ slug: city }).select("_id");
     const data = await Locations.find({ city_id: cityData._id }).lean();
     return getActionSuccessResponse(data);
   } catch (error) {
