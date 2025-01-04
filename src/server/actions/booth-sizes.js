@@ -15,6 +15,7 @@ export const getAllBoothSizes = async () => {
     return getActionFailureResponse(error, "toast");
   }
 };
+
 export const getBoothSizeByName = async (name) => {
   try {
     const data = await BoothSize.find({ name }).lean();
