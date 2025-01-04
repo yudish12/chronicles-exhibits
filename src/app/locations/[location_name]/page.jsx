@@ -29,6 +29,7 @@ import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import { getAllLocations } from "@/server/actions/events";
 // import { useRouter } from "next/navigation";
+import { getEventByCity } from "@/server/actions/events";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
@@ -44,7 +45,9 @@ export async function generateMetadata({ params }) {
 
 const Page = async ({ params }) => {
   const city = (await params).location_name;
-
+  console.log("city==" , city)
+  const eventByCity = await getEventByCity(city);
+  console.log("eventByCity",eventByCity)
   let majorExhibitingCities = await getAllLocations();
   let boothSizes = await getAllBoothSizes();
 
@@ -52,7 +55,7 @@ const Page = async ({ params }) => {
   console.log(data);
 
   const shows = tradeShows.splice(0, 4);
-  const ua = userAgent({ headers: headers() });
+  const ua = await userAgent({ headers: headers() });
   const isMobile = ua?.device?.type === "mobile";
   const ourWorksData = await getAllPortfolios(0, 9);
 
@@ -276,27 +279,27 @@ const Page = async ({ params }) => {
           {data[0].fields[17].value}
         </h2>
         <div className="grid place-content-center mx-auto xl:grid-cols-[270px,270px,270px,270px] lg:grid-cols-3 gap-x-8 gap-y-8 md:grid-cols-2 grid-cols-1 gap-4 px-20 pb-10 mt-12">
-          {shows.map((show) => (
+          {eventByCity.data.map((show) => (
             <div
               key={show.id}
-              className="h-[300px] w-full bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
+              className="h-[350px] w-full bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6 justify-between"
             >
-              <h4 className="text-secondary heading-font text-2xl uppercase font-semibold">
+              <h4 className="text-secondary heading-font text-xl  font-semibold">
                 {show.title}
               </h4>
               <Image
                 className="rounded-full"
                 width={120}
                 height={120}
-                src={show.image}
+                src={show.icon}
                 alt={show.title}
               />
               <div className="flex flex-col gap-2 w-full px-4">
                 <p className="flex gap-4">
                   <MapPin color="#B0CB1F" />
-                  <span className="text-[16px]">{show.location}</span>
+                  <span className="text-[16px]">{show.city},{show.country}</span>
                 </p>
-                <p className="flex  gap-4">
+                <p className="flex gap-4  ">
                   <Calendar color="#B0CB1F" />
                   <span className="text-[16px]">
                     {moment(show.start_date).format("DD")}-

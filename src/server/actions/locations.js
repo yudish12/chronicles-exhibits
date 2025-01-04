@@ -7,7 +7,6 @@ import mongoose from "mongoose";
 import Cities from "../models/cities";
 
 await dbConnect();
-
 export const getAllData = async (skip, limit, projection) => {
   try {
     let query = Locations.find().lean();

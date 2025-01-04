@@ -8,6 +8,57 @@ import mongoose from "mongoose";
 import Cities from "../models/cities";
 
 await dbConnect();
+
+export const getEventByCity = async (city, skip, limit, projection) => {
+  try {
+    console.log("city", city);
+
+    // Normalize the input city by removing spaces, hyphens, and converting to lowercase
+    const normalizedCity = city.replace(/[\s-]+/g, "").toLowerCase();
+
+    // Construct the query using $expr and $regex
+    let query = events.find({
+      $expr: {
+        $regexMatch: {
+          input: { $replaceAll: { input: "$city", find: " ", replacement: "" } },
+          regex: normalizedCity,
+          options: "i", // Case-insensitive match
+        },
+      },
+    });
+
+    // Apply skip, limit, and projection if provided
+    if (skip) {
+      query = query.skip(skip);
+    }
+
+    if (limit) {
+      query = query.limit(limit);
+    }
+
+    if (projection) {
+      query = query.select(projection);
+    }
+
+    // Execute the query and get the total count
+    const data = await query.lean();
+    const count = await events.countDocuments({
+      $expr: {
+        $regexMatch: {
+          input: { $replaceAll: { input: "$city", find: " ", replacement: "" } },
+          regex: normalizedCity,
+          options: "i",
+        },
+      },
+    });
+
+    return getActionSuccessResponse(data, count);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
+
 export const getAllData = async (skip, limit, projection) => {
   try {
     let query = events.find().sort({ _id: -1 });
