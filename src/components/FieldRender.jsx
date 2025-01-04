@@ -38,6 +38,8 @@ const FieldRender = ({ field, value, onChange, index }) => {
           index={index}
         />
       );
+    case "key-value-array":
+      return <></>;
     case "upload":
       return (
         <div>
