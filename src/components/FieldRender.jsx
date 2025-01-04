@@ -7,6 +7,7 @@ import { UploadButton } from "@uploadthing/react";
 import { Trash2 } from "lucide-react";
 import { Button } from "./ui/button";
 import { deleteUTFiles } from "@/server/services/uploadthing";
+import Keyvalueinput from "./ui/Keyvalueinput";
 
 const FieldRender = ({ field, value, onChange, index }) => {
   useEffect(() => {
@@ -38,8 +39,16 @@ const FieldRender = ({ field, value, onChange, index }) => {
           index={index}
         />
       );
+    case "number":
+      return (
+        <Input
+          type="number"
+          onChange={(e) => onChange(index, e.target.value)}
+          value={value}
+        />
+      );
     case "key-value-array":
-      return <></>;
+      return <Keyvalueinput />;
     case "upload":
       return (
         <div>

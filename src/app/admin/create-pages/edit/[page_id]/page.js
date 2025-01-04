@@ -7,7 +7,7 @@ const Page = async ({ params }) => {
 
   const { data } = await getSinglePage({ _id: id });
 
-  return <PageEditForm pageData={data} />;
+  return <PageEditForm isLocationPage={false} pageData={data} />;
 };
 
 export default Page;

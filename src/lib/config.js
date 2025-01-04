@@ -85,6 +85,11 @@ export const homePageFields = [
     value: "",
   },
   {
+    key: "1st_section_gif_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
     key: "1st_section_h2",
     type: "text",
     value: "",
@@ -215,6 +220,11 @@ export const homePageFields = [
     value: "",
   },
   {
+    key: "4th_section_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
     key: "5th_section_h3",
     type: "text",
     value: "",
@@ -229,8 +239,8 @@ export const homePageFields = [
     type: "key-value-array",
     value: [
       {
-        heading: "",
-        text: "",
+        question: "",
+        answer: "",
       },
     ],
   },

@@ -99,9 +99,11 @@ export const updateData = async (name, data, islocation) => {
 
     let valid = true;
 
-    pageFields.forEach((field) => {
+    console.log(103);
+
+    pageFields.forEach((field, ind) => {
       const currentField = data.fields.find((f) => f.key === field.key);
-      console.log(currentField.type, currentField.value, currentField.key);
+      console.log(currentField, ind);
       if (!currentField) {
         valid = false;
         return;
@@ -110,7 +112,7 @@ export const updateData = async (name, data, islocation) => {
         valid = false;
         return;
       }
-      if (!currentField.value || typeof currentField.value !== "string") {
+      if (!currentField.value) {
         valid = false;
         return;
       }

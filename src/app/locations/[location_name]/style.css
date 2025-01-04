@@ -6,9 +6,9 @@
   text-align: justify;
 }
 
-#show_name_desc p strong {
-  font-weight: 600;
-}
+/* #show_name_desc p strong {
+  font-weight: 700;
+} */
 /* Style for <h3> tags */
 #show_name_desc h3 {
   font-family: "Jost-700";

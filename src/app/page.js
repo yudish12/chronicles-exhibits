@@ -18,13 +18,13 @@ export default async function Home() {
     <>
       <SubHeader />
       <Header />
-      <Hero />
-      <About />
-      <Products />
-      <FactsAndFigures />
-      <Ourworks />
-      <Leadingtrade />
-      <Faq />
+      <Hero fields={homePageData.data.fields} />
+      <About fields={homePageData.data.fields} />
+      <Products fields={homePageData.data.fields} />
+      <FactsAndFigures fields={homePageData.data.fields} />
+      <Ourworks fields={homePageData.data.fields} />
+      <Leadingtrade fields={homePageData.data.fields} />
+      <Faq fields={homePageData.data.fields} />
       <Queryform />
       <Footer />
     </>
