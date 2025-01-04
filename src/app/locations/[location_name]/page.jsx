@@ -30,6 +30,18 @@ import { userAgent } from "next/server";
 import { getAllLocations } from "@/server/actions/events";
 // import { useRouter } from "next/navigation";
 
+export async function generateMetadata({ params }) {
+  const resolvedParams = await params;
+  const location_name = resolvedParams.location_name;
+
+  const { data } = await getLocationPagebyCity(location_name);
+  return {
+    title: data[0]?.meta_title || "Default Title",
+    description: data[0]?.meta_description || "Default Description",
+    keywords: data[0]?.meta_keywords?.join(",") ?? "Default Keywords",
+  };
+}
+
 const Page = async ({ params }) => {
   const city = (await params).location_name;
 
@@ -42,7 +54,7 @@ const Page = async ({ params }) => {
   const shows = tradeShows.splice(0, 4);
   const ua = userAgent({ headers: headers() });
   const isMobile = ua?.device?.type === "mobile";
-  const ourWorksData = await getAllPortfolios(0, 6);
+  const ourWorksData = await getAllPortfolios(0, 9);
 
   const displayedData = isMobile
     ? ourWorksData.data.slice(0, 6)
@@ -56,11 +68,11 @@ const Page = async ({ params }) => {
       <SubHeader />
       <Header />
       <div className="single-location-bg flex flex-col justify-center">
-        <h2 className="text-center font-bold text-[2.5rem] heading-font uppercase text-white">
+        <h1 className="text-center font-bold text-[2.5rem] heading-font uppercase text-white">
           {data[0].fields[0].value}
-        </h2>
+        </h1>
         <h2 className="text-center font-bold text-[2.5rem] heading-font uppercase text-primary">
-          {city}
+          {data[0].name}
         </h2>
         <div className="flex flex-col sm:flex-row relative mt-6 gap-4  sm:bg-black/40 rounded-full p-4 justify-center w-4/5 mx-auto">
           <Select>
@@ -102,7 +114,7 @@ const Page = async ({ params }) => {
             Search
           </Button>
         </div>
-        <Button className="bg-primary border border-secondary font-semibold text-secondary w-[200px] mt-8 hover:bg-primary mx-auto py-6 text-lg">
+        <Button className="bg-primary border border-secondary font-semibold text-secondary mt-8 hover:bg-primary mx-auto py-5 text-lg">
           {data[0].fields[1].value}
         </Button>
       </div>
@@ -110,11 +122,9 @@ const Page = async ({ params }) => {
         <h2 className="text-center uppercase leading-10 font-semibold text-secondary text-[2.1rem] heading-font">
           {data[0].fields[2].value}
           <br /> {data[0].fields[3].value}
-          {city}
         </h2>
-        <p className="text-center text-[17px]">{data[0].fields[4].value}</p>
-        <p className="text-center text-[16px] text-secondary/90">
-          {data[0].fields[5].value}
+        <p className="text-[17px] text-center text-balance mx-36">
+          {data[0].fields[4].value} {data[0].fields[5].value}
         </p>
       </div>
       <div className="product-bg flex flex-col md:flex-row gap-12 px-4 md:px-20 py-16">
@@ -168,16 +178,16 @@ const Page = async ({ params }) => {
           </Button>
         </div>
       </div>
-      <div className="p-10 md:p-20 pb-10">
+      <div className="p-12 md:px-36  pb-10">
         <h2 className="uppercase text-3xl heading-font-600 text-primary text-center font-semibold">
           {data[0].fields[11].value} {city}
         </h2>
-        <p className="text-center mt-4">{data[0].fields[12].value}</p>
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[420px,420px,420px] w-full md:w-max mx-auto gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-6">
+        <p className="text-center mx-44 mt-7">{data[0].fields[12].value}</p>
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-x-4 gap-y-4">
           {displayedData.map((item, index) => (
             <div
               key={index}
-              className="overflow-hidden rounded-xl w-full sm:w-[420px] h-[200px] sm:h-[250px] md:h-[230px]"
+              className="overflow-hidden rounded-xl w-full h-[200px] sm:h-[250px] md:h-[230px]"
             >
               <Image
                 width={370}
@@ -199,7 +209,7 @@ const Page = async ({ params }) => {
         </Link>
       </div>
       <Products location={city} />
-      <div className="bg-background py-12 px-8 md:px-20 lg:px-32">
+      <div className="bg-background py-12 px-8 md:px-20 lg:px-32 w-[92%]">
         {/* Section 1 */}
         <section className="py-10 text-secondary">
           <h2 className="text-2xl md:text-3xl font-bold uppercase heading-font text-secondary mb-4">
@@ -261,15 +271,15 @@ const Page = async ({ params }) => {
           </ul> */}
         </section>
       </div>
-      <div className="bg-white py-10">
+      <div className="bg-white pb-10">
         <h2 className="text-3xl heading-font text-secondary text-center uppercase">
-          Top Trade Shows in {city}
+          {data[0].fields[17].value}
         </h2>
-        <div className="grid lg:grid-cols-[290px,290px,290px,290px] md:grid-cols-3 gap-x-12 gap-y-12 sm:grid-cols-2 gap-4 px-20 pb-10 mt-12">
+        <div className="grid place-content-center mx-auto xl:grid-cols-[270px,270px,270px,270px] lg:grid-cols-3 gap-x-8 gap-y-8 md:grid-cols-2 grid-cols-1 gap-4 px-20 pb-10 mt-12">
           {shows.map((show) => (
             <div
               key={show.id}
-              className="h-[300px] bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
+              className="h-[300px] w-full bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
             >
               <h4 className="text-secondary heading-font text-2xl uppercase font-semibold">
                 {show.title}
@@ -301,7 +311,7 @@ const Page = async ({ params }) => {
         </div>
         <div className="flex justify-center">
           <Button className="text-white p-4 py-[22px] duration-300 transition-all text-lg hover:bg-primary hover:text-secondary font-semibold bg-secondary">
-            View All Trade Shows in {city}
+            {data[0].fields[18].value}
           </Button>
         </div>
       </div>

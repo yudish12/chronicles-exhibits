@@ -64,7 +64,7 @@ export default function Footer() {
             <li>
               <Link
                 className="hover:underline"
-                href="trade-show-booth-rental-and-exhibits-las-vegas"
+                href="trade-show-booth-rentals-las-vegas"
               >
                 Las Vegas
               </Link>
@@ -72,7 +72,7 @@ export default function Footer() {
             <li>
               <Link
                 className="hover:underline"
-                href="trade-show-booth-rental-and-exhibits-chicago"
+                href="trade-show-booth-rentals-chicago"
               >
                 Chicago
               </Link>
@@ -80,7 +80,7 @@ export default function Footer() {
             <li>
               <Link
                 className="hover:underline"
-                href="trade-show-booth-rental-and-exhibits-orlando"
+                href="trade-show-booth-rentals-orlando"
               >
                 Orlando
               </Link>
@@ -88,7 +88,7 @@ export default function Footer() {
             <li>
               <Link
                 className="hover:underline"
-                href="trade-show-booth-rental-and-exhibits-anaheim"
+                href="trade-show-booth-rentals-anaheim"
               >
                 Anaheim
               </Link>
@@ -96,7 +96,7 @@ export default function Footer() {
             <li>
               <Link
                 className="hover:underline"
-                href="trade-show-booth-rental-and-exhibits-san-diego"
+                href="trade-show-booth-rentals-san-diego"
               >
                 San Diego
               </Link>
@@ -104,7 +104,7 @@ export default function Footer() {
             <li>
               <Link
                 className="hover:underline"
-                href="trade-show-booth-rental-and-exhibits-los-angeles"
+                href="trade-show-booth-rentals-los-angeles"
               >
                 Los Angeles
               </Link>
@@ -112,7 +112,7 @@ export default function Footer() {
             <li>
               <Link
                 className="hover:underline"
-                href="trade-show-booth-rental-and-exhibits-atlanta"
+                href="trade-show-booth-rentals-atlanta"
               >
                 Atlanta
               </Link>
@@ -120,13 +120,17 @@ export default function Footer() {
             <li>
               <Link
                 className="hover:underline"
-                href="trade-show-booth-rental-and-exhibits-new-york"
+                href="trade-show-booth-rentals-new-york"
               >
                 New York
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/locations">
+              <Link
+                className="hover:underline"
+                as="/major-exhibiting-cities/"
+                href="/major-exhibiting-cities"
+              >
                 View More Cities
               </Link>
             </li>

@@ -178,7 +178,7 @@ export const bulkInsertCities = async (data) => {
 export const getAllDataBySearch = async (searchValue) => {
   try {
     const data = await Locations.find({
-      title: { $regex: searchValue, $options: "i" },
+      name: { $regex: searchValue, $options: "i" },
     }).lean();
     return getActionSuccessResponse(data);
   } catch (error) {

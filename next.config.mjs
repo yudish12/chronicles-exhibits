@@ -20,7 +20,7 @@ const nextConfig = {
         destination: "/blogs/:slug",
       },
       {
-        source: "/trade-show-booth-rental-and-exhibits-:city",
+        source: "/trade-show-booth-rentals-:city",
         destination: "/locations/:city",
       },
       {
@@ -29,6 +29,7 @@ const nextConfig = {
       },
     ];
   },
+  trailingSlash: true,
   images: {
     remotePatterns: [
       {
