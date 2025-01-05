@@ -46,9 +46,9 @@ export async function generateMetadata({ params }) {
 
 const Page = async ({ params }) => {
   const city = (await params).location_name;
-  console.log("city==" , city)
+  // console.log("city==" , city)
   const eventByCity = await getEventByCity(city);
-  console.log("eventByCity",eventByCity.data.slice(0,3))
+  // console.log("eventByCity",eventByCity.data.slice(0,3))
   let majorExhibitingCities = await getAllLocations();
   let boothSizes = await getAllBoothSizes();
   // if(!eventByCity.data){
