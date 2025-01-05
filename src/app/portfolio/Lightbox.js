@@ -21,15 +21,18 @@ const Lightbox = ({ images }) => {
 
   return (
     <>
-      <div className="py-8 px-28">
-        <div className="grid grid-cols-2  mx-auto gap-x-8 place-content-center p-8 px-20 gap-y-8">
+      <div className="py-8 px-4 md:px-16 lg:px-28">
+        <div className="grid grid-cols-2  mx-auto gap-x-8 place-content-center p-8  px-4 md:px-16 lg:px-20 gap-y-8">
           {images.data.map((item, index) => (
             <div
               key={index}
               onClick={() => openLightboxOnSlide(index + 1)}
               className={cn(
                 "overflow-hidden rounded-3xl cursor-pointer",
-                (index + 1) % 3 === 0 ? "col-span-2" : "col-span-1"
+                (index + 1) % 3 === 0
+                  ? "col-span-2"
+                  : "col-span-2 sm:col-span-1",
+                ""
               )} // Wrapper to constrain image scale
             >
               <Image
