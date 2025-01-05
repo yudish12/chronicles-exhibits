@@ -503,80 +503,105 @@ export const tradeShowBoothDesignsPageFields = [
 ];
 
 export const contactUsPageFields = [
+  // USA Office Fields
   {
-    key: "top_title",
+    key: "usa_whatsapp_number",
     type: "text",
-    value: "",
-  },
-  {
-    key: "2nd_section_title",
-    type: "text",
-    value: "",
-  },
-  {
-    key: "whatsapp_text",
-    type: "text",
-    value: "",
-  },
-  {
-    key: "whatsapp_number",
-    type: "number",
     value: "+1 702 992 0440",
   },
   {
-    key: "phone_text",
+    key: "usa_phone_number",
     type: "text",
-    value: "",
-  },
-  {
-    key: "phone_number",
-    type: "number",
     value: "+1 702 992 0440",
   },
   {
-    key: "email_text",
-    type: "text",
-    value: "",
-  },
-  {
-    key: "email_address",
+    key: "usa_email",
     type: "text",
     value: "info@chronicleexhibits.com",
   },
   {
-    key: "us_office_text",
-    type: "text",
-    value: "",
-  },
-  {
-    key: "us_office_address",
-    type: "text",
+    key: "usa_address",
+    type: "textarea",
     value: "8465, W. Sahara Ave, Suite 111 Unit #1183, Las Vegas, NV 89117, US",
   },
   {
-    key: "qr_code_img",
+    key: "qr_code_image",
     type: "upload",
     value: "",
   },
   {
-    key: "qr_code_text",
+    key: "usa_map_iframe",
+    type: "iframe",
+    value:
+      "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d25775.73460659082!2d-115.276006!3d36.143021!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c8c1edca3c4097%3A0x3d67c01115c86d20!2sChronicle%20Exhibits%20LLC%20%7C%20Trade%20Show%20Booth%20Rental%20Company!5e0!3m2!1sen!2sin!4v1735836505245!5m2!1sen!2sin",
+  },
+
+  // Dubai Office Fields
+  {
+    key: "dubai_phone_number",
     type: "text",
-    value: "",
+    value: "+971 5434-74-645",
   },
   {
-    key: "form_title",
+    key: "dubai_email",
     type: "text",
-    value: "",
+    value: "info@chronicleexhibits.ae",
   },
   {
-    key: "form_subtitle",
+    key: "dubai_address",
     type: "textarea",
-    value: "",
+    value: "Street 5 Lootah Warehouses, 11th St - Mina Jebel Ali - Dubai",
+  },
+
+  // Europe Office Fields
+  {
+    key: "europe_phone_number",
+    type: "text",
+    value: "+49 (1) 5217 473-031",
   },
   {
-    key: "form_btn_text",
+    key: "europe_email",
     type: "text",
-    value: "Send Enquiry",
+    value: "info@chronicleexhibits.eu",
+  },
+  {
+    key: "europe_address",
+    type: "textarea",
+    value: "Street 5 Lootah Warehouses, 11th St - Mina Jebel Ali - Dubai",
+  },
+
+  // Dubai Warehouse Fields
+  {
+    key: "dubai_warehouse_phone_number",
+    type: "text",
+    value: "+971 5434-74-645",
+  },
+  {
+    key: "dubai_warehouse_email",
+    type: "text",
+    value: "info@chronicleexhibits.ae",
+  },
+  {
+    key: "dubai_warehouse_address",
+    type: "textarea",
+    value: "Street 5 Lootah Warehouses, 11th St - Mina Jebel Ali - Dubai",
+  },
+
+  // India Office Fields
+  {
+    key: "india_phone_number",
+    type: "text",
+    value: "+91-987-037-0977",
+  },
+  {
+    key: "india_email",
+    type: "text",
+    value: "info@chronicleexhibits.in",
+  },
+  {
+    key: "india_address",
+    type: "textarea",
+    value: "E-340, East of Kailash, New Delhi - 110065",
   },
 ];
 
