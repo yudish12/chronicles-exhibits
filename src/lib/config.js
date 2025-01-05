@@ -502,6 +502,84 @@ export const tradeShowBoothDesignsPageFields = [
   },
 ];
 
+export const contactUsPageFields = [
+  {
+    key: "top_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "2nd_section_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "whatsapp_text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "whatsapp_number",
+    type: "number",
+    value: "+1 702 992 0440",
+  },
+  {
+    key: "phone_text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "phone_number",
+    type: "number",
+    value: "+1 702 992 0440",
+  },
+  {
+    key: "email_text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "email_address",
+    type: "text",
+    value: "info@chronicleexhibits.com",
+  },
+  {
+    key: "us_office_text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "us_office_address",
+    type: "text",
+    value: "8465, W. Sahara Ave, Suite 111 Unit #1183, Las Vegas, NV 89117, US",
+  },
+  {
+    key: "qr_code_img",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "qr_code_text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "form_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "form_subtitle",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "form_btn_text",
+    type: "text",
+    value: "Send Enquiry",
+  },
+];
+
 // db.pages.updateOne(
 //   { name: "trade-show-booth-displays-designs" },
 //   {

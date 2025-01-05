@@ -5,6 +5,7 @@ import React from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { getAllPortfolios } from "@/server/actions/portfolio";
+import Lightbox from "./Lightbox";
 const Page = async () => {
   const ourWorksData = await getAllPortfolios();
   console.log(ourWorksData);
@@ -23,29 +24,7 @@ const Page = async () => {
           </p>
         </div>
       </div>
-      <div className="py-8 px-28">
-        <div className="grid grid-cols-2  mx-auto gap-x-8 place-content-center p-8 px-20 gap-y-8">
-          {ourWorksData.data.map((item, index) => (
-            <div
-              key={index}
-              className={cn(
-                "overflow-hidden rounded-3xl",
-                (index + 1) % 3 === 0 ? "col-span-2" : "col-span-1"
-              )} // Wrapper to constrain image scale
-            >
-              <Image
-                width={400}
-                height={300}
-                className={cn(
-                  `transition-transform h-full min-h-[300px] max-h-[450px] w-full duration-300 transform scale-110 hover:scale-125`
-                )}
-                src={item.image}
-                alt={item.image_alt_text}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+      <Lightbox images={ourWorksData} />
       <Footer />
     </>
   );

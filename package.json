@@ -24,6 +24,7 @@
     "cmdk": "^1.0.0",
     "embla-carousel": "^8.5.1",
     "embla-carousel-react": "^8.5.1",
+    "fslightbox-react": "^1.7.6",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.460.0",
     "moment": "^2.30.1",
