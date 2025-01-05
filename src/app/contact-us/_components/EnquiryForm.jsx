@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const EnquiryForm = () => {
   return (
-    <div className=" bg-white shadow-one flex flex-col justify-center items-center py-8 px-10 rounded-lg">
+    <div className=" bg-white shadow-one flex flex-col justify-center items-center py-8 md:px-10 px-4 rounded-lg">
       <div className="py-4 text-center">
         <h1 className="heading-font font-bold text-xl sm:text-2xl">
           ENQUIRE FOR THE BEST EXHIBIT DISPLAYS IN USA!
