@@ -29,8 +29,8 @@ const WhyChooseUs = () => {
     },
   ];
   return (
-    <div className="product-bg p-6 md:p-20 flex flex-col md:flex-row gap-6 md:gap-10">
-      <div className="w-full md:w-1/2">
+    <div className="product-bg py-6 px-8 md:p-20 flex flex-col md:flex-row gap-6 md:gap-10">
+      <div className="w-full md:w-1/2 px-6 sm:px-0">
         <h3
           style={{ lineHeight: "1.2" }}
           className="heading-font uppercase font-semibold text-[#B0CB1F] text-lg sm:text-xl md:text-[2rem]"
@@ -46,7 +46,7 @@ const WhyChooseUs = () => {
           <br />
           <br />
           {bulletPoints.map((bullet, index) => (
-            <li key={index} className="flex items-center py-2 ">
+            <li key={index} className="flex items-center py-2  ">
               <Image
                 width={20}
                 alt={bullet.pt}
@@ -65,7 +65,7 @@ const WhyChooseUs = () => {
       </div>
 
       {/* Image Container */}
-      <div className="w-full md:w-1/2">
+      <div className="w-full md:w-1/2 sm:px-0 ">
         <Image
           layout="responsive"
           width={370}
