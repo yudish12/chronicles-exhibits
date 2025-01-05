@@ -6,8 +6,11 @@ import Image from "next/image";
 import EnquiryForm from "./_components/EnquiryForm";
 import LocateUs from "./_components/LocateUs";
 import OtherOffices from "./_components/OtherOffices";
+import { getSinglePage } from "@/server/actions/pages";
 
-const Page = () => {
+const Page = async () => {
+  const contactUsPageData = await getSinglePage({ name: "contact-us" });
+
   return (
     <>
       <SubHeader />
@@ -40,7 +43,9 @@ const Page = () => {
             />
             <div>
               <p className="text-lg font-semibold text-[#4B224C]">WhatsApp</p>
-              <p className="text-sm text-gray-600">+1 702 992 0440</p>
+              <p className="text-sm text-gray-600">
+                {contactUsPageData.data.fields[0].value}
+              </p>
             </div>
           </div>
 
@@ -54,7 +59,9 @@ const Page = () => {
             />
             <div>
               <p className="text-lg font-semibold text-secondary">Phone</p>
-              <p className="text-sm text-gray-600">+1 702 992 0440</p>
+              <p className="text-sm text-gray-600">
+                {contactUsPageData.data.fields[1].value}
+              </p>
             </div>
           </div>
 
@@ -69,7 +76,7 @@ const Page = () => {
             <div>
               <p className="text-lg font-semibold text-[#4B224C]">Email</p>
               <p className="text-sm text-gray-600">
-                info@chronicleexhibits.com
+                {contactUsPageData.data.fields[2].value}
               </p>
             </div>
           </div>
@@ -88,14 +95,14 @@ const Page = () => {
               US Office Address
             </p>
             <p className="text-sm text-gray-600">
-              8465, W. Sahara Ave, Suite 111 Unit #1183, Las Vegas, NV 89117, US
+              {contactUsPageData.data.fields[3].value}
             </p>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col items-center">
           <Image
-            src="/image 1.png"
+            src={contactUsPageData.data.fields[4].value}
             alt="QR Code"
             width={120}
             height={120}
