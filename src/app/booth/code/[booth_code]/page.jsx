@@ -8,7 +8,8 @@ import BoothEnquiry from "./_components/BoothInuiry";
 import { BoothDetails } from "./_components/BoothDetails";
 import Footer from "@/components/ui/footer";
 import { getDataByCode } from "@/server/actions/booths";
-
+import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const booth_code = resolvedParams.booth_code;
@@ -23,11 +24,17 @@ export async function generateMetadata({ params }) {
 
 const BoothByCode = async ({ params }) => {
   const resolvedParams = await params;
+  console.log("params",resolvedParams)
   const boothCode = resolvedParams.booth_code;
-
-  const resp = await getDataByCode(boothCode);
-  console.log(resp);
-
+  const header = await headers()
+  const referer = header.get("referer");
+  console.log(referer)
+  const size = referer.split("/")[3].split("-")[0]
+  const resp = await getDataByCode(boothCode , size);
+  console.log(size);
+  if (!resp?.data) {
+    notFound(); 
+  }
   return (
     <>
       <SubHeader />

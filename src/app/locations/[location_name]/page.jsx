@@ -30,6 +30,7 @@ import { userAgent } from "next/server";
 import { getAllLocations } from "@/server/actions/events";
 // import { useRouter } from "next/navigation";
 import { getEventByCity } from "@/server/actions/events";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
@@ -50,8 +51,13 @@ const Page = async ({ params }) => {
   console.log("eventByCity",eventByCity)
   let majorExhibitingCities = await getAllLocations();
   let boothSizes = await getAllBoothSizes();
+  // if(!eventByCity.data){
 
+  // }
   const { data } = await getLocationPagebyCity(city);
+  if(!data){
+    notFound();
+  }
   console.log(data);
 
   const shows = tradeShows.splice(0, 4);

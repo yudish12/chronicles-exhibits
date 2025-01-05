@@ -15,11 +15,12 @@ import BlogForm from "../blogs/_components/BlogForm";
 import "../top-trade-shows/[show_name]/styles.css";
 import "../blogs/[blog_id]/styles.css";
 import { cn } from "@/lib/utils";
-
+import { notFound } from "next/navigation";
+// if blog and event both are not found , then return 404
 const Page = async ({ params }) => {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
-
+  
   const { data } = await getSingleBlog({ slug: slug });
 
   if (data) {
@@ -29,7 +30,7 @@ const Page = async ({ params }) => {
       "name title slug image image_alt_text"
     );
     const blogsToBeMapped = blogFromDb.data;
-
+    
     return (
       <>
         <div className="booth-design-bg px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
@@ -267,8 +268,8 @@ const Page = async ({ params }) => {
       </>
     );
   }
-
-  return <div>Page</div>;
+  
+  return notFound();
 };
 
 export default Page;

@@ -18,6 +18,7 @@ import Head from "next/head";
 import BoothSizeForm from "./_components/BoothSizeForm";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { notFound } from "next/navigation";
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const show_name = resolvedParams.show_name;
@@ -50,7 +51,10 @@ const Page = async ({ params }) => {
   // recentShows = recentShows.data.slice(0, 3);
 
   const data = await getSingleEvent(show_name);
-  console.group("event data", data.data.start_date);
+  if(!data.data){
+    notFound();
+  }
+  console.group("event data", data);
   const date = new Date(data.data.start_date).toISOString().split("T")[0];
   const eventName = data.data.event_name;
   const eventCity = data.data.city;

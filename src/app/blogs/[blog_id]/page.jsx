@@ -9,6 +9,7 @@ import SubHeader from "@/components/ui/sub-header";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { getAllBlogs, getSingleBlog } from "@/server/actions/blogs";
 import BlogForm from "../_components/BlogForm";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const blog_slug = (await params).blog_id;
@@ -24,10 +25,12 @@ export async function generateMetadata({ params }) {
 
 const Blogpage = async ({ params }) => {
   const blog_slug = (await params).blog_id;
-
+  console.log("~blog page" , params, blog_slug)
   const { data } = await getSingleBlog({ slug: blog_slug });
   console.log("==blog data==", data);
-
+  if(!data){
+    return notFound();
+  }
   const blogFromDb = await getAllBlogs(
     null,
     data.blog_count,

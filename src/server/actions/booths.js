@@ -4,6 +4,7 @@ import dbConnect from "@/config/db-connect";
 import Booth from "../models/booths";
 import mongoose from "mongoose";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
+import BoothSize from "../models/booth-sizes";
 
 await dbConnect();
 export const getBoothByName = async (name) => {
@@ -220,9 +221,10 @@ export const deleteData = async (id) => {
   }
 };
 
-export const getDataByCode = async (boothCode) => {
+export const getDataByCode = async (boothCode , size) => {
   try {
-    const data = await Booth.findOne({ booth_code: boothCode }).lean();
+    const size_id = await BoothSize.findOne({name : size}).select("_id")
+    const data = await Booth.findOne({ booth_code: boothCode , booth_size: size_id}).lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
