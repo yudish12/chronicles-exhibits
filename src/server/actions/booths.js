@@ -15,29 +15,40 @@ export const getBoothByName = async (name) => {
           from: "boothsizes",
           localField: "booth_size",
           foreignField: "_id",
-          as: "boothSizeData"
-        }
+          as: "boothSizeData",
+        },
       },
       {
         $unwind: {
           path: "$boothSizeData",
-          preserveNullAndEmptyArrays: true
-        }
+          preserveNullAndEmptyArrays: true,
+        },
       },
       {
         $match: {
-          "boothSizeData.name": name
-        }
-      }
+          "boothSizeData.name": name,
+        },
+      },
     ]);
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }
 };
-export const getAllData = async (skip, limit) => {
+export const getAllData = async (
+  skip,
+  limit,
+  projection,
+  size,
+  notPopulate
+) => {
   try {
-    let query = Booth.find().sort({ _id: 1 });
+    let filter = {};
+    if (size) {
+      filter = { booth_size: size };
+    }
+
+    let query = Booth.find(filter).sort({ _id: 1 });
 
     if (skip) {
       query = query.skip(skip);
@@ -46,7 +57,15 @@ export const getAllData = async (skip, limit) => {
       query = query.limit(limit);
     }
 
-    const data = await query.populate("booth_size").lean();
+    if (projection) {
+      query = query.select(projection);
+    }
+
+    if (!notPopulate) {
+      query = query.populate("booth_size");
+    }
+
+    const data = await query.lean();
     const count = await Booth.countDocuments();
     return getActionSuccessResponse(data, count);
   } catch (error) {
@@ -221,10 +240,13 @@ export const deleteData = async (id) => {
   }
 };
 
-export const getDataByCode = async (boothCode , size) => {
+export const getDataByCode = async (boothCode, size) => {
   try {
-    const size_id = await BoothSize.findOne({name : size}).select("_id")
-    const data = await Booth.findOne({ booth_code: boothCode , booth_size: size_id}).lean();
+    const size_id = await BoothSize.findOne({ name: size }).select("_id");
+    const data = await Booth.findOne({
+      booth_code: boothCode,
+      booth_size: size_id,
+    }).lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
