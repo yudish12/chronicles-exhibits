@@ -51,7 +51,7 @@ const Layout = async ({ children }) => {
             </Link>
           </SidebarHeader>
           <SidebarContent className="px-4 justify-between">
-            <SidebarMenu className="mt-6">
+            <SidebarMenu>
               {collections.map((collection, ind) => (
                 <Link
                   key={ind}
