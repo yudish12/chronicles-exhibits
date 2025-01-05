@@ -59,10 +59,6 @@ const BoothSizeForm = ({ eventName, eventCity, date }) => {
 
   return (
     <div className="shadow-one h-max bg-white p-6 rounded-xl w-full">
-      <p className="text-center text-secondary">
-        Need exhibit displays for the ASI Show?Reach out to us for a hassle-free
-        experience.
-      </p>
       <h5 className="text-2xl mt-4 text-center font-semibold heading-font text-secondary">
         Enquiry Form
       </h5>
@@ -70,21 +66,21 @@ const BoothSizeForm = ({ eventName, eventCity, date }) => {
         <Input
           className="border-secondary/70 text-secondary placeholder:text-secondary/70"
           type="text"
-          placeholder="Enter Your Name"
+          placeholder="Your Name"
           onChange={handleChange}
           name="name"
         />
         <Input
           className="border-secondary/70 text-secondary placeholder:text-secondary/70"
           type="text"
-          placeholder="Enter Your Company"
+          placeholder="Your Company"
           onChange={handleChange}
           name="company"
         />
         <Input
           className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
           type="email"
-          placeholder="Enter Your Email"
+          placeholder="Your Email ID"
           onChange={handleChange}
           required
           name="email"
@@ -112,7 +108,7 @@ const BoothSizeForm = ({ eventName, eventCity, date }) => {
         <Input
           className="border-secondary/70 text-secondary placeholder:text-secondary/70"
           type="text"
-          placeholder="Country Name"
+          placeholder="Your Country Name"
           onChange={handleChange}
           name="country"
         />
@@ -151,7 +147,7 @@ const BoothSizeForm = ({ eventName, eventCity, date }) => {
         {/* <Input
             className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
             type="number"
-            placeholder="Enter Your Phone Number"
+            placeholder="Your Phone Number"
 
           /> */}
         <Input
@@ -178,7 +174,7 @@ const BoothSizeForm = ({ eventName, eventCity, date }) => {
           onChange={handleChange}
         />
         <Button
-          className="w-1/3 mx-auto bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
+          className="w-1/3 mx-auto bg-primary text-secondary hover:text-black font-semibold py-2 rounded hover:bg-primary "
           onClick={handleSubmit}
         >
           Send Enquiry

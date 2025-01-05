@@ -7,7 +7,7 @@ import { getAllBlogs } from "@/server/actions/blogs";
 const Page = async ({ params, searchParams }) => {
   const searchparams = await searchParams;
   const page = Number(searchparams?.page) ?? 1;
-  const limit = 6;
+  const limit = 10;
 
   const skip = (page - 1) * limit;
 

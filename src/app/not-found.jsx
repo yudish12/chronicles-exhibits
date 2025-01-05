@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
-const page = () => {
+const Page = () => {
   return (
     <>
       <SubHeader />
@@ -34,4 +34,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

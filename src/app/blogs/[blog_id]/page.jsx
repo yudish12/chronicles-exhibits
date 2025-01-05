@@ -40,14 +40,7 @@ const Blogpage = async ({ params }) => {
     <>
       <SubHeader />
       <Header />
-      <div className="bg-[url('/blog-hero-bg-small.png')] grayscale-[70%] bg-cover bg-no-repeat px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
-        <Image
-          src={"/Book-open.png"}
-          width={60}
-          height={60}
-          alt="location-bg"
-          className="object-cover"
-        />
+      <div className="booth-design-bg px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
         <h3 className="text-white text-center uppercase heading-font text-[2.35rem] font-bold">
           {data.title}
         </h3>

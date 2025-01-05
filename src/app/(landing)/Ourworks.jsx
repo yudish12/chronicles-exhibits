@@ -6,7 +6,7 @@ import Link from "next/link";
 import { getAllPortfolios } from "@/server/actions/portfolio";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
-const Ourworks = async () => {
+const Ourworks = async ({ title, subtitle }) => {
   const ua = userAgent({ headers: headers() });
   const isMobile = ua?.device?.type === "mobile";
   const ourWorksData = await getAllPortfolios(6, 0);
@@ -20,14 +20,11 @@ const Ourworks = async () => {
         style={{ lineHeight: "1.2" }}
         className="text-xl sm:text-2xl md:text-[2rem] text-white heading-font-700 font-semibold text-center"
       >
-        TRADE SHOW BOOTH DESIGN PORTFOLIO
+        {title ?? "TRADE SHOW BOOTH DESIGN PORTFOLIO"}
       </h3>
       <p className="text-sm md:text-base  text-white/95 text-center mb-2 px-4 sm:px-8 md:px-16">
-        Our recent works in the USA showcase stunning images of our exceptional
-        projects. From trade show booths to eye-catching displays, our portfolio
-        reflects the expertise and creativity we bring to every project. Get
-        inspired by our work and let us create a standout experience for your
-        brand.
+        {subtitle ??
+          "Our recent works in the USA showcase stunning images of our exceptional projects. From trade show booths to eye-catching displays, our portfolio reflects the expertise and creativity we bring to every project. Get inspired by our work and let us create a standout experience for yourbrand."}
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[370px,370px,370px] shadow-two w-full md:w-max mx-auto  gap-x-4 sm:gap-x-6 md:gap-x-8 p-4 sm:p-6 md:p-8 gap-y-6">
         {displayedData.map((item, index) => (

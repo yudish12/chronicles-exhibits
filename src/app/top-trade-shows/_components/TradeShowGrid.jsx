@@ -9,13 +9,13 @@ const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
   return (
     <div className="px-20 mt-12">
       {/* Trade show grid */}
-      <div className="grid lg:grid-cols-[290px,290px,290px,290px] md:grid-cols-3 gap-x-12 gap-y-12 sm:grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-3 gap-x-12 gap-y-12 sm:grid-cols-2 gap-4">
         {tradeShows.data.map((show) => (
           <div
             key={show._id}
-            className="min-h-[360px] justify-between bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
+            className="min-h-[360px] justify-between bg-[#414141] flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
           >
-            <h4 className="text-secondary text-center heading-font text-2xl uppercase font-semibold">
+            <h4 className="text-white text-center heading-font text-2xl uppercase font-semibold">
               {show.event_name}
             </h4>
             <Image
@@ -26,16 +26,15 @@ const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
               alt={show.event_name ?? "event name"}
             />
             <div className="flex flex-col gap-2 w-full px-4">
-              <p className="flex gap-4">
+              <p className="flex text-white gap-4">
                 <MapPin color="#B0CB1F" />
-                <span className="text-[16px]">
-                  {show?.location_id?.city ?? show.city},{" "}
-                  {show?.location_id?.continent ?? show.country}
+                <span className="text-[17px]">
+                  {show?.location_id?.city ?? show.city} | United States
                 </span>
               </p>
               <p className="flex gap-4">
                 <Calendar color="#B0CB1F" />
-                <span className="text-[16px]">
+                <span className="text-[17px] text-white">
                   {moment(show.start_date).format("DD")}-
                   {moment(show.end_date).format("DD")}{" "}
                   {moment(show.start_date).format("MMMM")}{" "}
@@ -43,10 +42,13 @@ const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
                 </span>
               </p>
             </div>
-            <Link className="w-full justify-center" href={`/${show.slug}/`}>
+            <Link
+              className="w-full justify-center"
+              href={`/top-trade-shows/${show.slug}`}
+            >
               <Button
                 variant="outline"
-                className="text-secondary w-full hover:bg-secondary hover:text-white border-secondary border-2 bg-transparent font-semibold py-[18px] text-[16px]"
+                className="text-white w-full hover:bg-white hover:text-secondary border-white border-2 bg-transparent font-semibold py-[18px] text-[16px]"
               >
                 View Details
               </Button>

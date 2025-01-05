@@ -6,55 +6,55 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-// export const majorExhibitingCities = [
-//   "Anaheim",
-//   "Atlanta",
-//   "Austin",
-//   "Baltimore",
-//   "Boston",
-//   "Charlotte",
-//   "Chicago",
-//   "Dallas",
-//   "Denver",
-//   "Detroit",
-//   "Houston",
-//   "Indianapolis",
-//   "Las Vegas",
-//   "Long Beach",
-//   "Kansas City",
-//   "Los Angeles",
-//   "Louisville",
-//   "Miami",
-//   "Milwaukee",
-//   "Minneapolis",
-//   "Nashville",
-//   "New Orleans",
-//   "New York",
-//   "Novi",
-//   "Ohio",
-//   "Omaha",
-//   "Palm Springs",
-//   "Orlando",
-//   "Philadelphia",
-//   "Phoenix",
-//   "Portland",
-//   "Riverside County",
-//   "Rosemont",
-//   "Sacramento",
-//   "Salt Lake City",
-//   "San Antonio",
-//   "San Diego",
-//   "San Francisco",
-//   "San Jose",
-//   "Santa Clara",
-//   "Seattle",
-//   "South Carolina",
-//   "St. Louis",
-//   "Tampa",
-//   "Tennessee",
-//   "Utah",
-//   "Washington DC",
-// ];
+export const majorExhibitingCities = [
+  "Anaheim",
+  "Atlanta",
+  "Austin",
+  "Baltimore",
+  "Boston",
+  "Charlotte",
+  "Chicago",
+  "Dallas",
+  "Denver",
+  "Detroit",
+  "Houston",
+  "Indianapolis",
+  "Las Vegas",
+  "Long Beach",
+  "Kansas City",
+  "Los Angeles",
+  "Louisville",
+  "Miami",
+  "Milwaukee",
+  "Minneapolis",
+  "Nashville",
+  "New Orleans",
+  "New York",
+  "Novi",
+  "Ohio",
+  "Omaha",
+  "Palm Springs",
+  "Orlando",
+  "Philadelphia",
+  "Phoenix",
+  "Portland",
+  "Riverside County",
+  "Rosemont",
+  "Sacramento",
+  "Salt Lake City",
+  "San Antonio",
+  "San Diego",
+  "San Francisco",
+  "San Jose",
+  "Santa Clara",
+  "Seattle",
+  "South Carolina",
+  "St. Louis",
+  "Tampa",
+  "Tennessee",
+  "Utah",
+  "Washington DC",
+];
 
 const Page = async () => {
   let locations = await getAllData();
@@ -104,7 +104,12 @@ const Page = async () => {
       </div>
       <div className="us-bg px-4 sm:px-20 py-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
         {majorExhibitingCities.map((city, index) => (
-          <Link href={`/locations/${city}`} key={index}>
+          <Link
+            href={`/trade-show-booth-rentals-${city
+              .toLowerCase()
+              .replace(" ", "-")}`}
+            key={index}
+          >
             <div
               key={index}
               className="flex flex-col max-w-[250px] transition-all duration-300 hover:shadow-xl hover:scale-110 rounded-xl items-center gap-4 py-4 sm:py-6 text-center shadow-one sm:shadow-none sm:rounded-none"

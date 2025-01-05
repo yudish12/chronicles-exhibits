@@ -32,14 +32,7 @@ const Page = async ({ params }) => {
 
     return (
       <>
-        <div className="bg-[url('/blog-hero-bg-small.png')] grayscale-[70%] bg-cover bg-no-repeat px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
-          <Image
-            src={"/Book-open.png"}
-            width={60}
-            height={60}
-            alt="location-bg"
-            className="object-cover"
-          />
+        <div className="booth-design-bg px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
           <h3 className="text-white text-center uppercase heading-font text-[2.35rem] font-bold">
             {data.title}
           </h3>
@@ -69,24 +62,24 @@ const Page = async ({ params }) => {
             {/* Right Section */}
             <div className="space-y-8 w-full">
               {/* Related Blogs */}
-              <div className="flex flex-col justify-center items-center py-4">
-                <h3 className="text-lg font-semibold py-2 text-[#B0CB1F]">
-                  Related Blogs
+              <div className="flex flex-col justify-center items-center">
+                <h3 className="text-3xl font-semibold py-2 text-black">
+                  Recent Posts
                 </h3>
-                <div className="space-y-8">
+                <div className="space-y-8 flex flex-col items-center">
                   {blogsToBeMapped.map((blog, index) => (
                     <Card
                       key={index}
-                      className="shadow-one relative h-full w-full flex flex-col justify-between"
+                      className="shadow-one relative h-full w-4/5 flex flex-col justify-between"
                     >
                       {/* Image Section */}
                       <div className="w-full border-b-2 border-primary">
                         <Image
                           src={blog.image}
                           alt={blog.title ?? "booth title"}
-                          width={400}
+                          width={300}
                           height={200}
-                          className="rounded-t-lg max-h-[155px] w-full object-cover"
+                          className="rounded-t-lg max-h-[195px] w-full object-cover"
                         />
                       </div>
 

@@ -35,10 +35,12 @@ const page = async () => {
       <SubHeader />
       <Header />
       <div className="booth-design-bg px-20 flex justify-center gap-4 flex-col items-center">
-        <h2 className="text-[2.1rem] uppercase font-semibold text-secondary text-center heading-font">
+        <h2 className="text-[2.1rem] uppercase font-semibold text-white text-center heading-font">
           {data.fields[0].value}
         </h2>
-        <p className="text-[17.5px] text-center">{data.fields[1].value}</p>
+        <p className="text-[17.5px] text-white mx-56 text-center">
+          {data.fields[1].value}
+        </p>
       </div>
       <div className="px-20 flex gap-20 pt-16 pb-20">
         <Image
@@ -114,6 +116,7 @@ const page = async () => {
         </h3>
         <div
           id="show_name_desc"
+          className="mx-36"
           dangerouslySetInnerHTML={{ __html: data.fields[16].value }}
         ></div>
       </div>

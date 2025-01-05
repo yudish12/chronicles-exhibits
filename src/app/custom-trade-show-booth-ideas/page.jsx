@@ -21,11 +21,11 @@ const Page = async () => {
     <>
       <SubHeader />
       <Header />
-      <div className="featured-bg flex justify-center flex-col gap-8 items-center">
+      <div className="booth-design-bg flex justify-center flex-col gap-8 items-center">
         <h2 className="text-4xl uppercase font-semibold heading-font text-white">
           {data.fields[0].value}
         </h2>
-        <h4 className="text-2xl font-semibold text-center heading-font text-white">
+        <h4 className="text-xl mx-80 text-center heading-font text-white">
           {data.fields[1].value}
         </h4>
       </div>
@@ -35,6 +35,7 @@ const Page = async () => {
         </h2>
         <div
           id="show_name_desc"
+          className="mx-36"
           dangerouslySetInnerHTML={{ __html: data.fields[3].value }}
         ></div>
       </div>
@@ -90,32 +91,21 @@ const Page = async () => {
         </div>
         {/* Text Content */}
       </div>
-      <div className="flex flex-col px-20 py-8 gap-6">
+      <div className="flex flex-col px-20 py-4 gap-6">
         <h3 className="text-secondary text-center text-4xl font-semibold heading-font">
           {data.fields[12].value}
         </h3>
         <div
           id="show_name_desc"
+          className="mx-36"
           dangerouslySetInnerHTML={{ __html: data.fields[13].value }}
         ></div>
       </div>
       <div className="flex flex-col pb-0 py-8 gap-6">
-        <h3 className="text-secondary text-center text-4xl font-semibold heading-font">
-          {data.fields[14].value}
-        </h3>
-        <p className="text-[17px] text-center">{data.fields[15].value}</p>
-        <div className="flex self-center">
-          <hr
-            style={{ color: "#5D2A42" }}
-            className="border-b-[0.5px] text-center w-12 self-center border-secondary"
-          />
-          <StoreIcon />
-          <hr
-            style={{ color: "#5D2A42" }}
-            className="border-b-[0.5px] text-center w-12 self-center border-secondary"
-          />
-        </div>
-        <Ourworks />
+        <Ourworks
+          title={data.fields[14].value}
+          subtitle={data.fields[15].value}
+        />
       </div>
       <Queryform />
       <Footer />
