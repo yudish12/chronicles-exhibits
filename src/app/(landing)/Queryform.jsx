@@ -4,7 +4,7 @@ import React from "react";
 
 const Queryform = () => {
   return (
-    <div className="p-6 sm:p-14 md:p-20 queryform flex flex-col items-center gap-4">
+    <div className="p-6 sm:p-14 md:p-20 queryform flex flex-col overflow-y-auto items-center gap-4">
       <h5 className="text-primary text-center text-lg sm:text-xl font-semibold">
         Enquiry Form
       </h5>
