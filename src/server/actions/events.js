@@ -25,7 +25,7 @@ export const getEventByCity = async (city, skip, limit, projection) => {
           options: "i", // Case-insensitive match
         },
       },
-    });
+    }).sort({start_date: 1});
 
     // Apply skip, limit, and projection if provided
     if (skip) {

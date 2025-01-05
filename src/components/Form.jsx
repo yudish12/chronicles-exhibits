@@ -67,9 +67,9 @@ const EnquiryForm = () => {
       <h5 className="text-3xl mt-4 text-center font-semibold heading-font text-secondary">
         Enquiry Form
       </h5>
-      <div className="mt-4 grid md:grid-cols-1 grid-cols-2 gap-5">
+      <div className="mt-4 w-full flex flex-col lg:grid lg:grid-cols-2 gap-5">
         <Input
-          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70 "
           type="text"
           placeholder="Enter Your Name"
           onChange={handleChange}
@@ -77,7 +77,7 @@ const EnquiryForm = () => {
           name="name"
         />
         <Input
-          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
+          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70 "
           type="email"
           placeholder="Enter Your Email"
           onChange={handleChange}
@@ -85,7 +85,7 @@ const EnquiryForm = () => {
           name="email"
         />
         <Input
-          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
+          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70 "
           placeholder="Enter Your Company"
           onChange={handleChange}
           required
@@ -98,7 +98,7 @@ const EnquiryForm = () => {
           inputStyle={{ width: "100%", marginBottom: "10px" }}
         />
         <Input
-          className=" border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
+          className=" border-[#CACACA] text-secondary/70 placeholder:text-secondary/70 "
           type="text"
           name="boothSize"
           placeholder="Booth Size"
@@ -106,7 +106,7 @@ const EnquiryForm = () => {
           required
         />
         <Input
-          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
+          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70 "
           placeholder="Enter Event Name"
           type="text"
           name="eventName"
@@ -114,7 +114,7 @@ const EnquiryForm = () => {
           required
         />
         <Input
-          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70 "
           type="text"
           placeholder="Enter Event City"
           onChange={handleChange}
@@ -122,7 +122,7 @@ const EnquiryForm = () => {
           name="eventCity"
         />
         <Input
-          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70 "
           type="text"
           placeholder="Enter Budget"
           onChange={handleChange}
@@ -130,7 +130,7 @@ const EnquiryForm = () => {
           name="budget"
         />
         <Input
-          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70 "
           type="file"
           placeholder="Upload resources (optional)"
           onChange={(e) => setFormData({ ...formData, file: e.target.value })}
