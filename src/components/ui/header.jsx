@@ -96,22 +96,21 @@ const Header = () => {
           }
         >
           <HeaderBtns scrollPosition={scrollPosition} />
-          <button onClick={toggleMenu} className="text-white">
+          <button
+            onClick={toggleMenu}
+            className={cn("text-white", scrollPosition < 55 && "hidden")}
+          >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
           </button>
         </div>
       </div>
       <div className="lg:hidden">
-        <button
-          onClick={toggleMenu}
-          className={cn("text-white", scrollPosition < 55 && "hidden")}
-        >
+        <button onClick={toggleMenu} className={cn("text-white")}>
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
         </button>
       </div>
-      {/* Mobile Menu (Full-Screen Overlay) */}
       <div
-        className={`fixed top-0 left-0 w-full h-full  bg-opacity-70 z-30 transition-opacity ${
+        className={`fixed top-0 left-0 w-full h-full bg-opacity-70 z-30 transition-opacity ${
           isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={closeMenu}

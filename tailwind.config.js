@@ -9,6 +9,9 @@ module.exports = withUt({
   ],
   theme: {
     extend: {
+      screens: {
+        lg: "1026px",
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

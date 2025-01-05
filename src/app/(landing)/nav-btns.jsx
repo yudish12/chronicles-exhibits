@@ -22,7 +22,7 @@ const HeaderBtns = () => {
             Schedule Call
           </Button>
         </DialogTrigger>
-        <DialogContent className="">
+        <DialogContent className={"overflow-y-scroll max-h-screen"}>
           <ScheduleCallForm />
         </DialogContent>
       </Dialog>
@@ -32,7 +32,7 @@ const HeaderBtns = () => {
             Get Quote
           </Button>
         </DialogTrigger>
-        <DialogContent className="">
+        <DialogContent className={"overflow-y-scroll max-h-screen"}>
           <EnquiryForm />
         </DialogContent>
       </Dialog>

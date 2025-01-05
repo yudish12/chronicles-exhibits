@@ -42,15 +42,15 @@ const page = async () => {
           {data.fields[1].value}
         </p>
       </div>
-      <div className="px-20 flex gap-20 pt-16 pb-20">
+      <div className="lg:px-20 md:px-8 px-6 flex lg:flex-row flex-col gap-20 pt-16 pb-20">
         <Image
           src={data.fields[3].value}
           alt={data.fields[4].value ?? "booth design"}
-          className="w-1/2 max-w-[590px] max-h-[570px]"
+          className="lg:w-1/2 w-full lg:max-w-[590px] xl:max-h-[420px]"
           width={800}
           height={800}
         />
-        <div className="flex flex-col w-1/2 gap-6 ">
+        <div className="flex flex-col w-full lg:w-1/2 gap-6 ">
           <h3
             style={{ lineHeight: "1.2" }}
             className="text-secondary uppercase font-bold heading-font text-[1.7rem]"
@@ -58,16 +58,6 @@ const page = async () => {
             {data.fields[2].value}
           </h3>
           <div className="bg-transparent flex flex-col gap-4 overflow-hidden mb-6">
-            {/* {questions.map((e, ind) => (
-              <div key={ind}>
-                <Accordion
-                  questions={e}
-                  answers={answers[ind]}
-                  heading={e}
-                  description={answers[ind]}
-                />
-              </div>
-            ))} */}
             <Accordion
               questions={questions}
               answers={answers}
@@ -84,7 +74,7 @@ const page = async () => {
         <p className="text-center text-gray-300 text-md pt-4">
           {data.fields[14].value}
         </p>
-        <div className="grid grid-cols-3 py-12 px-32 gap-x-12 gap-y-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-12 px-6 md:px-20 lg:px-32 gap-x-8 lg:gap-x-12 gap-y-10">
           {cardData.map((item, index) => (
             <Link
               href={`/booth/size/${item.name}`}
@@ -110,13 +100,13 @@ const page = async () => {
           ))}
         </div>
       </div>
-      <div className="p-20 flex flex-col gap-3 pb-28">
+      <div className="lg:p-20 md:p-16 sm:p-12 p-6 flex flex-col gap-3 pb-28">
         <h3 className="heading-font text-[2.1rem] uppercase font-semibold text-secondary text-center">
           {data.fields[15].value}
         </h3>
         <div
           id="show_name_desc"
-          className="mx-36"
+          className="md:mx-36 mx-8 sm:mx-16"
           dangerouslySetInnerHTML={{ __html: data.fields[16].value }}
         ></div>
       </div>
