@@ -29,7 +29,7 @@ const WhyChooseUs = () => {
     },
   ];
   return (
-    <div className="product-bg py-6 px-8 md:p-20 flex flex-col md:flex-row gap-6 md:gap-10">
+    <div className="product-bg py-6 px-0 sm:px-4 md:px-8 lg:p-20 flex flex-col md:flex-row gap-6 md:gap-10">
       <div className="w-full md:w-1/2 px-6 sm:px-0">
         <h3
           style={{ lineHeight: "1.2" }}
@@ -72,7 +72,7 @@ const WhyChooseUs = () => {
           height={250}
           src="/photo1 2.png"
           alt="photo1"
-          className="max-h-[300px] md:max-h-[530px] object-cover rounded-lg "
+          className="min-h-[400px] object-cover rounded-lg "
         />
       </div>
     </div>

@@ -12,11 +12,11 @@ const page = () => {
     <>
       <SubHeader />
       <Header />
-      <div className="bg-[url('/location-bg.png')] grayscale-[70%] px-20 text-white gap-8 h-[420px] justify-center items-center flex flex-col">
+      <div className="booth-design-bg px-4 md:px-20 text-white gap-8 h-[360px] justify-center items-center flex flex-col">
         <Image
           src={"/info-circle.png"}
-          width={40}
-          height={40}
+          width={50}
+          height={50}
           alt="location-bg"
           className="object-cover"
         />

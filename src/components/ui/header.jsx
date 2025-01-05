@@ -70,9 +70,15 @@ const Header = () => {
   return (
     <div className="bg-gradient-to-b sticky top-[-1px] z-10 bg-secondary border-t-2 border-t-white/60 border-b-2 border-b-primary w-full flex justify-between items-center pb-2 pt-3 text-white text-opacity-60 px-6 md:px-20 gap-4">
       <Link href={"/"}>
-        <Image alt="logo" src="/chronicle-logo.svg" width={110} height={80} />
+        <Image
+          className="max-h-[60px] min-h-[40px] object-fill"
+          alt="logo"
+          src="/chronicle-logo.svg"
+          width={110}
+          height={80}
+        />
       </Link>
-      <div className="hidden md:flex gap-8">
+      <div className="hidden lg:flex gap-8">
         {headerRoutes.map((route, index) => (
           <RouteComponent
             className={scrollPosition > 55 ? "opacity-0" : ""}
@@ -95,8 +101,11 @@ const Header = () => {
           </button>
         </div>
       </div>
-      <div className="md:hidden">
-        <button onClick={toggleMenu} className="text-white">
+      <div className="lg:hidden">
+        <button
+          onClick={toggleMenu}
+          className={cn("text-white", scrollPosition < 55 && "hidden")}
+        >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
         </button>
       </div>
