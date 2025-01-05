@@ -173,6 +173,7 @@
 .hero {
   position: relative;
   overflow: hidden;
+  min-height: 300px;
   background-color: rgba(0, 0, 0, 0.621);
 }
 
@@ -300,7 +301,7 @@
 .queryform {
   position: relative;
   overflow: hidden;
-  height: 600px; /* Default height for larger screens */
+  height: 700px; /* Default height for larger screens */
 }
 
 .queryform::before {
@@ -314,30 +315,6 @@
   background: url("../../public/form-bg.png") no-repeat center center;
   background-size: cover;
   z-index: -2;
-}
-
-@media (max-width: 768px) {
-  .queryform {
-    height: auto; /* Allow height to adjust based on content */
-    padding: 20px; /* Add padding for better spacing */
-  }
-
-  .queryform::before {
-    background-size: cover; /* Ensure the image scales properly */
-    background-position: center; /* Center the image on smaller screens */
-  }
-}
-
-@media (max-width: 480px) {
-  .queryform {
-    height: auto; /* Adjust for very small screens */
-    padding: 16px; /* Smaller padding for narrow screens */
-  }
-
-  .queryform::before {
-    background-size: contain; /* Adjust background size for small screens */
-    background-position: center;
-  }
 }
 
 .service-bg {

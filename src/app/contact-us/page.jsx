@@ -12,7 +12,7 @@ const Page = () => {
     <>
       <SubHeader />
       <Header />
-      <div className="bg-[url('/location-bg.png')] grayscale-[70%] m px-20 text-white gap-8 h-[360px] justify-center items-center flex flex-col">
+      <div className="booth-design-bg px-4 md:px-20 text-white gap-8 h-[360px] justify-center items-center flex flex-col">
         <Image
           src="/Phone.png"
           width={80}
@@ -25,7 +25,7 @@ const Page = () => {
         </h3>
       </div>
 
-      <div className="py-16 px-10 bg-background">
+      <div className="py-16 px-4 md:px-10 bg-background">
         <h2 className="text-center text-[#9CCC4A] text-xl font-semibold">
           Reach Out To Us
         </h2>

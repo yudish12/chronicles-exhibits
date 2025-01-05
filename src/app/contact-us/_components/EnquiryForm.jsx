@@ -18,27 +18,37 @@ const EnquiryForm = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 w-full sm:w-4/5">
-        <Input
-          placeholder="Enter your name"
-          className="bg-white border-secondary  col-span-1 sm:col-span-3 placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
-        />
-        <Input
-          placeholder="Email ID"
-          className="bg-white border-secondary placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
-        />
-        <Input
-          placeholder="Phone Number"
-          className="bg-white border-secondary placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
-        />
-        <Input
-          placeholder="Budget"
-          className="bg-white border-secondary placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
-        />
-        <Input
-          type="file"
-          placeholder="Choose File"
-          className="bg-white col-span-3 flex items-center justify-center border-secondary placeholder:text-secondary/50 border-2 text-black py-[28px] mb-6 px-4 rounded-lg"
-        />
+        <div>
+          <Input
+            placeholder="Enter your name"
+            className="bg-white border-secondary  col-span-1 sm:col-span-3 placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
+          />
+        </div>
+        <div>
+          <Input
+            placeholder="Email ID"
+            className="bg-white border-secondary placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
+          />
+        </div>
+        <div>
+          <Input
+            placeholder="Phone Number"
+            className="bg-white border-secondary placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
+          />
+        </div>
+        <div>
+          <Input
+            placeholder="Budget"
+            className="bg-white border-secondary placeholder:text-secondary/50 border-2 text-black py-4 px-4 rounded-lg"
+          />
+        </div>
+        <div>
+          <Input
+            type="file"
+            placeholder="Choose File"
+            className="bg-white col-span-3 flex items-center justify-center border-secondary placeholder:text-secondary/50 border-2 text-black py-[28px] mb-6 px-4 rounded-lg"
+          />
+        </div>
         <textarea
           rows={3}
           placeholder="Additional information that you would like to add..."

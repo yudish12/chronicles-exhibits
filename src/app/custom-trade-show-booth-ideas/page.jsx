@@ -21,11 +21,11 @@ const Page = async () => {
     <>
       <SubHeader />
       <Header />
-      <div className="booth-design-bg flex justify-center flex-col gap-8 items-center">
+      <div className="booth-design-bg flex justify-center px-4 md:px-20 flex-col gap-8 items-center">
         <h2 className="text-4xl uppercase font-semibold heading-font text-white">
           {data.fields[0].value}
         </h2>
-        <h4 className="text-xl mx-80 text-center heading-font text-white">
+        <h4 className="text-xl mx-0 sm:mx-20 md:mx-28 lg:mx-52 text-center heading-font text-white">
           {data.fields[1].value}
         </h4>
       </div>
