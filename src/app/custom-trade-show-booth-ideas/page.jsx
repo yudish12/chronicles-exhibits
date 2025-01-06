@@ -29,13 +29,13 @@ const Page = async () => {
           {data.fields[1].value}
         </h4>
       </div>
-      <div className="bg-background px-20 flex flex-col gap-6 py-12">
+      <div className="bg-background sm:px-20 px-16 flex flex-col gap-6 py-12">
         <h2 className="text-3xl text-center font-medium heading-font text-secondary">
           {data.fields[2].value}
         </h2>
         <div
           id="show_name_desc"
-          className="mx-36"
+          className="sm:mx-36 "
           dangerouslySetInnerHTML={{ __html: data.fields[3].value }}
         ></div>
       </div>
@@ -91,13 +91,13 @@ const Page = async () => {
         </div>
         {/* Text Content */}
       </div>
-      <div className="flex flex-col px-20 py-4 gap-6">
+      <div className="flex flex-col sm:px-20 px-16 py-4 gap-6">
         <h3 className="text-secondary text-center text-4xl font-semibold heading-font">
           {data.fields[12].value}
         </h3>
         <div
           id="show_name_desc"
-          className="mx-36"
+          className="sm:mx-36"
           dangerouslySetInnerHTML={{ __html: data.fields[13].value }}
         ></div>
       </div>
