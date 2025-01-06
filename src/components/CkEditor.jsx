@@ -5,8 +5,8 @@ const CkEditor = ({ value, onChange, index }) => {
   return (
     <CKEditor
       onChange={(event, editor) => {
-        console.log(event.editor.getData(), index, "CKE log");
-        if (index) {
+        console.log(index, "CKE log");
+        if (index || index === 0) {
           onChange(index, event.editor.getData());
           return;
         }

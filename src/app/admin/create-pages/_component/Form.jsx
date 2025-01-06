@@ -69,7 +69,7 @@ const PageEditForm = ({ pageData, isLocationPage }) => {
   const handleFieldChange = (index, value) => {
     setBoothSizePage((prev) => {
       const temp = JSON.parse(JSON.stringify(prev));
-      console.log(value, index);
+      console.log(value, index, temp, 72);
       temp.fields[index].value = value;
       console.log(temp);
       return temp;

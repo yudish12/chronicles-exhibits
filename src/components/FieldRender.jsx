@@ -13,9 +13,7 @@ const FieldRender = ({ field, value, onChange, index }) => {
   useEffect(() => {
     if (!window) return <></>;
   }, []);
-  console.log(field, value, index);
 
-  console.log(field, value);
   switch (field.type) {
     case "text":
       return (
