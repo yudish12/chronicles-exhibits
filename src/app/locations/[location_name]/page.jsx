@@ -47,7 +47,7 @@ export async function generateMetadata({ params }) {
 const Page = async ({ params }) => {
   const city = (await params).location_name;
   // console.log("city==" , city)
-  const eventByCity = await getEventByCity(city);
+  const eventByCity = await getEventByCity(city, 0, 4);
   // console.log("eventByCity",eventByCity.data.slice(0,3))
   let majorExhibitingCities = await getAllLocations();
   let boothSizes = await getAllBoothSizes();
@@ -288,7 +288,7 @@ const Page = async ({ params }) => {
           {data[0].fields[17].value}
         </h2>
         <div className="grid place-content-center mx-auto xl:grid-cols-[270px,270px,270px,270px] lg:grid-cols-3 gap-x-8 gap-y-8 md:grid-cols-2 grid-cols-1 gap-4 px-6 sm:px-12 md:px-20 pb-10 mt-12">
-          {eventByCity.data.slice(0, 3).map((show) => (
+          {eventByCity.data.map((show) => (
             <div
               key={show.id}
               className="h-[350px] w-full bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6 justify-between"
