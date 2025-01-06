@@ -11,11 +11,11 @@ const BoothGrid = ({ fields, size, booths }) => {
   return (
     <div className="py-20 bg-gradient-to-b">
       {/* Booth Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1200px] mx-auto px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1200px] mx-auto px-8 md:px-20 xl:px-4">
         {booths.slice(0, visibleCount).map((booth, index) => (
           <Card
             key={booth.id}
-            className="shadow-one mx-auto rounded-lg overflow-hidden w-[360px]"
+            className="shadow-one mx-auto rounded-lg overflow-hidden w-full lg:w-[360px]"
           >
             <CardHeader className="p-0">
               <Image
@@ -23,7 +23,7 @@ const BoothGrid = ({ fields, size, booths }) => {
                 width={378}
                 src={booth.thumbnail_image}
                 alt={`Booth ${booth.booth_code}`}
-                className="w-full h-[250px]"
+                className="w-full h-[200px] lg:h-[250px]"
               />
             </CardHeader>
             <CardContent className="p-4 text-center">

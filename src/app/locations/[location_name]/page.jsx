@@ -55,7 +55,7 @@ const Page = async ({ params }) => {
 
   // }
   const { data } = await getLocationPagebyCity(city);
-  if(!data){
+  if (!data) {
     notFound();
   }
   console.log(data);
@@ -127,12 +127,13 @@ const Page = async ({ params }) => {
           {data[0].fields[1].value}
         </Button>
       </div>
-      <div className="bg-background px-10 py-16 sm:px-20 flex flex-col gap-8">
-        <h2 className="text-center uppercase leading-10 font-semibold text-secondary text-[2.1rem] heading-font">
+      <div className="bg-background px-6 sm:px-8 md:px-10 py-16 lg:px-20 flex flex-col gap-8">
+        <h2 className="text-center max-w-full sm:w-[600px] lg:w-[800px] mx-auto break-words uppercase leading-10 font-semibold text-secondary text-[2.1rem] heading-font">
           {data[0].fields[2].value}
-          <br /> {data[0].fields[3].value}
+          {data[0].fields[3].value}
         </h2>
-        <p className="text-[17px] text-center text-balance mx-36">
+
+        <p className="text-[17px] text-center text-balance mx-0 sm:mx-8 md:mx-16 lg:mx-36">
           {data[0].fields[4].value} {data[0].fields[5].value}
         </p>
       </div>
@@ -187,11 +188,13 @@ const Page = async ({ params }) => {
           </Button>
         </div>
       </div>
-      <div className="p-12 md:px-36  pb-10">
+      <div className="py-8 px-6 sm:p-12 md:px-20 lg:px-36  pb-10">
         <h2 className="uppercase text-3xl heading-font-600 text-primary text-center font-semibold">
           {data[0].fields[11].value} {city}
         </h2>
-        <p className="text-center mx-44 mt-7">{data[0].fields[12].value}</p>
+        <p className="text-center md:mx-28 lg:mx-44 mt-7">
+          {data[0].fields[12].value}
+        </p>
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-x-4 gap-y-4">
           {displayedData.map((item, index) => (
             <div
@@ -284,8 +287,8 @@ const Page = async ({ params }) => {
         <h2 className="text-3xl heading-font text-secondary text-center uppercase">
           {data[0].fields[17].value}
         </h2>
-        <div className="grid place-content-center mx-auto xl:grid-cols-[270px,270px,270px,270px] lg:grid-cols-3 gap-x-8 gap-y-8 md:grid-cols-2 grid-cols-1 gap-4 px-20 pb-10 mt-12">
-          {eventByCity.data.slice(0,3).map((show) => (
+        <div className="grid place-content-center mx-auto xl:grid-cols-[270px,270px,270px,270px] lg:grid-cols-3 gap-x-8 gap-y-8 md:grid-cols-2 grid-cols-1 gap-4 px-6 sm:px-12 md:px-20 pb-10 mt-12">
+          {eventByCity.data.slice(0, 3).map((show) => (
             <div
               key={show.id}
               className="h-[350px] w-full bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6 justify-between"
@@ -303,7 +306,9 @@ const Page = async ({ params }) => {
               <div className="flex flex-col gap-2 w-full px-4">
                 <p className="flex gap-4">
                   <MapPin color="#B0CB1F" />
-                  <span className="text-[16px]">{show.city},{show.country}</span>
+                  <span className="text-[16px]">
+                    {show.city},{show.country}
+                  </span>
                 </p>
                 <p className="flex gap-4  ">
                   <Calendar color="#B0CB1F" />

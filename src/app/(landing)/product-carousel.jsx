@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { ChevronLeftCircle, ChevronRightCircle } from "lucide-react";
 
 const ProductCarousel = ({ bgColor, boothsizes, location }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -11,7 +12,9 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
 
   useEffect(() => {
     const updateVisibleCards = () => {
-      setVisibleCards(window.innerWidth >= 768 ? 3 : 1);
+      setVisibleCards(
+        window.innerWidth >= 1025 ? 3 : window.innerWidth >= 768 ? 2 : 1
+      );
     };
 
     updateVisibleCards();
@@ -64,7 +67,7 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
 
   return (
     <div
-      className="relative w-full py-6 px-4 md:px-24"
+      className="relative w-full py-6 px-4 lg:px-20 xl:px-24"
       onMouseEnter={stopAutoSlide} // Pause auto-slide on mouse enter
       onMouseLeave={startAutoSlide} // Resume auto-slide on mouse leave
     >
@@ -77,7 +80,7 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
         aria-label="Previous Slide"
         className="flex md:hidden absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800 text-white rounded-full p-3"
       >
-        &#8249;
+        <ChevronLeftCircle />
       </button>
       <button
         onClick={() => {
@@ -87,7 +90,7 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
         aria-label="Next Slide"
         className="flex md:hidden absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800 text-white rounded-full p-3"
       >
-        &#8250;
+        <ChevronRightCircle />
       </button>
 
       {/* Card Carousel */}
@@ -102,7 +105,7 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
             <Link
               href={`/booth/size/${item.name}`}
               key={index}
-              className={`min-w-full md:min-w-[33.33%] max-w-full md:max-w-[33.33%] flex-shrink-0 px-2 md:px-6`}
+              className={`min-w-full md:min-w-[50%] lg:min-w-[33.33%] max-w-full md:max-w-[50%] lg:max-w-[33.33%] flex-shrink-0 px-2 xl:px-6`}
             >
               <div
                 className={cn(
