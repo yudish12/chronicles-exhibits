@@ -7,9 +7,9 @@ import { Pagination } from "./Pagination";
 
 const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
   return (
-    <div className="px-20 mt-12">
+    <div className="px-24 md:px-10 lg:px-20 mt-12">
       {/* Trade show grid */}
-      <div className="grid lg:grid-cols-3 gap-x-12 gap-y-12 sm:grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-3 mx-10 sm:gap-x-5 md:gap-x-10 lg:gap-x-12 gap-y-12 sm:grid-cols-2 gap-4">
         {tradeShows.data.map((show) => (
           <div
             key={show._id}

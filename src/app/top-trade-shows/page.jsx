@@ -45,10 +45,10 @@ const Page = async ({ params, searchParams }) => {
           {data.fields[0].value}
         </h2>
       </div>
-      <div className="bg-background px-20 py-12 flex flex-col items-center justify-center gap-4">
+      <div className="bg-background px-6 md:px-16 lg:px-20 py-12 flex flex-col items-center justify-center gap-4">
         <div className="flex gap-6 justify-center w-full">
           <input
-            className="shadow-one w-[40%] placeholder:font-medium rounded-lg placeholder:text-secondary/60 px-4"
+            className="shadow-one w-[100%] md:w-[60%] lg:w-[40%] placeholder:text-center placeholder:font-medium rounded-lg placeholder:text-secondary/60 px-4"
             placeholder="Search for upcoming trade shows"
           />
           <Button className="text-secondary font-semibold bg-white hover:bg-secondary hover:text-white transition-all py-5 shadow-one">
@@ -62,7 +62,7 @@ const Page = async ({ params, searchParams }) => {
           currentPage={page}
           limit={limit}
         />
-        <p className="text-[17px] mx-24 text-justify mt-6">
+        <p className="text-[17px]  md:mx-16  lg:mx-24 text-justify mt-6">
           {data.fields[1].value}
           <br />
           <br />
