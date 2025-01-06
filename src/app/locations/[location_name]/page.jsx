@@ -83,7 +83,7 @@ const Page = async ({ params }) => {
         <h2 className="text-center font-bold text-[2.5rem] heading-font uppercase text-primary">
           {data[0].name}
         </h2>
-        <div className="flex flex-col sm:flex-row relative mt-6 gap-4  sm:bg-black/40 rounded-full p-4 justify-center w-4/5 mx-auto">
+        <div className="flex flex-col sm:flex-row relative mt-6 gap-4  sm:bg-gray-400/20 rounded-full p-4 justify-center w-4/5 mx-auto">
           <Select>
             <SelectTrigger className="text-secondary text-lg font-semibold bg-white rounded-full p-6">
               <SelectValue placeholder="Select a City" />

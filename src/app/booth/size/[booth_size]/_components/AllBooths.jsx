@@ -11,7 +11,7 @@ const BoothGrid = ({ fields, size, booths }) => {
   return (
     <div className="py-20 bg-gradient-to-b">
       {/* Booth Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-[1200px] mx-auto px-8 md:px-20 xl:px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10 max-w-[1200px] px-20 sm:px-10 md:px-20 xl:px-6">
         {booths.slice(0, visibleCount).map((booth, index) => (
           <Card
             key={booth.id}
