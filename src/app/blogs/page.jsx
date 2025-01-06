@@ -32,9 +32,9 @@ const Page = async ({ params, searchParams }) => {
     notFound();
   }
 
-  console.log(blogs);
-
   const totalPages = Math.ceil(blogs.count / limit);
+
+  const { data } = await getSinglePage({ name: "blogs" });
 
   return (
     <>
@@ -44,6 +44,7 @@ const Page = async ({ params, searchParams }) => {
         currentPage={page}
         limit={limit}
         totalPages={totalPages}
+        pageData={data}
         blogs={blogs.data}
       />
       <Footer />

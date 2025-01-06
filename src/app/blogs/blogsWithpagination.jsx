@@ -5,16 +5,21 @@ import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Pagination } from "./_components/Pagination";
 
-const BlogsPagination = ({ blogs, totalPages, currentPage, limit }) => {
+const BlogsPagination = ({
+  blogs,
+  totalPages,
+  currentPage,
+  limit,
+  pageData,
+}) => {
   return (
     <>
       <div className="booth-design-bg px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
         <h3 className="text-white heading-font text-[2.35rem] font-bold">
-          LATEST BLOGS
+          {pageData.fields[0].value}
         </h3>
-        <h4 className="text-xl mx-80 text-center heading-font text-white">
-          Save your preferred trade show booth rental with Chronicle Exhibits
-          LLC
+        <h4 className="text-xl md:mx-40 lg:mx-64 xl:mx-80 text-center heading-font text-white">
+          {pageData.fields[1].value}
         </h4>
       </div>
 
