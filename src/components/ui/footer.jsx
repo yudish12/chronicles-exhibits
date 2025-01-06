@@ -11,7 +11,7 @@ const SocialIconContainer = ({ children }) => {
 
 export default function Footer() {
   return (
-    <div className="bg-secondary py-12 px-6 md:py-24 md:px-20">
+    <div className="bg-secondary py-6 px-6 md:py-10 md:px-20">
       <div className="px-6 py-8 md:px-12 md:py-10 rounded-lg grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
         {/* Company Section */}
         <div>
@@ -261,11 +261,12 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="mt-12 mx-auto">
+      <div className="mt-8 mx-auto">
         <div className="bg-secondary/[.94] w-full flex flex-wrap justify-between items-center gap-4">
           <span className="text-white/80 text-sm mx-auto font-medium">
             © Copyright {new Date().getFullYear()}. Chronicle Exhibits LLC All
-            Right Reserved. Privacy Policy
+            Right Reserved.{" "}
+            <Link href={"/privacy-policy"}> Privacy Policy</Link>
           </span>
         </div>
       </div>

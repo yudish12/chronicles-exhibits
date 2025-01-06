@@ -48,7 +48,7 @@ const Page = async ({ params }) => {
   const city = (await params).location_name;
   // console.log("city==" , city)
   const eventByCity = await getEventByCity(city, 0, 4);
-  console.log("eventByCity",eventByCity)
+  console.log("eventByCity", eventByCity);
   // console.log("eventByCity",eventByCity.data.slice(0,3))
   let majorExhibitingCities = await getAllLocations();
   let boothSizes = await getAllBoothSizes();
@@ -222,7 +222,7 @@ const Page = async ({ params }) => {
         </Link>
       </div>
       <Products location={city} />
-      <div className="bg-background py-12 px-8 md:px-20 lg:px-32 w-[92%]">
+      <div className="bg-background mx-auto pt-8 pb-3 px-8 md:px-20 lg:px-32 w-[92%]">
         {/* Section 1 */}
         <section className="py-10 text-secondary">
           <h2 className="text-2xl md:text-3xl font-bold uppercase heading-font text-secondary mb-4">

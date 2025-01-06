@@ -2,6 +2,7 @@ import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
 import SubHeader from "@/components/ui/sub-header";
 import { getAllData } from "@/server/actions/locations";
+import { getSinglePage } from "@/server/actions/pages";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -56,6 +57,15 @@ export const majorExhibitingCities = [
   "Washington DC",
 ];
 
+export const generateMetadata = async () => {
+  const { data } = await getSinglePage({ name: "locations" });
+  return {
+    title: data?.meta_title || "Default Title",
+    description: data?.meta_description || "Default Description",
+    keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
+  };
+};
+
 const Page = async () => {
   let locations = await getAllData();
   console.log("==locations==", locations.data);
@@ -63,22 +73,18 @@ const Page = async () => {
     <>
       <SubHeader />
       <Header />
-      <div className="bg-[url('/location-bg.png')] grayscale-[70%] px-20 text-white gap-8 sm:h-[420px] h-[350px] justify-center items-center flex flex-col sm:rounded-none rounded-b-2xl">
+      <div className="booth-design-bg px-4 md:px-8 lg:px-20 text-white gap-8 justify-center items-center flex flex-col sm:rounded-none rounded-b-2xl">
         <Image
           src={"/location-bg-icon.png"}
-          width={40}
-          height={40}
+          width={35}
+          height={35}
           alt="location-bg"
           className="object-cover"
         />
         <h3 className="text-white heading-font text-4xl font-bold">
           LOCATIONS
         </h3>
-        <p className="hidden sm:block text-center font-medium">
-          We are just around the corner and our service centers make it easy for
-          you.
-        </p>
-        <p className=" hidden text-center font-medium  sm:block ">
+        <p className=" hidden text-center mx-4 md:mx-8 lg:mx-16 xl:mx-24 font-medium text-lg lg:text-xl md:block ">
           Chronicle’s backbone is professionals and dealers located all around
           the U.S. that assist our partners with their trade shows. By renting
           locally, you enjoy custom designs with reduced costs and no problems
@@ -86,8 +92,11 @@ const Page = async () => {
           platforms, which you can use in near all cities in the USA to showcase
           your brand.
         </p>
+        <p className="hidden md:block text-center text-lg lg:text-xl font-medium">
+          OUR SERVICE IS UP FOR THE GRABS IN FOLLOWING CITIES OF USA:
+        </p>
       </div>
-      <div className="us-bg flex  items-center justify-center md:hidden py-6 px-6 text-sm ">
+      <div className="us-bg flex  items-center justify-center md:hidden py-6 px-6 text-lg sm:text-xl ">
         <p className="text-center font-bold">
           Chronicle’s backbone is professionals and dealers located all around
           the U.S. that assist our partners with their trade shows. By renting
@@ -98,7 +107,7 @@ const Page = async () => {
         </p>
       </div>
       <div className="us-bg flex items-center justify-center md:hidden px-2   ">
-        <h1 className="font-bold text-center py-4  px-4  text-xl ">
+        <h1 className="font-bold text-center py-4  px-4 text-lg sm:text-xl ">
           OUR SERVICE IS UP FOR THE GRABS IN FOLLOWING CITIES OF USA:
         </h1>
       </div>

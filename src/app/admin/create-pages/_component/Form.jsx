@@ -41,7 +41,6 @@ const PageEditForm = ({ pageData, isLocationPage }) => {
       } else {
         keyValueField.value[index].answer = value;
       }
-
       return temp;
     });
   };

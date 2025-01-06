@@ -16,14 +16,14 @@ const Leadingtrade = () => {
         />
       </div>
       {/* Text Content */}
-      <div className="w-full md:w-1/2 sm:text-center">
+      <div className="w-full lg:w-1/2 text-center md:text-justify">
         <h3
           style={{ lineHeight: "1.2" }}
-          className="heading-font-700 uppercase font-semibold text-secondary text-lg sm:text-xl md:text-[2rem]"
+          className="heading-font-700 uppercase font-semibold text-secondary text-lg md:text-xl lg:text-[2rem]"
         >
           Leading Trade Show Booth Builders for Events Across America
         </h3>
-        <p className="text-black mt-4 sm:mt-6 text-base ">
+        <p className="text-black mt-4 md:mt-6 text-base ">
           Welcome to Chronicle, your prominent partner for trade show booth
           displays and exhibits. With 25+ years&apos; worth of experience and an
           excellent team, we have been providing exclusive trade show booth

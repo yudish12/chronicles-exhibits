@@ -127,7 +127,8 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
                     {item.name.toUpperCase()}
                   </p>
                   <p className="capitalize text-lg font-semibold">
-                    trade show booth rental {location?.toLowerCase() ?? ""}
+                    trade show booth rental{" "}
+                    {location?.replace("-", " ").toLowerCase() ?? ""}
                   </p>
                 </div>
               </div>

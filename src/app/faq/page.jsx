@@ -12,16 +12,21 @@ const page = async () => {
     <>
       <SubHeader />
       <Header />
+      <div
+        style={{ height: "280px" }}
+        className="booth-design-bg flex justify-center px-4 md:px-8 lg:px-20 flex-col gap-8 items-center"
+      >
+        <h2 className="text-4xl text-center uppercase font-semibold heading-font text-white">
+          {faqPageData.data.fields[0].value}
+        </h2>
+      </div>
       <div className="flex items-center justify-center py-4 ">
         <div className="container py-8 px-12 ">
-          <h1 className="text-secondary font-bold text-4xl py-2 text-center ">
-            {faqPageData.data.fields[0].value}
-          </h1>
           <div className="grid sm:w-[95%] md:w-[90%] mx-auto grid-cols-1 mt-8 md:grid-rows-3 sm:gap-6 md:gap-0">
             {faqs.map((e, index) => (
               <div
                 key={index}
-                className="bg-white shadow-lg overflow-hidden mb-4 md:mb-6"
+                className="bg-white shadow-lg  border border-black overflow-hidden mb-4 md:mb-6"
               >
                 <div className="bg-black h-[52px] md:h-10 flex items-center p-4">
                   <h4 className="text-primary body-bold  text-sm md:text-base flex items-center">

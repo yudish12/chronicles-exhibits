@@ -11,6 +11,16 @@ import RequestDesign from "../booth/size/[booth_size]/_components/RequestDesign"
 import Link from "next/link";
 import { getAllData } from "@/server/actions/events";
 import TradeShowGrid from "./_components/TradeShowGrid";
+import { getSinglePage } from "@/server/actions/pages";
+
+export const generateMetadata = async ({}) => {
+  const { data } = await getSinglePage({ name: "events" });
+  return {
+    title: data?.meta_title || "Default Title",
+    description: data?.meta_description || "Default Description",
+    keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
+  };
+};
 
 const Page = async ({ params, searchParams }) => {
   const searchparams = await searchParams;
@@ -24,6 +34,7 @@ const Page = async ({ params, searchParams }) => {
   );
   const totalPages = Math.ceil(tradeShows.count / limit);
   console.log("==trade shows ==", tradeShows);
+  const { data } = await getSinglePage({ name: "events" });
   // project -> start_date , end_date , title , icon ,event_name , country , city
   return (
     <>
@@ -31,7 +42,7 @@ const Page = async ({ params, searchParams }) => {
       <Header />
       <div className="trade-show-bg px-20 flex justify-center items-center flex-col">
         <h2 className="text-[2.1rem] text-center text-white uppercase font-semibold heading-font">
-          Upcoming Trade Shows
+          {data.fields[0].value}
         </h2>
       </div>
       <div className="bg-background px-20 py-12 flex flex-col items-center justify-center gap-4">
@@ -52,17 +63,10 @@ const Page = async ({ params, searchParams }) => {
           limit={limit}
         />
         <p className="text-[17px] mx-24 text-justify mt-6">
-          Trade shows, exhibitions, and conferences in the USA are effective
-          platforms to strengthen your brand recognition value and take your
-          business to the next level of success. Top trade shows in the USA
-          offer excellent opportunities to make in-person connections through
-          face-to-face interactions.
+          {data.fields[1].value}
           <br />
-          <br /> The following trade show directory can be a valuable branding
-          and marketing tool for your business. It comprises some of the biggest
-          trade shows in the USA across various industries. Explore and identify
-          top trade shows in the USA that can drive your brand to get ahead of
-          your competition.
+          <br />
+          {data.fields[2].value}
         </p>
       </div>
       <Footer />

@@ -4,6 +4,16 @@ import SubHeader from "@/components/ui/sub-header";
 import BlogsPagination from "./blogsWithpagination";
 import { getAllBlogs } from "@/server/actions/blogs";
 import { notFound } from "next/navigation";
+import { getSinglePage } from "@/server/actions/pages";
+
+export const generateMetadata = async ({}) => {
+  const { data } = await getSinglePage({ name: "blogs" });
+  return {
+    title: data?.meta_title || "Default Title",
+    description: data?.meta_description || "Default Description",
+    keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
+  };
+};
 
 const Page = async ({ params, searchParams }) => {
   const searchparams = await searchParams;
@@ -18,8 +28,8 @@ const Page = async ({ params, searchParams }) => {
     "name title slug image image_alt_text"
   );
 
-  if(!blogs?.data){
-    notFound()
+  if (!blogs?.data) {
+    notFound();
   }
 
   console.log(blogs);

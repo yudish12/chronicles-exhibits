@@ -23,7 +23,7 @@ const Ourworks = async ({ title, subtitle }) => {
       >
         {title ?? "TRADE SHOW BOOTH DESIGN PORTFOLIO"}
       </h3>
-      <p className="text-sm md:text-base  text-white/95 text-center mb-2 px-4 sm:px-8 md:px-16">
+      <p className="text-sm md:text-base  text-white/95 text-center mb-2 px-6 sm:px-12 lg:px-72">
         {subtitle ??
           "Our recent works in the USA showcase stunning images of our exceptional projects. From trade show booths to eye-catching displays, our portfolio reflects the expertise and creativity we bring to every project. Get inspired by our work and let us create a standout experience for yourbrand."}
       </p>
