@@ -69,6 +69,9 @@ export const generateMetadata = async () => {
 const Page = async () => {
   let locations = await getAllData();
   console.log("==locations==", locations.data);
+
+  const { data } = await getSinglePage({ name: "locations" });
+
   return (
     <>
       <SubHeader />
@@ -82,33 +85,21 @@ const Page = async () => {
           className="object-cover"
         />
         <h3 className="text-white heading-font text-4xl font-bold">
-          LOCATIONS
+          {data.fields[0].value}
         </h3>
         <p className=" hidden text-center mx-4 md:mx-8 lg:mx-16 xl:mx-24 font-medium text-lg lg:text-xl md:block ">
-          Chronicle’s backbone is professionals and dealers located all around
-          the U.S. that assist our partners with their trade shows. By renting
-          locally, you enjoy custom designs with reduced costs and no problems
-          of shipping delays and any Custom hassles. We provide innovative booth
-          platforms, which you can use in near all cities in the USA to showcase
-          your brand.
+          {data.fields[1].value}
         </p>
         <p className="hidden md:block text-center text-lg lg:text-xl font-medium">
-          OUR SERVICE IS UP FOR THE GRABS IN FOLLOWING CITIES OF USA:
+          {data.fields[2].value}
         </p>
       </div>
       <div className="us-bg flex  items-center justify-center md:hidden py-6 px-6 text-lg sm:text-xl ">
-        <p className="text-center font-bold">
-          Chronicle’s backbone is professionals and dealers located all around
-          the U.S. that assist our partners with their trade shows. By renting
-          locally, you enjoy custom designs with reduced costs and no problems
-          of shipping delays and any Custom hassles. We provide innovative booth
-          platforms, which you can use in near all cities in the USA to showcase
-          your brand.
-        </p>
+        <p className="text-center font-bold">{data.fields[1].value}</p>
       </div>
       <div className="us-bg flex items-center justify-center md:hidden px-2   ">
         <h1 className="font-bold text-center py-4  px-4 text-lg sm:text-xl ">
-          OUR SERVICE IS UP FOR THE GRABS IN FOLLOWING CITIES OF USA:
+          {data.fields[2].value}
         </h1>
       </div>
       <div className="us-bg px-4 sm:px-20 py-6 grid grid-cols-2 sm:grid-cols-4 gap-4">

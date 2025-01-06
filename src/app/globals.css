@@ -446,7 +446,7 @@
 .trade-show-bg {
   position: relative;
   overflow: hidden;
-  height: 450px;
+  height: 390px;
 }
 
 .trade-show-bg::before {
