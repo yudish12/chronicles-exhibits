@@ -3,6 +3,7 @@ import SubHeader from "@/components/ui/sub-header";
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/ui/footer";
 
 const page = () => {
   return (
@@ -30,6 +31,7 @@ const page = () => {
           </Button>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
