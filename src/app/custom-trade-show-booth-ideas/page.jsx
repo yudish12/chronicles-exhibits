@@ -21,41 +21,41 @@ const Page = async () => {
     <>
       <SubHeader />
       <Header />
-      <div className="booth-design-bg flex justify-center px-4 md:px-20 flex-col gap-8 items-center">
+      <div className="booth-design-bg flex justify-center px-4 md:px-8 lg:px-20 flex-col gap-8 items-center">
         <h2 className="text-4xl text-center uppercase font-semibold heading-font text-white">
           {data.fields[0].value}
         </h2>
-        <h4 className="text-xl mx-0 sm:mx-20 md:mx-28 lg:mx-52 text-center heading-font text-white">
+        <h4 className="text-xl mx-0 sm:mx-12 md:mx-20 lg:mx-52 text-center heading-font text-white">
           {data.fields[1].value}
         </h4>
       </div>
       <div className="bg-background px-6 sm:px-12 lg:px-20 flex flex-col gap-6 py-12">
-        <h2 className="text-3xl text-center font-medium heading-font text-secondary">
+        <h2 className="text-[2rem] text-center font-medium heading-font text-secondary">
           {data.fields[2].value}
         </h2>
         <div
           id="show_name_desc"
-          className="mx-0 sm:mx-10 md:mx-20 lg:mx-36 "
+          className="mx-0 sm:mx-6 md:mx-12 lg:mx-36 "
           dangerouslySetInnerHTML={{ __html: data.fields[3].value }}
         ></div>
       </div>
-      <div className="p-6 md:p-20 flex flex-col md:flex-row gap-6 md:gap-10">
+      <div className="p-6 md:p-20 flex flex-col lg:flex-row gap-6 lg:gap-10">
         {/* Image Container */}
-        <div className="w-full md:w-1/2">
+        <div className="w-full lg:w-1/2">
           <Image
             layout="responsive" // Ensures the image is responsive
             width={370} // Aspect ratio width
             height={250} // Aspect ratio height
             src={data.fields[6].value}
             alt={data.fields[7].value}
-            className="max-h-[300px] md:max-h-[530px] object-cover"
+            className="max-h-[300px] sm:max-h-[400px] md:max-h-[480px] lg:max-h-[530px] object-cover"
           />
         </div>
         {/* Text Content */}
-        <div className="w-full md:w-1/2">
+        <div className="w-full lg:w-1/2">
           <h3
             style={{ lineHeight: "1.2" }}
-            className="heading-font uppercase font-semibold text-secondary text-lg sm:text-xl md:text-[2rem]"
+            className="heading-font text-center lg:text-left uppercase font-semibold text-secondary text-[2rem]"
           >
             {data.fields[4].value}
           </h3>
@@ -65,11 +65,11 @@ const Page = async () => {
           ></div>
         </div>
       </div>
-      <div className="p-6 md:p-20 flex flex-col md:flex-row gap-6 md:gap-10">
-        <div className="w-full md:w-1/2">
+      <div className="p-6 md:p-20 flex flex-col lg:flex-row gap-6 md:gap-10">
+        <div className="w-full lg:w-1/2">
           <h3
             style={{ lineHeight: "1.2" }}
-            className="heading-font uppercase font-semibold text-secondary text-lg sm:text-xl md:text-[2rem]"
+            className="heading-font text-center lg:text-left uppercase font-semibold text-secondary text-lg sm:text-xl md:text-[2rem]"
           >
             {data.fields[8].value}
           </h3>
@@ -79,14 +79,14 @@ const Page = async () => {
           ></div>
         </div>
         {/* Image Container */}
-        <div className="w-full md:w-1/2">
+        <div className="w-full lg:w-1/2">
           <Image
             layout="responsive" // Ensures the image is responsive
             width={370} // Aspect ratio width
             height={250} // Aspect ratio height
             src={data.fields[10].value}
             alt={data.fields[11].value}
-            className="max-h-[300px] md:max-h-[530px] object-cover"
+            className="max-h-[300px] sm:max-h-[400px] md:max-h-[480px] lg:max-h-[530px] object-cover"
           />
         </div>
         {/* Text Content */}
