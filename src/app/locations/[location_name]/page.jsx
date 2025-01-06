@@ -188,7 +188,7 @@ const Page = async ({ params }) => {
           </Button>
         </div>
       </div>
-      <div className="py-8 px-6 sm:p-12 md:px-20 lg:px-36  pb-10">
+      <div className="py-8 px-6 sm:p-12 lg:px-20 xl:px-36  pb-10">
         <h2 className="uppercase text-3xl heading-font-600 text-primary text-center font-semibold">
           {data[0].fields[11].value} {city}
         </h2>
