@@ -17,7 +17,8 @@ export const getEventByCity = async (city, skip, limit, projection) => {
     const normalizedCity = city.replace(/[\s-]+/g, "").toLowerCase();
 
     // Construct the query using $expr and $regex
-    let query = events.find({
+
+    let query =  events.find({
       $expr: {
         $regexMatch: {
           input: { $replaceAll: { input: "$city", find: " ", replacement: "" } },
@@ -26,8 +27,6 @@ export const getEventByCity = async (city, skip, limit, projection) => {
         },
       },
     }).sort({start_date: 1});
-
-    // Apply skip, limit, and projection if provided
     if (skip) {
       query = query.skip(skip);
     }
@@ -39,20 +38,35 @@ export const getEventByCity = async (city, skip, limit, projection) => {
     if (projection) {
       query = query.select(projection);
     }
+    let eventsFetched = await query.lean()
+    if(eventsFetched.length<4){
+      const remainingCount = 4 - eventsFetched.length;
+      const additionalEvents = await events.aggregate([
+        {$match : { _id: { $nin: eventsFetched.map(e => e._id) } }},
+        { $sample: { size: remainingCount } }
+      ]);
+      eventsFetched = eventsFetched.concat(additionalEvents);
+    }
+    // Apply skip, limit, and projection if provided
+
+    
 
     // Execute the query and get the total count
-    const data = await query.lean();
-    const count = await events.countDocuments({
-      $expr: {
-        $regexMatch: {
-          input: { $replaceAll: { input: "$city", find: " ", replacement: "" } },
-          regex: normalizedCity,
-          options: "i",
-        },
-      },
-    });
+    // const data = await query.lean();
+    // const count = await events.countDocuments({
+    //   $expr: {
+    //     $regexMatch: {
+    //       input: { $replaceAll: { input: "$city", find: " ", replacement: "" } },
+    //       regex: normalizedCity,
+    //       options: "i",
+    //     },
+    //   },
+    // });
 
-    return getActionSuccessResponse(data, count);
+    // let events = await events.find({city}).limit(4)
+    console.log(eventsFetched)
+    const count = eventsFetched.length;
+    return getActionSuccessResponse(eventsFetched ,count );
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }

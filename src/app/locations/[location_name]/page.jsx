@@ -48,6 +48,7 @@ const Page = async ({ params }) => {
   const city = (await params).location_name;
   // console.log("city==" , city)
   const eventByCity = await getEventByCity(city, 0, 4);
+  console.log("eventByCity",eventByCity)
   // console.log("eventByCity",eventByCity.data.slice(0,3))
   let majorExhibitingCities = await getAllLocations();
   let boothSizes = await getAllBoothSizes();
