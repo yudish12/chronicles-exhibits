@@ -11,7 +11,7 @@ export const Pagination = ({ currentPage, totalPages }) => {
  }
  return (
     <>
-    <div className="flex items-center justify-center mt-6 gap-4 ">
+    <div className="flex items-center justify-center mt-6 sm:gap-4 gap-x-2  ">
     {currentPage > 1 && (
         <Link
           href={`/top-trade-shows/?page=${currentPage - 1}`}
