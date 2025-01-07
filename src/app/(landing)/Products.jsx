@@ -27,7 +27,7 @@ const Products = async ({ bgColor, title, subTitle, location }) => {
       </h1>
       <p
         className={cn(
-          "text-center text-white text-md pt-4",
+          "text-center xs:mx-8 sm:mx-36 lg:mx-72 text-white text-md pt-4",
           bgColor === "white" && "text-black"
         )}
       >
