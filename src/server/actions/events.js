@@ -247,6 +247,18 @@ export const addData = async (data) => {
         "meta_keywords"
       );
     }
+    if(!data.email){
+      return getActionFailureResponse(
+        "E mail is required",
+        "email"
+      )
+    }
+    if(!data.website){
+      return getActionFailureResponse(
+        "Website is required",
+        "webiste"
+      )
+    }
     const resp = await events.create(data);
     console.log("added data ", resp);
     return getActionSuccessResponse(resp);

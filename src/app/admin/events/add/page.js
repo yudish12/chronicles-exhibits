@@ -38,6 +38,8 @@ const AddEventPage = () => {
     meta_title: "",
     meta_description: "",
     meta_keywords: [],
+    website : "",
+    email: ""
   });
 
   const router = useRouter();
@@ -70,6 +72,8 @@ const AddEventPage = () => {
         meta_title: "",
         meta_description: "",
         meta_keywords: [],
+        website : "",
+        email: ""
       });
       router.push("/admin/events");
     } catch (error) {
@@ -100,6 +104,28 @@ const AddEventPage = () => {
                 value={singleEvent.event_name}
                 onChange={(e) =>
                   setSingleEvent({ ...singleEvent, event_name: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div>
+              <Label className="mb-4 block">E mail</Label>
+              <Input
+                className="rounded-sm"
+                value={singleEvent.email}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, email: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div>
+              <Label className="mb-4 block">Website</Label>
+              <Input
+                className="rounded-sm"
+                value={singleEvent.website}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, website: e.target.value })
                 }
                 required
               />

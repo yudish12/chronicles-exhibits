@@ -89,7 +89,7 @@ const Page = async ({ params }) => {
             <MapPin color="#FFFFFF" />
             <span className="text-xl">{data.data.city} | United States</span>
           </p>
-          <p className="flex text-center items-center gap-4">
+          <p className="flex text-center items-center gap-4 mb-20 ">
             <Calendar color={isExpired ? "#FF0000" : "#FFFFFF"} />
             <span
               className={cn(
@@ -112,8 +112,8 @@ const Page = async ({ params }) => {
         src={data.data.icon}
         alt={"show.title"}
       />
-      <div className="px-20 gap-12 py-12 flex">
-        <div className="w-[70%] bg-white p-6 rounded-xl shadow-one">
+<div className="flex flex-col px-[40px] lg:flex-row lg:px-20 gap-12 py-12">       
+   <div className="w-full lg:w-[70%] bg-white sm:p-6 p-8  rounded-xl shadow-one">
           <h3 className="text-2xl heading-font text-secondary font-semibold">
             {data.data.title}
           </h3>
@@ -122,7 +122,7 @@ const Page = async ({ params }) => {
             dangerouslySetInnerHTML={{ __html: data.data.body }}
           ></div>
         </div>
-        <div className="w-[30%] flex flex-col gap-6">
+        <div className="w-full lg:w-[30%] flex flex-col gap-6">
           <BoothSizeForm
             eventName={eventName}
             eventCity={eventCity}

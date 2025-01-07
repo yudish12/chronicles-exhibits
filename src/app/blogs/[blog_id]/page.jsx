@@ -51,7 +51,7 @@ const Blogpage = async ({ params }) => {
 
       <div className="bg-background  text-gray-800 ">
         {/* Main Content Section */}
-        <div className="px-20 w-full grid grid-cols-1 lg:grid-cols-3 gap-[40px] py-20 ">
+        <div className="px-4 sm:px-12  lg:px-20 w-full grid grid-cols-1 lg:grid-cols-3 gap-[40px] py-20 ">
           {/* Left Section */}
           <div className="lg:col-span-2">
             {/* Hero Image */}
@@ -66,7 +66,7 @@ const Blogpage = async ({ params }) => {
             <div
               id="blog_content"
               dangerouslySetInnerHTML={{ __html: data.body }}
-              className="mt-6 space-y-4 bg-white shadow-one px-10 py-14  rounded-lg "
+              className="mt-6 space-y-4 bg-white shadow-one px-4 sm:px-6 lg:px-10 py-14  rounded-lg "
             ></div>
           </div>
 
