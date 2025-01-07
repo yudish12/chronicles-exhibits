@@ -42,11 +42,11 @@ const page = async () => {
           {data.fields[1].value}
         </p>
       </div>
-      <div className="lg:px-20 md:px-8 px-6 flex lg:flex-row flex-col gap-20 pt-16 pb-20">
+      <div className="md:px-20 sm:px-8 px-6 flex lg:flex-row flex-col gap-20 pt-16 pb-20">
         <Image
           src={data.fields[3].value}
           alt={data.fields[4].value ?? "booth design"}
-          className="lg:w-1/2 w-full lg:max-w-[590px] xl:max-h-[420px]"
+          className="lg:w-1/2 w-full max-h-[500px] lg:max-h-[350px] lg:max-w-[590px] xl:max-h-[420px]"
           width={800}
           height={800}
         />
@@ -71,10 +71,10 @@ const page = async () => {
         <h2 className="text-center uppercase heading-font text-white text-[2rem] font-bold">
           {data.fields[13].value}
         </h2>
-        <p className="text-center text-gray-300 text-md pt-4">
+        <p className="text-center px-6 text-gray-300 text-md pt-4">
           {data.fields[14].value}
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 py-12 px-6 md:px-20 lg:px-32 gap-x-8 lg:gap-x-12 gap-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-12 px-6 sm:px-10 lg:px-20 xl:px-32 gap-x-8 lg:gap-x-12 gap-y-10">
           {cardData.map((item, index) => (
             <Link
               href={`/booth/size/${item.name}`}

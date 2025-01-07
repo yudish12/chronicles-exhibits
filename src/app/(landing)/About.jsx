@@ -8,20 +8,20 @@ import Image from "next/image";
 const About = ({ fields }) => {
   return (
     <>
-      <div className="bg-white pt-2 sm:pt-4 ">
+      <div className="bg-white mt-4 xs:mt-20 sm:mt-52 lg:mt-0 pt-2 sm:pt-4 ">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             {/* <h2 className=" text-[22px] font-bold text-[#B0CB1F] ">
               {fields[6].value}
             </h2> */}
-            <p className="mt-4 uppercase sm:text-3xl heading-font-700 font-bold text-secondary ">
-              {fields[7].value}
+            <p className="mt-4 uppercase text-3xl sm:text-3xl heading-font-700 font-bold text-secondary ">
+              {fields[6].value}
             </p>
           </div>
           <div className="mt-6 bg-white">
             <div className="py-2 sm:p-4">
-              <h3 className="mx-40 text-center text-[18px] text-black px-4 ">
-                {fields[8].value}
+              <h3 className="lg:mx-40 sm:mx-20 text-center text-[18px] text-black px-6">
+                {fields[7].value}
                 babsdh
               </h3>
             </div>
@@ -29,12 +29,12 @@ const About = ({ fields }) => {
         </div>
       </div>
 
-      <div className="bg-white pt-8 pb-16 px-4 ">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+      <div className="bg-white pt-8 pb-16">
+        <div className="mx-auto lg:px-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 xl:gap-10 lg:grid-cols-3">
             {/* Display Exhibits */}
             <div className="flex flex-col h-full">
-              <Card className="h-full shadow-one rounded-xl overflow-hidden max-h-[400px] flex flex-col">
+              <Card className="h-full shadow-one rounded-xl overflow-hidden  md:max-w-[2000px] max-h-[400px] flex flex-col">
                 {/* Image */}
                 <div className="w-full h-28 sm:h-48 border-b-2 border-b-primary overflow-hidden">
                   <Image

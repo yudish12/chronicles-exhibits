@@ -11,6 +11,7 @@ module.exports = withUt({
     extend: {
       screens: {
         lg: "1026px",
+        xs: "500px",
       },
       colors: {
         background: "hsl(var(--background))",
