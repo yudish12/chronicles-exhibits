@@ -1,9 +1,13 @@
 import React from "react";
-import faqs from "../../utils/constants/dev-data/faqs.json";
+// import faqs from "../../utils/constants/dev-data/faqs.json";
 import "./faq.css";
 import Footer from "@/components/ui/footer";
 
-const Faq = () => {
+const Faq = ({ fields }) => {
+  const faqs = fields[42].value.map((faq) => ({
+    heading: faq.question,
+    text: faq.answer,
+  }));
   return (
     <>
       <div id="" className="px-6 bg-gray-200 md:px-20 py-8 md:py-12">

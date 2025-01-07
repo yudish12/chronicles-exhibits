@@ -105,11 +105,6 @@ export const homePageFields = [
     value: "",
   },
   {
-    key: "2nd_section_h6",
-    type: "text",
-    value: "",
-  },
-  {
     key: "2nd_section_h2",
     type: "text",
     value: "",
@@ -235,6 +230,16 @@ export const homePageFields = [
     value: "",
   },
   {
+    key: "3rd_section_card_4_number",
+    type: "number",
+    value: "",
+  },
+  {
+    key: "3rd_section_card_4_text",
+    type: "text",
+    value: "",
+  },
+  {
     key: "4th_section_h2",
     type: "text",
     value: "",
@@ -260,7 +265,22 @@ export const homePageFields = [
     value: "",
   },
   {
-    key: "5th_section_para",
+    key: "5th_section_para_1",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "5th_section_para_2",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "5th_section_para_3",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "5th_section_para_4",
     type: "textarea",
     value: "",
   },
