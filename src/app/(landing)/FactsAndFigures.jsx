@@ -1,54 +1,41 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-const data = [
-  {
-    id: 1,
-    iconImage: "/projects-svgrepo-com.svg",
-    number: "2931",
-    text: "Projects Completed",
-    hoverIconImage: "/icons/Location-green.svg",
-    hoverNumber: "91",
-    hoverText: "Locations Served",
-    bgColor: "bg-white",
-    hoverBgColor: "bg-secondary",
-  },
-  {
-    id: 2,
-    iconImage: "/partners-svgrepo-com.svg",
-    number: "3717",
-    text: "Trusted Partners",
-    hoverIconImage: "/icons/Person.svg",
-    hoverNumber: "250",
-    hoverText: "Expert Crew Members",
-    bgColor: "bg-white",
-    hoverBgColor: "bg-secondary",
-  },
-  {
-    id: 3,
-    iconImage: "/exhibition-museum-svgrepo-com.svg",
-    number: "9182",
-    text: "Featured Trade Shows",
-    hoverIconImage: "/services-svgrepo-com.svg",
-    hoverNumber: "25",
-    hoverText: "Services Offered",
-    bgColor: "bg-white",
-    hoverBgColor: "bg-secondary",
-  },
-  {
-    id: 4,
-    iconImage: "/icons/Fire.svg",
-    number: "10382",
-    text: "Booths Designed",
-    hoverIconImage: "/icons/Like.png",
-    hoverNumber: "3540",
-    hoverText: "Recommendations",
-    bgColor: "bg-white",
-    hoverBgColor: "bg-secondary",
-  },
-];
 
-const FactsAndFigures = () => {
+const FactsAndFigures = ({ fields }) => {
+  const data = [
+    {
+      id: 1,
+      iconImage: "/projects-svgrepo-com.svg",
+      number: fields[25].value,
+      text: fields[26].value,
+
+      bgColor: "bg-white",
+    },
+    {
+      id: 2,
+      iconImage: "/partners-svgrepo-com.svg",
+      number: fields[27].value,
+      text: fields[28].value,
+
+      bgColor: "bg-white",
+    },
+    {
+      id: 3,
+      iconImage: "/exhibition-museum-svgrepo-com.svg",
+      number: fields[29].value,
+      text: fields[30].value,
+      bgColor: "bg-white",
+    },
+    {
+      id: 4,
+      iconImage: "/icons/Fire.svg",
+      number: fields[31].value,
+      text: fields[32].value,
+      bgColor: "bg-white",
+    },
+  ];
+
   return (
     <div className="bg-white py-16 flex flex-col justify-center items-center">
       <div className="text-secondary heading-font-700 text-2xl leading-10 uppercase font-bold">
