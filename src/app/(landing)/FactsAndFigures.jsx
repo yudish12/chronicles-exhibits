@@ -2,56 +2,102 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 
+const static_data = [
+  {
+    id: 1,
+    iconImage: "/projects-svgrepo-com.svg",
+    number: "2931",
+    text: "Projects Completed",
+    hoverIconImage: "/icons/Location-green.svg",
+    hoverNumber: "91",
+    hoverText: "Locations Served",
+    bgColor: "bg-white",
+    hoverBgColor: "bg-secondary",
+  },
+  {
+    id: 2,
+    iconImage: "/partners-svgrepo-com.svg",
+    number: "3717",
+    text: "Trusted Partners",
+    hoverIconImage: "/icons/Person.svg",
+    hoverNumber: "250",
+    hoverText: "Expert Crew Members",
+    bgColor: "bg-white",
+    hoverBgColor: "bg-secondary",
+  },
+  {
+    id: 3,
+    iconImage: "/exhibition-museum-svgrepo-com.svg",
+    number: "9182",
+    text: "Featured Trade Shows",
+    hoverIconImage: "/services-svgrepo-com.svg",
+    hoverNumber: "25",
+    hoverText: "Services Offered",
+    bgColor: "bg-white",
+    hoverBgColor: "bg-secondary",
+  },
+  {
+    id: 4,
+    iconImage: "/icons/Fire.svg",
+    number: "10382",
+    text: "Booths Designed",
+    hoverIconImage: "/icons/Like.png",
+    hoverNumber: "3540",
+    hoverText: "Recommendations",
+    bgColor: "bg-white",
+    hoverBgColor: "bg-secondary",
+  },
+];
+
 const FactsAndFigures = ({ fields }) => {
-  const data = [
-    {
-      id: 1,
-      iconImage: "/projects-svgrepo-com.svg",
-      number: fields[25].value,
-      text: fields[26].value,
+  let data = [];
+  if (fields) {
+    data = [
+      {
+        id: 1,
+        iconImage: "/projects-svgrepo-com.svg",
+        number: fields[27].value ?? "Projects Completed",
+        text: fields[28].value,
 
-      bgColor: "bg-white",
-    },
-    {
-      id: 2,
-      iconImage: "/partners-svgrepo-com.svg",
-      number: fields[27].value,
-      text: fields[28].value,
+        bgColor: "bg-white",
+      },
+      {
+        id: 2,
+        iconImage: "/partners-svgrepo-com.svg",
+        number: fields[29].value,
+        text: fields[30].value,
 
-      bgColor: "bg-white",
-    },
-    {
-      id: 3,
-      iconImage: "/exhibition-museum-svgrepo-com.svg",
-      number: fields[29].value,
-      text: fields[30].value,
-      bgColor: "bg-white",
-    },
-    {
-      id: 4,
-      iconImage: "/icons/Fire.svg",
-      number: fields[31].value,
-      text: fields[32].value,
-      bgColor: "bg-white",
-    },
-  ];
+        bgColor: "bg-white",
+      },
+      {
+        id: 3,
+        iconImage: "/exhibition-museum-svgrepo-com.svg",
+        number: fields[31].value,
+        text: fields[32].value,
+        bgColor: "bg-white",
+      },
+      {
+        id: 4,
+        iconImage: "/icons/Fire.svg",
+        number: fields[33].value,
+        text: fields[34].value,
+        bgColor: "bg-white",
+      },
+    ];
+  } else {
+    data = static_data;
+  }
 
   return (
     <div className="bg-white py-16 flex flex-col justify-center items-center">
       <div className="text-secondary heading-font-700 text-2xl leading-10 uppercase font-bold">
-        FACTS AND FIGURES
+        {fields[25].value}
       </div>
       <div className="hidden mx-80 text-center md:block py-4">
-        Discover some of the features that have made us one of the distinguished
-        trade show booth design companies. Lorem ipsum, dolor sit amet
-        consectetur adipisicing elit. Accusantium asperiores nemo maiores est
-        unde vitae veniam, ullam iste excepturi assumenda?
+        {fields[26].value}
       </div>
       <div className="block md:hidden py-4 px-2 ">
-        <p className="text-center px-2 ">
-          We boast 13+ years of experience in the industry and 1000+ trade show
-          booth esigns compatible with any kind of space.
-        </p>
+        <p className="text-center px-2 ">{fields[26].value}</p>
       </div>
       <div className="grid grid-cols-2 px-2  gap-6 mt-8 md:flex md:flex-row md:flex-wrap md:justify-center md:items-center md:gap-10">
         {data.map((item) => (

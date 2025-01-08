@@ -4,7 +4,7 @@ import "./faq.css";
 import Footer from "@/components/ui/footer";
 
 const Faq = ({ fields }) => {
-  const faqs = fields[42].value.map((faq) => ({
+  const faqs = fields[41].value.map((faq) => ({
     heading: faq.question,
     text: faq.answer,
   }));
