@@ -4,9 +4,9 @@ import React from "react";
 
 const Leadingtrade = ({ fields }) => {
   return (
-    <div className="p-6 md:p-20 flex flex-col md:flex-row gap-6 md:gap-10">
+    <div className="p-6 md:p-20 flex flex-col lg:flex-row gap-6 md:gap-10">
       {/* Image Container */}
-      <div className="w-full md:w-1/2 sm:rounded-lg md:rounded-none ">
+      <div className="w-full lg:w-1/2 sm:rounded-lg md:rounded-none ">
         <Image
           layout="responsive" // Ensures the image is responsive
           width={370} // Aspect ratio width

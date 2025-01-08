@@ -5,8 +5,8 @@ import React from "react";
 const Queryform = () => {
   return (
     <div
-      style={{ height: "500px" }}
-      className="p-2 sm:p-8 booth-design-bg md:p-12 pb-20 flex flex-col overflow-y-auto items-center gap-4"
+      style={{ height: "630px" }}
+      className=" p-2 px-4 sm:p-8 booth-design-bg md:p-12 pb-20 flex flex-col overflow-y-auto items-center gap-4"
     >
       <h2 className="heading-font text-white text-center text-xl sm:text-2xl md:text-3xl uppercase font-semibold">
         Describe Your Trade Show Booth Requirements

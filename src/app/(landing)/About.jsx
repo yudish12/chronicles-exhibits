@@ -31,10 +31,10 @@ const About = ({ fields }) => {
 
       <div className="bg-white pt-8 pb-16">
         <div className="mx-auto lg:px-20">
-          <div className="grid grid-cols-1 px-6 xs:px-12 sm:px-20 lg:px-0 sm:grid-cols-2 gap-6 xl:gap-10 lg:grid-cols-3">
+          <div className="grid grid-cols-1 px-6 xs:px-12 sm:px-20 lg:px-0 sm:grid-cols-3 gap-6 xl:gap-10 lg:grid-cols-3">
             {/* Display Exhibits */}
             <div className="flex flex-col h-full">
-              <Card className="h-full shadow-one rounded-xl overflow-hidden md:max-w-[420px]  lg:max-w-[2000px] sm:max-h-[400px] flex flex-col">
+              <Card className="h-full shadow-one rounded-xl overflow-hidden sm:max-w-[300px] md:max-w-[420px]  lg:max-w-[2000px] sm:max-h-[400px] flex flex-col">
                 {/* Image */}
                 <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
                   <Image
@@ -77,7 +77,7 @@ const About = ({ fields }) => {
 
             {/*Our Services */}
             <div className="flex flex-col h-full">
-              <Card className="h-full  shadow-one rounded-xl overflow-hidden md:max-w-[420px] lg:max-w-[2000px] max-h-[400px] flex flex-col">
+              <Card className="h-full sm:max-w-[300px] shadow-one rounded-xl overflow-hidden md:max-w-[420px] lg:max-w-[2000px] max-h-[400px] flex flex-col">
                 <div className="w-full  border-b-2 border-b-primary h-48 overflow-hidden">
                   <Image
                     height={100}
@@ -116,7 +116,7 @@ const About = ({ fields }) => {
 
             {/* Our Work */}
             <div className="flex flex-col h-full">
-              <Card className="h-full  shadow-one rounded-xl overflow-hidden md:max-w-[420px] lg:max-w-[2000px] max-h-[400px] flex flex-col ">
+              <Card className="h-full sm:max-w-[300px] shadow-one rounded-xl overflow-hidden md:max-w-[420px] lg:max-w-[2000px] max-h-[400px] flex flex-col ">
                 <div className="w-full  border-b-2 border-b-primary h-48 overflow-hidden">
                   <Image
                     height={100}
