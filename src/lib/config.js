@@ -280,6 +280,16 @@ export const homePageFields = [
     value: "",
   },
   {
+    key: "faq_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "faq_sub-title",
+    type: "textarea",
+    value: "",
+  },
+  {
     key: "5th_section_faqs",
     type: "key-value-array",
     value: [

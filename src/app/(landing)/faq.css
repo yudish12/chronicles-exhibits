@@ -11,6 +11,7 @@
 }
 
 #faq-body p {
+  text-align: justify;
   font-size: 1.125rem; /* Equivalent to text-lg */
   margin-bottom: 2rem; /* Equivalent to mb-8 */
   line-height: 1.75rem; /* Equivalent to leading-relaxed */
@@ -19,7 +20,7 @@
 }
 
 #faq-body > p {
-  text-align: center;
+  text-align: justify;
 }
 
 #faq-body p strong {

@@ -4,24 +4,21 @@ import "./faq.css";
 import Footer from "@/components/ui/footer";
 
 const Faq = ({ fields }) => {
-  const faqs = fields[41].value.map((faq) => ({
+  const faqs = fields[43].value.map((faq) => ({
     heading: faq.question,
     text: faq.answer,
   }));
   return (
     <>
       <div id="" className="px-6 bg-gray-200 md:px-20 py-8 md:py-12">
-        <h4 className="heading-font text-secondary text-xl md:text-3xl text-center font-semibold">
-          WHY CHOOSE CHRONICLE EXHIBITS AS YOUR NEXT
+        <h4
+          style={{ lineHeight: "42px" }}
+          className="heading-font lg:mx-52 xl:mx-72 text-secondary text-xl md:text-3xl text-center font-semibold mb-4 md:mb-6"
+        >
+          {fields[41].value}
         </h4>
-        <h4 className="heading-font text-secondary text-xl md:text-3xl text-center font-semibold mb-4 md:mb-6">
-          EXHIBITING PARTNER IN THE USA?
-        </h4>
-        <p className="text-center mx-44 text-base">
-          With more than 25 years of experience in the industry, we understand
-          each and every need of exhibitors and strive to provide quality custom
-          trade show booths and rentals with an unforgettable exhibiting
-          experience.
+        <p className="text-center lg:mx-36 xl:mx-56 text-base">
+          {fields[42].value}
         </p>
         <div className="flex items-center justify-center py-2">
           <div className="container pb-8 ">
