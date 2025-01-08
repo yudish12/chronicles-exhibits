@@ -10,8 +10,8 @@ const Products = async ({ bgColor, title, subTitle, location }) => {
     <div
       className={cn(
         bgColor === "white"
-          ? "product-bg-white-2 bg-white w-full flex flex-col items-center py-14"
-          : "product-bg w-full flex flex-col items-center py-14"
+          ? "product-bg-white-2 bg-white w-full flex flex-col items-center px-4 py-14"
+          : "product-bg w-full flex flex-col items-center px-4 py-14"
       )}
     >
       <h1
