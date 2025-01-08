@@ -91,13 +91,19 @@ const FactsAndFigures = ({ fields }) => {
   return (
     <div className="bg-white py-16 flex flex-col justify-center items-center">
       <div className="text-secondary heading-font-700 text-2xl leading-10 uppercase font-bold">
-        {fields[25].value}
+        {fields ? fields[25].value : "Facts And Figures"}
       </div>
       <div className="hidden mx-80 text-center md:block py-4">
-        {fields[26].value}
+        {fields
+          ? fields[26].value
+          : "Discover some of the features that have made us one of the distinguished trade show booth design companies. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium asperiores nemo maiores est unde vitae veniam, ullam iste excepturi assumenda?"}
       </div>
       <div className="block md:hidden py-4 px-2 ">
-        <p className="text-center px-2 ">{fields[26].value}</p>
+        <p className="text-center px-2 ">
+          {fields
+            ? fields[26].value
+            : "Discover some of the features that have made us one of the distinguished trade show booth design companies. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium asperiores nemo maiores est unde vitae veniam, ullam iste excepturi assumenda?"}
+        </p>
       </div>
       <div className="grid grid-cols-2 px-2  gap-6 mt-8 md:flex md:flex-row md:flex-wrap md:justify-center md:items-center md:gap-10">
         {data.map((item) => (
