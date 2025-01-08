@@ -20,7 +20,7 @@ const Faq = ({ fields }) => {
         <p className="text-center lg:mx-36 xl:mx-56 text-base">
           {fields[42].value}
         </p>
-        <div className="flex items-center justify-center py-2">
+        <div className="flex items-center justify-center py-2 lg:px-12">
           <div className="container pb-8 ">
             <div className="grid sm:w-[95%] md:w-[90%] mx-auto grid-cols-1 mt-8 md:grid-rows-3 gap-0">
               {faqs.map((e, index) => (
