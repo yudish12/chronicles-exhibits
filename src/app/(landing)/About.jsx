@@ -8,7 +8,7 @@ import Image from "next/image";
 const About = ({ fields }) => {
   return (
     <>
-      <div className="bg-white mt-4 xs:mt-20 sm:mt-52 lg:mt-0 pt-2 sm:pt-4 ">
+      <div className="bg-white mt-4 lg:mt-0 pt-2 sm:pt-4 ">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             {/* <h2 className=" text-[22px] font-bold text-[#B0CB1F] ">

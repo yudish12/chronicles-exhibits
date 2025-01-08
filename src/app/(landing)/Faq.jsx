@@ -1,7 +1,6 @@
 import React from "react";
 // import faqs from "../../utils/constants/dev-data/faqs.json";
 import "./faq.css";
-import Footer from "@/components/ui/footer";
 
 const Faq = ({ fields }) => {
   const faqs = fields[43].value.map((faq) => ({
