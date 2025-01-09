@@ -224,7 +224,7 @@ const Page = async ({ params }) => {
               className="h-[350px] w-full bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6 justify-between"
             >
               <h4 className="text-secondary heading-font text-xl  font-semibold">
-                {show.title}
+                {show.event_name}
               </h4>
               <Image
                 className="rounded-full"

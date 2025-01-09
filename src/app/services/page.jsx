@@ -14,11 +14,12 @@ const ServicePage = () => {
       <SubHeader />
       <Header />
 
-      <div className="text-center mt-8">
-        <h2 className="scale-110 text-2xl text-[#B0CB1F] ">Services</h2>
-        <p className="mt-6 sm:text-4xl heading-font-700 uppercase text-secondary ">
-          eye catching trade show booth solutions
-        </p>
+      <div className=" featured-bg flex flex-col items-center justify-center bg-cover bg-center">
+        <div className="flex flex-col items-center h-full justify-center text-center gap-10 px-4 md:px-20">
+          <h2 className="heading-font font-semibold text-[2rem] mt-16 text-white drop-shadow-lg leading-relaxed ">
+            Services
+          </h2>
+        </div>
       </div>
       <Carousel />
       <Parallax />
