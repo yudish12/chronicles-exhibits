@@ -39,7 +39,7 @@ const Editbooth = ({ boothData }) => {
       thumbnail_image: singleBooth.thumbnail_image,
       all_images: singleBooth.all_images,
       image_alt_text: singleBooth.image_alt_text,
-      packge_title: singleBooth.package_title,
+      package_title: singleBooth.package_title,
       packge_description: singleBooth.packge_description,
       meta_title: singleBooth.meta_title,
       meta_description: singleBooth.meta_description,
@@ -255,11 +255,11 @@ const Editbooth = ({ boothData }) => {
               <Label className="mb-4 block">Package Title</Label>
               <Input
                 className="rounded-sm"
-                value={singleBooth.packge_title}
+                value={singleBooth.package_title}
                 onChange={(e) =>
                   setsingleBooth({
                     ...singleBooth,
-                    packge_title: e.target.value,
+                    package_title: e.target.value,
                   })
                 }
                 required

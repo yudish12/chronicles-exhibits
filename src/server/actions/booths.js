@@ -112,7 +112,7 @@ export const updateData = async (id, data) => {
         "image_alt_text"
       );
     }
-    if (!data.packge_title) {
+    if (!data.package_title) {
       return getActionFailureResponse(
         "packge_title is required",
         "packge_title"
@@ -142,7 +142,7 @@ export const updateData = async (id, data) => {
     if (!data.all_images || !Array.isArray(data.all_images)) {
       return getActionFailureResponse("all_images is required", "all_images");
     }
-    if (!data.booth_size || !data.booth_size._id) {
+    if (!data.booth_size) {
       return getActionFailureResponse("booth_size is required", "booth_size");
     }
     // Use findByIdAndUpdate instead of updateOne to get the updated document
