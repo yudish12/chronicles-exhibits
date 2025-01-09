@@ -38,11 +38,11 @@ const About = ({ fields }) => {
                 {/* Image */}
                 <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
                   <Image
-                    height={100}
-                    width={150}
+                    height={260}
+                    width={350}
                     src={fields[11].value}
                     alt={fields[12].value}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-fill"
                   />
                 </div>
                 {/* Text Content */}
@@ -77,11 +77,11 @@ const About = ({ fields }) => {
               <Card className="h-full sm:max-w-[300px] shadow-one rounded-xl overflow-hidden md:max-w-[420px] lg:max-w-[2000px] max-h-[400px] flex flex-col">
                 <div className="w-full  border-b-2 border-b-primary h-48 overflow-hidden">
                   <Image
-                    height={100}
-                    width={150}
+                    height={260}
+                    width={350}
                     src={fields[16].value}
                     alt={fields[17].value}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-fill"
                   />
                 </div>
                 {/* Text Content */}
@@ -113,11 +113,11 @@ const About = ({ fields }) => {
               <Card className="h-full sm:max-w-[300px] shadow-one rounded-xl overflow-hidden md:max-w-[420px] lg:max-w-[2000px] max-h-[400px] flex flex-col ">
                 <div className="w-full  border-b-2 border-b-primary h-48 overflow-hidden">
                   <Image
-                    height={100}
-                    width={150}
+                    height={260}
+                    width={350}
                     src={fields[21].value}
                     alt={fields[22].value}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-fill"
                   />
                 </div>
                 {/* Text Content */}

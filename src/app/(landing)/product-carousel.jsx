@@ -71,14 +71,14 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
       <button
         onClick={handlePrev}
         aria-label="Previous Slide"
-        className="flex md:hidden absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800 text-white rounded-full p-3"
+        className="flex md:hidden absolute -left-5 top-1/2 transform -translate-y-1/2 z-10  text-white rounded-full p-3"
       >
         <ChevronLeftCircle />
       </button>
       <button
         onClick={handleNext}
         aria-label="Next Slide"
-        className="flex md:hidden absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800 text-white rounded-full p-3"
+        className="flex md:hidden absolute -right-5 top-1/2 transform -translate-y-1/2 z-10 text-white rounded-full p-3"
       >
         <ChevronRightCircle />
       </button>

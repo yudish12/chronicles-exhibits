@@ -4,6 +4,7 @@ import {
   homePageFields,
   locationPageFields,
   PrivacyPolicyPageFields,
+  servicePageFields,
 } from "@/lib/config";
 import * as jwtFuncs from "./jwt";
 
@@ -40,6 +41,8 @@ const getPageFieldsByName = (pageName) => {
       return FAQPageFields;
     case "privacy-policy":
       return PrivacyPolicyPageFields;
+    case "service":
+      return servicePageFields;
     default:
       return [];
   }

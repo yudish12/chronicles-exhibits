@@ -726,6 +726,146 @@ export const servicePageFields = [
     type: "textarea",
     value: "",
   },
+  {
+    key: "bottom_box_section_1_left_icon",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_1_left_icon_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_1_left_description",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_1_right_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_1_right_subtitle",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_1_right_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_1_right_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_2_left_icon",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_2_left_icon_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_2_left_description",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_2_right_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_2_right_subtitle",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_2_right_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_2_right_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_3_left_icon",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_3_left_icon_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_3_left_description",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_3_right_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_3_right_subtitle",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_3_right_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_3_right_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_4_left_icon",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_4_left_icon_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_4_left_description",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_4_right_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_4_right_subtitle",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_4_right_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "bottom_box_section_4_right_image_alt-text",
+    type: "text",
+    value: "",
+  },
 ];
 
 // db.pages.updateOne(
