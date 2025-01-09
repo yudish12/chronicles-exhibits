@@ -9,11 +9,11 @@ const Parallax = () => {
 
   // Determine the active section based on scroll position
   const currentSection =
-    scrollPosition < 900
+    scrollPosition < 1100
       ? 1
-      : scrollPosition < 1300
+      : scrollPosition < 1700
       ? 2
-      : scrollPosition < 1800
+      : scrollPosition < 2300
       ? 3
       : 4;
   const [activeSection, setActiveSection] = useState(currentSection);
@@ -103,6 +103,13 @@ const Parallax = () => {
             <p className="text-center mt-4">
               This is the first section of the content. Scroll to explore more.
             </p>
+            <Image
+              src={"/ngwa-show.png"}
+              alt="ngwa-show"
+              width={250}
+              height={150}
+              className="w-full h-full max-h-[150px]  object-contain rounded-2xl"
+            />
           </div>
 
           {/* Section 2 */}
@@ -118,6 +125,13 @@ const Parallax = () => {
             <p className="text-center mt-4">
               Our designs are tailored to suit your brand’s needs.
             </p>
+            <Image
+              src={"/ngwa-show.png"}
+              alt="ngwa-show"
+              width={250}
+              height={150}
+              className="w-full h-full max-h-[150px]  object-contain rounded-2xl"
+            />
           </div>
 
           {/* Section 3 */}
@@ -133,6 +147,13 @@ const Parallax = () => {
             <p className="text-center mt-4">
               Customize your trade show booth to stand out.
             </p>
+            <Image
+              src={"/ngwa-show.png"}
+              alt="ngwa-show"
+              width={250}
+              height={150}
+              className="w-full h-full max-h-[150px]  object-contain rounded-2xl"
+            />
           </div>
 
           {/* Section 4 */}
@@ -148,6 +169,13 @@ const Parallax = () => {
             <p className="text-center mt-4">
               We ensure smooth execution of trade show solutions.
             </p>
+            <Image
+              src={"/ngwa-show.png"}
+              alt="ngwa-show"
+              width={250}
+              height={150}
+              className="w-full h-full max-h-[150px]  object-contain rounded-2xl"
+            />
           </div>
         </div>
       </div>
