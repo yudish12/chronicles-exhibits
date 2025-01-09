@@ -62,7 +62,7 @@ const Parallax = () => {
       <div className="mt-20 grid bg-transparent grid-cols-2 gap-x-20">
         {/* Left Sticky Div */}
         <div
-          className="sticky top-[250px] transition-all shadow-one hover:bg-secondary max-w-[650px] p-8 bg-white rounded-lg"
+          className="sticky top-[250px] hover:text-white transition-all shadow-one hover:bg-secondary max-w-[650px] p-8 bg-white rounded-lg"
           style={{
             height: "300px",
             display: "flex",
@@ -80,11 +80,7 @@ const Parallax = () => {
             alt="icon"
             style={{ transitionDuration: "500ms" }}
           />
-          <p
-            key={`text-${activeSection}`}
-            className="text-black fadeInOut text-center hover:text-white"
-            style={{ transitionDuration: "500ms" }}
-          >
+          <p key={`text-${activeSection}`} className="fadeInOut text-center ">
             {sections[currentSection - 1].text}
           </p>
         </div>

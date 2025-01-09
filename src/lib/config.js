@@ -630,6 +630,104 @@ export const contactUsPageFields = [
   },
 ];
 
+export const servicePageFields = [
+  {
+    key: "top_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "slider1_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "slider1_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "slider1_heading",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "slider1_description",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "slider2_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "slider2_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "slider2_heading",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "slider2_description",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "slider3_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "slider3_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "slider3_heading",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "slider3_description",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "slider4_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "slider4_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "slider4_heading",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "slider4_description",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "bottom_box_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "bottom_box_para",
+    type: "textarea",
+    value: "",
+  },
+];
+
 // db.pages.updateOne(
 //   { name: "trade-show-booth-displays-designs" },
 //   {

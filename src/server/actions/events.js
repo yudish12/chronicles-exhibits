@@ -2,7 +2,12 @@
 
 import dbConnect from "@/config/db-connect";
 import events from "../models/events";
-import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
+import {
+  getActionFailureResponse,
+  getActionSuccessResponse,
+  isValidEmail,
+  isValidWebsite,
+} from "@/utils";
 import Locations from "../models/locations";
 import mongoose from "mongoose";
 import Cities from "../models/cities";
@@ -18,15 +23,19 @@ export const getEventByCity = async (city, skip, limit, projection) => {
 
     // Construct the query using $expr and $regex
 
-    let query =  events.find({
-      $expr: {
-        $regexMatch: {
-          input: { $replaceAll: { input: "$city", find: " ", replacement: "" } },
-          regex: normalizedCity,
-          options: "i", // Case-insensitive match
+    let query = events
+      .find({
+        $expr: {
+          $regexMatch: {
+            input: {
+              $replaceAll: { input: "$city", find: " ", replacement: "" },
+            },
+            regex: normalizedCity,
+            options: "i", // Case-insensitive match
+          },
         },
-      },
-    }).sort({start_date: 1});
+      })
+      .sort({ start_date: 1 });
     if (skip) {
       query = query.skip(skip);
     }
@@ -38,18 +47,16 @@ export const getEventByCity = async (city, skip, limit, projection) => {
     if (projection) {
       query = query.select(projection);
     }
-    let eventsFetched = await query.lean()
-    if(eventsFetched.length<4){
+    let eventsFetched = await query.lean();
+    if (eventsFetched.length < 4) {
       const remainingCount = 4 - eventsFetched.length;
       const additionalEvents = await events.aggregate([
-        {$match : { _id: { $nin: eventsFetched.map(e => e._id) } }},
-        { $sample: { size: remainingCount } }
+        { $match: { _id: { $nin: eventsFetched.map((e) => e._id) } } },
+        { $sample: { size: remainingCount } },
       ]);
       eventsFetched = eventsFetched.concat(additionalEvents);
     }
     // Apply skip, limit, and projection if provided
-
-    
 
     // Execute the query and get the total count
     // const data = await query.lean();
@@ -64,14 +71,13 @@ export const getEventByCity = async (city, skip, limit, projection) => {
     // });
 
     // let events = await events.find({city}).limit(4)
-    console.log(eventsFetched)
+    console.log(eventsFetched);
     const count = eventsFetched.length;
-    return getActionSuccessResponse(eventsFetched ,count );
+    return getActionSuccessResponse(eventsFetched, count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }
 };
-
 
 export const getAllData = async (skip, limit, projection) => {
   try {
@@ -183,6 +189,25 @@ export const updateData = async (id, data) => {
       );
     }
 
+    if (!data.email) {
+      return getActionFailureResponse("E mail is required", "email");
+    }
+    if (!data.website) {
+      return getActionFailureResponse("Website is required", "webiste");
+    }
+
+    if (!data.address) {
+      return getActionFailureResponse("Address is required", "address");
+    }
+
+    if (!isValidEmail(data.email)) {
+      return getActionFailureResponse("Invalid email", "email");
+    }
+
+    if (!isValidWebsite(data.website)) {
+      return getActionFailureResponse("Invalid website", "website");
+    }
+
     // Find and update the document, returning the updated version
     const updatedEvent = await events.findOneAndUpdate({ _id: id }, data, {
       new: true, // Return the updated document
@@ -226,6 +251,9 @@ export const addData = async (data) => {
     if (!data.body) {
       return getActionFailureResponse("Body is required", "body");
     }
+    if (!data.address) {
+      return getActionFailureResponse("Address is required", "address");
+    }
     if (!data.icon_alt_text) {
       return getActionFailureResponse(
         "Icon alt text is required",
@@ -247,18 +275,21 @@ export const addData = async (data) => {
         "meta_keywords"
       );
     }
-    if(!data.email){
-      return getActionFailureResponse(
-        "E mail is required",
-        "email"
-      )
+    if (!data.email) {
+      return getActionFailureResponse("E mail is required", "email");
     }
-    if(!data.website){
-      return getActionFailureResponse(
-        "Website is required",
-        "webiste"
-      )
+    if (!data.website) {
+      return getActionFailureResponse("Website is required", "webiste");
     }
+
+    if (!isValidEmail(data.email)) {
+      return getActionFailureResponse("Invalid email", "email");
+    }
+
+    if (!isValidWebsite(data.website)) {
+      return getActionFailureResponse("Invalid website", "website");
+    }
+
     const resp = await events.create(data);
     console.log("added data ", resp);
     return getActionSuccessResponse(resp);

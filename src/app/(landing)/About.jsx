@@ -40,22 +40,19 @@ const About = ({ fields }) => {
                   <Image
                     height={100}
                     width={150}
-                    src="/what-we-do-1.png"
-                    alt="Exhibit Display"
+                    src={fields[11].value}
+                    alt={fields[12].value}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 {/* Text Content */}
                 <CardHeader className="text-center p-2">
                   <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
-                    DISPLAY EXHIBITS
+                    {fields[8].value}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center text-secondary p-0 px-4">
-                  <p className="text-secondary">
-                    Explore our range of trade show booth displays design
-                    rentals by size and budget.
-                  </p>
+                  <p className="text-secondary">{fields[9].value}</p>
                 </CardContent>
                 {/* Button */}
                 <CardFooter className="flex justify-center  p-2 my-2">
@@ -68,7 +65,7 @@ const About = ({ fields }) => {
                       style={{ transitionDuration: "500ms" }}
                       className="rounded-full w-1/3 mx-auto px-16  py-4 font-thin text text-xl text-black border hover:bg-primary hover:text-white  bg-transparent border-primary"
                     >
-                      View All
+                      {fields[10].value}
                     </Button>
                   </Link>
                 </CardFooter>
@@ -82,22 +79,19 @@ const About = ({ fields }) => {
                   <Image
                     height={100}
                     width={150}
-                    src="/what-we-do-2.png"
-                    alt="Exhibit Display"
+                    src={fields[16].value}
+                    alt={fields[17].value}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 {/* Text Content */}
                 <CardHeader className="text-center p-2">
                   <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
-                    OUR SERVICES
+                    {fields[13].value}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center text-secondary p-0 px-4">
-                  <p className="text-secondary">
-                    We offer full trade show booth displays design services to
-                    make your experience hassle-free.
-                  </p>
+                  <p className="text-secondary">{fields[14].value}</p>
                 </CardContent>
                 {/* Button */}
                 <CardFooter className="flex justify-center p-2 my-2">
@@ -107,7 +101,7 @@ const About = ({ fields }) => {
                       style={{ transitionDuration: "500ms" }}
                       className="rounded-full w-1/3 mx-auto px-16  py-4 font-thin text text-xl text-black border hover:bg-primary hover:text-white  bg-transparent border-primary"
                     >
-                      Know More
+                      {fields[15].value}
                     </Button>
                   </Link>
                 </CardFooter>
@@ -121,22 +115,19 @@ const About = ({ fields }) => {
                   <Image
                     height={100}
                     width={150}
-                    src="/what-we-do-3.png"
-                    alt="Exhibit Display"
+                    src={fields[21].value}
+                    alt={fields[22].value}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 {/* Text Content */}
                 <CardHeader className="text-center p-2">
                   <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
-                    OUR WORK
+                    {fields[18].value}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center text-secondary p-0 px-4">
-                  <p className="text-secondary">
-                    Check out our most recent trade show booth designs and
-                    projects executed in the USA.
-                  </p>
+                  <p className="text-secondary">{fields[19].value}</p>
                 </CardContent>
                 {/* Button */}
                 <CardFooter className="p-2 my-2 flex justify-center">
@@ -146,7 +137,7 @@ const About = ({ fields }) => {
                       style={{ transitionDuration: "500ms" }}
                       className="rounded-full w-1/3 mx-auto px-16 py-4 font-thin text text-xl text-black border hover:bg-primary hover:text-white  bg-transparent border-primary"
                     >
-                      View Portfolio
+                      {fields[20].value}
                     </Button>
                   </Link>
                 </CardFooter>

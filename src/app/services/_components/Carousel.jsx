@@ -32,7 +32,7 @@ const Carousel = () => {
   };
 
   return (
-    <section className="embla ">
+    <section className="embla">
       <div className="embla__viewport mt-8" ref={emblaRef}>
         <div className="embla__container">
           {carouselData.map((item, index) => (
@@ -51,7 +51,9 @@ const Carousel = () => {
                   <h3 className="text-2xl font-bold text-white mb-2">
                     {item.heading}
                   </h3>
-                  <p className="text-white text-lg">{item.description}</p>
+                  <p className="text-white md:mx-16 sm:mx-10 mx-4 lg:mx-24 xl:mx-44 text-lg">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             </div>

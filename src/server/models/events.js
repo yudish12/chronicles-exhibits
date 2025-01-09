@@ -43,12 +43,16 @@ const eventSchema = new mongoose.Schema(
       type: String,
       default: "/event-sample.png",
     },
-    email : {
-      type: String
+    address: {
+      type: String,
+      default: "",
+    },
+    email: {
+      type: String,
     },
     website: {
-      type: String
-    }
+      type: String,
+    },
   },
   { timestamps: true }
 );

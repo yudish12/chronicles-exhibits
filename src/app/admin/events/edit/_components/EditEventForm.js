@@ -4,13 +4,6 @@ import { updateData } from "@/server/actions/events";
 import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectItem,
-  SelectTrigger,
-  SelectContent,
-  SelectValue,
-} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import TagsInput from "react-tagsinput";
 import "react-tagsinput/react-tagsinput.css";
@@ -41,6 +34,9 @@ const EditEventForm = ({ singleEvent, cities }) => {
       country: event.country,
       city: event.city,
       icon_alt_text: event.icon_alt_text,
+      website: event.website,
+      email: event.email,
+      address: event.address,
       meta_description: event.meta_description,
       meta_title: event.meta_title,
       meta_keywords: event.meta_keywords ?? [],
@@ -214,6 +210,30 @@ const EditEventForm = ({ singleEvent, cities }) => {
                   return temp;
                 });
               }}
+            />
+          </div>
+          <div>
+            <Label>Website</Label>
+            <Input
+              value={event.website}
+              onChange={(e) => setEvent({ ...event, website: e.target.value })}
+              required
+            />
+          </div>
+          <div>
+            <Label>Contact Email</Label>
+            <Input
+              value={event.email}
+              onChange={(e) => setEvent({ ...event, email: e.target.value })}
+              required
+            />
+          </div>
+          <div className="col-span-2">
+            <Label>Address</Label>
+            <Input
+              value={event.address}
+              onChange={(e) => setEvent({ ...event, address: e.target.value })}
+              required
             />
           </div>
         </CardContent>
