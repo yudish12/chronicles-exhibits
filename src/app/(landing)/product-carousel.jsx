@@ -109,7 +109,7 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
             >
               <div
                 className={cn(
-                  "rounded-lg h-[400px] shadow-xl overflow-hidden w-full bg-secondary flex flex-col",
+                  "rounded-lg h-[330px] shadow-xl overflow-hidden w-full bg-secondary flex flex-col",
                   bgColor === "white"
                     ? "shadow-none border border-gray-400"
                     : ""
