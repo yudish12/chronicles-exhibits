@@ -10,6 +10,7 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
   const [visibleCards, setVisibleCards] = useState(1);
   const slideInterval = useRef(null);
 
+  // Update visible cards on window resize
   useEffect(() => {
     const updateVisibleCards = () => {
       setVisibleCards(
@@ -23,19 +24,19 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
     return () => window.removeEventListener("resize", updateVisibleCards);
   }, []);
 
+  // Start auto-slide on mount
   useEffect(() => {
     startAutoSlide();
 
     return () => {
       stopAutoSlide();
     };
-  }, [activeIndex, visibleCards]);
+  }, [activeIndex]);
 
+  // Auto-slide functions
   const startAutoSlide = () => {
-    stopAutoSlide(); // Clear any existing interval before starting a new one
-    slideInterval.current = setInterval(() => {
-      handleNext();
-    }, 3000); // Change slides every 5 seconds
+    stopAutoSlide(); // Clear any existing interval
+    slideInterval.current = setInterval(handleNext, 3000);
   };
 
   const stopAutoSlide = () => {
@@ -44,25 +45,20 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
     }
   };
 
+  // Slide to the next card
   const handleNext = () => {
-    setActiveIndex((prevIndex) =>
-      prevIndex + visibleCards >= boothsizes.length
-        ? 0
-        : prevIndex + visibleCards
-    );
+    setActiveIndex((prevIndex) => (prevIndex === 7 ? 0 : prevIndex + 1));
   };
 
+  // Slide to the previous card
   const handlePrev = () => {
-    setActiveIndex((prevIndex) =>
-      prevIndex - visibleCards < 0
-        ? boothsizes.length - visibleCards
-        : prevIndex - visibleCards
-    );
+    setActiveIndex((prevIndex) => (prevIndex === 0 ? 7 : prevIndex - 1));
   };
 
+  // Handle dot navigation
   const handleDotClick = (slideIndex) => {
-    setActiveIndex(slideIndex * visibleCards);
-    startAutoSlide(); // Reset the interval on dot click
+    setActiveIndex(slideIndex);
+    startAutoSlide(); // Reset auto-slide
   };
 
   return (
@@ -73,20 +69,14 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
     >
       {/* Chevron Navigation */}
       <button
-        onClick={() => {
-          handlePrev();
-          startAutoSlide(); // Reset the interval on manual navigation
-        }}
+        onClick={handlePrev}
         aria-label="Previous Slide"
         className="flex md:hidden absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800 text-white rounded-full p-3"
       >
         <ChevronLeftCircle />
       </button>
       <button
-        onClick={() => {
-          handleNext();
-          startAutoSlide(); // Reset the interval on manual navigation
-        }}
+        onClick={handleNext}
         aria-label="Next Slide"
         className="flex md:hidden absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-gray-800 text-white rounded-full p-3"
       >
@@ -139,14 +129,12 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
 
       {/* Navigation Dots */}
       <div className="hidden md:flex justify-center gap-2 mt-4">
-        {Array.from({
-          length: Math.ceil(boothsizes.length / visibleCards),
-        }).map((_, slideIndex) => (
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((_, slideIndex) => (
           <div
             key={slideIndex}
             onClick={() => handleDotClick(slideIndex)}
             className={`w-[10px] h-[10px] rounded-full cursor-pointer ${
-              slideIndex === Math.floor(activeIndex / visibleCards)
+              slideIndex === activeIndex
                 ? bgColor === "white"
                   ? "bg-primary"
                   : "bg-white"
