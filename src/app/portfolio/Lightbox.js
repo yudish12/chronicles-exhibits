@@ -21,8 +21,8 @@ const Lightbox = ({ images }) => {
 
   return (
     <>
-      <div className="py-8 px-4 sm:px-8 md:px-12 lg:px-28">
-        <div className="grid grid-cols-2  mx-auto gap-x-8 place-content-center p-8  px-4 md:px-8 lg:px-20 gap-y-8">
+      <div className="py-8 px-6 sm:px-8 md:px-12 lg:px-32 xl:px-52">
+        <div className="grid grid-cols-2 mx-auto gap-x-8 place-content-center py-8 gap-y-8">
           {images.data.map((item, index) => (
             <div
               key={index}
