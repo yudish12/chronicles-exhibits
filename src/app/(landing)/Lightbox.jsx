@@ -20,12 +20,12 @@ const LightboxComp = ({ images }) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[370px,370px,370px] shadow-two w-full md:w-max mx-auto  gap-x-4 sm:gap-x-6 md:gap-x-8 p-4 sm:p-6 md:p-8 gap-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full  mx-auto  gap-x-4 sm:gap-x-6 md:gap-x-8 py-4 sm:py-6 md:py-8  gap-y-6">
         {images.map((item, index) => (
           <div
             key={index}
             onClick={() => openLightboxOnSlide(index + 1)}
-            className="overflow-hidden cursor-pointer w-full sm:w-[370px] h-[200px] sm:h-[250px] md:h-[300px]"
+            className="overflow-hidden max-w-[360px] mx-auto sm:max-w-full cursor-pointer w-full h-[230px] sm:h-[250px] md:h-[300px]"
           >
             <Image
               width={370}
