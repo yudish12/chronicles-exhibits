@@ -37,7 +37,7 @@ export const collections = [
   },
   {
     slug: "booths",
-    name: "Booths",
+    name: "Booth Designs",
     icon: <ShoppingBag color="#B0CB1F" />,
   },
   {
