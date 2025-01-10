@@ -74,12 +74,12 @@ const page = async () => {
         <p className="text-center px-6 text-gray-300 text-md pt-4">
           {data.fields[14].value}
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-12 px-6 sm:px-10 lg:px-20 xl:px-32 gap-x-8 lg:gap-x-12 gap-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-12 px-6 sm:px-10 lg:px-20 gap-x-6 gap-y-6 md:gap-x-8 md:gap-y-8 xl:gap-x-12 xl:gap-y-12">
           {cardData.map((item, index) => (
             <Link
               href={`/booth/size/${item.name}`}
               key={index}
-              className="h-[370px] hover:scale-110 duration-300 transition-all rounded-xl shadow-one overflow-hidden w-full bg-secondary flex flex-col"
+              className="h-[300px] max-w-[350px] hover:scale-110 duration-300 transition-all rounded-lg shadow-one overflow-hidden w-full bg-secondary flex flex-col"
             >
               {/* Image Section */}
               <Image
