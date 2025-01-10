@@ -231,7 +231,13 @@ const LocationPage = () => {
                 <TableCell>{blog.name}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
-                    <Link href={`/blog/${blog.slug}`} target="_blank">
+                    <Link
+                      href={`/locations/${blog.name
+                        .toLowerCase()
+                        .split(" ")
+                        .join("-")}`}
+                      target="_blank"
+                    >
                       <Button variant="outline" size="icon">
                         <Eye className="h-4 w-4" />
                         <span className="sr-only">View {blog.title}</span>
