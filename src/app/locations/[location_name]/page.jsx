@@ -93,8 +93,8 @@ const Page = async ({ params }) => {
               <SelectGroup>
                 <SelectLabel>Cities</SelectLabel>
                 {majorExhibitingCities.data.map((city, index) => (
-                  <SelectItem value={city.city} key={index}>
-                    {city.city}
+                  <SelectItem value={city._id} key={index}>
+                    {city.name}
                   </SelectItem>
                 ))}
               </SelectGroup>

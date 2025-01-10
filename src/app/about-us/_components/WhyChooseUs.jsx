@@ -72,7 +72,7 @@ const WhyChooseUs = () => {
           height={250}
           src="/photo1 2.png"
           alt="photo1"
-          className="min-h-[400px] object-cover rounded-lg "
+          className="min-h-[400px] rounded-lg "
         />
       </div>
     </div>

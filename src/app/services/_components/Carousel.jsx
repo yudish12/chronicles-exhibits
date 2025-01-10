@@ -3,11 +3,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
-import carouselData from "../../../utils/constants/dev-data/service-carousel.json";
+// import carouselData from "../../../utils/constants/dev-data/service-carousel.json";
 import { DotButton, useDotButton } from "@/components/EmblaDots";
 import "../../embla.css";
 
-const Carousel = () => {
+const Carousel = ({ fields }) => {
   const options = { loop: true };
 
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
@@ -31,6 +31,33 @@ const Carousel = () => {
     setCurrentIndex(index);
   };
 
+  const carouselData = [
+    {
+      image: fields[1].value,
+      alt_text: fields[2].value,
+      heading: fields[3].value,
+      description: fields[4].value,
+    },
+    {
+      image: fields[5].value,
+      alt_text: fields[6].value,
+      heading: fields[7].value,
+      description: fields[8].value,
+    },
+    {
+      image: fields[9].value,
+      alt_text: fields[10].value,
+      heading: fields[11].value,
+      description: fields[12].value,
+    },
+    {
+      image: fields[13].value,
+      alt_text: fields[14].value,
+      heading: fields[15].value,
+      description: fields[16].value,
+    },
+  ];
+
   return (
     <section className="embla">
       <div className="embla__viewport mt-8" ref={emblaRef}>
@@ -40,7 +67,7 @@ const Carousel = () => {
               <div className="embla__slide__number relative w-full h-full">
                 <Image
                   src={item.image}
-                  alt={item.heading ?? "heading"}
+                  alt={item.alt_text ?? "heading"}
                   width={800}
                   height={450}
                   className="w-full h-full object-cover rounded-2xl"

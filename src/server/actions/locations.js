@@ -5,6 +5,7 @@ import Locations from "../models/locations";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import mongoose from "mongoose";
 import Cities from "../models/cities";
+import { locationPageFields } from "@/lib/config";
 
 await dbConnect();
 export const getAllData = async (skip, limit, projection) => {
@@ -267,5 +268,53 @@ export const getLocationPagebyCity = async (city) => {
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
+  }
+};
+
+export const fetchCitiesToAdd = async () => {
+  try {
+    const cities = await Cities.aggregate([
+      {
+        $lookup: {
+          from: "locations",
+          localField: "_id",
+          foreignField: "city_id",
+          as: "locationRef",
+        },
+      },
+      {
+        $match: {
+          locationRef: { $size: 0 },
+        },
+      },
+    ]);
+    return getActionSuccessResponse(cities);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
+export const createCityPageInLocation = async (data) => {
+  if (!data || !data.length) {
+    return getActionFailureResponse("Invalid data format", "toast");
+  }
+  try {
+    let promises = [];
+    data.map((item) => {
+      console.log(item);
+      promises.push(
+        Locations.create({
+          fields: locationPageFields,
+          name: item.name,
+          slug: item.name.toLowerCase().replace(" ", "-"),
+          city_id: item._id,
+        })
+      );
+    });
+    const respData = await Promise.all(promises);
+    return getActionSuccessResponse(respData);
+  } catch (error) {
+    console.error("Error updating data:", error);
+    return getActionFailureResponse(error.message, "toast");
   }
 };

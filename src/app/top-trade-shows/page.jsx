@@ -12,6 +12,7 @@ import Link from "next/link";
 import { getAllData } from "@/server/actions/events";
 import TradeShowGrid from "./_components/TradeShowGrid";
 import { getSinglePage } from "@/server/actions/pages";
+import TradeshowSearch from "./_components/Tradeshow-search";
 
 export const generateMetadata = async ({}) => {
   const { data } = await getSinglePage({ name: "events" });
@@ -46,22 +47,13 @@ const Page = async ({ params, searchParams }) => {
         </h2>
       </div>
       <div className="bg-background px-6 md:px-16 lg:px-20 py-12 flex flex-col items-center justify-center gap-4">
-        <div className="flex gap-6 justify-center w-full">
-          <input
-            className="shadow-one w-[100%] md:w-[60%] lg:w-[40%] placeholder:text-center placeholder:font-medium rounded-lg placeholder:text-secondary/60 px-4"
-            placeholder="Search for upcoming trade shows"
-          />
-          <Button className="text-secondary font-semibold bg-white hover:bg-secondary hover:text-white transition-all py-5 shadow-one">
-            Search
-          </Button>
-        </div>
-
-        <TradeShowGrid
+        <TradeshowSearch
           tradeShows={tradeShows}
-          totalPage={totalPages}
-          currentPage={page}
+          totalPages={totalPages}
+          pages={page}
           limit={limit}
         />
+
         <p className="text-[17px]  md:mx-16  lg:mx-24 text-justify mt-6">
           {data.fields[1].value}
           <br />

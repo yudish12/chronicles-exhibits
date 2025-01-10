@@ -156,7 +156,7 @@ export default function BoothTable() {
                     <img
                       src={booth.thumbnail_image}
                       alt={booth.image_alt_text}
-                      className="w-16 h-16 object-cover rounded"
+                      className="w-16 h-16 rounded"
                     />
                   )}
                 </TableCell>

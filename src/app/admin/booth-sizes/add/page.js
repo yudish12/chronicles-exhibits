@@ -119,7 +119,7 @@ const AddBoothSizePage = () => {
                   <img
                     src={singleBoothSize.image}
                     alt="Event Icon"
-                    className="mt-2 w-16 h-16 object-cover rounded"
+                    className="mt-2 w-16 h-16 rounded"
                   />
                 </div>
               )}

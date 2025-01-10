@@ -227,10 +227,10 @@
   height: 100%;
   background-image: linear-gradient(
     to top right,
+    rgba(0, 0, 0, 0.88),
+    rgba(0, 0, 0, 0.89),
     rgba(0, 0, 0, 0.9),
-    rgba(0, 0, 0, 0.92),
-    rgba(0, 0, 0, 0.94),
-    rgba(10, 17, 4, 0.93)
+    rgba(10, 17, 4, 0.92)
   );
   z-index: -1;
 }
@@ -330,11 +330,10 @@
 .service-bg::before {
   content: "";
   position: absolute;
-  filter: grayscale(70%);
   top: 0;
   left: 0;
   width: 100%;
-  opacity: 0.4;
+  opacity: 1;
   height: 100%;
   background: url("../../public/photo1-ourwork.png") no-repeat center center;
   background-size: cover;
@@ -363,10 +362,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  opacity: 1;
   height: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
-    url("../../public/portfolio-bg.jpeg");
+    url("../../public/new-bg.jpeg");
   background-blend-mode: darken;
   background-size: cover;
   z-index: -2;
@@ -423,11 +421,10 @@
   position: absolute;
   top: 0;
   left: 0;
-  mix-blend-mode: darken;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.6)),
-    url("../../public/portfolio-bg.jpeg") no-repeat center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)),
+    url("../../public/new-bg.jpeg");
   background-size: cover;
   z-index: -2;
 }
@@ -446,7 +443,7 @@
 .trade-show-bg {
   position: relative;
   overflow: hidden;
-  height: 470px;
+  height: 370px;
 }
 @media (max-width: 599px) {
   /* Mobile view */
@@ -467,8 +464,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)),
-    url("../../public/portfolio-bg.jpeg") no-repeat center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)),
+    url("../../public/new-bg.jpeg");
+  background-blend-mode: darken;
   background-size: cover;
   z-index: -2;
 }
@@ -552,13 +550,11 @@
   content: "";
   position: absolute;
   top: 0;
-  filter: grayscale(70%);
   left: 0;
   width: 100%;
-  filter: grayscale(70%);
   height: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)),
-    url("../../public/portfolio-bg.jpeg");
+    url("../../public/new-bg.jpeg");
   background-blend-mode: darken;
   background-size: cover;
   z-index: -2;
@@ -603,4 +599,24 @@ input:focus + .flag-dropdown {
 
 #booth-form .react-tel-input {
   margin-bottom: 0px !important;
+}
+
+/* Loader Styles */
+.loader {
+  border: 4px solid #f3f3f3; /* Light gray */
+  border-top: 4px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+/* Keyframes for spinning animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

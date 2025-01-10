@@ -37,7 +37,7 @@ const BlogsPagination = ({
                   alt={blog.title}
                   width={500}
                   height={350}
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full rounded-lg"
                   priority
                 />
               </div>
@@ -56,7 +56,7 @@ const BlogsPagination = ({
                   <Link href={`/${blog.slug}/`} prefetch={true}>
                     <Button
                       variant="outline"
-                      className="text-secondary font-bold bg-primary border-2 border-secondary hover:bg-primary border"
+                      className="text-secondary font-bold bg-primary border-secondary hover:bg-primary border"
                     >
                       Read More
                     </Button>

@@ -191,7 +191,7 @@ export default function Events() {
                     <img
                       src={event.icon}
                       alt={event.event_name}
-                      className="w-16 mx-auto h-16 object-cover rounded"
+                      className="w-16 mx-auto h-16 rounded"
                     />
                   )}
                 </TableCell>

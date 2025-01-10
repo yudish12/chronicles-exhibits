@@ -72,7 +72,7 @@
 //               src={src}
 //               alt={`Thumbnail ${index + 1}`}
 //               className={cn(
-//                 "w-full grayscale h-20 object-cover rounded cursor-pointer",
+//                 "w-full grayscale h-20 "" rounded cursor-pointer",
 //                 index === selectedIndex ? "grayscale-0" : ""
 //               )}
 //               onClick={() => handleThumbnailClick(index)}
@@ -97,7 +97,7 @@
 //                   <img
 //                     src={src}
 //                     alt={`Carousel ${index + 1}`}
-//                     className="w-full h-full object-cover rounded-none"
+//                     className="w-full h-full "" rounded-none"
 //                   />
 //                 </Card>
 //               </CarouselItem>
@@ -282,7 +282,7 @@ const CarouselImages = ({
             src={src}
             alt={`Thumbnail ${index + 1}`}
             className={cn(
-              "w-full grayscale h-20 object-cover rounded cursor-pointer",
+              "w-full grayscale h-20 rounded cursor-pointer",
               index === selectedIndex ? "grayscale-0" : ""
             )}
             onClick={() => handleThumbnailClick(index)}
@@ -564,7 +564,7 @@ export function BoothDetails({ boothCode, boothData }) {
                       height={1000}
                       src={src}
                       alt={`Carousel ${index + 1}`}
-                      className="w-full h-full object-cover rounded-none"
+                      className="w-full h-full rounded-none"
                     />
                   </Card>
                 </CarouselItem>
@@ -597,7 +597,7 @@ export function BoothDetails({ boothCode, boothData }) {
                     height={1000}
                     src={src}
                     alt={`Carousel ${index + 1}`}
-                    className="w-full h-full object-cover rounded-none"
+                    className="w-full h-full rounded-none"
                   />
                 </Card>
               </CarouselItem>

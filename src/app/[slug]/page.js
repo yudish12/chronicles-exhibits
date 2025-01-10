@@ -80,7 +80,7 @@ const Page = async ({ params }) => {
                           alt={blog.title ?? "booth title"}
                           width={300}
                           height={200}
-                          className="rounded-t-lg max-h-[195px] w-full object-cover"
+                          className="rounded-t-lg max-h-[195px] w-full "
                         />
                       </div>
 

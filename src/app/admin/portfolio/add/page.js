@@ -66,7 +66,7 @@ const AddPortfolioPage = () => {
                 <img
                   src={singlePortfolio.image}
                   alt="Blog Icon"
-                  className="mt-2 w-16 h-16 object-cover rounded"
+                  className="mt-2 w-16 h-16 rounded"
                 />
               )}
             </div>

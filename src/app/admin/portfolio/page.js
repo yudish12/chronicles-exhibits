@@ -146,7 +146,7 @@ export default function PortfolioTable() {
                   <img
                     src={portfolio.image}
                     alt={portfolio.image_alt_text}
-                    className="w-16 h-16 object-cover rounded"
+                    className="w-16 h-16 rounded"
                   />
                 </TableCell>
                 <TableCell>{portfolio.image_alt_text}</TableCell>

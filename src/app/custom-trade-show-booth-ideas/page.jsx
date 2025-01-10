@@ -48,7 +48,7 @@ const Page = async () => {
             height={250} // Aspect ratio height
             src={data.fields[6].value}
             alt={data.fields[7].value}
-            className="max-h-[300px] sm:max-h-[400px] md:max-h-[480px] lg:max-h-[530px] object-cover"
+            className="max-h-[300px] sm:max-h-[400px] md:max-h-[480px] lg:max-h-[530px]"
           />
         </div>
         {/* Text Content */}
@@ -86,7 +86,7 @@ const Page = async () => {
             height={250} // Aspect ratio height
             src={data.fields[10].value}
             alt={data.fields[11].value}
-            className="max-h-[300px] sm:max-h-[400px] md:max-h-[480px] lg:max-h-[530px] object-cover"
+            className="max-h-[300px] sm:max-h-[400px] md:max-h-[480px] lg:max-h-[530px] "
           />
         </div>
         {/* Text Content */}

@@ -10,7 +10,9 @@ import {
 } from "@/components/ui/table";
 import { toast } from "sonner";
 import {
+  createCityPageInLocation,
   deleteData,
+  fetchCitiesToAdd,
   getAllData,
   getAllDataBySearch,
 } from "@/server/actions/locations";
@@ -19,7 +21,7 @@ import { Card, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Search from "@/components/ui/search";
 import Link from "next/link";
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { Eye, Pencil, PlusIcon, Trash2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -27,9 +29,12 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Pagination } from "./Pagination";
 import { useRouter } from "next/navigation";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 const LocationPage = () => {
   const [locations, setLocations] = useState([]);
@@ -37,6 +42,9 @@ const LocationPage = () => {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [deletingLocationid, setDeletingLocationid] = useState(null);
   const [searchValue, setSearchValue] = React.useState("");
+  const [fetchingCities, setFetchingCities] = useState(false);
+  const [citiesToAdd, setCitiesToAdd] = useState([]);
+  const [selectedCities, setSelectedCities] = useState([]);
 
   const router = useRouter();
 
@@ -62,6 +70,33 @@ const LocationPage = () => {
       console.error(error);
       toast.error("Failed to fetch blogs");
       setLoading(false);
+    }
+  };
+
+  const handleAddCity = async () => {
+    try {
+      const cities = selectedCities.map((e, ind) => citiesToAdd[ind]);
+      console.log(cities);
+      const resp = await createCityPageInLocation(cities);
+      if (!resp.success) {
+        toast.error(resp.err);
+      }
+      toast.success("City page created successfully");
+    } catch (error) {
+      toast.error(resp.err);
+    }
+  };
+
+  const fetchCities = async () => {
+    setFetchingCities(true);
+    try {
+      const resp = await fetchCitiesToAdd();
+      console.log(resp);
+      setCitiesToAdd(resp.data);
+    } catch (error) {
+      consnole.log(error);
+    } finally {
+      setFetchingCities(false);
     }
   };
 
@@ -107,23 +142,79 @@ const LocationPage = () => {
   return (
     <div className="container bg-border overflow-auto mx-auto p-8">
       <Card className="flex justify-between items-center bg-white p-4">
-        <h1 className="text-2xl font-bold ">Blogs</h1>
+        <h1 className="text-2xl font-bold ">Location Pages</h1>
       </Card>
 
       <Card className="mt-6 bg-white p-4 border">
-        <CardHeader className="flex mb-4 flex-row gap-6">
-          <Search
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
-          <Button
-            onClick={handleSearchClick}
-            variant="outline"
-            style={{ marginTop: "0px", height: "35px" }}
-            className="border-secondary text-secondary mt-0 font-semibold px-4 py-"
-          >
-            Search
-          </Button>
+        <CardHeader className="flex mb-4 justify-between items-center flex-row gap-6">
+          <div className="flex flex-row gap-6 w-full">
+            <Search
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <Button
+              onClick={handleSearchClick}
+              variant="outline"
+              style={{ marginTop: "0px", height: "35px" }}
+              className="border-secondary text-secondary mt-0 font-semibold px-4 py-"
+            >
+              Search
+            </Button>
+          </div>
+          <div>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  onClick={fetchCities}
+                  variant="outline"
+                  style={{ marginTop: "0px", height: "35px" }}
+                  className="border-secondary text-secondary mt-0 font-semibold px-4 py-"
+                >
+                  Inspect
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                {/* show a list of cities whose pages are not created yet */}
+                <div className="flex flex-col ">
+                  {fetchingCities ? (
+                    <div class="loader"></div>
+                  ) : (
+                    <div>
+                      {citiesToAdd.map((city, index) => (
+                        <div
+                          className="flex ml-8 items-center gap-4 py-4"
+                          key={index}
+                        >
+                          <Checkbox
+                            checked={!!selectedCities[index]}
+                            onCheckedChange={(isChecked) =>
+                              setSelectedCities((prev) =>
+                                prev
+                                  .slice(0, index)
+                                  .concat(isChecked)
+                                  .slice(0, index + 1)
+                              )
+                            }
+                            id={city._id}
+                          />
+                          <Label>{city.name}</Label>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+                <Button
+                  onClick={handleAddCity}
+                  variant="outline"
+                  style={{ marginTop: "0px", height: "35px" }}
+                  className="border-secondary text-secondary mt-0 font-semibold px-4 py-"
+                >
+                  <PlusIcon />
+                  Add City
+                </Button>
+              </DialogContent>
+            </Dialog>
+          </div>
         </CardHeader>
         <Table>
           <TableHeader>

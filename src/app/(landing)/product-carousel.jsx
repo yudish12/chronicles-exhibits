@@ -93,7 +93,7 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
         >
           {boothsizes.map((item, index) => (
             <Link
-              href={`/booth/size/${item.name}`}
+              href={`/${item.name}-trade-show-booth`}
               key={index}
               className={`min-w-full md:min-w-[50%] lg:min-w-[33.33%] max-w-full md:max-w-[50%] lg:max-w-[33.33%] flex-shrink-0 px-2 xl:px-6`}
             >

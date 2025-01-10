@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { MapPin, Calendar } from "lucide-react";
 import moment from "moment";
@@ -10,7 +11,7 @@ const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
     <div className="px-24 md:px-10 lg:px-20 mt-12">
       {/* Trade show grid */}
       <div className="grid lg:grid-cols-3 mx-10 sm:gap-x-5 md:gap-x-10 lg:gap-x-12 gap-y-12 sm:grid-cols-2 gap-4">
-        {tradeShows.data.map((show) => (
+        {tradeShows.data?.map((show) => (
           <div
             key={show._id}
             className="min-h-[360px] justify-between bg-[#414141] flex shadow-one rounded-xl flex-col gap-5 items-center p-6"

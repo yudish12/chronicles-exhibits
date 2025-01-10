@@ -203,7 +203,7 @@ const AddBoothPage = () => {
                   <img
                     src={singleBooth.thumbnail_image}
                     alt="Event Icon"
-                    className="mt-2 w-16 h-16 object-cover rounded"
+                    className="mt-2 w-16 h-16 rounded"
                   />
                 </div>
               )}
@@ -234,7 +234,7 @@ const AddBoothPage = () => {
                     <img
                       src={img}
                       alt={`Gallery ${index + 1 + (currentPage - 1) * 6}`}
-                      className="w-full h-24 object-cover rounded"
+                      className="w-full h-24 rounded"
                     />
                     <Button
                       variant="destructive"

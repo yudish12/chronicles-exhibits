@@ -4,7 +4,7 @@ import useScrollPosition from "@/components/useScroll";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-const Parallax = () => {
+const Parallax = ({ fields }) => {
   const scrollPosition = useScrollPosition();
 
   // Determine the active section based on scroll position
@@ -28,35 +28,39 @@ const Parallax = () => {
   const sections = [
     {
       id: 1,
-      image: "/cube.svg",
-      text: "Transform your trade show presence with our booth design expertise. Our team of designers excels in crafting visually striking booths that leave a lasting impression on attendees. Whether you need a modern and sleek design or a cozy and inviting space, we tailor our services to meet your specific needs, ensuring you make a memorable impact at every trade show.",
+      image: fields[19].value,
+      alt_text: fields[20].value,
+      text: fields[21].value,
     },
     {
       id: 2,
-      image: "/layers-stacked.svg",
-      text: "Watch your booth design come to life through our booth fabrication service. Our skilled team handles every aspect of the construction process, from selecting the right materials to assembling the booth in just the right way. We understand the importance of aesthetics and ensure that your booth aligns with your brand aesthetic. With our commitment to quality,you can trust your booth will impress visitors and create at.",
+      image: fields[26].value,
+      alt_text: fields[27].value,
+      text: fields[28].value,
     },
     {
       id: 3,
-      image: "/cube.svg",
-      text: "Transform your trade show presence with our booth design expertise. Our team of designers excels in crafting visually striking booths that leave a lasting impression on attendees. Whether you need a modern and sleek design or a cozy and inviting space, we tailor our services to meet your specific needs, ensuring you make a memorable impact at every trade show.",
+      image: fields[33].value,
+      alt_text: fields[34].value,
+      text: fields[35].value,
     },
     {
       id: 4,
-      image: "/layers-stacked.svg",
-      text: "Watch your booth design come to life through our booth fabrication service. Our skilled team handles every aspect of the construction process, from selecting the right materials to assembling the booth in just the right way. We understand the importance of aesthetics and ensure that your booth aligns with your brand aesthetic. With our commitment to quality,you can trust your booth will impress visitors and create at.",
+      image: fields[40].value,
+      alt_text: fields[41].value,
+      text: fields[42].value,
     },
   ];
+
+  console.log(sections);
 
   return (
     <div className="bg-background px-20 py-16">
       <h3 className="text-secondary font-semibold text-center text-[2rem] heading-font">
-        END TO END TRADE SHOW BOOTH SOLUTIONS
+        {fields[17].value}
       </h3>
       <p className="text-[17px] text-black text-center mt-6">
-        Chronicle Exhibits USA is one of the leading trade show booth
-        construction companies known to provide high-quality and eye-catchy
-        custom trade show booths and rentals Services.
+        {fields[18].value}
       </p>
 
       <div className="mt-20 grid bg-transparent grid-cols-2 gap-x-20">
@@ -98,14 +102,12 @@ const Parallax = () => {
             )}
           >
             <h3 className="text-center text-[1.5rem] text-secondary">
-              Section 1: Introduction
+              {fields[22].value}
             </h3>
-            <p className="text-center mt-4">
-              This is the first section of the content. Scroll to explore more.
-            </p>
+            <p className="text-center mt-4">{fields[23].value}</p>
             <Image
-              src={"/ngwa-show.png"}
-              alt="ngwa-show"
+              src={fields[24].value}
+              alt={fields[25].value}
               width={250}
               height={150}
               className="w-full h-full max-h-[150px]  object-contain rounded-2xl"
@@ -120,14 +122,12 @@ const Parallax = () => {
             )}
           >
             <h3 className="text-center text-[1.5rem] text-secondary">
-              Section 2: Design
+              {fields[29].value}
             </h3>
-            <p className="text-center mt-4">
-              Our designs are tailored to suit your brand’s needs.
-            </p>
+            <p className="text-center mt-4">{fields[30].value}</p>
             <Image
-              src={"/ngwa-show.png"}
-              alt="ngwa-show"
+              src={fields[31].value}
+              alt={fields[32].value}
               width={250}
               height={150}
               className="w-full h-full max-h-[150px]  object-contain rounded-2xl"
@@ -142,14 +142,12 @@ const Parallax = () => {
             )}
           >
             <h3 className="text-center text-[1.5rem] text-secondary">
-              Section 3: Customization
+              {fields[36].value}
             </h3>
-            <p className="text-center mt-4">
-              Customize your trade show booth to stand out.
-            </p>
+            <p className="text-center mt-4">{fields[37].value}</p>
             <Image
-              src={"/ngwa-show.png"}
-              alt="ngwa-show"
+              src={fields[38].value}
+              alt={fields[39].value}
               width={250}
               height={150}
               className="w-full h-full max-h-[150px]  object-contain rounded-2xl"
@@ -164,14 +162,12 @@ const Parallax = () => {
             )}
           >
             <h3 className="text-center text-[1.5rem] text-secondary">
-              Section 4: Execution
+              {fields[43].value}
             </h3>
-            <p className="text-center mt-4">
-              We ensure smooth execution of trade show solutions.
-            </p>
+            <p className="text-center mt-4">{fields[44].value}</p>
             <Image
-              src={"/ngwa-show.png"}
-              alt="ngwa-show"
+              src={fields[45].value}
+              alt={fields[46].value}
               width={250}
               height={150}
               className="w-full h-full max-h-[150px]  object-contain rounded-2xl"

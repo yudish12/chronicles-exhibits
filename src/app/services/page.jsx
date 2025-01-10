@@ -7,8 +7,21 @@ import Image from "next/image";
 import SubHeader from "@/components/ui/sub-header";
 import Carousel from "./_components/Carousel";
 import Parallax from "./_components/Parallax";
+import { getSinglePage } from "@/server/actions/pages";
 
-const ServicePage = () => {
+export const generateMetadata = async () => {
+  const { data } = await getSinglePage({ name: "service" });
+  return {
+    title: data?.meta_title || "Default Title",
+    description: data?.meta_description || "Default Description",
+    keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
+  };
+};
+
+const ServicePage = async () => {
+  const servicePageData = await getSinglePage({ name: "service" });
+  const fields = servicePageData.data.fields;
+
   return (
     <>
       <SubHeader />
@@ -20,12 +33,12 @@ const ServicePage = () => {
       >
         {/* <div className="flex flex-col items-center h-full justify-center text-center gap-10 px-4 md:px-20"> */}
         <h2 className="heading-font font-semibold text-[2rem] text-white drop-shadow-lg leading-relaxed ">
-          Services
+          {fields[0].value}
         </h2>
         {/* </div> */}
       </div>
-      <Carousel />
-      <Parallax />
+      <Carousel fields={fields} />
+      <Parallax fields={fields} />
       <Queryform />
       <Footer />
     </>

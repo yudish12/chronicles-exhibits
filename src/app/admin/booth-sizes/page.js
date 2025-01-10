@@ -120,7 +120,7 @@ export default function BoothSizesTable() {
                   <img
                     src={boothSize.image}
                     alt={boothSize.image_alt_text}
-                    className="w-16 h-16 object-cover rounded"
+                    className="w-16 h-16 rounded"
                   />
                 </TableCell>
                 <TableCell className="font-medium">{boothSize.name}</TableCell>

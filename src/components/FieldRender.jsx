@@ -74,11 +74,7 @@ const FieldRender = ({ field, value, onChange, index }) => {
               >
                 <Trash2 className="h-3 w-3" />
               </Button>
-              <img
-                src={value}
-                alt="Image"
-                className="mt-2 w-16 h-16 object-cover rounded"
-              />
+              <img src={value} alt="Image" className="mt-2 w-16 h-16 rounded" />
             </div>
           )}
         </div>

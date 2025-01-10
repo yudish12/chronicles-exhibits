@@ -82,7 +82,7 @@ const Page = async () => {
           width={35}
           height={35}
           alt="location-bg"
-          className="object-cover"
+          className=""
         />
         <h3 className="text-white heading-font text-4xl font-bold">
           {data.fields[0].value}
@@ -119,7 +119,7 @@ const Page = async () => {
                 width={40}
                 height={40}
                 alt="location-bg"
-                className="object-cover p-2"
+                className="p-2"
               />
               <h3 className="text-secondary heading-font font-bold text-2xl p-2">
                 {city}
