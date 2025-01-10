@@ -93,7 +93,7 @@ const FactsAndFigures = ({ fields }) => {
       <div className="text-secondary heading-font-700 text-2xl leading-10 uppercase font-bold">
         {fields ? fields[25].value : "Facts And Figures"}
       </div>
-      <div className="hidden mx-80 text-center md:block py-4">
+      <div className="hidden mx-52 lg:mx-80 text-center md:block py-4">
         {fields
           ? fields[26].value
           : "Discover some of the features that have made us one of the distinguished trade show booth design companies. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium asperiores nemo maiores est unde vitae veniam, ullam iste excepturi assumenda?"}
@@ -105,13 +105,13 @@ const FactsAndFigures = ({ fields }) => {
             : "Discover some of the features that have made us one of the distinguished trade show booth design companies. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium asperiores nemo maiores est unde vitae veniam, ullam iste excepturi assumenda?"}
         </p>
       </div>
-      <div className="grid grid-cols-2 px-2  gap-6 mt-8 md:flex md:flex-row md:flex-wrap md:justify-center md:items-center md:gap-10">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 sm:px-8 md:px-12 lg:px-16 mt-8">
         {data.map((item) => (
           <Card
             key={item.id}
-            className={`group w-[180px] h-[150px] transition-all duration-300 shadow-one ${item.bgColor} md:w-[220px]`}
+            className={`group w-[170px] sm:w-[180px] md:w-[220px] h-[150px] transition-all duration-300 shadow-one ${item.bgColor} `}
           >
-            <CardContent className="flex flex-col justify-center items-center text-center h-full">
+            <CardContent className="flex flex-col px-4 xs:px-6 justify-center items-center text-center h-full">
               <div className="text-3xl transition-all duration-300 pt-8">
                 <Image
                   width={100}

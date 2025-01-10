@@ -485,7 +485,7 @@
 .detail-trade-show-bg {
   position: relative;
   overflow: hidden;
-  height: 500px;
+  height: 420px;
 }
 
 .detail-trade-show-bg::before {
@@ -499,6 +499,12 @@
   background: url("../../public/trade-show-bg.png") no-repeat center center;
   background-size: cover;
   z-index: -2;
+}
+
+@media (max-width: 720px) {
+  .detail-trade-show-bg {
+    height: 460px;
+  }
 }
 
 /* .shadow-two {

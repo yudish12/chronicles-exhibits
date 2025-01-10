@@ -10,6 +10,7 @@ module.exports = withUt({
   theme: {
     extend: {
       screens: {
+        mdlg: "1100px",
         lg: "1026px",
         xs: "500px",
       },

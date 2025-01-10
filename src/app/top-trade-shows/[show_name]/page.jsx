@@ -51,7 +51,7 @@ const Page = async ({ params }) => {
   // recentShows = recentShows.data.slice(0, 3);
 
   const data = await getSingleEvent(show_name);
-  if(!data.data){
+  if (!data.data) {
     notFound();
   }
   console.group("event data", data);
@@ -73,7 +73,7 @@ const Page = async ({ params }) => {
       </Head>
       <SubHeader />
       <Header />
-      <div className="trade-show-bg flex flex-col items-center gap-8 px-20 py-12">
+      <div className="detail-trade-show-bg flex flex-col items-center gap-8 px-6 sm:px-20 py-12">
         <h2 className=" text-4xl text-center text-white uppercase font-semibold heading-font">
           {data.data.event_name}
         </h2>
@@ -112,8 +112,8 @@ const Page = async ({ params }) => {
         src={data.data.icon}
         alt={"show.title"}
       />
-<div className="flex flex-col px-[40px] lg:flex-row lg:px-20 gap-12 py-12">       
-   <div className="w-full lg:w-[70%] bg-white sm:p-6 p-8  rounded-xl shadow-one">
+      <div className="flex flex-col px-[40px] lg:flex-row lg:px-20 gap-12 py-12">
+        <div className="w-full lg:w-[70%] bg-white sm:p-6 p-8  rounded-xl shadow-one">
           <h3 className="text-2xl heading-font text-secondary font-semibold">
             {data.data.title}
           </h3>

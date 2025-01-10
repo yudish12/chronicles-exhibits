@@ -255,9 +255,11 @@ const Page = async ({ params }) => {
           ))}
         </div>
         <div className="flex justify-center">
-          <Button className="text-white p-4 py-[22px] duration-300 transition-all text-lg hover:bg-primary hover:text-secondary font-semibold bg-secondary">
-            {data[0].fields[18].value}
-          </Button>
+          <Link href={`/top-trade-shows/`}>
+            <Button className="text-white p-4 py-[22px] duration-300 transition-all text-lg hover:bg-primary hover:text-secondary font-semibold bg-secondary">
+              {data[0].fields[18].value}
+            </Button>
+          </Link>
         </div>
       </div>
       {/* <Queryform /> */}

@@ -63,7 +63,7 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
 
   return (
     <div
-      className="relative w-full py-6 px-4 lg:px-20 xl:px-24"
+      className="relative w-full py-6"
       onMouseEnter={stopAutoSlide} // Pause auto-slide on mouse enter
       onMouseLeave={startAutoSlide} // Resume auto-slide on mouse leave
     >
@@ -84,7 +84,7 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
       </button>
 
       {/* Card Carousel */}
-      <div className="overflow-hidden w-full">
+      <div className="overflow-hidden w-full lg:px-0 sm:max-w-[400px] md:max-w-[800px] lg:max-w-[1200px] mx-auto">
         <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{
@@ -95,11 +95,11 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
             <Link
               href={`/${item.name}-trade-show-booth`}
               key={index}
-              className={`min-w-full md:min-w-[50%] lg:min-w-[33.33%] max-w-full md:max-w-[50%] lg:max-w-[33.33%] flex-shrink-0 px-2 xl:px-6`}
+              className={`w-full md:w-[50%] lg:w-1/3 flex-shrink-0 px-2 xl:px-6`}
             >
               <div
                 className={cn(
-                  "rounded-lg h-[330px] shadow-xl overflow-hidden w-full bg-secondary flex flex-col",
+                  "rounded-lg h-[330px] w-[320px] mx-auto xs:w-[350px] sm:w-full lg:w-[350px] shadow-xl overflow-hidden bg-secondary flex flex-col",
                   bgColor === "white"
                     ? "shadow-none border border-gray-400"
                     : ""
