@@ -68,7 +68,7 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b sticky top-[-1px] z-10 bg-secondary border-t-2 border-t-white/60 border-b-2 border-b-primary w-full flex justify-between items-center pb-2 pt-3 text-white text-opacity-60 px-6 md:px-20 gap-4">
+    <div className="bg-gradient-to-b sticky top-[-1px] z-10 bg-secondary border-t-2 border-t-white/60 border-b-2 border-b-primary w-full flex justify-between items-center pb-2 pt-3 text-white text-opacity-60 px-6 sm:px-8 md:px-12 lg:px-20 gap-4">
       <Link href={"/"}>
         <Image
           className="max-h-[60px] min-h-[40px] object-fill"

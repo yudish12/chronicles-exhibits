@@ -4,7 +4,7 @@ import React from "react";
 const Hero = ({ fields }) => {
   return (
     <div className="lg:h-[95vh] h-full">
-      <h2 className="heading-font py-8 sm:py-10 sm:w-full xs:w-[90%] w-4/5 mx-auto uppercase text-center text-black font-medium text-4xl sm:text-[2.75rem]">
+      <h2 className="heading-font py-8 sm:py-10 sm:w-full xs:w-[90%] w-[85%] mx-auto uppercase text-center text-black font-medium text-4xl sm:text-[2.75rem]">
         {fields[0].value}
       </h2>
       <div className="block hero sm:h-1/2 h-full lg:w-2/3 w-4/5 mx-auto shadow-xl rounded-[32px] relative"></div>

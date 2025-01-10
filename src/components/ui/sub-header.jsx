@@ -13,7 +13,7 @@ const SocialIconContainer = ({ children }) => {
 
 const SubHeader = () => {
   return (
-    <div className="bg-white w-full flex justify-between items-center py-3 px-4 md:px-16 lg:px-20  gap-4">
+    <div className="bg-white w-full flex justify-between items-center py-3 px-6 sm:px-8 md:px-12 lg:px-20  gap-4">
       <div className="hidden sm:flex items-center gap-3">
         <SocialIconContainer>
           <Image alt="pinterest" src="/facebook.svg" width={30} height={30} />

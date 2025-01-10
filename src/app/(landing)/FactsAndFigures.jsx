@@ -109,7 +109,7 @@ const FactsAndFigures = ({ fields }) => {
         {data.map((item) => (
           <Card
             key={item.id}
-            className={`group w-[170px] sm:w-[180px] md:w-[220px] h-[150px] transition-all duration-300 shadow-one ${item.bgColor} `}
+            className={`group w-[155px] xs:w-[170px] sm:w-[180px] md:w-[220px] h-[150px] transition-all duration-300 shadow-one ${item.bgColor} `}
           >
             <CardContent className="flex flex-col px-4 xs:px-6 justify-center items-center text-center h-full">
               <div className="text-3xl transition-all duration-300 pt-8">

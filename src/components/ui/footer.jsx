@@ -263,7 +263,7 @@ export default function Footer() {
       </div>
       <div className="mt-8 mx-auto">
         <div className="bg-secondary/[.94] w-full flex flex-wrap justify-between items-center gap-4">
-          <span className="text-white/80 text-sm mx-auto font-medium">
+          <span className="text-white/80 text-center xs:text-left text-sm mx-auto font-medium">
             © Copyright {new Date().getFullYear()}. Chronicle Exhibits LLC All
             Right Reserved.{" "}
             <Link href={"/privacy-policy"}> Privacy Policy</Link>
