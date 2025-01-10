@@ -3,12 +3,12 @@ import React from "react";
 
 const Hero = ({ fields }) => {
   return (
-    <div className="lg:h-[95vh] h-full">
+    <div className="xl:h-[95vh] lg:h-[100vh] relative 2xl:h-[62vh] h-full">
       <h2 className="heading-font py-8 sm:py-10 sm:w-full xs:w-[90%] w-[85%] mx-auto uppercase text-center text-black font-medium text-4xl sm:text-[2.75rem]">
         {fields[0].value}
       </h2>
       <div className="block hero sm:h-1/2 h-full lg:w-2/3 w-4/5 mx-auto shadow-xl rounded-[32px] relative"></div>
-      <div className="left-[20%] px-6 sm:px-12 md:px-20 lg:p-8 p-4 rounded-[32px] justify-center lg:absolute flex flex-col gap-8 lg:w-[60%] w-full  bg-white top-[59%] lg:mt-16 sm:mt-4 mt-0">
+      <div className="left-[20%] px-6 sm:px-12 md:px-20 lg:p-8 p-4 rounded-[32px] justify-center lg:absolute flex flex-col gap-8 lg:w-[60%] w-full  bg-white top-[43%] 2xl:bottom-12 lg:mt-16 sm:mt-4 mt-0">
         <h3 className="text-2xl sm:text-3xl text-wrap break-words text-center text-primary uppercase font-medium">
           {fields[3].value}
         </h3>
