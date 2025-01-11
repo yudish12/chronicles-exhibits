@@ -12,6 +12,7 @@ module.exports = withUt({
       screens: {
         mdlg: "1100px",
         lg: "1026px",
+        xl: "1300px",
         xs: "500px",
       },
       colors: {

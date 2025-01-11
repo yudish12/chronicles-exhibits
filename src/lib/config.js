@@ -868,6 +868,8 @@ export const servicePageFields = [
   },
 ];
 
+export const aboutUsPageFields = [];
+
 // db.pages.updateOne(
 //   { name: "trade-show-booth-displays-designs" },
 //   {

@@ -16,7 +16,7 @@ const Ourworks = async ({ title, subtitle }) => {
     : ourWorksData.data.slice(0, 9);
   console.log(ourWorksData);
   return (
-    <div className="flex flex-col product-bg px-6 sm:px-6 md:px-16 2xl:px-72 lg:px-20 py-12 gap-6">
+    <div className="flex flex-col product-bg px-6 sm:px-6 md:px-16  lg:px-20 py-12 gap-6">
       <h3
         style={{ lineHeight: "1.2" }}
         className="text-xl sm:text-2xl md:text-[2rem] text-white heading-font-700 font-semibold text-center"
