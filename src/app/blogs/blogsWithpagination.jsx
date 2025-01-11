@@ -25,13 +25,13 @@ const BlogsPagination = ({
 
       <div className="px-20 py-10 flex flex-col items-center justify-center bg-background">
         {/* Display blogs */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {blogs.map((blog, index) => (
             <Card
               key={index}
-              className="flex border border-secondary flex-col bg-white/60 min-h-[230px] md:flex-row items-start shadow-two rounded-lg overflow-hidden py-2"
+              className="flex border max-w-[650px] 2xl:max-w-[740px] border-secondary flex-col bg-white/60 min-h-[230px] md:flex-row items-start shadow-two rounded-lg overflow-hidden py-2"
             >
-              <div className="md:w-[45%] h-full p-4">
+              <div className="lg:w-[50%] xl:h-full h-full lg:h-4/5 p-4">
                 <Image
                   src={blog.image}
                   alt={blog.title}
@@ -42,7 +42,7 @@ const BlogsPagination = ({
                 />
               </div>
 
-              <div className="md:w-[55%] h-full p-4 flex flex-col justify-between">
+              <div className="lg:w-[50%] h-full p-4 flex flex-col justify-between">
                 <CardTitle className="text-2xl font-bold text-secondary heading-font">
                   {blog.title}
                 </CardTitle>
