@@ -42,7 +42,7 @@ const page = async () => {
           {data.fields[1].value}
         </p>
       </div>
-      <div className="md:px-20 sm:px-8 px-6 flex lg:flex-row flex-col gap-20 pt-16 pb-20">
+      <div className="md:px-20 sm:px-8 px-6 flex lg:justify-center lg:flex-row flex-col gap-20 pt-16 pb-20">
         <Image
           src={data.fields[3].value}
           alt={data.fields[4].value ?? "booth design"}

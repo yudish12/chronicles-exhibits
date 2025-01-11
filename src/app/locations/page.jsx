@@ -39,7 +39,7 @@ export const majorExhibitingCities = [
   "Philadelphia",
   "Phoenix",
   "Portland",
-  "Riverside County",
+  "Riverside",
   "Rosemont",
   "Sacramento",
   "Salt Lake City",

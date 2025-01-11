@@ -213,7 +213,7 @@ const Page = async ({ params }) => {
           ></div>
         </section>
       </div>
-      <div className="bg-white pb-10">
+      <div className="bg-gray-200  py-10">
         <h2 className="text-3xl heading-font text-secondary text-center uppercase">
           {data[0].fields[17].value}
         </h2>
@@ -256,7 +256,7 @@ const Page = async ({ params }) => {
         </div>
         <div className="flex justify-center">
           <Link href={`/top-trade-shows/`}>
-            <Button className="text-white p-4 py-[22px] duration-300 transition-all text-lg hover:bg-primary hover:text-secondary font-semibold bg-secondary">
+            <Button className="text-secondary p-4 py-[22px] duration-300 transition-all text-lg hover:bg-primary hover:text-secondary font-semibold bg-primary">
               {data[0].fields[18].value}
             </Button>
           </Link>

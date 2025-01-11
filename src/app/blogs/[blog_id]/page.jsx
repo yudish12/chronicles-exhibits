@@ -25,10 +25,10 @@ export async function generateMetadata({ params }) {
 
 const Blogpage = async ({ params }) => {
   const blog_slug = (await params).blog_id;
-  console.log("~blog page" , params, blog_slug)
+  console.log("~blog page", params, blog_slug);
   const { data } = await getSingleBlog({ slug: blog_slug });
   console.log("==blog data==", data);
-  if(!data){
+  if (!data) {
     return notFound();
   }
   const blogFromDb = await getAllBlogs(
@@ -60,7 +60,7 @@ const Blogpage = async ({ params }) => {
               alt="Trade Show"
               width={800}
               height={600}
-              className="w-full rounded-lg"
+              className="w-full max-w-[820px] max-h-[500px] rounded-lg"
             />
             {/* Blog Content */}
             <div

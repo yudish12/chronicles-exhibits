@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="px-6 py-8 md:px-12 md:py-10 rounded-lg grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
         {/* Company Section */}
         <div>
-          <h3 className="font-semibold text-base mb-4">Company</h3>
+          <h3 className="font-semibold text-base mb-4 text-primary">Company</h3>
           <ul className="space-y-2 footer-list">
             <li>
               <Link className="hover:underline" href="/">
@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
         {/* Location Section */}
         <div>
-          <h3 className="font-bold text-lg mb-4">Location</h3>
+          <h3 className="font-bold text-lg mb-4 text-primary">Location</h3>
           <ul className="space-y-2 footer-list">
             <li>
               <Link
@@ -138,7 +138,7 @@ export default function Footer() {
         </div>
         {/* Booth By Size Section */}
         <div>
-          <h3 className="font-bold text-lg mb-4">Booth By Size</h3>
+          <h3 className="font-bold text-lg mb-4 text-primary">Booth By Size</h3>
           <ul className="space-y-2 footer-list">
             <li>
               <Link className="hover:underline" href="/10x10-trade-show-booth">
@@ -190,7 +190,7 @@ export default function Footer() {
 
         {/* Resources Section */}
         <div>
-          <h3 className="font-bold text-lg mb-4">Resources</h3>
+          <h3 className="font-bold text-lg mb-4 text-primary">Resources</h3>
           <ul className="space-y-2 footer-list">
             <li>
               <Link className="hover:underline" href="/blog">
@@ -209,13 +209,14 @@ export default function Footer() {
             </li>
           </ul>
           <div className="mt-6">
-            <h3 className="font-bold text-lg mb-3">Address</h3>
+            <h3 className="font-bold text-lg mb-3 text-primary">Address</h3>
             <p className="text-sm leading-relaxed">
-              500 N Rainbow Blvd Suite #300 <br />
-              Las Vegas, NV 89107 <br />
+              8465 W. Sahara Ave., Suite 111 Unit #1183
+              <br />
+              Las Vegas, NV 89117, <br />
               United States
             </p>
-            <h3 className="font-bold text-lg my-4">Follow Us</h3>
+            <h3 className="font-bold text-lg my-4 text-primary">Follow Us</h3>
             <div className="flex items-center mt-4 gap-3">
               <SocialIconContainer>
                 <Image

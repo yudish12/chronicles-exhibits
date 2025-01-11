@@ -27,7 +27,7 @@ const Faq = ({ fields }) => {
                   key={index}
                   className="bg-white shadow-lg  border border-black overflow-hidden mb-4 md:mb-6"
                 >
-                  <div className="bg-black flex items-center p-4">
+                  <div className="bg-[#4a4b4c] flex items-center p-4">
                     <h4 className="text-primary body-bold  text-sm md:text-base flex items-center">
                       <span className="text-primary flex justify-center items-center body-bold text-lg md:text-xl">
                         0{index + 1}
