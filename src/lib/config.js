@@ -868,7 +868,208 @@ export const servicePageFields = [
   },
 ];
 
-export const aboutUsPageFields = [];
+export const aboutUsPageFields = [
+  {
+    key: "about_us_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "2nd_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "2nd_para",
+    type: "body",
+    value: "",
+  },
+  {
+    key: "why_choose_us_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "why_choose_us_image",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "why_choose_us_image_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "why_choose_us_body",
+    type: "body",
+    value: "",
+  },
+  {
+    key: "why_choose_us_btn_text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_para",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_card_1_number",
+    type: "number",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_card_1_text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_card_1_icon",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_card_1_icon_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_card_2_number",
+    type: "number",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_card_2_text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_card_2_icon",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_card_2_icon_alt-text",
+    type: "texxt",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_3_number",
+    type: "number",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_3_text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_3_icon",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_3_icon_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_4_number",
+    type: "number",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_4_text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_4_icon",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "facts_and_figures_4_icon_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "manufacturing_title",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "manufacturing_para",
+    type: "textarea",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_1",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_1_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_2",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_2_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_3",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_3_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_4",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_4_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_5",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_5_alt-text",
+    type: "text",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_6",
+    type: "upload",
+    value: "",
+  },
+  {
+    key: "manufacturing_image_6_alt-text",
+    type: "text",
+    value: "",
+  },
+];
 
 // db.pages.updateOne(
 //   { name: "trade-show-booth-displays-designs" },

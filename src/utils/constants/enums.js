@@ -61,7 +61,7 @@ export const collections = [
     icon: <GalleryThumbnails color="#B0CB1F" />,
   },
   {
-    slug: "about-us",
+    slug: "create-pages/edit/677f986add65d109216e775e/",
     name: "About Us",
     icon: <GalleryThumbnails color="#B0CB1F" />,
   },
