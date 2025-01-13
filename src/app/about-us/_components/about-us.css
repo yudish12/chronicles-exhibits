@@ -1,0 +1,92 @@
+/* Style for paragraph tags inside #blog_content */
+#blog_content p {
+  color: #333; /* Use a dark color for better readability */
+  font-size: 18px;
+  line-height: 1.7; /* Improved line spacing */
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Style for h2 tags inside #blog_content */
+#blog_content h2 {
+  color: #222;
+  font-size: 24px; /* Equivalent to text-2xl in Tailwind */
+  font-weight: 700;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Additional styling for the first paragraph to make it stand out */
+#blog_content p:first-of-type {
+  font-weight: 500;
+  color: #444;
+}
+
+/* Style for unordered lists (ul) */
+#blog_content ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+/* Style for ordered lists (ol) */
+#blog_content ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+/* Style for list items (li) */
+#blog_content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+/* Style for links inside lists */
+#blog_content li a {
+  color: #1a73e8; /* Link color */
+  text-decoration: none;
+}
+
+#blog_content li a:hover {
+  text-decoration: underline;
+}
+
+/* General table styles */
+#blog_content table {
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Remove spacing between cells */
+  margin: 20px 0; /* Add spacing around the table */
+  font-size: 16px; /* Adjust font size */
+  text-align: left; /* Align text to the left */
+  border: 1px solid #ddd; /* Border around the table */
+}
+
+/* Zebra striping for table rows */
+#blog_content tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Table header styles */
+#blog_content th {
+  font-weight: bold; /* Make header bold */
+  text-align: left; /* Align text to the left */
+  padding: 8px 12px; /* Add padding */
+  border: 1px solid #ddd; /* Border for each cell */
+  background-color: #f4f4f4; /* Light gray background */
+}
+
+/* Table data styles */
+#blog_content td {
+  padding: 8px 12px; /* Add padding */
+  border: 1px solid #ddd; /* Border for each cell */
+}
+
+/* Title styles for tables */
+#blog_content caption {
+  font-size: 20px; /* Larger font size for the title */
+  font-weight: bold; /* Make it bold */
+  margin-bottom: 10px; /* Add spacing below the title */
+  text-align: center; /* Center the title */
+}
