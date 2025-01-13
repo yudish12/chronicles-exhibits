@@ -46,11 +46,11 @@ const ManufacturingUnit = async ({ fields }) => {
         </p>
 
         <div className=" sm:p-20 pb-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full md:w-max mx-auto gap-x-4 sm:gap-x-6 md:gap-x-6 gap-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full md:w-max mx-auto gap-x-2 gap-y-2">
             {images.map((src, index) => (
               <div
                 key={index}
-                className="overflow-hidden rounded-xl md:w-[370px] lg:w-[420px] sm:h-[250px] md:h-[230px] "
+                className="overflow-hidden md:w-[370px] lg:w-[420px] sm:h-[350px] md:h-[300px] "
               >
                 {/* w-full sm:w-[420px] h-[200px] sm:h-[250px] md:h-[230px] */}
                 <Image
