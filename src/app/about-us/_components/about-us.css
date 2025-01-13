@@ -90,3 +90,43 @@
   margin-bottom: 10px; /* Add spacing below the title */
   text-align: center; /* Center the title */
 }
+
+#about_us_content p {
+  font-size: 18px;
+  color: white;
+  margin-top: 1.5rem;
+  text-align: justify;
+}
+
+#about_us_content ul {
+  list-style-type: disc;
+  padding-left: 12px;
+  margin-top: 1.5rem;
+  color: white;
+}
+
+/* Style for ordered lists (ol) */
+#about_us_content ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+  color: white;
+  margin-top: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+/* Style for list items (li) */
+#about_us_content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  color: white;
+}
+
+/* Style for links inside lists */
+#about_us_content li a {
+  color: #1a73e8; /* Link color */
+  text-decoration: none;
+}
+
+#about_us_content li a:hover {
+  text-decoration: underline;
+}

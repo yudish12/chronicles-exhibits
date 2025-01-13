@@ -3,11 +3,11 @@ import SubHeader from "@/components/ui/sub-header";
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
 import Image from "next/image";
-import FactsAndFigures from "../(landing)/FactsAndFigures";
 import Introduction from "./_components/Introduction";
 import WhyChooseUs from "./_components/WhyChooseUs";
 import ManufacturingUnit from "./_components/ManufacturingUnit";
 import { getSinglePage } from "@/server/actions/pages";
+import FactsAndFigures from "./_components/FactsAndFigures";
 const page = async () => {
   const aboutusPageData = await getSinglePage({ name: "about-us" });
   const fields = aboutusPageData.data.fields;
@@ -29,9 +29,9 @@ const page = async () => {
         </h3>
       </div>
       <Introduction fields={fields} />
-      <WhyChooseUs />
-      <FactsAndFigures />
-      <ManufacturingUnit />
+      <WhyChooseUs fields={fields} />
+      <FactsAndFigures fields={fields} />
+      <ManufacturingUnit fields={fields} />
       <Footer />
     </>
   );
