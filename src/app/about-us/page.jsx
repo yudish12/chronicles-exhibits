@@ -7,7 +7,11 @@ import FactsAndFigures from "../(landing)/FactsAndFigures";
 import Introduction from "./_components/Introduction";
 import WhyChooseUs from "./_components/WhyChooseUs";
 import ManufacturingUnit from "./_components/ManufacturingUnit";
-const page = () => {
+import { getSinglePage } from "@/server/actions/pages";
+const page = async () => {
+  const aboutusPageData = await getSinglePage({ name: "about-us" });
+  const fields = aboutusPageData.data.fields;
+
   return (
     <>
       <SubHeader />
@@ -20,9 +24,11 @@ const page = () => {
           alt="location-bg"
           className="object-cover"
         />
-        <h3 className="text-white heading-font text-4xl font-bold">ABOUT US</h3>
+        <h3 className="text-white heading-font text-4xl font-bold">
+          {fields[0].value}
+        </h3>
       </div>
-      <Introduction />
+      <Introduction fields={fields} />
       <WhyChooseUs />
       <FactsAndFigures />
       <ManufacturingUnit />

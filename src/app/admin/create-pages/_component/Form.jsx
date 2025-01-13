@@ -114,34 +114,44 @@ const PageEditForm = ({ pageData, isLocationPage }) => {
           </CardHeader>
           <CardContent className="grid grid-cols-2 gap-6">
             {boothSizePage.fields.map((field, index) => (
-              <div
-                className={cn(
-                  (field.type === "body" || field.type === "key-value-array") &&
-                    "col-span-2"
-                )}
-                key={index}
-              >
-                {field.type !== "key-value-array" ? (
-                  <>
-                    <Label className="mb-4 block">
-                      Enter {convertHumanReadableText(field.key)}
-                    </Label>
-                    <FieldRender
-                      value={field.value}
-                      onChange={handleFieldChange}
+              <>
+                <div
+                  className={cn(
+                    (field.type === "body" ||
+                      field.type === "key-value-array" ||
+                      field.isBreak) &&
+                      "col-span-2"
+                  )}
+                  key={index}
+                >
+                  {field.type !== "key-value-array" ? (
+                    <>
+                      <Label className="mb-4 block">
+                        Enter {convertHumanReadableText(field.key)}
+                      </Label>
+                      <FieldRender
+                        value={field.value}
+                        onChange={handleFieldChange}
+                        field={field}
+                        index={index}
+                      />
+                    </>
+                  ) : (
+                    <Keyvalueinput
+                      deleteKeyValue={deleteKeyValue}
                       field={field}
-                      index={index}
+                      onclick={addNewKeyValue}
+                      onChange={changeKeyValue}
                     />
+                  )}
+                </div>
+                {field.isBreak && (
+                  <>
+                    <br />
+                    <div className="col-span-2 border-b-2 border-primary"></div>
                   </>
-                ) : (
-                  <Keyvalueinput
-                    deleteKeyValue={deleteKeyValue}
-                    field={field}
-                    onclick={addNewKeyValue}
-                    onChange={changeKeyValue}
-                  />
                 )}
-              </div>
+              </>
             ))}
           </CardContent>
         </Card>
