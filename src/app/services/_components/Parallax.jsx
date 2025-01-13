@@ -104,13 +104,13 @@ const Parallax = ({ fields }) => {
             <h3 className="text-center text-[1.5rem] text-secondary">
               {fields[22].value}
             </h3>
-            <p className="text-center mt-4">{fields[23].value}</p>
+            <p className="text-center">{fields[23].value}</p>
             <Image
               src={fields[24].value}
               alt={fields[25].value}
               width={250}
               height={150}
-              className="w-full h-full max-h-[150px]  object-contain rounded-2xl"
+              className="w-full h-full max-h-[200px] mt-4 max-w-[400px] mx-auto rounded-2xl"
             />
           </div>
 
@@ -124,13 +124,13 @@ const Parallax = ({ fields }) => {
             <h3 className="text-center text-[1.5rem] text-secondary">
               {fields[29].value}
             </h3>
-            <p className="text-center mt-4">{fields[30].value}</p>
+            <p className="text-center">{fields[30].value}</p>
             <Image
               src={fields[31].value}
               alt={fields[32].value}
               width={250}
               height={150}
-              className="w-full h-full max-h-[150px]  object-contain rounded-2xl"
+              className="w-full h-full max-h-[200px] mt-4 max-w-[400px] mx-auto object-contain rounded-2xl"
             />
           </div>
 
@@ -144,13 +144,13 @@ const Parallax = ({ fields }) => {
             <h3 className="text-center text-[1.5rem] text-secondary">
               {fields[36].value}
             </h3>
-            <p className="text-center mt-4">{fields[37].value}</p>
+            <p className="text-center">{fields[37].value}</p>
             <Image
               src={fields[38].value}
               alt={fields[39].value}
               width={250}
               height={150}
-              className="w-full h-full max-h-[150px]  object-contain rounded-2xl"
+              className="w-full h-full max-h-[200px] mt-4 max-w-[400px] mx-auto object-contain rounded-2xl"
             />
           </div>
 
@@ -164,13 +164,13 @@ const Parallax = ({ fields }) => {
             <h3 className="text-center text-[1.5rem] text-secondary">
               {fields[43].value}
             </h3>
-            <p className="text-center mt-4">{fields[44].value}</p>
+            <p className="text-center">{fields[44].value}</p>
             <Image
               src={fields[45].value}
               alt={fields[46].value}
               width={250}
               height={150}
-              className="w-full h-full max-h-[150px]  object-contain rounded-2xl"
+              className="w-full h-full max-h-[200px] mt-4 max-w-[400px] mx-auto object-contain rounded-2xl"
             />
           </div>
         </div>

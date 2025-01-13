@@ -55,6 +55,11 @@ export default function Footer() {
                 Contact Us
               </Link>
             </li>
+            <li>
+              <Link className="hover:underline" href="/about-us">
+                About Us
+              </Link>
+            </li>
           </ul>
         </div>
         {/* Location Section */}

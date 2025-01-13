@@ -51,6 +51,12 @@ const static_data = [
 
 const FactsAndFigures = ({ fields }) => {
   let data = [];
+  console.log(
+    fields[20].value,
+    fields[12].value,
+    fields[16].value,
+    fields[24].value
+  );
   if (fields) {
     data = [
       {

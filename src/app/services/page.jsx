@@ -2,8 +2,6 @@ import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
 import React from "react";
 import Queryform from "../(landing)/Queryform";
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import SubHeader from "@/components/ui/sub-header";
 import Carousel from "./_components/Carousel";
 import Parallax from "./_components/Parallax";
