@@ -35,9 +35,9 @@ const page = async () => {
       <SubHeader />
       <Header />
       <div className="booth-design-bg px-4 md:px-20 flex justify-center gap-4 flex-col items-center">
-        <h2 className="text-[2.1rem] uppercase font-semibold text-white text-center heading-font">
+        <h1 className="text-[2.1rem] uppercase font-semibold text-white text-center heading-font">
           {data.fields[0].value}
-        </h2>
+        </h1>
         <p className="text-[17.5px] text-white mx-0 sm:mx-20 md:mx-28 lg:mx-52 text-center">
           {data.fields[1].value}
         </p>

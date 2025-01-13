@@ -42,9 +42,9 @@ const Page = async ({ params, searchParams }) => {
       <SubHeader />
       <Header />
       <div className="trade-show-bg px-20 flex justify-center items-center flex-col">
-        <h2 className="text-[2.1rem] text-center text-white uppercase font-semibold heading-font">
+        <h1 className="text-[2.1rem] text-center text-white uppercase font-semibold heading-font">
           {data.fields[0].value}
-        </h2>
+        </h1>
       </div>
       <div className="bg-background px-6 md:px-16 lg:px-20 py-12 flex flex-col items-center justify-center gap-4">
         <TradeshowSearch

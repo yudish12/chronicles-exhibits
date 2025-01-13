@@ -52,7 +52,12 @@ const Parallax = ({ fields }) => {
     },
   ];
 
-  console.log(sections);
+  console.log(
+    sections[0].image,
+    sections[1].image,
+    sections[2].image,
+    sections[3].image
+  );
 
   return (
     <div className="bg-background px-20 py-16">
@@ -66,7 +71,7 @@ const Parallax = ({ fields }) => {
       <div className="mt-20 grid bg-transparent grid-cols-2 gap-x-20">
         {/* Left Sticky Div */}
         <div
-          className="sticky top-[250px] hover:text-white transition-all shadow-one hover:bg-secondary max-w-[650px] p-8 bg-white rounded-lg"
+          className="sticky top-[250px] text-white transition-all shadow-one bg-[#6a6a6a] max-w-[650px] p-8 rounded-lg"
           style={{
             height: "300px",
             display: "flex",
@@ -78,7 +83,7 @@ const Parallax = ({ fields }) => {
           }}
         >
           <Image
-            src={sections[currentSection - 1].image}
+            src={"/cube.png"}
             width={70}
             height={70}
             alt="icon"
@@ -90,10 +95,7 @@ const Parallax = ({ fields }) => {
         </div>
 
         {/* Right Scrollable Content */}
-        <div
-          className="relative"
-          style={{ height: "1800px", border: "2px solid red" }}
-        >
+        <div className="relative" style={{ height: "1850px" }}>
           {/* Section 1 */}
           <div
             className={cn(
@@ -110,7 +112,7 @@ const Parallax = ({ fields }) => {
               alt={fields[25].value}
               width={250}
               height={150}
-              className="w-full h-full max-h-[200px] mt-4 max-w-[400px] mx-auto rounded-2xl"
+              className="w-full h-full max-h-[250px] mt-4 max-w-[400px] mx-auto rounded-md"
             />
           </div>
 
@@ -130,7 +132,7 @@ const Parallax = ({ fields }) => {
               alt={fields[32].value}
               width={250}
               height={150}
-              className="w-full h-full max-h-[200px] mt-4 max-w-[400px] mx-auto object-contain rounded-2xl"
+              className="w-full h-full max-h-[250px] mt-4 max-w-[400px] mx-auto rounded-md"
             />
           </div>
 
@@ -150,7 +152,7 @@ const Parallax = ({ fields }) => {
               alt={fields[39].value}
               width={250}
               height={150}
-              className="w-full h-full max-h-[200px] mt-4 max-w-[400px] mx-auto object-contain rounded-2xl"
+              className="w-full h-full max-h-[250px] mt-4 max-w-[400px] mx-auto rounded-md"
             />
           </div>
 
@@ -170,7 +172,7 @@ const Parallax = ({ fields }) => {
               alt={fields[46].value}
               width={250}
               height={150}
-              className="w-full h-full max-h-[200px] mt-4 max-w-[400px] mx-auto object-contain rounded-2xl"
+              className="w-full h-full max-h-[250px] mt-4 max-w-[400px] mx-auto rounded-md"
             />
           </div>
         </div>

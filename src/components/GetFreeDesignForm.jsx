@@ -158,6 +158,7 @@ const GetFreeDesignForm = () => {
           type="file"
           placeholder="Choose File"
           onChange={handleChange}
+          multiple
           required
           name="file"
         />

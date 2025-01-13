@@ -22,9 +22,9 @@ const Page = async () => {
       <SubHeader />
       <Header />
       <div className="booth-design-bg flex justify-center px-4 md:px-8 lg:px-20 flex-col gap-8 items-center">
-        <h2 className="text-4xl text-center uppercase font-semibold heading-font text-white">
+        <h1 className="text-4xl text-center uppercase font-semibold heading-font text-white">
           {data.fields[0].value}
-        </h2>
+        </h1>
         <h4 className="text-xl mx-0 sm:mx-12 md:mx-20 lg:mx-52 text-center heading-font text-white">
           {data.fields[1].value}
         </h4>

@@ -84,9 +84,9 @@ const Page = async () => {
           alt="location-bg"
           className=""
         />
-        <h3 className="text-white heading-font text-4xl font-bold">
+        <h1 className="text-white heading-font text-4xl font-bold">
           {data.fields[0].value}
-        </h3>
+        </h1>
         <p className=" hidden text-center mx-4 md:mx-8 lg:mx-16 xl:mx-24 font-medium text-lg lg:text-xl md:block ">
           {data.fields[1].value}
         </p>

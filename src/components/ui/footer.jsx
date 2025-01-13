@@ -1,5 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Dialog, DialogContent, DialogTrigger } from "./dialog";
+import EnquiryForm from "../Form";
+import ScheduleCallForm from "../ScheduleCallForm";
+import { Button } from "./button";
+import GetFreeDesignForm from "../GetFreeDesignForm";
 
 const SocialIconContainer = ({ children }) => {
   return (
@@ -203,14 +208,46 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/get-booth-quotation">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div className="hover:underline cursor-pointer">
+                    Get Quote
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="">
+                  <EnquiryForm />
+                </DialogContent>
+              </Dialog>
+              {/* <Link className="hover:underline" href="/get-booth-quotation">
                 Get Booth Quotation
-              </Link>
+              </Link> */}
             </li>
             <li>
-              <Link className="hover:underline" href="/schedule-a-call">
+              {/* <Link className="hover:underline" href="/schedule-a-call">
                 Schedule A Call
-              </Link>
+              </Link> */}
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div className="hover:underline cursor-pointer">
+                    Schedule A Call
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="">
+                  <ScheduleCallForm />
+                </DialogContent>
+              </Dialog>
+            </li>
+            <li>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div className="hover:underline cursor-pointer">
+                    Get Free 3D Quotation
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="max-h-[700px] overflow-auto">
+                  <GetFreeDesignForm />
+                </DialogContent>
+              </Dialog>
             </li>
           </ul>
           <div className="mt-6">
@@ -224,44 +261,58 @@ export default function Footer() {
             <h3 className="font-bold text-lg my-4 text-primary">Follow Us</h3>
             <div className="flex items-center mt-4 gap-3">
               <SocialIconContainer>
-                <Image
-                  alt="facebook"
-                  src="/facebook.svg"
-                  width={30}
-                  height={30}
-                />
+                <Link href={"https://www.facebook.com/chronicleexhibits"}>
+                  <Image
+                    alt="facebook"
+                    src="/facebook.svg"
+                    width={30}
+                    height={30}
+                  />
+                </Link>
               </SocialIconContainer>
               <SocialIconContainer>
-                <Image
-                  alt="youtube"
-                  src="/youtube.svg"
-                  width={30}
-                  height={30}
-                />
+                <Link href={"https://www.youtube.com/@Chronicleexhibitsllc"}>
+                  <Image
+                    alt="youtube"
+                    src="/youtube.svg"
+                    width={30}
+                    height={30}
+                  />
+                </Link>
               </SocialIconContainer>
               <SocialIconContainer>
-                <Image
-                  alt="twitter"
-                  src="/twitter.svg"
-                  width={30}
-                  height={30}
-                />
+                <Link href={"https://x.com/chroniclexhibit/"}>
+                  <Image
+                    alt="twitter"
+                    src="/twitter.svg"
+                    width={30}
+                    height={30}
+                  />
+                </Link>
               </SocialIconContainer>
               <SocialIconContainer>
-                <Image
-                  alt="linkedin"
-                  src="/linkedin.svg"
-                  width={30}
-                  height={30}
-                />
+                <Link
+                  href={
+                    "https://www.linkedin.com/company/chronicle-exhibits-llc/"
+                  }
+                >
+                  <Image
+                    alt="linkedin"
+                    src="/linkedin.svg"
+                    width={30}
+                    height={30}
+                  />
+                </Link>
               </SocialIconContainer>
               <SocialIconContainer>
-                <Image
-                  alt="pinterest"
-                  src="/pinterest.svg"
-                  width={30}
-                  height={30}
-                />
+                <Link href={"https://www.instagram.com/chronicleexhibits/"}>
+                  <Image
+                    alt="pinterest"
+                    src="/pinterest.svg"
+                    width={30}
+                    height={30}
+                  />
+                </Link>
               </SocialIconContainer>
             </div>
           </div>
@@ -270,9 +321,16 @@ export default function Footer() {
       <div className="mt-8 mx-auto">
         <div className="bg-secondary/[.94] w-full flex flex-wrap justify-between items-center gap-4">
           <span className="text-white/80 text-center xs:text-left text-sm mx-auto font-medium">
-            © Copyright {new Date().getFullYear()}. Chronicle Exhibits LLC All
+            © Copyright {new Date().getFullYear()}.{" "}
+            <Link className="text-blue-600" href={"/privacy-policy"}>
+              {" "}
+              Chronicle Exhibit LLC{" "}
+            </Link>{" "}
             Right Reserved.{" "}
-            <Link href={"/privacy-policy"}> Privacy Policy</Link>
+            <Link className="text-blue-600" href={"/privacy-policy"}>
+              {" "}
+              Privacy Policy
+            </Link>
           </span>
         </div>
       </div>

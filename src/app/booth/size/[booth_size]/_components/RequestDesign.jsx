@@ -1,5 +1,8 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import EnquiryForm from "@/components/Form";
+import GetFreeDesignForm from "@/components/GetFreeDesignForm";
 
 const RequestDesign = ({ fields }) => {
   return (
@@ -11,9 +14,16 @@ const RequestDesign = ({ fields }) => {
         {fields[5].value}
       </div>
       <div className="py-10">
-        <Button className="bg-transparent text-wrap h-16 sm:h-auto text-base sm:text-lg border-2 border-[#B0CB1F] hover:bg-[#B0CB1F] px-6 sm:px-8 font-bold text-[#B0CB1F] hover:text-white">
-          {fields[6].value}
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="bg-transparent capitalize text-wrap h-16 sm:h-auto text-base sm:text-lg border-2 border-[#B0CB1F] hover:bg-[#B0CB1F] px-6 sm:px-8 font-bold text-[#B0CB1F] hover:text-white">
+              {fields[6].value}
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-h-[700px] overflow-auto">
+            <GetFreeDesignForm />
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );

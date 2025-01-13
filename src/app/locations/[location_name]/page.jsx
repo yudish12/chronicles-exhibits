@@ -31,6 +31,8 @@ import { getAllLocations } from "@/server/actions/events";
 // import { useRouter } from "next/navigation";
 import { getEventByCity } from "@/server/actions/events";
 import { notFound } from "next/navigation";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import EnquiryForm from "@/components/Form";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
@@ -124,9 +126,17 @@ const Page = async ({ params }) => {
             Search
           </Button>
         </div>
-        <Button className="bg-primary border border-secondary font-semibold text-secondary mt-8 hover:bg-primary mx-auto py-5 text-lg">
-          {data[0].fields[1].value}
-        </Button>
+
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="bg-primary border border-secondary font-semibold text-secondary mt-8 hover:bg-primary mx-auto py-5 text-lg">
+              {data[0].fields[1].value}
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="">
+            <EnquiryForm />
+          </DialogContent>
+        </Dialog>
       </div>
       <div className="bg-background px-6 sm:px-8 md:px-10 py-16 lg:px-20 flex flex-col gap-8">
         <h2 className="text-center max-w-full sm:w-[600px] lg:w-[800px] mx-auto break-words uppercase leading-10 font-semibold text-secondary text-[2.1rem] heading-font">
@@ -155,13 +165,14 @@ const Page = async ({ params }) => {
             className="text-white"
             dangerouslySetInnerHTML={{ __html: data[0].fields[9].value }}
           ></div>
-
-          <Button
-            style={{ transitionDuration: "500ms" }}
-            className="rounded-full w-full md:w-[30%] mx-auto px-16 py-6 font-thin text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4 bg-transparent border-primary"
-          >
-            {data[0].fields[10].value}
-          </Button>
+          <Link href={"/contact-us"}>
+            <Button
+              style={{ transitionDuration: "500ms" }}
+              className="rounded-full w-full md:w-[30%] mx-auto px-16 py-6 font-thin text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4 bg-transparent border-primary"
+            >
+              {data[0].fields[10].value}
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="py-8 px-6 sm:p-12 lg:px-20 xl:px-36  pb-10">

@@ -16,9 +16,9 @@ const page = async () => {
         style={{ height: "280px" }}
         className="booth-design-bg flex justify-center px-4 md:px-8 lg:px-20 flex-col gap-8 items-center"
       >
-        <h2 className="text-4xl text-center uppercase font-semibold heading-font text-white">
+        <h1 className="text-4xl text-center uppercase font-semibold heading-font text-white">
           {faqPageData.data.fields[0].value}
-        </h2>
+        </h1>
       </div>
       <div className="flex items-center justify-center py-4 ">
         <div className="container py-8 px-12 ">

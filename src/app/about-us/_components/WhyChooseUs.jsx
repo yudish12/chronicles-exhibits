@@ -2,6 +2,8 @@ import Image from "next/image";
 import React from "react";
 import "./about-us.css";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import EnquiryForm from "@/components/Form";
 const WhyChooseUs = ({ fields }) => {
   const bulletPoints = [
     {
@@ -43,9 +45,16 @@ const WhyChooseUs = ({ fields }) => {
           dangerouslySetInnerHTML={{ __html: fields[6].value }}
         ></div>
         <div>
-          <Button className="border-2 font-bold border-[#B0CB1F] text-[#B0CB1F] p-4 bg-transparent hover:bg-[#B0CB1F] hover:text-secondary mt-4  text-lg">
-            {fields[7].value}
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="border-2 font-bold border-[#B0CB1F] text-[#B0CB1F] p-4 bg-transparent hover:bg-[#B0CB1F] hover:text-secondary mt-4  text-lg">
+                {fields[7].value}
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="">
+              <EnquiryForm />
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
 

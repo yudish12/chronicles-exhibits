@@ -23,9 +23,9 @@ const Page = async () => {
           alt="location-bg"
           className="object-cover"
         />
-        <h3 className="text-white heading-font text-4xl font-bold">
+        <h1 className="text-white heading-font text-4xl font-bold">
           CONTACT US
-        </h3>
+        </h1>
       </div>
 
       <div className="py-16 px-6 md:px-10 bg-background">

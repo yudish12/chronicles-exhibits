@@ -51,7 +51,7 @@ const About = ({ fields }) => {
                 <p>{fields[9].value}</p>
               </CardContent>
               <CardFooter className="flex justify-center p-2 my-2">
-                <Link href="/trade-show-booth-displays-designs">
+                <Link href="/custom-trade-show-booth-ideas">
                   <Button
                     variant="outline"
                     className="rounded-full px-16 py-4 font-thin text-xl text-black border hover:bg-primary hover:text-white bg-transparent border-primary"
@@ -82,7 +82,7 @@ const About = ({ fields }) => {
                 <p>{fields[14].value}</p>
               </CardContent>
               <CardFooter className="flex justify-center p-2 my-2">
-                <Link href="/services">
+                <Link href="/trade-show-booth-displays-designs">
                   <Button
                     variant="outline"
                     className="rounded-full px-16 py-4 font-thin text-xl text-black border hover:bg-primary hover:text-white bg-transparent border-primary"

@@ -46,6 +46,7 @@ const EnquiryForm = () => {
           <Input
             type="file"
             placeholder="Choose File"
+            multiple
             className="bg-white col-span-3 flex items-center justify-center border-secondary placeholder:text-secondary/50 border-2 text-black py-[28px] mb-6 px-4 rounded-lg"
           />
         </div>

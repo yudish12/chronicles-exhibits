@@ -30,9 +30,9 @@ const ServicePage = async () => {
         className=" featured-bg flex flex-col items-center justify-center bg-cover bg-center"
       >
         {/* <div className="flex flex-col items-center h-full justify-center text-center gap-10 px-4 md:px-20"> */}
-        <h2 className="heading-font font-semibold text-[2rem] text-white drop-shadow-lg leading-relaxed ">
+        <h1 className="heading-font font-semibold text-[2rem] text-white drop-shadow-lg leading-relaxed ">
           {fields[0].value}
-        </h2>
+        </h1>
         {/* </div> */}
       </div>
       <Carousel fields={fields} />

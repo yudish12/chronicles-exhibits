@@ -24,9 +24,9 @@ const page = async () => {
           alt="location-bg"
           className="object-cover"
         />
-        <h3 className="text-white heading-font text-4xl font-bold">
+        <h1 className="text-white heading-font text-4xl font-bold">
           {fields[0].value}
-        </h3>
+        </h1>
       </div>
       <Introduction fields={fields} />
       <WhyChooseUs fields={fields} />
