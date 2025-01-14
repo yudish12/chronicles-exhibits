@@ -128,7 +128,7 @@ const Page = async ({ params }) => {
     const isExpired = moment(targetDate).isBefore(moment());
     return (
       <>
-        <div className="trade-show-bg flex flex-col items-center gap-8 px-20 py-12">
+        <div className="detail-trade-show-bg flex flex-col items-center gap-8 px-20 py-12">
           <h2 className=" text-4xl text-center text-white uppercase font-semibold heading-font">
             {eventData.event_name}
           </h2>
