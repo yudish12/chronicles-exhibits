@@ -33,7 +33,7 @@ const Page = async ({ params }) => {
 
     return (
       <>
-        <div className="booth-design-bg px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
+        <div className="booth-design-bg md:px-12 sm:px-8 px-6 lg:px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
           <h3 className="text-white text-center uppercase heading-font text-[2.35rem] font-bold">
             {data.title}
           </h3>
@@ -41,7 +41,7 @@ const Page = async ({ params }) => {
 
         <div className="bg-background  text-gray-800 ">
           {/* Main Content Section */}
-          <div className="px-20 w-full grid grid-cols-1 lg:grid-cols-3 gap-[40px] py-20 ">
+          <div className="px-4 sm:px-12  lg:px-20 w-full grid grid-cols-1 lg:grid-cols-3 gap-[40px] py-20 ">
             {/* Left Section */}
             <div className="lg:col-span-2">
               {/* Hero Image */}
@@ -50,37 +50,37 @@ const Page = async ({ params }) => {
                 alt="Trade Show"
                 width={800}
                 height={600}
-                className="w-full rounded-lg"
+                className="w-full max-w-[820px] max-h-[500px] rounded-lg"
               />
               {/* Blog Content */}
               <div
                 id="blog_content"
                 dangerouslySetInnerHTML={{ __html: data.body }}
-                className="mt-6 space-y-4 bg-white shadow-one px-10 py-14  rounded-lg "
+                className="mt-6 space-y-4 bg-white shadow-one px-4 sm:px-6 lg:px-10 py-14  rounded-lg "
               ></div>
             </div>
 
             {/* Right Section */}
             <div className="space-y-8 w-full">
               {/* Related Blogs */}
-              <div className="flex flex-col justify-center items-center">
-                <h3 className="text-3xl font-semibold py-2 text-black">
-                  Recent Posts
+              <div className="flex flex-col justify-center items-center py-4">
+                <h3 className="text-lg font-semibold py-2 text-[#B0CB1F]">
+                  Related Blogs
                 </h3>
-                <div className="space-y-8 flex flex-col items-center">
+                <div className="lg:space-y-8 gap-x-6 gap-y-6 lg:block grid grid-cols-1 sm:grid-cols-2">
                   {blogsToBeMapped.map((blog, index) => (
                     <Card
                       key={index}
-                      className="shadow-one relative h-full w-4/5 flex flex-col justify-between"
+                      className="shadow-one relative h-full lg:max-w-[2000px] max-w-[350px] w-full flex flex-col justify-between grid-cols-1"
                     >
                       {/* Image Section */}
                       <div className="w-full border-b-2 border-primary">
                         <Image
                           src={blog.image}
-                          alt={blog.title ?? "booth title"}
-                          width={300}
+                          alt={blog.title}
+                          width={400}
                           height={200}
-                          className="rounded-t-lg max-h-[195px] w-full "
+                          className="rounded-t-lg max-h-[155px] w-full object-cover"
                         />
                       </div>
 
@@ -128,7 +128,7 @@ const Page = async ({ params }) => {
     const isExpired = moment(targetDate).isBefore(moment());
     return (
       <>
-        <div className="detail-trade-show-bg flex flex-col items-center gap-8 px-20 py-12">
+        <div className="detail-trade-show-bg flex flex-col items-center gap-8 px-6 sm:px-20 py-12">
           <h2 className=" text-4xl text-center text-white uppercase font-semibold heading-font">
             {eventData.event_name}
           </h2>
@@ -144,7 +144,7 @@ const Page = async ({ params }) => {
               <MapPin color="#FFFFFF" />
               <span className="text-xl">{eventData.city} | United States</span>
             </p>
-            <p className="flex text-center items-center gap-4">
+            <p className="flex text-center items-center gap-4 mb-20 ">
               <Calendar color={isExpired ? "#FF0000" : "#FFFFFF"} />
               <span
                 className={cn(
@@ -166,10 +166,10 @@ const Page = async ({ params }) => {
           width={170}
           height={170}
           src={eventData.icon}
-          alt={"show title"}
+          alt={"show.title"}
         />
-        <div className="px-20 gap-12 py-12 flex">
-          <div className="w-[70%] bg-white p-6 rounded-xl shadow-one">
+        <div className="flex flex-col px-[40px] lg:flex-row lg:px-20 gap-12 py-12">
+          <div className="w-full lg:w-[70%] bg-white sm:p-6 p-8  rounded-xl shadow-one">
             <h3 className="text-2xl heading-font text-secondary font-semibold">
               {eventData.title}
             </h3>
@@ -178,7 +178,7 @@ const Page = async ({ params }) => {
               dangerouslySetInnerHTML={{ __html: eventData.body }}
             ></div>
           </div>
-          <div className="w-[30%] flex flex-col gap-6">
+          <div className="w-full lg:w-[30%] flex flex-col gap-6">
             <BoothSizeForm
               eventName={eventName}
               eventCity={eventCity}
@@ -259,8 +259,9 @@ const Page = async ({ params }) => {
           </div>
         </div>
         <Products
-          title={"Trade Show Booth Rental"}
+          title={eventData.booth_title ?? "Trade Show Booth Rental"}
           subTitle={
+            eventData.booth_description ??
             "Chronicle Exhibits LLC. is the most famous trade show booth builder working since 2013. We build immersive brand experiences by providing complete exhibition stand management."
           }
           bgColor="white"

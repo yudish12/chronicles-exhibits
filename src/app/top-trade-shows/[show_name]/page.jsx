@@ -112,7 +112,7 @@ const Page = async ({ params }) => {
         src={data.data.icon}
         alt={"show.title"}
       />
-      <div className="flex flex-col px-[40px] lg:flex-row lg:px-20 gap-12 py-12">
+      <div className="flex flex-col px-6 sm:px-8 md:px-[40px] lg:flex-row lg:px-20 gap-12 py-12">
         <div className="w-full lg:w-[70%] bg-white sm:p-6 p-8  rounded-xl shadow-one">
           <h3 className="text-2xl heading-font text-secondary font-semibold">
             {data.data.title}
@@ -203,8 +203,9 @@ const Page = async ({ params }) => {
         </div>
       </div>
       <Products
-        title={"Trade Show Booth Rental"}
+        title={data.data.booth_title ?? "Trade Show Booth Rental"}
         subTitle={
+          data.data.booth_description ??
           "Chronicle Exhibits LLC. is the most famous trade show booth builder working since 2013. We build immersive brand experiences by providing complete exhibition stand management."
         }
         bgColor="white"

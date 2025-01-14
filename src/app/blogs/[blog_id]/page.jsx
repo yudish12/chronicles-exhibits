@@ -43,7 +43,7 @@ const Blogpage = async ({ params }) => {
     <>
       <SubHeader />
       <Header />
-      <div className="booth-design-bg px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
+      <div className="booth-design-bg md:px-12 sm:px-8 px-6 lg:px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
         <h3 className="text-white text-center uppercase heading-font text-[2.35rem] font-bold">
           {data.title}
         </h3>
@@ -77,11 +77,11 @@ const Blogpage = async ({ params }) => {
               <h3 className="text-lg font-semibold py-2 text-[#B0CB1F]">
                 Related Blogs
               </h3>
-              <div className="space-y-8">
+              <div className="lg:space-y-8 gap-x-6 gap-y-6 lg:block grid grid-cols-1 sm:grid-cols-2">
                 {blogsToBeMapped.map((blog, index) => (
                   <Card
                     key={index}
-                    className="shadow-one relative h-full w-full flex flex-col justify-between"
+                    className="shadow-one relative h-full lg:max-w-[2000px] max-w-[350px] w-full flex flex-col justify-between grid-cols-1"
                   >
                     {/* Image Section */}
                     <div className="w-full border-b-2 border-primary">

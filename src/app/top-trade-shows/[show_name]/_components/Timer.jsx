@@ -28,11 +28,11 @@ const Timer = ({ targetDate }) => {
   }, []);
 
   return (
-    <div className="flex space-x-4 justify-center items-center md:space-x-6  text-white">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-6 justify-center items-center md:space-x-6  text-white">
       {["days", "hours", "minutes", "seconds"].map((key) => (
         <div
           key={key}
-          className="flex flex-col items-center justify-center border border-dashed border-gray-400 rounded-md px-4 py-6 sm:w-28 md:w-32 lg:w-40 "
+          className="flex flex-col items-center justify-center border border-dashed border-gray-400 rounded-md px-4 py-6 w-full sm:w-28 md:w-32 lg:w-40 "
         >
           <span className="text-4xl font-bold">
             {timeLeft[key] !== undefined ? timeLeft[key] : "00"}
