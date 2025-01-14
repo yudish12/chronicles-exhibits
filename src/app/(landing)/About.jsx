@@ -53,8 +53,8 @@ const About = ({ fields }) => {
               <CardFooter className="flex justify-center p-2 my-2">
                 <Link href="/custom-trade-show-booth-ideas">
                   <Button
-                    variant="outline"
-                    className="rounded-full  mx-auto px-8 text-xl hover:bg-primary hover:text-black bg-primary text-black "
+                    style={{ transitionDuration: "500ms" }}
+                    className="rounded-full  mx-auto px-8 text-lg hover:bg-white border border-black hover:text-black bg-primary text-black "
                   >
                     {fields[10].value}
                   </Button>
@@ -84,8 +84,8 @@ const About = ({ fields }) => {
               <CardFooter className="flex justify-center p-2 my-2">
                 <Link href="/trade-show-booth-displays-designs">
                   <Button
-                    variant="outline"
-                    className="rounded-full  mx-auto px-8 text-xl hover:bg-primary hover:text-black bg-primary text-black "
+                    style={{ transitionDuration: "500ms" }}
+                    className="rounded-full  mx-auto px-8 text-lg hover:bg-white border border-black hover:text-black bg-primary text-black "
                   >
                     {fields[15].value}
                   </Button>
@@ -115,8 +115,8 @@ const About = ({ fields }) => {
               <CardFooter className="flex justify-center  p-2 my-2">
                 <Link href="/portfolio">
                   <Button
-                    variant="outline"
-                    className="rounded-full  mx-auto px-8 text-xl hover:bg-primary hover:text-black bg-primary text-black "
+                    style={{ transitionDuration: "500ms" }}
+                    className="rounded-full  mx-auto px-8 text-lg hover:bg-white border border-black hover:text-black bg-primary text-black "
                   >
                     {fields[20].value}
                   </Button>
