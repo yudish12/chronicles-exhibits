@@ -29,6 +29,12 @@ const eventSchema = new mongoose.Schema(
     city: {
       type: String,
     },
+    booth_heading: {
+      type: String,
+    },
+    booth_description: {
+      type: String,
+    },
     icon_alt_text: {
       type: String,
     },

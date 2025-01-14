@@ -22,6 +22,7 @@ import { majorExhibitingCities } from "../../cities";
 import { Trash2 } from "lucide-react";
 import { CitySearchSelect } from "@/components/ui/city-search-select";
 import { useRouter } from "next/navigation";
+import { Textarea } from "@/components/ui/textarea";
 
 const AddEventPage = () => {
   const [singleEvent, setSingleEvent] = React.useState({
@@ -35,11 +36,13 @@ const AddEventPage = () => {
     city: "",
     icon: "",
     icon_alt_text: "",
+    booth_title: "",
+    booth_description: "",
     meta_title: "",
     meta_description: "",
     meta_keywords: [],
-    website : "",
-    email: ""
+    website: "",
+    email: "",
   });
 
   const router = useRouter();
@@ -69,11 +72,13 @@ const AddEventPage = () => {
         city: "",
         icon: "",
         icon_alt_text: "",
+        booth_description: "",
+        booth_title: "",
         meta_title: "",
         meta_description: "",
         meta_keywords: [],
-        website : "",
-        email: ""
+        website: "",
+        email: "",
       });
       router.push("/admin/events");
     } catch (error) {
@@ -258,6 +263,42 @@ const AddEventPage = () => {
                 value={singleEvent.title}
                 onChange={(e) =>
                   setSingleEvent({ ...singleEvent, title: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div className="col-span-2">
+              <Label className="mb-4 block">Body</Label>
+              <CkeEditor
+                value={singleEvent.body}
+                onChange={(value) => {
+                  setSingleEvent({ ...singleEvent, body: value });
+                }}
+              />
+            </div>
+            <div className="col-span-2">
+              <Label className="mb-4 block">Booth Title</Label>
+              <Input
+                className="rounded-sm"
+                value={singleEvent.booth_title}
+                onChange={(e) =>
+                  setSingleEvent({
+                    ...singleEvent,
+                    booth_title: e.target.value,
+                  })
+                }
+                required
+              />
+            </div>
+            <div className="col-span-2">
+              <Label className="mb-4 block">Booth Description</Label>
+              <Textarea
+                value={singleEvent.booth_description}
+                onChange={(e) =>
+                  setSingleEvent({
+                    ...singleEvent,
+                    booth_description: e.target.value,
+                  })
                 }
                 required
               />

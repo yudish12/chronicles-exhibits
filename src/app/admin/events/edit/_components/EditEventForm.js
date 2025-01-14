@@ -15,6 +15,7 @@ import { majorExhibitingCities } from "@/app/admin/cities";
 import { Trash2 } from "lucide-react";
 import { CitySearchSelect } from "@/components/ui/city-search-select";
 import { useRouter } from "next/navigation";
+import { Textarea } from "@/components/ui/textarea";
 const EditEventForm = ({ singleEvent, cities }) => {
   console.log(singleEvent);
   const [event, setEvent] = useState(singleEvent);
@@ -34,6 +35,8 @@ const EditEventForm = ({ singleEvent, cities }) => {
       country: event.country,
       city: event.city,
       icon_alt_text: event.icon_alt_text,
+      booth_title: event.booth_title ?? "",
+      booth_description: event.booth_description ?? "",
       website: event.website,
       email: event.email,
       address: event.address,
@@ -210,6 +213,33 @@ const EditEventForm = ({ singleEvent, cities }) => {
                   return temp;
                 });
               }}
+            />
+          </div>
+          <div className="col-span-2">
+            <Label className="mb-4 block">Booth Title</Label>
+            <Input
+              className="rounded-sm"
+              value={event.booth_title}
+              onChange={(e) =>
+                setEvent({
+                  ...event,
+                  booth_title: e.target.value,
+                })
+              }
+              required
+            />
+          </div>
+          <div className="col-span-2">
+            <Label className="mb-4 block">Booth Description</Label>
+            <Textarea
+              value={event.booth_description}
+              onChange={(e) =>
+                setEvent({
+                  ...event,
+                  booth_description: e.target.value,
+                })
+              }
+              required
             />
           </div>
           <div>
