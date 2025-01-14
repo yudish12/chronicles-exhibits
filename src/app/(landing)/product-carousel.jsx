@@ -116,9 +116,15 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
                   <p className="text-[1.65rem] uppercase font-semibold">
                     {item.name.toUpperCase()}
                   </p>
-                  <p className="capitalize text-lg font-semibold">
+                  <p className="text-lg capitalize font-semibold">
                     trade show booth rental{" "}
-                    {location?.replace("-", " ").toLowerCase() ?? ""}
+                    {location
+                      .replaceAll("-", " ") // Replace hyphens with spaces
+                      .split(" ") // Split the string into words
+                      .map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                      ) // Capitalize the first letter of each word
+                      .join(" ") ?? ""}
                   </p>
                 </div>
               </div>

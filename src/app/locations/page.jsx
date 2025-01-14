@@ -100,7 +100,8 @@ const Page = async () => {
           <Link
             href={`/trade-show-booth-rentals-${city
               .toLowerCase()
-              .replace(" ", "-")}`}
+              .replaceAll(/ /g, "-")
+              .replace(".", "")}`}
             key={index}
           >
             <div
