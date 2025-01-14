@@ -89,7 +89,11 @@ const Parallax = ({ fields }) => {
             alt="icon"
             style={{ transitionDuration: "500ms" }}
           />
-          <p key={`text-${activeSection}`} className="fadeInOut text-center ">
+          <p
+            style={{ lineHeight: "24px", letterSpacing: "1px" }}
+            key={`text-${activeSection}`}
+            className="fadeInOut font-medium text-[17px] text-center "
+          >
             {sections[currentSection - 1].text}
           </p>
         </div>

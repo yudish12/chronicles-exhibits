@@ -116,7 +116,7 @@ const Header = () => {
         onClick={closeMenu}
       >
         <div
-          className={`fixed top-0 left-0 md:w-1/3 h-full bg-secondary p-6 text-black flex flex-col gap-6 transform transition-transform ${
+          className={`fixed top-0 left-0 w-1/2 md:w-1/3 h-full bg-secondary p-6 text-black flex flex-col gap-6 transform transition-transform ${
             isMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}
