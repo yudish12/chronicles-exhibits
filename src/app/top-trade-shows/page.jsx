@@ -13,6 +13,7 @@ import { getAllData } from "@/server/actions/events";
 import TradeShowGrid from "./_components/TradeShowGrid";
 import { getSinglePage } from "@/server/actions/pages";
 import TradeshowSearch from "./_components/Tradeshow-search";
+import TradeShowClient from "./_components/trade-show-client";
 
 export const generateMetadata = async ({}) => {
   const { data } = await getSinglePage({ name: "events" });
@@ -46,21 +47,14 @@ const Page = async ({ params, searchParams }) => {
           {data.fields[0].value}
         </h1>
       </div>
-      <div className="bg-background px-6 md:px-16 lg:px-20 py-12 flex flex-col items-center justify-center gap-4">
-        <TradeshowSearch
-          tradeShows={tradeShows}
-          totalPages={totalPages}
-          pages={page}
-          limit={limit}
-        />
+      <TradeShowClient
+        data={data}
+        tradeShows={tradeShows}
+        totalPages={totalPages}
+        page={page}
+        limit={limit}
+      />
 
-        <p className="text-[17px]  md:mx-16  lg:mx-24 text-justify mt-6">
-          {data.fields[1].value}
-          <br />
-          <br />
-          {data.fields[2].value}
-        </p>
-      </div>
       <Footer />
     </>
   );
