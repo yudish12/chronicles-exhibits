@@ -30,7 +30,8 @@ const Faq = ({ fields }) => {
                   <div className="bg-[#4a4b4c] flex items-center p-4">
                     <h4 className="text-primary body-bold  text-sm md:text-base flex items-center">
                       <span className="text-primary flex justify-center items-center body-bold text-lg md:text-xl">
-                        0{index + 1}
+                        {index < 9 ? 0 : ""}
+                        {index + 1}
                       </span>
                       <span className="border-r-2 border-gray-300 mx-3 h-5"></span>
                       {e.heading}

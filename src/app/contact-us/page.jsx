@@ -10,19 +10,12 @@ import { getSinglePage } from "@/server/actions/pages";
 
 const Page = async () => {
   const contactUsPageData = await getSinglePage({ name: "contact-us" });
-
+  const fields = contactUsPageData.data.fields;
   return (
     <>
       <SubHeader />
       <Header />
       <div className="booth-design-bg px-4 md:px-20 text-white gap-8 h-[360px] justify-center items-center flex flex-col">
-        <Image
-          src="/Phone.png"
-          width={80}
-          height={80}
-          alt="location-bg"
-          className="object-cover"
-        />
         <h1 className="text-white heading-font text-4xl font-bold">
           CONTACT US
         </h1>
@@ -115,7 +108,7 @@ const Page = async () => {
       </div>
 
       {/* Center the EnquiryForm */}
-      <div className="flex justify-center py-16 bg-background md:px-10 px-4">
+      <div className="flex justify-center py-16 bg-background md:px-12 lg:px-20  px-6 sm:px-8">
         <EnquiryForm />
       </div>
       <LocateUs />

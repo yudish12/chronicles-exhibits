@@ -13,7 +13,7 @@ const LocateUs = () => {
           Refer to the map given below to find our location.{" "}
         </p>
       </div>
-      <div className="p-6 w-full">
+      <div className="p-6 md:px-12 lg:px-20  px-6 sm:px-8 w-full">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d25775.73460659082!2d-115.276006!3d36.143021!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c8c1edca3c4097%3A0x3d67c01115c86d20!2sChronicle%20Exhibits%20LLC%20%7C%20Trade%20Show%20Booth%20Rental%20Company!5e0!3m2!1sen!2sin!4v1735836505245!5m2!1sen!2sin"
           style={{

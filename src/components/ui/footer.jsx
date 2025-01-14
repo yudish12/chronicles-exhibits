@@ -16,8 +16,8 @@ const SocialIconContainer = ({ children }) => {
 
 export default function Footer() {
   return (
-    <div className="bg-secondary py-6 px-6 md:py-10 md:px-20">
-      <div className="px-6 py-8 md:px-12 md:py-10 rounded-lg grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
+    <div className="bg-secondary py-6 px-8 md:py-10 md:px-12 sm:px-8 lg:px-20">
+      <div className=" py-8 md:py-10 rounded-lg grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
         {/* Company Section */}
         <div>
           <h3 className="font-semibold text-base mb-4 text-primary">Company</h3>

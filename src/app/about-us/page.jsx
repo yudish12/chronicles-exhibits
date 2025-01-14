@@ -17,13 +17,6 @@ const page = async () => {
       <SubHeader />
       <Header />
       <div className="booth-design-bg px-4 md:px-20 text-white gap-8 h-[360px] justify-center items-center flex flex-col">
-        <Image
-          src={"/info-circle.png"}
-          width={50}
-          height={50}
-          alt="location-bg"
-          className="object-cover"
-        />
         <h1 className="text-white heading-font text-4xl font-bold">
           {fields[0].value}
         </h1>

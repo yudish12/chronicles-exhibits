@@ -148,16 +148,16 @@ const Page = async ({ params }) => {
           {data[0].fields[4].value} {data[0].fields[5].value}
         </p>
       </div>
-      <div className="product-bg flex flex-col md:flex-row gap-12 px-4 md:px-20 py-16">
+      <div className="product-bg flex flex-col lg:flex-row gap-12 px-6 md:px-12 sm:px-8 lg:px-20 py-16">
         <Image
           height={300}
           width={200}
-          className="w-full md:w-1/2 rounded-lg max-h-[520px]"
+          className="w-full sm:w-2/3 mx-auto lg:w-1/2 rounded-lg max-h-[520px]"
           src={data[0].fields[6].value}
           alt={data[0].fields[7].value}
         />
-        <div className="w-full font-normal md:w-1/2 flex flex-col gap-4">
-          <h2 className="text-primary uppercase heading-font text-3xl md:text-4xl font-semibold">
+        <div className="w-full font-normal lg:w-1/2 flex flex-col gap-4">
+          <h2 className="text-primary lg:text-justify sm:text-center uppercase heading-font text-3xl md:text-4xl font-semibold">
             {data[0].fields[8].value}
           </h2>
           <div
@@ -168,7 +168,7 @@ const Page = async ({ params }) => {
           <Link href={"/contact-us"}>
             <Button
               style={{ transitionDuration: "500ms" }}
-              className="rounded-full w-full md:w-[30%] mx-auto px-16 py-6 font-thin text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4 bg-transparent border-primary"
+              className="rounded-full sm:mx-auto lg:mx-0 w-[30%] mx-auto px-16 py-6 font-thin text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4 bg-transparent border-primary"
             >
               {data[0].fields[10].value}
             </Button>
@@ -233,7 +233,7 @@ const Page = async ({ params }) => {
             <Link
               href={`/${show.slug}`}
               key={show.id}
-              className="h-[350px] w-full bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6 justify-between"
+              className="h-[350px] max-w-[270px] md:max-w-[400px] mx-auto w-full bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6 justify-between"
             >
               <h4 className="text-secondary heading-font text-xl  font-semibold">
                 {show.event_name}

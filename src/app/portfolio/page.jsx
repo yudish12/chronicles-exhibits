@@ -18,7 +18,7 @@ const Page = async () => {
           <h1 className="heading-font font-semibold text-[2rem] mt-16 text-white drop-shadow-lg leading-relaxed ">
             OUR PORTFOLIO
           </h1>
-          <p className="text-white text-2xl mx-0 sm:mx-20 md:mx-28 lg:mx-52 2xl:mx-96 uppercase font-bold text-center">
+          <p className="text-white text-2xl mx-0 sm:mx-20 md:mx-28 lg:mx-52 2xl:mx-96  font-semibold text-center">
             Have a look at our impeccable trade show booths that made our
             clients stand out from their competitors.
           </p>

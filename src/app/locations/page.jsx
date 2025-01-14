@@ -77,20 +77,13 @@ const Page = async () => {
       <SubHeader />
       <Header />
       <div className="booth-design-bg px-4 md:px-8 lg:px-20 text-white gap-8 justify-center items-center flex flex-col sm:rounded-none rounded-b-2xl">
-        <Image
-          src={"/location-bg-icon.png"}
-          width={35}
-          height={35}
-          alt="location-bg"
-          className=""
-        />
-        <h1 className="text-white heading-font text-4xl font-bold">
+        <h1 className="text-white heading-font text-4xl font-semibold">
           {data.fields[0].value}
         </h1>
         <p className=" hidden text-center mx-4 md:mx-8 lg:mx-16 xl:mx-24 font-medium text-lg lg:text-xl md:block ">
           {data.fields[1].value}
         </p>
-        <p className="hidden md:block text-center text-lg lg:text-xl font-medium">
+        <p className="hidden md:block text-center text-base lg:text-lg font-medium">
           {data.fields[2].value}
         </p>
       </div>
