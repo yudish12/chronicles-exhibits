@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 
 const TradeshowSearch = ({ shows, setShows, totalPages, pages, limit }) => {
   const [searchValue, setSearchValue] = React.useState("");
-
+  console.log(shows, 11);
   const [loading, setLoading] = useState(false);
   const [paginationState, setPagination] = useState({
     totalPages: totalPages,
@@ -30,7 +30,7 @@ const TradeshowSearch = ({ shows, setShows, totalPages, pages, limit }) => {
         "start_date end_date title icon event_name country city slug"
       );
       const totalPages = Math.ceil(tradeShows.count / limit);
-      setShows(tradeShows);
+      setShows(tradeShows.data);
       setPagination({
         totalPages: totalPages,
         currentPage: page,
@@ -42,7 +42,7 @@ const TradeshowSearch = ({ shows, setShows, totalPages, pages, limit }) => {
 
     try {
       const response = await getAllDataBySearch(searchValue);
-      setShows(response);
+      setShows(response.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -63,7 +63,7 @@ const TradeshowSearch = ({ shows, setShows, totalPages, pages, limit }) => {
               }
             }}
             onChange={(e) => setSearchValue(e.target.value)}
-            className="shadow-one w-[100%] md:w-[60%] lg:w-[40%] placeholder:text-center placeholder:font-medium rounded-lg placeholder:text-secondary/60 px-4"
+            className="border border-black  w-[100%] md:w-[60%] lg:w-[40%] placeholder:text-center placeholder:font-medium rounded-lg placeholder:text-secondary/60 px-4"
             placeholder="Search for upcoming trade shows"
           />
           <Button
@@ -106,12 +106,12 @@ const TradeshowSearch = ({ shows, setShows, totalPages, pages, limit }) => {
             }
           }}
           onChange={(e) => setSearchValue(e.target.value)}
-          className="shadow-one w-[100%] md:w-[60%] lg:w-[40%] placeholder:text-center placeholder:font-medium rounded-lg placeholder:text-secondary/60 px-4"
+          className="border border-black  w-[100%] md:w-[60%] lg:w-[40%] placeholder:text-center placeholder:font-medium rounded-lg placeholder:text-secondary/60 px-4"
           placeholder="Search for upcoming trade shows"
         />
         <Button
           onClick={onSearch}
-          className="text-secondary font-semibold bg-white hover:bg-secondary hover:text-white transition-all py-5 shadow-one"
+          className="text-secondary border border-secondary rounded-full font-semibold bg-white hover:bg-secondary hover:text-white transition-all py-2 px-6 "
         >
           Search
         </Button>

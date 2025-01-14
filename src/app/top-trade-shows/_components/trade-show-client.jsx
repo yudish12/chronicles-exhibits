@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import TradeshowSearch from "./Tradeshow-search";
 
 const TradeShowClient = ({ data, tradeShows, totalPages, page, limit }) => {
-  const [shows, setShows] = useState(tradeShows);
+  console.log(tradeShows);
+  const [shows, setShows] = useState(tradeShows.data);
 
   return (
     <div className="bg-background px-6 md:px-16 lg:px-20 py-12 flex flex-col items-center justify-center gap-4">
