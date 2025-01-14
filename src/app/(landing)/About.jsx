@@ -54,7 +54,7 @@ const About = ({ fields }) => {
                 <Link href="/custom-trade-show-booth-ideas">
                   <Button
                     variant="outline"
-                    className="rounded-full px-16 py-4 font-thin text-xl text-black border hover:bg-primary hover:text-white bg-transparent border-primary"
+                    className="rounded-full  mx-auto px-8 text-xl hover:bg-primary hover:text-black bg-primary text-black "
                   >
                     {fields[10].value}
                   </Button>
@@ -85,7 +85,7 @@ const About = ({ fields }) => {
                 <Link href="/trade-show-booth-displays-designs">
                   <Button
                     variant="outline"
-                    className="rounded-full px-16 py-4 font-thin text-xl text-black border hover:bg-primary hover:text-white bg-transparent border-primary"
+                    className="rounded-full  mx-auto px-8 text-xl hover:bg-primary hover:text-black bg-primary text-black "
                   >
                     {fields[15].value}
                   </Button>
@@ -94,7 +94,7 @@ const About = ({ fields }) => {
             </Card>
 
             {/* Card 3 */}
-            <Card className="shadow-one w-full xs:w-[70%] 2xl:max-w-[390px] mx-auto sm:w-full rounded-xl overflow-hidden flex flex-col">
+            <Card className="shadow-one w-full xs:w-[70%] 2xl:max-w-[390px] mx-auto sm:w-full rounded-xl overflow-hidden flex flex-col justify-between">
               <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
                 <Image
                   height={260}
@@ -112,11 +112,11 @@ const About = ({ fields }) => {
               <CardContent className="text-center text-secondary p-0 px-4">
                 <p>{fields[19].value}</p>
               </CardContent>
-              <CardFooter className="flex justify-center p-2 my-2">
+              <CardFooter className="flex justify-center  p-2 my-2">
                 <Link href="/portfolio">
                   <Button
                     variant="outline"
-                    className="rounded-full px-16 py-4 font-thin text-xl text-black border hover:bg-primary hover:text-white bg-transparent border-primary"
+                    className="rounded-full  mx-auto px-8 text-xl hover:bg-primary hover:text-black bg-primary text-black "
                   >
                     {fields[20].value}
                   </Button>
