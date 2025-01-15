@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import Counter from "@/app/(landing)/FactsCounter";
 
 const static_data = [
   {
@@ -124,16 +125,12 @@ const FactsAndFigures = ({ fields }) => {
                 <Image
                   width={100}
                   height={100}
-                  alt={item.alt_text ?? "icon"}
+                  alt="icon"
                   src={item.iconImage}
                   className="w-12 h-12 block pt-2"
                 />
               </div>
-              <div className="text-2xl font-bold transition-all duration-300">
-                <span className="block text-secondary pt-2 heading-font">
-                  {item.number}
-                </span>
-              </div>
+              <Counter targetNumber={item.number} />
               <div className="transition-all duration-300 font-light">
                 <span className="block text-secondary pt-2 pb-4">
                   {item.text}

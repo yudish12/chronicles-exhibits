@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
-import { getAllForms } from "@/server/actions/forms";
+import { downloadFormSubmissions, getAllForms } from "@/server/actions/forms";
 import { Trash2 } from "lucide-react";
 import { deleteForm } from "@/server/actions/forms";
 import {
@@ -22,9 +22,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogTrigger,
 } from "@/components/ui/dialog";
 import { deleteUTFiles } from "@/server/services/uploadthing";
 import { Pagination } from "./_components/Pagination";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 export default function PortfolioTable() {
   const [portfolios, setPortfolios] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -32,6 +35,11 @@ export default function PortfolioTable() {
   const [deletingPortfolioId, setDeletingPortfolioId] = React.useState(null);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [totalPages, setTotalPages] = React.useState(0);
+  const [downloadDialog, setDownloadDialog] = React.useState(false);
+
+  const [download_start_date, setDownload_start_date] = React.useState("");
+  const [download_end_date, setDownload_end_date] = React.useState("");
+
   const limit = 6;
   const fetchData = async () => {
     try {
@@ -81,10 +89,112 @@ export default function PortfolioTable() {
       toast.error("Failed to delete blog");
     }
   };
+
+  const handleDownload = async () => {
+    try {
+      const resp = await downloadFormSubmissions(
+        download_start_date,
+        download_end_date
+      );
+
+      if (!resp.success) {
+        toast.error(resp.error);
+        return;
+      }
+
+      const data = resp.data;
+
+      if (!data || data.length === 0) {
+        toast.error("No data available to download.");
+        setDownloadDialog(false);
+        return;
+      }
+
+      // Convert data to CSV format
+      const headers = Object.keys(data[0]).join(","); // Create CSV headers
+      const rows = data
+        .map((row) => {
+          return Object.values(row)
+            .map((value) => `"${value}"`)
+            .join(",");
+        })
+        .join("\n");
+
+      const csv = `${headers}\n${rows}`;
+
+      // Create a Blob and download the file
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      const formattedStartDate = new Date(download_start_date)
+        .toLocaleDateString()
+        .replace(/\//g, "-");
+      const formattedEndDate = new Date(download_end_date)
+        .toLocaleDateString()
+        .replace(/\//g, "-");
+      link.href = url;
+      link.download = `Form_Submissions_${formattedStartDate}_to_${formattedEndDate}.csv`;
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success("File downloaded successfully.");
+      setDownloadDialog(false);
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to download");
+      setDownloadDialog(false);
+    }
+  };
+
   return (
     <div className="container bg-border overflow-auto mx-auto p-8">
       <Card className="flex justify-between items-center bg-white p-4">
         <h1 className="text-2xl font-bold">Enquiry Forms</h1>
+        <Dialog open={downloadDialog} onOpenChange={setDownloadDialog}>
+          <DialogTrigger asChild>
+            <Button
+              variant="outline"
+              style={{ marginTop: "0px", height: "35px" }}
+              className="border-secondary text-secondary mt-0 font-semibold px-4 py-"
+            >
+              Download CSV
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <div className="flex flex-col gap-6">
+              <div>
+                <Label className="mb-4 block">Start Date</Label>
+                <Input
+                  value={download_start_date}
+                  onChange={(e) => setDownload_start_date(e.target.value)}
+                  className="rounded-sm"
+                  type="date"
+                  required
+                />
+              </div>
+              <div>
+                <Label className="mb-4 block">End Date</Label>
+                <Input
+                  value={download_end_date}
+                  onChange={(e) => setDownload_end_date(e.target.value)}
+                  className="rounded-sm"
+                  type="date"
+                  required
+                />
+              </div>
+            </div>
+            <Button
+              onClick={handleDownload}
+              variant="outline"
+              style={{ marginTop: "0px", height: "35px" }}
+              className="border-secondary text-secondary mt-0 font-semibold px-4 py-"
+            >
+              Download
+            </Button>
+          </DialogContent>
+        </Dialog>
       </Card>
 
       <Card className="mt-6 bg-white p-4 border">

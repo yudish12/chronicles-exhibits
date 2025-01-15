@@ -285,3 +285,19 @@ export async function eventWebsiteForm(
     return getActionFailureResponse(error);
   }
 }
+
+export const downloadFormSubmissions = async (start_date, end_date) => {
+  try {
+    const resp = await FormSubmission.find({
+      createdAt: {
+        $gte: new Date(start_date),
+        $lte: new Date(end_date),
+      },
+    });
+
+    return getActionSuccessResponse(resp);
+  } catch (error) {
+    console.log(error);
+    return getActionFailureResponse(error);
+  }
+};

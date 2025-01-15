@@ -55,7 +55,7 @@ const BoothByCode = async ({ params }) => {
       {/* <div>
 
     </div> */}
-      <BoothDetails boothData={resp.data} boothCode={boothCode} />
+      <BoothDetails size={size} boothData={resp.data} boothCode={boothCode} />
       {/* <BoothEnquiry/> */}
       <BoothGrid size={size} boothCodes={boothCodes} />
       <Footer />

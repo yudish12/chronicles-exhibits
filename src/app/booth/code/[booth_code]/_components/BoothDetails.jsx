@@ -488,13 +488,13 @@ const BoothForm = () => {
   );
 };
 
-const PackageDetails = ({ boothData }) => {
+const PackageDetails = ({ size, boothData }) => {
   return (
     <ul className="flex flex-1 lg:w-max flex-col mx-auto gap-2 text-secondary">
       <div className="hidden lg:flex text-center gap-3 mb-8 text-primary underline font-semibold text-sm">
         <span>Home/</span>
         <span>Booth By Size/</span>
-        <span>10x10/</span>
+        <span>{size}/</span>
       </div>
       <h2 className="text-xl mt-8 lg:mt-0 font-semibold mb-4">
         Package Includes:
@@ -508,7 +508,7 @@ const PackageDetails = ({ boothData }) => {
   );
 };
 
-export function BoothDetails({ boothCode, boothData }) {
+export function BoothDetails({ size, boothCode, boothData }) {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   let images;
 
@@ -575,7 +575,7 @@ export function BoothDetails({ boothCode, boothData }) {
         </div>
 
         {/* Details */}
-        <PackageDetails boothData={boothData} />
+        <PackageDetails size={size} boothData={boothData} />
       </div>
       <div className="flex lg:hidden flex-col px-8 py-6">
         <h3 className="text-[1.4rem] text-center text-secondary font-semibold ">
@@ -613,7 +613,7 @@ export function BoothDetails({ boothCode, boothData }) {
         />
         <BoothForm />
         {/* Details */}
-        <PackageDetails boothData={boothData} />
+        <PackageDetails size={size} boothData={boothData} />
       </div>
     </>
   );

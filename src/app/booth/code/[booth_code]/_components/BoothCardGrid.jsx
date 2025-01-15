@@ -9,7 +9,7 @@ const BoothGrid = ({ boothCodes, size }) => {
     <div className="py-12 bg-gradient-to-b bg-background">
       {/* Title and Subtitle */}
       <h2 className="text-center text-xl md:text-3xl font-bold text-[#B0CB1F] py-2">
-        Similar Booth Designs
+        Similar Booth Size Designs
       </h2>
 
       {/* Booth Grid */}
