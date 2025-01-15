@@ -8,7 +8,7 @@ export const submitCallForm = async (fields, page_source) => {
   try {
     const schemaKeys = {
       name: "",
-      company :"",
+      company: "",
       email: "",
       phoneNumber: "",
       eventName: "",
@@ -52,7 +52,7 @@ export const submitScheduleCallForm = async (fields, page_source) => {
       exhibition_name: "",
       callDate: "",
       callTime: "",
-      country : ""
+      country: "",
     };
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
@@ -76,7 +76,7 @@ export const submitGetFreeDesignForm = async (fields, page_source) => {
       phoneNumber: "",
       eventName: "",
       eventCity: "",
-      country:"",
+      country: "",
       company: "",
       file: "",
       message: "",
@@ -86,7 +86,7 @@ export const submitGetFreeDesignForm = async (fields, page_source) => {
       exhibition_name: "",
       callDate: "",
       callTime: "",
-      budget: ""
+      budget: "",
     };
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
@@ -120,7 +120,7 @@ export const submitBoothForm = async (fields, page_source) => {
       callTime: "",
       country: "",
       budget: "",
-      eventDate : ""
+      eventDate: "",
     };
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
@@ -188,11 +188,11 @@ export const submitBoothCodeForm = async (fields, page_source) => {
       rentalQuotation: false,
       purchaseRequest: false,
       customizationRequest: false,
-    };    
+    };
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
-    await formSubmission.save()
-    console.log(formSubmission)
+    await formSubmission.save();
+    console.log(formSubmission);
     console.log("data saved ", normalizedFields, await formSubmission.save());
     const email = new EmailService("booth", "booth-code");
     const resp = await email.send(
@@ -205,21 +205,21 @@ export const submitBoothCodeForm = async (fields, page_source) => {
   }
 };
 
-export const getAllForms = async (skip,limit , projection) => {
+export const getAllForms = async (skip, limit, projection) => {
   try {
-    let query =  FormSubmission.find().sort({_id : -1});
-    if(skip){
+    let query = FormSubmission.find().sort({ _id: -1 });
+    if (skip) {
       query = query.skip(skip);
     }
-    if(limit){
-      query = query.limit(limit)
+    if (limit) {
+      query = query.limit(limit);
     }
-    if(projection){
-      query = query.select(projection)
+    if (projection) {
+      query = query.select(projection);
     }
     const data = await query.lean();
-    const count = await FormSubmission.countDocuments()
-    return getActionSuccessResponse(data , count);
+    const count = await FormSubmission.countDocuments();
+    return getActionSuccessResponse(data, count);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }
@@ -232,3 +232,56 @@ export const deleteForm = async (id) => {
     return getActionFailureResponse(error, "toast");
   }
 };
+
+export async function eventWebsiteForm(
+  name,
+  email,
+  phone,
+  websiteUrl,
+  page_source
+) {
+  if (!name || !email || !phone || !websiteUrl) {
+    return { error: "All fields are required" };
+  }
+
+  try {
+    const schemaKeys = {
+      name: "",
+      email: "",
+      phoneNumber: "",
+      eventName: "",
+      eventCity: "",
+      file: "",
+      message: "",
+      page_source: "",
+      company: "",
+      boothSize: "",
+      exhibition_name: "",
+      callDate: "",
+      callTime: "",
+      country: "",
+      rentalQuotation: false,
+      purchaseRequest: false,
+      customizationRequest: false,
+    };
+    const normalizedFields = {
+      ...schemaKeys,
+      name,
+      email,
+      phone,
+      websiteUrl,
+      page_source,
+    };
+    const formSubmission = new FormSubmission(normalizedFields);
+    await formSubmission.save();
+    const email = new EmailService(page_source, "booth-code");
+    const resp = await email.send(
+      { name, email, phone, websiteUrl },
+      `Get a Quote form filled from page: ${page_source}`
+    );
+    return getActionSuccessResponse({ name, email, phone, websiteUrl });
+  } catch (error) {
+    console.log(error);
+    return getActionFailureResponse(error);
+  }
+}

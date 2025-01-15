@@ -16,6 +16,7 @@ import "../top-trade-shows/[show_name]/styles.css";
 import "../blogs/[blog_id]/styles.css";
 import { cn } from "@/lib/utils";
 import { notFound } from "next/navigation";
+import WebsitePopup from "../top-trade-shows/[show_name]/_components/website-popup";
 // if blog and event both are not found , then return 404
 const Page = async ({ params }) => {
   const resolvedParams = await params;
@@ -200,23 +201,7 @@ const Page = async ({ params }) => {
                 </Link>
               </div>
 
-              <div
-                style={{ transitionDuration: "500ms" }}
-                className="group cursor-pointer shadow-two hover:bg-[#B0CB1F] bg-white border-secondary/70  p-6 flex items-center gap-5"
-              >
-                <Image
-                  src={"/website-thin.svg"}
-                  width={30}
-                  height={30}
-                  alt="cube"
-                />
-                <h4
-                  style={{ transitionDuration: "500ms" }}
-                  className="text-secondary   text-center text-lg heading-font font-semibold"
-                >
-                  Official Website
-                </h4>
-              </div>
+              <WebsitePopup />
               <div
                 style={{ transitionDuration: "500ms" }}
                 className="group bg-white hover:bg-[#B0CB1F] cursor-pointer shadow-two   p-6 flex items-center gap-5"

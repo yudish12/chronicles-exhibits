@@ -29,7 +29,7 @@ const eventSchema = new mongoose.Schema(
     city: {
       type: String,
     },
-    booth_heading: {
+    booth_title: {
       type: String,
     },
     booth_description: {

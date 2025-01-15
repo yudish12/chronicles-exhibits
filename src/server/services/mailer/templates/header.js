@@ -1,4 +1,4 @@
-const headerTemplate = () => `
+const headerTemplate = (page_source) => `
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -14,22 +14,18 @@ const headerTemplate = () => `
         line-height: 24px;
     }
     </style>
-    <body>
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td align="center" bgcolor="#ffffff" style="padding-top:20px">
-            <table border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td style="border-radius: 3px;" bgcolor="black">
-                  <a href="https://chronicles-exhibits.vercel.app" target="_blank" style="font-size: 20px; font-family: sans-serif; font-weight: bold; color: #ffffff; text-decoration: none; display: inline-block;padding:6px;">
-                    <img src="cid:logo" width="150" height="50" alt="Logo" border="0" style="width: 150px; max-width: 150px; height: 50px; font-family: sans-serif; color: #ffffff; font-size: 18px; line-height: 22px; text-decoration: none;">
-                  </a>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
+    <body style="margin: 0; padding: 0; background-color: #f5f5f5; font-family: 'Arial', sans-serif;">
+    <div style="max-width: 600px; margin: 10px auto; background: white; border-radius: 8px 8px 0 0; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <!-- Header -->
+        <div style="background: linear-gradient(135deg, #B0CB1F 0%, #8FAF1B 100%); padding: 24px; text-align: center;">
+            <h1 style="color: #B0CB1F; margin: 0; font-size: 24px; font-weight: 600;">
+                Quote Request Details
+            </h1>
+            <p style="color: #B0CB1F; margin: 8px 0 0; font-size: 16px;">
+                Submitted from: ${page_source}
+            </p>
+        </div>
+    </div>
 `;
 
 export default headerTemplate;

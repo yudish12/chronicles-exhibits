@@ -19,6 +19,7 @@ import BoothSizeForm from "./_components/BoothSizeForm";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { notFound } from "next/navigation";
+import WebsitePopup from "./_components/website-popup";
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const show_name = resolvedParams.show_name;
@@ -144,23 +145,7 @@ const Page = async ({ params }) => {
               </Link>
             </div>
 
-            <div
-              style={{ transitionDuration: "500ms" }}
-              className="group cursor-pointer shadow-two hover:bg-[#B0CB1F] bg-white border-secondary/70  p-6 flex items-center gap-5"
-            >
-              <Image
-                src={"/website-thin.svg"}
-                width={30}
-                height={30}
-                alt="cube"
-              />
-              <h4
-                style={{ transitionDuration: "500ms" }}
-                className="text-secondary   text-center text-lg heading-font font-semibold"
-              >
-                Official Website
-              </h4>
-            </div>
+            <WebsitePopup />
             <div
               style={{ transitionDuration: "500ms" }}
               className="group bg-white hover:bg-[#B0CB1F] cursor-pointer shadow-two   p-6 flex items-center gap-5"
