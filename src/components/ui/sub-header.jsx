@@ -14,7 +14,7 @@ const SocialIconContainer = ({ children }) => {
 const SubHeader = () => {
   return (
     <div className="bg-white w-full flex justify-between items-center py-3 px-6 sm:px-8 md:px-12 lg:px-20  gap-4">
-      <div className="hidden sm:flex items-center gap-3">
+      {/* <div className="hidden sm:flex items-center gap-3">
         <SocialIconContainer>
           <Link href={"https://www.facebook.com/chronicleexhibits"}>
             <Image alt="facebook" src="/facebook.svg" width={30} height={30} />
@@ -47,7 +47,8 @@ const SubHeader = () => {
             />
           </Link>
         </SocialIconContainer>
-      </div>
+      </div> */}
+      <div></div>
       <div className="flex items-center w-full justify-end sm:w-[320px] md:gap-0 gap-4">
         <HeaderBtns />
       </div>

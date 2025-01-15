@@ -33,23 +33,26 @@ const About = ({ fields }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 sm:px-12 lg:px-0">
             {/* Card 1 */}
             <Card className="shadow-one w-full 2xl:max-w-[390px] xs:w-[70%] mx-auto sm:w-full rounded-xl overflow-hidden flex flex-col">
-              <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
-                <Image
-                  height={260}
-                  width={350}
-                  src={fields[11].value}
-                  alt={fields[12].value}
-                  className="w-full h-full"
-                />
+              <div>
+                <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
+                  <Image
+                    height={260}
+                    width={350}
+                    src={fields[11].value}
+                    alt={fields[12].value}
+                    className="w-full h-full"
+                  />
+                </div>
+
+                <CardHeader className="text-center p-2">
+                  <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
+                    {fields[8].value}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center text-secondary p-0 px-4">
+                  <p>{fields[9].value}</p>
+                </CardContent>
               </div>
-              <CardHeader className="text-center p-2">
-                <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
-                  {fields[8].value}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center text-secondary p-0 px-4">
-                <p>{fields[9].value}</p>
-              </CardContent>
               <CardFooter className="flex justify-center p-2 my-2">
                 <Link href="/custom-trade-show-booth-ideas">
                   <Button
@@ -64,23 +67,27 @@ const About = ({ fields }) => {
 
             {/* Card 2 */}
             <Card className="shadow-one w-full xs:w-[70%] 2xl:max-w-[390px] mx-auto sm:w-full  rounded-xl overflow-hidden flex flex-col">
-              <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
-                <Image
-                  height={260}
-                  width={350}
-                  src={fields[16].value}
-                  alt={fields[17].value}
-                  className="w-full h-full object-cover"
-                />
+              <div>
+                <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
+                  <Image
+                    height={260}
+                    width={350}
+                    src={fields[16].value}
+                    alt={fields[17].value}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <CardHeader className="text-center p-2">
+                    <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
+                      {fields[13].value}
+                    </CardTitle>
+                  </CardHeader>
+                </div>
+                <CardContent className="text-center text-secondary p-0 px-4">
+                  <p>{fields[14].value}</p>
+                </CardContent>
               </div>
-              <CardHeader className="text-center p-2">
-                <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
-                  {fields[13].value}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center text-secondary p-0 px-4">
-                <p>{fields[14].value}</p>
-              </CardContent>
               <CardFooter className="flex justify-center p-2 my-2">
                 <Link href="/trade-show-booth-displays-designs">
                   <Button
@@ -95,23 +102,25 @@ const About = ({ fields }) => {
 
             {/* Card 3 */}
             <Card className="shadow-one w-full xs:w-[70%] 2xl:max-w-[390px] mx-auto sm:w-full rounded-xl overflow-hidden flex flex-col justify-between">
-              <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
-                <Image
-                  height={260}
-                  width={350}
-                  src={fields[21].value}
-                  alt={fields[22].value}
-                  className="w-full h-full object-cover"
-                />
+              <div>
+                <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
+                  <Image
+                    height={260}
+                    width={350}
+                    src={fields[21].value}
+                    alt={fields[22].value}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <CardHeader className="text-center p-2">
+                  <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
+                    {fields[18].value}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="text-center text-secondary p-0 px-4">
+                  <p>{fields[19].value}</p>
+                </CardContent>
               </div>
-              <CardHeader className="text-center p-2">
-                <CardTitle className="text-[24px] heading-font-600 font-bold text-secondary">
-                  {fields[18].value}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center text-secondary p-0 px-4">
-                <p>{fields[19].value}</p>
-              </CardContent>
               <CardFooter className="flex justify-center  p-2 my-2">
                 <Link href="/portfolio">
                   <Button

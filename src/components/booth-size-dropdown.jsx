@@ -1,6 +1,8 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const sizes = [
@@ -17,9 +19,14 @@ const sizes = [
 ];
 
 const BoothsizeDropdown = ({ className }) => {
+  const router = useRouter();
+
   return (
     <div className={cn("relative group", className)}>
-      <button className="text-white flex hover:text-gray-400">
+      <button
+        onClick={() => router.push("/trade-show-booth-displays-designs")}
+        className="text-white flex hover:text-gray-400"
+      >
         Exhibit Rentals
         <ChevronDown className="ml-1 self-center h-4 w-4" />
       </button>

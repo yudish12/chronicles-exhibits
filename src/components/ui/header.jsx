@@ -78,7 +78,9 @@ const Header = () => {
           height={80}
         />
       </Link>
-      <div className="hidden lg:flex gap-8">
+      <div
+        className={cn("hidden lg:flex gap-8", scrollPosition < 58 && "w-[75%]")}
+      >
         {headerRoutes.map((route, index) => (
           <RouteComponent
             className={scrollPosition > 55 ? "opacity-0" : ""}
@@ -116,7 +118,7 @@ const Header = () => {
         onClick={closeMenu}
       >
         <div
-          className={`fixed top-0 left-0 w-1/2 md:w-1/3 h-full bg-secondary p-6 text-black flex flex-col gap-6 transform transition-transform ${
+          className={`fixed top-0 left-0 w-1/2 md:w-1/5 h-full bg-secondary p-6 text-black flex flex-col gap-6 transform transition-transform ${
             isMenuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}

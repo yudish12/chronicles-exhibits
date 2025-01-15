@@ -20,48 +20,50 @@ export default function Footer() {
       <div className=" py-8 md:py-10 rounded-lg grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
         {/* Company Section */}
         <div>
-          <h3 className="font-semibold text-base mb-4 text-primary">Company</h3>
+          <h3 className="font-semibold text-base mb-4 text-primary text-xl">
+            Company
+          </h3>
           <ul className="space-y-2 footer-list">
             <li>
-              <Link className="hover:underline" href="/">
+              <Link className="hover:underline text-lg" href="/">
                 Home
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/services">
+              <Link className="hover:underline text-lg" href="/services">
                 Our Services
               </Link>
             </li>
             <li>
               <Link
-                className="hover:underline"
+                className="hover:underline text-lg"
                 href="/trade-show-booth-displays-designs"
               >
                 Trade Show Booth Ideas
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/portfolio">
+              <Link className="hover:underline text-lg" href="/portfolio">
                 Portfolio
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/faq">
+              <Link className="hover:underline text-lg" href="/faq">
                 FAQs
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/top-trade-shows">
+              <Link className="hover:underline text-lg" href="/top-trade-shows">
                 Top Trade Shows
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/contact-us">
+              <Link className="hover:underline text-lg" href="/contact-us">
                 Contact Us
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/about-us">
+              <Link className="hover:underline text-lg" href="/about-us">
                 About Us
               </Link>
             </li>
@@ -69,11 +71,13 @@ export default function Footer() {
         </div>
         {/* Location Section */}
         <div>
-          <h3 className="font-bold text-lg mb-4 text-primary">Location</h3>
+          <h3 className="font-bold text-lg mb-4 text-primary text-xl">
+            Location
+          </h3>
           <ul className="space-y-2 footer-list">
             <li>
               <Link
-                className="hover:underline"
+                className="hover:underline text-lg"
                 href="/trade-show-booth-rentals-las-vegas"
               >
                 Las Vegas
@@ -81,7 +85,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                className="hover:underline"
+                className="hover:underline text-lg"
                 href="/trade-show-booth-rentals-chicago"
               >
                 Chicago
@@ -89,7 +93,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                className="hover:underline"
+                className="hover:underline text-lg"
                 href="/trade-show-booth-rentals-orlando"
               >
                 Orlando
@@ -97,7 +101,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                className="hover:underline"
+                className="hover:underline text-lg"
                 href="/trade-show-booth-rentals-anaheim"
               >
                 Anaheim
@@ -105,7 +109,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                className="hover:underline"
+                className="hover:underline text-lg"
                 href="/trade-show-booth-rentals-san-diego"
               >
                 San Diego
@@ -113,7 +117,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                className="hover:underline"
+                className="hover:underline text-lg"
                 href="/trade-show-booth-rentals-los-angeles"
               >
                 Los Angeles
@@ -121,7 +125,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                className="hover:underline"
+                className="hover:underline text-lg"
                 href="/trade-show-booth-rentals-atlanta"
               >
                 Atlanta
@@ -129,7 +133,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                className="hover:underline"
+                className="hover:underline text-lg"
                 href="/trade-show-booth-rentals-new-york"
               >
                 New York
@@ -137,7 +141,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                className="hover:underline"
+                className="hover:underline text-lg"
                 as="/major-exhibiting-cities/"
                 href="/major-exhibiting-cities"
               >
@@ -148,50 +152,79 @@ export default function Footer() {
         </div>
         {/* Booth By Size Section */}
         <div>
-          <h3 className="font-bold text-lg mb-4 text-primary">Booth By Size</h3>
+          <h3 className="font-bold text-lg mb-4 text-primary text-xl">
+            Booth By Size
+          </h3>
           <ul className="space-y-2 footer-list">
             <li>
-              <Link className="hover:underline" href="/10x10-trade-show-booth">
+              <Link
+                className="hover:underline text-lg"
+                href="/10x10-trade-show-booth"
+              >
                 10x10 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/10x20-trade-show-booth">
+              <Link
+                className="hover:underline text-lg"
+                href="/10x20-trade-show-booth"
+              >
                 10x20 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/10x30-trade-show-booth">
+              <Link
+                className="hover:underline text-lg"
+                href="/10x30-trade-show-booth"
+              >
                 10x30 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/20x20-trade-show-booth">
+              <Link
+                className="hover:underline text-lg"
+                href="/20x20-trade-show-booth"
+              >
                 20x20 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/20x30-trade-show-booth">
+              <Link
+                className="hover:underline text-lg"
+                href="/20x30-trade-show-booth"
+              >
                 20x30 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/20x40-trade-show-booth">
+              <Link
+                className="hover:underline text-lg"
+                href="/20x40-trade-show-booth"
+              >
                 20x40 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/30x30-trade-show-booth">
+              <Link
+                className="hover:underline text-lg"
+                href="/30x30-trade-show-booth"
+              >
                 30x30 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/30x40-trade-show-booth">
+              <Link
+                className="hover:underline text-lg"
+                href="/30x40-trade-show-booth"
+              >
                 30x40 Booth Rental
               </Link>
             </li>
             <li>
-              <Link className="hover:underline" href="/40x40-trade-show-booth">
+              <Link
+                className="hover:underline text-lg"
+                href="/40x40-trade-show-booth"
+              >
                 40x40 Booth Rental
               </Link>
             </li>
@@ -200,10 +233,12 @@ export default function Footer() {
 
         {/* Resources Section */}
         <div>
-          <h3 className="font-bold text-lg mb-4 text-primary">Resources</h3>
+          <h3 className="font-bold text-lg mb-4 text-primary text-xl">
+            Resources
+          </h3>
           <ul className="space-y-2 footer-list">
             <li>
-              <Link className="hover:underline" href="/blog">
+              <Link className="hover:underline text-lg" href="/blog">
                 Blog
               </Link>
             </li>
@@ -218,12 +253,12 @@ export default function Footer() {
                   <EnquiryForm />
                 </DialogContent>
               </Dialog>
-              {/* <Link className="hover:underline" href="/get-booth-quotation">
+              {/* <Link className="hover:underline text-lg" href="/get-booth-quotation">
                 Get Booth Quotation
               </Link> */}
             </li>
             <li>
-              {/* <Link className="hover:underline" href="/schedule-a-call">
+              {/* <Link className="hover:underline text-lg" href="/schedule-a-call">
                 Schedule A Call
               </Link> */}
               <Dialog>

@@ -18,7 +18,7 @@ const HeaderBtns = () => {
     <>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="rounded-lg md:rounded-full hover:bg-primary hover:text-white md:px-8 px-3 py-4 font-thin text text-lg  md:rounded-e-none text-black border bg-transparent border-primary">
+          <Button className="rounded-lg md:rounded-full bg-primary hover:text-white md:px-8 px-3 py-4 font-thin text text-lg  md:rounded-e-none text-black border  border-primary">
             Schedule Call
           </Button>
         </DialogTrigger>
