@@ -101,7 +101,7 @@ const Blogpage = async ({ params }) => {
                       </CardTitle>
                       <Link
                         className="self-center mt-2 h-full"
-                        href={`/blog/${blog.slug}`}
+                        href={`/${blog.slug}`}
                       >
                         <Button className="bg-white border-2 border-secondary text-secondary font-bold hover:bg-secondary hover:text-white">
                           Read More
