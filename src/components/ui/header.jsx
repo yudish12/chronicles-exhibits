@@ -73,7 +73,7 @@ const Header = () => {
         <Image
           className="max-h-[60px] min-h-[40px] object-fill"
           alt="logo"
-          src="/chronicle-logo.svg"
+          src="/chronicle-tm-white.svg"
           width={110}
           height={80}
         />
