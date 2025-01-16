@@ -77,7 +77,7 @@ const page = async () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-12 px-6 sm:px-10 lg:px-20 gap-x-6 gap-y-6 md:gap-x-8 md:gap-y-8 xl:gap-x-12 xl:gap-y-12">
           {cardData.map((item, index) => (
             <Link
-              href={`/booth/size/${item.name}`}
+              href={`/${item.name}-trade-show-booth`}
               key={index}
               className="h-[300px] max-w-[350px] hover:scale-110 duration-300 transition-all rounded-lg shadow-one overflow-hidden w-full bg-secondary flex flex-col"
             >
