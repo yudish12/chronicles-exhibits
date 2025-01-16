@@ -388,7 +388,7 @@ const BoothForm = () => {
               onChange={handleRadioChange}
             />
             <span className="text-secondary font-semibold">
-              Purchase Request
+              Purchase Quotation
             </span>
           </label>
           <label className="flex items-center gap-x-2">
@@ -401,7 +401,7 @@ const BoothForm = () => {
               onChange={handleRadioChange}
             />
             <span className="text-secondary font-semibold">
-              Customization Request
+              Customization Quotation
             </span>
           </label>
         </div>
