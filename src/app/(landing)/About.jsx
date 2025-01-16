@@ -10,7 +10,7 @@ const About = ({ fields }) => {
   return (
     <>
       {/* Section Header */}
-      <div className="bg-white mt-4 lg:mt-0 pt-2 sm:pt-4">
+      <div id="about" className="bg-white mt-4 lg:mt-0 pt-2 sm:pt-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <p className="mt-4 uppercase text-3xl sm:text-3xl heading-font-700 font-bold text-secondary">

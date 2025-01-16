@@ -11,6 +11,7 @@ import Faq from "../(landing)/Faq";
 import Queryform from "../(landing)/Queryform";
 import Footer from "@/components/ui/footer";
 import { getSinglePage } from "@/server/actions/pages";
+import DownArrow from "./down-arrow";
 
 const Hero = async () => {
   const homePageData = await getSinglePage({ name: "home" });
@@ -35,6 +36,7 @@ const Hero = async () => {
         <h2 className="text-white heading-font uppercase text-center font-bold text-4xl sm:text-5xl lg:text-[3.45rem] 2xl:text-[4rem]">
           Displays
         </h2>
+        <DownArrow />
       </div>
       <About fields={homePageData.data.fields} />
       <Products
