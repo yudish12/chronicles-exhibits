@@ -216,7 +216,7 @@ const Page = async ({ params }) => {
                   style={{ transitionDuration: "500ms" }}
                   className="text-secondary text-center text-lg heading-font font-semibold"
                 >
-                  New York | USA
+                  {eventCity} | USA
                 </h4>
               </div>
             </div>
