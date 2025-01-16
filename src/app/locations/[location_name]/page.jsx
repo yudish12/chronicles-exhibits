@@ -33,6 +33,7 @@ import { getEventByCity } from "@/server/actions/events";
 import { notFound } from "next/navigation";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import EnquiryForm from "@/components/Form";
+import Selectbox from "./Selectbox";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
@@ -53,6 +54,7 @@ const Page = async ({ params }) => {
   console.log("eventByCity", eventByCity);
   // console.log("eventByCity",eventByCity.data.slice(0,3))
   let majorExhibitingCities = await getAllLocations();
+
   let boothSizes = await getAllBoothSizes();
   // if(!eventByCity.data){
 
@@ -86,46 +88,12 @@ const Page = async ({ params }) => {
         <h2 className="text-center font-bold text-[2.5rem] heading-font uppercase text-primary">
           {data[0].name}
         </h2>
-        <div className="flex flex-col sm:flex-row relative mt-6 gap-4  sm:bg-gray-400/20 rounded-full p-4 justify-center w-4/5 mx-auto">
-          <Select>
-            <SelectTrigger className="text-secondary text-lg font-semibold bg-white rounded-full p-6">
-              <SelectValue placeholder="Select a City" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Cities</SelectLabel>
-                {majorExhibitingCities.data.map((city, index) => (
-                  <SelectItem value={city._id} key={index}>
-                    {city.name}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-          <Select>
-            <SelectTrigger className="text-secondary text-lg  font-semibold bg-white rounded-full p-6">
-              <SelectValue placeholder="Select a Booth Size" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Booth Sizes</SelectLabel>
-                {boothSizes.data.map((sizes, index) => (
-                  <SelectItem value={sizes.name} key={index}>
-                    {sizes.name}
-                  </SelectItem>
-                ))}
-                {/* <SelectItem value="banana">10x20</SelectItem>
-                <SelectItem value="blueberry">10x30</SelectItem>
-                <SelectItem value="grapes">20x20</SelectItem>
-                <SelectItem value="pineapple">20x30</SelectItem> */}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-
-          <Button className="bg-transparent border-2 font-semibold text-lg border-white py-5 self-center hover:bg-white transition-all duration-300 hover:text-secondary px-6 rounded-full">
-            Search
-          </Button>
-        </div>
+        <Selectbox
+          city_name={data[0].city_id.name}
+          city_id={data[0].city_id._id}
+          majorExhibitingCities={majorExhibitingCities}
+          boothSizes={boothSizes.data}
+        />
 
         <Dialog>
           <DialogTrigger asChild>

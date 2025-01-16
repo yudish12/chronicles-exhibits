@@ -9,7 +9,7 @@ await dbConnect();
 
 export const getAllBoothSizes = async () => {
   try {
-    const data = await BoothSize.find().lean();
+    const data = await BoothSize.find().sort({ name: 1 }).lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
