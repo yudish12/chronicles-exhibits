@@ -245,7 +245,7 @@ export default function Footer() {
             <li>
               <Dialog>
                 <DialogTrigger asChild>
-                  <div className="hover:underline cursor-pointer">
+                  <div className="hover:underline text-lg cursor-pointer">
                     Get Quote
                   </div>
                 </DialogTrigger>
@@ -263,7 +263,7 @@ export default function Footer() {
               </Link> */}
               <Dialog>
                 <DialogTrigger asChild>
-                  <div className="hover:underline cursor-pointer">
+                  <div className="hover:underline text-lg cursor-pointer">
                     Schedule A Call
                   </div>
                 </DialogTrigger>
@@ -275,7 +275,7 @@ export default function Footer() {
             <li>
               <Dialog>
                 <DialogTrigger asChild>
-                  <div className="hover:underline cursor-pointer">
+                  <div className="hover:underline text-lg cursor-pointer">
                     Get Free 3D Quotation
                   </div>
                 </DialogTrigger>
@@ -286,8 +286,8 @@ export default function Footer() {
             </li>
           </ul>
           <div className="mt-6">
-            <h3 className="font-bold text-lg mb-3 text-primary">Address</h3>
-            <p className="text-sm leading-relaxed">
+            <h3 className="font-bold text-xl mb-3 text-primary">Address</h3>
+            <p className="text-base leading-relaxed">
               8465 W. Sahara Ave., Suite 111 Unit #1183
               <br />
               Las Vegas, NV 89117, <br />
@@ -355,9 +355,9 @@ export default function Footer() {
       </div>
       <div className="mt-8 mx-auto">
         <div className="bg-secondary/[.94] w-full flex flex-wrap justify-between items-center gap-4">
-          <span className="text-white/80 text-center xs:text-left text-sm mx-auto font-medium">
+          <span className="text-white/80 text-center xs:text-left text-lg mx-auto font-medium">
             © Copyright {new Date().getFullYear()}.{" "}
-            <Link className="text-blue-600" href={"/privacy-policy"}>
+            <Link className="text-blue-600 " href={"/privacy-policy"}>
               {" "}
               Chronicle Exhibit LLC{" "}
             </Link>{" "}
