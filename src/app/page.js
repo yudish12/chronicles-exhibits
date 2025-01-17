@@ -2,16 +2,16 @@ import { Button } from "@/components/ui/button";
 import Header from "@/components/ui/header";
 import SubHeader from "@/components/ui/sub-header";
 import React from "react";
-import About from "../(landing)/About";
-import Products from "../(landing)/Products";
-import FactsAndFigures from "../(landing)/FactsAndFigures";
-import Ourworks from "../(landing)/Ourworks";
-import Leadingtrade from "../(landing)/Leadingtrade";
-import Faq from "../(landing)/Faq";
-import Queryform from "../(landing)/Queryform";
+import About from "./(landing)/About";
+import Products from "./(landing)/Products";
+import FactsAndFigures from "./(landing)/FactsAndFigures";
+import Ourworks from "./(landing)/Ourworks";
+import Leadingtrade from "./(landing)/Leadingtrade";
+import Faq from "./(landing)/Faq";
+import Queryform from "./(landing)/Queryform";
 import Footer from "@/components/ui/footer";
 import { getSinglePage } from "@/server/actions/pages";
-import DownArrow from "./down-arrow";
+// import DownArrow from "./down-arrow";
 
 const Hero = async () => {
   const homePageData = await getSinglePage({ name: "home" });
