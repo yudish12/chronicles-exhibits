@@ -20,7 +20,10 @@ const RouteComponent = ({ link, name, className }) => {
 
   return (
     <Link
-      className={cn(" text-[16.5px]  text-white font-medium", className)}
+      className={cn(
+        "text-[16.5px] text-white font-medium hover:text-primary transition",
+        className
+      )}
       href={link}
     >
       {name}
@@ -28,33 +31,42 @@ const RouteComponent = ({ link, name, className }) => {
   );
 };
 
-export const HeaderBtns = ({ scrollPosition }) => {
+export const HeaderBtns = ({ isMobile = false }) => {
   return (
-    <div className={cn(scrollPosition > 55 ? "flex gap-4" : "flex gap-4")}>
+    <div
+      className={cn(
+        "flex",
+        isMobile ? "flex-col gap-2" : "gap-4 flex-row items-center"
+      )}
+    >
       <Dialog>
         <DialogTrigger asChild>
           <button
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 schedule-btn bg-primary shadow h-9 px-4 rounded-md hover:bg-primary py-[18px] border-2 border-primary text-secondary body-bold"
+            className={cn(
+              "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 schedule-btn bg-primary shadow h-9 px-4 rounded-md hover:bg-primary py-[12px] border-2 border-primary text-secondary body-bold",
+              isMobile ? "w-full" : ""
+            )}
             type="button"
-            aria-haspopup="dialog"
-            aria-expanded="false"
-            aria-controls="radix-:R15hfnt7:"
-            data-state="closed"
           >
             Schedule &nbsp; Call
           </button>
         </DialogTrigger>
-        <DialogContent className="">
+        <DialogContent>
           <ScheduleCallForm />
         </DialogContent>
       </Dialog>
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="rounded-md hover:bg-primary  py-[18px] border-2 border-primary  text-secondary body-bold ">
+          <Button
+            className={cn(
+              "rounded-md hover:bg-primary py-[12px] border-2 border-primary text-secondary body-bold",
+              isMobile ? "w-full" : ""
+            )}
+          >
             Get Quote
           </Button>
         </DialogTrigger>
-        <DialogContent className="">
+        <DialogContent>
           <EnquiryForm />
         </DialogContent>
       </Dialog>
@@ -75,8 +87,8 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b sticky top-[-1px] z-10 bg-secondary border-t-2 border-t-white/60 border-b-2 border-b-primary w-full flex justify-between items-center py-4 text-white text-opacity-60 px-6 sm:px-8 md:px-12 lg:px-20 gap-4">
-      <Link className="relative" href={"/"}>
+    <div className="bg-gradient-to-b sticky top-0 z-50 bg-secondary border-t-2 border-t-white/60 border-b-2 border-b-primary w-full flex justify-between items-center py-4 px-4 sm:px-8 md:px-12 lg:px-20">
+      <Link href="/" className="relative flex items-center">
         <Image
           className="max-h-[60px] min-h-[40px] object-fill"
           alt="logo"
@@ -91,65 +103,70 @@ const Header = () => {
           TM
         </span>
       </Link>
-      <div className={cn("hidden lg:flex items-center gap-8")}>
+
+      {/* Desktop Navigation */}
+      <div className="hidden lg:flex items-center gap-8">
         {headerRoutes.map((route, index) => (
           <RouteComponent key={index} link={route.link} name={route.name} />
         ))}
       </div>
-      {/* Hamburger Menu Button for Mobile */}
-      <div
-        className={`opacity-100 flex items-center gap-10 transition-all duration-700 ease-in-out`}
-      >
-        <HeaderBtns scrollPosition={scrollPosition} />
-        <button
-          onClick={toggleMenu}
-          className={cn("text-white", scrollPosition < 55 && "hidden")}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+
+      {/* Buttons and Hamburger Menu */}
+      <div className="flex items-center gap-4">
+        <div className="hidden lg:block">
+          <HeaderBtns />
+        </div>
+        <button onClick={toggleMenu} className="lg:hidden text-white">
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
-      <div className="lg:hidden">
-        <button onClick={toggleMenu} className={cn("text-white")}>
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
-        </button>
-      </div>
+
+      {/* Mobile Menu */}
       <div
-        className={`fixed top-0 left-0 w-full h-full bg-opacity-70 z-30 transition-opacity ${
-          isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+        className={cn(
+          "fixed inset-0 z-40 bg-black bg-opacity-50 transition-opacity",
+          isMenuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        )}
         onClick={closeMenu}
       >
         <div
-          className={`fixed top-0 left-0 w-1/2 md:w-1/5 h-full bg-secondary p-6 text-black flex flex-col gap-6 transform transition-transform ${
+          className={cn(
+            "fixed top-0 left-0 w-4/5 sm:w-3/5 md:w-2/5 h-full bg-secondary text-white p-6 transform transition-transform",
             isMenuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          )}
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Close Button */}
-          <div className="flex flex-row justify-between text-black ">
+          {/* Mobile Menu Header */}
+          <div className="flex justify-between items-center mb-6">
             <Image
               alt="logo"
               src="/chronicle-logo.svg"
               width={110}
               height={80}
             />
-            <button
-              onClick={closeMenu}
-              className="text-white bg-secondary p-2 rounded-full"
-            >
+            <button onClick={closeMenu} className="text-white">
               <X size={24} />
             </button>
           </div>
 
-          {/* Menu Items */}
-          <div className="flex flex-col justify-center h-full text-white gap-6">
+          {/* Mobile Menu Links */}
+          <div className="flex flex-col gap-6">
             {headerRoutes.map((route, index) => (
-              <RouteComponent key={index} link={route.link} name={route.name} />
+              <RouteComponent
+                key={index}
+                link={route.link}
+                name={route.name}
+                className="text-lg"
+              />
             ))}
           </div>
-        </div>
-        <div className="fixed bottom-10 left-5">
-          <HeaderBtns />
+
+          {/* Mobile Header Buttons */}
+          <div className="mt-auto pt-6">
+            <HeaderBtns isMobile />
+          </div>
         </div>
       </div>
     </div>

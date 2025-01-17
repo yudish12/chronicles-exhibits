@@ -78,7 +78,7 @@ const Accordion = ({ questions, answers }) => {
               openIndex === index ? "max-h-screen py-2 bg-white" : "max-h-0 "
             }`}
           >
-            <p className="text-gray-800 text-sm">{answers[index]}</p>
+            <p className="text-gray-800 text-base">{answers[index]}</p>
           </div>
         </div>
       ))}
