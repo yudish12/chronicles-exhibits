@@ -6,7 +6,7 @@ import React from "react";
 const Layout = ({ children }) => {
   return (
     <>
-      <SubHeader />
+      {/* {/* <SubHeader /> */}
       <Header />
       {children}
       <Footer />

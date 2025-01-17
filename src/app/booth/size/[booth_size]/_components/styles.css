@@ -48,7 +48,8 @@
 /* Custom bullet for list items */
 #blog_content li:before {
   content: "◆";
-  font-size: 21px;
+  font-size: 22px;
+  line-height: 26px;
   padding-right: 10px;
   color: #b0cb1f;
 }

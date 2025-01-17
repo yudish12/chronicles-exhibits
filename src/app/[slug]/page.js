@@ -51,7 +51,7 @@ const Page = async ({ params }) => {
                 alt="Trade Show"
                 width={800}
                 height={600}
-                className="w-full max-w-[820px] max-h-[500px] rounded-lg"
+                className="w-full max-h-[500px] rounded-lg"
               />
               {/* Blog Content */}
               <div
@@ -61,18 +61,17 @@ const Page = async ({ params }) => {
               ></div>
             </div>
 
-            {/* Right Section */}
             <div className="space-y-8 w-full">
               {/* Related Blogs */}
               <div className="flex flex-col justify-center items-center py-4">
-                <h3 className="text-lg font-semibold py-2 text-[#B0CB1F]">
+                <h3 className="text-2xl font-semibold py-2 text-[#B0CB1F]">
                   Related Blogs
                 </h3>
                 <div className="lg:space-y-8 gap-x-6 gap-y-6 lg:block grid grid-cols-1 sm:grid-cols-2">
                   {blogsToBeMapped.map((blog, index) => (
                     <Card
                       key={index}
-                      className="shadow-one relative h-full lg:max-w-[2000px] max-w-[350px] w-full flex flex-col justify-between grid-cols-1"
+                      className="shadow-one relative h-full lg:max-w-[350px] max-w-[250px] w-full flex flex-col justify-between grid-cols-1"
                     >
                       {/* Image Section */}
                       <div className="w-full border-b-2 border-primary">
@@ -92,7 +91,7 @@ const Page = async ({ params }) => {
                         </CardTitle>
                         <Link
                           className="self-center mt-2 h-full"
-                          href={`/blog/${blog.slug}`}
+                          href={`/${blog.slug}`}
                         >
                           <Button className="bg-white border-2 border-secondary text-secondary font-bold hover:bg-secondary hover:text-white">
                             Read More

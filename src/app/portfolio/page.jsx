@@ -11,7 +11,7 @@ const Page = async () => {
   console.log(ourWorksData);
   return (
     <>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
       <div className=" featured-bg flex flex-col items-center justify-center bg-cover bg-center">
         <div className="flex flex-col items-center h-full justify-center text-center gap-10 px-4 md:px-20">

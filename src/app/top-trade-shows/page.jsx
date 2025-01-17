@@ -40,7 +40,7 @@ const Page = async ({ params, searchParams }) => {
   // project -> start_date , end_date , title , icon ,event_name , country , city
   return (
     <>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
       <div className="trade-show-bg px-20 flex justify-center items-center flex-col">
         <h1 className="text-[2.1rem] text-center text-white uppercase font-semibold heading-font">

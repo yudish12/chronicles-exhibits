@@ -109,7 +109,15 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
                   src={item.image}
                   width={350}
                   height={300}
-                  alt={item.size ?? "size"}
+                  alt={`${item.name} Trade Show Booth Rental ${
+                    location
+                      ?.replaceAll("-", " ") // Replace hyphens with spaces
+                      ?.split(" ") // Split the string into words
+                      ?.map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                      ) // Capitalize the first letter of each word
+                      ?.join(" ") ?? ""
+                  }`}
                   className="w-full h-3/4"
                 />
                 <div className="flex h-1/4 heading-font-700 bg-white flex-col justify-center items-center bg-secondary/[.94] text-secondary">

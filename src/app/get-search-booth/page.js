@@ -15,7 +15,7 @@ const Page = async ({ params, searchParams }) => {
   if (!data || !data.length) {
     return (
       <>
-        <SubHeader />
+        {/* <SubHeader /> */}
         <Header />
         <div className="booth-design-bg text-white flex justify-center px-4 md:px-8 lg:px-20 flex-col gap-8 items-center">
           <h2 className="text-4xl text-center uppercase font-semibold heading-font">
@@ -28,7 +28,7 @@ const Page = async ({ params, searchParams }) => {
 
   return (
     <>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
       <div className="booth-design-bg text-white flex justify-center px-4 md:px-8 lg:px-20 flex-col gap-8 items-center">
         <h2 className="text-4xl text-center uppercase font-semibold heading-font">

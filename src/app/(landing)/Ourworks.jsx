@@ -23,20 +23,21 @@ const Ourworks = async ({ title, subtitle }) => {
       >
         {title ?? "TRADE SHOW BOOTH DESIGN PORTFOLIO"}
       </h3>
-      <p className="text-sm md:text-base  text-white/95 text-center mb-2 px-6 sm:px-12 lg:px-72">
+      <p className="text-base md:text-lg  text-white/95 text-center mb-2 px-6 sm:px-12 lg:px-72">
         {subtitle ??
           "Our recent works in the USA showcase stunning images of our exceptional projects. From trade show booths to eye-catching displays, our portfolio reflects the expertise and creativity we bring to every project. Get inspired by our work and let us create a standout experience for yourbrand."}
       </p>
-
-      <Lightbox images={displayedData} />
-      <Link className="flex" href="/portfolio">
-        <Button
-          style={{ transitionDuration: "500ms" }}
-          className="bg-primary rounded-full body-bold py-5 hover:bg-white hover:text-secondary mx-auto border-2 border-secondary font-semibold text-secondary"
-        >
-          View Complete Portfolio
-        </Button>
-      </Link>
+      <div>
+        <Lightbox images={displayedData} />
+        <Link className="flex" href="/portfolio">
+          <Button
+            style={{ transitionDuration: "500ms" }}
+            className="bg-primary rounded-full body-bold py-5 hover:bg-white hover:text-secondary mx-auto border-2 border-secondary font-semibold text-secondary"
+          >
+            View Complete Portfolio
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

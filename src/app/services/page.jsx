@@ -22,7 +22,7 @@ const ServicePage = async () => {
 
   return (
     <>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
 
       <div

@@ -19,7 +19,7 @@ const Page = async () => {
 
   return (
     <>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
       <div className="booth-design-bg flex justify-center px-4 md:px-8 lg:px-20 flex-col gap-8 items-center">
         <h1 className="text-4xl text-center uppercase font-semibold heading-font text-white">

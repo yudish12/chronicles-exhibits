@@ -4,7 +4,7 @@ import React from "react";
 
 const Leadingtrade = ({ fields }) => {
   return (
-    <div className="p-6 md:p-20 flex flex-col lg:flex-row gap-6 md:gap-10">
+    <div className="p-6 md:p-20 md:px-4 flex flex-col lg:flex-row gap-6 md:gap-10 ">
       {/* Image Container */}
       <div className="w-full lg:w-1/2 sm:rounded-lg md:rounded-none ">
         <Image
@@ -13,7 +13,7 @@ const Leadingtrade = ({ fields }) => {
           height={250} // Aspect ratio height
           src={fields[37].value}
           alt={fields[38].value}
-          className="max-h-[300px] md:max-h-[530px] object-cover sm:rounded-lg md:rounded-none "
+          className="max-h-[300px] md:max-h-[630px] sm:rounded-lg md:rounded-none"
         />
       </div>
       {/* Text Content */}

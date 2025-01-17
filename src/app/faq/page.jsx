@@ -10,7 +10,7 @@ const page = async () => {
 
   return (
     <>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
       <div
         style={{ height: "280px" }}

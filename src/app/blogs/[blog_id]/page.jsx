@@ -41,14 +41,13 @@ const Blogpage = async ({ params }) => {
 
   return (
     <>
-      <SubHeader />
+      {/* {/* <SubHeader /> */}
       <Header />
       <div className="booth-design-bg md:px-12 sm:px-8 px-6 lg:px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
         <h3 className="text-white text-center uppercase heading-font text-[2.35rem] font-bold">
           {data.title}
         </h3>
       </div>
-
       <div className="bg-background  text-gray-800 ">
         {/* Main Content Section */}
         <div className="px-4 sm:px-12  lg:px-20 w-full grid grid-cols-1 lg:grid-cols-3 gap-[40px] py-20 ">
@@ -118,7 +117,6 @@ const Blogpage = async ({ params }) => {
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );

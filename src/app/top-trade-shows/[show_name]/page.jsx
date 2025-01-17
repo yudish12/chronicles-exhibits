@@ -72,7 +72,7 @@ const Page = async ({ params }) => {
       <Head>
         <title>{data?.meta_title || "Default Title"}</title>
       </Head>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
       <div className="detail-trade-show-bg flex flex-col items-center gap-8 px-6 sm:px-20 py-12">
         <h2 className=" text-4xl text-center text-white uppercase font-semibold heading-font">

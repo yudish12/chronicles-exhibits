@@ -1,6 +1,7 @@
 import React from "react";
 // import faqs from "../../utils/constants/dev-data/faqs.json";
 import "./faq.css";
+import { cn } from "@/lib/utils";
 
 const Faq = ({ fields }) => {
   const faqs = fields[43].value.map((faq) => ({
@@ -21,11 +22,13 @@ const Faq = ({ fields }) => {
         </p>
         <div className="flex items-center justify-center py-2 lg:px-12">
           <div className="container pb-8 ">
-            <div className="grid sm:w-[95%] md:w-[90%] mx-auto grid-cols-1 mt-8 md:grid-rows-3 gap-0">
+            <div className="grid sm:w-[95%] md:w-[90%] mx-auto grid-cols-1 mt-8 gap-0">
               {faqs.map((e, index) => (
                 <div
                   key={index}
-                  className="bg-white shadow-lg  border border-black overflow-hidden mb-4 md:mb-6"
+                  className={cn(
+                    "bg-white shadow-lg h-max rounded-md border border-black overflow-hidden mb-4 md:mb-6"
+                  )}
                 >
                   <div className="bg-[#4a4b4c] flex items-center p-4">
                     <h4 className="text-primary body-bold  text-sm md:text-base flex items-center">
@@ -37,7 +40,7 @@ const Faq = ({ fields }) => {
                       {e.heading}
                     </h4>
                   </div>
-                  <p className="text-black p-4 text-sm md:text-[15px]">
+                  <p className="text-black p-4 text-base md:text-[15px]">
                     {e.text}
                   </p>
                 </div>

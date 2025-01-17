@@ -1,35 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
-// import carouselData from "../../../utils/constants/dev-data/service-carousel.json";
-import { DotButton, useDotButton } from "@/components/EmblaDots";
 import "../../embla.css";
 
 const Carousel = ({ fields }) => {
-  const options = { loop: true };
-
+  const options = { loop: true }; // Enable infinite loop
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
-
-  const { selectedIndex, scrollSnaps, onDotButtonClick } =
-    useDotButton(emblaApi);
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % carouselData.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + carouselData.length) % carouselData.length
-    );
-  };
-
-  const handleDotClick = (index) => {
-    setCurrentIndex(index);
-  };
 
   const carouselData = [
     {
@@ -58,6 +36,21 @@ const Carousel = ({ fields }) => {
     },
   ];
 
+  // Automatic sliding effect
+  useEffect(() => {
+    const autoplay = () => {
+      if (emblaApi) {
+        emblaApi.scrollNext(); // Scroll to the next slide
+      }
+    };
+
+    const interval = setInterval(autoplay, 2000); // Slide every 2 seconds
+
+    return () => {
+      clearInterval(interval); // Clear interval on unmount
+    };
+  }, [emblaApi]);
+
   return (
     <section className="embla">
       <div className="embla__viewport mt-8" ref={emblaRef}>
@@ -84,20 +77,6 @@ const Carousel = ({ fields }) => {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="embla__controls">
-        <div className="embla__dots">
-          {scrollSnaps.map((_, index) => (
-            <DotButton
-              key={index}
-              onClick={() => onDotButtonClick(index)}
-              className={"embla__dot".concat(
-                index === selectedIndex ? " embla__dot--selected" : ""
-              )}
-            />
           ))}
         </div>
       </div>

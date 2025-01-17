@@ -38,7 +38,7 @@ const Page = async ({ params, searchParams }) => {
 
   return (
     <>
-      <SubHeader />
+      {/* {/* <SubHeader /> */}
       <Header />
       <BlogsPagination
         currentPage={page}

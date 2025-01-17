@@ -8,7 +8,7 @@ import Footer from "@/components/ui/footer";
 const page = () => {
   return (
     <>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
       <div className="flex flex-col justify-center items-center h-[80vh] overflow-hidden">
         <Image src="/Frame 104.svg" width={100} height={100} alt="Deal Icon" />

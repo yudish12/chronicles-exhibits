@@ -706,10 +706,10 @@ input:focus + .flag-dropdown {
   --border-angle: 0turn; /* For animation */
   --main-bg: conic-gradient(
     from var(--border-angle),
-    #213,
-    #112 5%,
-    #112 60%,
-    #213 95%
+    rgb(27, 27, 54),
+    rgb(27, 27, 54) 5%,
+    rgb(27, 27, 54) 60%,
+    rgb(27, 27, 54) 95%
   );
 
   --gradient-border: conic-gradient(

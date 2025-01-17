@@ -32,7 +32,7 @@ const page = async () => {
 
   return (
     <>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
       <div className="booth-design-bg px-4 md:px-20 flex justify-center gap-4 flex-col items-center">
         <h1 className="text-[2.1rem] uppercase font-semibold text-white text-center heading-font">
@@ -42,11 +42,11 @@ const page = async () => {
           {data.fields[1].value}
         </p>
       </div>
-      <div className="md:px-20 sm:px-8 px-6 flex lg:justify-center lg:flex-row flex-col gap-20 pt-16 pb-20">
+      <div className="px-4 sm:pr-8 pr-6 md:pr-12 lg:pr-20 flex lg:justify-center lg:flex-row flex-col gap-12 pt-16 pb-20">
         <Image
           src={data.fields[3].value}
           alt={data.fields[4].value ?? "booth design"}
-          className="lg:w-1/2 w-full max-h-[500px] lg:max-h-[350px] lg:max-w-[590px] xl:max-h-[420px]"
+          className="lg:w-1/2 w-full max-h-[500px] lg:max-h-[350px] xl:max-h-[520px]"
           width={800}
           height={800}
         />

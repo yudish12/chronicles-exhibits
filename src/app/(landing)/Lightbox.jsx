@@ -20,7 +20,7 @@ const LightboxComp = ({ images }) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 xl:w-max sm:grid-cols-2 lg:grid-cols-3 w-full  mx-auto  gap-x-4 sm:gap-x-6 md:gap-x-8 py-4 sm:py-6 md:py-8  gap-y-6">
+      <div className="grid grid-cols-1 xl:w-max sm:grid-cols-2 lg:grid-cols-3 w-full  mx-auto  gap-x-4 sm:gap-x-6 md:gap-x-8 py-4 sm:py-6 md:py-8  gap-y-6 pb-4">
         {images.map((item, index) => (
           <div
             key={index}

@@ -18,7 +18,7 @@ const Hero = async () => {
   console.log(homePageData);
   return (
     <>
-      {/* <SubHeader /> */}
+      {/* {/* <SubHeader /> */}
       <Header />
       <div className="hero flex flex-col justify-center items-center h-[88vh]">
         {/* <h6 className=" text-lg 2xl:text-xl mt-14 leading-5 font-medium text-center text-white">

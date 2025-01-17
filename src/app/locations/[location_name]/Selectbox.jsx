@@ -43,9 +43,8 @@ const Selectbox = ({
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Cities</SelectLabel>
             {majorExhibitingCities.data.map((city, index) => (
-              <SelectItem value={city._id} key={index}>
+              <SelectItem className="text-lg" value={city._id} key={index}>
                 {city.name}
               </SelectItem>
             ))}
@@ -58,9 +57,8 @@ const Selectbox = ({
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Booth Sizes</SelectLabel>
             {boothSizes.map((sizes, index) => (
-              <SelectItem value={sizes.name} key={index}>
+              <SelectItem className="text-lg" value={sizes.name} key={index}>
                 {sizes.name}
               </SelectItem>
             ))}

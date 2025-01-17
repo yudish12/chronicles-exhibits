@@ -40,7 +40,7 @@ async function FeaturedPage({ params }) {
   console.log("data", booths);
   return (
     <>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
       <div className=" featured-bg flex flex-col items-center justify-center bg-cover bg-center">
         <div className="flex flex-col justify-center items-center h-full text-center gap-6  px-4">
@@ -52,7 +52,7 @@ async function FeaturedPage({ params }) {
               <DialogTrigger asChild>
                 <Button
                   style={{ transitionDuration: "500ms" }}
-                  className="bg-transparent  hover:bg-[#B0CB1F] border-2 border-[#B0CB1F] text-[#B0CB1F] hover:text-secondary text-lg font-semibold px-[20px] py-5 "
+                  className="bg-transparent  hover:bg-[#B0CB1F] border-2 border-[#B0CB1F] text-[#B0CB1F] hover:text-secondary text-lg font-semibold px-[20px] py-5"
                 >
                   {pageData.data.fields[1].value}
                 </Button>
