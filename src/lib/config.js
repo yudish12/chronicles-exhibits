@@ -1,7 +1,7 @@
 export const headerRoutes = [
   {
-    link: "/home-2",
-    name: "Home-2",
+    link: "/home",
+    name: "Home",
   },
   {
     link: "booth-sizes",
@@ -22,10 +22,6 @@ export const headerRoutes = [
   {
     link: "/portfolio",
     name: "Portfolio",
-  },
-  {
-    link: "/about-us",
-    name: "About Us",
   },
   {
     link: "/contact-us",

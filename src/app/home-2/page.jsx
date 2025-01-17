@@ -18,14 +18,14 @@ const Hero = async () => {
   console.log(homePageData);
   return (
     <>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
-      <div className="hero flex flex-col justify-center items-center h-[84vh]">
-        <h6 className=" text-lg 2xl:text-xl mt-14 leading-5 font-medium text-center text-white">
+      <div className="hero flex flex-col justify-center items-center h-[88vh]">
+        {/* <h6 className=" text-lg 2xl:text-xl mt-14 leading-5 font-medium text-center text-white">
           Ready to{" "}
           <span className="font-semibold">
             Revolutionize your Exhibit Displays?
-          </span>
+          </span>x
         </h6>
         <h2 className="heading-font mt-2 uppercase text-center text-white font-bold text-4xl sm:text-5xl lg:text-[3.45rem] 2xl:text-[4rem]">
           Get State of the Art
@@ -36,7 +36,7 @@ const Hero = async () => {
         <h2 className="text-white heading-font uppercase text-center font-bold text-4xl sm:text-5xl lg:text-[3.45rem] 2xl:text-[4rem]">
           Displays
         </h2>
-        <DownArrow />
+        <DownArrow /> */}
       </div>
       <About fields={homePageData.data.fields} />
       <Products

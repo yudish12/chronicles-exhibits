@@ -44,6 +44,7 @@
     --background: 255, 100%, 100%; /*#FDF3ED*/
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
+    --bg-angle: 0deg;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
@@ -73,6 +74,10 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
+    --primary-color: #0000; /* Light blue */
+    --secondary-color: #b0cb1f; /* Red */
+    --background-color: #0000;
+    --hover-color: #fff;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
@@ -678,4 +683,77 @@ input:focus + .flag-dropdown {
   100% {
     transform: rotate(360deg);
   }
+}
+/* Custom button styles */
+.schedule-btn {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 16px; /* Match padding */
+  background-color: black !important;
+  color: #b0cb1f;
+  font-size: 0.875rem; /* Text size of 14px */
+  font-weight: bold;
+  text-transform: uppercase;
+  border: solid 2px transparent;
+  border-radius: 0.375rem; /* Same rounded borders */
+  outline: none;
+  cursor: pointer;
+  gap: 0.5rem; /* Add space between icon and text */
+  transition: color 0.3s ease, background-color 0.3s ease;
+
+  --border-angle: 0turn; /* For animation */
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #213,
+    #112 5%,
+    #112 60%,
+    #213 95%
+  );
+
+  --gradient-border: conic-gradient(
+    from var(--border-angle),
+    transparent 25%,
+    var(--primary-color),
+    var(--secondary-color) 99%,
+    transparent
+  );
+
+  background: var(--main-bg) padding-box, var(--gradient-border) border-box,
+    var(--main-bg) border-box;
+
+  background-position: center center;
+  animation: bg-spin 3s linear infinite; /* Apply animation to the gradient */
+}
+
+.schedule-btn::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: var(--gradient-border);
+  border-radius: inherit; /* Ensure the border-radius is inherited */
+  z-index: -1;
+  animation: bg-spin 3s linear infinite; /* Same animation for the border */
+}
+
+.schedule-btn:hover {
+  color: white; /* Change text color on hover */
+}
+
+/* Keyframes for the border animation */
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+/* Property to manage angle change */
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
 }

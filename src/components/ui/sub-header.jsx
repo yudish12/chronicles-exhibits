@@ -14,7 +14,7 @@ const SocialIconContainer = ({ children }) => {
 const SubHeader = () => {
   return (
     <div className="bg-white w-full flex justify-between items-center py-3 px-6 sm:px-8 md:px-12 lg:px-20  gap-4">
-      {/* <div className="hidden sm:flex items-center gap-3">
+      <div className="hidden sm:flex items-center gap-3">
         <SocialIconContainer>
           <Link href={"https://www.facebook.com/chronicleexhibits"}>
             <Image alt="facebook" src="/facebook.svg" width={30} height={30} />
@@ -47,10 +47,21 @@ const SubHeader = () => {
             />
           </Link>
         </SocialIconContainer>
-      </div> */}
-      <div></div>
-      <div className="flex items-center w-full justify-end sm:w-[320px] md:gap-0 gap-4">
-        <HeaderBtns />
+      </div>
+      <div className="flex items-center justify-between w-full sm:justify-normal sm:w-[320px] gap-6">
+        <SocialIconContainer>
+          <Image alt="pinterest" src="/phone.svg" width={20} height={20} />
+          <span className="text-sm text-secondary font-medium">
+            +91 9876543210
+          </span>
+        </SocialIconContainer>
+        <SocialIconContainer>
+          <Image alt="pinterest" src="/mail.svg" width={20} height={20} />
+          <span className="text-sm text-secondary font-medium">
+            {" "}
+            xabysb@gmail.com
+          </span>
+        </SocialIconContainer>
       </div>
     </div>
   );
