@@ -164,7 +164,7 @@ export default function BoothTable() {
                   {booth.booth_code}
                 </TableCell>
                 <TableCell>{booth.booth_size.name}</TableCell>
-                <TableCell>{booth.packge_title}</TableCell>
+                <TableCell>{booth.package_title}</TableCell>
                 <TableCell>{booth.slug}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
