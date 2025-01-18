@@ -38,11 +38,12 @@ const AddEventPage = () => {
     icon_alt_text: "",
     booth_title: "",
     booth_description: "",
+    website: '',
+    email: '',
+    address: '',
     meta_title: "",
     meta_description: "",
     meta_keywords: [],
-    website: "",
-    email: "",
   });
 
   const router = useRouter();
@@ -77,8 +78,9 @@ const AddEventPage = () => {
         meta_title: "",
         meta_description: "",
         meta_keywords: [],
-        website: "",
-        email: "",
+        website: '',
+        email: '',
+        address: '',
       });
       router.push("/admin/events");
     } catch (error) {
@@ -113,28 +115,7 @@ const AddEventPage = () => {
                 required
               />
             </div>
-            <div>
-              <Label className="mb-4 block">E mail</Label>
-              <Input
-                className="rounded-sm"
-                value={singleEvent.email}
-                onChange={(e) =>
-                  setSingleEvent({ ...singleEvent, email: e.target.value })
-                }
-                required
-              />
-            </div>
-            <div>
-              <Label className="mb-4 block">Website</Label>
-              <Input
-                className="rounded-sm"
-                value={singleEvent.website}
-                onChange={(e) =>
-                  setSingleEvent({ ...singleEvent, website: e.target.value })
-                }
-                required
-              />
-            </div>
+            
             <div>
               <Label className="mb-4 block">Slug</Label>
               <Input
@@ -206,7 +187,7 @@ const AddEventPage = () => {
                       className="absolute z-50 top-1 right-1 w-6 h-6"
                       onClick={() => {
                         deleteUTFiles([singleEvent.icon.split("/").pop()]);
-                        setEvent({
+                        setSingleEvent({
                           ...singleEvent,
                           icon: "",
                         });
@@ -303,15 +284,30 @@ const AddEventPage = () => {
                 required
               />
             </div>
-            <div className="col-span-2">
-              <Label className="mb-4 block">Body</Label>
-              <CkeEditor
-                value={singleEvent.body}
-                onChange={(value) => {
-                  setSingleEvent({ ...singleEvent, body: value });
-                }}
-              />
-            </div>
+            <div>
+            <Label>Website</Label>
+            <Input
+              value={singleEvent.website}
+              onChange={(e) => setSingleEvent({ ...singleEvent, website: e.target.value })}
+              required
+            />
+          </div>
+          <div>
+            <Label>Contact Email</Label>
+            <Input
+              value={singleEvent.email}
+              onChange={(e) => setSingleEvent({ ...singleEvent, email: e.target.value })}
+              required
+            />
+          </div>
+          <div className="col-span-2">
+            <Label>Address</Label>
+            <Input
+              value={singleEvent.address}
+              onChange={(e) => setSingleEvent({ ...singleEvent, address: e.target.value })}
+              required
+            />
+          </div>
           </CardContent>
         </Card>
         <Card>
