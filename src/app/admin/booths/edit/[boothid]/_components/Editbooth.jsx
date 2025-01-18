@@ -40,7 +40,7 @@ const Editbooth = ({ boothData }) => {
       all_images: singleBooth.all_images,
       image_alt_text: singleBooth.image_alt_text,
       package_title: singleBooth.package_title,
-      packge_description: singleBooth.packge_description,
+      package_description: singleBooth.package_description,
       meta_title: singleBooth.meta_title,
       meta_description: singleBooth.meta_description,
       meta_keywords: singleBooth.meta_keywords ?? [],
@@ -268,9 +268,9 @@ const Editbooth = ({ boothData }) => {
             <div className="col-span-2">
               <Label className="mb-4 block">Body</Label>
               <CkeEditor
-                value={singleBooth.packge_description}
+                value={singleBooth.package_description}
                 onChange={(value) => {
-                  setsingleBooth({ ...singleBooth, packge_description: value });
+                  setsingleBooth({ ...singleBooth, package_description: value });
                 }}
               />
             </div>

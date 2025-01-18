@@ -33,11 +33,11 @@ const boothSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    packge_title: {
+    package_title: {
       type: String,
       required: true,
     },
-    packge_description: {
+    package_description: {
       type: String,
       required: true,
     },

@@ -32,8 +32,8 @@ const AddBoothPage = () => {
     thumbnail_image: "",
     all_images: [],
     image_alt_text: "",
-    packge_title: "",
-    packge_description: "",
+    package_title: "",
+    package_description: "",
     meta_title: "",
     meta_description: "",
     meta_keywords: [],
@@ -81,7 +81,7 @@ const AddBoothPage = () => {
         all_images: [],
         image_alt_text: "",
         packge_title: "",
-        packge_description: "",
+        package_description: "",
         meta_title: "",
         meta_description: "",
         meta_keywords: [],
@@ -233,7 +233,7 @@ const AddBoothPage = () => {
                   <div key={index} className="relative">
                     <img
                       src={img}
-                      alt={`Gallery ${index + 1 + (currentPage - 1) * 6}`}
+                      alt={`Gallery ${(index + 1) * 6}`}
                       className="w-full h-24 rounded"
                     />
                     <Button
@@ -275,11 +275,11 @@ const AddBoothPage = () => {
               <Label className="mb-4 block">Package Title</Label>
               <Input
                 className="rounded-sm"
-                value={singleBooth.packge_title}
+                value={singleBooth.package_title}
                 onChange={(e) =>
                   setsingleBooth({
                     ...singleBooth,
-                    packge_title: e.target.value,
+                    package_title: e.target.value,
                   })
                 }
                 required
@@ -288,9 +288,9 @@ const AddBoothPage = () => {
             <div className="col-span-2">
               <Label className="mb-4 block">Body</Label>
               <CkeEditor
-                value={singleBooth.packge_description}
+                value={singleBooth.package_description}
                 onChange={(value) => {
-                  setsingleBooth({ ...singleBooth, packge_description: value });
+                  setsingleBooth({ ...singleBooth, package_description: value });
                 }}
               />
             </div>
