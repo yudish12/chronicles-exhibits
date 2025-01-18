@@ -114,14 +114,14 @@ export const updateData = async (id, data) => {
     }
     if (!data.package_title) {
       return getActionFailureResponse(
-        "packge_title is required",
-        "packge_title"
+        "package_title is required",
+        "package_title"
       );
     }
-    if (!data.packge_description) {
+    if (!data.package_description) {
       return getActionFailureResponse(
-        "packge_description is required",
-        "packge_description"
+        "package_description is required",
+        "package_description"
       );
     }
     if (!data.meta_title) {
@@ -187,17 +187,17 @@ export const addData = async (data) => {
       );
     }
 
-    if (!data.packge_title) {
+    if (!data.package_title) {
       return getActionFailureResponse(
         "Package title is required",
-        "packge_title"
+        "package_title"
       );
     }
 
-    if (!data.packge_description) {
+    if (!data.package_description) {
       return getActionFailureResponse(
         "Package description is required",
-        "packge_description"
+        "package_description"
       );
     }
 
