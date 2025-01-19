@@ -51,7 +51,7 @@ const WhyChooseUs = ({ fields }) => {
                 {fields[7].value}
               </Button>
             </DialogTrigger>
-            <DialogContent className="">
+            <DialogContent className="max-h-[700px] overflow-auto">
               <EnquiryForm />
             </DialogContent>
           </Dialog>

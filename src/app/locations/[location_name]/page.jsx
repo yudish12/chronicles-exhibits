@@ -101,7 +101,7 @@ const Page = async ({ params }) => {
               {data[0].fields[1].value}
             </Button>
           </DialogTrigger>
-          <DialogContent className="">
+          <DialogContent className="max-h-[700px] overflow-auto">
             <EnquiryForm />
           </DialogContent>
         </Dialog>

@@ -84,7 +84,7 @@ export const submitScheduleCallForm = async (fields, page_source) => {
     return getActionFailureResponse(error);
   }
 };
-export const submitGetFreeDesignForm = async (fields, page_source) => {
+export const submitGetFreeDesignForm = async (formData, page_source) => {
   try {
     const schemaKeys = {
       name: "",
@@ -104,14 +104,28 @@ export const submitGetFreeDesignForm = async (fields, page_source) => {
       callTime: "",
       budget: "",
     };
-    const normalizedFields = { ...schemaKeys, ...fields, page_source };
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const message = formData.get("message");
+    const budget = formData.get("budget");
+    const fileData = formData.getAll("files");
+    const company = formData.get("company");
+    const eventName = formData.get("eventName");
+    const eventCity = formData.get("eventCity");
+    const boothSize = formData.get("boothSize");
+    const country = formData.get("country");
+    const normalizedFields = { ...schemaKeys, name, email, phone, message, budget, company, eventName, eventCity, boothSize, country, page_source };
+    const fields = { name, email, phone, message, budget, company, eventName, eventCity, boothSize, country };
+   
     const formSubmission = new FormSubmission(normalizedFields);
-    await formSubmission.save().exec();
-    const email = new EmailService("home", "free-design");
+    await formSubmission.save()
+    const mail = new EmailService("home", "free-design");
 
-    const resp = await email.send(
+    const resp = await mail.send(
       fields,
-      `Get a Quote form filled from page: ${page_source}`
+      `Get a Quote form filled from page: ${page_source}`,
+      fileData
     );
     return getActionSuccessResponse(resp);
   } catch (error) {

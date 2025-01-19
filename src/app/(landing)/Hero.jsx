@@ -35,7 +35,7 @@ const Hero = ({ fields }) => {
                 Get Quote
               </Button>
             </DialogTrigger>
-            <DialogContent className="">
+            <DialogContent className="max-h-[700px] overflow-auto">
               <EnquiryForm />
             </DialogContent>
           </Dialog>

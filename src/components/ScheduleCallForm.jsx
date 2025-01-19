@@ -11,6 +11,7 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
+  SelectValue,
 } from "./ui/select";
 import { toast } from "sonner";
 
@@ -26,6 +27,7 @@ const ScheduleCallForm = ({ setOpen }) => {
     timeZone: "",
     message: "",
     url: "",
+    name: "",
   });
 
   const generateTimeSlots = () => {
@@ -38,7 +40,6 @@ const ScheduleCallForm = ({ setOpen }) => {
     return timeSlots;
   };
 
-  // Fetch user's country code and set the current URL
   useEffect(() => {
     const fetchCountryCode = async () => {
       try {
@@ -59,23 +60,30 @@ const ScheduleCallForm = ({ setOpen }) => {
     }));
   }, []);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle phone number input
-  const handlePhoneChange = (value) => {
-    setFormData({ ...formData, phoneNumber: value });
+  const isFormValid = () => {
+    return (
+      formData.name &&
+      formData.email &&
+      formData.country &&
+      formData.phoneNumber &&
+      formData.callDate &&
+      formData.callTime
+    );
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!isFormValid()) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
     setLoading(true);
     try {
-      e.preventDefault();
-      console.log("Form Data Submitted:", formData);
       const resp = await submitScheduleCallForm(formData, "home");
 
       if (!resp.success) {
@@ -87,23 +95,19 @@ const ScheduleCallForm = ({ setOpen }) => {
         setOpen(false);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        margin: "0px auto",
-      }}
-    >
-      <h5 className="text-3xl mt-4 text-center font-semibold heading-font text-secondary">
+    <div className="max-w-4xl w-full mx-auto p-6 bg-white rounded-lg">
+      <h5 className="text-2xl sm:text-3xl font-semibold text-center text-secondary mb-6">
         Schedule a Call
       </h5>
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-5">
+      <form onSubmit={handleSubmit} className="grid gap-5 grid-cols-1 md:grid-cols-2">
         <Input
           className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
           type="text"
@@ -131,8 +135,9 @@ const ScheduleCallForm = ({ setOpen }) => {
         <PhoneInput
           country={countryCode}
           value={formData.phoneNumber}
-          onChange={handlePhoneChange}
-          inputStyle={{ width: "100%", marginBottom: "10px" }}
+          onChange={(value) => handleChange({ target: { name: "phoneNumber", value } })}
+          inputStyle={{ width: "100%" }}
+          inputClass="border-[#CACACA] text-secondary/70"
         />
         <Input
           className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
@@ -150,7 +155,7 @@ const ScheduleCallForm = ({ setOpen }) => {
           }}
         >
           <SelectTrigger>
-            {formData.callTime ?? "Best Time to call"}
+            <SelectValue placeholder={"Best Time to Call"} />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
@@ -162,54 +167,25 @@ const ScheduleCallForm = ({ setOpen }) => {
             </SelectGroup>
           </SelectContent>
         </Select>
-        {/* <select
-          name="callTime"
-          className="border border-[#CACACA] text-secondary/70 p-2 rounded-lg"
-          onChange={handleChange}
-          required
-          value={formData.callTime}
-        >
-          <option value="" disabled>
-            Best Time to call
-          </option>
-          {generateTimeSlots().map((slot, index) => (
-            <option key={index} value={slot}>
-              {slot}
-            </option>
-          ))}
-        </select> */}
-        <Input
-          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
-          placeholder="Timezone"
-          value={formData.timeZone}
-          onChange={handleChange}
-          name="timeZone"
-        />
-        <Input
-          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
-          placeholder="url"
-          value={formData.url}
-          type="hidden"
-          style={{ display: "none" }}
-          name="url"
-          readOnly // Make it read-only since it's pre-filled
-        />
         <textarea
           rows={4}
-          className="border p-2 col-span-2 border-[#CACACA] placeholder:text-secondary/70 rounded-lg"
+          className="border p-2 border-[#CACACA] placeholder:text-secondary/70 rounded-lg col-span-1 md:col-span-2"
           placeholder="Message"
           name="message"
           onChange={handleChange}
         />
         <Button
           disabled={loading}
-          onClick={handleSubmit}
-          className="w-1/3 mx-auto col-span-2 bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
+          type="submit"
+          className="w-full md:w-1/2 col-span-1 md:col-span-2 mx-auto bg-secondary text-white font-semibold py-3 rounded-md hover:bg-secondary-dark transition-all"
         >
-          Send Enquiry
-          {loading && <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-black"></div>}
+          {loading ? (
+            <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
+          ) : (
+            "Send Enquiry"
+          )}
         </Button>
-      </div>
+      </form>
     </div>
   );
 };

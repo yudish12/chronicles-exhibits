@@ -1,6 +1,6 @@
 export const headerRoutes = [
   {
-    link: "/home",
+    link: "/",
     name: "Home",
   },
   {

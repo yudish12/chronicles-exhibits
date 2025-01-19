@@ -5,6 +5,8 @@ import "react-phone-input-2/lib/style.css";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { submitGetFreeDesignForm } from "@/server/actions/forms";
+import InputFile from "./ui/input-file";
+import { toast } from "sonner";
 
 const GetFreeDesignForm = ({setOpen}) => {
   const [countryCode, setCountryCode] = useState("us");
@@ -13,14 +15,15 @@ const GetFreeDesignForm = ({setOpen}) => {
     name: "",
     email: "",
     phoneNumber: "",
-    country: "",
+    country: "US",
     eventName: "",
     eventCity: "",
+    company: "",
     boothSize: "",
-    file: "",
-    timeZone: "",
+    budget: "",
+    boothSize: "",
+    file: [],
     message: "",
-    url: "",
   });
 
   const generateTimeSlots = () => {
@@ -67,10 +70,41 @@ const GetFreeDesignForm = ({setOpen}) => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-    const resp = await submitGetFreeDesignForm(formData, "home");
-    console.log(resp);
+    setLoading(true);
+    try {
+      e.preventDefault();
+      const ApiData = new FormData();
+      ApiData.append("name", formData.name);
+      ApiData.append("email", formData.email);
+      ApiData.append("phone", formData.phoneNumber);
+      ApiData.append("message", formData.message);
+      ApiData.append("budget", formData.budget);
+      formData.file.forEach((file) => {
+        ApiData.append("files", file);
+      });
+      ApiData.append("company", formData.company);
+      ApiData.append("eventName", formData.eventName);
+      ApiData.append("eventCity", formData.eventCity);
+      ApiData.append("boothSize", formData.boothSize);
+      ApiData.append("country", formData.country);
+      console.log("Form Data Submitted:", formData);
+      const resp = await submitGetFreeDesignForm(ApiData, window.location.pathname);
+      console.log(resp);
+
+      if (!resp.success) {
+        toast.error("Something went wrong. Please try again later.");
+        return;
+      }
+
+      toast.success("Enquiry submitted successfully.");
+      
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to submit form. Please try again later.");
+    }finally {
+      setLoading(false);
+    }
+    
   };
 
   return (
@@ -89,6 +123,7 @@ const GetFreeDesignForm = ({setOpen}) => {
           type="text"
           placeholder="Enter Your Name"
           onChange={handleChange}
+          disabled={loading}
           required
           name="name"
         />
@@ -97,6 +132,7 @@ const GetFreeDesignForm = ({setOpen}) => {
           type="email"
           placeholder="Enter Your Email"
           onChange={handleChange}
+          disabled={loading}
           required
           name="email"
         />
@@ -104,13 +140,16 @@ const GetFreeDesignForm = ({setOpen}) => {
           country={countryCode}
           value={formData.phoneNumber}
           onChange={handlePhoneChange}
+          disabled={loading}
           inputStyle={{ width: "100%", marginBottom: "10px" }}
         />
         <Input
           className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
           type="text"
+          value={formData.country}
           placeholder="Enter Your Country"
           onChange={handleChange}
+          disabled={loading}
           required
           name="country"
         />
@@ -119,6 +158,7 @@ const GetFreeDesignForm = ({setOpen}) => {
           type="text"
           placeholder="Enter Your Company"
           onChange={handleChange}
+          disabled={loading}
           required
           name="company"
         />
@@ -128,6 +168,7 @@ const GetFreeDesignForm = ({setOpen}) => {
           placeholder="Enter Your Budget"
           onChange={handleChange}
           required
+          disabled={loading}
           name="budget"
         />
         <Input
@@ -135,6 +176,7 @@ const GetFreeDesignForm = ({setOpen}) => {
           type="text"
           placeholder="Enter Your Event Name"
           onChange={handleChange}
+          disabled={loading}
           required
           name="eventName"
         />
@@ -143,6 +185,7 @@ const GetFreeDesignForm = ({setOpen}) => {
           type="text"
           placeholder="Enter Your Event City"
           onChange={handleChange}
+          disabled={loading}
           required
           name="eventCity"
         />
@@ -151,38 +194,16 @@ const GetFreeDesignForm = ({setOpen}) => {
           type="text"
           placeholder="Enter Your Booth Size"
           onChange={handleChange}
+          disabled={loading}
           required
           name="boothSize"
         />
-        <Input
-          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
-          type="file"
-          placeholder="Choose File"
-          onChange={handleChange}
-          multiple
-          required
-          name="file"
-        />
-        <Input
-          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
-          placeholder="Timezone"
-          value={formData.timeZone}
-          onChange={handleChange}
-          name="timeZone"
-        />
-        <Input
-          className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
-          placeholder="url"
-          value={formData.url}
-          type="hidden"
-          style={{ display: "none" }}
-          name="url"
-          readOnly // Make it read-only since it's pre-filled
-        />
+        <InputFile value={formData.file} onChange={(e)=> setFormData({ ...formData, file: e })} />
         <textarea
           rows={4}
           className="border p-2 border-[#CACACA] placeholder:text-secondary/70 rounded-lg"
           placeholder="Message"
+          disabled={loading}
           name="message"
           onChange={handleChange}
         />

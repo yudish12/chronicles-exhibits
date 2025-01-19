@@ -255,7 +255,7 @@ export default function Footer() {
                     Get Quote
                   </div>
                 </DialogTrigger>
-                <DialogContent className="">
+                <DialogContent className="max-h-[700px] overflow-auto">
                   <EnquiryForm setOpen={setBoothEnquiryOpen} />
                 </DialogContent>
               </Dialog>
@@ -273,7 +273,7 @@ export default function Footer() {
                     Schedule A Call
                   </div>
                 </DialogTrigger>
-                <DialogContent className="">
+                <DialogContent cclassName="max-h-[700px] overflow-auto">
                   <ScheduleCallForm setOpen={setScheduleCallOpen} />
                 </DialogContent>
               </Dialog>

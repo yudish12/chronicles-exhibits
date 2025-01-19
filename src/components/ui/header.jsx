@@ -69,7 +69,7 @@ export const HeaderBtns = ({ isMobile = false }) => {
             Get Quote
           </Button>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="max-h-[700px] overflow-auto">
           <EnquiryForm setOpen={setOpen} />
         </DialogContent>
       </Dialog>
