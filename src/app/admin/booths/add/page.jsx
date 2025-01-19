@@ -68,6 +68,7 @@ const AddBoothPage = () => {
     e.preventDefault();
     try {
       const resp = await addData(singleBooth);
+      console.log(resp);
       if (!resp.success) {
         toast.error(resp.err);
         return;

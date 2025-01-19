@@ -4,6 +4,7 @@ import React from "react";
 import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Pagination } from "./_components/Pagination";
+import BlogDesc from "./blog-description";
 
 const BlogsPagination = ({
   blogs,
@@ -46,12 +47,7 @@ const BlogsPagination = ({
                 <CardTitle className="text-2xl font-bold text-secondary heading-font">
                   {blog.title}
                 </CardTitle>
-                <CardDescription className="text-sm text-black mt-2">
-                  {/* Shortened blog description */}
-                  Welcome to Chronicle, your prominent partner for trade show
-                  booth displays and exhibits. With 25+ years’ worth of
-                  experience and an excellent team
-                </CardDescription>
+                <BlogDesc body={blog.body} />
                 <div className="mt-4">
                   <Link href={`/${blog.slug}/`} prefetch={true}>
                     <Button

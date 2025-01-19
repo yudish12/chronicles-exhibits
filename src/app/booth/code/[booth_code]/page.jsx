@@ -27,12 +27,11 @@ const BoothByCode = async ({ params }) => {
   console.log("params", resolvedParams);
   const boothCode = resolvedParams.booth_code;
   const header = await headers();
-  const referer = header.get("referer");
 
-  console.log(referer);
+  const sizeFromHeader = header.get("X-Booth-Size");
+  console.log(sizeFromHeader,32)
 
-  const size = referer?.split("/")[3]?.split("-")[0];
-  const resp = await getDataByCode(boothCode, size);
+  const resp = await getDataByCode(boothCode, sizeFromHeader);
 
   if (!resp?.data) {
     notFound();
@@ -46,18 +45,17 @@ const BoothByCode = async ({ params }) => {
     true
   );
 
-  console.log(boothCodes);
 
   return (
     <>
-      {/* <SubHeader /> */}
+      <SubHeader />
       <Header />
       {/* <div>
 
     </div> */}
-      <BoothDetails size={size} boothData={resp.data} boothCode={boothCode} />
+      <BoothDetails size={sizeFromHeader} boothData={resp.data} boothCode={boothCode} />
       {/* <BoothEnquiry/> */}
-      <BoothGrid size={size} boothCodes={boothCodes} />
+      <BoothGrid size={sizeFromHeader} boothCodes={boothCodes} />
       <Footer />
     </>
   );

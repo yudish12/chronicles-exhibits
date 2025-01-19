@@ -163,7 +163,6 @@ export const updateData = async (id, data) => {
 };
 
 export const addData = async (data) => {
-  console.log(data);
   try {
     if (!data.booth_code) {
       return getActionFailureResponse("Booth code is required", "booth_code");
@@ -214,9 +213,10 @@ export const addData = async (data) => {
 
     const resp = await Booth.create(data);
 
-    console.log(resp);
+    console.log(216);
     return getActionSuccessResponse(resp);
   } catch (error) {
+    console.log(error)
     getActionFailureResponse(error.message, "toast");
   }
 };

@@ -497,12 +497,12 @@ const PackageDetails = ({ size, boothData }) => {
         <span>{size}/</span>
       </div>
       <h2 className="text-xl mt-8 lg:mt-0 font-semibold mb-4">
-        Package Includes:
+        {boothData.package_title}
       </h2>
       <div
         id="package"
         className="font-medium text-lg"
-        dangerouslySetInnerHTML={{ __html: boothData.packge_description }}
+        dangerouslySetInnerHTML={{ __html: boothData.package_description }}
       ></div>
     </ul>
   );

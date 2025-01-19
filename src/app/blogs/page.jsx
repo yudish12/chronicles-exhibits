@@ -25,8 +25,8 @@ const Page = async ({ params, searchParams }) => {
   const blogs = await getAllBlogs(
     skip,
     limit,
-    "name title slug image image_alt_text"
-  );
+    "name title slug image image_alt_text body"
+  )
 
   if (!blogs?.data) {
     notFound();
