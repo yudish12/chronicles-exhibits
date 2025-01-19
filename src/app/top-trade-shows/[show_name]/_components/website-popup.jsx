@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { eventWebsiteForm } from "@/server/actions/forms";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -32,28 +31,49 @@ const WebsitePopup = ({ website, eventName }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
+    e.preventDefault();
+
     if (!name || !email || !phone) {
       toast.error("Please fill all fields");
       return;
     }
 
-    const resp = await eventWebsiteForm(name, email, phone, website, eventName);
-    if (!resp.success) {
-      toast.error("Something went wrong. Please try filling form again");
-      return;
+    try {
+      const response = await fetch("/api/event-website", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          websiteUrl: website,
+          page_source: eventName,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        localStorage.setItem("website-form", "true");
+
+        // Redirect to thank you page
+        router.push(`/thankyou-website/?website=${website}`);
+      } else {
+        toast.error(result.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Form submission failed:", error);
+      toast.error("Failed to submit the form. Please try again later.");
     }
-    localStorage.setItem("website-form", true);
-    router.push(`/thankyou-website/?event_name=${eventName}`);
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <div
-          onClick={() => {
-            console.log(open);
-            setOpen(true);
-          }}
+          onClick={() => setOpen(true)}
           style={{ transitionDuration: "500ms" }}
           className="group cursor-pointer shadow-two hover:bg-[#B0CB1F] bg-white border-secondary/70 p-6 flex items-center gap-5"
         >
@@ -78,7 +98,7 @@ const WebsitePopup = ({ website, eventName }) => {
             <X className="h-6 w-6" />
           </button>
         </DialogHeader>
-        <form className="p-6">
+        <form className="p-6" onSubmit={onSubmit}>
           <div className="flex flex-col gap-6">
             <div className="space-y-2">
               <Label className="text-base">Name</Label>
@@ -86,6 +106,7 @@ const WebsitePopup = ({ website, eventName }) => {
                 onChange={handleChange}
                 value={name}
                 name="name"
+                required
                 className="border-gray-300 focus:ring-primary focus:border-primary"
                 placeholder="Enter your name"
               />
@@ -97,6 +118,7 @@ const WebsitePopup = ({ website, eventName }) => {
                 name="email"
                 onChange={handleChange}
                 value={email}
+                required
                 className="border-gray-300 focus:ring-primary focus:border-primary"
                 placeholder="Enter your email"
               />
@@ -108,6 +130,7 @@ const WebsitePopup = ({ website, eventName }) => {
                 name="phone"
                 onChange={handleChange}
                 value={phone}
+                required
                 className="border-gray-300 focus:ring-primary focus:border-primary"
                 placeholder="Enter your phone number"
               />

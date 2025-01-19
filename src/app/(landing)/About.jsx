@@ -30,9 +30,9 @@ const About = ({ fields }) => {
       {/* Cards Section */}
       <div className="bg-white pt-8 pb-16">
         <div className="mx-auto 2xl:px-72 lg:px-20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 sm:px-12 lg:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6 sm:px-12 lg:px-0">
             {/* Card 1 */}
-            <Card className="shadow-one w-full 2xl:max-w-[390px] xs:w-[70%] mx-auto sm:w-full rounded-xl overflow-hidden flex flex-col">
+            <Card className="shadow-one w-full 2xl:max-w-[390px] xs:w-[70%] mx-auto md:w-full rounded-xl overflow-hidden flex flex-col">
               <div>
                 <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
                   <Image
@@ -66,7 +66,7 @@ const About = ({ fields }) => {
             </Card>
 
             {/* Card 2 */}
-            <Card className="shadow-one w-full xs:w-[70%] 2xl:max-w-[390px] mx-auto sm:w-full  rounded-xl overflow-hidden flex flex-col">
+            <Card className="shadow-one w-full xs:w-[70%] 2xl:max-w-[390px] mx-auto md:w-full  rounded-xl overflow-hidden flex flex-col">
               <div>
                 <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
                   <Image
@@ -101,7 +101,7 @@ const About = ({ fields }) => {
             </Card>
 
             {/* Card 3 */}
-            <Card className="shadow-one w-full xs:w-[70%] 2xl:max-w-[390px] mx-auto sm:w-full rounded-xl overflow-hidden flex flex-col justify-between">
+            <Card className="shadow-one w-full xs:w-[70%] 2xl:max-w-[390px] mx-auto md:w-full rounded-xl overflow-hidden flex flex-col justify-between">
               <div>
                 <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
                   <Image

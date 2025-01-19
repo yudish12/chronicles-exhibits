@@ -1,27 +1,37 @@
 import React from "react";
 import Image from "next/image";
 
+
 const OfficeCard = ({ title, address, email, phone }) => {
   return (
-    <div className="bg-gray-200 p-6 rounded-lg border border-gray-200">
-      <h3 className="text-lg font-bold text-black mb-4">{title}</h3>
-      <div className="gap-y-2">
+    <div className="bg-white shadow-md p-6 rounded-lg border border-gray-300 max-w-sm mx-auto">
+      {/* Title */}
+      <h3 className="text-lg font-bold text-gray-800 mb-4">{title}</h3>
+      
+      {/* Content */}
+      <div className="flex flex-col gap-y-4">
+        {/* Address */}
         <div className="flex items-start gap-x-3">
-          <Image src="/Location 2.svg" alt="Location" width={20} height={20} />
-          <p className="text-base text-gray-600">{address}</p>
+          <Image src="/Location 2.svg" alt="Location" width={24} height={24} />
+          <p className="text-base text-gray-600 leading-5">{address}</p>
         </div>
-        <div className="flex items-center space-x-3">
-          <Image src="/Envelope.svg" alt="Email" width={20} height={20} />
-          <p className="text-base text-gray-600">{email}</p>
+        
+        {/* Email */}
+        <div className="flex items-center gap-x-3">
+          <Image src="/Envelope.svg" alt="Email" width={24} height={24} />
+          <p className="text-base text-gray-600 leading-5">{email}</p>
         </div>
-        <div className="flex items-center space-x-3">
-          <Image src="/Phone 2.svg" alt="Phone" width={20} height={20} />
-          <p className="text-base text-gray-600">{phone}</p>
+        
+        {/* Phone */}
+        <div className="flex items-center gap-x-3">
+          <Image src="/Phone 2.svg" alt="Phone" width={24} height={24} />
+          <p className="text-base text-gray-600 leading-5">{phone}</p>
         </div>
       </div>
     </div>
   );
 };
+
 
 const OtherOffices = () => {
   const offices = [

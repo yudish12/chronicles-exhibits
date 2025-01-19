@@ -5,14 +5,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { submitBlogForm } from "@/server/actions/forms";
 import { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
-const BlogForm = () => {
+import InputFile from "@/components/ui/input-file";
+import { toast } from "sonner";
+const BlogForm = ({source}) => {
   const [countryCode, setCountryCode] = useState("us");
+  const [loading,setLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phoneNumber: "",
-    eventName: "",
-    file: "",
+    file: [],
     boothSize: "",
     message: "",
     url: "",
@@ -25,10 +27,30 @@ const BlogForm = () => {
     setFormData({ ...formData, phoneNumber: value });
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-    const resp = await submitBlogForm(formData, "home");
-    console.log(resp);
+    setLoading(true);
+    try {
+      e.preventDefault();
+      console.log(formData)
+      const ApiData = new FormData();
+      ApiData.append("name", formData.name);
+      ApiData.append("email", formData.email);
+      ApiData.append("phone", formData.phoneNumber);
+      ApiData.append("message", formData.message);
+      ApiData.append("boothSize", formData.boothSize);
+      formData.file.forEach((file) => {
+        ApiData.append("files", file);
+      });
+
+      console.log("Form Data Submitted:", formData);
+      const resp = await submitBlogForm(ApiData, `${source}`);
+      console.log(resp);
+      toast.success("Enquiry submitted successfully.");
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to submit form. Please try again later.");
+    }finally {
+      setLoading(false);
+    }
   };
   useEffect(() => {
     const fetchCountryCode = async () => {
@@ -65,6 +87,7 @@ const BlogForm = () => {
           placeholder="Your Name"
           className="w-full shadow-two placeholder:black py-2 border-0"
           type="name"
+          disabled={loading}
           onChange={handleChange}
           required
           name="name"
@@ -73,6 +96,7 @@ const BlogForm = () => {
           placeholder="Your Email"
           className="w-full shadow-two placeholder:black py-2 border-0"
           type="email"
+          disabled={loading}
           onChange={handleChange}
           required
           name="email"
@@ -88,26 +112,13 @@ const BlogForm = () => {
         <PhoneInput
           country={countryCode}
           value={formData.phoneNumber}
+          disabled={loading}
           onChange={handlePhoneChange}
         />
-        <Input
-          placeholder="Event Name"
-          className="w-full hidden shadow-two py-2 border-0 "
-          type="eventName"
-          onChange={handleChange}
-          required
-          name="eventName"
-        />
-        <Input
-          placeholder="Choose File"
-          className="w-full shadow-two placeholder:black py-2 border-0 "
-          type="file"
-          onChange={handleChange}
-          required
-          name="file"
-        />
+        <InputFile className={"block"} value={formData.file} onChange={(files)=> setFormData({ ...formData, file: files })} />
         <Input
           placeholder="Your Country Name"
+          disabled={loading}
           className="w-full shadow-two placeholder:black py-2 border-0 "
           type="country"
           onChange={handleChange}
@@ -116,6 +127,7 @@ const BlogForm = () => {
         />
         <Input
           placeholder="Booth Size"
+          disabled={loading}
           className="w-full shadow-two placeholder:black py-2 border-0"
           type="boothSize"
           onChange={handleChange}
@@ -124,6 +136,7 @@ const BlogForm = () => {
         />
         <Textarea
           placeholder="Tell us about your requirements"
+          disabled={loading}
           className="w-full shadow-two placeholder:black py-2 border-0"
           rows={3}
           type="message"
@@ -133,9 +146,11 @@ const BlogForm = () => {
         />
         <Button
           type="submit"
+          disabled={loading}
           className=" bg-primary hover:bg-primary hover:text-secondary text-white shadow-one font-bold "
         >
           Sumbit Enquuiry
+          {loading && <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>}
         </Button>
       </form>
     </div>

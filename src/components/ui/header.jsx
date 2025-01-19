@@ -32,6 +32,9 @@ const RouteComponent = ({ link, name, className }) => {
 };
 
 export const HeaderBtns = ({ isMobile = false }) => {
+  const [open, setOpen] = useState(false);
+  const [scheduleCallOpen, setScheduleCallOpen] = useState(false);
+
   return (
     <div
       className={cn(
@@ -39,7 +42,7 @@ export const HeaderBtns = ({ isMobile = false }) => {
         isMobile ? "flex-col gap-2" : "gap-4 flex-row items-center"
       )}
     >
-      <Dialog>
+      <Dialog open={scheduleCallOpen} onOpenChange={setScheduleCallOpen}>
         <DialogTrigger asChild>
           <button
             className={cn(
@@ -52,10 +55,10 @@ export const HeaderBtns = ({ isMobile = false }) => {
           </button>
         </DialogTrigger>
         <DialogContent>
-          <ScheduleCallForm />
+          <ScheduleCallForm setOpen={setScheduleCallOpen} />
         </DialogContent>
       </Dialog>
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button
             className={cn(
@@ -67,7 +70,7 @@ export const HeaderBtns = ({ isMobile = false }) => {
           </Button>
         </DialogTrigger>
         <DialogContent>
-          <EnquiryForm />
+          <EnquiryForm setOpen={setOpen} />
         </DialogContent>
       </Dialog>
     </div>

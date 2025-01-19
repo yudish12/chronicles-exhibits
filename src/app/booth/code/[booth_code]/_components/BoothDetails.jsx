@@ -218,6 +218,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import PhoneInput from "react-phone-input-2";
 import { submitBoothCodeForm } from "@/server/actions/forms";
+import { toast } from "sonner";
 const imagegroup1 = [
   "/booth-2.jpeg", // Replace with actual image URLs
   "/booth-4.jpeg",
@@ -295,6 +296,7 @@ const CarouselImages = ({
 
 const BoothForm = () => {
   const [countryCode, setCountryCode] = useState("us");
+  const [loading,setLoading] = useState(false)
   const [selectedValue, setSelectedValue] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -326,21 +328,36 @@ const BoothForm = () => {
     setFormData({ ...formData, phoneNumber: value });
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    setLoading(true);
+    try {
+      e.preventDefault();
 
-    const { requestType, ...otherFields } = formData;
+      const { requestType, ...otherFields } = formData;
 
-    const formattedData = {
-      ...otherFields,
-      rentalQuotation: requestType === "rental",
-      purchaseRequest: requestType === "purchase",
-      customizationRequest: requestType === "customization",
-    };
+      const formattedData = {
+        ...otherFields,
+        rentalQuotation: requestType === "rental",
+        purchaseRequest: requestType === "purchase",
+        customizationRequest: requestType === "customization",
+      };
 
-    console.log("Formatted Data Submitted:", formattedData);
+      console.log("Formatted Data Submitted:", formattedData);
 
-    const resp = await submitBoothCodeForm(formattedData, "home");
-    console.log(resp);
+      const resp = await submitBoothCodeForm(formattedData, "home");
+
+      if (!resp.success) {
+        toast.error("Failed to submit form. Please try again later.");
+        return;
+      }
+      toast.success("Enquiry submitted successfully.");
+      
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to submit form. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+    
   };
   useEffect(() => {
     const fetchCountryCode = async () => {
@@ -369,6 +386,7 @@ const BoothForm = () => {
             <Input
               type="radio"
               name="requestType"
+              disabled={loading}  
               value="rental"
               checked={selectedValue === "rental"}
               className="h-4 w-4 border-gray-300 rounded"
@@ -381,6 +399,7 @@ const BoothForm = () => {
           <label className="flex items-center gap-x-2">
             <Input
               type="radio"
+              disabled={loading}
               name="requestType"
               value="purchase"
               checked={selectedValue === "purchase"}
@@ -396,6 +415,7 @@ const BoothForm = () => {
               type="radio"
               name="requestType"
               value="customization"
+              disabled={loading}
               checked={selectedValue === "customization"}
               className="h-4 w-4 border-gray-300 rounded"
               onChange={handleRadioChange}
@@ -412,6 +432,7 @@ const BoothForm = () => {
           <div className="lg:col-span-1 col-span-3">
             <Input
               type="text"
+              disabled={loading}
               placeholder="Contact Person"
               className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
               name="name"
@@ -427,6 +448,7 @@ const BoothForm = () => {
           <div className="lg:col-span-1 col-span-3">
             <Input
               type="email"
+              disabled={loading}
               placeholder="Email Address"
               className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
               onChange={handleChange}
@@ -437,6 +459,7 @@ const BoothForm = () => {
             <Input
               type="text"
               placeholder="Country"
+              disabled={loading}
               className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
               onChange={handleChange}
               name="country"
@@ -446,6 +469,7 @@ const BoothForm = () => {
             <Input
               type="text"
               placeholder="Event Name"
+              disabled={loading}
               className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white "
               onChange={handleChange}
               name="eventName"
@@ -455,6 +479,7 @@ const BoothForm = () => {
             <Input
               type="text"
               placeholder="Event City"
+              disabled={loading}
               className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white "
               onChange={handleChange}
               name="eventCity"
@@ -464,6 +489,7 @@ const BoothForm = () => {
             <Input
               type="text"
               placeholder="Your Budget"
+              disabled={loading}
               className="w-full border col-span-3  border-gray-300  rounded-lg px-3 py-2 bg-white "
               onChange={handleChange}
               name="budget"
@@ -474,15 +500,18 @@ const BoothForm = () => {
           placeholder="Description/Message/Customizations"
           className="w-full border border-gray-300  rounded-lg px-3 py-2 "
           rows="4"
+          disabled={loading}
           onChange={handleChange}
           name="message"
         ></textarea>
       </div>
       <Button
+        disabled={loading}
         className="transition-all py-4 px-6 duration-150 bg-secondary hover:text-white hover:bg-secondary font-semibold mt-4 self-end rounded text-white"
         onClick={handleSubmit}
       >
         Get Quote
+        {loading && <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-black"></div>}
       </Button>
     </div>
   );

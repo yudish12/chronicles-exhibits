@@ -6,8 +6,9 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { submitGetFreeDesignForm } from "@/server/actions/forms";
 
-const GetFreeDesignForm = () => {
+const GetFreeDesignForm = ({setOpen}) => {
   const [countryCode, setCountryCode] = useState("us");
+  const [loading,setLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -186,10 +187,12 @@ const GetFreeDesignForm = () => {
           onChange={handleChange}
         />
         <Button
+          disabled={loading}
           onClick={handleSubmit}
           className="w-1/3 mx-auto bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
         >
           Send Enquiry
+          {loading && <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-black"></div>}
         </Button>
       </div>
     </div>

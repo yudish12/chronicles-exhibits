@@ -169,7 +169,7 @@ export default function BoothTable() {
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
                     <Link
-                      href={`/booth/code/${booth.booth_code}`}
+                      href={`/${booth.booth_size.name}-trade-show-booth/${booth.booth_code}`}
                       target="_blank"
                     >
                       <Button variant="outline" size="icon">

@@ -12,9 +12,11 @@ import {
   SelectItem,
   SelectTrigger,
 } from "./ui/select";
+import { toast } from "sonner";
 
-const ScheduleCallForm = () => {
+const ScheduleCallForm = ({ setOpen }) => {
   const [countryCode, setCountryCode] = useState("us");
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     country: "",
     email: "",
@@ -70,10 +72,25 @@ const ScheduleCallForm = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-    const resp = await submitScheduleCallForm(formData, "home");
-    console.log(resp);
+    setLoading(true);
+    try {
+      e.preventDefault();
+      console.log("Form Data Submitted:", formData);
+      const resp = await submitScheduleCallForm(formData, "home");
+
+      if (!resp.success) {
+        toast.error("Failed to submit form. Please try again later.");
+        return;
+      }
+      toast.success("Enquiry submitted successfully.");
+      if (setOpen) {
+        setOpen(false);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -185,10 +202,12 @@ const ScheduleCallForm = () => {
           onChange={handleChange}
         />
         <Button
+          disabled={loading}
           onClick={handleSubmit}
           className="w-1/3 mx-auto col-span-2 bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
         >
           Send Enquiry
+          {loading && <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-black"></div>}
         </Button>
       </div>
     </div>

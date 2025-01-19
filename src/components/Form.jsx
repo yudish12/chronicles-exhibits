@@ -6,9 +6,12 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { submitCallForm } from "@/server/actions/forms";
 import { UploadButton } from "@uploadthing/react";
+import { toast } from "sonner";
+import InputFile from "./ui/input-file";
 
-const EnquiryForm = () => {
+const EnquiryForm = ({setOpen}) => {
   const [countryCode, setCountryCode] = useState("us");
+  const [loading,setLoading] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
     company : "",
@@ -18,7 +21,7 @@ const EnquiryForm = () => {
     eventName: "",
     eventCity: "",
     budget: "",
-    file: "",
+    file: [],
     message: "",
   });
 
@@ -51,10 +54,39 @@ const EnquiryForm = () => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-    const resp = await submitCallForm(formData, "home");
-    console.log(resp);
+    setLoading(true);
+    try {
+      e.preventDefault();
+      const ApiData = new FormData();
+      ApiData.append("name", formData.name);
+      ApiData.append("email", formData.email);
+      ApiData.append("phone", formData.phoneNumber);
+      ApiData.append("message", formData.message);
+      ApiData.append("budget", formData.budget);
+      formData.file.forEach((file) => {
+        ApiData.append("files", file);
+      });
+      ApiData.append("company", formData.company);
+      ApiData.append("eventName", formData.eventName);
+      ApiData.append("eventCity", formData.eventCity);
+      ApiData.append("boothSize", formData.boothSize);    
+      const resp = await submitCallForm(ApiData, "home");
+      console.log(resp);
+
+      if (!resp.success) {
+        toast.error("Failed to submit form. Please try again later.");
+        return;
+      }
+      toast.success("Enquiry submitted successfully.");
+      if (setOpen){
+        setOpen(false);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to submit form. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -129,13 +161,7 @@ const EnquiryForm = () => {
           required
           name="budget"
         />
-        <Input
-          className="border-[#CACACA] text-secondary placeholder:text-secondary/70 "
-          type="file"
-          placeholder="Upload resources (optional)"
-          onChange={(e) => setFormData({ ...formData, file: e.target.value })}
-          name="file"
-        />
+        <InputFile value={formData.file} onChange={(e)=> setFormData({ ...formData, file: e })} />
         <textarea
           rows={4}
           className="border col-span-2 p-2 border-[#CACACA] placeholder:text-secondary/70 rounded-lg"
@@ -148,6 +174,7 @@ const EnquiryForm = () => {
           className="w-1/3 mx-auto col-span-2 bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
         >
           Get Quote
+          {loading && <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-black"></div>}
         </Button>
       </div>
     </div>

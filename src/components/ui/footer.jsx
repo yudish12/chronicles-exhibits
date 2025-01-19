@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogTrigger } from "./dialog";
@@ -5,6 +6,7 @@ import EnquiryForm from "../Form";
 import ScheduleCallForm from "../ScheduleCallForm";
 import { Button } from "./button";
 import GetFreeDesignForm from "../GetFreeDesignForm";
+import { useState } from "react";
 
 const SocialIconContainer = ({ children }) => {
   return (
@@ -15,6 +17,10 @@ const SocialIconContainer = ({ children }) => {
 };
 
 export default function Footer() {
+  const [scheduleCallOpen, setScheduleCallOpen] = useState(false);
+  const [getFreeDesignOpen, setGetFreeDesignOpen] = useState(false);
+  const [boothEnquiryOpen, setBoothEnquiryOpen] = useState(false);
+
   return (
     <div className="bg-secondary py-6 px-8 md:py-10 md:px-12 sm:px-8 lg:px-20">
       <div className=" py-8 md:py-10 rounded-lg grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
@@ -243,14 +249,14 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Dialog>
+              <Dialog open={boothEnquiryOpen} onOpenChange={setBoothEnquiryOpen}>
                 <DialogTrigger asChild>
                   <div className="hover:underline text-lg cursor-pointer">
                     Get Quote
                   </div>
                 </DialogTrigger>
                 <DialogContent className="">
-                  <EnquiryForm />
+                  <EnquiryForm setOpen={setBoothEnquiryOpen} />
                 </DialogContent>
               </Dialog>
               {/* <Link className="hover:underline text-lg" href="/get-booth-quotation">
@@ -261,26 +267,26 @@ export default function Footer() {
               {/* <Link className="hover:underline text-lg" href="/schedule-a-call">
                 Schedule A Call
               </Link> */}
-              <Dialog>
+              <Dialog open={scheduleCallOpen} onOpenChange={setScheduleCallOpen}>
                 <DialogTrigger asChild>
                   <div className="hover:underline text-lg cursor-pointer">
                     Schedule A Call
                   </div>
                 </DialogTrigger>
                 <DialogContent className="">
-                  <ScheduleCallForm />
+                  <ScheduleCallForm setOpen={setScheduleCallOpen} />
                 </DialogContent>
               </Dialog>
             </li>
             <li>
-              <Dialog>
+              <Dialog open={getFreeDesignOpen} onOpenChange={setGetFreeDesignOpen}>
                 <DialogTrigger asChild>
                   <div className="hover:underline text-lg cursor-pointer">
                     Get Free 3D Quotation
                   </div>
                 </DialogTrigger>
                 <DialogContent className="max-h-[700px] overflow-auto">
-                  <GetFreeDesignForm />
+                  <GetFreeDesignForm setOpen={setGetFreeDesignOpen} />
                 </DialogContent>
               </Dialog>
             </li>

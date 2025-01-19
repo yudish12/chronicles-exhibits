@@ -145,7 +145,7 @@ const Page = async ({ params }) => {
               </Link>
             </div>
 
-            <WebsitePopup />
+            <WebsitePopup website={data.data.website} eventName={eventName} />
             <div
               style={{ transitionDuration: "500ms" }}
               className="group bg-white hover:bg-[#B0CB1F] cursor-pointer shadow-two   p-6 flex items-center gap-5"
@@ -182,7 +182,7 @@ const Page = async ({ params }) => {
               </Button>
             </DialogTrigger>
             <DialogContent className="w-full">
-              <BoothSizeForm />
+              <BoothSizeForm eventCity={eventCity} eventName={eventName} date={startDate} />
             </DialogContent>
           </Dialog>
         </div>

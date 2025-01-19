@@ -48,7 +48,7 @@ const BoothByCode = async ({ params }) => {
 
   return (
     <>
-      <SubHeader />
+      {/* <SubHeader /> */}
       <Header />
       {/* <div>
 

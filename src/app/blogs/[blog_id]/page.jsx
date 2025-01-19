@@ -113,7 +113,7 @@ const Blogpage = async ({ params }) => {
             </div>
 
             {/* Enquiry Form */}
-            <BlogForm />
+            <BlogForm source={blog_slug} />
           </div>
         </div>
       </div>

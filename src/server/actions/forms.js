@@ -4,7 +4,7 @@ import { EmailService } from "../services/mailer/email-service";
 import FormSubmission from "../models/form-submissions";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import { findBlogById } from "./blogs";
-export const submitCallForm = async (fields, page_source) => {
+export const submitCallForm = async (formData, page_source) => {
   try {
     const schemaKeys = {
       name: "",
@@ -23,17 +23,32 @@ export const submitCallForm = async (fields, page_source) => {
       callDate: "",
       callTime: "",
     };
-    const normalizedFields = { ...schemaKeys, ...fields, page_source };
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const message = formData.get("message");
+    const budget = formData.get("budget");
+    const fileData = formData.getAll("files"); 
+    if(!name || !email || !phone || !message || !budget) {
+      return { error: "Please fill all the fields" };
+    }
+    const company = formData.get("company");
+    const eventName = formData.get("eventName");
+    const eventCity = formData.get("eventCity");
+    const boothSize = formData.get("boothSize");
+    const normalizedFields = { ...schemaKeys, name, email, phone, message, budget, company, eventName, eventCity, boothSize, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
-    const email = new EmailService("home", "get-quote");
-    const resp = await email.send(
-      fields,
-      `Get a Quote form filled from page: ${page_source}`
+    const mail = new EmailService("home", "get-quote");
+    const resp = await mail.send(
+      {name, email, phone, message, budget, company, eventName, eventCity, boothSize,},
+      `Get a Quote form filled from page: ${page_source}`,
+      fileData
     );
-    return resp;
+    return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error submitting form:", error);
+    return getActionFailureResponse(error);
   }
 };
 export const submitScheduleCallForm = async (fields, page_source) => {
@@ -63,9 +78,10 @@ export const submitScheduleCallForm = async (fields, page_source) => {
       fields,
       `Get a Quote form filled from page: ${page_source}`
     );
-    return resp;
+    return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error submitting form:", error);
+    return getActionFailureResponse(error);
   }
 };
 export const submitGetFreeDesignForm = async (fields, page_source) => {
@@ -97,46 +113,66 @@ export const submitGetFreeDesignForm = async (fields, page_source) => {
       fields,
       `Get a Quote form filled from page: ${page_source}`
     );
-    return resp;
+    return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error submitting form:", error);
+    return getActionFailureResponse(error);
   }
 };
-export const submitBoothForm = async (fields, page_source) => {
+export const submitBoothForm = async (formdata, page_source) => {
   try {
     const schemaKeys = {
-      name: "",
-      email: "",
-      phoneNumber: "",
-      eventName: "",
-      eventCity: "",
-      file: "",
-      message: "",
+      name: "", //
+      email: "", //
+      phoneNumber: "",//
+      eventName: "",//
+      eventCity: "",//
+      file: "",//
+      message: "",//
       page_source: "",
-      company: "",
-      boothSize: "",
+      company: "",//
+      boothSize: "",//
       exhibition_name: "",
       callDate: "",
       callTime: "",
-      country: "",
-      budget: "",
-      eventDate: "",
+      country: "",//
+      budget: "",//
+      eventDate: "",//
     };
-    const normalizedFields = { ...schemaKeys, ...fields, page_source };
+    const name = formdata.get("name");
+    const email = formdata.get("email");
+    const phone = formdata.get("phone");
+    const message = formdata.get("message");
+    const budget = formdata.get("budget");
+    const fileData = formdata.getAll("files"); 
+    if(!name || !email || !phone || !message || !budget) {
+      return { error: "Please fill all the fields" };
+    }
+    const company = formdata.get("company");
+    const eventName = formdata.get("eventName");
+    const eventCity = formdata.get("eventCity");
+    const boothSize = formdata.get("boothSize");
+    const country = formdata.get("country");
+    const eventDate = formdata.get("eventDate");
+
+    const normalizedFields = { ...schemaKeys, name, email, phone, message, budget, company, eventName, eventCity, boothSize, country, eventDate, page_source:eventName };
+    const fields = { name, email, phone, message, budget, company, eventName, eventCity, boothSize, country, eventDate };
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
-    const email = new EmailService("home", "booth-enquiry");
-    const resp = await email.send(
+    const mail = new EmailService("home", "booth-enquiry");
+    const resp = await mail.send(
       fields,
-      `Get a Quote form filled from page: ${page_source}`
+      `Get a Quote form filled from page: ${eventName}`,
+      fileData
     );
-    return resp;
+    return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error submitting form:", error);
+    return getActionFailureResponse(error);
   }
 };
 
-export const submitBlogForm = async (fields, page_source) => {
+export const submitBlogForm = async (formData, page_source) => {
   try {
     const schemaKeys = {
       name: "",
@@ -154,17 +190,29 @@ export const submitBlogForm = async (fields, page_source) => {
       callTime: "",
       country: "",
     };
+
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const message = formData.get("message");
+    const boothSize = formData.get("boothSize");
+    const fileData = formData.getAll("files"); 
+
+    const fields = { name, email, phone, message, boothSize };
+
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
-    const email = new EmailService("blog", "blog-enquiry");
-    const resp = await email.send(
+    const mail = new EmailService("blog", "blog-enquiry");
+    const resp = await mail.send(
       fields,
-      `Get a Quote form filled from page: ${page_source}`
+      `Get a Quote form filled from page: ${page_source}`,
+      fileData
     );
-    return resp;
+    return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error submitting form:", error);
+    return getActionFailureResponse(error);
   }
 };
 export const submitBoothCodeForm = async (fields, page_source) => {
@@ -199,9 +247,10 @@ export const submitBoothCodeForm = async (fields, page_source) => {
       fields,
       `Get a Quote form filled from page: ${page_source}`
     );
-    return resp;
+    return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error submitting form:", error);
+    return getActionFailureResponse(error);
   }
 };
 
@@ -277,13 +326,75 @@ export async function eventWebsiteForm(
     const email = new EmailService(page_source, "booth-code");
     const resp = await email.send(
       { name, email, phone, websiteUrl },
-      `Get a Quote form filled from page: ${page_source}`
+      `Website form for event ${page_source} filled from page: ${page_source}`
     );
     return getActionSuccessResponse({ name, email, phone, websiteUrl });
   } catch (error) {
     console.log(error);
     return getActionFailureResponse(error);
   }
+}
+
+export async function contactUsForm(formData) {
+ 
+  try {
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const phone = formData.get("phone");
+    const message = formData.get("message");
+    const budget = formData.get("budget");
+    const fileData = formData.getAll("files"); 
+    if(!name || !email || !phone || !message || !budget) {
+      return { error: "Please fill all the fields" };
+    }
+
+    for(const file of fileData){
+      console.log(file)
+    }
+
+    const schemaKeys = {
+      name: "",
+      email: "",
+      phoneNumber: "",
+      eventName: "",
+      eventCity: "",
+      file: "",
+      message: "",
+      page_source: "",
+      company: "",
+      boothSize: "",
+      exhibition_name: "",
+      callDate: "",
+      callTime: "",
+      country: "",
+      rentalQuotation: false,
+      purchaseRequest: false,
+      customizationRequest: false,
+    };
+    const normalizedFields = {
+      ...schemaKeys,
+      name,
+      email,
+      phone,
+      message,
+      budget,
+    };
+    const formSubmission = new FormSubmission(normalizedFields);
+    await formSubmission.save();
+    const mail = new EmailService("contact-us", "contact-us");
+    const resp = await mail.send(
+      { name, email, phone, message, budget },
+      `Get a Quote form filled from page: contact-us`,
+      fileData
+    );
+    console.log(resp)
+    return getActionSuccessResponse({ name, email, phone, message, budget });
+
+  } catch (error) {
+    console.log(error); 
+    return getActionFailureResponse(error);
+  }
+
 }
 
 export const downloadFormSubmissions = async (start_date, end_date) => {
