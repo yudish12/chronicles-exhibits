@@ -97,7 +97,7 @@ const GetFreeDesignForm = ({setOpen}) => {
       }
 
       toast.success("Enquiry submitted successfully.");
-      
+      setOpen(false);
     } catch (error) {
       console.log(error);
       toast.error("Failed to submit form. Please try again later.");
