@@ -40,7 +40,7 @@ export const submitCallForm = async (formData, page_source) => {
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
     const mail = new EmailService("home", "get-quote");
-    const resp = await mail.send(
+    const resp = mail.send(
       {name, email, phone, message, budget, company, eventName, eventCity, boothSize,},
       `Get a Quote form filled from page: ${page_source}`,
       fileData
@@ -74,7 +74,7 @@ export const submitScheduleCallForm = async (fields, page_source) => {
     await formSubmission.save();
     const email = new EmailService("home", "schedule-call");
 
-    const resp = await email.send(
+    const resp = email.send(
       fields,
       `Get a Quote form filled from page: ${page_source}`
     );
@@ -122,7 +122,7 @@ export const submitGetFreeDesignForm = async (formData, page_source) => {
     await formSubmission.save()
     const mail = new EmailService("home", "free-design");
 
-    const resp = await mail.send(
+    const resp = mail.send(
       fields,
       `Get a Quote form filled from page: ${page_source}`,
       fileData
@@ -174,7 +174,7 @@ export const submitBoothForm = async (formdata, page_source) => {
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
     const mail = new EmailService("home", "booth-enquiry");
-    const resp = await mail.send(
+    const resp = mail.send(
       fields,
       `Get a Quote form filled from page: ${eventName}`,
       fileData
@@ -218,7 +218,7 @@ export const submitBlogForm = async (formData, page_source) => {
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
     const mail = new EmailService("blog", "blog-enquiry");
-    const resp = await mail.send(
+    const resp = mail.send(
       fields,
       `Get a Quote form filled from page: ${page_source}`,
       fileData
@@ -257,7 +257,7 @@ export const submitBoothCodeForm = async (fields, page_source) => {
     console.log(formSubmission);
     console.log("data saved ", normalizedFields, await formSubmission.save());
     const email = new EmailService("booth", "booth-code");
-    const resp = await email.send(
+    const resp = email.send(
       fields,
       `Get a Quote form filled from page: ${page_source}`
     );
@@ -338,7 +338,7 @@ export async function eventWebsiteForm(
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
     const email = new EmailService(page_source, "booth-code");
-    const resp = await email.send(
+    const resp = email.send(
       { name, email, phone, websiteUrl },
       `Website form for event ${page_source} filled from page: ${page_source}`
     );
@@ -396,7 +396,7 @@ export async function contactUsForm(formData) {
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
     const mail = new EmailService("contact-us", "contact-us");
-    const resp = await mail.send(
+    const resp = mail.send(
       { name, email, phone, message, budget },
       `Get a Quote form filled from page: contact-us`,
       fileData
