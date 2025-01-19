@@ -1,12 +1,13 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
 
-const ThankYouPage = () => {
+const ThankYouContent = () => {
   const searchParams = useSearchParams();
   const [websiteUrl, setWebsiteUrl] = useState("");
 
@@ -18,8 +19,6 @@ const ThankYouPage = () => {
   }, [searchParams]);
 
   return (
-    <>
-    <Header/>
     <div className="min-h-[80vh] flex flex-col items-center justify-center bg-gray-100 text-center">
       <div className="max-w-3xl bg-white shadow-lg p-8 rounded-lg">
         <h1 className="text-4xl font-bold text-gray-900">THANK YOU!</h1>
@@ -47,16 +46,32 @@ const ThankYouPage = () => {
 
       <footer className="mt-12 text-gray-800 text-center">
         <p className="text-lg font-semibold">
-          Free support: <a href="tel:+17169417998" className="text-primary font-bold">+1 716 941 7998</a>
+          Free support:{" "}
+          <a href="tel:+17169417998" className="text-primary font-bold">
+            +1 716 941 7998
+          </a>
           <br />
-          Email: <a href="mailto:info@chronicleexhibits.com" className="text-primary font-bold">
-          info@chronicleexhibits.com
-
+          Email:{" "}
+          <a
+            href="mailto:info@chronicleexhibits.com"
+            className="text-primary font-bold"
+          >
+            info@chronicleexhibits.com
           </a>
         </p>
       </footer>
     </div>
-    <Footer/>
+  );
+};
+
+const ThankYouPage = () => {
+  return (
+    <>
+      <Header />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ThankYouContent />
+      </Suspense>
+      <Footer />
     </>
   );
 };

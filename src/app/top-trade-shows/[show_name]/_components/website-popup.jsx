@@ -17,6 +17,7 @@ import { toast } from "sonner";
 
 const WebsitePopup = ({ website, eventName }) => {
   const [open, setOpen] = React.useState(false);
+  const [loading,setLoading] = React.useState(false);
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -31,8 +32,8 @@ const WebsitePopup = ({ website, eventName }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-
+    e.preventDefault(); 
+    setLoading(true);
     if (!name || !email || !phone) {
       toast.error("Please fill all fields");
       return;
@@ -66,6 +67,8 @@ const WebsitePopup = ({ website, eventName }) => {
     } catch (error) {
       console.error("Form submission failed:", error);
       toast.error("Failed to submit the form. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -104,6 +107,7 @@ const WebsitePopup = ({ website, eventName }) => {
               <Label className="text-base">Name</Label>
               <Input
                 onChange={handleChange}
+                disabled={loading}
                 value={name}
                 name="name"
                 required
@@ -115,6 +119,7 @@ const WebsitePopup = ({ website, eventName }) => {
               <Label className="text-base">Email</Label>
               <Input
                 type="email"
+                disabled={loading}
                 name="email"
                 onChange={handleChange}
                 value={email}
@@ -128,6 +133,7 @@ const WebsitePopup = ({ website, eventName }) => {
               <Input
                 type="tel"
                 name="phone"
+                disabled={loading}
                 onChange={handleChange}
                 value={phone}
                 required
@@ -136,10 +142,12 @@ const WebsitePopup = ({ website, eventName }) => {
               />
             </div>
             <button
+              disabled={loading}
               type="submit"
-              className="w-full bg-primary text-white py-3 px-4 rounded-md text-lg font-semibold hover:bg-[#A01830] transition-colors"
+              className="w-full bg-primary text-white py-3 px-4 rounded-md text-lg font-semibold hover:bg-black transition-colors"
             >
               VIEW WEBSITE DETAILS
+              {loading && <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>}
             </button>
           </div>
         </form>
