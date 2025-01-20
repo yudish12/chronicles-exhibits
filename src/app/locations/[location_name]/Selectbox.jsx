@@ -27,7 +27,7 @@ const Selectbox = ({
   console.log(size);
 
   return (
-    <div className="flex flex-col sm:flex-row relative mt-6 gap-4  sm:bg-gray-400/20 rounded-full p-4 justify-center w-4/5 mx-auto">
+    <div className="flex flex-col sm:flex-row relative mt-6 gap-4  sm:bg-gray-400/20 rounded-full p-4 justify-center items-center w-4/5 mx-auto">
       <Select
         onValueChange={(value) => {
           const city = majorExhibitingCities.data.find(

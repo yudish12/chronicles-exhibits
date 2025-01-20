@@ -15,7 +15,7 @@ const BlogsPagination = ({
 }) => {
   return (
     <>
-      <div className="booth-design-bg px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
+      <div className="booth-design-bg px-6 sm:px-8 md:px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
         <h3 className="text-white heading-font text-[2.35rem] font-bold">
           {pageData.fields[0].value}
         </h3>

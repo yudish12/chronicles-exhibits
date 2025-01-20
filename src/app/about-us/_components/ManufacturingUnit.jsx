@@ -36,12 +36,12 @@ const ManufacturingUnit = async ({ fields }) => {
   ];
   return (
     <>
-      <div className="flex flex-col items-center justify-center py-10 px-8">
-        <div className="text-secondary text-xl-1 sm:text-3xl heading-font py-4  sm:px-0 ">
+      <div className="flex flex-col items-center justify-center py-10 px-4 sm:px-8">
+        <div className="text-secondary text-xl-1 sm:text-3xl heading-font py-4 text-center sm:px-0 ">
           <h2>{fields[26].value}</h2>
         </div>
 
-        <p className="text-secondary xl:mx-44 lg:mx-32 md:mx-20 sm:mx-10 mx-4 text-center sm:px-0 px-2 py-2 mb-2 sm:py-0 ">
+        <p className="text-secondary xl:mx-44 w-full lg:mx-32 md:mx-20 sm:mx-10 mx-4 text-center sm:px-0 px-2 py-2 mb-2 sm:py-0 ">
           {fields[27].value}
         </p>
 

@@ -38,11 +38,11 @@ const page = async () => {
         <h1 className="text-[2.1rem] uppercase font-semibold text-white text-center heading-font">
           {data.fields[0].value}
         </h1>
-        <p className="text-[17.5px] text-white mx-0 sm:mx-20 md:mx-28 lg:mx-52 text-center">
+        <p className="text-[17.5px] text-white mx-0 sm:mx-16 md:mx-20 lg:mx-52 text-center">
           {data.fields[1].value}
         </p>
       </div>
-      <div className="px-4 sm:pr-8 pr-6 md:pr-12 lg:pr-20 flex lg:justify-center lg:flex-row flex-col gap-12 pt-16 pb-20">
+      <div className="px-6 sm:px-8 md:px-12 lg:pr-20 flex items-center lg:justify-center lg:flex-row flex-col gap-12 pt-16 pb-20">
         <Image
           src={data.fields[3].value}
           alt={data.fields[4].value ?? "booth design"}
