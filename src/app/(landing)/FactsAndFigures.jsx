@@ -6,7 +6,7 @@ import Counter from "./FactsCounter";
 const static_data = [
   {
     id: 1,
-    iconImage: "/projects-svgrepo-com.svg",
+    iconImage: "/projects-completed.jpeg",
     number: "2931",
     text: "Projects Completed",
     hoverIconImage: "/icons/Location-green.svg",
@@ -17,7 +17,7 @@ const static_data = [
   },
   {
     id: 2,
-    iconImage: "/partners-svgrepo-com.svg",
+    iconImage: "/trusted-partner.jpeg",
     number: "3717",
     text: "Trusted Partners",
     hoverIconImage: "/icons/Person.svg",
@@ -28,7 +28,7 @@ const static_data = [
   },
   {
     id: 3,
-    iconImage: "/exhibition-museum-svgrepo-com.svg",
+    iconImage: "/covered-countries.jpeg",
     number: "9182",
     text: "Featured Trade Shows",
     hoverIconImage: "/services-svgrepo-com.svg",
@@ -39,7 +39,7 @@ const static_data = [
   },
   {
     id: 4,
-    iconImage: "/icons/Fire.svg",
+    iconImage:"/booths-designed.jpeg",
     number: "10382",
     text: "Booths Designed",
     hoverIconImage: "/icons/Like.png",
@@ -56,7 +56,7 @@ const FactsAndFigures = ({ fields }) => {
     data = [
       {
         id: 1,
-        iconImage: "/projects-svgrepo-com.svg",
+        iconImage: static_data[0].iconImage,
         number: fields[27].value ?? "Projects Completed",
         text: fields[28].value,
 
@@ -64,7 +64,7 @@ const FactsAndFigures = ({ fields }) => {
       },
       {
         id: 2,
-        iconImage: "/partners-svgrepo-com.svg",
+        iconImage: static_data[1].iconImage,
         number: fields[29].value,
         text: fields[30].value,
 
@@ -72,14 +72,14 @@ const FactsAndFigures = ({ fields }) => {
       },
       {
         id: 3,
-        iconImage: "/exhibition-museum-svgrepo-com.svg",
+        iconImage: static_data[2].iconImage,
         number: fields[31].value,
         text: fields[32].value,
         bgColor: "bg-white",
       },
       {
         id: 4,
-        iconImage: "/icons/Fire.svg",
+        iconImage: static_data[3].iconImage,
         number: fields[33].value,
         text: fields[34].value,
         bgColor: "bg-white",
@@ -115,11 +115,11 @@ const FactsAndFigures = ({ fields }) => {
             <CardContent className="flex flex-col px-4 xs:px-6 justify-center items-center text-center h-full">
               <div className="text-3xl transition-all duration-300 pt-8">
                 <Image
-                  width={100}
-                  height={100}
+                  width={80}
+                  height={80}
                   alt="icon"
                   src={item.iconImage}
-                  className="w-12 h-12 block pt-2"
+                  className="w-10 h-10 block pt-2"
                 />
               </div>
               <Counter targetNumber={item.number} />

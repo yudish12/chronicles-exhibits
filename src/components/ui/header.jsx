@@ -95,7 +95,7 @@ const Header = () => {
         <Image
           className="max-h-[60px] min-h-[40px] object-fill"
           alt="logo"
-          src="/chronicle-tm-white.svg"
+          src="/chronicle-logo-2.svg"
           width={110}
           height={80}
         />
@@ -145,7 +145,7 @@ const Header = () => {
           <div className="flex justify-between items-center mb-6">
             <Image
               alt="logo"
-              src="/chronicle-logo.svg"
+              src="/chronicle-logo-2.svg"
               width={110}
               height={80}
             />
