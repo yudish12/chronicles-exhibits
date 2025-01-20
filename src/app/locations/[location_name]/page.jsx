@@ -161,7 +161,12 @@ const Page = async ({ params }) => {
                 height={300}
                 className="transition-transform w-full h-full duration-300 transform hover:scale-110"
                 src={item.image}
-                alt={item.image_alt_text}
+                alt={`${item.image_alt_text} ${city?.replaceAll("-", " ") // Replace hyphens with spaces
+                      ?.split(" ") // Split the string into words
+                      ?.map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                      ) // Capitalize the first letter of each word
+                      ?.join(" ") ?? ""}`}
               />
             </div>
           ))}
