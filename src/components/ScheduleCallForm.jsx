@@ -33,9 +33,9 @@ const ScheduleCallForm = ({ setOpen }) => {
   const generateTimeSlots = () => {
     const timeSlots = [];
     for (let i = 1; i < 24; i += 2) {
-      const start = i.toString().padStart(2, "0");
-      const end = ((i + 2) % 24).toString().padStart(2, "0");
-      timeSlots.push(`${start}-${end}`);
+      const start = i.toString().padStart(2, "0") + ".00";
+      const end = ((i + 2) % 24).toString().padStart(2, "0") + ".00";
+      timeSlots.push(`${start} - ${end}`);
     }
     return timeSlots;
   };
