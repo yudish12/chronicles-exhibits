@@ -14,14 +14,14 @@ const Products = async ({ bgColor, title, subTitle, location }) => {
           : "product-bg w-full flex flex-col items-center px-4 py-14"
       )}
     >
-      <h1
+      <h2
         className={cn(
           "text-center heading-font-700 text-white text-3xl font-bold",
           bgColor === "white" && "text-black"
         )}
       >
         {title ?? "EYE CATCHING TRADE SHOW BOOTH DESIGNS"}
-      </h1>
+      </h2>
       <h1 className="text-center heading-font-700 text-white mb-2 text-3xl font-bold">
         {title ? <></> : "FOR SUCCESSFUL EXHIBITIONS"}
       </h1>

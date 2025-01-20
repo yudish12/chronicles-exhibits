@@ -91,9 +91,9 @@ const FactsAndFigures = ({ fields }) => {
 
   return (
     <div className="bg-white py-16 flex flex-col justify-center items-center ">
-      <div className="text-secondary heading-font-700 text-2xl leading-10 uppercase font-bold">
+      <h3 className="text-secondary heading-font-700 text-2xl leading-10 uppercase font-bold">
         {fields ? fields[25].value : "Facts And Figures"}
-      </div>
+      </h3>
       <div className="hidden mx-52 lg:mx-80 text-center md:block py-4">
         {fields
           ? fields[26].value

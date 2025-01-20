@@ -94,17 +94,11 @@ const Header = () => {
       <Link href="/" className="relative flex items-center">
         <Image
           className="max-h-[60px] min-h-[40px] object-fill"
-          alt="logo"
+          alt="Chronicle Exhibits LLC logo"
           src="/chronicle-logo-2.svg"
           width={110}
           height={80}
         />
-        <span
-          style={{ lineHeight: "4px", fontSize: "8px", letterSpacing: "1px" }}
-          className="text-white absolute top-5 right-4"
-        >
-          TM
-        </span>
       </Link>
 
       {/* Desktop Navigation */}
@@ -144,7 +138,7 @@ const Header = () => {
           {/* Mobile Menu Header */}
           <div className="flex justify-between items-center mb-6">
             <Image
-              alt="logo"
+              alt="Chronicle Exhibits LLC logo"
               src="/chronicle-logo-2.svg"
               width={110}
               height={80}

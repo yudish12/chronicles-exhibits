@@ -5,10 +5,6 @@ export const headerRoutes = [
   },
   {
     link: "booth-sizes",
-    name: "Booth Rental",
-  },
-  {
-    link: "/trade-show-booth-displays-designs",
     name: "Trade Show Display",
   },
   {

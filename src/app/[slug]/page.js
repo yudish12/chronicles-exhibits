@@ -35,9 +35,9 @@ const Page = async ({ params }) => {
     return (
       <>
         <div className="booth-design-bg md:px-12 sm:px-8 px-6 lg:px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
-          <h3 className="text-white text-center uppercase heading-font text-[2.35rem] font-bold">
+          <h1 className="text-white text-center uppercase heading-font text-[2.35rem] font-bold">
             {data.title}
-          </h3>
+          </h1>
         </div>
 
         <div className="bg-background  text-gray-800 ">
@@ -61,17 +61,17 @@ const Page = async ({ params }) => {
               ></div>
             </div>
 
-            <div className="space-y-8 w-full">
+            <div className="w-full">
               {/* Related Blogs */}
-              <div className="flex flex-col justify-center items-center py-4">
+              <div className="flex flex-col  justify-center items-center py-4">
                 <h3 className="text-2xl font-semibold py-2 text-[#B0CB1F]">
                   Related Blogs
                 </h3>
-                <div className="lg:space-y-8 gap-x-6 gap-y-6 lg:block grid grid-cols-1 sm:grid-cols-2">
+                <div className="gap-x-6 gap-y-6 lg:block grid grid-cols-1 sm:grid-cols-2">
                   {blogsToBeMapped.map((blog, index) => (
                     <Card
                       key={index}
-                      className="shadow-one relative h-full lg:max-w-[350px] max-w-[250px] w-full flex flex-col justify-between grid-cols-1"
+                      className="shadow-one lg:mt-4 relative h-full lg:max-w-[350px] w-full 2xl:max-w-[420px] flex flex-col justify-between grid-cols-1"
                     >
                       {/* Image Section */}
                       <div className="w-full border-b-2 border-primary">
@@ -129,9 +129,9 @@ const Page = async ({ params }) => {
     return (
       <>
         <div className="detail-trade-show-bg flex flex-col items-center gap-8 px-6 sm:px-20 py-12">
-          <h2 className=" text-4xl text-center text-white uppercase font-semibold heading-font">
+          <h1 className=" text-4xl text-center text-white uppercase font-semibold heading-font">
             {eventData.event_name}
-          </h2>
+          </h1>
           {!isExpired ? (
             <Timer targetDate={startDate} />
           ) : (
@@ -170,9 +170,9 @@ const Page = async ({ params }) => {
         />
         <div className="flex flex-col px-[40px] lg:flex-row lg:px-20 gap-12 py-12">
           <div className="w-full lg:w-[70%] bg-white sm:p-6 p-8  rounded-xl shadow-one">
-            <h3 className="text-2xl heading-font text-secondary font-semibold">
+            <h2 className="text-2xl heading-font text-secondary font-semibold">
               {eventData.title}
-            </h3>
+            </h2>
             <div
               id="show_name_desc"
               dangerouslySetInnerHTML={{ __html: eventData.body }}

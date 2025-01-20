@@ -30,7 +30,7 @@ const BlogsPagination = ({
           {blogs.map((blog, index) => (
             <Card
               key={index}
-              className="flex border max-w-[650px] 2xl:max-w-[740px] border-secondary flex-col bg-white/60 min-h-[230px] md:flex-row items-start shadow-two rounded-lg overflow-hidden py-2"
+              className="flex border max-w-[650px] 2xl:max-w-[740px] border-secondary flex-col bg-white/60 min-h-[250px] md:flex-row items-start shadow-two rounded-lg overflow-hidden py-2"
             >
               <div className="lg:w-[50%] xl:h-full min-h-[260px] sm:min-h-[20px] h-full lg:h-4/5 p-4">
                 <Image

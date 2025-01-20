@@ -73,7 +73,7 @@ const BlogForm = ({source}) => {
   }, []);
 
   return (
-    <div className="mt-6 lg:w-[85%] w-full mx-auto space-y-4 bg-white shadow-one p-10 py-4  rounded-lg flex flex-col justify-center items-center ">
+    <div className="mt-6 lg:max-w-[350px] 2xl:max-w-[420px] w-full mx-auto space-y-4 bg-white shadow-one p-10 py-4  rounded-lg flex flex-col justify-center items-center ">
       <div className="w-[98%] h-[90%] rounded-lg py-2 ">
         <h3 className="text-2xl text-center heading-font text-secondary ">
           GET BOOTH QUOTE

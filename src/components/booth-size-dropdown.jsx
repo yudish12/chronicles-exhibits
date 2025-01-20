@@ -25,9 +25,9 @@ const BoothsizeDropdown = ({ className }) => {
     <div className={cn("relative group", className)}>
       <button
         onClick={() => router.push("/trade-show-booth-displays-designs")}
-        className="text-white flex hover:text-gray-400"
+        className="text-white flex hover:text-primary"
       >
-        Exhibit Rentals
+        Trade Show Display
         <ChevronDown className="ml-1 self-center h-4 w-4" />
       </button>
       {/* Dropdown */}

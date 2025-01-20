@@ -11,12 +11,12 @@ const Faq = ({ fields }) => {
   return (
     <>
       <div id="" className="px-6 bg-gray-200 md:px-20 py-8 md:py-12">
-        <h4
+        <h2
           style={{ lineHeight: "42px" }}
           className="heading-font lg:mx-52 xl:mx-72 text-secondary text-xl md:text-3xl text-center font-semibold mb-4 md:mb-6"
         >
           {fields[41].value}
-        </h4>
+        </h2>
         <p className="text-center lg:mx-36 xl:mx-56 text-base">
           {fields[42].value}
         </p>

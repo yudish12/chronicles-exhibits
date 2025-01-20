@@ -60,7 +60,7 @@ const Parallax = ({ fields }) => {
   );
 
   return (
-    <div className="bg-background px-6 sm:px-8 md:px-12 lg:px-20 py-16">
+    <div className="bg-background max-w-[1500px] mx-auto px-6 sm:px-8 md:px-12 lg:px-20 py-16">
       <h3 className="text-secondary font-semibold text-center text-[2rem] heading-font">
         {fields[17].value}
       </h3>

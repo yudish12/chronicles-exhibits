@@ -51,12 +51,12 @@ const page = async () => {
           height={800}
         />
         <div className="flex flex-col w-full lg:w-1/2 gap-6 ">
-          <h3
+          <h2
             style={{ lineHeight: "1.2" }}
             className="text-secondary uppercase font-bold heading-font text-[1.7rem]"
           >
             {data.fields[2].value}
-          </h3>
+          </h2>
           <div className="bg-transparent flex flex-col gap-4 overflow-hidden mb-6">
             <Accordion
               questions={questions}
@@ -68,9 +68,9 @@ const page = async () => {
         </div>
       </div>
       <div className="product-bg w-full flex flex-col items-center py-14">
-        <h2 className="text-center uppercase heading-font text-white text-[2rem] font-bold">
+        <h3 className="text-center uppercase heading-font text-white text-[2rem] font-bold">
           {data.fields[13].value}
-        </h2>
+        </h3>
         <p className="text-center px-6 text-gray-300 text-md pt-4">
           {data.fields[14].value}
         </p>
@@ -106,7 +106,7 @@ const page = async () => {
         </h3>
         <div
           id="show_name_desc"
-          className="md:mx-36 mx-8 sm:mx-16"
+          className="lg:mx-36 mx-6 xs:mx-8 md:mx-12"
           dangerouslySetInnerHTML={{ __html: data.fields[16].value }}
         ></div>
       </div>

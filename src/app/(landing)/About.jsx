@@ -13,9 +13,9 @@ const About = ({ fields }) => {
       <div id="about" className="bg-white mt-4 lg:mt-0 pt-2 sm:pt-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-            <p className="mt-4 uppercase text-3xl sm:text-3xl heading-font-700 font-bold text-secondary">
+            <h1 className="mt-4 uppercase text-3xl sm:text-3xl heading-font-700 font-bold text-secondary">
               {fields[6].value}
-            </p>
+            </h1>
           </div>
           <div className="mt-6 bg-white">
             <div className="py-2 sm:p-4">

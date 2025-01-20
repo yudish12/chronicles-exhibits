@@ -75,9 +75,9 @@ const Page = async ({ params }) => {
       {/* <SubHeader /> */}
       <Header />
       <div className="detail-trade-show-bg flex flex-col items-center gap-8 px-6 sm:px-20 py-12">
-        <h2 className=" text-4xl text-center text-white uppercase font-semibold heading-font">
+        <h1 className=" text-4xl text-center text-white uppercase font-semibold heading-font">
           {data.data.event_name}
-        </h2>
+        </h1>
         {!isExpired ? (
           <Timer targetDate={startDate} />
         ) : (
@@ -115,9 +115,9 @@ const Page = async ({ params }) => {
       />
       <div className="flex flex-col px-6 sm:px-8 md:px-[40px] lg:flex-row lg:px-20 gap-12 py-12">
         <div className="w-full lg:w-[70%] bg-white sm:p-6 p-8  rounded-xl shadow-one">
-          <h3 className="text-2xl heading-font text-secondary font-semibold">
+          <h2 className="text-2xl heading-font text-secondary font-semibold">
             {data.data.title}
-          </h3>
+          </h2>
           <div
             id="show_name_desc"
             dangerouslySetInnerHTML={{ __html: data.data.body }}

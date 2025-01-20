@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const OfficeCard = ({ title, address, email, phone }) => {
   return (
-    <div className="bg-white shadow-md p-6 rounded-lg border border-gray-300 max-w-sm mx-auto">
+    <div className="bg-white shadow-md p-6 rounded-lg border border-gray-300 w-full mx-auto">
       {/* Title */}
       <h3 className="text-lg font-bold text-gray-800 mb-4">{title}</h3>
       

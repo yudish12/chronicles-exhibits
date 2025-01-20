@@ -1,6 +1,6 @@
 /* Style for <p> tags */
 #show_name_desc p {
-  font-size: 18px; /* text-[16px] */
+  font-size: 16px; /* text-[16px] */
   margin-top: 1rem; /* mt-4 */
   line-height: 26px; /* leading-[26px] */
   text-align: justify;

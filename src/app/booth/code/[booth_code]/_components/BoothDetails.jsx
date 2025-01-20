@@ -270,11 +270,11 @@ const CarouselImages = ({
   handleThumbnailClick,
 }) => {
   return (
-    <div className="flex flex-col lg:mt-16 items-start gap-8">
+    <div className="flex flex-col  lg:mt-16 items-start gap-8">
       <h3 className="text-[1.4rem]  lg:block hidden text-secondary font-semibold ">
         {boothCode}
       </h3>
-      <div className="w-full mt-6 lg:mt-0 grid lg:grid-cols-1 grid-cols-3  gap-6">
+      <div className="w-full mt-6 md:w-full lg:mt-0 grid lg:grid-cols-1 grid-cols-3 sm:max-w-[600px] mx-auto lg:max-w-[6500px] gap-6">
         {images.map((src, index) => (
           <Image
             width={150}
@@ -283,7 +283,7 @@ const CarouselImages = ({
             src={src}
             alt={`Thumbnail ${index + 1}`}
             className={cn(
-              "w-full grayscale h-20 rounded cursor-pointer",
+              "grayscale w-full sm:h-24 lg:h-20 rounded cursor-pointer",
               index === selectedIndex ? "grayscale-0" : ""
             )}
             onClick={() => handleThumbnailClick(index)}
@@ -566,7 +566,7 @@ export function BoothDetails({ size, boothCode, boothData }) {
 
   return (
     <>
-      <div className="bg-background gap-12 hidden lg:flex flex-wrap justify-center pr-16 py-7 px-32">
+      <div className="bg-background  gap-12 hidden lg:flex flex-wrap justify-center pr-16 py-7 px-32">
         {/*Thumbnails */}
         <CarouselImages
           boothCode={boothCode}
