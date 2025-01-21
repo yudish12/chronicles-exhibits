@@ -74,7 +74,7 @@ const EnquiryForm = () => {
     <form onSubmit={handleSubmit} className="bg-white shadow-xl rounded-lg p-8 space-y-6">
       <h2 className="text-3xl font-bold text-gray-800 mb-6">Send Us Your Enquiry</h2>
       <p className="text-gray-600 mb-8">
-        Looking for a brilliant partner for trade show booth design and construction? Fill out the form below, and we'll
+        Looking for a brilliant partner for trade show booth design and construction? Fill out the form below, and we&apos;ll
         get back to you shortly!
       </p>
       <div className="space-y-4">
