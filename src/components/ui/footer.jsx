@@ -304,8 +304,8 @@ export default function Footer() {
             <Image
               src={"/image 1.png"}
               alt="QR Code"
-              width={150}
-              height={150}
+              width={100}
+              height={100}
               className="object-contain"
             />
             </div>
