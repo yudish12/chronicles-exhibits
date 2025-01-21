@@ -1,149 +1,143 @@
-"use client";
-import React from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import InputFile from "@/components/ui/input-file";
-import { contactUsForm } from "@/server/actions/forms";
-import { toast } from "sonner";
+"use client"
+import React from "react"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import InputFile from "@/components/ui/input-file"
+import { contactUsForm } from "@/server/actions/forms"
+import { toast } from "sonner"
 
 const EnquiryForm = () => {
-  const [files, setFiles] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
+  const [files, setFiles] = React.useState([])
+  const [loading, setLoading] = React.useState(false)
 
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
     phoneNumber: "",
     budget: "",
-    message: ""
-  });
+    message: "",
+  })
 
-  const { name, email, phoneNumber, message, budget } = formData;
+  const { name, email, phoneNumber, message, budget } = formData
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
 
   const onFileChange = (files) => {
-    console.log(files)
-    setFiles(files);
-  };
+    setFiles(files)
+  }
 
   const handleSubmit = async (e) => {
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
     try {
-      const formData = new FormData();
+      const formData = new FormData()
 
       files.forEach((file) => {
-        formData.append("files", file);
-      });
+        formData.append("files", file)
+      })
 
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append("phone", phoneNumber);
-      formData.append("message", message);
-      formData.append("budget", budget);
+      formData.append("name", name)
+      formData.append("email", email)
+      formData.append("phone", phoneNumber)
+      formData.append("message", message)
+      formData.append("budget", budget)
 
-      const resp = await contactUsForm(formData);
+      const resp = await contactUsForm(formData)
 
       if (!resp.success) {
-        toast.error("Error submitting form. Please try again later.");
-        return;
+        toast.error("Error submitting form. Please try again later.")
+        return
       }
 
-      toast.success("Enquiry submitted successfully.");
-      setLoading(false);
+      toast.success("Enquiry submitted successfully.")
+      setLoading(false)
       setFormData({
         name: "",
         email: "",
         phoneNumber: "",
-        eventName: "",
-        eventCity: "",
-        file: "",
+        budget: "",
         message: "",
-        url: "",
-      });
-      setFiles([]);
-
+      })
+      setFiles([])
     } catch (error) {
-      console.log(error);
-      toast.error("Failed to submit form. Please try again later.");
+      console.log(error)
+      toast.error("Failed to submit form. Please try again later.")
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   }
 
   return (
-    <div className="bg-white shadow-lg flex flex-col justify-center items-center py-10 px-6 sm:px-12 lg:px-16 rounded-lg max-w-4xl mx-auto">
-      {/* Heading */}
-      <div className="text-center mb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 leading-tight">
-          ENQUIRE FOR THE BEST EXHIBIT DISPLAYS IN USA!
-        </h1>
-        <p className="text-gray-600 mt-4">
-          Looking for a brilliant partner for trade show booth design and
-          construction? There is no need to look further, put your query here
-          now!
-        </p>
-      </div>
-
-      {/* Form Inputs */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 w-full">
+    <form onSubmit={handleSubmit} className="bg-white shadow-xl rounded-lg p-8 space-y-6">
+      <h2 className="text-3xl font-bold text-gray-800 mb-6">Send Us Your Enquiry</h2>
+      <p className="text-gray-600 mb-8">
+        Looking for a brilliant partner for trade show booth design and construction? Fill out the form below, and we'll
+        get back to you shortly!
+      </p>
+      <div className="space-y-4">
         <Input
-          value={formData.name}
+          value={name}
           onChange={handleChange}
           required
           name="name"
           placeholder="Enter your name"
-          className="bg-white border border-gray-300 placeholder:text-gray-500 text-gray-800 py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
+          className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent"
         />
         <Input
-          value={formData.email}
+          value={email}
           onChange={handleChange}
           required
           name="email"
+          type="email"
           placeholder="Email ID"
-          className="bg-white border border-gray-300 placeholder:text-gray-500 text-gray-800 py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
+          className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent"
         />
         <Input
-          value={formData.phoneNumber}
+          value={phoneNumber}
           onChange={handleChange}
           required
           name="phoneNumber"
           placeholder="Phone Number"
-          className="bg-white border border-gray-300 placeholder:text-gray-500 text-gray-800 py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
+          className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent"
         />
         <Input
-          value={formData.budget}
+          value={budget}
           onChange={handleChange}
           required
           name="budget"
           placeholder="Budget"
-          className="bg-white border border-gray-300 placeholder:text-gray-500 text-gray-800 py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
+          className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent"
         />
         <textarea
           rows={4}
-          value={formData.message}
+          value={message}
           onChange={handleChange}
           required
           name="message"
           placeholder="Additional information that you would like to add..."
-          className="col-span-1 sm:col-span-2 bg-white border border-gray-300 placeholder:text-gray-500 text-gray-800 py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
+          className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent"
         ></textarea>
         <InputFile value={files} onChange={onFileChange} />
       </div>
-
-      {/* Submit Button */}
-      <div className="mt-8">
-        <Button onClick={handleSubmit} className="bg-secondary text-white font-bold text-lg px-6 py-3 rounded-lg hover:bg-[#B0CB1F] hover:text-secondary transition-all"> 
-          Submit your design
-          {loading && <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>}
+      <div className="flex justify-center">
+        <Button
+          type="submit"
+          disabled={loading}
+          className="bg-secondary hover:bg-secondary-dark text-white font-bold text-lg px-8 py-3 rounded-md transition-all duration-300 transform hover:scale-105"
+        >
+          {loading ? (
+            <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
+          ) : (
+            "Submit your enquiry"
+          )}
         </Button>
       </div>
-    </div>
-  );
-};
+    </form>
+  )
+}
 
-export default EnquiryForm;
+export default EnquiryForm
+
