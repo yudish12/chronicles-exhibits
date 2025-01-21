@@ -42,15 +42,17 @@ const page = async () => {
           {data.fields[1].value}
         </p>
       </div>
-      <div className="px-6 sm:px-8 md:px-12 lg:pr-20 flex items-center lg:justify-center lg:flex-row flex-col gap-12 pt-16 pb-20">
-        <Image
-          src={data.fields[3].value}
-          alt={data.fields[4].value ?? "booth design"}
-          className="lg:w-1/2 w-full max-h-[500px] lg:max-h-[350px] xl:max-h-[520px]"
-          width={800}
-          height={800}
-        />
-        <div className="flex flex-col w-full lg:w-1/2 gap-6 ">
+      <div className="px-6 sm:px-8 md:px-12 lg:pr-20 flex items-start lg:justify-center lg:flex-row flex-col gap-12 pt-16 pb-20">
+        <div className="lg:w-1/2 w-full lg:max-h-[350px] xl:max-h-[520px] flex-shrink-0">
+          <Image
+            src={data.fields[3].value}
+            alt={data.fields[4].value ?? "booth design"}
+            className="w-full h-auto"
+            width={800}
+            height={800}
+          />
+        </div>
+        <div className="flex flex-col w-full lg:w-1/2 gap-6">
           <h2
             style={{ lineHeight: "1.2" }}
             className="text-secondary uppercase font-bold heading-font text-[1.7rem]"
@@ -67,6 +69,7 @@ const page = async () => {
           </div>
         </div>
       </div>
+
       <div className="product-bg w-full flex flex-col items-center py-14">
         <h3 className="text-center uppercase heading-font text-white text-[2rem] font-bold">
           {data.fields[13].value}

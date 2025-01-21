@@ -100,7 +100,6 @@ const Header = () => {
           height={80}
         />
       </Link>
-
       {/* Desktop Navigation */}
       <div className="hidden lg:flex items-center gap-8">
         {headerRoutes.map((route, index) => (

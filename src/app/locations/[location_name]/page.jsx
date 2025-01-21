@@ -106,13 +106,13 @@ const Page = async ({ params }) => {
           </DialogContent>
         </Dialog>
       </div>
-      <div className="bg-background px-6 sm:px-8 md:px-10 py-16 lg:px-20 flex flex-col gap-8">
+      <div className="bg-background px-6 sm:px-8 md:px-10 py-16 lg:px-20 xl:px-28 2xl:px-36 flex flex-col gap-8">
         <h2 className="text-center max-w-full sm:w-[600px] lg:w-[800px] mx-auto break-words uppercase leading-10 font-semibold text-secondary text-[2.1rem] heading-font">
           {data[0].fields[2].value}
           {data[0].fields[3].value}
         </h2>
 
-        <p className="text-[17px] text-center text-balance mx-0 sm:mx-8 md:mx-16 lg:mx-36">
+        <p className="text-[17px] text-balance text-justify lg:text-center ">
           {data[0].fields[4].value} {data[0].fields[5].value}
         </p>
       </div>
@@ -120,7 +120,7 @@ const Page = async ({ params }) => {
         <Image
           height={300}
           width={200}
-          className="w-full sm:w-2/3 mx-auto lg:w-1/2 rounded-lg max-h-[520px]"
+          className="w-full max-w-[700px] mx-auto lg:w-1/2 rounded-lg max-h-[520px]"
           src={data[0].fields[6].value}
           alt={data[0].fields[7].value}
         />
@@ -143,14 +143,14 @@ const Page = async ({ params }) => {
           </Link>
         </div>
       </div>
-      <div className="py-8 px-6 sm:p-12 lg:px-20 xl:px-36  pb-10">
+      <div className="py-8 px-6 sm:p-12 lg:px-20 xl:px-20 2xl:px-36  pb-10">
         <h2 className="uppercase text-3xl heading-font-600 text-primary text-center font-semibold">
           {data[0].fields[11].value}
         </h2>
-        <p className="text-center md:mx-28 lg:mx-44 mt-7">
+        <p className="text-center md:mx-20 lg:mx-44 mt-7">
           {data[0].fields[12].value}
         </p>
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-x-4 gap-y-4">
+        <div className="mt-10 grid 2xl:max-w-[1400px] mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-x-4 gap-y-4">
           {displayedData.map((item, index) => (
             <div
               key={index}
