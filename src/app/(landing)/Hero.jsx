@@ -30,7 +30,7 @@ const Hero = ({ fields }) => {
             <DialogTrigger asChild>
               <Button
                 style={{ transitionDuration: "500ms" }}
-                className="rounded-full w-1/6 font-semibold mx-auto px-6 py-5 bg-primary body-bold text-base  hover:bg-white hover:text-secondary border-2 border-secondary text-secondary"
+                className="rounded-full transition-500 w-1/6 font-semibold mx-auto px-6 py-5 bg-primary body-bold text-base  hover:bg-white hover:text-secondary border-2 border-secondary text-secondary"
               >
                 Get Quote
               </Button>

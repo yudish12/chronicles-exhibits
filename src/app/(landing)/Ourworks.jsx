@@ -32,7 +32,7 @@ const Ourworks = async ({ title, subtitle }) => {
         <Link className="flex" href="/portfolio">
           <Button
             style={{ transitionDuration: "500ms" }}
-            className="bg-primary rounded-full body-bold py-5 hover:bg-white hover:text-secondary mx-auto border-2 border-secondary font-semibold text-secondary"
+            className="bg-primary transition-500 rounded-full body-bold py-5 hover:bg-white hover:text-secondary mx-auto border-2 border-secondary font-semibold text-secondary"
           >
             View Complete Portfolio
           </Button>

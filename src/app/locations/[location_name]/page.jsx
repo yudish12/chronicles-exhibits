@@ -136,7 +136,7 @@ const Page = async ({ params }) => {
           <Link href={"/contact-us"}>
             <Button
               style={{ transitionDuration: "500ms" }}
-              className="rounded-full sm:mx-auto lg:mx-0 w-[30%] mx-auto px-16 py-6 font-thin text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4 bg-transparent border-primary"
+              className="rounded-full sm:mx-auto transition-500 lg:mx-0 w-[30%] mx-auto px-16 py-6 font-thin text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4 bg-transparent border-primary"
             >
               {data[0].fields[10].value}
             </Button>
@@ -174,7 +174,7 @@ const Page = async ({ params }) => {
         <Link className="flex mt-10" href="/portfolio">
           <Button
             style={{ transitionDuration: "500ms" }}
-            className="bg-transparent hover:bg-secondary hover:text-white mx-auto border-2 border-secondary font-semibold text-secondary text-sm sm:text-base"
+            className="bg-transparent hover:bg-secondary transition-500 hover:text-white mx-auto border-2 border-secondary font-semibold text-secondary text-sm sm:text-base"
           >
             View Portfolio
           </Button>

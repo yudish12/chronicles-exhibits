@@ -84,7 +84,7 @@ const TradeshowSearch = ({ shows, setShows, totalPages, pages, limit }) => {
             </p>
             <Button
               style={{ transitionDuration: "500ms" }}
-              className="rounded-full  mx-auto px-8 text-lg hover:bg-white border border-black hover:text-black bg-primary text-black "
+              className="rounded-full transition-500 mx-auto px-8 text-lg hover:bg-white border border-black hover:text-black bg-primary text-black "
             >
               View Other Trade Shows
             </Button>

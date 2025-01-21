@@ -1,6 +1,8 @@
 "use client";
 import React, { useRef } from 'react'
-import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
+import dynamic from "next/dynamic";
+
+const TawkMessengerReact = dynamic(() => import('@tawk.to/tawk-messenger-react'), { ssr: false });
 
 const Tawkto = () => {
     const tawkMessengerRef = useRef();
@@ -9,11 +11,16 @@ const Tawkto = () => {
         tawkMessengerRef.current.minimize();
     };
 
+    if (!window) return null
+
     return (
-        <TawkMessengerReact
-            propertyId="678a08f2825083258e06b98f"
-            widgetId="1ihpj5th0"
-            ref={tawkMessengerRef} />
+        <div className="fixed bottom-0 right-0">
+            <TawkMessengerReact
+                propertyId="678a08f2825083258e06b98f"
+                widgetId="1ihpj5th0"
+                ref={tawkMessengerRef}
+            />
+        </div>
     )
 }
 

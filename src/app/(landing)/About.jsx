@@ -57,7 +57,7 @@ const About = ({ fields }) => {
                 <Link href="/custom-trade-show-booth-ideas">
                   <Button
                     style={{ transitionDuration: "500ms" }}
-                    className="rounded-full  mx-auto px-8 text-lg hover:bg-white border border-black hover:text-black bg-primary text-black "
+                    className="rounded-full transition-500 mx-auto px-8 text-lg hover:bg-white border border-black hover:text-black bg-primary text-black "
                   >
                     {fields[10].value}
                   </Button>
@@ -92,7 +92,7 @@ const About = ({ fields }) => {
                 <Link href="/trade-show-booth-displays-designs">
                   <Button
                     style={{ transitionDuration: "500ms" }}
-                    className="rounded-full  mx-auto px-8 text-lg hover:bg-white border border-black hover:text-black bg-primary text-black "
+                    className="rounded-full transition-500 mx-auto px-8 text-lg hover:bg-white border border-black hover:text-black bg-primary text-black "
                   >
                     {fields[15].value}
                   </Button>
@@ -125,7 +125,7 @@ const About = ({ fields }) => {
                 <Link href="/portfolio">
                   <Button
                     style={{ transitionDuration: "500ms" }}
-                    className="rounded-full  mx-auto px-8 text-lg hover:bg-white border border-black hover:text-black bg-primary text-black "
+                    className="rounded-full transition-500 mx-auto px-8 text-lg hover:bg-white border border-black hover:text-black bg-primary text-black "
                   >
                     {fields[20].value}
                   </Button>

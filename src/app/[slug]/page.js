@@ -188,13 +188,13 @@ const Page = async ({ params }) => {
             <div className="grid grid-cols-1 gap-y-6 border-secondary/70">
               <div
                 style={{ transitionDuration: "500ms" }}
-                className="group cursor-pointer shadow-two hover:bg-[#B0CB1F]  bg-white border-secondary/70 p-6 flex items-center gap-5"
+                className="group cursor-pointer transition-500 shadow-two hover:bg-[#B0CB1F]  bg-white border-secondary/70 p-6 flex items-center gap-5"
               >
                 <Image src={"/email.svg"} width={30} height={30} alt="cube" />
                 <Link
                   href={"mailto:example@example.com"}
                   style={{ transitionDuration: "500ms" }}
-                  className="text-secondary text-center text-lg heading-font font-semibold"
+                  className="text-secondary transition-500 text-center text-lg heading-font font-semibold"
                 >
                   Contact E-mail
                 </Link>
@@ -203,7 +203,7 @@ const Page = async ({ params }) => {
               <WebsitePopup website={eventData.website} eventName={eventName} />
               <div
                 style={{ transitionDuration: "500ms" }}
-                className="group bg-white hover:bg-[#B0CB1F] cursor-pointer shadow-two   p-6 flex items-center gap-5"
+                className="group bg-white transition-500 hover:bg-[#B0CB1F] cursor-pointer shadow-two   p-6 flex items-center gap-5"
               >
                 <Image
                   src={"/location-pin.svg"}
@@ -213,7 +213,7 @@ const Page = async ({ params }) => {
                 />
                 <h4
                   style={{ transitionDuration: "500ms" }}
-                  className="text-secondary text-center text-lg heading-font font-semibold"
+                  className="text-secondary transition-500 text-center text-lg heading-font font-semibold"
                 >
                   {eventCity} | USA
                 </h4>

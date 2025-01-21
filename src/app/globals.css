@@ -692,7 +692,7 @@ input:focus + .flag-dropdown {
   align-items: center;
   padding: 18px 16px; /* Match padding */
   background-color: black !important;
-  color: #b0cb1f;
+  color: #b0cb1f!important;
   font-size: 0.875rem; /* Text size of 14px */
   font-weight: bold;
   text-transform: uppercase;
@@ -741,7 +741,7 @@ input:focus + .flag-dropdown {
 }
 
 .schedule-btn:hover {
-  color: white; /* Change text color on hover */
+  color: white!important; /* Change text color on hover */
 }
 
 /* Keyframes for the border animation */
@@ -756,4 +756,8 @@ input:focus + .flag-dropdown {
   syntax: "<angle>";
   inherits: true;
   initial-value: 0turn;
+}
+
+.transition-500 {
+  transition-duration: 500ms!important;
 }

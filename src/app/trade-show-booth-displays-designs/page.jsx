@@ -52,11 +52,11 @@ const page = async () => {
         </p>
       </div>
       <div className="px-6 sm:px-8 md:px-12 lg:pr-20 flex items-start lg:justify-center lg:flex-row flex-col gap-12 pt-16 pb-20">
-        <div className="lg:w-1/2 w-full lg:max-h-[350px] xl:max-h-[520px] flex-shrink-0">
+        <div className="lg:w-1/2 w-full lg:max-h-[350px] xl:max-h-[520px] 2xl:max-h-[600px] flex-shrink-0">
           <Image
             src={data.fields[3].value}
             alt={data.fields[4].value ?? "booth design"}
-            className="w-full h-auto"
+            className="w-full lg:max-h-[350px] xl:max-h-[520px] 2xl:max-h-[600px]"
             width={800}
             height={800}
           />

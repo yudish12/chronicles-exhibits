@@ -57,7 +57,7 @@ async function FeaturedPage({ params }) {
                   {pageData.data.fields[1].value}
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-h-[80vh] overflow-y-auto p-6 rounded-lg bg-white shadow-lg">
+              <DialogContent className="max-h-[80vh] transition-500 overflow-y-auto p-6 rounded-lg bg-white shadow-lg">
                 {/* <GetFreeDesignForm />
                  */}
                 <EnquiryForm />

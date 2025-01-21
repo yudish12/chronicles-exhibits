@@ -33,7 +33,7 @@ const BoothGrid = ({ fields, size, booths }) => {
               <Link href={`/${size}-trade-show-booth/${booth.booth_code}`}>
                 <Button
                   style={{ transitionDuration: "500ms" }}
-                  className="mt-4 bg-transparent hover:bg-secondary border-2 border-[#B0CB1F] hover:border-secondary text-[#B0CB1F] hover:text-white px-6 py-2 font-bold text-sm"
+                  className="mt-4 bg-transparent transition-500 hover:bg-secondary border-2 border-[#B0CB1F] hover:border-secondary text-[#B0CB1F] hover:text-white px-6 py-2 font-bold text-sm"
                 >
                   Contact Us
                 </Button>

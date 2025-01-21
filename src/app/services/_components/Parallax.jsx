@@ -86,6 +86,7 @@ const Parallax = ({ fields }) => {
             src={"/cube.png"}
             width={70}
             height={70}
+            className="transition-500"
             alt="icon"
             style={{ transitionDuration: "500ms" }}
           />

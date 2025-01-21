@@ -1,7 +1,8 @@
 import localFont from "next/font/local";
-import { GoogleTagManager } from '@next/third-parties/google'
+
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { GoogleTagManager } from '@next/third-parties/google'
 import NextTopLoader from "nextjs-toploader";
 import "@uploadthing/react/styles.css";
 import Tawkto from "@/components/Tawkto";
@@ -26,7 +27,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <GoogleTagManager gtmId="GTM-NR3F6S9R" />
-      <body>
+      <body >
         <Tawkto/>
         <Toaster />
         <NextTopLoader />
