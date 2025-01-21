@@ -293,12 +293,22 @@ export default function Footer() {
           </ul>
           <div className="mt-6">
             <h3 className="font-bold text-xl mb-3 text-primary">Address</h3>
-            <p className="text-base leading-relaxed">
+            {/* <p className="text-base leading-relaxed">
               8465 W. Sahara Ave., Suite 111 Unit #1183
               <br />
               Las Vegas, NV 89117, <br />
               United States
-            </p>
+            </p> */}
+            <div className="bg-white"
+            style={{ display: 'inline-block', lineHeight: 0 }}>
+            <Image
+              src={"/image 1.png"}
+              alt="QR Code"
+              width={150}
+              height={150}
+              className="object-contain"
+            />
+            </div>
             <h3 className="font-bold text-lg my-4 text-primary">Follow Us</h3>
             <div className="flex items-center mt-4 gap-3">
               <SocialIconContainer>

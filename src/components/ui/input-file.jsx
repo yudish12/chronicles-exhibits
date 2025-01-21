@@ -17,7 +17,7 @@ const InputFile = ({ className, value, onChange }) => {
           )}
         >
           <button className="border my-2 px-3 border-black">Choose File</button>
-          <span className="text-gray-500">Upload files for booth designs</span>
+          <span className="ml-2 text-gray-500">Upload files for booth designs</span>
         </div>
       </Label>
       {value && value.length > 0 && 

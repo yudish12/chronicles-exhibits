@@ -64,7 +64,7 @@ const Page = async () => {
         <div className="w-full lg:w-1/2">
           <h3
             style={{ lineHeight: "1.2" }}
-            className="heading-font text-center lg:text-left uppercase font-semibold text-secondary text-[2rem]"
+            className=" heading-font text-center lg:text-left uppercase font-semibold text-secondary text-[2rem]"
           >
             {data.fields[4].value}
           </h3>
@@ -78,7 +78,7 @@ const Page = async () => {
         <div className="w-full lg:w-1/2">
           <h3
             style={{ lineHeight: "1.2" }}
-            className="heading-font text-center lg:text-left uppercase font-semibold text-secondary text-lg sm:text-xl md:text-[2rem]"
+            className=" heading-font text-center lg:text-left uppercase font-semibold text-secondary text-[2rem]"
           >
             {data.fields[8].value}
           </h3>
