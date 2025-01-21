@@ -116,10 +116,10 @@ const FactsAndFigures = ({ fields }) => {
               <div className="text-3xl transition-all duration-300 pt-8">
                 <Image
                   width={80}
-                  height={80}
+                  height={100}
                   alt="icon"
                   src={item.iconImage}
-                  className="w-10 h-10 block pt-2"
+                  className="w-10 h-12 block pt-2"
                 />
               </div>
               <Counter targetNumber={item.number} />
