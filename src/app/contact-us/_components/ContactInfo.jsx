@@ -28,11 +28,6 @@ const ContactInfo = ({ fields }) => {
       <h2 className="text-3xl font-bold text-gray-800 mb-6">Reach Out To Us</h2>
       <div className="space-y-4">
         <ContactCard
-          icon="/Whatsapp.png"
-          title="WhatsApp"
-          content={fields[0].value}
-        />
-        <ContactCard
           icon="/Phone.png"
           title="Phone"
           content={fields[1].value}
