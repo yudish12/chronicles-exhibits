@@ -43,18 +43,6 @@ const ContactInfo = ({ fields }) => {
           content={fields[3].value}
         />
       </div>
-      <div className="mt-8 flex flex-col items-center bg-white p-6 rounded-lg shadow-xl">
-        <Image
-          src={fields[4].value || "/placeholder.svg"}
-          alt="QR Code"
-          width={150}
-          height={150}
-          className="object-contain"
-        />
-        <p className="mt-4 text-lg text-secondary font-semibold">
-          Scan QR Code
-        </p>
-      </div>
     </div>
   );
 };

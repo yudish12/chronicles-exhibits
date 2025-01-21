@@ -99,6 +99,7 @@ const EnquiryForm = () => {
           value={phoneNumber}
           onChange={handleChange}
           required
+          type="number"
           name="phoneNumber"
           placeholder="Phone Number"
           className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent"
