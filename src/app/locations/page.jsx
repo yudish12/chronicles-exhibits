@@ -87,15 +87,15 @@ const Page = async () => {
           {data.fields[2].value}
         </p>
       </div>
-      <div className="us-bg flex  items-center justify-center md:hidden py-6 px-6 text-lg sm:text-xl ">
+      <div className="flex  items-center justify-center md:hidden py-6 px-6 text-lg sm:text-xl ">
         <p className="text-center font-bold">{data.fields[1].value}</p>
       </div>
-      <div className="us-bg flex items-center justify-center md:hidden px-2   ">
+      <div className="flex items-center justify-center md:hidden px-2   ">
         <h1 className="font-bold text-center py-4  px-4 text-lg sm:text-xl ">
           {data.fields[2].value}
         </h1>
       </div>
-      <div className="us-bg px-4 sm:px-20 py-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="px-4 sm:px-20 py-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
         {majorExhibitingCities.map((city, index) => (
           <Link
             href={`/trade-show-booth-rentals-${city

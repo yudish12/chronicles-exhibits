@@ -761,3 +761,7 @@ input:focus + .flag-dropdown {
 .transition-500 {
   transition-duration: 500ms!important;
 }
+
+.tawk-icon-right > img {
+  display: none;
+}
