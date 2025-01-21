@@ -83,7 +83,7 @@ const Parallax = ({ fields }) => {
           }}
         >
           <Image
-            src={"/cube.png"}
+            src={"/service-cube.png"}
             width={70}
             height={70}
             className="transition-500"

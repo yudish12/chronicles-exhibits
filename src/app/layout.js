@@ -6,6 +6,7 @@ import { GoogleTagManager } from '@next/third-parties/google'
 import NextTopLoader from "nextjs-toploader";
 import "@uploadthing/react/styles.css";
 import Tawkto from "@/components/Tawkto";
+import WhatsAppWidget from "@/components/ui/whatsapp-icon";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
         <Toaster />
         <NextTopLoader />
         {children}
+        <WhatsAppWidget/>
       </body>
     </html>
   );

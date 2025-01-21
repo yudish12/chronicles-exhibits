@@ -1,15 +1,22 @@
 "use client";
 import React, { useRef } from 'react'
+import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 
 const TawkMessengerReact = dynamic(() => import('@tawk.to/tawk-messenger-react'), { ssr: false });
 
 const Tawkto = () => {
+    const pathname = usePathname();
+
     const tawkMessengerRef = useRef();
 
     const handleMinimize = () => {
         tawkMessengerRef.current.minimize();
     };
+
+    if (pathname.includes("/admin")) {
+        return null;
+    }
 
     return (
         <div className="fixed bottom-0 right-0">
