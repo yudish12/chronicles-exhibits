@@ -8,6 +8,16 @@ import WhyChooseUs from "./_components/WhyChooseUs";
 import ManufacturingUnit from "./_components/ManufacturingUnit";
 import { getSinglePage } from "@/server/actions/pages";
 import FactsAndFigures from "./_components/FactsAndFigures";
+
+export async function generateMetadata({ params }) {
+  const pageData = await getSinglePage({ name: "about-us" }, "meta_keywords meta_title meta_description");
+  return {
+    title: pageData?.data?.meta_title,
+    description: pageData?.data?.meta_description,
+    keywords: pageData?.data?.meta_keywords,
+  };
+}
+
 const page = async () => {
   const aboutusPageData = await getSinglePage({ name: "about-us" });
   const fields = aboutusPageData.data.fields;

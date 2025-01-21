@@ -30,9 +30,13 @@ export const getAllPages = async (skip, limit) => {
     return getActionFailureResponse(error, "toast");
   }
 };
-export const getSinglePage = async (query) => {
+export const getSinglePage = async (query, projection) => {
   try {
-    const data = await Pages.findOne(query).lean();
+    let q = Pages.findOne(query)
+    if(projection){
+      q = q.select(projection)
+    }
+    const data = await q.lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

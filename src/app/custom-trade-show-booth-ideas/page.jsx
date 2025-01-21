@@ -11,6 +11,15 @@ import "./style.css";
 import Ourworks from "../(landing)/Ourworks";
 import { getSinglePage } from "@/server/actions/pages";
 
+export async function generateMetadata({ params }) {
+  const pageData = await getSinglePage({ name: "custom-trade-show-booth-ideas" }, "meta_keywords meta_title meta_description");
+  return {
+    title: pageData?.data?.meta_title,
+    description: pageData?.data?.meta_description,
+    keywords: pageData?.data?.meta_keywords,
+  };
+}
+
 const Page = async () => {
   const { data } = await getSinglePage({
     name: "custom-trade-show-booth-ideas",

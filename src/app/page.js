@@ -13,6 +13,16 @@ import Footer from "@/components/ui/footer";
 import { getSinglePage } from "@/server/actions/pages";
 // import DownArrow from "./down-arrow";
 
+export async function generateMetadata({ params }) {
+  const homePageData = await getSinglePage({ name: "home" }, "meta_keywords meta_title meta_description");
+  console.log(homePageData.data)
+  return {
+    title: homePageData.data.meta_title,
+    description: homePageData.data.meta_description,
+    keywords: homePageData.data.meta_keywords,
+  };
+}
+
 const Hero = async () => {
   const homePageData = await getSinglePage({ name: "home" });
   console.log(homePageData);

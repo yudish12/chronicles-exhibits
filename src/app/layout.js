@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { GoogleTagManager } from '@next/third-parties/google'
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import NextTopLoader from "nextjs-toploader";
@@ -23,6 +24,7 @@ const geistMono = localFont({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="GTM-NR3F6S9R" />
       <body>
         <Toaster />
         <NextTopLoader />

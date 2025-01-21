@@ -6,6 +6,8 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { getAllPortfolios } from "@/server/actions/portfolio";
 import Lightbox from "./Lightbox";
+
+
 const Page = async () => {
   const ourWorksData = await getAllPortfolios();
   console.log(ourWorksData);

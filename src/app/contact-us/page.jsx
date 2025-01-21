@@ -8,6 +8,15 @@ import LocateUs from "./_components/LocateUs";
 import OtherOffices from "./_components/OtherOffices";
 import { getSinglePage } from "@/server/actions/pages";
 
+export async function generateMetadata({ params }) {
+  const pageData = await getSinglePage({ name: "contact-us" }, "meta_keywords meta_title meta_description");
+  return {
+    title: pageData?.data?.meta_title,
+    description: pageData?.data?.meta_description,
+    keywords: pageData?.data?.meta_keywords,
+  };
+}
+
 const Page = async () => {
   const contactUsPageData = await getSinglePage({ name: "contact-us" });
   const fields = contactUsPageData.data.fields;

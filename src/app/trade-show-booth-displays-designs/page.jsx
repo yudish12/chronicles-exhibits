@@ -9,6 +9,15 @@ import Link from "next/link";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import { getSinglePage } from "@/server/actions/pages";
 
+export async function generateMetadata({ params }) {
+  const pageData = await getSinglePage({ name: "trade-show-booth-displays-designs" }, "meta_keywords meta_title meta_description");
+  return {
+    title: pageData?.data?.meta_title,
+    description: pageData?.data?.meta_description,
+    keywords: pageData?.data?.meta_keywords,
+  };
+}
+
 const page = async () => {
   const boothsizes = await getAllBoothSizes();
   const cardData = boothsizes.data;

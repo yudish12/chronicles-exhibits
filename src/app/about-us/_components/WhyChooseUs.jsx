@@ -66,7 +66,7 @@ const WhyChooseUs = ({ fields }) => {
           height={250}
           alt={fields[5].value}
           src={fields[4].value}
-          className="min-h-[400px] rounded-lg "
+          className="min-h-[400px] max-h-[600px] rounded-lg "
         />
       </div>
     </div>
