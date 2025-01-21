@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import NextTopLoader from "nextjs-toploader";
 import "@uploadthing/react/styles.css";
+import Tawkto from "@/components/Tawkto";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <GoogleTagManager gtmId="GTM-NR3F6S9R" />
       <body>
+        <Tawkto/>
         <Toaster />
         <NextTopLoader />
         {children}
