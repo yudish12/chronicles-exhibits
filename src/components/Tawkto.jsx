@@ -11,8 +11,6 @@ const Tawkto = () => {
         tawkMessengerRef.current.minimize();
     };
 
-    if (!window) return null
-
     return (
         <div className="fixed bottom-0 right-0">
             <TawkMessengerReact
