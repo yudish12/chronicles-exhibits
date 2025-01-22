@@ -110,11 +110,11 @@ const Page = async () => {
           />
         </div>
         <h3 className="text-primary font-bold text-2xl mt-10">{city}</h3>
-        <p className="text-gray-600 text-sm">
+        {/* <p className="text-gray-600 text-sm">
           Discover trade show opportunities in {city}. Elevate your brand presence with top-tier booth designs.
-        </p>
+        </p> */}
         <button className="mt-4 bg-primary text-white px-6 py-2 rounded-full font-medium hover:bg-secondary transition-all">
-          Explore
+          View More
         </button>
       </div>
     </Link>
