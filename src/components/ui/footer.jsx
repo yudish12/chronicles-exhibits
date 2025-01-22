@@ -302,7 +302,7 @@ export default function Footer() {
             <div className="bg-white"
             style={{ display: 'inline-block', lineHeight: 0 }}>
             <Image
-              src={"/image 1.png"}
+              src={"/qr.jpeg"}
               alt="QR Code"
               width={100}
               height={100}
