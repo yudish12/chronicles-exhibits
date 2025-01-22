@@ -219,7 +219,7 @@ export default function Events() {
                 <TableCell className="text-center">
                   <div className="flex mx-auto justify-center space-x-2">
                     <Link
-                      href={`/top-trade-shows/${event.slug}`}
+                      href={`/${event.slug}`}
                       target="_blank"
                     >
                       <Button variant="outline" size="icon">

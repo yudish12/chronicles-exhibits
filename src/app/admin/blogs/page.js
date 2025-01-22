@@ -161,7 +161,7 @@ export default function Blogs() {
                 <TableCell>{blog.short_description}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
-                    <Link href={`/blog/${blog.slug}`} target="_blank">
+                    <Link href={`/${blog.slug}`} target="_blank">
                       <Button variant="outline" size="icon">
                         <Eye className="h-4 w-4" />
                         <span className="sr-only">View {blog.title}</span>
