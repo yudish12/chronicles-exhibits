@@ -20,6 +20,9 @@ export const generateMetadata = async ({}) => {
   return {
     title: data?.meta_title || "Default Title",
     description: data?.meta_description || "Default Description",
+    alternates: {
+      canonical: `https://chronicleexhibits.com/top-trade-shows/`,
+    },
     keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
   };
 };

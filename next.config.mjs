@@ -27,6 +27,10 @@ const nextConfig = {
         source: "/major-exhibiting-cities",
         destination: "/locations",
       },
+      {
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+      },
     ];
   },
   trailingSlash: true,

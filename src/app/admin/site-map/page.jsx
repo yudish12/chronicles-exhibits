@@ -17,39 +17,46 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from "@/components/ui/dialog";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 import { Card, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import Search from "@/components/ui/search";
 import { Pagination } from "../blogs/_components/Pagination";
+import { addUrl, deleteUrl, getUrls, updateUrl } from "@/server/actions/sitemap";
 
 export default function SitemapTable() {
-  const [sitemaps, setSitemaps] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
-  const [deletingSitemapId, setDeletingSitemapId] = React.useState(null);
-  const [currentSitemap, setCurrentSitemap] = React.useState(null);
+  const [sitemaps, setSitemaps] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [currentSitemap, setCurrentSitemap] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [searchValue, setSearchValue] = React.useState("");
+  const [searchValue, setSearchValue] = useState("");
   const limit = 6;
 
+  // Fetch sitemap URLs
   const fetchSitemaps = async (page = 1) => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/sitemap?page=${page}&limit=${limit}`);
-      const data = await response.json();
-      setSitemaps(data);
-      setTotalPages(Math.ceil(data.length / limit));
-      setLoading(false);
+      const response = await getUrls(page,limit);
+      
+      if(response.success){
+        console.log(response.data)
+        setSitemaps(response.data);
+        setTotalPages(response.totalPages);
+      }
+      else{
+        toast.error(response.message);
+      }
     } catch (error) {
       console.error("Error fetching sitemaps:", error);
       toast.error("Error fetching sitemaps");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -57,29 +64,66 @@ export default function SitemapTable() {
     fetchSitemaps(currentPage);
   }, [currentPage]);
 
+  // Open dialog for adding/editing sitemap
   const openDialog = (sitemap = null) => {
-    setCurrentSitemap(sitemap);
+    setCurrentSitemap(sitemap || { url: "", priority: "0.5", changefreq: "weekly" });
     setIsDialogOpen(true);
   };
 
-  const handleSubmit = async () => {
-    if (currentSitemap._id) {
-      await fetch(`/api/sitemap`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(currentSitemap),
-      });
-      toast.success("Sitemap updated successfully");
-    } else {
-      await fetch(`/api/sitemap`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(currentSitemap),
-      });
-      toast.success("Sitemap added successfully");
+  // Handle form submission for updating or adding a sitemap
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!currentSitemap?.url) {
+      toast.error("URL is required");
+      return;
     }
-    setIsDialogOpen(false);
-    fetchSitemaps(currentPage);
+    console.log(currentSitemap)
+
+    try {
+      if (currentSitemap._id) {
+        // Updating existing sitemap URL
+        const resp = await updateUrl(currentSitemap._id, currentSitemap.url);
+        if (resp.success) {
+          toast.success("Sitemap updated successfully");
+        } else {
+          toast.error(resp.message);
+        }
+      } else {
+        // Adding new sitemap URL
+        const response = await addUrl(currentSitemap.url);
+
+        if (response.success) {
+          toast.success("Sitemap added successfully");
+        } else {
+          toast.error("Failed to add sitemap");
+        }
+      }
+
+      setIsDialogOpen(false);
+      fetchSitemaps(currentPage);
+    } catch (error) {
+      console.error("Error submitting sitemap:", error);
+      toast.error("Failed to submit sitemap");
+    }
+  };
+
+  // Handle sitemap deletion
+  const handleDelete = async (id) => {
+    if (!confirm("Are you sure you want to delete this sitemap?")) return;
+
+    try {
+      const response = await deleteUrl(id);
+
+      if (response.success) {
+        toast.success("Sitemap deleted successfully");
+        fetchSitemaps(currentPage);
+      } else {
+        toast.error("Failed to delete sitemap");
+      }
+    } catch (error) {
+      console.error("Error deleting sitemap:", error);
+      toast.error("Failed to delete sitemap");
+    }
   };
 
   if (loading) {
@@ -102,18 +146,17 @@ export default function SitemapTable() {
             <TableRow>
               <TableHead>S.No.</TableHead>
               <TableHead>URL</TableHead>
-              <TableHead>Priority</TableHead>
-              <TableHead>Change Frequency</TableHead>
+              <TableHead>Last Modified</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {sitemaps.map((sitemap, index) => (
+            {sitemaps?.map((sitemap, index) => (
               <TableRow key={sitemap._id}>
-                <TableCell>{index + 1}</TableCell>
+                <TableCell>{(currentPage - 1) * limit + index + 1}</TableCell>
                 <TableCell>{sitemap.url}</TableCell>
-                <TableCell>{sitemap.priority}</TableCell>
-                <TableCell>{sitemap.changefreq}</TableCell>
+                <TableCell>{sitemap.lastModified}</TableCell>
+               
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
                     <Link href={sitemap.url} target="_blank">
@@ -135,20 +178,24 @@ export default function SitemapTable() {
         </Table>
       </Card>
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>{currentSitemap ? "Edit Sitemap" : "Add Sitemap"}</DialogTitle>
+            <DialogTitle>{currentSitemap?._id ? "Edit Sitemap" : "Add Sitemap"}</DialogTitle>
           </DialogHeader>
           <input
             type="text"
-            placeholder="URL"
+            placeholder="Enter URL"
             value={currentSitemap?.url || ""}
             onChange={(e) => setCurrentSitemap({ ...currentSitemap, url: e.target.value })}
+            className="w-full border rounded-md p-2 mt-2"
           />
           <DialogFooter>
             <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
-            <Button variant="primary" onClick={handleSubmit}>{currentSitemap ? "Update" : "Add"}</Button>
+            <Button variant="primary" onClick={handleSubmit}>
+              {currentSitemap?._id ? "Update" : "Add"}
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
