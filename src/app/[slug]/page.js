@@ -18,6 +18,35 @@ import { cn } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import WebsitePopup from "../top-trade-shows/[show_name]/_components/website-popup";
 // if blog and event both are not found , then return 404
+
+export async function generateMetadata({ params }) {
+  const slug = (await params).slug;
+
+  const { data } = await getSingleBlog({ slug: slug });
+
+  if (data){
+    return {
+      title: data?.meta_title || "Default Title",
+      description: data?.meta_description || "Default Description",
+      keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
+      alternates: {
+        canonical: `https://chronicleexhibits.com/${slug}`,
+      }
+    };
+  }
+
+  const { data: eventData } = await getSingleEvent(slug);
+
+  return {
+    title: eventData?.meta_title || "Default Title",
+    description: eventData?.meta_description || "Default Description",
+    keywords: eventData?.meta_keywords?.join(",") ?? "Default Keywords",
+    alternates: {
+      canonical: `https://chronicleexhibits.com/${slug}`,
+    }
+  };
+}
+
 const Page = async ({ params }) => {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;

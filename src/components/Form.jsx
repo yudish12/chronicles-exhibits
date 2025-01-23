@@ -8,10 +8,12 @@ import { submitCallForm } from "@/server/actions/forms";
 import { UploadButton } from "@uploadthing/react";
 import { toast } from "sonner";
 import InputFile from "./ui/input-file";
+import { useRouter } from "next/navigation";
 
 const EnquiryForm = ({setOpen}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     company : "",
@@ -81,6 +83,7 @@ const EnquiryForm = ({setOpen}) => {
       if (setOpen){
         setOpen(false);
       }
+      router.push("/thank-you");
     } catch (error) {
       console.log(error);
       toast.error("Failed to submit form. Please try again later.");

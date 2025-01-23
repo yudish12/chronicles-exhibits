@@ -7,10 +7,12 @@ import { Button } from "./ui/button";
 import { submitGetFreeDesignForm } from "@/server/actions/forms";
 import InputFile from "./ui/input-file";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const GetFreeDesignForm = ({setOpen}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -98,6 +100,7 @@ const GetFreeDesignForm = ({setOpen}) => {
 
       toast.success("Enquiry submitted successfully.");
       setOpen(false);
+      router.push("/thank-you");
     } catch (error) {
       console.log(error);
       toast.error("Failed to submit form. Please try again later.");

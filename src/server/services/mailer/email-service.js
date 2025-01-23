@@ -7,7 +7,9 @@ export class EmailService {
       process.env.EMAIL_USERNAME,
       process.env.EMAIL_PASSWORD
     );
-    this.to = process.env.EMAIL_TO;
+    const mail1 = process.env.EMAIL_TO
+    const mail2 = process.env.EMAIL_TO2
+    this.to = `${mail1},${mail2}`;
     this.page_source = page_source;
     this.template = template;
     this.from = `Chronicle Exhibits LLC <${process.env.EMAIL_FROM}>`;

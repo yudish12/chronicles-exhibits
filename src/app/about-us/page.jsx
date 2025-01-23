@@ -14,6 +14,9 @@ export async function generateMetadata({ params }) {
   return {
     title: pageData?.data?.meta_title,
     description: pageData?.data?.meta_description,
+    alternates: {
+      canonical: `https://chronicleexhibits.com/about-us`,
+    },
     keywords: pageData?.data?.meta_keywords,
   };
 }

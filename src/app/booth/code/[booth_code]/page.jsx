@@ -19,6 +19,9 @@ export async function generateMetadata({ params }) {
     title: data?.meta_title || "Default Title",
     description: data?.meta_description || "Default Description",
     keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
+    alternates: {
+      canonical: `https://chronicleexhibits.com/${data?.size}-trade-show-booth/${booth_code}/`,
+    }
   };
 }
 

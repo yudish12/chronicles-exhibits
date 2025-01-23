@@ -14,10 +14,12 @@ import {
   SelectValue,
 } from "./ui/select";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const ScheduleCallForm = ({ setOpen }) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const [formData, setFormData] = useState({
     country: "",
     email: "",
@@ -91,6 +93,7 @@ const ScheduleCallForm = ({ setOpen }) => {
         return;
       }
       toast.success("Enquiry submitted successfully.");
+      router.push("/thank-you");
       if (setOpen) {
         setOpen(false);
       }
