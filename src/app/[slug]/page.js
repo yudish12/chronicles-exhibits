@@ -133,7 +133,7 @@ const Page = async ({ params }) => {
               </div>
 
               {/* Enquiry Form */}
-              <BlogForm />
+              <BlogForm source={data.title} />
             </div>
           </div>
         </div>

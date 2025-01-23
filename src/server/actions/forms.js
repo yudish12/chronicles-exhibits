@@ -39,7 +39,7 @@ export const submitCallForm = async (formData, page_source) => {
     const normalizedFields = { ...schemaKeys, name, email, phone, message, budget, company, eventName, eventCity, boothSize, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
-    const mail = new EmailService("home", "get-quote");
+    const mail = new EmailService(page_source, "get-quote");
     const resp = mail.send(
       {name, email, phone, message, budget, company, eventName, eventCity, boothSize,},
       `Get a Quote form filled from page: ${page_source}`,
@@ -72,7 +72,7 @@ export const submitScheduleCallForm = async (fields, page_source) => {
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
-    const email = new EmailService("home", "schedule-call");
+    const email = new EmailService(page_source, "schedule-call");
 
     const resp = email.send(
       fields,
@@ -120,7 +120,7 @@ export const submitGetFreeDesignForm = async (formData, page_source) => {
    
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save()
-    const mail = new EmailService("home", "free-design");
+    const mail = new EmailService(page_source, "free-design");
 
     const resp = mail.send(
       fields,
@@ -209,15 +209,16 @@ export const submitBlogForm = async (formData, page_source) => {
     const email = formData.get("email");
     const phone = formData.get("phone");
     const message = formData.get("message");
+    const country = formData.get("country");
     const boothSize = formData.get("boothSize");
     const fileData = formData.getAll("files"); 
 
-    const fields = { name, email, phone, message, boothSize };
+    const fields = { name, email, phone, message, boothSize,country };
 
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
-    const mail = new EmailService("blog", "blog-enquiry");
+    const mail = new EmailService(page_source, "blog-enquiry");
     const resp = mail.send(
       fields,
       `Get a Quote form filled from page: ${page_source}`,

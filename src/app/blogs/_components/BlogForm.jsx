@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
 import InputFile from "@/components/ui/input-file";
 import { toast } from "sonner";
+import { usePathname } from "next/navigation";
+import { getPageNameAndUrl } from "@/utils";
 const BlogForm = ({source}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
@@ -16,9 +18,12 @@ const BlogForm = ({source}) => {
     phoneNumber: "",
     file: [],
     boothSize: "",
+    country: "",
     message: "",
     url: "",
   });
+  const path = usePathname();
+  const obj = getPageNameAndUrl(path);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -35,6 +40,7 @@ const BlogForm = ({source}) => {
       ApiData.append("name", formData.name);
       ApiData.append("email", formData.email);
       ApiData.append("phone", formData.phoneNumber);
+      ApiData.append("country", formData.country);
       ApiData.append("message", formData.message);
       ApiData.append("boothSize", formData.boothSize);
       formData.file.forEach((file) => {

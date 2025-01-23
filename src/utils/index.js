@@ -62,6 +62,40 @@ export const isValidWebsite = (website) => {
   return websiteRegex.test(website);
 };
 
+export const getPageNameAndUrl = (pathname) => {
+  const domain = "https://chronicleexhibits.com";
+
+  // Ensure pathname is a string and handle empty or undefined cases
+  if (!pathname || typeof pathname !== 'string') {
+    return { name: "Unknown", url: domain };
+  }
+
+  // Handle root path "/"
+  if (pathname === "/") {
+    return { name: "Home", url: domain };
+  }
+
+  // Remove leading and trailing slashes to prevent empty segments
+  const cleanPath = pathname.replace(/^\/|\/$/g, "");
+
+  // Handle empty string after cleaning
+  if (!cleanPath) {
+    return { name: "Home", url: domain };
+  }
+
+  // Split the path by slashes and hyphens to format it correctly
+  const parts = cleanPath.split("/").map(segment => 
+    segment.split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ")
+  );
+
+  const name = parts.join(" > "); // Using " > " to show hierarchy
+
+  return { name, url: `${domain}/${cleanPath}` };
+};
+
+
 export {
   jwtFuncs,
   convertHumanReadableText,

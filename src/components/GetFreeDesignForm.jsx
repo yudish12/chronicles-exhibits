@@ -7,12 +7,15 @@ import { Button } from "./ui/button";
 import { submitGetFreeDesignForm } from "@/server/actions/forms";
 import InputFile from "./ui/input-file";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { getPageFieldsByName } from "@/utils";
 
 const GetFreeDesignForm = ({setOpen}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
   const router = useRouter();
+  const path = usePathname();
+  const {name, url} = getPageFieldsByName(path);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -90,7 +93,7 @@ const GetFreeDesignForm = ({setOpen}) => {
       ApiData.append("boothSize", formData.boothSize);
       ApiData.append("country", formData.country);
       console.log("Form Data Submitted:", formData);
-      const resp = await submitGetFreeDesignForm(ApiData, window.location.pathname);
+      const resp = await submitGetFreeDesignForm(ApiData,name);
       console.log(resp);
 
       if (!resp.success) {

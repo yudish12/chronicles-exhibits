@@ -8,11 +8,14 @@ import { submitCallForm } from "@/server/actions/forms";
 import { UploadButton } from "@uploadthing/react";
 import { toast } from "sonner";
 import InputFile from "./ui/input-file";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { getPageNameAndUrl } from "@/utils";
 
 const EnquiryForm = ({setOpen}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
+  const page = usePathname();
+  const obj = getPageNameAndUrl(page);
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
@@ -72,7 +75,7 @@ const EnquiryForm = ({setOpen}) => {
       ApiData.append("eventName", formData.eventName);
       ApiData.append("eventCity", formData.eventCity);
       ApiData.append("boothSize", formData.boothSize);    
-      const resp = await submitCallForm(ApiData, "home");
+      const resp = await submitCallForm(ApiData, obj.name);
       console.log(resp);
 
       if (!resp.success) {

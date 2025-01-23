@@ -14,12 +14,15 @@ import {
   SelectValue,
 } from "./ui/select";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { getPageNameAndUrl } from "@/utils";
 
 const ScheduleCallForm = ({ setOpen }) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const path = usePathname();
+  const {name, url} = getPageNameAndUrl(path);
   const [formData, setFormData] = useState({
     country: "",
     email: "",
@@ -86,7 +89,7 @@ const ScheduleCallForm = ({ setOpen }) => {
     }
     setLoading(true);
     try {
-      const resp = await submitScheduleCallForm(formData, "home");
+      const resp = await submitScheduleCallForm(formData, name);
 
       if (!resp.success) {
         toast.error("Failed to submit form. Please try again later.");
