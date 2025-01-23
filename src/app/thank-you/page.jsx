@@ -3,6 +3,7 @@ import SubHeader from "@/components/ui/sub-header";
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const page = () => {
   return (
@@ -24,9 +25,11 @@ const page = () => {
           </p>
         </div>
         <div className="mt-6 ">
+          <Link href={"/"} >
           <Button className="text-white text-lg bg-secondary hover:bg-[#B0CB1F] hover:text-secondary font-bold p-4 ">
             Back to Home
           </Button>
+          </Link>
         </div>
       </div>
     </>

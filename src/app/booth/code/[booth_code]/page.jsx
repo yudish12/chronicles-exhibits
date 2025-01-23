@@ -10,6 +10,7 @@ import Footer from "@/components/ui/footer";
 import { getAllData, getDataByCode } from "@/server/actions/booths";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
+
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const booth_code = resolvedParams.booth_code;
