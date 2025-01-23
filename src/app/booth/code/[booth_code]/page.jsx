@@ -7,7 +7,7 @@ import BoothGrid from "./_components/BoothCardGrid";
 import BoothEnquiry from "./_components/BoothInuiry";
 import { BoothDetails } from "./_components/BoothDetails";
 import Footer from "@/components/ui/footer";
-import { getAllData, getDataByCode } from "@/server/actions/booths";
+import { findSingleBooth, getAllData, getDataByCode } from "@/server/actions/booths";
 import { notFound } from "next/navigation";
 import { headers } from "next/headers";
 
@@ -15,13 +15,14 @@ export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const booth_code = resolvedParams.booth_code;
 
-  const { data } = await getDataByCode(booth_code);
+  const boothData = await findSingleBooth({booth_code});
+  const data = boothData.data
   return {
-    title: data?.meta_title || "Default Title",
-    description: data?.meta_description || "Default Description",
+    title: booth_code || "Default Title",
+    description: booth_code || "Default Description",
     keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
     alternates: {
-      canonical: `https://chronicleexhibits.com/${data?.size}-trade-show-booth/${booth_code}/`,
+      canonical: `https://chronicleexhibits.com/${data?.booth_size?.name}-trade-show-booth/${booth_code}/`,
     }
   };
 }

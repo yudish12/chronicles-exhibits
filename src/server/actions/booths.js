@@ -242,20 +242,20 @@ export const deleteData = async (id) => {
 
 export const getDataByCode = async (boothCode, size) => {
   try {
-    const size_id = await BoothSize.findOne({ name: size }).select("_id name");
+    const size_id = await BoothSize.findOne({ name: size }).select("_id");
     const data = await Booth.findOne({
       booth_code: boothCode,
       booth_size: size_id,
-    }).lean();
-    return getActionSuccessResponse({...data, size: size_id.name});
+    }).populate("booth_size","name").lean();
+    return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }
 };
 
-export const findSingleBooth = async (query) => {
+export const findSingleBooth = async (query, populate) => {
   try {
-    const data = await Booth.findOne(query).lean();
+    const data = await Booth.findOne(query).populate("booth_size","name").lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

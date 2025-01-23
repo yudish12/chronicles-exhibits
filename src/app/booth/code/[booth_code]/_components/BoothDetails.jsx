@@ -271,9 +271,9 @@ const CarouselImages = ({
 }) => {
   return (
     <div className="flex flex-col  lg:mt-16 items-start gap-8">
-      <h3 className="text-[1.4rem]  lg:block hidden text-secondary font-semibold ">
+      <h1 className="text-[1.4rem]  lg:block hidden text-secondary font-semibold ">
         {boothCode}
-      </h3>
+      </h1>
       <div className="w-full mt-6 md:w-full lg:mt-0 grid lg:grid-cols-1 grid-cols-3 sm:max-w-[600px] mx-auto lg:max-w-[6500px] gap-6">
         {images.map((src, index) => (
           <Image
