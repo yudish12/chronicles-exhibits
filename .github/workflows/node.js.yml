@@ -28,7 +28,7 @@ jobs:
         username: ${{ secrets.HOSTINGER_VPS_USERNAME }}
         password: ${{ secrets.HOSTINGER_VPS_PASSWORD }}
         script: |
-          cd /home/root/chronicles-exhibits/ || exit 1
+          cd ~/chronicles-exhibits/ || exit 1
           git pull origin main || exit 1
           
           # Create .env.local file
