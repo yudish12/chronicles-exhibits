@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Footer from "@/components/ui/footer";
 
 const page = () => {
   return (
@@ -32,6 +33,7 @@ const page = () => {
           </Link>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };
