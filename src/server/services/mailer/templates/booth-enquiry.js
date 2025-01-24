@@ -4,7 +4,7 @@ const boothEnquiryTemplate = async (
 ) => {
   const headerModule = await import("./header.js");
   const footerModule = await import("./footer.js");
-  const headerHtml = headerModule.default();
+  const headerHtml = headerModule.default(page_source);
   const footerHtml = footerModule.default();
   return `
     ${headerHtml}

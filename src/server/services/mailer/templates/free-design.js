@@ -4,7 +4,7 @@ const scheduleCallTemplate = async (
 ) => {
   const headerModule = await import("./header.js");
   const footerModule = await import("./footer.js");
-  const headerHtml = headerModule.default();
+  const headerHtml = headerModule.default(page_source);
   const footerHtml = footerModule.default();
   return `
     ${headerHtml}
@@ -93,15 +93,6 @@ const scheduleCallTemplate = async (
             </td>
             <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
                 ${budget}
-            </td>
-        </tr>
-        <!-- File Row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                File:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${file}
             </td>
         </tr>
         <!-- URL row -->

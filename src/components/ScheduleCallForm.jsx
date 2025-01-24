@@ -117,6 +117,7 @@ const ScheduleCallForm = ({ setOpen }) => {
         <Input
           className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
           type="text"
+          disabled={loading}
           placeholder="Enter Your Name"
           onChange={handleChange}
           required
@@ -125,6 +126,7 @@ const ScheduleCallForm = ({ setOpen }) => {
         <Input
           className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
           type="email"
+          disabled={loading}
           placeholder="Enter Your Email"
           onChange={handleChange}
           required
@@ -133,6 +135,7 @@ const ScheduleCallForm = ({ setOpen }) => {
         <Input
           className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
           type="text"
+          disabled={loading}
           placeholder="Enter Your Country"
           onChange={handleChange}
           required
@@ -140,6 +143,7 @@ const ScheduleCallForm = ({ setOpen }) => {
         />
         <PhoneInput
           country={countryCode}
+          disabled={loading}
           value={formData.phoneNumber}
           onChange={(value) => handleChange({ target: { name: "phoneNumber", value } })}
           inputStyle={{ width: "100%" }}
@@ -148,6 +152,7 @@ const ScheduleCallForm = ({ setOpen }) => {
         <Input
           className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
           type="date"
+          disabled={loading}
           name="callDate"
           onChange={handleChange}
           required
@@ -155,6 +160,7 @@ const ScheduleCallForm = ({ setOpen }) => {
         />
         <Select
           name="callTime"
+          disabled={loading}
           value={formData.callTime}
           onValueChange={(value) => {
             handleChange({ target: { name: "callTime", value } });
@@ -178,6 +184,7 @@ const ScheduleCallForm = ({ setOpen }) => {
           className="border p-2 border-[#CACACA] placeholder:text-secondary/70 rounded-lg col-span-1 md:col-span-2"
           placeholder="Message"
           name="message"
+          disabled={loading}
           onChange={handleChange}
         />
         <Button

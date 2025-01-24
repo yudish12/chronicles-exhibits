@@ -4,14 +4,11 @@ const scheduleCallTemplate = async (
 ) => {
   const headerModule = await import("./header.js");
   const footerModule = await import("./footer.js");
-  const headerHtml = headerModule.default();
+  const headerHtml = headerModule.default(page_source);
   const footerHtml = footerModule.default();
   return `
     ${headerHtml}
-       <table align="center" cellpadding="10" cellspacing="0" border="0" width="100%" style="max-width:680px; border-collapse: collapse; background-color: #B0CB1F; color: white; font-family: Arial, sans-serif; margin-top:10px;">
-    <caption style="padding: 15px; font-size: 24px; font-weight: bold; color: white; background-color: #8FAF1B; text-align: center;">
-        Get a Quote form filled from page: ${page_source}
-    </caption>
+       <table align="center" cellpadding="10" cellspacing="0" border="0" width="100%" style="max-width:680px; border-collapse: collapse; background-color: #B0CB1F; color: white; margin-inline:8px; mmargin-top:10px;">
     <tbody>
         <!-- Name Row -->
         <tr style="border-bottom: 2px solid #8FAF1B;">
