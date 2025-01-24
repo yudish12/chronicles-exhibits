@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { submitBoothCodeForm } from '@/server/actions/forms';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { phoneRegex , emailRegex } from '@/utils/constants/regex';
 import { Textarea } from "@/components/ui/textarea";export default function BoothEnquiryForm() {
   const [formData, setFormData] = useState({
     rentalQuotation: false,
@@ -19,6 +20,15 @@ import { Textarea } from "@/components/ui/textarea";export default function Boot
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
+    const {phoneNumber , email } = formData;
+    if(!emailRegex.test(email)){
+      toast.error("Please enter a valid email address.")
+      return false 
+    }
+    if(!phoneRegex.test(phoneNumber)){
+      toast.error("Please enter a valid phone number.")
+      return false 
+    }
     const resp = await submitBoothCodeForm(formData, "home");
     console.log(resp);
   };
@@ -92,6 +102,7 @@ import { Textarea } from "@/components/ui/textarea";export default function Boot
             placeholder="Phone/Mobile Number"
             className="w-full border border-secondary rounded-lg shadow-one px-3 py-2"
             onChange={handleChange}
+            required
           />
           <Input
             type="email"
@@ -100,6 +111,7 @@ import { Textarea } from "@/components/ui/textarea";export default function Boot
             placeholder="Email Address"
             className="w-full border border-secondary rounded-lg shadow-one px-3 py-2"
             onChange={handleChange}
+            required
           />
           <Input
             type="text"

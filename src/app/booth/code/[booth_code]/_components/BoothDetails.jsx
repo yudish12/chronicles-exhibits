@@ -219,6 +219,7 @@ import Image from "next/image";
 import PhoneInput from "react-phone-input-2";
 import { submitBoothCodeForm } from "@/server/actions/forms";
 import { toast } from "sonner";
+import { phoneRegex , emailRegex } from "@/utils/constants/regex";
 const imagegroup1 = [
   "/booth-2.jpeg", // Replace with actual image URLs
   "/booth-4.jpeg",
@@ -333,14 +334,21 @@ const BoothForm = () => {
       e.preventDefault();
 
       const { requestType, ...otherFields } = formData;
-
+      const {phoneNumber , email } = formData;
+    if(!emailRegex.test(email)){
+      toast.error("Please enter a valid email address.")
+      return false 
+    }
+    // if(!phoneRegex.test(phoneNumber)){
+    //   toast.error("Please enter a valid phone number.")
+    //   return false 
+    // }
       const formattedData = {
         ...otherFields,
         rentalQuotation: requestType === "rental",
         purchaseRequest: requestType === "purchase",
         customizationRequest: requestType === "customization",
       };
-
       console.log("Formatted Data Submitted:", formattedData);
 
       const resp = await submitBoothCodeForm(formattedData, "home");
@@ -437,6 +445,7 @@ const BoothForm = () => {
               className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
               name="name"
               onChange={handleChange}
+              required
             />
           </div>
           <PhoneInput
@@ -444,6 +453,7 @@ const BoothForm = () => {
             value={formData.phoneNumber}
             onChange={handlePhoneChange}
             className="booth-code-phone-input lg:col-span-1 col-span-3 mb-0"
+            required
           />
           <div className="lg:col-span-1 col-span-3">
             <Input
@@ -453,6 +463,7 @@ const BoothForm = () => {
               className="w-full border border-gray-300  rounded-lg px-3 py-2 bg-white"
               onChange={handleChange}
               name="email"
+              required
             />
           </div>
           <div className="lg:col-span-1 col-span-3">

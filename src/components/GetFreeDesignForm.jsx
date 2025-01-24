@@ -9,7 +9,7 @@ import InputFile from "./ui/input-file";
 import { toast } from "sonner";
 import { usePathname, useRouter } from "next/navigation";
 import { getPageFieldsByName } from "@/utils";
-
+import { emailRegex } from "@/utils/constants/regex";
 const GetFreeDesignForm = ({setOpen}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
@@ -75,9 +75,21 @@ const GetFreeDesignForm = ({setOpen}) => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    setLoading(true);
     try {
+      console.log(formData , " event hit form data ")
       e.preventDefault();
+      setLoading(true);
+      const {phoneNumber , email } = formData;
+      if(!emailRegex.test(email)){
+        toast.error("Please enter a valid email address.")
+        setLoading(false);
+        return 
+      }
+      if(!phoneRegex.test(phoneNumber)){
+        toast.error("Please enter a valid phone number.")
+        setLoading(false);
+        return  
+      }
       const ApiData = new FormData();
       ApiData.append("name", formData.name);
       ApiData.append("email", formData.email);
@@ -102,7 +114,7 @@ const GetFreeDesignForm = ({setOpen}) => {
       }
 
       toast.success("Enquiry submitted successfully.");
-      setOpen(false);
+      // setOpen(false);
       router.push("/thank-you");
     } catch (error) {
       console.log(error);
@@ -148,6 +160,7 @@ const GetFreeDesignForm = ({setOpen}) => {
           onChange={handlePhoneChange}
           disabled={loading}
           inputStyle={{ width: "100%", marginBottom: "10px" }}
+          required
         />
         <Input
           className="border-[#CACACA] text-secondary/70 placeholder:text-secondary/70"
