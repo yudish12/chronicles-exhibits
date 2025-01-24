@@ -1,0 +1,51 @@
+name: Node.js CI
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.18.2]
+    
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      UPLOADTHING_TOKEN: ${{ secrets.UPLOADTHING_TOKEN }}
+      EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+      EMAIL_TO: ${{ secrets.EMAIL_TO }}
+      EMAIL_TO2: ${{ secrets.EMAIL_TO2 }}
+      EMAIL_USERNAME: ${{ secrets.EMAIL_USERNAME }}
+      EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+      EMAIL_HOST: ${{ secrets.EMAIL_HOST }}
+      
+    steps:
+    - name: Checkout Repository 
+      uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies     
+      run: npm ci
+      
+    - name: Build app
+      run: npm run build --if-present
+    
+    - name: Deploy to VPS 
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOSTINGER_VPS_HOST }}
+        username: ${{ secrets.HOSTINGER_VPS_USERNAME }}
+        key: ${{ secrets.HOSTINGER_VPS_SSH_PRIVATE_KEY }}
+        script: |
+          cd /home/root/chronicles-exhibits/
+          git pull origin main
+          npm ci
+          npm run build
+          pm2 restart all
