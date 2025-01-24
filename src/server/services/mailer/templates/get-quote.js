@@ -1,5 +1,5 @@
 const getQuoteTemplate = async (
-  { name, company, email, phoneNumber, boothSize, eventName, message, file },
+  { name, company, email, phone, boothSize, eventName, message, file },
   page_source
 ) => {
   const headerModule = await import("./header.js");
@@ -34,7 +34,7 @@ const getQuoteTemplate = async (
                     <!-- Phone -->
                     <tr style="border-bottom: 1px solid #eee;">
                         <td style="padding: 16px 8px; width: 140px; color: #666; font-weight: 600;">Phone:</td>
-                        <td style="padding: 16px 8px; color: #333;">${phoneNumber}</td>
+                        <td style="padding: 16px 8px; color: #333;">${phone}</td>
                     </tr>
 
                     <!-- Booth Size -->

@@ -40,8 +40,11 @@ export const submitCallForm = async (formData, page_source) => {
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
     const mail = new EmailService(page_source, "get-quote");
+    const file = fileData[0];
+    const fileName = file?.name || "No file uploaded";
+    console.log(file , "FILE==")
     const resp = mail.send(
-      {name, email, phone, message, budget, company, eventName, eventCity, boothSize,},
+      {name, email, phone, message, budget, company, eventName, eventCity, boothSize ,file:fileName },
       `Get a Quote form filled from page: ${page_source}`,
       fileData
     );
