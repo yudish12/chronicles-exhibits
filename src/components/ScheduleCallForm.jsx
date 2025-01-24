@@ -16,7 +16,7 @@ import {
 import { toast } from "sonner";
 import { usePathname, useRouter } from "next/navigation";
 import { getPageNameAndUrl } from "@/utils";
-
+import { emailRegex , phoneRegex } from "@/utils/constants/regex";
 const ScheduleCallForm = ({ setOpen }) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading, setLoading] = useState(false);
@@ -83,6 +83,15 @@ const ScheduleCallForm = ({ setOpen }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const {email , phoneNumber} = formData;
+    if(!emailRegex.test(email)){
+      toast.error("Please enter a valid email address.")
+      return false 
+    }
+    if(!phoneRegex.test(phoneNumber)){
+      toast.error("Please enter a valid phone number.")
+      return false 
+    }
     if (!isFormValid()) {
       toast.error("Please fill in all required fields.");
       return;

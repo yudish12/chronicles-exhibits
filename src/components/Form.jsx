@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import InputFile from "./ui/input-file";
 import { usePathname, useRouter } from "next/navigation";
 import { getPageNameAndUrl } from "@/utils";
-
+import { emailRegex , phoneRegex } from "@/utils/constants/regex";
 const EnquiryForm = ({setOpen}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
@@ -59,9 +59,22 @@ const EnquiryForm = ({setOpen}) => {
 
   // Handle form submission
   const handleSubmit = async (e) => {
+    e.preventDefault();
     setLoading(true);
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Please enter a valid email address.");
+      setLoading(false);
+      return;
+    }
+  
+    // Validate phone number
+    if (!phoneRegex.test(formData.phoneNumber)) {
+      toast.error("Please enter a valid phone number.");
+      setLoading(false);
+      return;
+    }
+  
     try {
-      e.preventDefault();
       const ApiData = new FormData();
       ApiData.append("name", formData.name);
       ApiData.append("email", formData.email);
