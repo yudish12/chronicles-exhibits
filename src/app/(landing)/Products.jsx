@@ -22,9 +22,9 @@ const Products = async ({ bgColor, title, subTitle, location }) => {
       >
         {title ?? "EYE CATCHING TRADE SHOW BOOTH DESIGNS"}
       </h2>
-      <h1 className="text-center heading-font-700 text-white mb-2 text-3xl font-bold">
+      <h2 className="text-center heading-font-700 text-white mb-2 text-3xl font-bold">
         {title ? <></> : "FOR SUCCESSFUL EXHIBITIONS"}
-      </h1>
+      </h2>
       <p
         className={cn(
           "text-center xs:mx-8 sm:mx-36 lg:mx-72 text-white text-md pt-4",
