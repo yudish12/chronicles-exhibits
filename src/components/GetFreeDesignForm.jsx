@@ -9,7 +9,7 @@ import InputFile from "./ui/input-file";
 import { toast } from "sonner";
 import { usePathname, useRouter } from "next/navigation";
 import { getPageFieldsByName } from "@/utils";
-import { emailRegex } from "@/utils/constants/regex";
+import { emailRegex , phoneRegex} from "@/utils/constants/regex";
 const GetFreeDesignForm = ({setOpen}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
@@ -70,7 +70,8 @@ const GetFreeDesignForm = ({setOpen}) => {
 
   // Handle phone number input
   const handlePhoneChange = (value) => {
-    setFormData({ ...formData, phoneNumber: value });
+    const formattedValue = value.startsWith("+") ? value : `+${value}`;
+    setFormData({ ...formData, phoneNumber: formattedValue });
   };
 
   // Handle form submission
@@ -85,7 +86,8 @@ const GetFreeDesignForm = ({setOpen}) => {
         setLoading(false);
         return 
       }
-      if(!phoneRegex.test(phoneNumber)){
+      const digitCount = formData.phoneNumber.length;
+      if(!phoneRegex.test(phoneNumber) || digitCount < 11){
         toast.error("Please enter a valid phone number.")
         setLoading(false);
         return  

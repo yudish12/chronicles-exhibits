@@ -6,6 +6,7 @@ import PhoneInput from "react-phone-input-2";
 import { submitBoothForm } from "@/server/actions/forms";
 import InputFile from "@/components/ui/input-file";
 import { toast } from "sonner";
+import { emailRegex , phoneRegex } from "@/utils/constants/regex";
 const BoothSizeForm = ({ eventName, eventCity, date }) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false);
@@ -31,9 +32,24 @@ const BoothSizeForm = ({ eventName, eventCity, date }) => {
 
   // Handle phone number input
   const handlePhoneChange = (value) => {
-    setFormData({ ...formData, phoneNumber: value });
+    const formattedValue = value.startsWith("+") ? value : `+${value}`;
+    setFormData({ ...formData, phoneNumber: formattedValue });
   };
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Please enter a valid email address.");
+      setLoading(false);
+      return;
+    }
+    // Validate phone number
+    const digitCount = formData.phoneNumber.length;
+    if (!phoneRegex.test(formData.phoneNumber) || digitCount < 11) {
+      toast.error("Please enter a valid phone number.");
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     try {
       const ApiData = new FormData();

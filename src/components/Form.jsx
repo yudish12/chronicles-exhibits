@@ -54,13 +54,16 @@ const EnquiryForm = ({setOpen}) => {
 
   // Handle phone number input
   const handlePhoneChange = (value) => {
-    setFormData({ ...formData, phoneNumber: value });
+    // Ensure the value starts with "+"
+    const formattedValue = value.startsWith("+") ? value : `+${value}`;
+    setFormData({ ...formData, phoneNumber: formattedValue });
   };
-
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+  
+    // Validate email
     if (!emailRegex.test(formData.email)) {
       toast.error("Please enter a valid email address.");
       setLoading(false);
@@ -68,8 +71,9 @@ const EnquiryForm = ({setOpen}) => {
     }
   
     // Validate phone number
-    if (!phoneRegex.test(formData.phoneNumber)) {
-      toast.error("Please enter a valid phone number.");
+    const digitCount = formData.phoneNumber.trim().length; // Count only digits
+    if (!phoneRegex.test(formData.phoneNumber) || digitCount < 11) {
+      toast.error("Please enter a valid phone number with at least 10 digits.");
       setLoading(false);
       return;
     }
@@ -87,16 +91,17 @@ const EnquiryForm = ({setOpen}) => {
       ApiData.append("company", formData.company);
       ApiData.append("eventName", formData.eventName);
       ApiData.append("eventCity", formData.eventCity);
-      ApiData.append("boothSize", formData.boothSize);    
+      ApiData.append("boothSize", formData.boothSize);
+  
       const resp = await submitCallForm(ApiData, obj.name);
       console.log(resp);
-
+  
       if (!resp.success) {
         toast.error("Failed to submit form. Please try again later.");
         return;
       }
       toast.success("Enquiry submitted successfully.");
-      if (setOpen){
+      if (setOpen) {
         setOpen(false);
       }
       router.push("/thank-you");
@@ -107,6 +112,7 @@ const EnquiryForm = ({setOpen}) => {
       setLoading(false);
     }
   };
+    
 
   return (
     <div

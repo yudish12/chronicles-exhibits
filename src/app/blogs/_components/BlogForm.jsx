@@ -9,6 +9,7 @@ import InputFile from "@/components/ui/input-file";
 import { toast } from "sonner";
 import { usePathname } from "next/navigation";
 import { getPageNameAndUrl } from "@/utils";
+import { emailRegex , phoneRegex } from "@/utils/constants/regex";
 const BlogForm = ({source}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
@@ -29,12 +30,29 @@ const BlogForm = ({source}) => {
     setFormData({ ...formData, [name]: value });
   };
   const handlePhoneChange = (value) => {
-    setFormData({ ...formData, phoneNumber: value });
+    // Ensure the value starts with "+"
+    const formattedValue = value.startsWith("+") ? value : `+${value}`;
+    setFormData({ ...formData, phoneNumber: formattedValue });
   };
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Please enter a valid email address.");
+      setLoading(false);
+      return;
+    }
+  
+    // Validate phone number
+    const digitCount = formData.phoneNumber.length;
+    if (!phoneRegex.test(formData.phoneNumber) || digitCount < 11) {
+      toast.error("Please enter a valid phone number.");
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     try {
-      e.preventDefault();
+      // e.preventDefault();
       console.log(formData)
       const ApiData = new FormData();
       ApiData.append("name", formData.name);
@@ -46,7 +64,7 @@ const BlogForm = ({source}) => {
       formData.file.forEach((file) => {
         ApiData.append("files", file);
       });
-
+      console.log("form data" , formData)
       console.log("Form Data Submitted:", formData);
       const resp = await submitBlogForm(ApiData, `${source}`);
       console.log(resp);

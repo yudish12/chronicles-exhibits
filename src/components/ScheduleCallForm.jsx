@@ -88,9 +88,11 @@ const ScheduleCallForm = ({ setOpen }) => {
       toast.error("Please enter a valid email address.")
       return false 
     }
-    if(!phoneRegex.test(phoneNumber)){
-      toast.error("Please enter a valid phone number.")
-      return false 
+    const digitCount = formData.phoneNumber.length; // Count only digits
+    if (!phoneRegex.test(formData.phoneNumber) || digitCount < 11) {
+      toast.error("Please enter a valid phone number with at least 10 digits.");
+      setLoading(false);
+      return;
     }
     if (!isFormValid()) {
       toast.error("Please fill in all required fields.");
@@ -116,7 +118,10 @@ const ScheduleCallForm = ({ setOpen }) => {
       setLoading(false);
     }
   };
-
+  const handlePhoneChange = (value) => {
+    const formattedValue = value.startsWith("+") ? value : `+${value}`;
+    setFormData({ ...formData, phoneNumber: formattedValue });
+  };
   return (
     <div className="max-w-4xl w-full mx-auto p-6 bg-white rounded-lg">
       <h5 className="text-2xl sm:text-3xl font-semibold text-center text-secondary mb-6">
@@ -154,7 +159,7 @@ const ScheduleCallForm = ({ setOpen }) => {
           country={countryCode}
           disabled={loading}
           value={formData.phoneNumber}
-          onChange={(value) => handleChange({ target: { name: "phoneNumber", value } })}
+          onChange={handlePhoneChange}
           inputStyle={{ width: "100%" }}
           inputClass="border-[#CACACA] text-secondary/70"
         />

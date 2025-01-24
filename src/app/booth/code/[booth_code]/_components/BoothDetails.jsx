@@ -326,7 +326,8 @@ const BoothForm = () => {
   };
   // Handle phone number input
   const handlePhoneChange = (value) => {
-    setFormData({ ...formData, phoneNumber: value });
+    const formattedValue = value.startsWith("+") ? value : `+${value}`;
+    setFormData({ ...formData, phoneNumber: formattedValue });
   };
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -339,10 +340,11 @@ const BoothForm = () => {
       toast.error("Please enter a valid email address.")
       return false 
     }
-    // if(!phoneRegex.test(phoneNumber)){
-    //   toast.error("Please enter a valid phone number.")
-    //   return false 
-    // }
+    const digitCount = formData.phoneNumber.length;
+    if(!phoneRegex.test(phoneNumber) || digitCount < 11){
+      toast.error("Please enter a valid phone number.")
+      return false 
+    }
       const formattedData = {
         ...otherFields,
         rentalQuotation: requestType === "rental",
