@@ -59,7 +59,7 @@ jobs:
           echo "EMAIL_HOST=${{ secrets.EMAIL_HOST }}" >> .env.local
     
           # Install dependencies and build the app
-          npm ci || exit 1
+          npm ci --legacy-peer-deps || exit 1
           npm run build || exit 1
     
           # Restart the application using PM2
