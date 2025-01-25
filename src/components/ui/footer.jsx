@@ -45,7 +45,7 @@ export default function Footer() {
                 className="hover:underline text-lg"
                 href="/trade-show-booth-displays-designs"
               >
-                Trade Show Booth Ideas
+                Trade Show Booth Displays Designs
               </Link>
             </li>
             <li>
@@ -373,7 +373,7 @@ export default function Footer() {
         <div className="bg-secondary/[.94] w-full flex flex-wrap justify-between items-center gap-4">
           <span className="text-white/80 text-center xs:text-left text-lg mx-auto font-medium">
             © Copyright {new Date().getFullYear()}.{" "}
-            <Link className="text-blue-600 " href={"/privacy-policy"}>
+            <Link className="text-blue-600 " href={"/"}>
               {" "}
               Chronicle Exhibit LLC{" "}
             </Link>{" "}

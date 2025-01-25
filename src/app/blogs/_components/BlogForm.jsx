@@ -140,7 +140,7 @@ const BlogForm = ({source}) => {
           disabled={loading}
           onChange={handlePhoneChange}
         />
-        <InputFile className={"block"} value={formData.file} onChange={(files)=> setFormData({ ...formData, file: files })} />
+        <InputFile value={formData.file} onChange={(files)=> setFormData({ ...formData, file: files })} />
         <Input
           placeholder="Your Country Name"
           disabled={loading}

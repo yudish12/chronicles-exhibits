@@ -8,9 +8,7 @@ import BoothGrid from "./_components/AllBooths";
 import RequestDesign from "./_components/RequestDesign";
 import TradeShowSection from "./_components/TradeShowSection";
 import { getBoothByName } from "@/server/actions/booths";
-import { getAllData } from "@/server/actions/booths";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import GetFreeDesignForm from "@/components/GetFreeDesignForm";
 import { getSinglePage } from "@/server/actions/pages";
 import EnquiryForm from "@/components/Form";
 

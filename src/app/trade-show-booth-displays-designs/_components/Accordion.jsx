@@ -53,7 +53,7 @@ const PlusSign = () => (
 
 // Accordion Component with smooth transitions
 const Accordion = ({ questions, answers }) => {
-  const [openIndex, setOpenIndex] = useState(null);
+  const [openIndex, setOpenIndex] = useState(0);
 
   const toggleAccordion = (index) => {
     setOpenIndex(openIndex === index ? null : index);
