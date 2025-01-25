@@ -1,0 +1,81 @@
+#blog_content p {
+    color: black;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: justify;
+  }
+  
+  #blog_content p strong {
+    font-weight: 600;
+  }
+  
+  #blog_content h3 {
+    color: black;
+    font-weight: 700;
+    font-family: "Jost-700";
+    font-size: 22px; /* text-3xl */
+    line-height: 2.25rem; /* line height for 3xl */
+  }
+  
+  #blog_content ul {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+  
+  /* Style for <li> tags */
+  #blog_content li {
+    padding-left: 1em;
+    text-indent: -1em;
+  }
+  
+  #blog_content li:before {
+    content: "◆";
+    font-size: 21px;
+    padding-right: 10px;
+    color: #b0cb1f;
+  }
+  
+  /* Style for <div> inside <li> (DiamondSvg container) */
+  #blog_content li > div {
+    margin-top: 0.25rem; /* mt-1 */
+  }
+  
+  #blog_content a {
+    color: blue;
+  }
+  
+  /* General table styles */
+  #blog_content table {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Remove spacing between cells */
+    margin: 20px 0; /* Add spacing around the table */
+    /* Use a clean font */
+    font-size: 16px; /* Adjust font size */
+    text-align: left; /* Align text to the left */
+    border: 1px solid #ddd; /* Border around the table */
+  }
+  
+  /* Table header styles */
+  #blog_content th {
+    font-weight: bold; /* Make header bold */
+    text-align: left; /* Align text to the left */
+    padding: 8px 12px; /* Add padding */
+    border: 1px solid #ddd; /* Border for each cell */
+    background-color: #f4f4f4; /* Light gray background */
+  }
+  
+  /* Table data styles */
+  #blog_content td {
+    padding: 8px 12px; /* Add padding */
+    border: 1px solid #ddd; /* Border for each cell */
+  }
+  
+  /* Title styles */
+  #blog_content caption {
+    font-size: 20px; /* Larger font size for the title */
+    font-weight: bold; /* Make it bold */
+    margin-bottom: 10px; /* Add spacing below the title */
+    text-align: center; /* Center the title */
+  }
+  

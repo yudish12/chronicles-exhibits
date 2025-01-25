@@ -220,6 +220,7 @@ import PhoneInput from "react-phone-input-2";
 import { submitBoothCodeForm } from "@/server/actions/forms";
 import { toast } from "sonner";
 import { phoneRegex , emailRegex } from "@/utils/constants/regex";
+import { useRouter } from "next/navigation";
 const imagegroup1 = [
   "/booth-2.jpeg", // Replace with actual image URLs
   "/booth-4.jpeg",
@@ -299,6 +300,7 @@ const BoothForm = ({source,size}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
   const [selectedValue, setSelectedValue] = useState("");
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -359,6 +361,7 @@ const BoothForm = ({source,size}) => {
         toast.error("Failed to submit form. Please try again later.");
         return;
       }
+      router.push("/thank-you");
       toast.success("Enquiry submitted successfully.");
       
     } catch (error) {

@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import PhoneInput from "react-phone-input-2";
 import InputFile from "@/components/ui/input-file";
 import { toast } from "sonner";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { getPageNameAndUrl } from "@/utils";
 import { emailRegex , phoneRegex } from "@/utils/constants/regex";
 const BlogForm = ({source}) => {
@@ -24,7 +24,7 @@ const BlogForm = ({source}) => {
     url: window.location.origin+"/"+source,
   });
   const path = usePathname();
-  const obj = getPageNameAndUrl(path);
+  const router = useRouter();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -68,7 +68,7 @@ const BlogForm = ({source}) => {
       console.log("form data" , formData)
       console.log("Form Data Submitted:", formData);
       const resp = await submitBlogForm(ApiData, `${source}`);
-      console.log(resp);
+      router.push("/thank-you");
       toast.success("Enquiry submitted successfully.");
     } catch (error) {
       console.log(error);

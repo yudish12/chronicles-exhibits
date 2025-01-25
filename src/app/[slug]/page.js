@@ -6,17 +6,17 @@ import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import Timer from "../top-trade-shows/[show_name]/_components/Timer";
+import Timer from "../top-trade-shows/_shows_comps/_components/Timer";
 import { Calendar, MapPin } from "lucide-react";
-import BoothSizeForm from "../top-trade-shows/[show_name]/_components/BoothSizeForm";
+import BoothSizeForm from "../top-trade-shows/_shows_comps/_components/BoothSizeForm";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Products from "../(landing)/Products";
 import BlogForm from "../blogs/_components/BlogForm";
-import "../top-trade-shows/[show_name]/styles.css";
-import "../blogs/[blog_id]/styles.css";
+import "./blog_id.css"
+import "./show_name.css"
 import { cn } from "@/lib/utils";
 import { notFound } from "next/navigation";
-import WebsitePopup from "../top-trade-shows/[show_name]/_components/website-popup";
+import WebsitePopup from "../top-trade-shows/_shows_comps/_components/website-popup";
 // if blog and event both are not found , then return 404
 
 export async function generateMetadata({ params }) {

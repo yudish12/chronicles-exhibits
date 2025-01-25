@@ -8,11 +8,11 @@ import InputFile from "@/components/ui/input-file";
 import { toast } from "sonner";
 import { emailRegex, phoneRegex } from "@/utils/constants/regex";
 import { getPageNameAndUrl } from "@/utils";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading, setLoading] = useState(false);
-  const path = usePathname();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -78,7 +78,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
         toast.error("Failed to submit form. Please try again later.");
         return;
       }
-
+      router.push("/thank-you");
       toast.success("Enquiry submitted successfully.");
 
     } catch (error) {

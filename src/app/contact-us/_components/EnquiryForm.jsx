@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import InputFile from "@/components/ui/input-file"
 import { contactUsForm } from "@/server/actions/forms"
 import { toast } from "sonner"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { getPageFieldsByName } from "@/utils"
 import PhoneInput from "react-phone-input-2"
 
@@ -13,6 +13,7 @@ const EnquiryForm = () => {
   const [files, setFiles] = React.useState([])
   const [loading, setLoading] = React.useState(false)
   const path = usePathname();
+  const router = useRouter();
   const [countryCode, setCountryCode] = React.useState("us");
   const [formData, setFormData] = React.useState({
     name: "",
@@ -61,7 +62,7 @@ const EnquiryForm = () => {
         toast.error("Error submitting form. Please try again later.")
         return
       }
-
+      router.push("/thank-you");
       toast.success("Enquiry submitted successfully.")
       setLoading(false)
       setFormData({
