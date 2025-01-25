@@ -1,5 +1,5 @@
 const scheduleCallTemplate = async (
-  { name, email, phoneNumber, company, country, eventName , eventCity,boothSize , file, budget, url ,  message },
+  { name, email, phone, company, country, eventName , eventCity,boothSize , file, budget, url ,  message },
   page_source
 ) => {
   const headerModule = await import("./header.js");
@@ -67,7 +67,7 @@ const scheduleCallTemplate = async (
               </tr>
               <tr>
                 <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
-                  ${phoneNumber}
+                  ${phone}
                 </td>
               </tr>
               <tr>
