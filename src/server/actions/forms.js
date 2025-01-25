@@ -36,6 +36,7 @@ export const submitCallForm = async (formData, page_source) => {
     const eventName = formData.get("eventName");
     const eventCity = formData.get("eventCity");
     const boothSize = formData.get("boothSize");
+    const url = formData.get("url");
     const normalizedFields = { ...schemaKeys, name, email, phone, message, budget, company, eventName, eventCity, boothSize, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
@@ -44,7 +45,7 @@ export const submitCallForm = async (formData, page_source) => {
     const fileName = file?.name || "No file uploaded";
     console.log(file , "FILE==")
     const resp = mail.send(
-      {name, email, phone, message, budget, company, eventName, eventCity, boothSize ,file:fileName },
+      {name, email, phone, message, url, budget, company, eventName, eventCity, boothSize ,file:fileName },
       `Get a Quote form filled from page: ${page_source}`,
       fileData
     );
@@ -113,13 +114,15 @@ export const submitGetFreeDesignForm = async (formData, page_source) => {
     const message = formData.get("message");
     const budget = formData.get("budget");
     const fileData = formData.getAll("files");
+    
     const company = formData.get("company");
     const eventName = formData.get("eventName");
     const eventCity = formData.get("eventCity");
     const boothSize = formData.get("boothSize");
     const country = formData.get("country");
+    const url = formData.get("url");
     const normalizedFields = { ...schemaKeys, name, email, phone, message, budget, company, eventName, eventCity, boothSize, country, page_source };
-    const fields = { name, email, phone, message, budget, company, eventName, eventCity, boothSize, country };
+    const fields = { name, email,url, phone, message, budget, company, eventName, eventCity, boothSize, country };
    
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save()
@@ -157,10 +160,12 @@ export const submitBoothForm = async (formdata, page_source) => {
       eventDate: "",//
     };
     const name = formdata.get("name");
+    const url = formdata.get("url");
     const email = formdata.get("email");
     const phone = formdata.get("phone");
     const message = formdata.get("message");
     const budget = formdata.get("budget");
+    
     const fileData = formdata.getAll("files"); 
     if(!name || !email || !phone || !message || !budget) {
       return { error: "Please fill all the fields" };
@@ -173,7 +178,7 @@ export const submitBoothForm = async (formdata, page_source) => {
     const eventDate = formdata.get("eventDate");
 
     const normalizedFields = { ...schemaKeys, name, email, phone, message, budget, company, eventName, eventCity, boothSize, country, eventDate, page_source:eventName };
-    const fields = { name, email, phone, message, budget, company, eventName, eventCity, boothSize, country, eventDate };
+    const fields = { name, email, url, phone, message, budget, company, eventName, eventCity, boothSize, country, eventDate };
     const formSubmission = new FormSubmission(normalizedFields);
     await formSubmission.save();
     const mail = new EmailService("home", "booth-enquiry");
@@ -213,10 +218,11 @@ export const submitBlogForm = async (formData, page_source) => {
     const phone = formData.get("phone");
     const message = formData.get("message");
     const country = formData.get("country");
+    const url = formData.get("url");
     const boothSize = formData.get("boothSize");
     const fileData = formData.getAll("files"); 
 
-    const fields = { name, email, phone, message, boothSize,country };
+    const fields = { name, email, phone, message, url, boothSize,country };
 
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
     const formSubmission = new FormSubmission(normalizedFields);
@@ -359,6 +365,7 @@ export async function contactUsForm(formData) {
     const name = formData.get("name");
     const email = formData.get("email");
     const phone = formData.get("phone");
+    const url = formData.get("url");
     const message = formData.get("message");
     const budget = formData.get("budget");
     const fileData = formData.getAll("files"); 
@@ -401,7 +408,7 @@ export async function contactUsForm(formData) {
     await formSubmission.save();
     const mail = new EmailService("contact-us", "contact-us");
     const resp = mail.send(
-      { name, email, phone, message, budget },
+      { name, email, phone, message, budget, url },
       `Get a Quote form filled from page: contact-us`,
       fileData
     );

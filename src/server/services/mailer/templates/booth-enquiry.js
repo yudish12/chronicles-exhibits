@@ -8,130 +8,277 @@ const boothEnquiryTemplate = async (
   const footerHtml = footerModule.default();
   return `
     ${headerHtml}
-       <table align="center" cellpadding="10" cellspacing="0" border="0" width="100%" style="max-width:680px; border-collapse: collapse; background-color: #B0CB1F; color: white; font-family: Arial, sans-serif; margin-top:10px;">
-    <caption style="padding: 15px; font-size: 24px; font-weight: bold; color: white; background-color: #8FAF1B; text-align: center;">
-        Get a Quote form filled from page: ${page_source}
-    </caption>
-    <tbody>
+
+        <table align="center" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse: collapse; background-color: #FFF5F5;">
+      <tbody>
         <!-- Name Row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Name:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${name}
-            </td>
+        <tr>
+          <td style="padding: 20px 40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Name :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${name}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
         </tr>
-        <!-- Company Row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Company:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${company}
-            </td>
-        </tr>
-        <!-- Event Name Row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Event Name:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${eventName}
-            </td>
-        </tr>
-        <!-- Event City Row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Event City:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${eventCity}
-            </td>
-        </tr>
-        <!-- Budget Row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-               Budget:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${budget}
-            </td>
-        </tr>
-        <!-- Country Row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Country:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${country}
-            </td>
-        </tr>
+
         <!-- Email Row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Email:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${email}
-            </td>
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Email :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${email}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
         </tr>
-        <!-- Phone Number Row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Phone Number:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${phoneNumber}
-            </td>
+
+        <!-- Phone Row -->
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Phone :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${phoneNumber}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
         </tr>
-        <!-- Event Date -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Event Date:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${eventDate}
-            </td>
+
+        <!-- Country Row (previously Country) -->
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Country :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${country}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
         </tr>
-        <!-- Booth Size -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Booth Size :
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${boothSize}
-            </td>
+
+        
+        
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Company :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${company}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
         </tr>
-        <!-- URL row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Url:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${url}
-            </td>
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Event Name :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${eventName}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
         </tr>
-        <!-- File row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                File:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${file}
-            </td>
+         <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Event City :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${eventCity}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
         </tr>
+         <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Event Date :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${eventDate}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+         <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Booth Size :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${boothSize}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+         <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Budget :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${budget}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
         <!-- Message Row -->
         <tr>
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left; vertical-align: top;">
-                Message:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                ${message}
-            </td>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Message :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px; line-height: 1.5;">
+                  ${message}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
         </tr>
-    </tbody>
-</table>
+
+        <!-- URL Row -->
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>URL :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  <a href="${url}" style="color: #0000EE; text-decoration: underline;">${url}</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     ${footerHtml}
   `;

@@ -27,6 +27,7 @@ const EnquiryForm = ({setOpen}) => {
     eventCity: "",
     budget: "",
     file: [],
+    url: obj.url,
     message: "",
   });
 
@@ -90,6 +91,7 @@ const EnquiryForm = ({setOpen}) => {
       });
       ApiData.append("company", formData.company);
       ApiData.append("eventName", formData.eventName);
+      ApiData.append("url",formData.url);
       ApiData.append("eventCity", formData.eventCity);
       ApiData.append("boothSize", formData.boothSize);
   

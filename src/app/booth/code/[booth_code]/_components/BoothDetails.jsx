@@ -295,7 +295,7 @@ const CarouselImages = ({
   );
 };
 
-const BoothForm = () => {
+const BoothForm = ({source,size}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
   const [selectedValue, setSelectedValue] = useState("");
@@ -312,7 +312,7 @@ const BoothForm = () => {
     phoneNumber: "",
     boothSize: "",
     message: "",
-    url: "",
+    url: window.location.origin+"/"+size+"-trade-show-booth/"+source,
     requestType: "",
     country: "",
   });
@@ -613,7 +613,7 @@ export function BoothDetails({ size, boothCode, boothData }) {
               ))}
             </CarouselContent>
           </Carousel>
-          <BoothForm />
+          <BoothForm size={size} source={boothCode} />
         </div>
 
         {/* Details */}
@@ -653,7 +653,7 @@ export function BoothDetails({ size, boothCode, boothData }) {
           selectedIndex={selectedIndex}
           handleThumbnailClick={handleThumbnailClick}
         />
-        <BoothForm />
+        <BoothForm size={size} source={boothCode} />
         {/* Details */}
         <PackageDetails size={size} boothData={boothData} />
       </div>

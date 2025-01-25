@@ -21,7 +21,7 @@ const BlogForm = ({source}) => {
     boothSize: "",
     country: "",
     message: "",
-    url: "",
+    url: window.location.origin+"/"+source,
   });
   const path = usePathname();
   const obj = getPageNameAndUrl(path);

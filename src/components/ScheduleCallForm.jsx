@@ -31,7 +31,7 @@ const ScheduleCallForm = ({ setOpen }) => {
     callTime: "",
     timeZone: "",
     message: "",
-    url: "",
+    url: url,
     name: "",
   });
 

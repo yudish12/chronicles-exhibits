@@ -8,49 +8,124 @@ const getQuoteTemplate = async (
     const footerHtml = footerModule.default();
     return `
       ${headerHtml}
-         <div style="max-width: 600px; margin: 0 auto; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-          <!-- Content -->
-          <div style="padding: 24px;">
-              <table style="width: 100%; border-collapse: collapse;">
-                  <tbody>
-                      <!-- Name -->
-                      <tr style="border-bottom: 1px solid #eee;">
-                          <td style="padding: 16px 8px; width: 140px; color: #666; font-weight: 600;">Name:</td>
-                          <td style="padding: 16px 8px; color: #333;">${name}</td>
-                      </tr>
-  
-                      <!-- Email -->
-                      <tr style="border-bottom: 1px solid #eee;">
-                          <td style="padding: 16px 8px; width: 140px; color: #666; font-weight: 600;">Email:</td>
-                          <td style="padding: 16px 8px; color: #333;">${email}</td>
-                      </tr>
-  
-                      <!-- Phone -->
-                      <tr style="border-bottom: 1px solid #eee;">
-                          <td style="padding: 16px 8px; width: 140px; color: #666; font-weight: 600;">Phone:</td>
-                          <td style="padding: 16px 8px; color: #333;">${phoneNumber}</td>
-                      </tr>
-  
-                      
-                      <!-- Budget -->
-                      <tr style="border-bottom: 1px solid #eee;">
-                          <td style="padding: 16px 8px; width: 140px; color: #666; font-weight: 600;">Event:</td>
-                          <td style="padding: 16px 8px; color: #333;">${budget}</td>
-                      </tr>
-  
-                      <!-- Message -->
-                      <tr>
-                          <td style="padding: 16px 8px; width: 140px; color: #666; font-weight: 600; vertical-align: top;">Message:</td>
-                          <td style="padding: 16px 8px; color: #333;">
-                              <div style="background: #f8f9fa; padding: 12px; border-radius: 4px; white-space: pre-wrap;">
-                                  ${message}
-                              </div>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-      </div>
+          <table align="center" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse: collapse; background-color: #FFF5F5;">
+      <tbody>
+        <!-- Name Row -->
+        <tr>
+          <td style="padding: 20px 40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Name :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${name}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Email Row -->
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Email :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${email}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Phone Row -->
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Phone :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${phoneNumber}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        
+         <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Budget :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  ${budget}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Message Row -->
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Message :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px; line-height: 1.5;">
+                  ${message}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
       ${footerHtml}
     `;
   };

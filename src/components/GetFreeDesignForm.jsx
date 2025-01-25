@@ -8,14 +8,15 @@ import { submitGetFreeDesignForm } from "@/server/actions/forms";
 import InputFile from "./ui/input-file";
 import { toast } from "sonner";
 import { usePathname, useRouter } from "next/navigation";
-import { getPageFieldsByName } from "@/utils";
+import { getPageFieldsByName, getPageNameAndUrl } from "@/utils";
 import { emailRegex , phoneRegex} from "@/utils/constants/regex";
 const GetFreeDesignForm = ({setOpen}) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading,setLoading] = useState(false)
   const router = useRouter();
   const path = usePathname();
-  const {name, url} = getPageFieldsByName(path);
+  const {name, url} = getPageNameAndUrl(path);
+  console.log(name,url)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,6 +29,7 @@ const GetFreeDesignForm = ({setOpen}) => {
     budget: "",
     boothSize: "",
     file: [],
+    url,
     message: "",
   });
 
@@ -106,6 +108,7 @@ const GetFreeDesignForm = ({setOpen}) => {
       ApiData.append("eventCity", formData.eventCity);
       ApiData.append("boothSize", formData.boothSize);
       ApiData.append("country", formData.country);
+      ApiData.append("url", formData.url);
       console.log("Form Data Submitted:", formData);
       const resp = await submitGetFreeDesignForm(ApiData,name);
       console.log(resp);
