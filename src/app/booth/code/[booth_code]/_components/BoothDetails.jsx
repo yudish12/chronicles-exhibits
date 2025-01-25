@@ -309,7 +309,7 @@ const BoothForm = ({source,size}) => {
     country: "",
     eventDate: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     boothSize: "",
     message: "",
     url: window.location.origin+"/"+size+"-trade-show-booth/"+source,
@@ -327,7 +327,7 @@ const BoothForm = ({source,size}) => {
   // Handle phone number input
   const handlePhoneChange = (value) => {
     const formattedValue = value.startsWith("+") ? value : `+${value}`;
-    setFormData({ ...formData, phoneNumber: formattedValue });
+    setFormData({ ...formData, phone: formattedValue });
   };
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -335,13 +335,13 @@ const BoothForm = ({source,size}) => {
       e.preventDefault();
 
       const { requestType, ...otherFields } = formData;
-      const {phoneNumber , email } = formData;
+      const {phone , email } = formData;
     if(!emailRegex.test(email)){
       toast.error("Please enter a valid email address.")
       return false 
     }
-    const digitCount = formData.phoneNumber.length;
-    if(!phoneRegex.test(phoneNumber) || digitCount < 11){
+    const digitCount = formData.phone.length;
+    if(!phoneRegex.test(phone) || digitCount < 11){
       toast.error("Please enter a valid phone number.")
       return false 
     }
@@ -452,7 +452,7 @@ const BoothForm = ({source,size}) => {
           </div>
           <PhoneInput
             country={countryCode}
-            value={formData.phoneNumber}
+            value={formData.phone}
             onChange={handlePhoneChange}
             className="booth-code-phone-input lg:col-span-1 col-span-3 mb-0"
             required

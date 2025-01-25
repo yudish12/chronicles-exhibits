@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";export default function Boot
     purchaseRequest: false,
     customizationRequest: false,
     contactPerson: '',
-    phoneNumber: '',
+    phone: '',
     email: '',
     country: '',
     eventName: '',
@@ -20,12 +20,12 @@ import { Textarea } from "@/components/ui/textarea";export default function Boot
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
-    const {phoneNumber , email } = formData;
+    const {phone , email } = formData;
     if(!emailRegex.test(email)){
       toast.error("Please enter a valid email address.")
       return false 
     }
-    if(!phoneRegex.test(phoneNumber)){
+    if(!phoneRegex.test(phone)){
       toast.error("Please enter a valid phone number.")
       return false 
     }
@@ -97,8 +97,8 @@ import { Textarea } from "@/components/ui/textarea";export default function Boot
           />
           <Input
             type="text"
-            name="phoneNumber"
-            value={formData.phoneNumber}
+            name="phone"
+            value={formData.phone}
             placeholder="Phone/Mobile Number"
             className="w-full border border-secondary rounded-lg shadow-one px-3 py-2"
             onChange={handleChange}

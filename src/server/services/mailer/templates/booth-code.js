@@ -1,5 +1,5 @@
 const boothEnquiryTemplate = async (
-  { name, email, phoneNumber, rentalQuotation, purchaseRequest, customizationRequest, eventName, country, eventCity, url, message , budget },
+  { name, email, phone, rentalQuotation, purchaseRequest, customizationRequest, eventName, country, eventCity, url, message , budget },
   page_source
 ) => {
   const headerModule = await import("./header.js");
@@ -116,7 +116,7 @@ const boothEnquiryTemplate = async (
               </tr>
               <tr>
                 <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
-                  ${phoneNumber}
+                  ${phone}
                 </td>
               </tr>
               <tr>

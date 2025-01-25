@@ -1,5 +1,5 @@
 const getQuoteTemplate = async (
-    { name, email, phoneNumber, message, budget },
+    { name, email, phone, message, budget },
     page_source
   ) => {
     const headerModule = await import("./header.js");
@@ -67,7 +67,7 @@ const getQuoteTemplate = async (
               </tr>
               <tr>
                 <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
-                  ${phoneNumber}
+                  ${phone}
                 </td>
               </tr>
               <tr>

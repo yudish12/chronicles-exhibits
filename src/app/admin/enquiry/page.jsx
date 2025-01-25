@@ -216,7 +216,7 @@ export default function PortfolioTable() {
                 <TableCell>{index + 1 + (currentPage - 1) * 6}</TableCell>
                 <TableCell>{portfolio.name}</TableCell>
                 <TableCell>{portfolio.email}</TableCell>
-                <TableCell>{portfolio.phoneNumber}</TableCell>
+                <TableCell>{portfolio.phone}</TableCell>
                 <TableCell>{portfolio.page_source}</TableCell>
                 <TableCell>{portfolio.callDate}</TableCell>
                 <TableCell>{portfolio.callTime}</TableCell>

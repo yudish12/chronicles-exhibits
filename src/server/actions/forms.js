@@ -3,14 +3,13 @@
 import { EmailService } from "../services/mailer/email-service";
 import FormSubmission from "../models/form-submissions";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
-import { findBlogById } from "./blogs";
 export const submitCallForm = async (formData, page_source) => {
   try {
     const schemaKeys = {
       name: "",
       company: "",
       email: "",
-      phoneNumber: "",
+      phone: "",
       eventName: "",
       eventCity: "",
       file: "",
@@ -60,7 +59,7 @@ export const submitScheduleCallForm = async (fields, page_source) => {
     const schemaKeys = {
       name: "",
       email: "",
-      phoneNumber: "",
+      phone: "",
       eventName: "",
       eventCity: "",
       file: "",
@@ -93,7 +92,7 @@ export const submitGetFreeDesignForm = async (formData, page_source) => {
     const schemaKeys = {
       name: "",
       email: "",
-      phoneNumber: "",
+      phone: "",
       eventName: "",
       eventCity: "",
       country: "",
@@ -144,7 +143,7 @@ export const submitBoothForm = async (formdata, page_source) => {
     const schemaKeys = {
       name: "", //
       email: "", //
-      phoneNumber: "",//
+      phone: "",//
       eventName: "",//
       eventCity: "",//
       file: "",//
@@ -199,7 +198,7 @@ export const submitBlogForm = async (formData, page_source) => {
     const schemaKeys = {
       name: "",
       email: "",
-      phoneNumber: "",
+      phone: "",
       eventName: "",
       eventCity: "",
       file: "",
@@ -245,7 +244,7 @@ export const submitBoothCodeForm = async (fields, page_source) => {
     const schemaKeys = {
       name: "",
       email: "",
-      phoneNumber: "",
+      phone: "",
       eventName: "",
       eventCity: "",
       file: "",
@@ -321,7 +320,7 @@ export async function eventWebsiteForm(
     const schemaKeys = {
       name: "",
       email: "",
-      phoneNumber: "",
+      phone: "",
       eventName: "",
       eventCity: "",
       file: "",
@@ -380,7 +379,7 @@ export async function contactUsForm(formData) {
     const schemaKeys = {
       name: "",
       email: "",
-      phoneNumber: "",
+      phone: "",
       eventName: "",
       eventCity: "",
       file: "",

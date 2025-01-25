@@ -16,7 +16,7 @@ const BlogForm = ({source}) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     file: [],
     boothSize: "",
     country: "",
@@ -32,7 +32,7 @@ const BlogForm = ({source}) => {
   const handlePhoneChange = (value) => {
     // Ensure the value starts with "+"
     const formattedValue = value.startsWith("+") ? value : `+${value}`;
-    setFormData({ ...formData, phoneNumber: formattedValue });
+    setFormData({ ...formData, phone: formattedValue });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,8 +44,8 @@ const BlogForm = ({source}) => {
     }
   
     // Validate phone number
-    const digitCount = formData.phoneNumber.length;
-    if (!phoneRegex.test(formData.phoneNumber) || digitCount < 11) {
+    const digitCount = formData.phone.length;
+    if (!phoneRegex.test(formData.phone) || digitCount < 11) {
       toast.error("Please enter a valid phone number.");
       setLoading(false);
       return;
@@ -57,7 +57,7 @@ const BlogForm = ({source}) => {
       const ApiData = new FormData();
       ApiData.append("name", formData.name);
       ApiData.append("email", formData.email);
-      ApiData.append("phone", formData.phoneNumber);
+      ApiData.append("phone", formData.phone);
       ApiData.append("country", formData.country);
       ApiData.append("url",formData.url);
       ApiData.append("message", formData.message);
@@ -141,7 +141,7 @@ const BlogForm = ({source}) => {
       <div>
         <PhoneInput
           country={countryCode}
-          value={formData.phoneNumber}
+          value={formData.phone}
           disabled={loading}
           onChange={handlePhoneChange}
         />

@@ -1,10 +1,6 @@
 import Header from "@/components/ui/header";
-import SubHeader from "@/components/ui/sub-header";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
-import ourWorksData from "../../utils/constants/dev-data/our-works.json";
-import { StoreIcon } from "lucide-react";
 import Queryform from "../(landing)/Queryform";
 import Footer from "@/components/ui/footer";
 import "./style.css";

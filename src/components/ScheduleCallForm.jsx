@@ -26,7 +26,7 @@ const ScheduleCallForm = ({ setOpen }) => {
   const [formData, setFormData] = useState({
     country: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     callDate: "",
     callTime: "",
     timeZone: "",
@@ -75,7 +75,7 @@ const ScheduleCallForm = ({ setOpen }) => {
       formData.name &&
       formData.email &&
       formData.country &&
-      formData.phoneNumber &&
+      formData.phone &&
       formData.callDate &&
       formData.callTime
     );
@@ -83,13 +83,13 @@ const ScheduleCallForm = ({ setOpen }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {email , phoneNumber} = formData;
+    const {email , phone} = formData;
     if(!emailRegex.test(email)){
       toast.error("Please enter a valid email address.")
       return false 
     }
-    const digitCount = formData.phoneNumber.length; // Count only digits
-    if (!phoneRegex.test(formData.phoneNumber) || digitCount < 11) {
+    const digitCount = formData.phone.length; // Count only digits
+    if (!phoneRegex.test(formData.phone) || digitCount < 11) {
       toast.error("Please enter a valid phone number with at least 10 digits.");
       setLoading(false);
       return;
@@ -120,7 +120,7 @@ const ScheduleCallForm = ({ setOpen }) => {
   };
   const handlePhoneChange = (value) => {
     const formattedValue = value.startsWith("+") ? value : `+${value}`;
-    setFormData({ ...formData, phoneNumber: formattedValue });
+    setFormData({ ...formData, phone: formattedValue });
   };
   return (
     <div className="max-w-4xl w-full mx-auto p-6 bg-white rounded-lg">
@@ -158,7 +158,7 @@ const ScheduleCallForm = ({ setOpen }) => {
         <PhoneInput
           country={countryCode}
           disabled={loading}
-          value={formData.phoneNumber}
+          value={formData.phone}
           onChange={handlePhoneChange}
           inputStyle={{ width: "100%" }}
           inputClass="border-[#CACACA] text-secondary/70"

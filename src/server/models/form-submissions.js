@@ -12,7 +12,7 @@ const formSubmissionSchema = new mongoose.Schema(
       match: [emailRegex, "Please fill a valid email address"],
       // required: true,
     },
-    phoneNumber: {
+    phone: {
       type: String,
       // required: true,
       // match: [phoneRegex, "Please fill a valid phone number"],

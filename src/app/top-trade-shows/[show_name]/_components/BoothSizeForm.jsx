@@ -23,10 +23,10 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
     country: "",
     eventDate: date,
     email: "",
-    phoneNumber: "",
+    phone: "",
     boothSize: "",
     message: "",
-    url: `${window.location.origin}/${path}`,
+    url: `${window.location.origin}/${slug}`,
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,7 +36,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
   // Handle phone number input
   const handlePhoneChange = (value) => {
     const formattedValue = value.startsWith("+") ? value : `+${value}`;
-    setFormData({ ...formData, phoneNumber: formattedValue });
+    setFormData({ ...formData, phone: formattedValue });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,8 +47,8 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
       return;
     }
     // Validate phone number
-    const digitCount = formData.phoneNumber.length;
-    if (!phoneRegex.test(formData.phoneNumber) || digitCount < 11) {
+    const digitCount = formData.phone.length;
+    if (!phoneRegex.test(formData.phone) || digitCount < 11) {
       toast.error("Please enter a valid phone number.");
       setLoading(false);
       return;
@@ -58,7 +58,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
       const ApiData = new FormData();
       ApiData.append("name", formData.name);
       ApiData.append("email", formData.email);
-      ApiData.append("phone", formData.phoneNumber);
+      ApiData.append("phone", formData.phone);
       ApiData.append("message", formData.message);
       ApiData.append("budget", formData.budget);
       formData.file.forEach((file) => {
@@ -69,6 +69,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
       ApiData.append("eventCity", formData.eventCity);
       ApiData.append("boothSize", formData.boothSize);
       ApiData.append("country", formData.country);
+      ApiData.append("url", formData.url);
       ApiData.append("eventDate", formData.eventDate);
       e.preventDefault();
       const resp = await submitBoothForm(ApiData, eventName);
@@ -148,7 +149,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
         <div>
           <PhoneInput
             country={countryCode}
-            value={formData.phoneNumber}
+            value={formData.phone}
             disabled={loading}
             onChange={handlePhoneChange}
           />

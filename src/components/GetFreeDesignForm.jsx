@@ -20,7 +20,7 @@ const GetFreeDesignForm = ({setOpen}) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     country: "US",
     eventName: "",
     eventCity: "",
@@ -73,7 +73,7 @@ const GetFreeDesignForm = ({setOpen}) => {
   // Handle phone number input
   const handlePhoneChange = (value) => {
     const formattedValue = value.startsWith("+") ? value : `+${value}`;
-    setFormData({ ...formData, phoneNumber: formattedValue });
+    setFormData({ ...formData, phone: formattedValue });
   };
 
   // Handle form submission
@@ -82,14 +82,14 @@ const GetFreeDesignForm = ({setOpen}) => {
       console.log(formData , " event hit form data ")
       e.preventDefault();
       setLoading(true);
-      const {phoneNumber , email } = formData;
+      const {phone , email } = formData;
       if(!emailRegex.test(email)){
         toast.error("Please enter a valid email address.")
         setLoading(false);
         return 
       }
-      const digitCount = formData.phoneNumber.length;
-      if(!phoneRegex.test(phoneNumber) || digitCount < 11){
+      const digitCount = formData.phone.length;
+      if(!phoneRegex.test(phone) || digitCount < 11){
         toast.error("Please enter a valid phone number.")
         setLoading(false);
         return  
@@ -97,7 +97,7 @@ const GetFreeDesignForm = ({setOpen}) => {
       const ApiData = new FormData();
       ApiData.append("name", formData.name);
       ApiData.append("email", formData.email);
-      ApiData.append("phone", formData.phoneNumber);
+      ApiData.append("phone", formData.phone);
       ApiData.append("message", formData.message);
       ApiData.append("budget", formData.budget);
       formData.file.forEach((file) => {
@@ -161,7 +161,7 @@ const GetFreeDesignForm = ({setOpen}) => {
         />
         <PhoneInput
           country={countryCode}
-          value={formData.phoneNumber}
+          value={formData.phone}
           onChange={handlePhoneChange}
           disabled={loading}
           inputStyle={{ width: "100%", marginBottom: "10px" }}

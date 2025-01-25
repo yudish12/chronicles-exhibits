@@ -7,21 +7,28 @@ import { contactUsForm } from "@/server/actions/forms"
 import { toast } from "sonner"
 import { usePathname } from "next/navigation"
 import { getPageFieldsByName } from "@/utils"
+import PhoneInput from "react-phone-input-2"
 
 const EnquiryForm = () => {
   const [files, setFiles] = React.useState([])
   const [loading, setLoading] = React.useState(false)
   const path = usePathname();
+  const [countryCode, setCountryCode] = React.useState("us");
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     budget: "",
     message: "",
   })
   const obj = getPageFieldsByName(path)
 
-  const { name, email, phoneNumber, message, budget } = formData
+  const handlePhoneChange = (value) => {
+    const formattedValue = value.startsWith("+") ? value : `+${value}`;
+    setFormData({ ...formData, phone: formattedValue });
+  };
+
+  const { name, email, phone, message, budget } = formData
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -44,7 +51,7 @@ const EnquiryForm = () => {
 
       formData.append("name", name)
       formData.append("email", email)
-      formData.append("phone", phoneNumber)
+      formData.append("phone", phone)
       formData.append("message", message)
       formData.append("budget", budget)
 
@@ -60,7 +67,7 @@ const EnquiryForm = () => {
       setFormData({
         name: "",
         email: "",
-        phoneNumber: "",
+        phone: "",
         budget: "",
         message: "",
       })
@@ -72,6 +79,21 @@ const EnquiryForm = () => {
       setLoading(false)
     }
   }
+
+  React.useEffect(() => {
+    const fetchCountryCode = async () => {
+      try {
+        const response = await fetch("http://ip-api.com/json/");
+        const data = await response.json();
+        if (data && data.countryCode) {
+          setCountryCode(data.countryCode.toLowerCase());
+        }
+      } catch (error) {
+        console.error("Error fetching country code:", error);
+      }
+    };
+    fetchCountryCode();
+  }, []);
 
   return (
     <form onSubmit={handleSubmit} className="bg-white shadow-xl rounded-lg p-8 space-y-6">
@@ -86,6 +108,7 @@ const EnquiryForm = () => {
           onChange={handleChange}
           required
           name="name"
+          disabled={loading}
           placeholder="Enter your name"
           className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent"
         />
@@ -94,23 +117,22 @@ const EnquiryForm = () => {
           onChange={handleChange}
           required
           name="email"
+          disabled={loading}
           type="email"
           placeholder="Email ID"
           className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent"
         />
-        <Input
-          value={phoneNumber}
-          onChange={handleChange}
-          required
-          type="number"
-          name="phoneNumber"
-          placeholder="Phone Number"
-          className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent"
-        />
+        <PhoneInput
+            country={countryCode}
+            value={formData.phone}
+            disabled={loading}
+            onChange={handlePhoneChange}
+          />
         <Input
           value={budget}
           onChange={handleChange}
           required
+          disabled={loading}
           name="budget"
           placeholder="Budget"
           className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent"
@@ -119,6 +141,7 @@ const EnquiryForm = () => {
           rows={4}
           value={message}
           onChange={handleChange}
+          disabled={loading}
           required
           name="message"
           placeholder="Additional information that you would like to add..."

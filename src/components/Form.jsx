@@ -21,7 +21,7 @@ const EnquiryForm = ({setOpen}) => {
     name: "",
     company : "",
     email: "",
-    phoneNumber: "",
+    phone: "",
     boothSize: "",
     eventName: "",
     eventCity: "",
@@ -57,7 +57,7 @@ const EnquiryForm = ({setOpen}) => {
   const handlePhoneChange = (value) => {
     // Ensure the value starts with "+"
     const formattedValue = value.startsWith("+") ? value : `+${value}`;
-    setFormData({ ...formData, phoneNumber: formattedValue });
+    setFormData({ ...formData, phone: formattedValue });
   };
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -72,8 +72,8 @@ const EnquiryForm = ({setOpen}) => {
     }
   
     // Validate phone number
-    const digitCount = formData.phoneNumber.trim().length; // Count only digits
-    if (!phoneRegex.test(formData.phoneNumber) || digitCount < 11) {
+    const digitCount = formData.phone.trim().length; // Count only digits
+    if (!phoneRegex.test(formData.phone) || digitCount < 11) {
       toast.error("Please enter a valid phone number with at least 10 digits.");
       setLoading(false);
       return;
@@ -83,7 +83,7 @@ const EnquiryForm = ({setOpen}) => {
       const ApiData = new FormData();
       ApiData.append("name", formData.name);
       ApiData.append("email", formData.email);
-      ApiData.append("phone", formData.phoneNumber);
+      ApiData.append("phone", formData.phone);
       ApiData.append("message", formData.message);
       ApiData.append("budget", formData.budget);
       formData.file.forEach((file) => {
@@ -152,7 +152,7 @@ const EnquiryForm = ({setOpen}) => {
         />
         <PhoneInput
           country={countryCode}
-          value={formData.phoneNumber}
+          value={formData.phone}
           onChange={handlePhoneChange}
           inputStyle={{ width: "100%", marginBottom: "10px" }}
         />
