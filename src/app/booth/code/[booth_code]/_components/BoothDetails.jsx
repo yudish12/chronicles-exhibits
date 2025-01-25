@@ -375,7 +375,7 @@ const BoothForm = ({source,size}) => {
   useEffect(() => {
     const fetchCountryCode = async () => {
       try {
-        const response = await fetch("http://ip-api.com/json/");
+        const response = await fetch("https://ip-api.com/json/");
         const data = await response.json();
         if (data && data.countryCode) {
           setCountryCode(data.countryCode.toLowerCase());
