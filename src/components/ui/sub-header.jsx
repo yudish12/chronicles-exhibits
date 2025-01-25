@@ -41,7 +41,7 @@ const SubHeader = () => {
           <Link href={"https://www.instagram.com/chronicleexhibits/"}>
             <Image
               alt="pinterest"
-              src="/pinterest.svg"
+              src="/insta.svg"
               width={30}
               height={30}
             />

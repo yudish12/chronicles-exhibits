@@ -105,9 +105,10 @@ const BlogForm = ({source}) => {
         </h3>
       </div>
       <form
-        className="gap-6 w-full mt-2 pt-4 flex flex-col "
+        className="gap-6 w-full mt-2 pt-4 flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col"
         onSubmit={handleSubmit}
       >
+      <div>
         <Input
           placeholder="Your Name"
           className="w-full shadow-two placeholder:black py-2 border-0"
@@ -117,6 +118,8 @@ const BlogForm = ({source}) => {
           required
           name="name"
         />
+        </div>
+        <div>
         <Input
           placeholder="Your Email"
           className="w-full shadow-two placeholder:black py-2 border-0"
@@ -126,6 +129,7 @@ const BlogForm = ({source}) => {
           required
           name="email"
         />
+        </div>
         {/* <Input
             placeholder="Phone Number"
             className="w-full shadow-two placeholder:black py-2 border-0"
@@ -134,13 +138,18 @@ const BlogForm = ({source}) => {
             required
             name="email"
       /> */}
+      <div>
         <PhoneInput
           country={countryCode}
           value={formData.phoneNumber}
           disabled={loading}
           onChange={handlePhoneChange}
         />
+        </div>
+        <div>
         <InputFile value={formData.file} onChange={(files)=> setFormData({ ...formData, file: files })} />
+        </div>
+        <div>
         <Input
           placeholder="Your Country Name"
           disabled={loading}
@@ -150,6 +159,8 @@ const BlogForm = ({source}) => {
           required
           name="country"
         />
+        </div>
+        <div>
         <Input
           placeholder="Booth Size"
           disabled={loading}
@@ -159,6 +170,8 @@ const BlogForm = ({source}) => {
           required
           name="boothSize"
         />
+        </div>
+        <div className="col-span-2">
         <Textarea
           placeholder="Tell us about your requirements"
           disabled={loading}
@@ -169,10 +182,11 @@ const BlogForm = ({source}) => {
           required
           name="message"
         />
+        </div>
         <Button
           type="submit"
           disabled={loading}
-          className=" bg-primary hover:bg-primary hover:text-secondary text-white shadow-one font-bold "
+          className="w-1/3 mx-auto col-span-2 bg-primary text-secondary hover:text-black font-semibold py-2 rounded hover:bg-primary"
         >
           Sumbit Enquuiry
           {loading && <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>}

@@ -140,7 +140,7 @@ const GetFreeDesignForm = ({setOpen}) => {
       <h5 className="text-3xl mt-4 text-center font-semibold heading-font text-secondary">
         Get Free 3D Design
       </h5>
-      <div className="mt-4 flex flex-col gap-5">
+      <div className="mt-4 flex flex-col sm:grid sm:grid-cols-2 gap-5">
         <Input
           className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
           type="text"
@@ -225,7 +225,7 @@ const GetFreeDesignForm = ({setOpen}) => {
         <InputFile value={formData.file} onChange={(e)=> setFormData({ ...formData, file: e })} />
         <textarea
           rows={4}
-          className="border p-2 border-[#CACACA] placeholder:text-secondary/70 rounded-lg"
+          className="border p-2 col-span-2 border-[#CACACA] placeholder:text-secondary/70 rounded-lg"
           placeholder="Message"
           disabled={loading}
           name="message"
@@ -234,7 +234,7 @@ const GetFreeDesignForm = ({setOpen}) => {
         <Button
           disabled={loading}
           onClick={handleSubmit}
-          className="w-1/3 mx-auto bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
+          className="w-1/3 mx-auto col-span-2 bg-transparent border-2 border-secondary text-secondary hover:text-white font-semibold py-2 rounded hover:bg-secondary "
         >
           Send Enquiry
           {loading && <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-black"></div>}

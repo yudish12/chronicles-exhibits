@@ -1,23 +1,10 @@
 import { Button } from "@/components/ui/button";
 import Header from "@/components/ui/header";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectLabel,
-  SelectValue,
-  SelectGroup,
-  SelectTrigger,
-} from "@/components/ui/select";
-import SubHeader from "@/components/ui/sub-header";
-import tradeShows from "../../../utils/constants/dev-data/trade-shows.json";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Products from "@/app/(landing)/Products";
-import { DiamondSvg } from "@/app/booth/size/[booth_size]/_components/TradeShowSection";
 import Footer from "@/components/ui/footer";
-import Queryform from "@/app/(landing)/Queryform";
 import { Calendar, MapPin } from "lucide-react";
 import moment from "moment";
 import "./style.css";
@@ -65,7 +52,6 @@ const Page = async ({ params }) => {
   }
   console.log(data);
 
-  const shows = tradeShows.splice(0, 4);
   const ua = await userAgent({ headers: headers() });
   const isMobile = ua?.device?.type === "mobile";
   const ourWorksData = await getAllPortfolios(0, 9);
@@ -219,22 +205,22 @@ const Page = async ({ params }) => {
                 alt={show.title}
               />
               <div className="flex flex-col gap-2 w-full px-4">
-                <p className="flex gap-4">
-                  <MapPin color="#B0CB1F" />
-                  <span className="text-[16px]">
-                    {show.city},{show.country}
-                  </span>
-                </p>
-                <p className="flex gap-4  ">
-                  <Calendar color="#B0CB1F" />
-                  <span className="text-[16px]">
-                    {moment(show.start_date).format("DD")}-
-                    {moment(show.end_date).format("DD")}{" "}
-                    {moment(show.start_date).format("MMMM")}{" "}
-                    {moment(show.end_date).format("YYYY")}
-                  </span>
-                </p>
-              </div>
+              <p className="flex text-black gap-4">
+                <MapPin color="#B0CB1F" />
+                <span className="text-[17px]">
+                  {show?.location_id?.city ?? show.city} | United States
+                </span>
+              </p>
+              <p className="flex gap-4">
+                <Calendar color="#B0CB1F" />
+                <span className="text-[17px] text-black">
+                  {moment(show.start_date).format("DD")}-
+                  {moment(show.end_date).format("DD")}{" "}
+                  {moment(show.start_date).format("MMMM")}{" "}
+                  {moment(show.end_date).format("YYYY")}
+                </span>
+              </p>
+            </div>
             </Link>
           ))}
         </div>

@@ -1,10 +1,16 @@
 import Header from "@/components/ui/header";
-import SubHeader from "@/components/ui/sub-header";
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Footer from "@/components/ui/footer";
+
+export const generateMetadata = async () => {
+  return {
+    title: "thank-you",
+    description: "thank-you",
+  };
+};
 
 const page = () => {
   return (

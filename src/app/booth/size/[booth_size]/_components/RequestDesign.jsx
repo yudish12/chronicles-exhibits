@@ -20,7 +20,7 @@ const RequestDesign = ({ fields }) => {
               {fields[6].value}
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-h-[700px] overflow-auto">
+          <DialogContent className="max-h-[650px] overflow-auto">
             <GetFreeDesignForm />
           </DialogContent>
         </Dialog>

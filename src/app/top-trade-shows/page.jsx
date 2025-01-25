@@ -1,18 +1,8 @@
-import { Button } from "@/components/ui/button";
 import Header from "@/components/ui/header";
-import SubHeader from "@/components/ui/sub-header";
-import tradeShows from "../../utils/constants/dev-data/trade-shows.json";
 import React from "react";
-import Image from "next/image";
-import moment from "moment";
 import Footer from "@/components/ui/footer";
-import { MapPin, Calendar } from "lucide-react";
-import RequestDesign from "../booth/size/[booth_size]/_components/RequestDesign";
-import Link from "next/link";
 import { getAllData } from "@/server/actions/events";
-import TradeShowGrid from "./_components/TradeShowGrid";
 import { getSinglePage } from "@/server/actions/pages";
-import TradeshowSearch from "./_components/Tradeshow-search";
 import TradeShowClient from "./_components/trade-show-client";
 
 export const generateMetadata = async ({}) => {

@@ -285,7 +285,7 @@ export default function Footer() {
                     Get Free 3D Quotation
                   </div>
                 </DialogTrigger>
-                <DialogContent className="max-h-[700px] overflow-auto">
+                <DialogContent className="max-h-[600px] overflow-auto">
                   <GetFreeDesignForm setOpen={setGetFreeDesignOpen} />
                 </DialogContent>
               </Dialog>
@@ -302,7 +302,7 @@ export default function Footer() {
             <div className="bg-white"
             style={{ display: 'inline-block', lineHeight: 0 }}>
             <Image
-              src={"/qr.jpeg"}
+              src={"/qr.png"}
               alt="QR Code"
               width={100}
               height={100}
@@ -359,7 +359,7 @@ export default function Footer() {
                 <Link href={"https://www.instagram.com/chronicleexhibits/"}>
                   <Image
                     alt="pinterest"
-                    src="/pinterest.svg"
+                    src="/insta.svg"
                     width={30}
                     height={30}
                   />

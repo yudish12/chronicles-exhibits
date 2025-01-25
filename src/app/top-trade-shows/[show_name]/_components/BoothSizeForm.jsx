@@ -6,12 +6,12 @@ import PhoneInput from "react-phone-input-2";
 import { submitBoothForm } from "@/server/actions/forms";
 import InputFile from "@/components/ui/input-file";
 import { toast } from "sonner";
-import { emailRegex , phoneRegex } from "@/utils/constants/regex";
+import { emailRegex, phoneRegex } from "@/utils/constants/regex";
 import { getPageNameAndUrl } from "@/utils";
 import { usePathname } from "next/navigation";
-const BoothSizeForm = ({ slug,eventName, eventCity, date }) => {
+const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
   const [countryCode, setCountryCode] = useState("us");
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const path = usePathname();
   const [formData, setFormData] = useState({
     name: "",
@@ -86,7 +86,7 @@ const BoothSizeForm = ({ slug,eventName, eventCity, date }) => {
     } finally {
       setLoading(false);
     }
-    
+
   };
   useEffect(() => {
     const fetchCountryCode = async () => {
@@ -113,80 +113,98 @@ const BoothSizeForm = ({ slug,eventName, eventCity, date }) => {
       <h5 className="text-2xl mt-4 text-center font-semibold heading-font text-secondary">
         Enquiry Form
       </h5>
-      <div className="mt-4 flex flex-col gap-5">
-        <Input
-          className="border-secondary/70 text-secondary placeholder:text-secondary/70"
-          type="text"
-          disabled={loading}
-          placeholder="Your Name"
-          onChange={handleChange}
-          name="name"
-        />
-        <Input
-          className="border-secondary/70 text-secondary placeholder:text-secondary/70"
-          type="text"
-          disabled={loading}
-          placeholder="Your Company"
-          onChange={handleChange}
-          name="company"
-        />
-        <Input
-          className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
-          type="email"
-          disabled={loading}
-          placeholder="Your Email ID"
-          onChange={handleChange}
-          required
-          name="email"
-        />
-        <PhoneInput
-          country={countryCode}
-          value={formData.phoneNumber}
-          disabled={loading}
-          onChange={handlePhoneChange}
-        />
-        <Input
-          className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
-          type="text"
-          placeholder="Booth Size"
-          disabled={loading}
-          onChange={handleChange}
-          required
-          name="boothSize"
-        />
-        <Input
-          className="border-secondary/70 text-secondary placeholder:text-secondary/70"
-          type="text"
-          placeholder="Budget"
-          disabled={loading}
-          onChange={handleChange}
-          name="budget"
-        />
-        <Input
-          className="border-secondary/70 text-secondary placeholder:text-secondary/70"
-          type="text"
-          disabled={loading}
-          placeholder="Your Country Name"
-          onChange={handleChange}
-          name="country"
-        />
+      <div className="mt-4 flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col gap-5">
+        <div>
+          <Input
+            className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+            type="text"
+            disabled={loading}
+            placeholder="Your Name"
+            onChange={handleChange}
+            name="name"
+          />
+        </div>
+        <div>
+          <Input
+            className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+            type="text"
+            disabled={loading}
+            placeholder="Your Company"
+            onChange={handleChange}
+            name="company"
+          />
+        </div>
+        <div>
+          <Input
+            className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+            type="email"
+            disabled={loading}
+            placeholder="Your Email ID"
+            onChange={handleChange}
+            required
+            name="email"
+          />
+        </div>
+        <div>
+          <PhoneInput
+            country={countryCode}
+            value={formData.phoneNumber}
+            disabled={loading}
+            onChange={handlePhoneChange}
+          />
+        </div>
+        <div>
+          <Input
+            className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+            type="text"
+            placeholder="Booth Size"
+            disabled={loading}
+            onChange={handleChange}
+            required
+            name="boothSize"
+          />
+        </div>
+        <div>
+          <Input
+            className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+            type="text"
+            placeholder="Budget"
+            disabled={loading}
+            onChange={handleChange}
+            name="budget"
+          />
+        </div>
+        <div>
+          <Input
+            className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+            type="text"
+            disabled={loading}
+            placeholder="Your Country Name"
+            onChange={handleChange}
+            name="country"
+          />
+        </div>
         {/* <Input
             className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
             type="number"
             placeholder="Your Phone Number"
 
           /> */}
-        <InputFile value={formData.file} onChange={(e)=> setFormData({ ...formData, file: e })} />
-        <textarea
-          rows={4}
-          className="border p-2 border-secondary/70 placeholder:text-secondary/70 rounded-lg"
-          placeholder="Message"
-          name="message"
-          disabled={loading}
-          onChange={handleChange}
-        />
+        <div>
+          <InputFile value={formData.file} onChange={(e) => setFormData({ ...formData, file: e })} />
+        </div>
+        <div className="col-span-2 " >
+          <textarea
+            rows={4}
+            className="border w-full p-2 border-secondary/70 placeholder:text-secondary/70 rounded-lg"
+            placeholder="Message"
+            name="message"
+            disabled={loading}
+            onChange={handleChange}
+          />
+        </div>
         <Button
-          className="w-1/3 mx-auto bg-primary text-secondary hover:text-black font-semibold py-2 rounded hover:bg-primary "
+          className="w-1/3 mx-auto col-span-2 bg-primary text-secondary hover:text-black font-semibold py-2 rounded hover:bg-primary "
           onClick={handleSubmit}
           disabled={loading}
         >

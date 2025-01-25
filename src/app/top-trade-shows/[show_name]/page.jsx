@@ -7,12 +7,9 @@ import Timer from "./_components/Timer";
 import { Calendar, MapPin } from "lucide-react";
 import moment from "moment";
 import Link from "next/link";
-import recentShows from "../../../utils/constants/dev-data/trade-shows.json";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/ui/footer";
-import { Input } from "@/components/ui/input";
 import Products from "@/app/(landing)/Products";
-import { DiamondSvg } from "@/app/booth/size/[booth_size]/_components/TradeShowSection";
 import { getAllData, getSingleEvent } from "@/server/actions/events";
 import Head from "next/head";
 import BoothSizeForm from "./_components/BoothSizeForm";
@@ -31,19 +28,6 @@ export async function generateMetadata({ params }) {
     keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
   };
 }
-
-const points = [
-  "With hundreds of exhibiting companies and thousands of attendees, CES Las Vegas has unparalleled scale and reach within the industry.",
-  "The massive event spans multiple large convention venues.",
-  "International coverage by global press and media translates to huge brand exposure.",
-  "Announcements at CES Las Vegas 2025 receive billions in free publicity that helps launch new products and companies.",
-  "Attendees include top buyers, retailers, investors, and other influencers.",
-  "It's a place for companies to showcase their goods, attract partners, and generate sales leads.",
-  "Exhibiting gives lesser-known startups high-profile visibility alongside industry giants.",
-  "The chance to be discovered at this stage can make or break a young company.",
-  "For all exhibitors, the benefits include connecting with clients/partners, evaluating competitors face-to-face, gauging technological trends, and solidifying thought leadership status.",
-  "Participation lends credibility to brands and allows them to test new ideas directly with their target audience before launching products globally.",
-];
 
 const Page = async ({ params }) => {
   const resolvedParams = await params;

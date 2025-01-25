@@ -197,7 +197,7 @@ const Page = async ({ params }) => {
           src={eventData.icon}
           alt={"show.title"}
         />
-        <div className="flex flex-col px-[40px] lg:flex-row lg:px-20 gap-12 py-12">
+        <div className="flex flex-col px-4 sm:px-8 md:px-[40px] lg:flex-row lg:px-20 gap-12 py-12">
           <div className="w-full lg:w-[70%] bg-white sm:p-6 p-8  rounded-xl shadow-one">
             <h2 className="text-2xl heading-font text-secondary font-semibold">
               {eventData.title}

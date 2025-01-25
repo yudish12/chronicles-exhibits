@@ -12,12 +12,13 @@ const InputFile = ({ className, value, onChange }) => {
       <Label htmlFor="file-upload">
         <div
           className={cn(
-            "flex flex-col sm:flex-row h-auto sm:h-10 w-full items-center gap-4 sm:gap-6 rounded-md border border-input bg-transparent px-3 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+            "flex flex-row h-10 w-full items-center gap-4 sm:gap-6 rounded-md border border-input bg-transparent px-3 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
             className
           )}
         >
-          <button onClick={() => inpRef.current.click()} className="border my-2 sm:my-0 px-3 border-black">Choose File</button>
-          <span className="ml-0 sm:ml-2 text-gray-500 text-center sm:text-left">Upload files for booth designs</span>
+        <div className="" >
+          <button type="button" onClick={() => inpRef.current.click()} className="border sm:my-0 px-3 border-black">Choose File</button></div>
+          <span className="ml-0 sm:ml-2 text-gray-500 text-center w-1/2 text-ellipsis whitespace-nowrap overflow-hidden sm:text-left">Upload files for booth designs</span>
         </div>
       </Label>
       {value && value.length > 0 && (
