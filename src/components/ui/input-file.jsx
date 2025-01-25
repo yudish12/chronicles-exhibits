@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Label } from "./label";
 import { Input } from "./input";
 import Image from "next/image";
@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "./button";
 
 const InputFile = ({ className, value, onChange }) => {
-    console.log(value)
+  const inpRef = useRef(null);
   return (
     <div className="col-span-1 sm:col-span-2">
       <Label htmlFor="file-upload">
@@ -16,7 +16,7 @@ const InputFile = ({ className, value, onChange }) => {
             className
           )}
         >
-          <button className="border my-2 px-3 border-black">Choose File</button>
+          <button onClick={()=>inpRef.current.click()} className="border my-2 px-3 border-black">Choose File</button>
           <span className="ml-2 text-gray-500">Upload files for booth designs</span>
         </div>
       </Label>
@@ -64,6 +64,7 @@ const InputFile = ({ className, value, onChange }) => {
         onChange={(e) => onChange([...value,...e.target.files])}
         type="file"
         id="file-upload"
+        ref={inpRef}
         multiple
         className="bg-white hidden border border-gray-300 text-gray-800 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
       />

@@ -2,7 +2,6 @@ import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
 import React from "react";
 import Queryform from "../(landing)/Queryform";
-import SubHeader from "@/components/ui/sub-header";
 import Carousel from "./_components/Carousel";
 import Parallax from "./_components/Parallax";
 import { getSinglePage } from "@/server/actions/pages";

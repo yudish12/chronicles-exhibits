@@ -59,6 +59,7 @@ const BlogForm = ({source}) => {
       ApiData.append("email", formData.email);
       ApiData.append("phone", formData.phoneNumber);
       ApiData.append("country", formData.country);
+      ApiData.append("url",formData.url);
       ApiData.append("message", formData.message);
       ApiData.append("boothSize", formData.boothSize);
       formData.file.forEach((file) => {

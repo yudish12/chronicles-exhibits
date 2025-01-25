@@ -1,9 +1,16 @@
 import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
-import SubHeader from "@/components/ui/sub-header";
 import React from "react";
-import Image from "next/image";
 import "./style.css";
+
+export const generateMetadata = async () => {
+  const { data } = await getSinglePage({ name: "privacy-policy" }, "meta_title meta_description meta_keywords");
+  return {
+    title: data?.meta_title || "Default Title",
+    description: data?.meta_description || "Default Description",
+    keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
+  };
+};
 
 import { getSinglePage } from "@/server/actions/pages";
 const Page = async () => {

@@ -133,7 +133,7 @@ const Page = async ({ params }) => {
               </div>
 
               {/* Enquiry Form */}
-              <BlogForm source={data.title} />
+              <BlogForm source={slug} />
             </div>
           </div>
         </div>
@@ -209,6 +209,7 @@ const Page = async ({ params }) => {
           </div>
           <div className="w-full lg:w-[30%] flex flex-col gap-6">
             <BoothSizeForm
+              slug={slug}
               eventName={eventName}
               eventCity={eventCity}
               date={date}

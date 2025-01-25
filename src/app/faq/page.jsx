@@ -4,6 +4,15 @@ import SubHeader from "@/components/ui/sub-header";
 import { getSinglePage } from "@/server/actions/pages";
 import React from "react";
 
+export const generateMetadata = async () => {
+  const { data } = await getSinglePage({ name: "faq" }, "meta_title meta_description meta_keywords");
+  return {
+    title: data?.meta_title || "Default Title",
+    description: data?.meta_description || "Default Description",
+    keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
+  };
+};
+
 const page = async () => {
   const faqPageData = await getSinglePage({ name: "faq" });
   const faqs = faqPageData.data.fields[1].value;
