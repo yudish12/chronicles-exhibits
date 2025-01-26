@@ -3,11 +3,11 @@ import Header from "@/components/ui/header";
 import SubHeader from "@/components/ui/sub-header";
 import Image from "next/image";
 import React from "react";
-import dynamic from "next/dynamic";
 import "./style.css";
 import Link from "next/link";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import { getSinglePage } from "@/server/actions/pages";
+import dynamic from "next/dynamic";
 
 const Accordion = dynamic(() => import("./_components/Accordion"));
 

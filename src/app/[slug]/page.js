@@ -8,6 +8,7 @@ import Link from "next/link";
 import React from "react";
 import Timer from "../top-trade-shows/_shows_comps/_components/Timer";
 import { Calendar, MapPin } from "lucide-react";
+import dynamic from "next/dynamic";
 const BoothSizeForm = dynamic(() => import("../top-trade-shows/_shows_comps/_components/BoothSizeForm"))
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Products from "../(landing)/Products";

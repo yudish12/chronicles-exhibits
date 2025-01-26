@@ -3,6 +3,7 @@ import React from "react";
 import "./about-us.css";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import dynamic from "next/dynamic";
 const EnquiryForm = dynamic(() => import("@/components/Form"))
 const WhyChooseUs = ({ fields }) => {
   const bulletPoints = [

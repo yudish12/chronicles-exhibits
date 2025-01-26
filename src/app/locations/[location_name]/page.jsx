@@ -19,6 +19,7 @@ import { getAllLocations } from "@/server/actions/events";
 import { getEventByCity } from "@/server/actions/events";
 import { notFound } from "next/navigation";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import dynamic from "next/dynamic";
 const EnquiryForm = dynamic(() => import("@/components/Form"))
 import Selectbox from "./Selectbox";
 

@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import dynamic from "next/dynamic";
 const EnquiryForm = dynamic(() => import("@/components/Form"), { ssr: false });
 const ScheduleCallForm = dynamic(
   () => import("@/components/ScheduleCallForm"),

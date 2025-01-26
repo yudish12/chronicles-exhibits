@@ -10,6 +10,7 @@ import TradeShowSection from "./_components/TradeShowSection";
 import { getBoothByName } from "@/server/actions/booths";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { getSinglePage } from "@/server/actions/pages";
+import dynamic from "next/dynamic";
 const EnquiryForm = dynamic(() => import("@/components/Form"))
 
 export const generateMetadata = async ({ params }) => {

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import React from "react";
+import dynamic from "next/dynamic";
 const EnquiryForm = dynamic(() => import("@/components/Form"))
 
 const Hero = ({ fields }) => {
