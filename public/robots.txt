@@ -4,11 +4,10 @@ Disallow: /admin/
 Disallow: /admin/*
 Disallow: /thank-you
 Disallow: /thankyou-website
-Disallow: /blog/*
-Disallow: /top-trade-shows/*
 Disallow: /get-search-booth
 Disallow: /locations
 Disallow: /locations/*
+Disallow: /booth/*
 
 # Allow everything else
 Allow: /

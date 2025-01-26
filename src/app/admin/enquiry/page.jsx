@@ -28,6 +28,7 @@ import { deleteUTFiles } from "@/server/services/uploadthing";
 import { Pagination } from "./_components/Pagination";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import moment from "moment";
 export default function PortfolioTable() {
   const [portfolios, setPortfolios] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -56,7 +57,7 @@ export default function PortfolioTable() {
       setLoading(false);
     } catch (error) {
       console.error(error);
-      toast.error("Failed to fetch Portfolios");
+      toast.error("Failed to fetch Enquiries");
     }
   };
   if (loading) {
@@ -73,20 +74,17 @@ export default function PortfolioTable() {
         (portfolio) => portfolio._id === deletingPortfolioId
       );
       const resp = await deleteForm(deletingPortfolioId);
-      deleteUTFiles([uploadedImage.image.split("f/")[1]]);
+      
       if (!resp.success) {
         toast.error(resp.error);
         return;
       }
-      setPortfolios((prevPortfolios) =>
-        prevPortfolios.filter(
-          (portfolio) => portfolio._id !== deletingPortfolioId
-        )
-      );
-      toast.success("Portfolio deleted successfully");
+     
+      toast.success("Enquiry deleted successfully");
       setIsDeleteDialogOpen(false);
+      fetchData();
     } catch (error) {
-      toast.error("Failed to delete blog");
+      toast.error("Failed to delete Enquiry");
     }
   };
 
@@ -218,8 +216,8 @@ export default function PortfolioTable() {
                 <TableCell>{portfolio.email}</TableCell>
                 <TableCell>{portfolio.phone}</TableCell>
                 <TableCell>{portfolio.page_source}</TableCell>
-                <TableCell>{portfolio.callDate}</TableCell>
                 <TableCell>{portfolio.callTime}</TableCell>
+                {portfolio.callDate ? <TableCell>{moment(portfolio.callDate).format("DD")}-{moment(portfolio.callDate).format("MMM")}-{moment(portfolio.callDate).format("YYYY")}</TableCell>: <TableCell>No Date Provided</TableCell>}
                 <TableCell className="text-right">
                   <Button
                     variant="outline"

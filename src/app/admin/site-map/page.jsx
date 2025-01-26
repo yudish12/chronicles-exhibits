@@ -45,9 +45,9 @@ export default function SitemapTable() {
       const response = await getUrls(page,limit);
       
       if(response.success){
-        console.log(response.data)
+        console.log(response)
         setSitemaps(response.data);
-        setTotalPages(response.totalPages);
+        setTotalPages(response.count);
       }
       else{
         toast.error(response.message);
@@ -77,7 +77,6 @@ export default function SitemapTable() {
       toast.error("URL is required");
       return;
     }
-    console.log(currentSitemap)
 
     try {
       if (currentSitemap._id) {
