@@ -11,6 +11,7 @@ import mongoose, { get } from "mongoose";
 import { boothsizePageFields } from "@/lib/config";
 import pages from "../models/pages";
 import Locations from "../models/locations";
+import { revalidatePath } from "next/cache";
 
 await dbConnect();
 
@@ -79,7 +80,7 @@ export const updateData = async (name, data, islocation) => {
       data,
       { new: true }
     );
-
+    revalidatePath(`/locations/${name}`);
     return getActionSuccessResponse(locPageResp);
   }
 
@@ -135,7 +136,8 @@ export const updateData = async (name, data, islocation) => {
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
-    console.log("resp", resp);
+    if(name === "home") revalidatePath("/");
+    else revalidatePath(`/${name}`);
     return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error updating data:", error);

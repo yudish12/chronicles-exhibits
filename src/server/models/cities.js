@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const citySchema = new mongoose.Schema(
   {
     name: String,
+    slug: String
   },
   { timestamps: true }
 );

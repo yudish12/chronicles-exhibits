@@ -6,6 +6,7 @@ import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import mongoose from "mongoose";
 import Cities from "../models/cities";
 import { locationPageFields } from "@/lib/config";
+import { revalidatePath } from "next/cache";
 
 await dbConnect();
 export const getAllData = async (skip, limit, projection) => {
@@ -113,7 +114,9 @@ export const addCity = async (data) => {
       return getActionFailureResponse("Name is required", "name");
     }
 
-    const resp = await Cities.create(data);
+    const resp = await Cities.create({name: data.name, slug: data.name.toLowerCase().replace(" ", "-")});
+    revalidatePath("/locations");
+
     return getActionSuccessResponse(resp);
   } catch (error) {
     getActionFailureResponse(error.message, "toast");
@@ -129,6 +132,7 @@ export const deleteCity = async (id) => {
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
+    revalidatePath("/locations");
     return getActionSuccessResponse(resp);
   } catch (error) {
     getActionFailureResponse(error.message, "toast");
@@ -153,7 +157,7 @@ export const updateCity = async (id, data) => {
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
-
+    revalidatePath("/locations");
     return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error updating data:", error);
@@ -264,9 +268,11 @@ export const craeteLocationPageMigration = async () => {
 export const getLocationPagebyCity = async (city) => {
   try {
     const cityData = await Cities.findOne({ slug: city }).select("_id");
+    console.log(cityData)
     const data = await Locations.find({ city_id: cityData._id })
       .populate("city_id")
       .lean();
+      console.log(data)
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
@@ -314,6 +320,8 @@ export const createCityPageInLocation = async (data) => {
       );
     });
     const respData = await Promise.all(promises);
+    revalidatePath(`/locations/${city.name.toLowerCase().replace(" ", "-")}`);
+    revalidatePath("/locations");
     return getActionSuccessResponse(respData);
   } catch (error) {
     console.error("Error updating data:", error);

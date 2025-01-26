@@ -48,6 +48,7 @@ const Page = async ({ params }) => {
 
   // }
   const { data } = await getLocationPagebyCity(city);
+  console.log(data,city)
   if (!data) {
     notFound();
   }

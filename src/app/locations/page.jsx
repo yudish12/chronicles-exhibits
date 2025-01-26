@@ -7,55 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export const majorExhibitingCities = [
-  "Anaheim",
-  "Atlanta",
-  "Austin",
-  "Baltimore",
-  "Boston",
-  "Charlotte",
-  "Chicago",
-  "Dallas",
-  "Denver",
-  "Detroit",
-  "Houston",
-  "Indianapolis",
-  "Las Vegas",
-  "Long Beach",
-  "Kansas City",
-  "Los Angeles",
-  "Louisville",
-  "Miami",
-  "Milwaukee",
-  "Minneapolis",
-  "Nashville",
-  "New Orleans",
-  "New York",
-  "Novi",
-  "Ohio",
-  "Omaha",
-  "Palm Springs",
-  "Orlando",
-  "Philadelphia",
-  "Phoenix",
-  "Portland",
-  "Riverside",
-  "Rosemont",
-  "Sacramento",
-  "Salt Lake City",
-  "San Antonio",
-  "San Diego",
-  "San Francisco",
-  "San Jose",
-  "Santa Clara",
-  "Seattle",
-  "South Carolina",
-  "St. Louis",
-  "Tampa",
-  "Tennessee",
-  "Utah",
-  "Washington DC",
-];
 
 export const generateMetadata = async () => {
   const { data } = await getSinglePage({ name: "locations" });
@@ -67,9 +18,7 @@ export const generateMetadata = async () => {
 };
 
 const Page = async () => {
-  let locations = await getAllData();
-  console.log("==locations==", locations.data);
-
+  let locations = await getAllData(null,null, "name");
   const { data } = await getSinglePage({ name: "locations" });
 
   return (
@@ -89,9 +38,9 @@ const Page = async () => {
 </div>
 
 <div className="px-4 sm:px-20 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-  {majorExhibitingCities.map((city, index) => (
+  {locations.data.map((city, index) => (
     <Link
-      href={`/trade-show-booth-rentals-${city
+      href={`/trade-show-booth-rentals-${city.name
         .toLowerCase()
         .replaceAll(/ /g, "-")
         .replace(".", "")}`}
@@ -109,7 +58,7 @@ const Page = async () => {
             className="rounded-full shadow-md border border-primary p-2 bg-white"
           />
         </div>
-        <h3 className="text-primary font-bold text-2xl mt-10">{city}</h3>
+        <h3 className="text-primary font-bold text-2xl mt-10">{city.name}</h3>
         {/* <p className="text-gray-600 text-sm">
           Discover trade show opportunities in {city}. Elevate your brand presence with top-tier booth designs.
         </p> */}

@@ -28,7 +28,6 @@ const Page = async ({ params, searchParams }) => {
     "start_date end_date title icon event_name country city slug"
   );
   const totalPages = Math.ceil(tradeShows.count / limit);
-  console.log("==trade shows ==", tradeShows);
   const { data } = await getSinglePage({ name: "events" });
   // project -> start_date , end_date , title , icon ,event_name , country , city
   return (
