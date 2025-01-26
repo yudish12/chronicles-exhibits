@@ -35,7 +35,7 @@ const EnquiryForm = ({setOpen}) => {
   useEffect(() => {
     const fetchCountryCode = async () => {
       try {
-        const response = await fetch("https://ip-api.com/json/");
+        const response = await fetch("https://api.country.is");
         const data = await response.json();
         if (data && data.countryCode) {
           setCountryCode(data.countryCode.toLowerCase());

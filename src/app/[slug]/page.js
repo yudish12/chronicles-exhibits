@@ -8,15 +8,15 @@ import Link from "next/link";
 import React from "react";
 import Timer from "../top-trade-shows/_shows_comps/_components/Timer";
 import { Calendar, MapPin } from "lucide-react";
-import BoothSizeForm from "../top-trade-shows/_shows_comps/_components/BoothSizeForm";
+const BoothSizeForm = dynamic(() => import("../top-trade-shows/_shows_comps/_components/BoothSizeForm"))
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Products from "../(landing)/Products";
-import BlogForm from "../blogs/_components/BlogForm";
+const BlogForm = dynamic(() => import("../blogs/_components/BlogForm"))
 import "./blog_id.css"
 import "./show_name.css"
 import { cn } from "@/lib/utils";
 import { notFound } from "next/navigation";
-import WebsitePopup from "../top-trade-shows/_shows_comps/_components/website-popup";
+const WebsitePopup = dynamic(() => import("../top-trade-shows/_shows_comps/_components/website-popup"))
 // if blog and event both are not found , then return 404
 
 export async function generateMetadata({ params }) {

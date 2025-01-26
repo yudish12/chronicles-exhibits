@@ -1,7 +1,7 @@
-import EnquiryForm from "@/components/Form";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import React from "react";
+const EnquiryForm = dynamic(() => import("@/components/Form"))
 
 const Hero = ({ fields }) => {
   return (

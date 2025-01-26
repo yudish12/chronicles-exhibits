@@ -10,8 +10,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import ScheduleCallForm from "@/components/ScheduleCallForm";
-import EnquiryForm from "@/components/Form";
+const EnquiryForm = dynamic(() => import("@/components/Form"), { ssr: false });
+const ScheduleCallForm = dynamic(
+  () => import("@/components/ScheduleCallForm"),
+  { ssr: false }
+);
+
 const HeaderBtns = () => {
   const [hover, setHover] = React.useState(false);
   return (
