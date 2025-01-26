@@ -394,7 +394,7 @@ const BoothForm = ({source,size}) => {
   return (
     <div className="flex flex-col items-center justify-center py-6">
       <div className="w-full">
-        <div className="flex justify-between mb-4">
+        <div className="flex flex-wrap justify-between mb-4">
           <label className="flex items-center gap-x-2">
             <Input
               type="radio"
