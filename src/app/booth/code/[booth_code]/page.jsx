@@ -1,7 +1,5 @@
 import React from "react";
 import Header from "@/components/ui/header";
-import Queryform from "@/app/(landing)/Queryform";
-// import Queryform from '../(landing)/Queryform';
 import BoothGrid from "./_components/BoothCardGrid";
 import { BoothDetails } from "./_components/BoothDetails";
 import Footer from "@/components/ui/footer";

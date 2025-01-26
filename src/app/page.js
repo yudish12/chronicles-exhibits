@@ -8,7 +8,8 @@ import FactsAndFigures from "./(landing)/FactsAndFigures";
 import Ourworks from "./(landing)/Ourworks";
 import Leadingtrade from "./(landing)/Leadingtrade";
 import Faq from "./(landing)/Faq";
-import Queryform from "./(landing)/Queryform";
+import dynamic from "next/dynamic";
+const Queryform = dynamic(() => import("./(landing)/Queryform"))
 import Footer from "@/components/ui/footer";
 import { getSinglePage } from "@/server/actions/pages";
 // import DownArrow from "./down-arrow";

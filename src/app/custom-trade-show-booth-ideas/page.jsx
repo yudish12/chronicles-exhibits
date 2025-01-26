@@ -1,7 +1,8 @@
 import Header from "@/components/ui/header";
 import Image from "next/image";
 import React from "react";
-import Queryform from "../(landing)/Queryform";
+import dynamic from "next/dynamic";
+const Queryform = dynamic(() => import("./(landing)/Queryform"))
 import Footer from "@/components/ui/footer";
 import "./style.css";
 import Ourworks from "../(landing)/Ourworks";
