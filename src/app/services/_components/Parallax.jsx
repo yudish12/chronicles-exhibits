@@ -68,12 +68,12 @@ const Parallax = ({ fields }) => {
         {fields[18].value}
       </p>
 
-      <div className="mt-20 grid bg-transparent grid-cols-2 gap-x-20">
+      <div className="mt-20 grid bg-transparent grid-cols-1 lg:grid-cols-2 gap-x-20">
         {/* Left Sticky Div */}
         <div
-          className="sticky top-[250px] text-white transition-all shadow-one bg-[#6a6a6a] max-w-[650px] p-8 rounded-lg"
+          className="sticky top-[100px] z-10 lg:top-[250px] text-white transition-all shadow-one bg-[#6a6a6a] max-w-[650px] lg:h-[300px] h-[250px] p-4 lg:p-8 rounded-lg"
           style={{
-            height: "300px",
+            
             display: "flex",
             flexDirection: "column",
             gap: "20px",
@@ -100,7 +100,7 @@ const Parallax = ({ fields }) => {
         </div>
 
         {/* Right Scrollable Content */}
-        <div className="relative" style={{ height: "1850px" }}>
+        <div className="relative h-[1850px]" >
           {/* Section 1 */}
           <div
             className={cn(
