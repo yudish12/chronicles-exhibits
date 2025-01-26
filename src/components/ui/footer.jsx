@@ -26,7 +26,7 @@ export default function Footer() {
       <div className=" py-8 md:py-10 rounded-lg grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-20 text-white/80">
         {/* Company Section */}
         <div>
-          <h3 className="font-semibold text-base mb-4 text-primary text-xl">
+          <h3 className="font-semibold mb-4 text-primary text-xl">
             Company
           </h3>
           <ul className="space-y-2 footer-list">
@@ -77,7 +77,7 @@ export default function Footer() {
         </div>
         {/* Location Section */}
         <div>
-          <h3 className="font-bold text-lg mb-4 text-primary text-xl">
+          <h3 className="font-bold mb-4 text-primary text-xl">
             Location
           </h3>
           <ul className="space-y-2 footer-list">
@@ -158,7 +158,7 @@ export default function Footer() {
         </div>
         {/* Booth By Size Section */}
         <div>
-          <h3 className="font-bold text-lg mb-4 text-primary text-xl">
+          <h3 className="font-bold mb-4 text-primary text-xl">
             Booth By Size
           </h3>
           <ul className="space-y-2 footer-list">
@@ -239,7 +239,7 @@ export default function Footer() {
 
         {/* Resources Section */}
         <div>
-          <h3 className="font-bold text-lg mb-4 text-primary text-xl">
+          <h3 className="font-bold mb-4 text-primary text-xl">
             Resources
           </h3>
           <ul className="space-y-2 footer-list">
