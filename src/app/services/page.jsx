@@ -2,7 +2,7 @@ import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
 import React from "react";
 import dynamic from "next/dynamic";
-const Queryform = dynamic(() => import("./(landing)/Queryform"))
+const Queryform = dynamic(() => import("@/app/(landing)/Queryform"))
 import Carousel from "./_components/Carousel";
 import Parallax from "./_components/Parallax";
 import { getSinglePage } from "@/server/actions/pages";
