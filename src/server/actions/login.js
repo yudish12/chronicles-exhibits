@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 
 export const login = async ({ email, password }) => {
   // Mock authentication logic
-  if (email === "admin@chronicles.com" && password === "password123") {
+  if ((email === "admin@chronicles.com" || email === "rohit@chronicleexhibits.com") && password === "Chronicle@22") {
     const token = jwtFuncs.signJWT({ email }); // Sign the JWT
 
     // Set the JWT in cookies

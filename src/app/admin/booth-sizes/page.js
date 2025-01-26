@@ -89,15 +89,6 @@ export default function BoothSizesTable() {
           >
             Add Booth Size
           </Button>
-          <Button
-            variant="outline"
-            className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
-            onClick={() => {
-              router.push("/admin/create-pages/edit/676cc14671418da5ce767335");
-            }}
-          >
-            Edit Booth Size Page
-          </Button>
         </div>
       </div>
 
