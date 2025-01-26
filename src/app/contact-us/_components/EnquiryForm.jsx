@@ -86,8 +86,8 @@ const EnquiryForm = () => {
       try {
         const response = await fetch("https://api.country.is");
         const data = await response.json();
-        if (data && data.countryCode) {
-          setCountryCode(data.countryCode.toLowerCase());
+        if (data && data.country) {
+          setCountryCode(data.country.toLowerCase());
         }
       } catch (error) {
         console.error("Error fetching country code:", error);
