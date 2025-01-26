@@ -689,3 +689,14 @@ input:focus + .flag-dropdown {
 .tawk-icon-right > img {
   display: none;
 }
+
+.query-form-phone-input {
+  border: 2px solid #b0cb1f!important;
+  border-radius: 0.5rem!important;
+}
+
+.query-form-phone-input input {
+  background-color: #d1d5db!important;
+  
+  padding-block: 1.15rem!important;
+}

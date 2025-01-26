@@ -10,7 +10,7 @@ const RenderFile = ({file,index,onChange,value})=>{
 
   const fileType = file.type.split("/")[0];
   if(fileType === "image"){
-    return <div className="relative" key={index}>
+    return <div className="relative bg-white " key={index}>
       <Image
         src={URL.createObjectURL(file)}
         alt="file"
