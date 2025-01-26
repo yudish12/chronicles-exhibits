@@ -25,7 +25,7 @@ const Queryform = () => {
     file: [],
     budget: "",
     message: "",
-    url: window.location.origin + "/" + obj.url,
+    url: "",
   });
 
   const handleChange = (e) => {
@@ -54,7 +54,7 @@ const Queryform = () => {
 
     setFormData((prevData) => ({
       ...prevData,
-      url: window.location.href,
+      url: window.location.origin + "/" + obj.url
     }));
   }, []);
 
