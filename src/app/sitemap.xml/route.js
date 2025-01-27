@@ -2,6 +2,8 @@
 import dbConnect from '@/config/db-connect';
 import sitemap from '@/server/models/sitemap';
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
     await dbConnect();
 
