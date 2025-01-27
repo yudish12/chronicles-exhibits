@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import "@uploadthing/react/styles.css";
 import TagsInput from "react-tagsinput";
 import "react-tagsinput/react-tagsinput.css";
+import { deleteUTFiles } from "@/server/services/uploadthing";
 import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { toast } from "sonner";

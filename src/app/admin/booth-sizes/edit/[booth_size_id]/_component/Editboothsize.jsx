@@ -16,6 +16,7 @@ import { updateData as updatePageData } from "@/server/actions/pages";
 import FieldRender from "@/components/FieldRender";
 import { cn } from "@/lib/utils";
 import { convertHumanReadableText } from "@/utils";
+import { deleteUTFiles } from "@/server/services/uploadthing";
 const Editboothsize = ({ singleBoothsizeData, pageData }) => {
   const [singleBoothSize, setSingleBoothSize] = React.useState({
     name: singleBoothsizeData.name,

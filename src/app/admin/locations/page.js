@@ -57,7 +57,6 @@ const LocationPage = () => {
       const skip = (page - 1) * limit;
 
       const resp = await getAllData(skip, limit, "slug  _id name");
-      console.log("resp", resp);
       if (!resp.success) {
         toast.error(resp.error);
         return;

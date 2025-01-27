@@ -21,6 +21,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { deleteUTFiles } from "@/server/services/uploadthing";
 
 const AddPage = () => {
   const router = useRouter();

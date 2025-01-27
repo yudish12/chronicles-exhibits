@@ -13,6 +13,7 @@ import { addData } from "@/server/actions/blogs";
 import CkeEditor from "@/components/CkEditor";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { deleteUTFiles } from "@/server/services/uploadthing";
 
 const AddBlogPage = () => {
   const [blogs, setBlogs] = React.useState([]);

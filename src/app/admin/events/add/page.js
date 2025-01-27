@@ -23,6 +23,7 @@ import { Trash2 } from "lucide-react";
 import { CitySearchSelect } from "@/components/ui/city-search-select";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
+import { deleteUTFiles } from "@/server/services/uploadthing";
 
 const AddEventPage = () => {
   const [singleEvent, setSingleEvent] = React.useState({

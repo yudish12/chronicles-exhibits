@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { deleteUTFiles } from "@/server/services/uploadthing";
 import CkeEditor from "@/components/CkEditor";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
