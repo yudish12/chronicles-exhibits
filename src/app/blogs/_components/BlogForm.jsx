@@ -21,7 +21,7 @@ const BlogForm = ({source}) => {
     boothSize: "",
     country: "",
     message: "",
-    url: window.location.origin+"/"+source,
+    url: "",
   });
   const path = usePathname();
   const router = useRouter();
@@ -90,10 +90,10 @@ const BlogForm = ({source}) => {
       }
     };
     fetchCountryCode();
-
+    
     setFormData((prevData) => ({
       ...prevData,
-      url: window.location.href,
+      url: window.location.origin+"/"+source,
     }));
   }, []);
 

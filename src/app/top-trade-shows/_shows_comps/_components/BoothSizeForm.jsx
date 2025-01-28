@@ -25,7 +25,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
     phone: "",
     boothSize: "",
     message: "",
-    url: `${window.location.origin}/${slug}`,
+    url: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -104,7 +104,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
 
     setFormData((prevData) => ({
       ...prevData,
-      url: window.location.href,
+      url: `${window.location.origin}/${slug}`,
     }));
   }, []);
 

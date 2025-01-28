@@ -22,7 +22,7 @@ const ScheduleCallForm = ({ setOpen }) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const path = usePathname();
-  const {name, url} = getPageNameAndUrl(path);
+  const { name, url } = getPageNameAndUrl(path);
   const [formData, setFormData] = useState({
     country: "",
     email: "",

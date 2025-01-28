@@ -314,7 +314,7 @@ const BoothForm = ({source,size}) => {
     phone: "",
     boothSize: "",
     message: "",
-    url: window.location.origin+"/"+size+"-trade-show-booth/"+source,
+    url: "",
     requestType: "",
     country: "",
   });
@@ -388,7 +388,7 @@ const BoothForm = ({source,size}) => {
 
     setFormData((prevData) => ({
       ...prevData,
-      url: window.location.href,
+      url: window.location.origin+"/"+size+"-trade-show-booth/"+source,
     }));
   }, []);
   return (
