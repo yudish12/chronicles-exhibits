@@ -16,10 +16,6 @@ const nextConfig = {
         destination: "/blogs",
       },
       {
-        source: "/blog/:slug",
-        destination: "/blogs/:slug",
-      },
-      {
         source: "/trade-show-booth-rentals-:city",
         destination: "/locations/:city",
       },

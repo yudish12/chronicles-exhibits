@@ -8,6 +8,8 @@ Disallow: /get-search-booth
 Disallow: /locations
 Disallow: /locations/*
 Disallow: /booth/*
+Disallow: /blogs
+Disallow: /blogs/*
 
 # Allow everything else
 Allow: /
