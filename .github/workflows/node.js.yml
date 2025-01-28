@@ -28,14 +28,19 @@ jobs:
         username: ${{ secrets.HOSTINGER_VPS_USERNAME }}
         password: ${{ secrets.HOSTINGER_VPS_PASSWORD }}
         script: |
-          cd ~/chronicles-exhibits/ || { echo "Failed to navigate to project directory"; exit 1; }
-          if git pull origin main | grep -q 'Already up to date.'; then
-            echo "No changes detected, skipping build and deployment.";
-            exit 0;
-          fi
+          # Load NVM
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-          # Backup existing .env.local
-          [ -f .env.local ] && cp .env.local .env.local.bak
+          # Use the installed Node.js version
+          nvm use 20.18.2 || exit 1
+
+          # Navigate to the project directory
+          cd ~/chronicles-exhibits/ || exit 1
+
+          # Pull the latest changes
+          git pull origin main || exit 1
 
           # Create .env.local file
           cat <<EOT > .env.local
@@ -50,6 +55,12 @@ jobs:
           EMAIL_HOST=${{ secrets.EMAIL_HOST }}
           EOT
 
-          [ -d node_modules ] || npm install --legacy-peer-deps || exit 1
-          npm run build || { echo "Build failed"; exit 1; }
-          pm2 restart chronicles-exhibits || { echo "Failed to restart application"; exit 1; }
+          # Install dependencies
+          npm install --legacy-peer-deps || exit 1
+
+          # Build the application
+          npm run build || exit 1
+
+          # Restart the application using PM2
+          pm2 restart chronicles-exhibits || exit 1
+
