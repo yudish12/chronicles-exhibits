@@ -700,3 +700,6 @@ input:focus + .flag-dropdown {
   
   padding-block: 1.15rem!important;
 }
+#top-trade-shows a{
+  color: blue;
+} 
