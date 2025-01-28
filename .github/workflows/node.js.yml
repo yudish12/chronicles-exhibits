@@ -53,6 +53,7 @@ jobs:
           EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}
           EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
           EMAIL_HOST=${{ secrets.EMAIL_HOST }}
+          UPLOADTHING_CALLBACK_URL=${{ secrets.UPLOADTHING_CALLBACK_URL}}
           EOT
 
           # Install dependencies
@@ -62,5 +63,5 @@ jobs:
           npm run build || exit 1
 
           # Restart the application using PM2
-          pm2 restart chronicles-exhibits || exit 1
+          pm2 restart 0 || exit 1
 
