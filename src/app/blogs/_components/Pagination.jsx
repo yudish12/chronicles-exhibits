@@ -41,7 +41,7 @@ export const Pagination = ({ currentPage, totalPages }) => {
       {/* Next Button */}
       {currentPage < totalPages && (
         <Link
-          href={`/blogs/?page=${currentPage + 1}`}
+          href={`/blog/?page=${currentPage + 1}`}
           className={`w-10 h-10 flex items-center text-secondary justify-center rounded-full border shadow-one bg-white hover:bg-gray-100`}
         >
           <ChevronRight />
