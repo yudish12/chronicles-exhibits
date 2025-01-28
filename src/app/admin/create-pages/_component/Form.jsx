@@ -13,6 +13,7 @@ import FieldRender from "@/components/FieldRender";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Keyvalueinput from "@/components/ui/Keyvalueinput";
+import { RevalidatePath } from "@/server/actions/revalidate-path";
 
 const PageEditForm = ({ pageData, isLocationPage }) => {
   const addNewKeyValue = () => {
@@ -88,6 +89,7 @@ const PageEditForm = ({ pageData, isLocationPage }) => {
         toast.error(resp.err);
         return;
       }
+      RevalidatePath(`/${pageData.name}`)
       toast.success("Page updated successfully");
       router.push("/admin/create-pages");
     } catch (error) {
