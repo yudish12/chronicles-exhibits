@@ -2,7 +2,7 @@ import localFont from "next/font/local";
 
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import NextTopLoader from "nextjs-toploader";
 import "@uploadthing/react/styles.css";
 import Tawkto from "@/components/Tawkto";
@@ -39,6 +39,7 @@ export default function RootLayout({ children }) {
       </head>
       <body >
         <Tawkto/>
+        <GoogleAnalytics gaId="G-ET7LT8FESF" />
         <Toaster />
         <NextTopLoader />
         {children}
