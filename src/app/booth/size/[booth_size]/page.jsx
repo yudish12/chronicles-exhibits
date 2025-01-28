@@ -8,8 +8,24 @@ import TradeShowSection from "./_components/TradeShowSection";
 import { getBoothByName } from "@/server/actions/booths";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { getSinglePage } from "@/server/actions/pages";
-import dynamic from "next/dynamic";
-const EnquiryForm = dynamic(() => import("@/components/Form"))
+import EnquiryForm from "@/components/Form";
+
+export const revalidate = 60
+
+export const dynamicParams = false
+
+export const dynamic = "force-static"
+
+export const generateStaticParams = async () => {
+  const boothsizes = await fetch(`https://chronicleexhibits.com/api/boothsize`, {
+    next: { revalidate: 60 },
+    cache: "no-store",
+  });
+  const boothsizesData = await boothsizes.json();
+  return boothsizesData.map((booth) => ({
+    params: { booth_size: booth.name.toLowerCase() },
+  }));
+}
 
 export const generateMetadata = async ({ params }) => {
   const resolvedParams = await params;
@@ -26,21 +42,19 @@ export const generateMetadata = async ({ params }) => {
   };
 };
 
+
 async function FeaturedPage({ params }) {
   const resolvedParams = await params;
   const boothSize = resolvedParams.booth_size;
-  console.log("==boothsize==", boothSize);
   const booths = await getBoothByName(boothSize.toLowerCase());
   // console.log("booth size by name ",data)
   const pageData = await getSinglePage({ name: boothSize.toLowerCase() });
-  console.log(pageData);
   // const booths = await getBoothsBySize(data.data._id);
   // const booths = await getAllData(6, 0);
 
-  console.log("data", booths);
   return (
     <>
-      {/* <SubHeader /> */}
+      {/* <  /> */}
       <Header />
       <div className=" featured-bg flex flex-col items-center justify-center bg-cover bg-center">
         <div className="flex flex-col justify-center items-center h-full text-center gap-6  px-4">

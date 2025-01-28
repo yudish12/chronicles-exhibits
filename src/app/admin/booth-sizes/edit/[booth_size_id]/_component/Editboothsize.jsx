@@ -17,6 +17,7 @@ import FieldRender from "@/components/FieldRender";
 import { cn } from "@/lib/utils";
 import { convertHumanReadableText } from "@/utils";
 import { deleteUTFiles } from "@/server/services/uploadthing";
+import { RevalidatePath } from "@/server/actions/revalidate-path";
 const Editboothsize = ({ singleBoothsizeData, pageData }) => {
   const [singleBoothSize, setSingleBoothSize] = React.useState({
     name: singleBoothsizeData.name,
@@ -39,7 +40,6 @@ const Editboothsize = ({ singleBoothsizeData, pageData }) => {
   const router = useRouter();
 
   const handleFieldChange = (index, value) => {
-    console.log(value, "vq");
     setBoothSizePage((prev) => {
       const temp = JSON.parse(JSON.stringify(prev));
       temp.fields[index].value = value;
@@ -53,7 +53,7 @@ const Editboothsize = ({ singleBoothsizeData, pageData }) => {
     try {
       const resp = await updateData(singleBoothsizeData._id, singleBoothSize);
       const resp2 = await updatePageData(pageData.name, boothSizePage);
-      console.log("resp2", resp2);
+      RevalidatePath(`/booth-sizes/${pageData.name}`)
       if (!resp.success || !resp2.success) {
         toast.error(resp.err || resp2.err);
         return;
