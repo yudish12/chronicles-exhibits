@@ -7,8 +7,6 @@ import "./style.css";
 import Ourworks from "../(landing)/Ourworks";
 import { getSinglePage } from "@/server/actions/pages";
 
-export const dynamic = 'force-static';
-
 export async function generateMetadata({ params }) {
   const pageData = await getSinglePage({ name: "custom-trade-show-booth-ideas" }, "meta_keywords meta_title meta_description");
   return {

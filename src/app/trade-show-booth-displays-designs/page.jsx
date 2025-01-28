@@ -7,9 +7,9 @@ import "./style.css";
 import Link from "next/link";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import { getSinglePage } from "@/server/actions/pages";
-import dynamic from "next/dynamic";
+import Accordion from "./_components/Accordion";
 
-const Accordion = dynamic(() => import("./_components/Accordion"));
+export const dynamic = "force-dynamic"
 
 export async function generateMetadata({ params }) {
   const pageData = await getSinglePage({ name: "trade-show-booth-displays-designs" }, "meta_keywords meta_title meta_description");
