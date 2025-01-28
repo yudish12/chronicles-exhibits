@@ -4,6 +4,8 @@ import Header from "@/components/ui/header";
 import { getSinglePage } from "@/server/actions/pages";
 import React from "react";
 
+export const dynamic = 'force-static';
+
 export const generateMetadata = async () => {
   const { data } = await getSinglePage({ name: "faq" }, "meta_title meta_description meta_keywords");
   return {
