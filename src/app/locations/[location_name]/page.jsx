@@ -67,7 +67,7 @@ const Page = async ({ params }) => {
   // }
   return (
     <>
-      {/* <SubHeader /> */}
+      {/* <  /> */}
       <Header />
       <div className="single-location-bg flex flex-col justify-center">
         <h2 className="text-center font-bold text-[2.5rem] heading-font uppercase text-white">

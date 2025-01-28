@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import TradeShowGrid from "./TradeShowGrid";
 import { Button } from "@/components/ui/button";
 import { getAllData, getAllDataBySearch } from "@/server/actions/events";
-import { RevalidatePath } from "@/server/actions/revalidate-path";
 import { useSearchParams } from "next/navigation";
 
 const TradeshowSearch = ({ shows, setShows, totalPages, pages, limit }) => {

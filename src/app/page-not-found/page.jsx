@@ -1,5 +1,4 @@
 import Header from "@/components/ui/header";
-import SubHeader from "@/components/ui/sub-header";
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -8,7 +7,7 @@ import Footer from "@/components/ui/footer";
 const page = () => {
   return (
     <>
-      {/* <SubHeader /> */}
+      {/* <  /> */}
       <Header />
       <div className="flex flex-col justify-center items-center h-[80vh] overflow-hidden">
         <Image src="/Frame 104.svg" width={100} height={100} alt="Deal Icon" />

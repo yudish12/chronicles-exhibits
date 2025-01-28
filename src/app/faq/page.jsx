@@ -1,6 +1,6 @@
 import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
-import SubHeader from "@/components/ui/sub-header";
+ 
 import { getSinglePage } from "@/server/actions/pages";
 import React from "react";
 
@@ -19,7 +19,7 @@ const page = async () => {
 
   return (
     <>
-      {/* <SubHeader /> */}
+      {/* <  /> */}
       <Header />
       <div
         style={{ height: "280px" }}

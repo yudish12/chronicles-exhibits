@@ -7,8 +7,7 @@ import { submitBoothForm } from "@/server/actions/forms";
 import InputFile from "@/components/ui/input-file";
 import { toast } from "sonner";
 import { emailRegex, phoneRegex } from "@/utils/constants/regex";
-import { getPageNameAndUrl } from "@/utils";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
   const [countryCode, setCountryCode] = useState("us");
   const [loading, setLoading] = useState(false);

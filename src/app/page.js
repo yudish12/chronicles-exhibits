@@ -1,6 +1,4 @@
-import { Button } from "@/components/ui/button";
 import Header from "@/components/ui/header";
-import SubHeader from "@/components/ui/sub-header";
 import React from "react";
 import About from "./(landing)/About";
 import Products from "./(landing)/Products";
@@ -31,7 +29,7 @@ const page = async () => {
   const homePageData = await getSinglePage({ name: "home" });
   return (
     <>
-      {/* {/* <SubHeader /> */}
+      {/* {/* <  /> */}
       <Header />
       <div className="hero flex flex-col justify-center items-center h-[88vh]">
       </div>

@@ -20,7 +20,7 @@ const Page = async () => {
 
   return (
     <>
-      {/* <SubHeader /> */}
+      {/* <  /> */}
       <Header />
       <div className="flex items-center justify-center bg-white px-10  ">
         <div

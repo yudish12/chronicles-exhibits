@@ -1,6 +1,6 @@
 import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
-import SubHeader from "@/components/ui/sub-header";
+ 
 import BlogsPagination from "./blogsWithpagination";
 import { getAllBlogs } from "@/server/actions/blogs";
 import { notFound } from "next/navigation";
@@ -38,7 +38,7 @@ const Page = async ({ params, searchParams }) => {
 
   return (
     <>
-      {/* {/* <SubHeader /> */}
+      {/* {/* <  /> */}
       <Header />
       <BlogsPagination
         currentPage={page}

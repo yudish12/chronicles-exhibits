@@ -1,6 +1,6 @@
 import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
-import SubHeader from "@/components/ui/sub-header";
+ 
 import { getAllData } from "@/server/actions/locations";
 import { getSinglePage } from "@/server/actions/pages";
 import Image from "next/image";
@@ -23,7 +23,7 @@ const Page = async () => {
 
   return (
     <>
-      {/* <SubHeader /> */}
+      {/* <  /> */}
       <Header />
       <div className="booth-design-bg px-4 md:px-8 lg:px-20 text-white gap-8 justify-center items-center flex flex-col">
   <h1 className="text-white heading-font text-3xl md:text-4xl font-extrabold text-center">

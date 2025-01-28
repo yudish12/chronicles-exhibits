@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
-import SubHeader from "@/components/ui/sub-header";
+ 
 import { getBoothByName, getBoothsBySize } from "@/server/actions/booths";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +15,7 @@ const Page = async ({ params, searchParams }) => {
   if (!data || !data.length) {
     return (
       <>
-        {/* <SubHeader /> */}
+        {/* <  /> */}
         <Header />
         <div className="booth-design-bg text-white flex justify-center px-4 md:px-8 lg:px-20 flex-col gap-8 items-center">
           <h2 className="text-4xl text-center uppercase font-semibold heading-font">
@@ -28,7 +28,7 @@ const Page = async ({ params, searchParams }) => {
 
   return (
     <>
-      {/* <SubHeader /> */}
+      {/* <  /> */}
       <Header />
       <div className="booth-design-bg text-white flex justify-center px-4 md:px-8 lg:px-20 flex-col gap-8 items-center">
         <h2 className="text-4xl text-center uppercase font-semibold heading-font">

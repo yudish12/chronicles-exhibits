@@ -1,5 +1,3 @@
-import localFont from "next/font/local";
-
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
@@ -8,16 +6,7 @@ import "@uploadthing/react/styles.css";
 import Tawkto from "@/components/Tawkto";
 import WhatsAppWidget from "@/components/ui/whatsapp-icon";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
 // const optimaLT = localFont({
 //   src: "./fonts/OptimaLT.woff",
 //   variable: "--font-optima-lt",
