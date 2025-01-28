@@ -10,23 +10,6 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { getSinglePage } from "@/server/actions/pages";
 import EnquiryForm from "@/components/Form";
 
-export const revalidate = 60
-
-export const dynamicParams = false
-
-export const dynamic = "force-static"
-
-export const generateStaticParams = async () => {
-  const boothsizes = await fetch(`https://chronicleexhibits.com/api/boothsize`, {
-    next: { revalidate: 60 },
-    cache: "no-store",
-  });
-  const boothsizesData = await boothsizes.json();
-  return boothsizesData.map((booth) => ({
-    params: { booth_size: booth.name.toLowerCase() },
-  }));
-}
-
 export const generateMetadata = async ({ params }) => {
   const resolvedParams = await params;
   const boothSize = resolvedParams.booth_size;
