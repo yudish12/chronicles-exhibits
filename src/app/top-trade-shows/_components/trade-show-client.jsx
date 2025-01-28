@@ -18,12 +18,11 @@ const TradeShowClient = ({ data, tradeShows, totalPages, page, limit }) => {
       {!shows || !shows.length ? (
         <></>
       ) : (
-        <p className="text-[17px]  md:mx-16  lg:mx-24 text-justify mt-6">
-          {data.fields[1].value}
-          <br />
-          <br />
-          {data.fields[2].value}
-        </p>
+        <div
+          className="text-[17px] md:mx-16 lg:mx-24 text-justify mt-6"
+          dangerouslySetInnerHTML={{ __html: `${data.fields[1].value}<br/><br/>${data.fields[2].value}` }}
+        ></div>
+
       )}
     </div>
   );
