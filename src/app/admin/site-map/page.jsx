@@ -19,14 +19,13 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 import { Card, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import Search from "@/components/ui/search";
 import { Pagination } from "../blogs/_components/Pagination";
-import { addUrl, deleteUrl, getUrls, updateUrl } from "@/server/actions/sitemap";
+import { addUrl, deleteUrl, getUrls, searchSitemap, updateUrl } from "@/server/actions/sitemap";
 
 export default function SitemapTable() {
   const [sitemaps, setSitemaps] = useState([]);
@@ -42,14 +41,12 @@ export default function SitemapTable() {
   const fetchSitemaps = async (page = 1) => {
     try {
       setLoading(true);
-      const response = await getUrls(page,limit);
-      
-      if(response.success){
-        console.log(response)
+      const response = await getUrls(page, limit);
+
+      if (response.success) {
         setSitemaps(response.data);
         setTotalPages(response.count);
-      }
-      else{
+      } else {
         toast.error(response.message);
       }
     } catch (error) {
@@ -60,9 +57,40 @@ export default function SitemapTable() {
     }
   };
 
+  // Fetch filtered sitemaps for search
+  const fetchFilteredSitemaps = async () => {
+    try {
+      setLoading(true);
+      if (searchValue) {
+        const searchResp = await searchSitemap(searchValue);
+        setSitemaps(searchResp.data);
+        const count = searchResp.count ?? 0;
+        setTotalPages(Math.ceil(count / limit));
+      } else {
+        // If no search value, load all sitemaps for the current page
+        fetchSitemaps(currentPage);
+      }
+    } catch (error) {
+      console.error("Error during search:", error);
+      toast.error("An error occurred while fetching data");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Effect to fetch sitemaps initially and on page change
   useEffect(() => {
     fetchSitemaps(currentPage);
   }, [currentPage]);
+
+  // Effect to handle search with debounce
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchFilteredSitemaps();
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [searchValue]);
 
   // Open dialog for adding/editing sitemap
   const openDialog = (sitemap = null) => {
@@ -155,7 +183,6 @@ export default function SitemapTable() {
                 <TableCell>{(currentPage - 1) * limit + index + 1}</TableCell>
                 <TableCell>{sitemap.url}</TableCell>
                 <TableCell>{sitemap.lastModified}</TableCell>
-               
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
                     <Link href={sitemap.url} target="_blank">
@@ -191,7 +218,9 @@ export default function SitemapTable() {
             className="w-full border rounded-md p-2 mt-2"
           />
           <DialogFooter>
-            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>Cancel</Button>
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+              Cancel
+            </Button>
             <Button variant="primary" onClick={handleSubmit}>
               {currentSitemap?._id ? "Update" : "Add"}
             </Button>

@@ -57,3 +57,14 @@ export async function updateUrl(id, url) {
         return getActionFailureResponse(error.message);
     }
 }
+
+export async function searchSitemap(search) {
+    try {
+        const data = await sitemap.find({
+          url: { $regex: search, $options: "i" },
+        }).lean();
+        return getActionSuccessResponse(data);
+      } catch (error) {
+        return getActionFailureResponse(error, "toast");
+      }
+}
