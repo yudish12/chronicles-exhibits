@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.18.2]
+        node-version: [20.x]
 
     steps:
     - name: Checkout Repository
@@ -22,26 +22,34 @@ jobs:
         cache: 'npm'
 
     - name: Deploy to VPS using password
-      uses: appleboy/ssh-action@v0.1.3
+      uses: appleboy/ssh-action@v0.1.7
       with:
         host: ${{ secrets.HOSTINGER_VPS_HOST }}
         username: ${{ secrets.HOSTINGER_VPS_USERNAME }}
         password: ${{ secrets.HOSTINGER_VPS_PASSWORD }}
         script: |
-          cd ~/chronicles-exhibits/ || exit 1
-          git pull origin main || exit 1
-          
+          cd ~/chronicles-exhibits/ || { echo "Failed to navigate to project directory"; exit 1; }
+          if git pull origin main | grep -q 'Already up to date.'; then
+            echo "No changes detected, skipping build and deployment.";
+            exit 0;
+          fi
+
+          # Backup existing .env.local
+          [ -f .env.local ] && cp .env.local .env.local.bak
+
           # Create .env.local file
-          echo "MONGODB_URI=${{ secrets.MONGODB_URI }}" > .env.local
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env.local
-          echo "UPLOADTHING_TOKEN=${{ secrets.UPLOADTHING_TOKEN }}" >> .env.local
-          echo "EMAIL_FROM=${{ secrets.EMAIL_FROM }}" >> .env.local
-          echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env.local
-          echo "EMAIL_TO2=${{ secrets.EMAIL_TO2 }}" >> .env.local
-          echo "EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}" >> .env.local
-          echo "EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}" >> .env.local
-          echo "EMAIL_HOST=${{ secrets.EMAIL_HOST }}" >> .env.local
-    
-          npm install --legacy-peer-deps || exit 1
-          npm run build || exit 1
-          pm2 restart all || exit 1
+          cat <<EOT > .env.local
+          MONGODB_URI=${{ secrets.MONGODB_URI }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          UPLOADTHING_TOKEN=${{ secrets.UPLOADTHING_TOKEN }}
+          EMAIL_FROM=${{ secrets.EMAIL_FROM }}
+          EMAIL_TO=${{ secrets.EMAIL_TO }}
+          EMAIL_TO2=${{ secrets.EMAIL_TO2 }}
+          EMAIL_USERNAME=${{ secrets.EMAIL_USERNAME }}
+          EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_HOST=${{ secrets.EMAIL_HOST }}
+          EOT
+
+          [ -d node_modules ] || npm install --legacy-peer-deps || exit 1
+          npm run build || { echo "Build failed"; exit 1; }
+          pm2 restart chronicles-exhibits || { echo "Failed to restart application"; exit 1; }
