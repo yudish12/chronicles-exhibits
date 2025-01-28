@@ -102,6 +102,13 @@ export const getAllData = async (skip, limit, projection) => {
 
 export const getAllDataBySearch = async (searchValue) => {
   try {
+    if (searchValue.toLowerCase() === "expired"){
+      const data = await events.find({
+        end_date: { $lte: new Date() },
+      });
+      return getActionSuccessResponse(data, "not-requested");
+    }
+
     const data = await events
       .find({
         event_name: { $regex: searchValue, $options: "i" },
