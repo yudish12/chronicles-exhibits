@@ -74,7 +74,7 @@ const LocationPage = () => {
 
   const handleAddCity = async () => {
     try {
-      const cities = selectedCities.map((e, ind) => citiesToAdd[ind]);
+      const cities = selectedCities.map((e, ind) => citiesToAdd.find((city) => city._id === e));
       console.log(cities);
       const resp = await createCityPageInLocation(cities);
       if (!resp.success) {
