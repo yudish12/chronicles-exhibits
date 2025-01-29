@@ -255,7 +255,12 @@ export const getDataByCode = async (boothCode, size) => {
 
 export const findSingleBooth = async (query, populate) => {
   try {
-    const data = await Booth.findOne(query).populate("booth_size","name").lean();
+    if(populate){
+      const data = await Booth.findOne(query).populate("booth_size","name").lean();
+      return getActionSuccessResponse(data);
+    }
+
+    const data = await Booth.findOne(query).lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

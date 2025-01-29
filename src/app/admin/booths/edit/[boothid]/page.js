@@ -5,7 +5,7 @@ import Editbooth from "./_components/Editbooth";
 const Page = async ({ params }) => {
   const { boothid } = await params;
   console.log(boothid);
-  const boothResponse = await findSingleBooth({ _id: boothid });
+  const boothResponse = await findSingleBooth({ _id: boothid },false);
   console.log("booth res", boothResponse);
   let singleBooth = boothResponse.data;
 
