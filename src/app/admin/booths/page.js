@@ -177,15 +177,14 @@ export default function BoothTable() {
                         <span className="sr-only">View {booth.booth_code}</span>
                       </Button>
                     </Link>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() =>
-                        router.push(`/admin/booths/edit/${booth._id}`)
-                      }
-                    >
-                      <Pencil className="h-4 w-4" />
-                    </Button>
+                    <Link href={`/admin/booths/edit/${booth._id}`}>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                      >
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                    </Link>
                     <Button
                       variant="outline"
                       size="icon"

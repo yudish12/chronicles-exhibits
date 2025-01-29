@@ -209,9 +209,8 @@ export default function Events() {
                 </TableCell>
                 <TableCell className="text-center">
                   <div
-                    className={`${
-                      getEventStatus(event.start_date, event.end_date).color
-                    } text-white p-2 px-6 mx-auto  w-max rounded-lg`}
+                    className={`${getEventStatus(event.start_date, event.end_date).color
+                      } text-white p-2 px-6 mx-auto  w-max rounded-lg`}
                   >
                     {getEventStatus(event.start_date, event.end_date).text}
                   </div>
@@ -227,14 +226,15 @@ export default function Events() {
                         <span className="sr-only">View {event.event_name}</span>
                       </Button>
                     </Link>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => handleEdit(event)}
-                    >
-                      <Pencil className="h-4 w-4" />
-                      <span className="sr-only">Edit {event.event_name}</span>
-                    </Button>
+                    <Link href={`/admin/events/edit/${event._id}`}>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                      >
+                        <Pencil className="h-4 w-4" />
+                        <span className="sr-only">Edit {event.event_name}</span>
+                      </Button>
+                    </Link>
                     <Button
                       variant="outline"
                       size="icon"

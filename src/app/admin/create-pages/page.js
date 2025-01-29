@@ -121,20 +121,16 @@ export default function CreatePages() {
                         <span className="sr-only">View {page.name}</span>
                       </Button>
                     </Link>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => {
-                        // setSingleBlog(blog);
-                        // setIsEditDialogOpen(true);
-                        // console.log('blog:', blog);
-                        // console.log('blog._id:', blog?._id);
-                        router.push(`/admin/create-pages/edit/${page._id}/`);
-                      }}
-                    >
-                      <Pencil className="h-4 w-4" />
-                      <span className="sr-only">Edit {page.name}</span>
-                    </Button>
+                    <Link href={`/admin/create-pages/edit/${page._id}`}>
+                      <Button
+                        variant="outline"
+                        size="icon"
+
+                      >
+                        <Pencil className="h-4 w-4" />
+                        <span className="sr-only">Edit {page.name}</span>
+                      </Button>
+                    </Link>
                     <Button
                       variant="outline"
                       size="icon"

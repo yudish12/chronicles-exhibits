@@ -230,7 +230,7 @@ const LocationPage = () => {
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
                     <Link
-                      href={`/locations/${blog.name
+                      href={`/trade-show-booth-rentals-${blog.name
                         .toLowerCase()
                         .split(" ")
                         .join("-")}`}
@@ -241,16 +241,15 @@ const LocationPage = () => {
                         <span className="sr-only">View {blog.title}</span>
                       </Button>
                     </Link>
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => {
-                        router.push(`/admin/locations/edit/${blog._id}`);
-                      }}
-                    >
-                      <Pencil className="h-4 w-4" />
-                      <span className="sr-only">Edit {blog.title}</span>
-                    </Button>
+                    <Link href={`/admin/locations/edit/${blog._id}`}>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                      >
+                        <Pencil className="h-4 w-4" />
+                        <span className="sr-only">Edit {blog.title}</span>
+                      </Button>
+                    </Link>
                     <Button
                       variant="outline"
                       size="icon"

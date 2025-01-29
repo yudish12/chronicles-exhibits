@@ -31,6 +31,7 @@ import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { Pagination } from "./_components/Pagination";
+import Link from "next/link";
 
 export default function Cities() {
   const [cities, setCities] = React.useState([]);
@@ -160,14 +161,16 @@ export default function Cities() {
                 <TableCell>{city.name}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
-                    <Button
-                      variant="outline"
-                      size="icon"
-                      onClick={() => handleEdit(city)}
-                    >
-                      <Pencil className="h-4 w-4" />
-                      <span className="sr-only">Edit {city.name}</span>
-                    </Button>
+                    <Link href={`/admin/locations/edit/${city._id}`}>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        onClick={() => handleEdit(city)}
+                      >
+                        <Pencil className="h-4 w-4" />
+                        <span className="sr-only">Edit {city.name}</span>
+                      </Button>
+                    </Link>
                     <Button
                       variant="outline"
                       size="icon"

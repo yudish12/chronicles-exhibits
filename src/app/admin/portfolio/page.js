@@ -30,6 +30,7 @@ import {
 import { deleteUTFiles } from "@/server/services/uploadthing";
 import { Pagination } from "../blogs/_components/Pagination";
 import Search from "@/components/ui/search";
+import Link from "next/link";
 export default function PortfolioTable() {
   const router = useRouter();
   const [portfolios, setPortfolios] = React.useState([]);
@@ -151,19 +152,18 @@ export default function PortfolioTable() {
                 </TableCell>
                 <TableCell>{portfolio.image_alt_text}</TableCell>
                 <TableCell className="text-right">
-                  <Button
-                    className="mr-2"
-                    variant="outline"
-                    size="icon"
-                    onClick={() => {
-                      router.push(`/admin/portfolio/edit/${portfolio._id}`);
-                    }}
-                  >
-                    <Pencil className="h-4 w-4" />
-                    <span className="sr-only">
-                      Edit {portfolio.image_alt_text}
-                    </span>
-                  </Button>
+                  <Link href={`/admin/portfolio/edit/${portfolio._id}`}>
+                    <Button
+                      className="mr-2"
+                      variant="outline"
+                      size="icon"
+                    >
+                      <Pencil className="h-4 w-4" />
+                      <span className="sr-only">
+                        Edit {portfolio.image_alt_text}
+                      </span>
+                    </Button>
+                  </Link>
                   <Button
                     variant="outline"
                     size="icon"
