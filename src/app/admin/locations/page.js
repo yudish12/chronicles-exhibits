@@ -185,15 +185,14 @@ const LocationPage = () => {
                           key={index}
                         >
                           <Checkbox
-                            checked={!!selectedCities[index]}
-                            onCheckedChange={(isChecked) =>
+                            checked={selectedCities.includes(city._id)} // Ensure proper boolean check
+                            onCheckedChange={(isChecked) => {
                               setSelectedCities((prev) =>
-                                prev
-                                  .slice(0, index)
-                                  .concat(isChecked)
-                                  .slice(0, index + 1)
-                              )
-                            }
+                                isChecked
+                                  ? [...prev, city._id] // Add if checked
+                                  : prev.filter((item) => item !== city._id) // Remove if unchecked
+                              );
+                            }}
                             id={city._id}
                           />
                           <Label>{city.name}</Label>
