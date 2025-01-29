@@ -7,12 +7,24 @@
   }
   
   #show_name_desc p strong {
-    font-weight: 600;
+    font-weight: bold;
   }
-  /* Style for <h3> tags */
-  #show_name_desc h3 {
+
+
+  /* Style for <h2> tags */
+  #show_name_desc h2 {
     font-family: "Jost-700";
     font-size: 22px; /* text-3xl */
+    line-height: 2.25rem; /* line height for 3xl */
+    margin-top: 1.5rem; /* mt-6 */
+    color: #000000; /* text-secondary */
+    font-weight: 600; /* font-semibold */
+  }
+
+  /* Style for <h3> tags */
+  #show_name_desc h3 {
+    font-family: "Jost-600";
+    font-size: 20px; /* text-3xl */
     line-height: 2.25rem; /* line height for 3xl */
     margin-top: 1.5rem; /* mt-6 */
     color: #000000; /* text-secondary */

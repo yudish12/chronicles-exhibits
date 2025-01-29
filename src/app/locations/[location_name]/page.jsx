@@ -100,9 +100,8 @@ const Page = async ({ params }) => {
           {data[0].fields[3].value}
         </h2>
 
-        <p className="text-[17px] text-balance text-justify lg:text-center ">
-          {data[0].fields[4].value} {data[0].fields[5].value}
-        </p>
+        <div id="show_name_desc" dangerouslySetInnerHTML={{__html:`${data[0].fields[4].value} ${data[0].fields[5].value}`}} className="text-[17px] text-balance text-justify lg:text-center ">
+        </div>
       </div>
       <div className="product-bg flex flex-col lg:flex-row gap-12 px-6 md:px-12 sm:px-8 lg:px-20 py-16">
         <Image

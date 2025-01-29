@@ -2,6 +2,7 @@ import React from "react";
 import ProductCarousel from "./product-carousel";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import { cn } from "@/lib/utils";
+import "./faq.css"
 
 const Products = async ({ bgColor, title, subTitle, location }) => {
   const boothsizes = await getAllBoothSizes();
@@ -25,15 +26,16 @@ const Products = async ({ bgColor, title, subTitle, location }) => {
       <h2 className="text-center heading-font-700 text-white mb-2 text-3xl font-bold">
         {title ? <></> : "FOR SUCCESSFUL EXHIBITIONS"}
       </h2>
-      <p
+      <div
+        id="faq-body"
+        dangerouslySetInnerHTML={{ __html: subTitle ??
+          "Explore over 1,000 trade show booth designs by selecting your booth size. All designs are fully customizable." }}
         className={cn(
           "text-center xs:mx-8 sm:mx-36 lg:mx-72 text-white text-md pt-4",
           bgColor === "white" && "text-black"
         )}
       >
-        {subTitle ??
-          "Explore over 1,000 trade show booth designs by selecting your booth size. All designs are fully customizable."}
-      </p>
+      </div>
 
       <ProductCarousel
         location={location}
