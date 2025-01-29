@@ -256,7 +256,7 @@ const LocationPage = () => {
                       variant="outline"
                       size="icon"
                       onClick={() => {
-                        setDeletingBlogId(blog._id);
+                        setDeletingLocationid(blog._id);
                         setIsDeleteDialogOpen(true);
                       }}
                     >
