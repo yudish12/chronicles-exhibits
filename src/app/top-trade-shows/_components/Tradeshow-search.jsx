@@ -52,26 +52,36 @@ const TradeshowSearch = ({ shows, setShows, totalPages, pages, limit }) => {
   if (!shows.length || !shows) {
     return (
       <>
-        <div className="flex gap-6 justify-center w-full">
-          <input
-            value={searchValue}
-            onKeyDown={(e) => {
-              console.log(e.key);
-              if (e.key === "Enter") {
-                onSearch();
-              }
-            }}
-            onChange={(e) => setSearchValue(e.target.value)}
-            className="border border-black  w-[100%] md:w-[60%] lg:w-[40%] placeholder:text-center placeholder:font-medium rounded-lg placeholder:text-secondary/60 px-4"
-            placeholder="Search for upcoming trade shows"
-          />
+        <div className="flex items-center justify-center w-full gap-4 px-4">
+          <div className="relative w-full md:w-3/5 lg:w-2/5">
+            <input
+              value={searchValue}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  onSearch();
+                }
+              }}
+              onChange={(e) => setSearchValue(e.target.value)}
+              className="w-full border border-gray-300 rounded-full px-5 py-3 text-lg focus:ring-2 focus:ring-secondary focus:outline-none shadow-md placeholder-gray-400"
+              placeholder="Search for upcoming trade shows"
+            />
+            {searchValue && (
+              <button
+                onClick={() => setSearchValue("")}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-all"
+              >
+                ✕
+              </button>
+            )}
+          </div>
           <Button
             onClick={onSearch}
-            className="text-secondary font-semibold bg-white hover:bg-secondary hover:text-white transition-all py-5 shadow-one"
+            className="bg-secondary text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-secondary-dark transition-all"
           >
             Search
           </Button>
         </div>
+
         {loading ? (
           <div class="loader"></div>
         ) : (
@@ -95,25 +105,34 @@ const TradeshowSearch = ({ shows, setShows, totalPages, pages, limit }) => {
 
   return (
     <>
-      <div className="flex gap-6 justify-center w-full">
-        <input
-          value={searchValue}
-          onKeyDown={(e) => {
-            console.log(e.key);
-            if (e.key === "Enter") {
-              onSearch();
-            }
-          }}
-          onChange={(e) => setSearchValue(e.target.value)}
-          className="border border-black  w-[100%] md:w-[60%] lg:w-[40%] placeholder:text-center placeholder:font-medium rounded-lg placeholder:text-secondary/60 px-4"
-          placeholder="Search for upcoming trade shows"
-        />
-        <Button
-          onClick={onSearch}
-          className="text-secondary border border-secondary rounded-full font-semibold bg-white hover:bg-secondary hover:text-white transition-all py-2 px-6 "
-        >
-          Search
-        </Button>
+      <div className="flex items-center justify-center w-full px-4">
+        <div className="relative flex items-center w-full md:w-3/5 lg:w-3/5 bg-white border border-gray-300 rounded-full shadow-md focus-within:ring-2 focus-within:ring-secondary">
+          <input
+            value={searchValue}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                onSearch();
+              }
+            }}
+            onChange={(e) => setSearchValue(e.target.value)}
+            className="w-full px-5 py-3 text-lg text-gray-700 rounded-full focus:outline-none bg-transparent placeholder-gray-400"
+            placeholder="Search for upcoming trade shows"
+          />
+          {searchValue && (
+            <button
+              onClick={() => setSearchValue("")}
+              className="absolute right-14 text-gray-400 hover:text-gray-600 transition-all"
+            >
+              ✕
+            </button>
+          )}
+          <button
+            onClick={onSearch}
+            className="absolute right-2 bg-secondary text-white font-medium px-6 py-2 rounded-full shadow-md hover:bg-secondary-dark transition-all"
+          >
+            Search
+          </button>
+        </div>
       </div>
       {loading ? (
         <div class="loader"></div>
