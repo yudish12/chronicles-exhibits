@@ -23,6 +23,7 @@ export const getAllData = async (skip, limit, projection) => {
     if (projection) {
       query = query.select(projection);
     }
+    query = query.sort({ name: 1 });
 
     const data = await query.lean();
     const count = await Locations.countDocuments();

@@ -25,7 +25,10 @@ const Page = async ({ params, searchParams }) => {
   let tradeShows = await getAllData(
     skip,
     limit,
-    "start_date end_date title icon event_name country city slug"
+    "start_date end_date title icon event_name country city slug",
+    {
+      start_date: { $gt: new Date() },
+    }
   );
   const totalPages = Math.ceil(tradeShows.count / limit);
   const { data } = await getSinglePage({ name: "events" });

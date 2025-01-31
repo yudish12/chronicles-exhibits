@@ -79,9 +79,13 @@ export const getEventByCity = async (city, skip, limit, projection) => {
   }
 };
 
-export const getAllData = async (skip, limit, projection) => {
+export const getAllData = async (skip, limit, projection,filter) => {
   try {
-    let query = events.find().sort({ _id: -1 });
+    let queryFilt = {};
+    if (filter){
+      queryFilt = filter;
+    }
+    let query = events.find(queryFilt).sort({ start_date: 1 });
     if (skip) {
       query = query.skip(skip);
     }
