@@ -9,8 +9,6 @@ import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import { getSinglePage } from "@/server/actions/pages";
 import Accordion from "./_components/Accordion";
 
-export const dynamic = "force-dynamic"
-
 export async function generateMetadata({ params }) {
   const pageData = await getSinglePage({ name: "trade-show-booth-displays-designs" }, "meta_keywords meta_title meta_description");
   return {
@@ -24,10 +22,12 @@ const page = async () => {
   const boothsizes = await getAllBoothSizes();
   const cardData = boothsizes.data;
 
-  const { data } = await getSinglePage({
-    name: "trade-show-booth-displays-designs",
-  });
-  console.log(data);
+  const res = await fetch("https://chronicleexhibits.com/api/page/all-booths-page", {
+    next: { revalidate: 60 },
+  })
+  const resp = await res.json();
+  const data = resp.data;
+
   const questions = [
     data.fields[5].value,
     data.fields[7].value,
