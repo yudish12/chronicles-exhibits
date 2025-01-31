@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 import NextTopLoader from "nextjs-toploader";
 import "@uploadthing/react/styles.css";
-import Tawkto from "@/components/Tawkto";
+// import Tawkto from "@/components/Tawkto";
 import WhatsAppWidget from "@/components/ui/whatsapp-icon";
 
 
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
       <meta property="og:locale" content="en_US" />
       </head>
       <body >
-        <Tawkto/>
+        {/* <Tawkto/> */}
         <GoogleAnalytics gaId="G-ET7LT8FESF" />
         <Toaster />
         <NextTopLoader />

@@ -5,13 +5,12 @@ import { BoothDetails } from "./_components/BoothDetails";
 import Footer from "@/components/ui/footer";
 import { findSingleBooth, getAllData, getDataByCode } from "@/server/actions/booths";
 import { notFound } from "next/navigation";
-import { headers } from "next/headers";
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
   const booth_code = resolvedParams.booth_code;
 
-  const boothData = await findSingleBooth({booth_code});
+  const boothData = await findSingleBooth({booth_code}, true);
   const data = boothData.data
   return {
     title: booth_code || "Default Title",
@@ -27,13 +26,10 @@ const BoothByCode = async ({ params }) => {
   const resolvedParams = await params;
   console.log("params", resolvedParams);
   const boothCode = resolvedParams.booth_code;
-  const header = await headers();
-
-  const sizeFromHeader = header.get("X-Booth-Size");
-  console.log(sizeFromHeader,32)
+  const sizeFromHeader = resolvedParams.booth_size;
 
   const resp = await getDataByCode(boothCode, sizeFromHeader);
-
+  console.log(resp.data)
   if (!resp?.data) {
     notFound();
   }

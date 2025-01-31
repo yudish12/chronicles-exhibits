@@ -1,8 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import dynamic from "next/dynamic";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-const GetFreeDesignForm = dynamic(() => import("@/components/GetFreeDesignForm"))
+import GetFreeDesignForm from "@/components/GetFreeDesignForm"
 
 const RequestDesign = ({ fields }) => {
   return (

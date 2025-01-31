@@ -9,7 +9,7 @@ const nextConfig = {
       },
       {
         source: "/:size-trade-show-booth/:booth_code",
-        destination: "/booth/code/:booth_code",
+        destination: "/booth/size/:size/:booth_code",
       },
       {
         source: "/blog",
