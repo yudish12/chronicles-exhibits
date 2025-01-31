@@ -7,6 +7,7 @@ import ScheduleCallForm from "../ScheduleCallForm";
 import { Button } from "./button";
 import GetFreeDesignForm from "../GetFreeDesignForm";
 import { useState } from "react";
+import QRCodeGenerator from "../QrCode";
 
 const SocialIconContainer = ({ children }) => {
   return (
@@ -299,16 +300,7 @@ export default function Footer() {
               Las Vegas, NV 89117, <br />
               United States
             </p> */}
-            <div className="bg-white"
-            style={{ display: 'inline-block', lineHeight: 0 }}>
-            <Image
-              src={"/qr.png"}
-              alt="QR Code"
-              width={100}
-              height={100}
-              className="object-contain"
-            />
-            </div>
+            <QRCodeGenerator/>
             <h3 className="font-bold text-lg my-4 text-primary">Follow Us</h3>
             <div className="flex items-center mt-4 gap-3">
               <SocialIconContainer>
