@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import "../../../globals.css";
 import { Label } from "@/components/ui/label";
@@ -11,7 +11,7 @@ import TagsInput from "react-tagsinput";
 import "react-tagsinput/react-tagsinput.css";
 import { toast } from "sonner";
 import CkeEditor from "@/components/CkEditor";
-import { addData } from "@/server/actions/events";
+import { addData, getAllLocations } from "@/server/actions/events";
 // import {
 //   Select,
 //   SelectContent,
@@ -26,6 +26,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { deleteUTFiles } from "@/server/services/uploadthing";
 
 const AddEventPage = () => {
+  const [cityLoading, setCityLoading] = React.useState(true);
   const [singleEvent, setSingleEvent] = React.useState({
     event_name: "",
     title: "",
@@ -48,11 +49,7 @@ const AddEventPage = () => {
   });
 
   const router = useRouter();
-
-  const cities = majorExhibitingCities.map((city) => ({
-    label: city,
-    value: city,
-  }));
+  const [cities,setCities] = useState([]);
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
@@ -89,6 +86,28 @@ const AddEventPage = () => {
       console.error(error);
     }
   };
+
+  const fetchCities = async () => {
+    try {
+      const resp = await getAllLocations();
+      console.log(resp.data)
+      if (!resp.success) {
+        toast.error(resp.err);
+        return;
+      }
+      setCities(resp.data);
+      setCityLoading(false);
+    } catch (error) {
+      console.error(error);
+      toast.error("An error occurred while fetching data");
+    }finally {
+      setCityLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchCities();
+  },[])
 
   return (
     <div className="flex flex-col items-center justify-start overflow-auto min-h-screen bg-gray-200 p-8 gap-y-6 w-full">
@@ -153,9 +172,9 @@ const AddEventPage = () => {
                     city: value,
                   });
                 }}
-                cities={majorExhibitingCities.map((city) => ({
-                  label: city,
-                  value: city,
+                cities={cities.map((city) => ({
+                  label: city.name,
+                  value: city.name,
                 }))}
               />
             </div>
