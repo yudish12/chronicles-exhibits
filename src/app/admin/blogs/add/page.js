@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useEffect} from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -57,6 +57,13 @@ const AddBlogPage = () => {
       toast.error("Failed to add blog");
     }
   };
+
+  useEffect(() => {
+    setSingleBlog({
+      ...singleBlog,
+      slug: singleBlog.title.toLowerCase().replaceAll(" ", "-").replace(".", ""),
+    })
+  },[singleBlog.title])
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-gray-200 overflow-auto p-8 gap-y-6 w-full">

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import TagsInput from "react-tagsinput";
 import "react-tagsinput/react-tagsinput.css";
 import { updateData } from "@/server/actions/blogs";
@@ -37,6 +37,13 @@ const EditBlog = ({ singleBlog }) => {
     toast.success("Blog updated successfully");
     router.push("/admin/blogs");
   };
+
+  useEffect(() => {
+    setBlog({
+      ...blog,
+      slug: blog.title.toLowerCase().replaceAll(" ", "-").replace(".", ""),
+    })
+  },[blog.title])
 
   return (
     <form

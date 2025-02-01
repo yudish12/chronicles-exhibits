@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import "../../../globals.css";
 import { Label } from "@/components/ui/label";
@@ -108,6 +108,13 @@ const AddEventPage = () => {
   useEffect(() => {
     fetchCities();
   },[])
+
+  useEffect(() => {
+    setSingleEvent({
+      ...singleEvent,
+      slug: singleEvent.event_name.toLowerCase().replaceAll(" ", "-").replace(".", ""),
+    })
+  },[singleEvent.event_name])
 
   return (
     <div className="flex flex-col items-center justify-start overflow-auto min-h-screen bg-gray-200 p-8 gap-y-6 w-full">

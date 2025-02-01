@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { updateData } from "@/server/actions/events";
 import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
@@ -11,7 +11,6 @@ import { UploadButton } from "@uploadthing/react";
 
 import CKEditorDemo from "@/components/CkEditor";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { majorExhibitingCities } from "@/app/admin/cities";
 import { Trash2 } from "lucide-react";
 import { CitySearchSelect } from "@/components/ui/city-search-select";
 import { useRouter } from "next/navigation";
@@ -53,6 +52,13 @@ const EditEventForm = ({ singleEvent, cities }) => {
     toast.success("Event updated successfully");
     router.push("/admin/events");
   };
+
+  useEffect(() => {
+    setEvent({
+      ...event,
+      slug: event.event_name.toLowerCase().replaceAll(" ", "-").replace(".", ""),
+    })
+  },[event.event_name])
 
   return (
     <form
