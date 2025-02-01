@@ -85,7 +85,7 @@ export const getAllData = async (skip, limit, projection,filter) => {
     if (filter){
       queryFilt = filter;
     }
-    let query = events.find(queryFilt).sort({ start_date: 1 });
+    let query = events.find(queryFilt).sort({ _id: 1 });
     if (skip) {
       query = query.skip(skip);
     }
