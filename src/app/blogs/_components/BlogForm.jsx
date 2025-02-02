@@ -98,7 +98,7 @@ const BlogForm = ({source}) => {
   }, []);
 
   return (
-    <div className="mt-6 lg:max-w-[350px] 2xl:max-w-[420px] w-full mx-auto space-y-4 bg-white shadow-one p-10 py-4  rounded-lg flex flex-col justify-center items-center ">
+    <div className="mt-6 lg:max-w-[350px] 2xl:max-w-[420px] w-full mx-auto space-y-4 bg-white p-6 shadow rounded-lg flex flex-col justify-center items-center ">
       <div className="w-[98%] h-[90%] rounded-lg py-2 ">
         <h3 className="text-2xl text-center heading-font text-secondary ">
           GET BOOTH QUOTE
@@ -111,7 +111,7 @@ const BlogForm = ({source}) => {
       <div>
         <Input
           placeholder="Your Name"
-          className="w-full shadow-two placeholder:black py-2 border-0"
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
           type="name"
           disabled={loading}
           onChange={handleChange}
@@ -122,7 +122,7 @@ const BlogForm = ({source}) => {
         <div>
         <Input
           placeholder="Your Email"
-          className="w-full shadow-two placeholder:black py-2 border-0"
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
           type="email"
           disabled={loading}
           onChange={handleChange}
@@ -132,7 +132,7 @@ const BlogForm = ({source}) => {
         </div>
         {/* <Input
             placeholder="Phone Number"
-            className="w-full shadow-two placeholder:black py-2 border-0"
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
             type="email"
             onChange={handleChange}
             required
@@ -153,7 +153,7 @@ const BlogForm = ({source}) => {
         <Input
           placeholder="Your Country Name"
           disabled={loading}
-          className="w-full shadow-two placeholder:black py-2 border-0 "
+         className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
           type="country"
           onChange={handleChange}
           required
@@ -164,7 +164,7 @@ const BlogForm = ({source}) => {
         <Input
           placeholder="Booth Size"
           disabled={loading}
-          className="w-full shadow-two placeholder:black py-2 border-0"
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
           type="boothSize"
           onChange={handleChange}
           required
@@ -175,7 +175,7 @@ const BlogForm = ({source}) => {
         <Textarea
           placeholder="Tell us about your requirements"
           disabled={loading}
-          className="w-full shadow-two placeholder:black py-2 border-0"
+          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
           rows={3}
           type="message"
           onChange={handleChange}

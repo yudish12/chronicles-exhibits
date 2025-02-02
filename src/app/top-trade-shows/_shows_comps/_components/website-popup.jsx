@@ -78,7 +78,7 @@ const WebsitePopup = ({ website, eventName }) => {
         <div
           onClick={() => setOpen(true)}
           style={{ transitionDuration: "500ms" }}
-          className="group cursor-pointer transition-500 shadow-two hover:bg-[#B0CB1F] bg-white border-secondary/70 p-6 flex items-center gap-5"
+          className="group cursor-pointer transition-500 shadow hover:bg-[#B0CB1F] bg-white border-secondary/70 p-6 flex items-center gap-5"
         >
           <Image src={"/website-thin.svg"} width={30} height={30} alt="cube" />
           <h4

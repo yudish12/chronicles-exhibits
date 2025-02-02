@@ -79,13 +79,13 @@ export const getEventByCity = async (city, skip, limit, projection) => {
   }
 };
 
-export const getAllData = async (skip, limit, projection,filter) => {
+export const getAllData = async (skip, limit, projection,filter, admin=false) => {
   try {
     let queryFilt = {};
     if (filter){
       queryFilt = filter;
     }
-    let query = events.find(queryFilt).sort({ _id: 1 });
+  let query = events.find(queryFilt).sort(admin?{  _id: 1  }: {start_date: 1});
     if (skip) {
       query = query.skip(skip);
     }

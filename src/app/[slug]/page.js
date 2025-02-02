@@ -87,7 +87,7 @@ const Page = async ({ params }) => {
               <div
                 id="blog_content"
                 dangerouslySetInnerHTML={{ __html: data.body }}
-                className="mt-6 space-y-4 bg-white shadow-one px-4 sm:px-6 lg:px-10 py-14  rounded-lg "
+                className="mt-6 space-y-4 bg-white shadow px-4 sm:px-6 lg:px-10 py-14  rounded-lg "
               ></div>
             </div>
 
@@ -192,14 +192,14 @@ const Page = async ({ params }) => {
           </div>
         </div>
         <Image
-          className="rounded-full shadow-xl border-white border-[6px] mx-auto mt-[-80px] z-10"
+          className="rounded-full shadow-md border-white border-[6px] mx-auto mt-[-80px] z-10"
           width={170}
           height={170}
           src={eventData.icon}
           alt={"show.title"}
         />
         <div className="flex flex-col px-4 sm:px-8 md:px-[40px] lg:flex-row lg:px-20 gap-12 py-12">
-          <div className="w-full lg:w-[70%] bg-white sm:p-6 p-8  rounded-xl shadow-one">
+          <div className="w-full lg:w-[70%] bg-white sm:p-6 p-8  rounded-xl shadow">
             <h2 className="text-2xl heading-font text-secondary font-semibold">
               {eventData.title}
             </h2>
@@ -219,7 +219,7 @@ const Page = async ({ params }) => {
             <div className="grid grid-cols-1 gap-y-6 border-secondary/70">
               <div
                 style={{ transitionDuration: "500ms" }}
-                className="group cursor-pointer transition-500 shadow-two hover:bg-[#B0CB1F]  bg-white border-secondary/70 p-6 flex items-center gap-5"
+                className="group cursor-pointer transition-500 shadow hover:bg-[#B0CB1F]  bg-white border-secondary/70 p-6 flex items-center gap-5"
               >
                 <Image src={"/email.svg"} width={30} height={30} alt="cube" />
                 <Link
@@ -234,7 +234,7 @@ const Page = async ({ params }) => {
               <WebsitePopup website={eventData.website} eventName={eventName} />
               <div
                 style={{ transitionDuration: "500ms" }}
-                className="group bg-white transition-500 hover:bg-[#B0CB1F] cursor-pointer shadow-two   p-6 flex items-center gap-5"
+                className="group bg-white transition-500 hover:bg-[#B0CB1F] cursor-pointer shadow p-6 flex items-center gap-5"
               >
                 <Image
                   src={"/location-pin.svg"}

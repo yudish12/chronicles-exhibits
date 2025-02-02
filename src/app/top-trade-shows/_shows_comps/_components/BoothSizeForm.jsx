@@ -109,14 +109,14 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
   }, []);
 
   return (
-    <div className="shadow-one h-max bg-white p-6 rounded-xl w-full">
+    <div className="shadow h-max bg-white p-6 rounded-xl w-full">
       <h5 className="text-2xl mt-4 text-center font-semibold heading-font text-secondary">
         Enquiry Form
       </h5>
       <div className="mt-4 flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col gap-5">
         <div>
           <Input
-            className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
             type="text"
             disabled={loading}
             placeholder="Your Name"
@@ -126,7 +126,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
         </div>
         <div>
           <Input
-            className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
             type="text"
             disabled={loading}
             placeholder="Your Company"
@@ -136,7 +136,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
         </div>
         <div>
           <Input
-            className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
             type="email"
             disabled={loading}
             placeholder="Your Email ID"
@@ -155,7 +155,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
         </div>
         <div>
           <Input
-            className="border-secondary/70 text-secondary/70 placeholder:text-secondary/70"
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
             type="text"
             placeholder="Booth Size"
             disabled={loading}
@@ -166,7 +166,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
         </div>
         <div>
           <Input
-            className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
             type="text"
             placeholder="Budget"
             disabled={loading}
@@ -176,7 +176,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
         </div>
         <div>
           <Input
-            className="border-secondary/70 text-secondary placeholder:text-secondary/70"
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
             type="text"
             disabled={loading}
             placeholder="Your Country Name"
@@ -196,7 +196,8 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
         <div className="col-span-2 " >
           <textarea
             rows={4}
-            className="border w-full p-2 border-secondary/70 placeholder:text-secondary/70 rounded-lg"
+            style={{ border: "1px solid #CACACA" }}
+            className="w-full p-2 placeholder:text-secondary/70 shadow-sm rounded-lg"
             placeholder="Message"
             name="message"
             disabled={loading}

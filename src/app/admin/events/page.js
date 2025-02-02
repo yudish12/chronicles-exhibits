@@ -61,7 +61,7 @@ export default function Events() {
     try {
       setLoading(true);
       const skip = (page - 1) * limit;
-      const eventResp = await getAllData(skip, limit);
+      const eventResp = await getAllData(skip, limit, null, null, true);
       console.log("===events===", eventResp);
       const locationResp = await getAllLocations();
       console.log("====locations===", locationResp.data[0]);
