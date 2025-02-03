@@ -41,9 +41,9 @@ const EditBlog = ({ singleBlog }) => {
   useEffect(() => {
     setBlog({
       ...blog,
-      slug: blog.title.toLowerCase().replaceAll(" ", "-").replace(".", ""),
+      // slug: blog.title.toLowerCase().replaceAll(" ", "-").replace(".", ""),
     })
-  },[blog.title])
+  },[])
 
   return (
     <form

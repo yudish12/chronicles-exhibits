@@ -61,9 +61,9 @@ const AddBlogPage = () => {
   useEffect(() => {
     setSingleBlog({
       ...singleBlog,
-      slug: singleBlog.title.toLowerCase().replaceAll(" ", "-").replace(".", ""),
+      // slug: singleBlog.title.toLowerCase().replaceAll(" ", "-").replace(".", ""),
     })
-  },[singleBlog.title])
+  },[])
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-gray-200 overflow-auto p-8 gap-y-6 w-full">
