@@ -38,6 +38,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
     setFormData({ ...formData, phone: formattedValue });
   };
   const handleSubmit = async (e) => {
+    console.log(formData);
     e.preventDefault();
     setLoading(true);
     if (!emailRegex.test(formData.email)) {
@@ -72,7 +73,7 @@ const BoothSizeForm = ({ slug, eventName, eventCity, date }) => {
       ApiData.append("eventDate", formData.eventDate);
       e.preventDefault();
       const resp = await submitBoothForm(ApiData, eventName);
-
+      console.log(resp);
       if (!resp.success) {
         toast.error("Failed to submit form. Please try again later.");
         return;

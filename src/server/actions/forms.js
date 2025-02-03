@@ -166,7 +166,7 @@ export const submitBoothForm = async (formdata, page_source) => {
     const budget = formdata.get("budget");
     
     const fileData = formdata.getAll("files"); 
-    if(!name || !email || !phone || !message || !budget) {
+    if(!name || !email || !phone) {
       return { error: "Please fill all the fields" };
     }
     const company = formdata.get("company");
