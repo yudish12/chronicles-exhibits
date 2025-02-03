@@ -149,10 +149,10 @@ const AddEventPage = () => {
                 className="rounded-sm"
                 value={singleEvent.slug}
                 onChange={(e) =>
-                  setSingleEvent({ ...singleEvent, slug: e.target.value })
+                  setSingleEvent({ ...singleEvent, slug: e.target.value.replace(" ", "-").toLowerCase() })
                 }
                 required
-                pattern="^[a-z0-9-]+$"
+                // pattern="^[a-z0-9-]+$"
                 title="No spaces, only lowercase letters and dashes"
               />
             </div>

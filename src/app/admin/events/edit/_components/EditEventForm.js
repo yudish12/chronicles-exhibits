@@ -91,11 +91,11 @@ const EditEventForm = ({ singleEvent, cities }) => {
             <Label>Slug (No spaces, only lowercase)</Label>
             <Input
               value={event.slug}
-              onChange={(e) => setEvent({ ...event, slug: e.target.value })}
+              onChange={(e) => setEvent({ ...event, slug: e.target.value.replace(" ", "-").toLowerCase() })}
               required
-              pattern="^[a-z0-9-]+$"
+              // pattern="^[a-z0-9-]+$"
               title="No spaces, only lowercase letters and dashes"
-            />
+            /> 
           </div>
           <div>
             <Label>Country</Label>

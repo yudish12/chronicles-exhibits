@@ -107,7 +107,7 @@ const Editbooth = ({ boothData }) => {
                 onChange={(e) =>
                   setsingleBooth({
                     ...singleBooth,
-                    slug: e.target.value.trim().toLowerCase(),
+                    slug: e.target.value.replace(" ", "-").toLowerCase(),
                   })
                 }
                 required
