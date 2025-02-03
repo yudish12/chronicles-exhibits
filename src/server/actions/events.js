@@ -218,7 +218,7 @@ export const updateData = async (id, data) => {
     if (!isValidWebsite(data.website)) {
       return getActionFailureResponse("Invalid website", "website");
     }
-
+    data.slug = data.event_name;
     // Find and update the document, returning the updated version
     const updatedEvent = await events.findOneAndUpdate({ _id: id }, data, {
       new: true, // Return the updated document
@@ -247,9 +247,9 @@ export const addData = async (data) => {
     if (!data.end_date) {
       return getActionFailureResponse("End date is required", "description");
     }
-    if (!data.slug) {
-      return getActionFailureResponse("Slug is required", "slug");
-    }
+    // if (!data.slug) {
+    //   return getActionFailureResponse("Slug is required", "slug");
+    // }
     if (!data.country) {
       return getActionFailureResponse("Country is required", "country");
     }
@@ -300,7 +300,7 @@ export const addData = async (data) => {
     if (!isValidWebsite(data.website)) {
       return getActionFailureResponse("Invalid website", "website");
     }
-
+    data.slug = data.event_name;
     const resp = await events.create(data);
     console.log("added data ", resp);
     return getActionSuccessResponse(resp);

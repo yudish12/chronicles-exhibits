@@ -56,9 +56,9 @@ const EditEventForm = ({ singleEvent, cities }) => {
   useEffect(() => {
     setEvent({
       ...event,
-      slug: event.event_name.toLowerCase().replaceAll(" ", "-").replace(".", ""),
+      // slug: event.event_name.toLowerCase().replaceAll(" ", "-").replace(".", ""),
     })
-  },[event.event_name])
+  },[])
 
   return (
     <form
