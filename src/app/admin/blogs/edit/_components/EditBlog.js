@@ -78,7 +78,7 @@ const EditBlog = ({ singleBlog }) => {
               onChange={(e) =>
                 setBlog({
                   ...blog,
-                  slug: e.target.value.replace(" ", "-").toLowerCase(),
+                  slug: e.target.value
                 })
               }
               required

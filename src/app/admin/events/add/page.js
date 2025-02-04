@@ -149,7 +149,7 @@ const AddEventPage = () => {
                 className="rounded-sm"
                 value={singleEvent.slug}
                 onChange={(e) =>
-                  setSingleEvent({ ...singleEvent, slug: e.target.value.replace(" ", "-").toLowerCase() })
+                  setSingleEvent(singleEvent)
                 }
                 required
                 // pattern="^[a-z0-9-]+$"

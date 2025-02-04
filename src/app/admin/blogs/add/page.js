@@ -99,7 +99,7 @@ const AddBlogPage = () => {
                 onChange={(e) =>
                   setSingleBlog({
                     ...singleBlog,
-                    slug: e.target.value.replace(" ", "-").toLowerCase(),
+                    slug: e.target.value
                   })
                 }
                 required

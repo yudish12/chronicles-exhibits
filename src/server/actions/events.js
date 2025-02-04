@@ -218,7 +218,7 @@ export const updateData = async (id, data) => {
     if (!isValidWebsite(data.website)) {
       return getActionFailureResponse("Invalid website", "website");
     }
-    data.slug = data.event_name;
+    data.slug = data.slug.replaceAll(" ", "-").toLowerCase();
     // Find and update the document, returning the updated version
     const updatedEvent = await events.findOneAndUpdate({ _id: id }, data, {
       new: true, // Return the updated document
@@ -300,7 +300,7 @@ export const addData = async (data) => {
     if (!isValidWebsite(data.website)) {
       return getActionFailureResponse("Invalid website", "website");
     }
-    data.slug = data.event_name;
+    data.slug = data.slug.replaceAll(" ", "-").toLowerCase();
     const resp = await events.create(data);
     console.log("added data ", resp);
     return getActionSuccessResponse(resp);

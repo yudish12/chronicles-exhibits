@@ -110,7 +110,7 @@ export const updateData = async (id, data) => {
         meta_description: data.meta_description,
         meta_keywords: data.meta_keywords,
         image_alt_text: data.image_alt_text,
-        slug: data.title,
+        slug: data.slug.replaceAll(" ", "-").toLowerCase(),
         blog_count: data.blog_count,
       },
       {
@@ -143,9 +143,9 @@ export const addData = async (data) => {
       return getActionFailureResponse("image is required", "image");
     }
 
-    // if (!data.slug) {
-    //   return getActionFailureResponse("slug is required", "slug");
-    // }
+    if (!data.slug) {
+      return getActionFailureResponse("slug is required", "slug");
+    }
     if (!data.blog_count) {
       return getActionFailureResponse("blog_count is required", "blog_count");
     }
@@ -173,7 +173,7 @@ export const addData = async (data) => {
         "meta_keywords"
       );
     }
-    data.slug = data.title
+    data.slug = data.slug.replaceAll(" ", "-").toLowerCase();
     const resp = await Blog.create(data);
 
     console.log("====add data resp===", resp);
