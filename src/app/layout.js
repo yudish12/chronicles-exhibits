@@ -19,6 +19,7 @@ export default function RootLayout({ children }) {
       <GoogleTagManager gtmId="GTM-NR3F6S9R" />
       <head>
       <meta property="og:title" content="Trade show Booth Design | Booth Builder"/>
+      <meta name="google-site-verification" content="52R0xHP_gQg6T7bSoOGz-PviftlVs0AppNw86tne_KU" />
       <meta property="og:site_name" content="chronicleexhibits.com"/>
       <meta property="og:url" content="https://chronicleexhibits.com/"></meta>
       <meta property="og:description" content="Chronicle Exhibits LLC. is a leading trade show booth display design company and exhibit builder in the USA. We offer both custom and rental booth services nationwide."/>
