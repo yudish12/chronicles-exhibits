@@ -32,6 +32,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
       body: event.body,
       slug: event.slug,
       country: event.country,
+      title: event.title,
       city: event.city,
       icon_alt_text: event.icon_alt_text,
       booth_title: event.booth_title ?? "",
