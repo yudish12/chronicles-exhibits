@@ -85,7 +85,7 @@ export const getAllData = async (skip, limit, projection,filter, admin=false) =>
     if (filter){
       queryFilt = filter;
     }
-  let query = events.find(queryFilt).sort(admin?{  _id: 1  }: {start_date: 1});
+  let query = events.find(queryFilt).sort(admin?{  _id: -1  }: {start_date: 1});
     if (skip) {
       query = query.skip(skip);
     }
