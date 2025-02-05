@@ -8,7 +8,8 @@ import { revalidatePath } from "next/cache";
 import { RevalidatePath } from "@/server/actions/revalidate-path";
 import Image from "next/image";
 import Link from "next/link";
-
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import ForgotPasswordModal from "./ForgotPasswordModal";
 export default function LoginPage() {
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -77,9 +78,16 @@ export default function LoginPage() {
               />
               <label htmlFor="remember-me">Remember Me</label>
             </div>
+            <Dialog>
+            <DialogTrigger asChild>
             <Link href="#" className="text-primary hover:underline">
               Forgot Password?
             </Link>
+            </DialogTrigger>
+            <DialogContent className="h-[350px] overflow-auto">
+            <ForgotPasswordModal />
+          </DialogContent>
+            </Dialog>
           </div>
           <Button
             type="submit"
