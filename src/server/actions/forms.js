@@ -436,3 +436,12 @@ export const downloadFormSubmissions = async (start_date, end_date) => {
     return getActionFailureResponse(error);
   }
 };
+
+export const getEnquiryById = async (id) => {
+  try {
+    const enquiry = await FormSubmission.findById(id);
+    return getActionSuccessResponse(enquiry);
+  } catch (error) {
+    return getActionFailureResponse(error);
+  }
+}
