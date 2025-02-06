@@ -13,7 +13,7 @@ import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { downloadFormSubmissions, getAllForms } from "@/server/actions/forms";
-import { Trash2 } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import { deleteForm } from "@/server/actions/forms";
 import {
   Dialog,
@@ -29,6 +29,7 @@ import { Pagination } from "./_components/Pagination";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import moment from "moment";
+import Link from "next/link";
 export default function PortfolioTable() {
   const [portfolios, setPortfolios] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -74,12 +75,12 @@ export default function PortfolioTable() {
         (portfolio) => portfolio._id === deletingPortfolioId
       );
       const resp = await deleteForm(deletingPortfolioId);
-      
+
       if (!resp.success) {
         toast.error(resp.error);
         return;
       }
-     
+
       toast.success("Enquiry deleted successfully");
       setIsDeleteDialogOpen(false);
       fetchData();
@@ -217,21 +218,32 @@ export default function PortfolioTable() {
                 <TableCell>{portfolio.phone}</TableCell>
                 <TableCell>{portfolio.page_source}</TableCell>
                 <TableCell>{portfolio.callTime}</TableCell>
-                {portfolio.callDate ? <TableCell>{moment(portfolio.callDate).format("DD")}-{moment(portfolio.callDate).format("MMM")}-{moment(portfolio.callDate).format("YYYY")}</TableCell>: <TableCell>No Date Provided</TableCell>}
+                {portfolio.callDate ? <TableCell>{moment(portfolio.callDate).format("DD")}-{moment(portfolio.callDate).format("MMM")}-{moment(portfolio.callDate).format("YYYY")}</TableCell> : <TableCell>No Date Provided</TableCell>}
                 <TableCell className="text-right">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => {
-                      setDeletingPortfolioId(portfolio._id);
-                      setIsDeleteDialogOpen(true);
-                    }}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                    <span className="sr-only">
-                      Delete {portfolio.image_alt_text}
-                    </span>
-                  </Button>
+                  <div className="flex justify-end space-x-2">
+                    <Link
+                      href={`/admin/enquiry/view/${portfolio._id}`}
+                      target="_blank"
+                    >
+                      <Button variant="outline" size="icon">
+                        <Eye className="h-4 w-4" />
+                        <span className="sr-only">View Enquiry</span>
+                      </Button>
+                    </Link>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => {
+                        setDeletingPortfolioId(portfolio._id);
+                        setIsDeleteDialogOpen(true);
+                      }}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                      <span className="sr-only">
+                        Delete {portfolio.image_alt_text}
+                      </span>
+                    </Button>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}

@@ -1,17 +1,13 @@
 "use client";
-
-import { useState, useEffect, Suspense } from "react";
-import { useSearchParams, useRouter, notFound } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, notFound } from "next/navigation"; // Note: notFound is a server utility
 import { resetPassword, checkIfTokenIsExpired } from "@/server/actions/login";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const ResetPassClient = () => {
-  const searchParams = useSearchParams();
+function ResetForm({ token }) {
   const router = useRouter();
-  const token = searchParams.get("token"); // Get token from URL params
-
   const [newPassword, setNewPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [isValidToken, setIsValidToken] = useState(null);
@@ -20,26 +16,25 @@ const ResetPassClient = () => {
   useEffect(() => {
     const validateToken = async () => {
       if (!token) {
-        router.push('/404');
+        // Instead of using notFound (which is for server components), use a client-side redirect:
+        router.push("/404");
         return;
       }
 
       try {
         const response = await checkIfTokenIsExpired(token);
-        console.log("token resp" , response)
         if (response.success) {
-          router.push('/404');
+          router.push("/404");
         } else {
           setIsValidToken(true);
         }
       } catch (error) {
-        console.log(error)
-        router.push('/404');
+        router.push("/404");
       }
     };
 
     validateToken();
-  }, [token]);
+  }, [token, router]);
 
   if (isValidToken === null) return null; // Prevent flickering before validation completes
 
@@ -105,10 +100,4 @@ const ResetPassClient = () => {
   );
 }
 
-export default function ResetPasswordPage() {
-  return (
-    <Suspense>
-      <ResetPassClient/>
-    </Suspense>
-  )
-} 
+export default ResetForm;

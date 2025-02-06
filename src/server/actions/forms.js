@@ -3,6 +3,7 @@
 import { EmailService } from "../services/mailer/email-service";
 import FormSubmission from "../models/form-submissions";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
+import dbConnect from "@/config/db-connect";
 export const submitCallForm = async (formData, page_source) => {
   try {
     const schemaKeys = {
@@ -436,3 +437,13 @@ export const downloadFormSubmissions = async (start_date, end_date) => {
     return getActionFailureResponse(error);
   }
 };
+
+export const getEnquiryById = async (id) => {
+  await dbConnect();
+  try {
+    const enquiry = await FormSubmission.findById(id);
+    return getActionSuccessResponse(enquiry);
+  } catch (error) {
+    return getActionFailureResponse(error);
+  }
+}
