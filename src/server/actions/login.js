@@ -23,7 +23,7 @@ const users = [
 ]
 
 export const login = async ({ email, password }) => {
-
+  await dbConnect();
   // Mock authentication logic
   console.log("creds" , email , password)
   const emailFromList = await User.findOne({email});

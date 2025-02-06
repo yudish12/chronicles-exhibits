@@ -6,6 +6,7 @@ import {
   FileText,
   FormInput,
   GalleryThumbnails,
+  Users 
 } from "lucide-react";
 
 export const continents = {
@@ -95,4 +96,9 @@ export const collections = [
     name: "Site Map",
     icon: <GalleryThumbnails color="#B0CB1F" />,
   },
+  {
+    slug: "users",
+    name : "Users",
+    icon : < Users color="#B0CB1F" />
+  }
 ];

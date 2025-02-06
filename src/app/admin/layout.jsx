@@ -23,6 +23,7 @@ const Layout = async ({ children }) => {
   const authToken = cookieStore.get("authorization")?.value;
   console.log(authToken);
   let isVerified = false;
+  let decodedToken = null;
 
   if (authToken) {
     try {
@@ -35,6 +36,11 @@ const Layout = async ({ children }) => {
   if (!isVerified) {
     return <LoginPage />;
   }
+  decodedToken = jwtFuncs.decodeJWT(authToken);
+  const filteredCollections =
+    decodedToken?.email === "admin@chronicleexhibits.com"
+      ? collections
+      : collections.filter((collection) => collection.slug !== "users");
 
   return (
     <div className="flex h-screen">
@@ -52,7 +58,7 @@ const Layout = async ({ children }) => {
           </SidebarHeader>
           <SidebarContent className="px-4 justify-between">
             <SidebarMenu>
-              {collections.map((collection, ind) => (
+              {filteredCollections.map((collection, ind) => (
                 <Link
                   key={ind}
                   className="text-primary tracking-wider text-[16px] font-semibold"

@@ -24,3 +24,12 @@ export const verifyJWT = (token) => {
     throw new Error("Invalid or expired token");
   }
 };
+
+export const decodeJWT = (token)=>{
+try {
+return jwt.decode(token)
+}catch(error){
+  console.error("Error decoding token:", error.message);
+  throw new Error("token could not be decoded");
+}
+}

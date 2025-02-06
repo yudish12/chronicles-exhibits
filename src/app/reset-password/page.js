@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter, notFound } from "next/navigation";
 import { resetPassword, checkIfTokenIsExpired } from "@/server/actions/login";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-export default function ResetPasswordPage() {
+
+const ResetPassClient = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const token = searchParams.get("token"); // Get token from URL params
@@ -103,3 +104,11 @@ export default function ResetPasswordPage() {
     </div>
   );
 }
+
+export default function ResetPasswordPage() {
+    return (
+      <Suspense>
+        <ResetPassClient/>
+      </Suspense>
+    )
+} 
