@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
-
-const ContactCard = ({ icon, title, content }) => {
-  return (
-    <div className="flex items-center space-x-4 bg-white p-4 rounded-lg transition-all duration-300 hover:shadow-lg shadow-md">
+const ContactCard = ({ icon, title, content, link , isExternal  }) => {
+  const CardContent =  (
+    <div className="flex items-center space-x-4 mb-4 bg-white p-4 rounded-lg transition-all duration-300 hover:shadow-lg shadow-md">
       <div className="bg-secondary bg-opacity-10 p-3 rounded-full">
         <Image
           src={icon || "/placeholder.svg"}
@@ -20,6 +20,14 @@ const ContactCard = ({ icon, title, content }) => {
       </div>
     </div>
   );
+  if (!link) {
+    return CardContent; // Prevent Link error if no link is provided
+  }
+  return isExternal ? (<a href={link} target="_blank" rel="noopener noreferrer">
+    {CardContent}
+  </a> ) : (
+     <Link href={link}>{CardContent}</Link>
+  )
 };
 
 const ContactInfo = ({ fields }) => {
@@ -31,16 +39,22 @@ const ContactInfo = ({ fields }) => {
           icon="/Phone.png"
           title="Phone"
           content={fields[1].value}
+          link={`tel:${fields[1]?.value}`}
+          isExternal
         />
         <ContactCard
           icon="/Envelope.png"
           title="Email"
-          content={fields[2].value}
+          content={fields[2]?.value}
+          link={`mailto:${fields[2]?.value}`}
+          isExternal
         />
         <ContactCard
           icon="/Location.png"
           title="US Office Address"
-          content={fields[3].value}
+          content={fields[3]?.value}
+          link={fields[3]?.value ? `https://www.google.com/maps/search/?q=${encodeURIComponent(fields[3].value)}` : undefined}
+          isExternal
         />
       </div>
     </div>
