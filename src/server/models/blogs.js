@@ -30,6 +30,10 @@ const blogSchema = new mongoose.Schema(
     blog_count: {
       type: Number,
     },
+    isDraft : {
+      type : String , 
+      default : "false"
+    }
   },
   { timestamps: true }
 );

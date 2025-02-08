@@ -13,6 +13,7 @@ import { deleteUTFiles } from "@/server/services/uploadthing";
 import CkeEditor from "@/components/CkEditor";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 const EditBlog = ({ singleBlog }) => {
   const [blog, setBlog] = useState(singleBlog);
@@ -29,6 +30,7 @@ const EditBlog = ({ singleBlog }) => {
       meta_description: blog.meta_description,
       meta_keywords: blog.meta_keywords ?? [],
       blog_count: blog.blog_count,
+      isDraft : blog.isDraft
     });
     if (!resp.success) {
       toast.error(resp.err);
@@ -145,6 +147,26 @@ const EditBlog = ({ singleBlog }) => {
               required
             />
           </div>
+          <div>
+            <Label className="mb-4 block">Blog Status</Label>
+            <Select
+              value={blog.isDraft ? "true" : "false"} // Convert boolean to string
+              onValueChange={(value) =>
+                setBlog({
+                  ...blog,
+                  isDraft: value === "true", // Convert string back to boolean
+                })
+              }
+            >
+              <SelectTrigger className="rounded-sm border p-2 w-full">
+                <SelectValue placeholder="Select Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="true">Draft</SelectItem>
+                <SelectItem value="false">Publish</SelectItem>
+              </SelectContent>
+            </Select>
+            </div>
           <div className="col-span-2">
             <Label className="mb-4 block">Body</Label>
             <CkeEditor

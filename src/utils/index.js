@@ -7,6 +7,36 @@ import {
   servicePageFields,
 } from "@/lib/config";
 import * as jwtFuncs from "./jwt";
+const validateBlogAddData = (data) => {
+  console.log("data" , data)
+  const requiredFields = [
+    { key: "title", message: "Title is required" },
+    { key: "body", message: "Body is required" },
+    { key: "image", message: "Image is required" },
+    { key: "slug", message: "Slug is required" },
+    { key: "blog_count", message: "Blog count is required" },
+    { key: "image_alt_text", message: "Image alt text is required" },
+    { key: "meta_title", message: "Meta title is required" },
+    { key: "meta_description", message: "Meta description is required" },
+    { key: "meta_keywords", message: "Meta keywords are required", isArray: true },
+  ];
+
+  for (const field of requiredFields) {
+    if (
+      !data[field.key] || 
+      (field.isArray && (!Array.isArray(data[field.key]) || data[field.key].length === 0)) // Ensure it's a non-empty array
+    ) {
+      return getActionFailureResponse(field.message, field.key);
+    }
+  }
+
+
+  // if (data.isDraft === undefined || data.isDraft === null) {
+  //   return getActionFailureResponse("Blog status is required", "isDraft");
+  // }
+
+  return null; // No errors
+};
 
 const getActionSuccessResponse = (data, count) => {
   return {
@@ -102,4 +132,5 @@ export {
   getActionSuccessResponse,
   getActionFailureResponse,
   getPageFieldsByName,
+  validateBlogAddData
 };
