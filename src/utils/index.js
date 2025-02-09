@@ -37,7 +37,41 @@ const validateBlogAddData = (data) => {
 
   return null; // No errors
 };
+const validateEventData = (data) => {
 
+  const requiredFields = [
+    { key: "event_name", message: "Event name is required" },
+    { key: "start_date", message: "Start date is required" },
+    { key: "end_date", message: "End date is required" },
+    { key: "country", message: "Country is required" },
+    { key: "city", message: "City is required" },
+    { key: "icon", message: "Icon is required" },
+    { key: "body", message: "Body is required" },
+    { key: "address", message: "Address is required" },
+    { key: "icon_alt_text", message: "Icon alt text is required" },
+    { key: "meta_title", message: "Meta title is required" },
+    { key: "meta_description", message: "Meta description is required" },
+    { key: "meta_keywords", message: "Meta keywords are required", isArray: true },
+    { key: "email", message: "Email is required" },
+    { key: "website", message: "Website is required" }
+  ];
+
+  for (const field of requiredFields) {
+    if (!data[field.key] || (field.isArray && !Array.isArray(data[field.key]))) {
+      return getActionFailureResponse(field.message, field.key);
+    }
+  }
+
+  if (!isValidEmail(data.email)) {
+    return getActionFailureResponse("Invalid email", "email");
+  }
+
+  if (!isValidWebsite(data.website)) {
+    return getActionFailureResponse("Invalid website", "website");
+  }
+
+  return null; // No errors
+};
 const getActionSuccessResponse = (data, count) => {
   return {
     success: true,
@@ -132,5 +166,6 @@ export {
   getActionSuccessResponse,
   getActionFailureResponse,
   getPageFieldsByName,
-  validateBlogAddData
+  validateBlogAddData,
+  validateEventData
 };
