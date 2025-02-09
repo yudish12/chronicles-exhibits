@@ -83,7 +83,6 @@ const EditBlog = ({ singleBlog }) => {
                   slug: e.target.value
                 })
               }
-              required
               title="No spaces, only lowercase letters and dashes"
             />
           </div>
@@ -135,7 +134,6 @@ const EditBlog = ({ singleBlog }) => {
               onChange={(e) =>
                 setBlog({ ...blog, image_alt_text: e.target.value })
               }
-              required
             />
           </div>
           <div>
@@ -150,11 +148,11 @@ const EditBlog = ({ singleBlog }) => {
           <div>
             <Label className="mb-4 block">Blog Status</Label>
             <Select
-              value={blog.isDraft ? "true" : "false"} // Convert boolean to string
+              value={blog.isDraft ==="true" ? "true" : "false"} // Convert boolean to string
               onValueChange={(value) =>
                 setBlog({
                   ...blog,
-                  isDraft: value === "true", // Convert string back to boolean
+                  isDraft: value === "true" ? "true": "false", // Convert string back to boolean
                 })
               }
             >
@@ -194,7 +192,6 @@ const EditBlog = ({ singleBlog }) => {
               className="rounded-sm"
               value={blog.meta_title}
               onChange={(e) => setBlog({ ...blog, meta_title: e.target.value })}
-              required
             />
           </div>
           <div>
@@ -205,7 +202,6 @@ const EditBlog = ({ singleBlog }) => {
               onChange={(e) =>
                 setBlog({ ...blog, meta_description: e.target.value })
               }
-              required
             />
           </div>
           <div>

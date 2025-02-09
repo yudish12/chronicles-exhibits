@@ -4,7 +4,6 @@ const eventSchema = new mongoose.Schema(
   {
     event_name: {
       type: String,
-      required: true,
     },
     title: {
       type: String,
@@ -17,11 +16,9 @@ const eventSchema = new mongoose.Schema(
     },
     start_date: {
       type: Date,
-      required: true,
     },
     end_date: {
       type: Date,
-      required: true,
     },
     country: {
       type: String,

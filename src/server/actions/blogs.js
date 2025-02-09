@@ -85,7 +85,6 @@ export const updateData = async (id, data) => {
         runValidators: true,
       }
     ).lean();
-
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
@@ -101,15 +100,18 @@ export const addData = async (data) => {
   try {
     console.log("function hit" , data)
     await dbConnect();
+    let validationError = false;
+    if(data.isDraft === "false") validationError = validateBlogAddData(data);
 
-    const validationError = validateBlogAddData(data);
     console.log("validation error ",validationError)
+
     if (validationError) return validationError;
 
     data.slug = data.slug.replaceAll(" ", "-").toLowerCase();
     const resp = await Blog.create(data);
 
     console.log("====add data resp===", resp);
+
     return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error in addData:", error.message);

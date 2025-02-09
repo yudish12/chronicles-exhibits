@@ -329,9 +329,9 @@ export const deleteData = async (id) => {
   }
 };
 
-export const getSingleEvent = async (show_name) => {
+export const getSingleEvent = async (filter) => {
   try {
-    const resp = await events.findOne({ slug: show_name });
+    const resp = await events.findOne(filter);
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
