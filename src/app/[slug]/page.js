@@ -52,7 +52,7 @@ const Page = async ({ params }) => {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
-  const { data } = await getSingleBlog({ slug: slug });
+  const { data } = await getSingleBlog({ slug: slug, isDraft:"false" });
 
   if (data) {
     const blogFromDb = await getAllBlogs(
@@ -142,7 +142,7 @@ const Page = async ({ params }) => {
     );
   }
 
-  const { data: eventData } = await getSingleEvent(slug);
+  const { data: eventData } = await getSingleEvent({slug, isDraft:"false"});
   console.log(eventData);
   if (eventData) {
     console.group("event data", eventData.start_date);
