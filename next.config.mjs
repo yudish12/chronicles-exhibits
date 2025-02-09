@@ -17,11 +17,7 @@ const nextConfig = {
       },
       {
         source: "/trade-show-booth-rentals-:city",
-        destination: "/locations/:city",
-      },
-      {
-        source: "/major-exhibiting-cities",
-        destination: "/locations",
+        destination: "/major-exhibiting-cities/:city",
       },
       {
         source: '/sitemap.xml',

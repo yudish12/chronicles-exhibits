@@ -247,18 +247,18 @@ export const addData = async (data) => {
     if (!data.end_date) {
       return getActionFailureResponse("End date is required", "description");
     }
-    // if (!data.slug) {
-    //   return getActionFailureResponse("Slug is required", "slug");
-    // }
+    if (!data.slug) {
+      return getActionFailureResponse("Slug is required", "slug");
+    }
     if (!data.country) {
       return getActionFailureResponse("Country is required", "country");
     }
     if (!data.city) {
       return getActionFailureResponse("City is required", "city");
     }
-    if (!data.icon) {
-      return getActionFailureResponse("Icon is required", "icon");
-    }
+    // if (!data.icon) {
+    //   return getActionFailureResponse("Icon is required", "icon");
+    // }
     if (!data.body) {
       return getActionFailureResponse("Body is required", "body");
     }
@@ -305,6 +305,7 @@ export const addData = async (data) => {
     console.log("added data ", resp);
     return getActionSuccessResponse(resp);
   } catch (error) {
+    console.log(error)
     getActionFailureResponse(error.message, "toast");
   }
 };
