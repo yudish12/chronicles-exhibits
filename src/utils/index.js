@@ -52,12 +52,14 @@ const validateEventData = (data) => {
     { key: "meta_title", message: "Meta title is required" },
     { key: "meta_description", message: "Meta description is required" },
     { key: "meta_keywords", message: "Meta keywords are required", isArray: true },
+    {key : "slug", message : "Slug is required "},
     { key: "email", message: "Email is required" },
     { key: "website", message: "Website is required" }
   ];
 
   for (const field of requiredFields) {
-    if (!data[field.key] || (field.isArray && !Array.isArray(data[field.key]))) {
+    if( !data[field.key] || 
+    field.isArray && (!Array.isArray(data[field.key]) || data[field.key].length === 0)) {
       return getActionFailureResponse(field.message, field.key);
     }
   }

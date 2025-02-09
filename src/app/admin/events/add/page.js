@@ -56,7 +56,8 @@ const AddEventPage = () => {
     e.preventDefault();
     try {
       const resp = await addData(singleEvent);
-      if (!resp.success) {
+      console.log(resp)
+      if (!resp?.success) {
         toast.error(resp.err);
         return;
       }
@@ -267,7 +268,7 @@ const AddEventPage = () => {
               />
             </div>
             <div className="col-span-2">
-            <Label className="mb-4 block">Blog Status</Label>
+            <Label className="mb-4 block">Event Status</Label>
             <Select
               value={singleEvent.isDraft} // Use isDraft directly as a string
               onValueChange={(value) =>

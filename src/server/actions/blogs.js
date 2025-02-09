@@ -7,11 +7,14 @@ import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import { validateBlogAddData } from "@/utils";
 // await dbConnect();
 
-export const getAllBlogs = async (skip, limit, projection) => {
+export const getAllBlogs = async (filter , skip, limit, projection) => {
   try {
     await dbConnect();
-
-    let query = Blog.find().sort({ _id: -1 });
+    let searchFilter = {};
+    if(filter){
+      searchFilter = filter ;
+    }
+    let query = Blog.find(searchFilter).sort({ _id: -1 });
     if (skip) {
       query = query.skip(skip);
     }
