@@ -31,6 +31,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Pagination } from "./_components/Pagination";
 import Search from "@/components/ui/search";
+import { Badge } from "@/components/ui/badge"
 export default function Blogs() {
   const router = useRouter();
   const [blogs, setBlogs] = useState([]);
@@ -49,7 +50,7 @@ export default function Blogs() {
       setLoading(true);
       const skip = (page - 1) * limit;
 
-      const resp = await getAllBlogs(skip, limit, "slug  _id title image");
+      const resp = await getAllBlogs({},skip, limit, "slug  _id title image isDraft");
       console.log("resp", resp);
       if (!resp.success) {
         toast.error(resp.error);
@@ -141,6 +142,7 @@ export default function Blogs() {
               <TableHead>Image</TableHead>
               <TableHead>Title</TableHead>
               <TableHead>Description</TableHead>
+              <TableHead>Blog Status</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -159,6 +161,7 @@ export default function Blogs() {
                 </TableCell>
                 <TableCell>{blog.title}</TableCell>
                 <TableCell>{blog.short_description}</TableCell>
+                <TableCell><Badge className={'text-white p-2 px-6 mx-auto  w-max rounded-lg'}>{blog.isDraft === "true" ? "Draft" : "Published" }</Badge></TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
                     <Link href={`/${blog.slug}`} target="_blank">

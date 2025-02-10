@@ -23,6 +23,7 @@ const Page = async ({ params, searchParams }) => {
   const skip = (page - 1) * limit;
 
   const blogs = await getAllBlogs(
+    {isDraft : "false"},
     skip,
     limit,
     "name title slug image image_alt_text body"

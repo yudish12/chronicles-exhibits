@@ -58,7 +58,7 @@ const eventSchema = new mongoose.Schema(
     },
     isDraft : {
       type : String , 
-      default : "false"
+      default : "true"
     }
   },
   { timestamps: true }

@@ -15,6 +15,8 @@ import { Trash2 } from "lucide-react";
 import { CitySearchSelect } from "@/components/ui/city-search-select";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+
 const EditEventForm = ({ singleEvent, cities }) => {
   console.log(singleEvent);
   const [event, setEvent] = useState(singleEvent);
@@ -43,6 +45,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
       meta_description: event.meta_description,
       meta_title: event.meta_title,
       meta_keywords: event.meta_keywords ?? [],
+      isDraft : event.isDraft
     });
 
     if (!resp.success) {
@@ -200,6 +203,27 @@ const EditEventForm = ({ singleEvent, cities }) => {
               onChange={(e) => setEvent({ ...event, end_date: e.target.value })}
             />
           </div>
+          <div className="col-span-2">
+          <Label className="mb-4 block">Event Status</Label>
+            <Select
+              value={event.isDraft ==="true" ? "true" : "false"} 
+              onValueChange={(value) =>
+                setEvent({
+                  ...event,
+                  isDraft: value === "true" ? "true": "false", 
+                })
+              }
+            >
+              <SelectTrigger className="rounded-sm border p-2 w-full">
+                <SelectValue placeholder="Select Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="true">Draft</SelectItem>
+                <SelectItem value="false">Publish</SelectItem>
+              </SelectContent>
+            </Select>
+            </div>
+
           <div className="col-span-2">
             <Label>Title</Label>
             <Input
