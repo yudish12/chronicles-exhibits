@@ -56,12 +56,12 @@ const Page = async ({ params }) => {
 
   if (data) {
     const blogFromDb = await getAllBlogs(
+      {isDraft : "false"},
       null,
       data.blog_count,
       "name title slug image image_alt_text"
     );
     const blogsToBeMapped = blogFromDb.data;
-
     return (
       <>
         <div className="booth-design-bg md:px-12 sm:px-8 px-6 lg:px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
