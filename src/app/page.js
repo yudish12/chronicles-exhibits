@@ -29,7 +29,7 @@ const page = async () => {
   // const homePageData = await getSinglePage({ name: "home" });
   // console.log("homepagedata" , homePageData)
   const res = await fetch("https://chronicleexhibits.com/api/home/", {
-    next: { revalidate: 60 },
+    next: { revalidate: 3600 },
   })
   console.log("RESPONSE" , res)
   const resp = await res.json();
