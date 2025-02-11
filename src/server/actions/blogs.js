@@ -4,14 +4,17 @@ import dbConnect from "@/config/db-connect";
 import Blog from "../models/blogs";
 import mongoose from "mongoose";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
-
+import { validateBlogAddData } from "@/utils";
 // await dbConnect();
 
-export const getAllBlogs = async (skip, limit, projection) => {
+export const getAllBlogs = async (filter , skip, limit, projection) => {
   try {
     await dbConnect();
-
-    let query = Blog.find().sort({ _id: -1 });
+    let searchFilter = {};
+    if(filter){
+      searchFilter = filter ;
+    }
+    let query = Blog.find(searchFilter).sort({ _id: -1 });
     if (skip) {
       query = query.skip(skip);
     }
@@ -48,6 +51,7 @@ export const getAllDataBySearch = async (searchValue) => {
 export const updateData = async (id, data) => {
   try {
     await dbConnect();
+    console.log("function hit " , data)
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return getActionFailureResponse("Invalid id format", "toast");
     }
@@ -56,47 +60,12 @@ export const updateData = async (id, data) => {
       return getActionFailureResponse("Invalid data format", "toast");
     }
 
-    if (!data.title) {
-      return getActionFailureResponse("title is required", "title");
+    if(String(data.isDraft) === "false")
+    {
+      const validationError = validateBlogAddData(data);
+      console.log("VALIDATIO ERROR  " , validationError)
+      if (validationError) return validationError;
     }
-    if (!data.body) {
-      return getActionFailureResponse("body is required", "body");
-    }
-    if (!data.image) {
-      return getActionFailureResponse("image is required", "image");
-    }
-
-    if (!data.slug) {
-      return getActionFailureResponse("slug is required", "slug");
-    }
-    if (!data.blog_count) {
-      return getActionFailureResponse("blog_count is required", "blog_count");
-    }
-    if (!data.title) {
-      return getActionFailureResponse("title is required", "title");
-    }
-    if (!data.image_alt_text) {
-      return getActionFailureResponse(
-        "image_alt_text is required",
-        "image_alt_text"
-      );
-    }
-    if (!data.meta_title) {
-      return getActionFailureResponse("meta_title is required", "meta_title");
-    }
-    if (!data.meta_description) {
-      return getActionFailureResponse(
-        "meta_description is required",
-        "meta_description"
-      );
-    }
-    if (!data.meta_keywords || !Array.isArray(data.meta_keywords)) {
-      return getActionFailureResponse(
-        "meta_keywords is required",
-        "meta_keywords"
-      );
-    }
-
     // Use findByIdAndUpdate instead of updateOne to get the updated document
     const resp = await Blog.findByIdAndUpdate(
       id,
@@ -112,13 +81,13 @@ export const updateData = async (id, data) => {
         image_alt_text: data.image_alt_text,
         slug: data.slug.replaceAll(" ", "-").toLowerCase(),
         blog_count: data.blog_count,
+        isDraft : data.isDraft
       },
       {
         new: true, // Return the updated document
         runValidators: true,
       }
     ).lean();
-
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
@@ -132,51 +101,20 @@ export const updateData = async (id, data) => {
 
 export const addData = async (data) => {
   try {
+    console.log("function hit" , data)
     await dbConnect();
-    if (!data.title) {
-      return getActionFailureResponse("title is required", "title");
-    }
-    if (!data.body) {
-      return getActionFailureResponse("body is required", "body");
-    }
-    if (!data.image) {
-      return getActionFailureResponse("image is required", "image");
-    }
+    let validationError = false;
+    if(data.isDraft === "false") validationError = validateBlogAddData(data);
 
-    if (!data.slug) {
-      return getActionFailureResponse("slug is required", "slug");
-    }
-    if (!data.blog_count) {
-      return getActionFailureResponse("blog_count is required", "blog_count");
-    }
-    if (!data.title) {
-      return getActionFailureResponse("title is required", "title");
-    }
-    if (!data.image_alt_text) {
-      return getActionFailureResponse(
-        "image_alt_text is required",
-        "image_alt_text"
-      );
-    }
-    if (!data.meta_title) {
-      return getActionFailureResponse("meta_title is required", "meta_title");
-    }
-    if (!data.meta_description) {
-      return getActionFailureResponse(
-        "meta_description is required",
-        "meta_description"
-      );
-    }
-    if (!data.meta_keywords || !Array.isArray(data.meta_keywords)) {
-      return getActionFailureResponse(
-        "meta_keywords is required",
-        "meta_keywords"
-      );
-    }
+    console.log("validation error ",validationError)
+
+    if (validationError) return validationError;
+
     data.slug = data.slug.replaceAll(" ", "-").toLowerCase();
     const resp = await Blog.create(data);
 
     console.log("====add data resp===", resp);
+
     return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error in addData:", error.message);

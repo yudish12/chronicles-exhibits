@@ -52,16 +52,16 @@ const Page = async ({ params }) => {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
-  const { data } = await getSingleBlog({ slug: slug });
+  const { data } = await getSingleBlog({ slug: slug, isDraft:"false" });
 
   if (data) {
     const blogFromDb = await getAllBlogs(
+      {isDraft : "false"},
       null,
       data.blog_count,
       "name title slug image image_alt_text"
     );
     const blogsToBeMapped = blogFromDb.data;
-
     return (
       <>
         <div className="booth-design-bg md:px-12 sm:px-8 px-6 lg:px-20 text-white gap-4 h-[360px] justify-center items-center flex flex-col">
@@ -142,7 +142,7 @@ const Page = async ({ params }) => {
     );
   }
 
-  const { data: eventData } = await getSingleEvent(slug);
+  const { data: eventData } = await getSingleEvent({slug, isDraft:"false"});
   console.log(eventData);
   if (eventData) {
     console.group("event data", eventData.start_date);

@@ -35,6 +35,7 @@ import Link from "next/link";
 import { Pagination } from "./_components/Pagination";
 import { Input } from "@/components/ui/input";
 import Search from "@/components/ui/search";
+import { Badge } from "@/components/ui/badge"
 export default function Events() {
   const router = useRouter();
   const [events, setEvents] = React.useState([]);
@@ -179,6 +180,7 @@ export default function Events() {
               <TableHead className="text-center">End Date</TableHead>
               <TableHead className="text-center">City</TableHead>
               <TableHead className="text-center">Status</TableHead>
+              <TableHead className="text-center">Visibility</TableHead>
               <TableHead className="text-center">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -215,6 +217,7 @@ export default function Events() {
                     {getEventStatus(event.start_date, event.end_date).text}
                   </div>
                 </TableCell>
+                <TableCell className="text-center"><Badge className={'text-white p-2 px-6 mx-auto  w-max rounded-lg'}>{event.isDraft === "true" ? "Draft" : "Published" }</Badge></TableCell>
                 <TableCell className="text-center">
                   <div className="flex mx-auto justify-center space-x-2">
                     <Link

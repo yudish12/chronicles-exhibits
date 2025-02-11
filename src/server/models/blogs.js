@@ -4,7 +4,6 @@ const blogSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
     },
     slug: {
       type: String,
@@ -25,11 +24,14 @@ const blogSchema = new mongoose.Schema(
     image: {
       // logo is image
       type: String,
-      required: true,
     },
     blog_count: {
       type: Number,
     },
+    isDraft : {
+      type : String , 
+      default : "true"
+    }
   },
   { timestamps: true }
 );

@@ -24,7 +24,7 @@ import { CitySearchSelect } from "@/components/ui/city-search-select";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import { deleteUTFiles } from "@/server/services/uploadthing";
-
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 const AddEventPage = () => {
   const [cityLoading, setCityLoading] = React.useState(true);
   const [singleEvent, setSingleEvent] = React.useState({
@@ -46,6 +46,7 @@ const AddEventPage = () => {
     meta_title: "",
     meta_description: "",
     meta_keywords: [],
+    isDraft : ""
   });
 
   const router = useRouter();
@@ -80,6 +81,7 @@ const AddEventPage = () => {
         website: '',
         email: '',
         address: '',
+        isDraft : ""
       });
       router.push("/admin/events");
     } catch (error) {
@@ -265,6 +267,27 @@ const AddEventPage = () => {
                 }
               />
             </div>
+            <div className="col-span-2">
+            <Label className="mb-4 block">Event Status</Label>
+            <Select
+              value={singleEvent.isDraft} // Use isDraft directly as a string
+              onValueChange={(value) =>
+                setSingleEvent({
+                  ...singleEvent,
+                  isDraft: value, // Store it as a string ("true" or "false")
+                })
+              }
+            >
+              <SelectTrigger className="rounded-sm border p-2 w-full">
+                <SelectValue placeholder="Select Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="true">Draft</SelectItem>
+                <SelectItem value="false">Publish</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
             <div className="col-span-2">
               <Label className="mb-2 block">Title</Label>
               <Input

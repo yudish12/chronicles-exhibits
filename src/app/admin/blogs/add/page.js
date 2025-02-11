@@ -14,7 +14,7 @@ import CkeEditor from "@/components/CkEditor";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { deleteUTFiles } from "@/server/services/uploadthing";
-
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 const AddBlogPage = () => {
   const [blogs, setBlogs] = React.useState([]);
   const [isUploading, setIsUploading] = React.useState(false);
@@ -29,6 +29,7 @@ const AddBlogPage = () => {
     meta_keywords: [],
     body: "",
     blog_count: "",
+    isDraft : ""
   });
 
   const handleAddSubmit = async (e) => {
@@ -50,6 +51,7 @@ const AddBlogPage = () => {
         meta_keywords: [],
         body: "",
         blog_count: "",
+        isDraft : "false"
       });
       router.push("/admin/blogs");
     } catch (error) {
@@ -182,7 +184,26 @@ const AddBlogPage = () => {
                 required
               />
             </div>
-
+            <div>
+            <Label className="mb-4 block">Blog Status</Label>
+            <Select
+              value={singleBlog.isDraft} // Use isDraft directly as a string
+              onValueChange={(value) =>
+                setSingleBlog({
+                  ...singleBlog,
+                  isDraft: value, // Store it as a string ("true" or "false")
+                })
+              }
+            >
+              <SelectTrigger className="rounded-sm border p-2 w-full">
+                <SelectValue placeholder="Select Status" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="true">Draft</SelectItem>
+                <SelectItem value="false">Publish</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
             <div className="col-span-2">
               <Label className="mb-4 block">Body</Label>
               <CkeEditor
@@ -250,12 +271,12 @@ const AddBlogPage = () => {
           >
             Create Blog
           </Button>
-          <Button
+          {/* <Button
             variant="outline"
             className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
           >
             Save Draft
-          </Button>
+          </Button> */}
         </div>
       </form>
     </div>

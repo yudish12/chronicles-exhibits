@@ -28,6 +28,7 @@ const Page = async ({ params, searchParams }) => {
     "start_date end_date title icon event_name country city slug",
     {
       start_date: { $gt: new Date() },
+      isDraft : "false"
     }
   );
   const totalPages = Math.ceil(tradeShows.count / limit);
