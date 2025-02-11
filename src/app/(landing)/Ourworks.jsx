@@ -9,7 +9,7 @@ import Lightbox from "./Lightbox";
 const Ourworks = async ({ title, subtitle }) => {
   const ua = userAgent({ headers: headers() });
   const isMobile = ua?.device?.type === "mobile";
-  const ourWorksData = await getAllPortfolios(6, 0);
+  const ourWorksData = await getAllPortfolios(0, 9);
   const displayedData = isMobile
     ? ourWorksData.data.slice(0, 6)
     : ourWorksData.data.slice(0, 9);
