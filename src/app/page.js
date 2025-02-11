@@ -11,7 +11,7 @@ import Footer from "@/components/ui/footer";
 import { getSinglePage } from "@/server/actions/pages";
 // import DownArrow from "./down-arrow";
 
-export const dynamic = 'force-static';
+// export const dynamic = 'force-static';
 
 export async function generateMetadata({ params }) {
   const homePageData = await getSinglePage({ name: "home" }, "meta_keywords meta_title meta_description");
@@ -26,7 +26,14 @@ export async function generateMetadata({ params }) {
 }
 
 const page = async () => {
-  const homePageData = await getSinglePage({ name: "home" });
+  // const homePageData = await getSinglePage({ name: "home" });
+  // console.log("homepagedata" , homePageData)
+  const res = await fetch("https://chronicleexhibits.com/api/home/", {
+    next: { revalidate: 60 },
+  })
+  console.log("RESPONSE" , res)
+  const resp = await res.json();
+  const homePageData = resp;
   return (
     <>
       {/* {/* <  /> */}
