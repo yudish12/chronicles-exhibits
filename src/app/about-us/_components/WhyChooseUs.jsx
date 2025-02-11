@@ -62,6 +62,7 @@ const WhyChooseUs = ({ fields }) => {
       {/* Image Container */}
       <div className="w-full lg:w-1/2 sm:px-0 ">
         <Image
+loading="eager"
           layout="responsive"
           width={370}
           height={250}

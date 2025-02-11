@@ -36,6 +36,7 @@ const About = ({ fields }) => {
               <div>
                 <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
                   <Image
+loading="eager"
                     height={260}
                     width={350}
                     src={fields[11].value}
@@ -70,6 +71,7 @@ const About = ({ fields }) => {
               <div>
                 <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
                   <Image
+loading="eager"
                     height={260}
                     width={350}
                     src={fields[16].value}
@@ -105,6 +107,7 @@ const About = ({ fields }) => {
               <div>
                 <div className="w-full h-48 border-b-2 border-b-primary overflow-hidden">
                   <Image
+loading="eager"
                     height={260}
                     width={350}
                     src={fields[21].value}

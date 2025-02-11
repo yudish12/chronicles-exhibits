@@ -34,6 +34,7 @@ const BlogsPagination = ({
             >
               <div className="lg:w-[50%] xl:h-full min-h-[260px] sm:min-h-[20px] h-full lg:h-4/5 p-4">
                 <Image
+loading="eager"
                   src={blog.image}
                   alt={blog.title}
                   width={500}

@@ -279,6 +279,7 @@ const CarouselImages = ({
       <div className="w-full mt-6 md:w-full lg:mt-0 grid lg:grid-cols-1 grid-cols-3 sm:max-w-[600px] mx-auto lg:max-w-[6500px] gap-6">
         {images.map((src, index) => (
           <Image
+loading="eager"
             width={150}
             height={100}
             key={index}
@@ -605,6 +606,7 @@ export function BoothDetails({ size, boothCode, boothData }) {
                 >
                   <Card className="w-full h-full rounded-none">
                     <Image
+loading="eager"
                       width={1100}
                       height={1000}
                       src={src}
@@ -638,6 +640,7 @@ export function BoothDetails({ size, boothCode, boothData }) {
               >
                 <Card className="w-full h-full rounded-none">
                   <Image
+loading="eager"
                     width={1100}
                     height={1000}
                     src={src}

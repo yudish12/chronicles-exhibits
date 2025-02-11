@@ -56,6 +56,7 @@ const page = async () => {
       <div className="px-6 sm:px-8 md:px-12 lg:pr-20 flex items-start lg:justify-center lg:flex-row flex-col gap-12 pt-16 pb-20">
         <div className="lg:w-1/2 w-full lg:max-h-[350px] xl:max-h-[520px] 2xl:max-h-[600px] flex-shrink-0">
           <Image
+loading="eager"
             src={data.fields[3].value}
             alt={data.fields[4].value ?? "booth design"}
             className="w-full lg:max-h-[350px] xl:max-h-[520px] 2xl:max-h-[600px]"
@@ -97,6 +98,7 @@ const page = async () => {
             >
               {/* Image Section */}
               <Image
+loading="eager"
                 src={item.image}
                 width={350}
                 height={300}

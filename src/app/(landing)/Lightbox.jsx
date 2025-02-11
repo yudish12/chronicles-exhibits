@@ -28,6 +28,7 @@ const LightboxComp = ({ images }) => {
             className="overflow-hidden max-w-[320px] lg:max-w-[360px] 2xl:max-w-[400px] mx-auto sm:max-w-full cursor-pointer w-full h-[230px] sm:h-[250px] md:h-[300px] lg:h-[270]px xl:h-[300px]"
           >
             <Image
+loading="eager"
               width={370}
               height={300}
               className="transition-transform  w-full h-full duration-300 transform hover:scale-110"

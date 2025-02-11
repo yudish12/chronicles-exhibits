@@ -8,15 +8,18 @@ const OfficeCard = ({ title, address, email, phone }) => {
         <h3 className="text-xl font-bold text-gray-800 mb-4">{title}</h3>
         <div className="space-y-4">
           <div className="flex items-start space-x-3">
-            <Image src="/Location 2.svg" alt="Location" width={24} height={24} className="mt-1" />
+            <Image
+loading="eager" src="/Location 2.svg" alt="Location" width={24} height={24} className="mt-1" />
             <p className="text-sm text-gray-600">{address}</p>
           </div>
           <div className="flex items-center space-x-3">
-            <Image src="/Envelope.svg" alt="Email" width={24} height={24} />
+            <Image
+loading="eager" src="/Envelope.svg" alt="Email" width={24} height={24} />
             <p className="text-sm text-gray-600">{email}</p>
           </div>
           <div className="flex items-center space-x-3">
-            <Image src="/Phone 2.svg" alt="Phone" width={24} height={24} />
+            <Image
+loading="eager" src="/Phone 2.svg" alt="Phone" width={24} height={24} />
             <p className="text-sm text-gray-600">{phone}</p>
           </div>
         </div>

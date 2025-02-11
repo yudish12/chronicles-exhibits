@@ -83,6 +83,7 @@ const Parallax = ({ fields }) => {
           }}
         >
           <Image
+loading="eager"
             src={"/service-cube.png"}
             width={70}
             height={70}
@@ -113,6 +114,7 @@ const Parallax = ({ fields }) => {
             </h3>
             <p className="text-center">{fields[23].value}</p>
             <Image
+loading="eager"
               src={fields[24].value}
               alt={fields[25].value}
               width={250}
@@ -133,6 +135,7 @@ const Parallax = ({ fields }) => {
             </h3>
             <p className="text-center">{fields[30].value}</p>
             <Image
+loading="eager"
               src={fields[31].value}
               alt={fields[32].value}
               width={250}
@@ -153,6 +156,7 @@ const Parallax = ({ fields }) => {
             </h3>
             <p className="text-center">{fields[37].value}</p>
             <Image
+loading="eager"
               src={fields[38].value}
               alt={fields[39].value}
               width={250}
@@ -173,6 +177,7 @@ const Parallax = ({ fields }) => {
             </h3>
             <p className="text-center">{fields[44].value}</p>
             <Image
+loading="eager"
               src={fields[45].value}
               alt={fields[46].value}
               width={250}

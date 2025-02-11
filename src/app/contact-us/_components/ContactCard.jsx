@@ -19,6 +19,7 @@ const ContactCard= ({
       <div className="flex items-center space-x-4">
         <div className="bg-white p-3 rounded-full">
           <Image
+loading="eager"
             src={icon || "/placeholder.svg"}
             alt={title}
             width={40}

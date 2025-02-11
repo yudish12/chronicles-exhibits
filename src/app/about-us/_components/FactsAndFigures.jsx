@@ -123,6 +123,7 @@ const FactsAndFigures = ({ fields }) => {
             <CardContent className="flex flex-col px-4 xs:px-6 justify-center items-center text-center h-full">
               <div className="text-3xl transition-all duration-300 pt-8">
                 <Image
+loading="eager"
                   width={100}
                   height={100}
                   alt="icon"

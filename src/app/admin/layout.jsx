@@ -49,6 +49,7 @@ const Layout = async ({ children }) => {
           <SidebarHeader className="p-6">
             <Link href={"/admin"}>
               <Image
+loading="eager"
                 src={"/chronicle-logo-2.svg"}
                 alt="Chronicle Logo"
                 width={100}

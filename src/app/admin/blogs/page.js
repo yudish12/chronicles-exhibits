@@ -152,6 +152,7 @@ export default function Blogs() {
                 <TableCell>{(currentPage - 1) * limit + index + 1}</TableCell>
                 <TableCell>
                   <Image
+loading="eager"
                     width={100}
                     height={100}
                     src={blog.image}

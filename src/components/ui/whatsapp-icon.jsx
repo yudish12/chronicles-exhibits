@@ -32,6 +32,7 @@ const WhatsAppWidget = () => {
           Chat with us!
         </div>
           <Image
+loading="eager"
             src="/whatsapp-flt.png"
             alt="WhatsApp"
             width={60}

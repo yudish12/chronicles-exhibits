@@ -77,6 +77,7 @@ const Page = async ({ params }) => {
             <div className="lg:col-span-2">
               {/* Hero Image */}
               <Image
+loading="eager"
                 src={data.image}
                 alt="Trade Show"
                 width={800}
@@ -106,6 +107,7 @@ const Page = async ({ params }) => {
                       {/* Image Section */}
                       <div className="w-full border-b-2 border-primary">
                         <Image
+loading="eager"
                           src={blog.image}
                           alt={blog.title}
                           width={400}
@@ -192,6 +194,7 @@ const Page = async ({ params }) => {
           </div>
         </div>
         <Image
+loading="eager"
           className="rounded-full shadow-md border-white border-[6px] mx-auto mt-[-80px] z-10"
           width={170}
           height={170}
@@ -221,7 +224,8 @@ const Page = async ({ params }) => {
                 style={{ transitionDuration: "500ms" }}
                 className="group cursor-pointer transition-500 shadow hover:bg-[#B0CB1F]  bg-white border-secondary/70 p-6 flex items-center gap-5"
               >
-                <Image src={"/email.svg"} width={30} height={30} alt="cube" />
+                <Image
+loading="eager" src={"/email.svg"} width={30} height={30} alt="cube" />
                 <Link
                   href={"mailto:example@example.com"}
                   style={{ transitionDuration: "500ms" }}
@@ -237,6 +241,7 @@ const Page = async ({ params }) => {
                 className="group bg-white transition-500 hover:bg-[#B0CB1F] cursor-pointer shadow p-6 flex items-center gap-5"
               >
                 <Image
+loading="eager"
                   src={"/location-pin.svg"}
                   width={30}
                   height={30}

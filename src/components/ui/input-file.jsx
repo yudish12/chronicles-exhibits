@@ -12,6 +12,7 @@ const RenderFile = ({file,index,onChange,value})=>{
   if(fileType === "image"){
     return <div className="relative bg-white " key={index}>
       <Image
+loading="eager"
         src={URL.createObjectURL(file)}
         alt="file"
         width={60}

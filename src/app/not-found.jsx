@@ -9,7 +9,8 @@ const Page = () => {
       {/* {/* <  /> */}
       <Header />
       <div className="flex flex-col justify-center items-center h-[80vh] overflow-hidden">
-        <Image src="/Frame 104.svg" width={100} height={100} alt="Deal Icon" />
+        <Image
+loading="eager" src="/Frame 104.svg" width={100} height={100} alt="Deal Icon" />
         <div className="text-secondary text-4xl py-2 heading-font">
           PAGE NOT FOUND
         </div>

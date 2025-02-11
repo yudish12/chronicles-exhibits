@@ -18,7 +18,8 @@ const page = () => {
       {/* <  /> */}
       <Header />
       <div className="flex flex-col justify-center items-center h-screen overflow-hidden">
-        <Image src="/deal 1.svg" width={100} height={100} alt="Deal Icon" />
+        <Image
+loading="eager" src="/deal 1.svg" width={100} height={100} alt="Deal Icon" />
         <div className="text-secondary text-4xl py-2 heading-font">
           THANK YOU
         </div>

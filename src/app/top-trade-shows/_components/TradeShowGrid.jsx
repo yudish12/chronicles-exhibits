@@ -20,6 +20,7 @@ const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
               {show.event_name}
             </h4>
             <Image
+loading="eager"
               className="rounded-full"
               width={120}
               height={120}

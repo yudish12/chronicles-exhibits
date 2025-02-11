@@ -47,7 +47,8 @@ const Keyvalueinput = ({ field, deleteKeyValue, onChange, onclick }) => {
         data-state="closed"
         onClick={onclick}
       >
-        <Image alt="addForm" src={"/add-form.svg"} width={20} height={20} />
+        <Image
+loading="eager" alt="addForm" src={"/add-form.svg"} width={20} height={20} />
         <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">
           Add Field
         </p>

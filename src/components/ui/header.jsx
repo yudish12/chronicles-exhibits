@@ -93,6 +93,7 @@ const Header = () => {
     <div className="bg-gradient-to-b sticky top-0 z-50 bg-secondary border-t-2 border-t-white/60 border-b-2 border-b-primary w-full flex justify-between items-center py-4 px-4 sm:px-8 md:px-12 lg:px-20">
       <Link href="/" className="relative flex items-center">
         <Image
+loading="eager"
           className="max-h-[60px] min-h-[40px] object-fill"
           alt="Chronicle Exhibits LLC logo"
           src="/chronicle-logo-2.svg"
@@ -137,6 +138,7 @@ const Header = () => {
           {/* Mobile Menu Header */}
           <div className="flex justify-between items-center mb-6">
             <Image
+loading="eager"
               alt="Chronicle Exhibits LLC logo"
               src="/chronicle-logo-2.svg"
               width={110}

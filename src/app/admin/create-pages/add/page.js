@@ -201,6 +201,7 @@ const AddPage = () => {
               data-state="closed"
             >
               <Image
+loading="eager"
                 alt="addForm"
                 src={"/add-form.svg"}
                 width={40}

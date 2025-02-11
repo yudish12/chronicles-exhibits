@@ -101,6 +101,7 @@ export default function LoginPage() {
       {/* Right Section */}
       <div className="flex items-center justify-center w-1/2 bg-gray-100">
         <Image
+loading="eager"
           src="/admin-login.svg"
           alt="Biker"
           width={400}

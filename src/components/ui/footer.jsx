@@ -306,6 +306,7 @@ export default function Footer() {
               <SocialIconContainer>
                 <Link href={"https://www.facebook.com/chronicleexhibits"}>
                   <Image
+loading="eager"
                     alt="facebook"
                     src="/facebook.svg"
                     width={30}
@@ -316,6 +317,7 @@ export default function Footer() {
               <SocialIconContainer>
                 <Link href={"https://www.youtube.com/@Chronicleexhibitsllc"}>
                   <Image
+loading="eager"
                     alt="youtube"
                     src="/youtube.svg"
                     width={30}
@@ -326,6 +328,7 @@ export default function Footer() {
               <SocialIconContainer>
                 <Link href={"https://x.com/chroniclexhibit/"}>
                   <Image
+loading="eager"
                     alt="twitter"
                     src="/twitter.svg"
                     width={30}
@@ -340,6 +343,7 @@ export default function Footer() {
                   }
                 >
                   <Image
+loading="eager"
                     alt="linkedin"
                     src="/linkedin.svg"
                     width={30}
@@ -350,6 +354,7 @@ export default function Footer() {
               <SocialIconContainer>
                 <Link href={"https://www.instagram.com/chronicleexhibits/"}>
                   <Image
+loading="eager"
                     alt="pinterest"
                     src="/insta.svg"
                     width={30}

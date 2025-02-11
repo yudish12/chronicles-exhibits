@@ -34,6 +34,7 @@ const Lightbox = ({ images }) => {
               )} // Wrapper to constrain image scale
             >
               <Image
+loading="eager"
                 width={400}
                 height={300}
                 className={cn(

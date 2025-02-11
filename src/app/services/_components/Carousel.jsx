@@ -59,6 +59,7 @@ const Carousel = ({ fields }) => {
             <div className="embla__slide" key={index}>
               <div className="embla__slide__number relative w-full h-full">
                 <Image
+loading="eager"
                   src={item.image}
                   alt={item.alt_text ?? "heading"}
                   width={800}

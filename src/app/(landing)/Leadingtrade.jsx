@@ -8,6 +8,7 @@ const Leadingtrade = ({ fields }) => {
       {/* Image Container */}
       <div className="w-full lg:w-1/2 sm:rounded-lg md:rounded-none ">
         <Image
+loading="eager"
           layout="responsive" // Ensures the image is responsive
           width={370} // Aspect ratio width
           height={250} // Aspect ratio height

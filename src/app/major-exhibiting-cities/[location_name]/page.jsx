@@ -105,6 +105,7 @@ const Page = async ({ params }) => {
       </div>
       <div className="product-bg flex flex-col lg:flex-row gap-12 px-6 md:px-12 sm:px-8 lg:px-20 py-16">
         <Image
+loading="eager"
           height={300}
           width={200}
           className="w-full max-w-[700px] mx-auto lg:w-1/2 rounded-lg max-h-[520px]"
@@ -144,6 +145,7 @@ const Page = async ({ params }) => {
               className="overflow-hidden rounded-xl w-full h-[200px] sm:h-[250px] md:h-[230px]"
             >
               <Image
+loading="eager"
                 width={370}
                 height={300}
                 className="transition-transform w-full h-full duration-300 transform hover:scale-110"
@@ -199,6 +201,7 @@ const Page = async ({ params }) => {
                 {show.event_name}
               </h4>
               <Image
+loading="eager"
                 className="rounded-full"
                 width={120}
                 height={120}

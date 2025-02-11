@@ -43,6 +43,7 @@ const Page = async ({ params, searchParams }) => {
           >
             <CardHeader className="p-0">
               <Image
+loading="eager"
                 height={250}
                 width={378}
                 src={booth.thumbnail_image}

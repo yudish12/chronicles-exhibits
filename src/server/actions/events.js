@@ -340,6 +340,7 @@ export const deleteData = async (id) => {
 };
 
 export const getSingleEvent = async (filter) => {
+  console.log("filter", filter);
   try {
     const resp = await events.findOne(filter);
     if (!resp) {

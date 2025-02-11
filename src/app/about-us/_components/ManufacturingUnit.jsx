@@ -54,6 +54,7 @@ const ManufacturingUnit = async ({ fields }) => {
               >
                 {/* w-full sm:w-[420px] h-[200px] sm:h-[250px] md:h-[230px] */}
                 <Image
+loading="eager"
                   width={370}
                   height={300}
                   className="transition-transform w-full h-full duration-300 transform hover:scale-110"

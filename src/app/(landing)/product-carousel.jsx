@@ -106,6 +106,7 @@ const ProductCarousel = ({ bgColor, boothsizes, location }) => {
                 )}
               >
                 <Image
+loading="eager"
                   src={item.image}
                   width={350}
                   height={300}

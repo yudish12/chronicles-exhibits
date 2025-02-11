@@ -7,6 +7,7 @@ const ContactCard = ({ icon, title, content, link , isExternal  }) => {
     <div className="flex items-center space-x-4 mb-4 bg-white p-4 rounded-lg transition-all duration-300 hover:shadow-lg shadow-md">
       <div className="bg-secondary bg-opacity-10 p-3 rounded-full">
         <Image
+loading="eager"
           src={icon || "/placeholder.svg"}
           alt={title}
           width={24}
