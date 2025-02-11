@@ -29,7 +29,7 @@ export const submitCallForm = async (formData, page_source) => {
     const message = formData.get("message");
     const budget = formData.get("budget");
     const fileData = formData.getAll("files"); 
-    if(!name || !email || !phone || !message || !budget) {
+    if(!name || !email || !phone ) {
       return { error: "Please fill all the fields" };
     }
     const company = formData.get("company");
