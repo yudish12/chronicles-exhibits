@@ -413,12 +413,12 @@ const AddEventPage = () => {
           >
             Add Event
           </Button>
-          <Button
+          {/* <Button
             variant="outline"
             className="border-secondary text-secondary font-semibold px-4 py-2"
           >
             Save Draft
-          </Button>
+          </Button> */}
         </div>
       </form>
     </div>
