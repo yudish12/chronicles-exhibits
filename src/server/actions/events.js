@@ -340,9 +340,9 @@ export const deleteData = async (id) => {
 };
 
 export const getSingleEvent = async (filter) => {
-  console.log("filter", filter);
+  await dbConnect();
   try {
-    const resp = await events.findOne(filter);
+    const resp = await events.findOne(filter).lean();
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }

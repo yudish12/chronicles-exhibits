@@ -7,10 +7,8 @@ import Lightbox from "./Lightbox";
 const Ourworks = async ({ title, subtitle }) => {
   // const ua = userAgent({ headers: headers() });
   // const isMobile = ua?.device?.type === "mobile";
-  const displayedData = await getAllPortfolios(6, 0);
-  // const displayedData = isMobile
-  //   ? ourWorksData.data.slice(0, 6)
-  //   : ourWorksData.data.slice(0, 9);
+  const ourworksdata = await getAllPortfolios(0, 9);
+  console.log(ourworksdata);
   // console.log(ourWorksData);
   return (
     <div className="flex flex-col product-bg px-6 sm:px-6 md:px-16  lg:px-20 py-12 gap-6">
@@ -25,7 +23,7 @@ const Ourworks = async ({ title, subtitle }) => {
           "Our recent works in the USA showcase stunning images of our exceptional projects. From trade show booths to eye-catching displays, our portfolio reflects the expertise and creativity we bring to every project. Get inspired by our work and let us create a standout experience for yourbrand."}
       </p>
       <div>
-        <Lightbox images={displayedData.data} />
+        <Lightbox images={ourworksdata.data} />
         <Link className="flex" href="/portfolio">
           <Button
             style={{ transitionDuration: "500ms" }}

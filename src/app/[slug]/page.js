@@ -36,7 +36,7 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const { data: eventData } = await getSingleEvent(slug);
+  const { data: eventData } = await getSingleEvent({slug});
 
   return {
     title: eventData?.meta_title || "Default Title",
