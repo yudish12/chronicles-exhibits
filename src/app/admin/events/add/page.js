@@ -46,7 +46,7 @@ const AddEventPage = () => {
     meta_title: "",
     meta_description: "",
     meta_keywords: [],
-    isDraft : ""
+    isDraft : "true"
   });
 
   const router = useRouter();
