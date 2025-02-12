@@ -1,39 +1,69 @@
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import NextTopLoader from "nextjs-toploader";
 import "@uploadthing/react/styles.css";
-// import Tawkto from "@/components/Tawkto";
 import WhatsAppWidget from "@/components/ui/whatsapp-icon";
 
-
-// const optimaLT = localFont({
-//   src: "./fonts/OptimaLT.woff",
-//   variable: "--font-optima-lt",
-//   weight: "100 900",
-// });
+export const metadata = {
+  title: "Trade show Booth Design | Booth Builder",
+  description:
+    "Chronicle Exhibits LLC. is a leading trade show booth display design company and exhibit builder in the USA. We offer both custom and rental booth services nationwide.",
+  openGraph: {
+    title: "Trade show Booth Design | Booth Builder",
+    siteName: "chronicleexhibits.com",
+    url: "https://chronicleexhibits.com/",
+    description:
+      "Chronicle Exhibits LLC. is a leading trade show booth display design company and exhibit builder in the USA. We offer both custom and rental booth services nationwide.",
+    type: "website",
+    images: ["https://chronicleexhibits.com/booth-design-bg.png"],
+    locale: "en_US",
+  },
+  verification: {
+    google: "52R0xHP_gQg6T7bSoOGz-PviftlVs0AppNw86tne_KU",
+  },
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <GoogleTagManager gtmId="GTM-NR3F6S9R" />
       <head>
-      <meta property="og:title" content="Trade show Booth Design | Booth Builder"/>
-      <meta name="google-site-verification" content="52R0xHP_gQg6T7bSoOGz-PviftlVs0AppNw86tne_KU" />
-      <meta property="og:site_name" content="chronicleexhibits.com"/>
-      <meta property="og:url" content="https://chronicleexhibits.com/"></meta>
-      <meta property="og:description" content="Chronicle Exhibits LLC. is a leading trade show booth display design company and exhibit builder in the USA. We offer both custom and rental booth services nationwide."/>
-      <meta property="og:type" content="website"/>
-      <meta property="og:image" content="https://chronicleexhibits.com/booth-design-bg.png"/>
-      <meta property="og:locale" content="en_US" />
+        <link
+          rel="preload"
+          href="/Oswald-Light.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/Oswald-Bold.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/PT_Sans-Narrow-Web-Regular.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/PT_Sans-Narrow-Web-Bold.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
       </head>
-      <body >
-        {/* <Tawkto/> */}
+      <body className="font-jost text-foreground bg-background">
         <GoogleAnalytics gaId="G-ET7LT8FESF" />
         <Toaster />
         <NextTopLoader />
         {children}
-        <WhatsAppWidget/>
+        <WhatsAppWidget />
       </body>
     </html>
   );
