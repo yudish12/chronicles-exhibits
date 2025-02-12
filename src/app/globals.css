@@ -8,31 +8,37 @@
 @font-face {
   font-family: "Jost-900";
   src: url("/Oswald-Light.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Jost-700";
   src: url("/Oswald-Light.ttf");
+  font-display : swap
 }
 
 @font-face {
   font-family: "Jost-600";
   src: url("/Oswald-Light.ttf");
+  font-display : swap
 }
 
 @font-face {
   font-family: "Jost-400";
   src: url("/Oswald-Light.ttf");
+  font-display : swap
 }
 
 @font-face {
   font-family: "PT-sans-regular";
   src: url("/PT_Sans-Narrow-Web-Regular.ttf");
+  font-display : swap
 }
 
 @font-face {
   font-family: "PT-sans-bold";
   src: url("/PT_Sans-Narrow-Web-Bold.ttf");
+  font-display : swap
 }
 
 .cke_notifications_area {
@@ -123,6 +129,7 @@
     font-weight: 300;
     font-style: normal;
   }
+ 
 }
 .text-xl-1 {
   font-size: 1.35rem /* 20px */;
