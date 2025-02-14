@@ -1,5 +1,5 @@
 const boothEnquiryTemplate = async (
-  { name, email, phone, eventName, country,boothSize, url , file ,  message },
+  { name, email, phone, eventName, country, boothSize, url, file, message },
   page_source
 ) => {
   const headerModule = await import("./header.js");
@@ -15,15 +15,10 @@ const boothEnquiryTemplate = async (
           <td style="padding: 20px 40px;">
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
-                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
-                  <strong>Name :</strong>
-                </td>
-              </tr>
-              <tr>
-                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
-                  ${name}
-                </td>
-              </tr>
+              <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                <strong>Name:</strong>&nbsp;&nbsp;${name}
+              </td>
+            </tr>
               <tr>
                 <td>
                   <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
@@ -39,12 +34,7 @@ const boothEnquiryTemplate = async (
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
-                  <strong>Email :</strong>
-                </td>
-              </tr>
-              <tr>
-                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
-                  ${email}
+                  <strong>Email:</strong>&nbsp;&nbsp;${email}
                 </td>
               </tr>
               <tr>
@@ -62,12 +52,7 @@ const boothEnquiryTemplate = async (
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
-                  <strong>Phone :</strong>
-                </td>
-              </tr>
-              <tr>
-                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
-                  ${phone}
+                  <strong>Phone:</strong>&nbsp;&nbsp;${phone}
                 </td>
               </tr>
               <tr>
@@ -85,12 +70,7 @@ const boothEnquiryTemplate = async (
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
-                  <strong>Country :</strong>
-                </td>
-              </tr>
-              <tr>
-                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
-                  ${country}
+                  <strong>Country:</strong>&nbsp;&nbsp;${country}
                 </td>
               </tr>
               <tr>
@@ -109,12 +89,7 @@ const boothEnquiryTemplate = async (
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
-                  <strong>Booth Size :</strong>
-                </td>
-              </tr>
-              <tr>
-                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
-                  ${boothSize}
+                  <strong>Booth Size:</strong>&nbsp;&nbsp;${boothSize}
                 </td>
               </tr>
               <tr>
@@ -132,12 +107,7 @@ const boothEnquiryTemplate = async (
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
-                  <strong>Message :</strong>
-                </td>
-              </tr>
-              <tr>
-                <td style="font-size: 16px; color: #000000; padding-bottom: 4px; line-height: 1.5;">
-                  ${message}
+                  <strong>Message:</strong>&nbsp;&nbsp;${message}
                 </td>
               </tr>
               <tr>
@@ -155,12 +125,7 @@ const boothEnquiryTemplate = async (
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
-                  <strong>URL :</strong>
-                </td>
-              </tr>
-              <tr>
-                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
-                  <a href="${url}" style="color: #0000EE; text-decoration: underline;">${url}</a>
+                  <strong>url:</strong>&nbsp;&nbsp;${url}
                 </td>
               </tr>
               <tr>

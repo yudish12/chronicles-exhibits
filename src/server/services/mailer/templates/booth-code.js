@@ -14,27 +14,22 @@ const boothEnquiryTemplate = async (
     if (rentalQuotation) {
       rows += `
         <!-- Rental quotation row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Rental Quotation:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                Requested
-            </td>
-        </tr>`;
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Rental Quotation:</strong>&nbsp;&nbsp;${rentalQuotation}
+                </td>
+              </tr>`;
     }
 
     if (purchaseRequest) {
       rows += `
         <!-- Purchase request row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Purchase Request:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                Requested
-            </td>
-        </tr>`;
+         <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Purchase Quotation:</strong>&nbsp;&nbsp;${purchaseRequest}
+                </td>
+              </tr>
+        `;
     }
 
     if (customizationRequest) {

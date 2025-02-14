@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
   token: { type: String, default: null },
   tokenExpiry : {type: Date , default : null},
   isAdmin: { type: Boolean, default: false },
+  isHidden: { type: Boolean, default:false }
 });
 
 const User = mongoose.models.User || mongoose.model("User", UserSchema);
