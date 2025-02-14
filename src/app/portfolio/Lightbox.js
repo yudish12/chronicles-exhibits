@@ -34,7 +34,7 @@ const Lightbox = ({ images }) => {
               )} // Wrapper to constrain image scale
             >
               <Image
-loading="eager"
+                loading="eager"
                 width={400}
                 height={300}
                 className={cn(
@@ -42,6 +42,7 @@ loading="eager"
                 )}
                 src={item.image}
                 alt={item.image_alt_text}
+                priority={true}
               />
             </div>
           ))}

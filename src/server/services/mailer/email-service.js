@@ -36,11 +36,11 @@ export class EmailService {
     // Await the result of templateFunc since it is likely async
     const html = await templateFunc(fields, this.page_source);
     let logoPath = path.join(process.cwd(), "public/chronicle-exhibits-dark-bg.png");
-    let attachements = [{
-      filename: "chronicle-exhibits-dark-bg.png",
-      path: logoPath,
-      cid: "logo",
-    }];
+    let attachements = [
+      // filename: "chronicle-exhibits-dark-bg.png",
+      // path: logoPath,
+      // cid: "logo",
+    ];
 
     if (fileData) {
       for (const file of fileData) {
