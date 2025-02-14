@@ -57,7 +57,7 @@ const Page = async () => {
       >
         <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
           <Image
-loading="eager"
+            loading="eager"
             src={`/location-2955.svg`}
             width={50}
             height={50}

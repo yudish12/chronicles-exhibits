@@ -1,4 +1,4 @@
-import Header from "@/components/ui/header";
+// import Header from "@/components/ui/header";
 import React from "react";
 import About from "./(landing)/About";
 import Products from "./(landing)/Products";
@@ -9,6 +9,9 @@ import Faq from "./(landing)/Faq";
 import Queryform from "./(landing)/Queryform"
 import Footer from "@/components/ui/footer";
 import { getSinglePage } from "@/server/actions/pages";
+import dynamic from 'next/dynamic';
+
+const Header = dynamic(()=>import('@/components/ui/header'))
 // import DownArrow from "./down-arrow";
 
 // export const dynamic = 'force-static';
