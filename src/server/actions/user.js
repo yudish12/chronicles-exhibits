@@ -8,7 +8,7 @@ import User from "../models/user";
 export const getAllUsers = async (skip , limit , projection) =>
 {
     try{
-    let query = User.find({isAdmin : false}).lean();
+    let query = User.find({isAdmin : false, isHidden:false}).lean();
     if (skip) {
       query = query.skip(skip);
     }
