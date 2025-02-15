@@ -105,9 +105,9 @@ const Page = async ({ params }) => {
       </div>
       <div className="product-bg flex flex-col lg:flex-row gap-12 px-6 md:px-12 sm:px-8 lg:px-20 py-16">
         <Image
-loading="eager"
-          height={300}
-          width={200}
+          loading="eager"
+          height={700}
+          width={520}
           className="w-full max-w-[700px] mx-auto lg:w-1/2 rounded-lg max-h-[520px]"
           src={data[0].fields[6].value}
           alt={data[0].fields[7].value}
