@@ -48,13 +48,12 @@ const Page = async ({ params }) => {
 
   // }
   const { data } = await getLocationPagebyCity(city);
-  console.log("data",data,city , data[0].fields[0].value)
+  console.log("data",Object.keys(data),data,city , data[0].fields[0].value)
   if (!data?.length || !data[0]?.fields?.length) {
     notFound();
   }
-    console.log(data);
 
-  const ua = await userAgent({ headers: headers() });
+  const ua = userAgent({ headers: headers() });
   const isMobile = ua?.device?.type === "mobile";
   const ourWorksData = await getAllPortfolios(0, 9);
 
@@ -67,11 +66,12 @@ const Page = async ({ params }) => {
   // }
   return (
     <>
+    {console.log("Rendering with data:", data)}
       {/* <  /> */}
       <Header />
       <div className="single-location-bg flex flex-col justify-center">
         <h2 className="text-center font-bold text-[2.5rem] heading-font uppercase text-white">
-          {data[0].fields[0].value}
+        {data?.[0]?.fields?.[0]?.value ?? "Default Value"}
         </h2>
         <h1 className="text-center font-bold text-[2.5rem] heading-font uppercase text-primary">
           {data[0].name}
@@ -126,17 +126,19 @@ const Page = async ({ params }) => {
               style={{ transitionDuration: "500ms" }}
               className="rounded-full sm:mx-auto transition-500 lg:mx-0 w-[30%] mx-auto px-16 py-6 font-thin text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4 bg-transparent border-primary"
             >
-              {data[0].fields[10].value}
+              {data?.[0]?.fields?.[10]?.value}
             </Button>
           </Link>
         </div>
       </div>
       <div className="py-8 px-6 sm:p-12 lg:px-20 xl:px-20 2xl:px-36  pb-10">
+      {data?.[0]?.fields?.[11] && (
         <h2 className="uppercase text-3xl heading-font-600 text-primary text-center font-semibold">
           {data[0].fields[11].value}
         </h2>
+      )}
         <p className="text-center md:mx-20 lg:mx-44 mt-7">
-          {data[0].fields[12].value}
+          {data?.[0]?.fields?.[12]?.value}
         </p>
         <div className="mt-10 grid 2xl:max-w-[1400px] mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-x-4 gap-y-4">
           {displayedData.map((item, index) => (
@@ -170,26 +172,33 @@ loading="eager"
         </Link>
       </div>
       <Products
-        title={data[0].fields[13].value}
-        subTitle={data[0].fields[14].value}
+        title={data?.[0].fields?.[13]?.value}
+        subTitle={data?.[0]?.fields?.[14]?.value}
         location={city}
       />
       <div className="bg-background mx-auto pt-8 pb-3 px-8 md:px-20 lg:px-32 w-[92%]">
         {/* Section 1 */}
         <section className="py-10 text-secondary">
           <h2 className="text-2xl md:text-3xl font-bold uppercase heading-font text-secondary mb-4">
-            {data[0].fields[15].value}
+            {data?.[0]?.fields?.[15]?.value}
           </h2>
+          {
+          data?.[0]?.fields?.[16] && (
           <div
             id="show_name_desc"
-            dangerouslySetInnerHTML={{ __html: data[0].fields[16].value }}
+            dangerouslySetInnerHTML={{ __html: data?.[0]?.fields?.[16]?.value }}
           ></div>
+          )
+}
         </section>
       </div>
       <div className="bg-gray-200  py-10">
+        { data?.[0]?.fields?.[17]?.value && (
         <h3 className="text-3xl px-4 heading-font text-secondary text-center uppercase">
-          {data[0].fields[17].value}
+          {data?.[0]?.fields?.[17]?.value}
         </h3>
+        )
+}
         <div className="grid place-content-center mx-auto xl:grid-cols-[270px,270px,270px,270px] lg:grid-cols-3 gap-x-8 gap-y-8 md:grid-cols-2 grid-cols-1 gap-4 px-6 sm:px-12 md:px-20 pb-10 mt-12">
           {eventByCity.data.map((show) => (
             <Link
@@ -229,11 +238,13 @@ loading="eager"
           ))}
         </div>
         <div className="flex justify-center">
+          {data?.[0]?.fields?.[18] && (
           <Link href={`/top-trade-shows/`}>
             <Button className="text-secondary p-4 py-[22px] duration-300 transition-all text-lg hover:bg-primary hover:text-secondary font-semibold bg-primary">
-              {data[0].fields[18].value}
-            </Button>
+            {data?.[0]?.fields?.[18]?.value || "Default Text"}           
+             </Button>
           </Link>
+          )}
         </div>
       </div>
       {/* <Queryform /> */}
