@@ -7,8 +7,8 @@ export class EmailService {
       process.env.EMAIL_USERNAME,
       process.env.EMAIL_PASSWORD
     );
-    const mail1 = process.env.EMAIL_TO
-    const mail2 = process.env.EMAIL_TO2
+    const mail1 = process.env.EMAIL_TO;
+    const mail2 = process.env.EMAIL_TO2;
     this.to = `${mail1},${mail2}`;
     this.page_source = page_source;
     this.template = template;
@@ -16,11 +16,11 @@ export class EmailService {
   }
 
   newTransport() {
-    //sendgrid
 
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
-      port: 587,
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USERNAME,
         pass: process.env.EMAIL_PASSWORD,
@@ -30,24 +30,29 @@ export class EmailService {
 
   async send(fields, subject, fileData) {
     const templateModule = await import(`./templates/${this.template}.js`);
-    console.log("template",JSON.stringify(await templateModule))
+    console.log("template", JSON.stringify(await templateModule));
     const templateFunc = templateModule.default; // Access the default export
 
     // Await the result of templateFunc since it is likely async
     const html = await templateFunc(fields, this.page_source);
-    let logoPath = path.join(process.cwd(), "public/chronicle-exhibits-dark-bg.png");
-    let attachements = [{
-      filename: "chronicle-exhibits-dark-bg.png",
-      path: logoPath,
-      cid: "logo",
-    }];
+    let logoPath = path.join(
+      process.cwd(),
+      "public/chronicle-exhibits-dark-bg.png"
+    );
+    let attachements = [
+      {
+        filename: "chronicle-exhibits-dark-bg.png",
+        path: logoPath,
+        cid: "logo",
+      },
+    ];
 
     if (fileData) {
       for (const file of fileData) {
         const fileBuffer = await file.arrayBuffer();
         attachements.push({
           filename: file.name,
-          content: Buffer.from(fileBuffer), 
+          content: Buffer.from(fileBuffer),
           contentType: file.type || "application/octet-stream",
         });
       }
