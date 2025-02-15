@@ -48,11 +48,11 @@ const Page = async ({ params }) => {
 
   // }
   const { data } = await getLocationPagebyCity(city);
-  console.log(data,city)
-  if (!data) {
+  console.log("data",data,city , data[0].fields[0].value)
+  if (!data?.length || !data[0]?.fields?.length) {
     notFound();
   }
-  console.log(data);
+    console.log(data);
 
   const ua = await userAgent({ headers: headers() });
   const isMobile = ua?.device?.type === "mobile";

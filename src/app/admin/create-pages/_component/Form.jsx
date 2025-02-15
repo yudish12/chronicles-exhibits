@@ -91,7 +91,11 @@ const PageEditForm = ({ pageData, isLocationPage }) => {
       }
       RevalidatePath(`/${pageData.name}`)
       toast.success("Page updated successfully");
+      if(isLocationPage){
+        router.push("/admin/locations")
+      }else{
       router.push("/admin/create-pages");
+      }
     } catch (error) {
       console.error("Error updating data:", error);
       toast.error("Failed to update page");
