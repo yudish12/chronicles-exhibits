@@ -137,10 +137,11 @@ const Page = async ({ params }) => {
           {data[0].fields[11].value}
         </h2>
       )}
-        <p className="text-center md:mx-20 lg:mx-44 mt-7">
-          {data?.[0]?.fields?.[12]?.value}
-        </p>
-        <div className="mt-10 grid 2xl:max-w-[1400px] mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-x-4 gap-y-4">
+        <p
+          className="text-center md:mx-20 lg:mx-44 mt-7 custom-content "
+          dangerouslySetInnerHTML={{ __html: data?.[0]?.fields?.[12]?.value }}
+        ></p>       
+ <div className="mt-10 grid 2xl:max-w-[1400px] mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-x-4 gap-y-4">
           {displayedData.map((item, index) => (
             <div
               key={index}
@@ -210,7 +211,7 @@ loading="eager"
                 {show.event_name}
               </h4>
               <Image
-loading="eager"
+                loading="eager"
                 className="rounded-full"
                 width={120}
                 height={120}
@@ -241,7 +242,7 @@ loading="eager"
           {data?.[0]?.fields?.[18] && (
           <Link href={`/top-trade-shows/`}>
             <Button className="text-secondary p-4 py-[22px] duration-300 transition-all text-lg hover:bg-primary hover:text-secondary font-semibold bg-primary">
-            {data?.[0]?.fields?.[18]?.value || "Default Text"}           
+            {data?.[0]?.fields?.[18]?.value }           
              </Button>
           </Link>
           )}

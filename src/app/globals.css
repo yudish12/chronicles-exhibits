@@ -131,6 +131,11 @@
   }
  
 }
+.custom-content a {
+  color : blue ;
+  /* font-weight : bold ; */
+  text-decoration : inherit 
+}
 .text-xl-1 {
   font-size: 1.35rem /* 20px */;
   line-height: 1.55rem /* 28px */;

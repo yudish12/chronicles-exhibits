@@ -4,7 +4,7 @@ import { getSingleLocationPage } from "@/server/actions/locations";
 const PageEdit = async ({ params }) => {
   const resolvedParams = await params;
   const { data } = await getSingleLocationPage({ _id: params.id });
-  console.log(data);
+  console.log("page data " , data);
 
   return <PageEditForm isLocationPage={true} pageData={data} />;
 };
