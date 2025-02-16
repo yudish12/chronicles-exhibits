@@ -329,55 +329,100 @@ export const PrivacyPolicyPageFields = [
 
 export const locationPageFields = [
   {
-    key: "top_title",
+    key: "top_title", //0
     type: "text",
     value: "",
   },
   {
-    key: "top_btn_text",
+    key: "top_btn_text", //1
     type: "text",
     value: "",
   },
   {
-    key: "2nd_section_first_h2",
+    key: "2nd_section_first_h2", //2 
     type: "text",
     value: "",
   },
   {
-    key: "2nd_section_second_h2",
+    key: "2nd_section_second_h2", // 3 
     type: "text",
     value: "",
   },
   {
-    key: "2nd_section_first_para",
+    key: "2nd_section_first_para", // 4
     type: "textarea",
     value: "",
   },
   {
-    key: "2nd_section_second_para",
+    key: "2nd_section_second_para", //5 
     type: "textarea",
     value: "",
   },
   {
-    key: "3rd_section_image",
+    key: "3rd_section_image", //6 
     type: "upload",
     value: "",
   },
   {
-    key: "3rd_section_h2",
+    key : "3rd_section_image_alt_text",
+    type: "text",
+    value : ""
+  },
+  {
+    key: "3rd_section_h2", // 7
     type: "text",
     value: "",
   },
   {
-    key: "3rd_section_body",
+    key: "3rd_section_body", // 8 
     type: "body",
     value: "",
   },
   {
-    key: "last_section_body",
+    key : "3rd_section_button", // 9 
+    type : "text",
+    value : ""
+  },
+  {
+    key : "portfolio_heading", // 10 
+    type: "text",
+    value : ""
+  },
+  {
+    key: "portfolio_description",
+    type: "text", 
+    value : ""
+  },
+  {
+    key : "booth_heading", // 11 
+    type: "textarea", 
+    value : ""
+  },
+  {
+    key : "booth_description", // 12 
+    type : "textarea",
+    value : ""
+  },
+  {
+    key : "last_section_title", // 13 
+    type : "text",
+    value : ""
+  },
+  {
+    key: "last_section_body", // 14 
     type: "body",
     value: "",
   },
+  {
+    key : "events_title", // 15 
+    type: "text",
+    value : ""
+  },
+  {
+    key : "events_btn_text", // 16 
+    type: "text",
+    value : ""
+  }
 ];
 
 export const customTradeShowFields = [
