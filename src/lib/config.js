@@ -379,7 +379,7 @@ export const locationPageFields = [
     value: "",
   },
   {
-    key : "3rd_section_button", // 9 
+    key : "3rd_section_btn_text", // 9 
     type : "text",
     value : ""
   },

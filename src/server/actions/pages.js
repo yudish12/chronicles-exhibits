@@ -45,30 +45,32 @@ export const getSinglePage = async (query, projection) => {
 };
 
 export const updateData = async (name, data, islocation) => {
+  console.log("update data" , data , "FIELDS",data.fields , islocation)
   if (islocation) {
     let isValid = true;
 
     const locationPageFields = getPageFieldsByName("location");
-    console.log(locationPageFields);
+    console.log("LOCATION PAGE FIELDS ",locationPageFields);
     locationPageFields.forEach((field) => {
       const currentField = data.fields.find((f) => f.key === field.key);
-
+      console.log("current field " , currentField)
       if (!currentField) {
         isValid = false;
         return;
       }
-
+      // console.log("ISVALID 1"  , isValid)
       if (!currentField.type) {
         isValid = false;
         return;
       }
-
+      // console.log("ISVALID 2"  , isValid)
       if (!currentField.value || typeof currentField.value !== "string") {
         isValid = false;
         return;
       }
+      // console.log("ISVALID 3"  , isValid)
     });
-
+    console.log("ISVALID" , isValid)
     if (!isValid) {
       return getActionFailureResponse("Invalid fields data format", "toast");
     }
