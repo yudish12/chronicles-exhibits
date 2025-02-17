@@ -19,14 +19,14 @@ export const generateMetadata = async () => {
 
 const Page = async () => {
   let locations = await getAllData(null,null, "name");
-  // const { data } = await getSinglePage({ name: "locations" });
-  const res = await fetch("https://chronicleexhibits.com/api/page/all-locations", {
-    next: { revalidate: 60 },
-  })
-  console.log(res)
-  const resp = await res.json();
-  const data = resp.data;
-  console.log(resp)
+  const { data } = await getSinglePage({ name: "locations" });
+  // const res = await fetch("https://chronicleexhibits.com/api/page/all-locations", {
+  //   next: { revalidate: 60 },
+  // })
+  // console.log(res)
+  // const resp = await res.json();
+  // const data = resp.data;
+  // console.log(resp)
   return (
     <>
       {/* <  /> */}

@@ -22,11 +22,13 @@ const page = async () => {
   const boothsizes = await getAllBoothSizes();
   const cardData = boothsizes.data;
 
-  const res = await fetch("https://chronicleexhibits.com/api/page/all-booths-page", {
-    next: { revalidate: 60 },
-  })
-  const resp = await res.json();
-  const data = resp.data;
+  // const res = await fetch("https://chronicleexhibits.com/api/page/all-booths-page", {
+  //   next: { revalidate: 60 },
+  // })
+  const res = await getSinglePage({name:"trade-show-booth-displays-designs"})
+  // const resp = await res.json();
+  const data = res.data;
+  console.log(data)
 
   const questions = [
     data.fields[5].value,
