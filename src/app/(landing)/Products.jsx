@@ -5,8 +5,9 @@ import { cn } from "@/lib/utils";
 import "./faq.css"
 
 const Products = async ({ bgColor, title, subTitle, location }) => {
-  const boothsizes = await getAllBoothSizes();
 
+  const boothsizes = await getAllBoothSizes();
+  console.log("BOOTH SIZES" , boothsizes)
   return (
     <div
       className={cn(
