@@ -261,10 +261,18 @@ export const submitBoothCodeForm = async (fields, page_source) => {
       purchaseRequest: false,
       customizationRequest: false,
     };
+    console.log("fields" , fields)
     const normalizedFields = { ...schemaKeys, ...fields, page_source };
+    console.log(
+      "normalized fields ",normalizedFields)
+    // if(!normalizedFields.rentalQuotation && !normalizedFields.purchaseRequest && !normalizedFields.customizationRequest){
+    //   toast.error("kindly select a purchase type")
+    //   return 
+    // }
     const formSubmission = new FormSubmission(normalizedFields);
+
     await formSubmission.save();
-    console.log(formSubmission);
+    console.log("form submission",formSubmission);
     console.log("data saved ", normalizedFields, await formSubmission.save());
     const email = new EmailService("booth", "booth-code");
     const resp = email.send(

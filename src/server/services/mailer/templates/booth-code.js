@@ -14,35 +14,81 @@ const boothEnquiryTemplate = async (
     if (rentalQuotation) {
       rows += `
         <!-- Rental quotation row -->
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
-                  <strong>Rental Quotation:</strong>&nbsp;&nbsp;${rentalQuotation}
+                  <strong>Request Type :</strong>
                 </td>
-              </tr>`;
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  Rental Quotation
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        `;
     }
 
     if (purchaseRequest) {
       rows += `
-        <!-- Purchase request row -->
-         <tr>
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
                 <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
-                  <strong>Purchase Quotation:</strong>&nbsp;&nbsp;${purchaseRequest}
+                  <strong>Request Type :</strong>
                 </td>
               </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  Purchase Request
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
         `;
     }
 
     if (customizationRequest) {
       rows += `
         <!-- Customization request row -->
-        <tr style="border-bottom: 2px solid #8FAF1B;">
-            <td style="padding: 15px; font-size: 18px; font-weight: bold; color: #ffffff; text-align: left;">
-                Customization Request:
-            </td>
-            <td style="padding: 15px; font-size: 16px; font-weight: normal; color: #ffffff; text-align: left;">
-                Requested
-            </td>
-        </tr>`;
+        <tr>
+          <td style="padding: 0 40px 20px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 8px;">
+                  <strong>Request Type :</strong>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-size: 16px; color: #000000; padding-bottom: 4px;">
+                  Customization Request
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div style="border-bottom: 1px solid #B0CB1F; width: 100%;"></div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+`;
     }
 
     return rows;
@@ -53,7 +99,6 @@ const boothEnquiryTemplate = async (
     
     <table align="center" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse: collapse; background-color: #FFF5F5;">
       <tbody>
-        ${generateRequestRows()}
         <!-- Name Row -->
         <tr>
           <td style="padding: 20px 40px;">
@@ -211,7 +256,7 @@ const boothEnquiryTemplate = async (
             </table>
           </td>
         </tr>
-
+        ${generateRequestRows()}
         <!-- Message Row -->
         <tr>
           <td style="padding: 0 40px 20px;">

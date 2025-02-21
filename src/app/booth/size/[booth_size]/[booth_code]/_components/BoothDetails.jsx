@@ -324,9 +324,16 @@ const BoothForm = ({source,size}) => {
     setFormData({ ...formData, [name]: value });
   };
   const handleRadioChange = (event) => {
-    const value = event.target.value;
-    setSelectedValue((prevValue) => (prevValue === value ? "" : value));
+    const { name, value } = event.target;
+    setSelectedValue(value);
+    
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
+  
+  
   // Handle phone number input
   const handlePhoneChange = (value) => {
     const formattedValue = value.startsWith("+") ? value : `+${value}`;
@@ -336,9 +343,10 @@ const BoothForm = ({source,size}) => {
     setLoading(true);
     try {
       e.preventDefault();
-
+      console.log("Form Data Before Formatting:", formData);
       const { requestType, ...otherFields } = formData;
       const {phone , email } = formData;
+      console.log("request type " , formData.requestType)
     if(!emailRegex.test(email)){
       toast.error("Please enter a valid email address.")
       return false 
@@ -348,13 +356,17 @@ const BoothForm = ({source,size}) => {
       toast.error("Please enter a valid phone number.")
       return false 
     }
-      const formattedData = {
-        ...otherFields,
-        rentalQuotation: requestType === "rental",
-        purchaseRequest: requestType === "purchase",
-        customizationRequest: requestType === "customization",
-      };
-      console.log("Formatted Data Submitted:", formattedData);
+    if(!requestType){
+      toast.error("please select a request type")
+      return false
+    }
+    const formattedData = {
+      ...otherFields,
+      rentalQuotation: formData.requestType?.trim() === "rental",
+      purchaseRequest: formData.requestType?.trim() === "purchase",
+      customizationRequest: formData.requestType?.trim() === "customization",
+    };
+          console.log("Formatted Data Submitted:", formattedData , formData);
 
       const resp = await submitBoothCodeForm(formattedData, "home");
 
@@ -397,16 +409,15 @@ const BoothForm = ({source,size}) => {
       <div className="w-full">
         <div className="flex flex-wrap justify-between mb-4">
           <label className="flex items-center gap-x-2">
-            <Input
-              type="radio"
-              name="requestType"
-              disabled={loading}  
-              value="rental"
-              checked={selectedValue === "rental"}
-              className="h-4 w-4 border-gray-300 rounded"
-              onChange={handleRadioChange}
-            />
-            <span className="text-secondary font-semibold">
+          <Input
+          type="radio"
+          name="requestType"
+          disabled={loading}  
+          value="rental"
+          checked={formData.requestType === "rental"}  // ✅ Use formData instead
+          className="h-4 w-4 border-gray-300 rounded  text-primary"
+          onChange={handleRadioChange}
+/>            <span className="text-secondary font-semibold">
               Rental Quotation
             </span>
           </label>
@@ -416,7 +427,7 @@ const BoothForm = ({source,size}) => {
               disabled={loading}
               name="requestType"
               value="purchase"
-              checked={selectedValue === "purchase"}
+              checked={formData.requestType === "purchase"}
               className="h-4 w-4 border-gray-300 rounded text-primary"
               onChange={handleRadioChange}
             />
@@ -430,7 +441,7 @@ const BoothForm = ({source,size}) => {
               name="requestType"
               value="customization"
               disabled={loading}
-              checked={selectedValue === "customization"}
+              checked={formData.requestType === "customization"}
               className="h-4 w-4 border-gray-300 rounded"
               onChange={handleRadioChange}
             />
