@@ -8,13 +8,13 @@ import { Pagination } from "./Pagination";
 
 const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
   return (
-    <div className="px-24 md:px-10 lg:px-20 mt-12">
+    <div className="px-0 md:px-10 lg:px-20 mt-12 w-full">
       {/* Trade show grid */}
-      <div className="grid lg:grid-cols-3 mx-10 sm:gap-x-5 md:gap-x-10 lg:gap-x-12 gap-y-12 sm:grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-3 mx-0 lg:mx-10 sm:gap-x-5 md:gap-x-10 lg:gap-x-12 gap-y-12 sm:grid-cols-2 gap-4">
         {tradeShows?.map((show) => (
           <div
             key={show._id}
-            className="min-h-[360px] justify-between bg-[#414141] flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
+            className="min-h-[360px] w-full justify-between bg-[#414141] flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
           >
             <h4 className="text-white text-center heading-font text-2xl uppercase font-semibold">
               {show.event_name}
