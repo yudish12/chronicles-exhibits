@@ -16,7 +16,7 @@ const BlogForm = dynamic(() => import("../blogs/_components/BlogForm"))
 import "./blog_id.css"
 import "./show_name.css"
 import { cn } from "@/lib/utils";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 const WebsitePopup = dynamic(() => import("../top-trade-shows/_shows_comps/_components/website-popup"))
 // if blog and event both are not found , then return 404
 
@@ -55,6 +55,7 @@ const Page = async ({ params }) => {
   const { data } = await getSingleBlog({ slug: slug, isDraft:"false" });
 
   if (data) {
+    
     const blogFromDb = await getAllBlogs(
       {isDraft : "false"},
       null,
@@ -147,6 +148,10 @@ loading="eager"
   const { data: eventData } = await getSingleEvent({slug, isDraft:"false"});
   console.log(eventData);
   if (eventData) {
+    //redirection should be implemented from admin pannel
+    if(slug === "hai-heli-expo"){
+      return redirect("/verticon")
+    }
     console.group("event data", eventData.start_date);
     const date = new Date(eventData.start_date).toISOString().split("T")[0];
     const eventName = eventData.event_name;
