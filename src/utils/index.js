@@ -52,7 +52,7 @@ const validateEventData = (data) => {
     { key: "meta_title", message: "Meta title is required" },
     { key: "meta_description", message: "Meta description is required" },
     { key: "meta_keywords", message: "Meta keywords are required", isArray: true },
-    {key : "slug", message : "Slug is required "},
+    { key : "slug", message : "Slug is required "},
     { key: "email", message: "Email is required" },
     { key: "website", message: "Website is required" }
   ];

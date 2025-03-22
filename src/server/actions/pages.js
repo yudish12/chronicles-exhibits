@@ -7,8 +7,7 @@ import {
   getActionSuccessResponse,
   getPageFieldsByName,
 } from "@/utils";
-import mongoose, { get } from "mongoose";
-import { boothsizePageFields } from "@/lib/config";
+import mongoose from "mongoose";
 import pages from "../models/pages";
 import Locations from "../models/locations";
 import { revalidatePath } from "next/cache";

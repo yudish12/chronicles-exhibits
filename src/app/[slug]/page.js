@@ -25,7 +25,7 @@ export async function generateMetadata({ params }) {
 
   const { data } = await getSingleBlog({ slug: slug });
 
-  if (data){
+  if (data) {
     return {
       title: data?.meta_title || "Default Title",
       description: data?.meta_description || "Default Description",
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const { data: eventData } = await getSingleEvent({slug});
+  const { data: eventData } = await getSingleEvent({ slug });
 
   return {
     title: eventData?.meta_title || "Default Title",
@@ -52,12 +52,12 @@ const Page = async ({ params }) => {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
 
-  const { data } = await getSingleBlog({ slug: slug, isDraft:"false" });
+  const { data } = await getSingleBlog({ slug: slug, isDraft: "false" });
 
   if (data) {
-    
+
     const blogFromDb = await getAllBlogs(
-      {isDraft : "false"},
+      { isDraft: "false" },
       null,
       data.blog_count,
       "name title slug image image_alt_text"
@@ -78,7 +78,7 @@ const Page = async ({ params }) => {
             <div className="lg:col-span-2">
               {/* Hero Image */}
               <Image
-loading="eager"
+                loading="eager"
                 src={data.image}
                 alt="Trade Show"
                 width={800}
@@ -108,7 +108,7 @@ loading="eager"
                       {/* Image Section */}
                       <div className="w-full border-b-2 border-primary">
                         <Image
-loading="eager"
+                          loading="eager"
                           src={blog.image}
                           alt={blog.title}
                           width={400}
@@ -145,20 +145,18 @@ loading="eager"
     );
   }
 
-  const { data: eventData } = await getSingleEvent({slug, isDraft:"false"});
+  const { data: eventData } = await getSingleEvent({ slug, isDraft: "false" });
   console.log(eventData);
   if (eventData) {
     //redirection should be implemented from admin pannel
-    if(slug === "hai-heli-expo"){
+    if (slug === "hai-heli-expo") {
       return redirect("/verticon")
     }
-    console.group("event data", eventData.start_date);
+
     const date = new Date(eventData.start_date).toISOString().split("T")[0];
     const eventName = eventData.event_name;
     const eventCity = eventData.city;
-    console.log("eventdata======", date, eventName, eventCity);
 
-    console.log(data);
     const startDate = eventData.start_date;
     const targetDate = eventData.end_date;
 
@@ -199,7 +197,7 @@ loading="eager"
           </div>
         </div>
         <Image
-loading="eager"
+          loading="eager"
           className="rounded-full shadow-md border-white border-[6px] mx-auto mt-[-80px] z-10"
           width={170}
           height={170}
@@ -230,7 +228,7 @@ loading="eager"
                 className="group cursor-pointer transition-500 shadow hover:bg-[#B0CB1F]  bg-white border-secondary/70 p-6 flex items-center gap-5"
               >
                 <Image
-loading="eager" src={"/email.svg"} width={30} height={30} alt="cube" />
+                  loading="eager" src={"/email.svg"} width={30} height={30} alt="cube" />
                 <Link
                   href={"mailto:example@example.com"}
                   style={{ transitionDuration: "500ms" }}
@@ -246,7 +244,7 @@ loading="eager" src={"/email.svg"} width={30} height={30} alt="cube" />
                 className="group bg-white transition-500 hover:bg-[#B0CB1F] cursor-pointer shadow p-6 flex items-center gap-5"
               >
                 <Image
-loading="eager"
+                  loading="eager"
                   src={"/location-pin.svg"}
                   width={30}
                   height={30}

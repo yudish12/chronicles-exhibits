@@ -39,7 +39,6 @@ const page = async () => {
   let homePageData = resp;
   return (
     <>
-      {/* {/* <  /> */}
       <Header />
       <div className="hero flex flex-col justify-center items-center h-[88vh]">
       </div>
