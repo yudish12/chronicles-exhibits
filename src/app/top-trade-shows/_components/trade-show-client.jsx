@@ -1,9 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TradeshowSearch from "./Tradeshow-search";
 
 const TradeShowClient = ({ data, tradeShows, totalPages, page, limit }) => {
-  console.log(tradeShows);
   const [shows, setShows] = useState(tradeShows.data);
 
   return (
@@ -21,9 +20,10 @@ const TradeShowClient = ({ data, tradeShows, totalPages, page, limit }) => {
         <div
           id="top-trade-shows"
           className="text-[17px] md:mx-16 lg:mx-24 text-justify mt-6"
-          dangerouslySetInnerHTML={{ __html: `${data.fields[1].value}<br/><br/>${data.fields[2].value}` }}
+          dangerouslySetInnerHTML={{
+            __html: `${data.fields[1].value}<br/><br/>${data.fields[2].value}`,
+          }}
         ></div>
-
       )}
     </div>
   );

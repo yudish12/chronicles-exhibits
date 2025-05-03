@@ -5,6 +5,7 @@ import { Card, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Pagination } from "./_components/Pagination";
 import BlogDesc from "./blog-description";
+import ClientLink from "@/components/ClientLink";
 
 const BlogsPagination = ({
   blogs,
@@ -32,7 +33,10 @@ const BlogsPagination = ({
               key={index}
               className="flex border max-w-[650px] 2xl:max-w-[740px] border-secondary flex-col bg-white/60 min-h-[250px] md:flex-row items-start shadow-two rounded-lg overflow-hidden py-2"
             >
-              <div className="lg:w-[50%] xl:h-full min-h-[260px] sm:min-h-[20px] h-full lg:h-4/5 p-4">
+              <Link
+                href={`/${blog.slug}`}
+                className="lg:w-[50%] xl:h-full min-h-[260px] sm:min-h-[20px] h-full lg:h-4/5 p-4"
+              >
                 <Image
                   loading="eager"
                   src={blog.image}
@@ -42,8 +46,7 @@ const BlogsPagination = ({
                   className="w-full h-full rounded-lg"
                   priority
                 />
-              </div>
-
+              </Link>
               <div className="lg:w-[50%] h-full p-4 flex flex-col justify-between">
                 <CardTitle className="text-2xl font-bold text-secondary heading-font">
                   {blog.title}
