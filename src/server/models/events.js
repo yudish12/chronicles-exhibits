@@ -50,6 +50,10 @@ const eventSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    redirect: {
+      type: String,
+      default: null,
+    },
     email: {
       type: String,
     },

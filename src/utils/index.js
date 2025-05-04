@@ -1,3 +1,5 @@
+import events from '../server/models/events';
+
 import {
   boothsizePageFields,
   FAQPageFields,
@@ -8,7 +10,7 @@ import {
 } from "@/lib/config";
 import * as jwtFuncs from "./jwt";
 const validateBlogAddData = (data) => {
-  console.log("data" , data)
+  console.log("data", data)
   const requiredFields = [
     { key: "title", message: "Title is required" },
     { key: "body", message: "Body is required" },
@@ -23,7 +25,7 @@ const validateBlogAddData = (data) => {
 
   for (const field of requiredFields) {
     if (
-      !data[field.key] || 
+      !data[field.key] ||
       (field.isArray && (!Array.isArray(data[field.key]) || data[field.key].length === 0)) // Ensure it's a non-empty array
     ) {
       return getActionFailureResponse(field.message, field.key);
@@ -37,7 +39,26 @@ const validateBlogAddData = (data) => {
 
   return null; // No errors
 };
-const validateEventData = (data) => {
+
+async function findEventByRedirectSlug(data) {
+  // const redirectValue = data.redirect;
+  try {
+    const result = await events.findOne({
+      slug: data.redirect
+    });
+    console.log(result)
+    if (result) {
+      return result;
+    } else {
+      console.error('Enter a valid URL');
+    }
+  } catch (error) {
+    console.error('Error searching events:', error);
+    throw error;
+  }
+};
+
+const validateEventData = async (data) => {
 
   const requiredFields = [
     { key: "event_name", message: "Event name is required" },
@@ -52,14 +73,14 @@ const validateEventData = (data) => {
     { key: "meta_title", message: "Meta title is required" },
     { key: "meta_description", message: "Meta description is required" },
     { key: "meta_keywords", message: "Meta keywords are required", isArray: true },
-    {key : "slug", message : "Slug is required "},
+    { key: "slug", message: "Slug is required " },
     { key: "email", message: "Email is required" },
-    { key: "website", message: "Website is required" }
+    { key: "website", message: "Website is required" },
   ];
 
   for (const field of requiredFields) {
-    if( !data[field.key] || 
-    field.isArray && (!Array.isArray(data[field.key]) || data[field.key].length === 0)) {
+    if (!data[field.key] ||
+      field.isArray && (!Array.isArray(data[field.key]) || data[field.key].length === 0)) {
       return getActionFailureResponse(field.message, field.key);
     }
   }
@@ -72,8 +93,12 @@ const validateEventData = (data) => {
     return getActionFailureResponse("Invalid website", "website");
   }
 
+  const slugData = await findEventByRedirectSlug(data);
+  console.log(slugData);
+
   return null; // No errors
 };
+
 const getActionSuccessResponse = (data, count) => {
   return {
     success: true,
@@ -150,7 +175,7 @@ export const getPageNameAndUrl = (pathname) => {
   }
 
   // Split the path by slashes and hyphens to format it correctly
-  const parts = cleanPath.split("/").map(segment => 
+  const parts = cleanPath.split("/").map(segment =>
     segment.split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ")
