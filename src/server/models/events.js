@@ -50,16 +50,20 @@ const eventSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    redirect: {
+      type: String,
+      default: null,
+    },
     email: {
       type: String,
     },
     website: {
       type: String,
     },
-    isDraft : {
-      type : String , 
-      default : "true"
-    }
+    isDraft: {
+      type: String,
+      default: "true",
+    },
   },
   { timestamps: true }
 );
@@ -67,6 +71,7 @@ const eventSchema = new mongoose.Schema(
 eventSchema.index({ slug: 1 }, { unique: true });
 eventSchema.index({ createdAt: -1 });
 
-const events = mongoose.models.events || mongoose.model("events", eventSchema);
+const events =
+  mongoose?.models?.events || mongoose.model("events", eventSchema);
 
 export default events;

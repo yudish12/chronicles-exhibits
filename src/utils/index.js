@@ -1,3 +1,5 @@
+import events from "../server/models/events";
+
 import {
   boothsizePageFields,
   FAQPageFields,
@@ -8,7 +10,7 @@ import {
 } from "@/lib/config";
 import * as jwtFuncs from "./jwt";
 const validateBlogAddData = (data) => {
-  console.log("data" , data)
+  console.log("data", data);
   const requiredFields = [
     { key: "title", message: "Title is required" },
     { key: "body", message: "Body is required" },
@@ -18,18 +20,22 @@ const validateBlogAddData = (data) => {
     { key: "image_alt_text", message: "Image alt text is required" },
     { key: "meta_title", message: "Meta title is required" },
     { key: "meta_description", message: "Meta description is required" },
-    { key: "meta_keywords", message: "Meta keywords are required", isArray: true },
+    {
+      key: "meta_keywords",
+      message: "Meta keywords are required",
+      isArray: true,
+    },
   ];
 
   for (const field of requiredFields) {
     if (
-      !data[field.key] || 
-      (field.isArray && (!Array.isArray(data[field.key]) || data[field.key].length === 0)) // Ensure it's a non-empty array
+      !data[field.key] ||
+      (field.isArray &&
+        (!Array.isArray(data[field.key]) || data[field.key].length === 0)) // Ensure it's a non-empty array
     ) {
       return getActionFailureResponse(field.message, field.key);
     }
   }
-
 
   // if (data.isDraft === undefined || data.isDraft === null) {
   //   return getActionFailureResponse("Blog status is required", "isDraft");
@@ -37,8 +43,25 @@ const validateBlogAddData = (data) => {
 
   return null; // No errors
 };
-const validateEventData = (data) => {
 
+async function findEventByRedirectSlug(data) {
+  // const redirectValue = data.redirect;
+  try {
+    const result = await events.findOne({
+      slug: data.redirect,
+    });
+    if (result) {
+      return result;
+    } else {
+      throw new Error("Enter a valid redirect slug");
+    }
+  } catch (error) {
+    console.error("Error searching events:", error);
+    throw error;
+  }
+}
+
+const validateEventData = async (data) => {
   const requiredFields = [
     { key: "event_name", message: "Event name is required" },
     { key: "start_date", message: "Start date is required" },
@@ -51,15 +74,22 @@ const validateEventData = (data) => {
     { key: "icon_alt_text", message: "Icon alt text is required" },
     { key: "meta_title", message: "Meta title is required" },
     { key: "meta_description", message: "Meta description is required" },
-    { key: "meta_keywords", message: "Meta keywords are required", isArray: true },
-    { key : "slug", message : "Slug is required "},
+    {
+      key: "meta_keywords",
+      message: "Meta keywords are required",
+      isArray: true,
+    },
+    { key: "slug", message: "Slug is required " },
     { key: "email", message: "Email is required" },
-    { key: "website", message: "Website is required" }
+    { key: "website", message: "Website is required" },
   ];
 
   for (const field of requiredFields) {
-    if( !data[field.key] || 
-    field.isArray && (!Array.isArray(data[field.key]) || data[field.key].length === 0)) {
+    if (
+      !data[field.key] ||
+      (field.isArray &&
+        (!Array.isArray(data[field.key]) || data[field.key].length === 0))
+    ) {
       return getActionFailureResponse(field.message, field.key);
     }
   }
@@ -71,9 +101,13 @@ const validateEventData = (data) => {
   if (!isValidWebsite(data.website)) {
     return getActionFailureResponse("Invalid website", "website");
   }
+  if (data.redirect) {
+    const slugData = await findEventByRedirectSlug(data);
+  }
 
   return null; // No errors
 };
+
 const getActionSuccessResponse = (data, count) => {
   return {
     success: true,
@@ -132,7 +166,7 @@ export const getPageNameAndUrl = (pathname) => {
   const domain = "https://chronicleexhibits.com";
 
   // Ensure pathname is a string and handle empty or undefined cases
-  if (!pathname || typeof pathname !== 'string') {
+  if (!pathname || typeof pathname !== "string") {
     return { name: "Unknown", url: domain };
   }
 
@@ -150,8 +184,9 @@ export const getPageNameAndUrl = (pathname) => {
   }
 
   // Split the path by slashes and hyphens to format it correctly
-  const parts = cleanPath.split("/").map(segment => 
-    segment.split("-")
+  const parts = cleanPath.split("/").map((segment) =>
+    segment
+      .split("-")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ")
   );
@@ -161,7 +196,6 @@ export const getPageNameAndUrl = (pathname) => {
   return { name, url: `${domain}/${cleanPath}` };
 };
 
-
 export {
   jwtFuncs,
   convertHumanReadableText,
@@ -169,5 +203,5 @@ export {
   getActionFailureResponse,
   getPageFieldsByName,
   validateBlogAddData,
-  validateEventData
+  validateEventData,
 };

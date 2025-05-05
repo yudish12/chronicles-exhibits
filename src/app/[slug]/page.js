@@ -9,15 +9,19 @@ import React from "react";
 import Timer from "../top-trade-shows/_shows_comps/_components/Timer";
 import { Calendar, MapPin } from "lucide-react";
 import dynamic from "next/dynamic";
-const BoothSizeForm = dynamic(() => import("../top-trade-shows/_shows_comps/_components/BoothSizeForm"))
+const BoothSizeForm = dynamic(() =>
+  import("../top-trade-shows/_shows_comps/_components/BoothSizeForm")
+);
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Products from "../(landing)/Products";
-const BlogForm = dynamic(() => import("../blogs/_components/BlogForm"))
-import "./blog_id.css"
-import "./show_name.css"
+const BlogForm = dynamic(() => import("../blogs/_components/BlogForm"));
+import "./blog_id.css";
+import "./show_name.css";
 import { cn } from "@/lib/utils";
 import { notFound, redirect } from "next/navigation";
-const WebsitePopup = dynamic(() => import("../top-trade-shows/_shows_comps/_components/website-popup"))
+const WebsitePopup = dynamic(() =>
+  import("../top-trade-shows/_shows_comps/_components/website-popup")
+);
 // if blog and event both are not found , then return 404
 
 export async function generateMetadata({ params }) {
@@ -32,7 +36,7 @@ export async function generateMetadata({ params }) {
       keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
       alternates: {
         canonical: `https://chronicleexhibits.com/${slug}`,
-      }
+      },
     };
   }
 
@@ -44,7 +48,7 @@ export async function generateMetadata({ params }) {
     keywords: eventData?.meta_keywords?.join(",") ?? "Default Keywords",
     alternates: {
       canonical: `https://chronicleexhibits.com/${slug}`,
-    }
+    },
   };
 }
 
@@ -55,7 +59,6 @@ const Page = async ({ params }) => {
   const { data } = await getSingleBlog({ slug: slug, isDraft: "false" });
 
   if (data) {
-
     const blogFromDb = await getAllBlogs(
       { isDraft: "false" },
       null,
@@ -149,8 +152,11 @@ const Page = async ({ params }) => {
   console.log(eventData);
   if (eventData) {
     //redirection should be implemented from admin pannel
-    if (slug === "hai-heli-expo") {
-      return redirect("/verticon")
+    // if(slug === "hai-heli-expo"){
+    //   return redirect("/verticon")
+    // }
+    if (eventData.redirect) {
+      return redirect(`/${eventData.redirect}`);
     }
 
     const date = new Date(eventData.start_date).toISOString().split("T")[0];
@@ -228,7 +234,12 @@ const Page = async ({ params }) => {
                 className="group cursor-pointer transition-500 shadow hover:bg-[#B0CB1F]  bg-white border-secondary/70 p-6 flex items-center gap-5"
               >
                 <Image
-                  loading="eager" src={"/email.svg"} width={30} height={30} alt="cube" />
+                  loading="eager"
+                  src={"/email.svg"}
+                  width={30}
+                  height={30}
+                  alt="cube"
+                />
                 <Link
                   href={"mailto:example@example.com"}
                   style={{ transitionDuration: "500ms" }}
@@ -276,7 +287,11 @@ const Page = async ({ params }) => {
                 </Button>
               </DialogTrigger>
               <DialogContent className="w-full">
-                <BoothSizeForm eventCity={eventCity} eventName={eventName} date={startDate} />
+                <BoothSizeForm
+                  eventCity={eventCity}
+                  eventName={eventName}
+                  date={startDate}
+                />
               </DialogContent>
             </Dialog>
           </div>
