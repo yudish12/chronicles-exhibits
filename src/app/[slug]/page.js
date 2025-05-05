@@ -158,13 +158,11 @@ const Page = async ({ params }) => {
     if (eventData.redirect) {
       return redirect(`/${eventData.redirect}`);
     }
-    console.group("event data", eventData.start_date);
+
     const date = new Date(eventData.start_date).toISOString().split("T")[0];
     const eventName = eventData.event_name;
     const eventCity = eventData.city;
-    console.log("eventdata======", date, eventName, eventCity);
 
-    console.log(data);
     const startDate = eventData.start_date;
     const targetDate = eventData.end_date;
 

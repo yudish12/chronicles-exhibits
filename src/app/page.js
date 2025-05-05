@@ -6,18 +6,21 @@ import FactsAndFigures from "./(landing)/FactsAndFigures";
 import Ourworks from "./(landing)/Ourworks";
 import Leadingtrade from "./(landing)/Leadingtrade";
 import Faq from "./(landing)/Faq";
-import Queryform from "./(landing)/Queryform"
+import Queryform from "./(landing)/Queryform";
 import Footer from "@/components/ui/footer";
 import { getSinglePage } from "@/server/actions/pages";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const Header = dynamic(()=>import('@/components/ui/header'))
+const Header = dynamic(() => import("@/components/ui/header"));
 // import DownArrow from "./down-arrow";
 
 // export const dynamic = 'force-static';
 
 export async function generateMetadata({ params }) {
-  const homePageData = await getSinglePage({ name: "home" }, "meta_keywords meta_title meta_description");
+  const homePageData = await getSinglePage(
+    { name: "home" },
+    "meta_keywords meta_title meta_description"
+  );
   return {
     title: homePageData.data.meta_title,
     description: homePageData.data.meta_description,
@@ -31,18 +34,16 @@ export async function generateMetadata({ params }) {
 const page = async () => {
   // const homePageData = await getSinglePage({ name: "home" });
   // console.log("homepagedata" , homePageData)
-  const res = await fetch("https://chronicleexhibits.com/api/home/", {
+  const res = await fetch("https://chronicles-exhibits.vercel.app/api/home/", {
     next: { revalidate: 3600 },
-  })
-  console.log("RESPONSE" , res)
+  });
+  console.log("RESPONSE", res);
   const resp = await res.json();
   let homePageData = resp;
   return (
     <>
-      {/* {/* <  /> */}
       <Header />
-      <div className="hero flex flex-col justify-center items-center h-[88vh]">
-      </div>
+      <div className="hero flex flex-col justify-center items-center h-[88vh]"></div>
       <About fields={homePageData.data.fields} />
       <Products
         title={homePageData.data.fields[23].value}

@@ -262,9 +262,11 @@ export const addData = async (data) => {
       validationError = await validateEventData(data);
     console.log("validation error ", validationError);
     if (validationError) return validationError;
+
     data.slug = data.slug.replaceAll(" ", "-").toLowerCase();
+
     const resp = await events.create(data);
-    console.log("added data ", resp);
+
     return getActionSuccessResponse(resp);
   } catch (error) {
     console.log(error);

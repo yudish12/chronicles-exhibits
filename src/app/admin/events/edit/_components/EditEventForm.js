@@ -18,7 +18,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 const EditEventForm = ({ singleEvent, cities }) => {
-  console.log(singleEvent);
+  
   const [event, setEvent] = useState(singleEvent);
   const router = useRouter();
 

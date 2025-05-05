@@ -57,7 +57,7 @@ const AddEventPage = () => {
     e.preventDefault();
     try {
       const resp = await addData(singleEvent);
-      console.log(resp)
+      
       if (!resp?.success) {
         toast.error(resp.err);
         return;
