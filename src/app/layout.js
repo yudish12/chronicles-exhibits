@@ -17,8 +17,16 @@ const jost = localFont({
 
 const ptSansNarrow = localFont({
   src: [
-    { path: "../fonts/PT_Sans-Narrow-Web-Regular.ttf", weight: "400", style: "normal" },
-    { path: "../fonts/PT_Sans-Narrow-Web-Bold.ttf", weight: "700", style: "normal" },
+    {
+      path: "../fonts/PT_Sans-Narrow-Web-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/PT_Sans-Narrow-Web-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
   ],
   variable: "--font-pt-sans-narrow",
   display: "swap",
@@ -39,7 +47,7 @@ export const metadata = {
     locale: "en_US",
   },
   verification: {
-    google: "52R0xHP_gQg6T7bSoOGz-PviftlVs0AppNw86tne_KU",
+    google: "Ce4DoKijycNUuVq3AaV7BtPO3BWEyxB7fYKJyBzdqdc",
   },
 };
 
