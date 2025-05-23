@@ -15,10 +15,15 @@ import { Trash2 } from "lucide-react";
 import { CitySearchSelect } from "@/components/ui/city-search-select";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 
 const EditEventForm = ({ singleEvent, cities }) => {
-  
   const [event, setEvent] = useState(singleEvent);
   const router = useRouter();
 
@@ -27,7 +32,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
 
     const resp = await updateData(event._id, {
       event_name: event.event_name,
-      start_date: event.start_date,
+      start_date: event?.start_date,
       end_date: event.end_date,
       location_id: event.location_id,
       icon: event.icon,
@@ -46,7 +51,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
       meta_title: event.meta_title,
       meta_keywords: event.meta_keywords ?? [],
       isDraft: event.isDraft,
-      redirect: event.redirect
+      redirect: event.redirect,
     });
 
     if (!resp.success) {
@@ -62,8 +67,8 @@ const EditEventForm = ({ singleEvent, cities }) => {
     setEvent({
       ...event,
       // slug: event.event_name.toLowerCase().replaceAll(" ", "-").replace(".", ""),
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <form
@@ -186,7 +191,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
             <Label>Start Date</Label>
             <Input
               type="date"
-              value={new Date(event.start_date).toISOString().slice(0, 10)}
+              value={new Date(event?.start_date).toISOString().slice(0, 10)}
               onChange={(e) => {
                 console.log(typeof e.target.value);
                 setEvent({ ...event, start_date: e.target.value });
@@ -199,7 +204,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
             <Label>End Date</Label>
             <Input
               type="date"
-              min={event.start_date}
+              min={event?.start_date}
               value={new Date(event.end_date).toISOString().slice(0, 10)}
               onChange={(e) => setEvent({ ...event, end_date: e.target.value })}
             />
@@ -302,7 +307,9 @@ const EditEventForm = ({ singleEvent, cities }) => {
             <Label>Redirect</Label>
             <Input
               value={event.redirect ?? ""}
-              onChange={(e) => setEvent({ ...event, redirect: e.target.value ?? "" })}
+              onChange={(e) =>
+                setEvent({ ...event, redirect: e.target.value ?? "" })
+              }
             />
           </div>
         </CardContent>

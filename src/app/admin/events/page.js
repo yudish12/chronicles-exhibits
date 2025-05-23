@@ -35,7 +35,7 @@ import Link from "next/link";
 import { Pagination } from "./_components/Pagination";
 import { Input } from "@/components/ui/input";
 import Search from "@/components/ui/search";
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
 export default function Events() {
   const router = useRouter();
   const [events, setEvents] = React.useState([]);
@@ -201,7 +201,7 @@ export default function Events() {
                   {event.event_name}
                 </TableCell>
                 <TableCell className="text-center">
-                  {new Date(event.start_date).toLocaleDateString()}
+                  {new Date(event?.start_date).toLocaleDateString()}
                 </TableCell>
                 <TableCell className="text-center">
                   {new Date(event.end_date).toLocaleDateString()}
@@ -211,29 +211,30 @@ export default function Events() {
                 </TableCell>
                 <TableCell className="text-center">
                   <div
-                    className={`${getEventStatus(event.start_date, event.end_date).color
-                      } text-white p-2 px-6 mx-auto  w-max rounded-lg`}
+                    className={`${
+                      getEventStatus(event?.start_date, event.end_date).color
+                    } text-white p-2 px-6 mx-auto  w-max rounded-lg`}
                   >
-                    {getEventStatus(event.start_date, event.end_date).text}
+                    {getEventStatus(event?.start_date, event.end_date).text}
                   </div>
                 </TableCell>
-                <TableCell className="text-center"><Badge className={'text-white p-2 px-6 mx-auto  w-max rounded-lg'}>{event.isDraft === "true" ? "Draft" : "Published" }</Badge></TableCell>
+                <TableCell className="text-center">
+                  <Badge
+                    className={"text-white p-2 px-6 mx-auto  w-max rounded-lg"}
+                  >
+                    {event.isDraft === "true" ? "Draft" : "Published"}
+                  </Badge>
+                </TableCell>
                 <TableCell className="text-center">
                   <div className="flex mx-auto justify-center space-x-2">
-                    <Link
-                      href={`/${event.slug}`}
-                      target="_blank"
-                    >
+                    <Link href={`/${event.slug}`} target="_blank">
                       <Button variant="outline" size="icon">
                         <Eye className="h-4 w-4" />
                         <span className="sr-only">View {event.event_name}</span>
                       </Button>
                     </Link>
                     <Link href={`/admin/events/edit/${event._id}`}>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                      >
+                      <Button variant="outline" size="icon">
                         <Pencil className="h-4 w-4" />
                         <span className="sr-only">Edit {event.event_name}</span>
                       </Button>
