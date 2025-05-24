@@ -31,6 +31,9 @@ export async function generateMetadata({ params }) {
   return {
     title: data[0]?.meta_title || "Default Title",
     description: data[0]?.meta_description || "Default Description",
+    alternates: {
+      canonical: `https://chronicleexhibits.com/trade-show-booth-rentals-${location_name}`,
+    },
     keywords: data[0]?.meta_keywords?.join(",") ?? "Default Keywords",
   };
 }

@@ -1,6 +1,6 @@
 import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
- 
+
 import BlogsPagination from "./blogsWithpagination";
 import { getAllBlogs } from "@/server/actions/blogs";
 import { notFound } from "next/navigation";
@@ -12,6 +12,9 @@ export const generateMetadata = async ({}) => {
     title: data?.meta_title || "Default Title",
     description: data?.meta_description || "Default Description",
     keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
+    alternates: {
+      canonical: `https://chronicleexhibits.com/blog`,
+    },
   };
 };
 
@@ -23,11 +26,11 @@ const Page = async ({ params, searchParams }) => {
   const skip = (page - 1) * limit;
 
   const blogs = await getAllBlogs(
-    {isDraft : "false"},
+    { isDraft: "false" },
     skip,
     limit,
     "name title slug image image_alt_text body"
-  )
+  );
 
   if (!blogs?.data) {
     notFound();

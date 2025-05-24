@@ -1,17 +1,23 @@
 import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
- 
+
 import { getSinglePage } from "@/server/actions/pages";
 import React from "react";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export const generateMetadata = async () => {
-  const { data } = await getSinglePage({ name: "faq" }, "meta_title meta_description meta_keywords");
+  const { data } = await getSinglePage(
+    { name: "faq" },
+    "meta_title meta_description meta_keywords"
+  );
   return {
     title: data?.meta_title || "Default Title",
     description: data?.meta_description || "Default Description",
     keywords: data?.meta_keywords?.join(",") ?? "Default Keywords",
+    alternates: {
+      canonical: `https://chronicleexhibits.com/faq`,
+    },
   };
 };
 

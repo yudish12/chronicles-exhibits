@@ -8,11 +8,17 @@ import Ourworks from "../(landing)/Ourworks";
 import { getSinglePage } from "@/server/actions/pages";
 
 export async function generateMetadata({ params }) {
-  const pageData = await getSinglePage({ name: "custom-trade-show-booth-ideas" }, "meta_keywords meta_title meta_description");
+  const pageData = await getSinglePage(
+    { name: "custom-trade-show-booth-ideas" },
+    "meta_keywords meta_title meta_description"
+  );
   return {
     title: pageData?.data?.meta_title,
     description: pageData?.data?.meta_description,
     keywords: pageData?.data?.meta_keywords,
+    alternates: {
+      canonical: `https://chronicleexhibits.com/custom-trade-show-booth-ideas`,
+    },
   };
 }
 
@@ -47,7 +53,7 @@ const Page = async () => {
         {/* Image Container */}
         <div className="w-full lg:w-1/2">
           <Image
-loading="eager"
+            loading="eager"
             layout="responsive" // Ensures the image is responsive
             width={370} // Aspect ratio width
             height={250} // Aspect ratio height
@@ -86,7 +92,7 @@ loading="eager"
         {/* Image Container */}
         <div className="w-full lg:w-1/2">
           <Image
-loading="eager"
+            loading="eager"
             layout="responsive" // Ensures the image is responsive
             width={370} // Aspect ratio width
             height={250} // Aspect ratio height
