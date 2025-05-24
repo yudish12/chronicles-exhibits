@@ -18,6 +18,9 @@ export async function generateMetadata({ params }) {
     title: pageData?.data?.meta_title,
     description: pageData?.data?.meta_description,
     keywords: pageData?.data?.meta_keywords,
+    alternates: {
+      canonical: `https://chronicleexhibits.com/trade-show-booth-displays-designs`,
+    },
   };
 }
 

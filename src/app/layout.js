@@ -5,6 +5,7 @@ import NextTopLoader from "nextjs-toploader";
 import "@uploadthing/react/styles.css";
 import WhatsAppWidget from "@/components/ui/whatsapp-icon";
 import localFont from "next/font/local";
+import Script from "next/script";
 
 const jost = localFont({
   src: [
@@ -131,14 +132,20 @@ export const metadata = {
   verification: {
     google: "Ce4DoKijycNUuVq3AaV7BtPO3BWEyxB7fYKJyBzdqdc",
   },
-  other: {
-    "application-ld+json": JSON.stringify(organizationSchema),
-  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${jost.variable} ${ptSansNarrow.variable}`}>
+      <head>
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationSchema),
+          }}
+        />
+      </head>
       <GoogleTagManager gtmId="GTM-NR3F6S9R" />
       <body className="font-jost text-foreground bg-background">
         <GoogleAnalytics gaId="G-ET7LT8FESF" />

@@ -9,11 +9,17 @@ import { getSinglePage } from "@/server/actions/pages";
 import ContactInfo from "./_components/ContactInfo";
 
 export async function generateMetadata({ params }) {
-  const pageData = await getSinglePage({ name: "contact-us" }, "meta_keywords meta_title meta_description");
+  const pageData = await getSinglePage(
+    { name: "contact-us" },
+    "meta_keywords meta_title meta_description"
+  );
   return {
     title: pageData?.data?.meta_title,
     description: pageData?.data?.meta_description,
     keywords: pageData?.data?.meta_keywords,
+    alternates: {
+      canonical: `https://chronicleexhibits.com/contact-us`,
+    },
   };
 }
 
@@ -26,7 +32,6 @@ const Page = async () => {
       <Header />
       <main className="min-h-screen">
         <section className="relative booth-design-bg text-white py-24 px-4 sm:px-6 lg:px-8">
-          
           <div className="relative h-full flex flex-col justify-center max-w-7xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
               CONTACT US
