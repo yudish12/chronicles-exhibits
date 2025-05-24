@@ -22,13 +22,6 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/select";
 
 const EditEventForm = ({ singleEvent, cities }) => {
   const [event, setEvent] = useState(singleEvent);
