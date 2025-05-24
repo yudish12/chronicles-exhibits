@@ -31,6 +31,13 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 const AddEventPage = () => {
   const [cityLoading, setCityLoading] = React.useState(true);
   const [singleEvent, setSingleEvent] = React.useState({
@@ -62,7 +69,11 @@ const AddEventPage = () => {
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     try {
-      const resp = await addData(singleEvent);
+      const resp = await addData({
+        ...singleEvent,
+        start_date: new Date(event.start_date).toISOString(),
+        end_date: new Date(event.end_date).toISOString(),
+      });
 
       if (!resp?.success) {
         toast.error(resp.err);

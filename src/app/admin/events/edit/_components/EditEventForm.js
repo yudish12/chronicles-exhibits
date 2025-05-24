@@ -22,6 +22,13 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 
 const EditEventForm = ({ singleEvent, cities }) => {
   const [event, setEvent] = useState(singleEvent);
@@ -32,8 +39,8 @@ const EditEventForm = ({ singleEvent, cities }) => {
 
     const resp = await updateData(event._id, {
       event_name: event.event_name,
-      start_date: event?.start_date,
-      end_date: event.end_date,
+      start_date: new Date(event.start_date).toISOString(),
+      end_date: new Date(event.end_date).toISOString(),
       location_id: event.location_id,
       icon: event.icon,
       body: event.body,

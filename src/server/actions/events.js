@@ -8,10 +8,8 @@ import {
   isValidEmail,
   isValidWebsite,
 } from "@/utils";
-import Locations from "../models/locations";
 import mongoose from "mongoose";
 import Cities from "../models/cities";
-import { validateEventData } from "@/utils";
 await dbConnect();
 
 export const getEventByCity = async (
@@ -168,80 +166,24 @@ export const updateData = async (id, data) => {
       return getActionFailureResponse("Invalid data format", "toast");
     }
 
-    // if (!data.event_name) {
-    //   return getActionFailureResponse("event name is required", "description");
-    // }
-    // if (!data.start_date) {
-    //   return getActionFailureResponse("Start date is required", "description");
-    // }
-    // if (!data.end_date) {
-    //   return getActionFailureResponse("End date is required", "description");
-    // }
-    // if (!data.slug) {
-    //   return getActionFailureResponse("Slug is required", "slug");
-    // }
-    // if (!data.country) {
-    //   return getActionFailureResponse("Country is required", "country");
-    // }
-    // if (!data.city) {
-    //   return getActionFailureResponse("City is required", "city");
-    // }
-    // if (!data.icon) {
-    //   return getActionFailureResponse("Icon is required", "icon");
-    // }
-    // if (!data.body) {
-    //   return getActionFailureResponse("Body is required", "body");
-    // }
-    // if (!data.icon_alt_text) {
-    //   return getActionFailureResponse(
-    //     "Icon alt text is required",
-    //     "icon_alt_text"
-    //   );
-    // }
-    // if (!data.meta_title) {
-    //   return getActionFailureResponse("Meta title is required", "meta_title");
-    // }
-    // if (!data.meta_description) {
-    //   return getActionFailureResponse(
-    //     "Meta description is required",
-    //     "meta_description"
-    //   );
-    // }
-    // if (!data.meta_keywords || !Array.isArray(data.meta_keywords)) {
-    //   return getActionFailureResponse(
-    //     "Meta keywords is required",
-    //     "meta_keywords"
-    //   );
-    // }
+    // Convert dates to proper Date objects
+    if (data.start_date) {
+      data.start_date = new Date(data.start_date);
+    }
+    if (data.end_date) {
+      data.end_date = new Date(data.end_date);
+    }
 
-    // if (!data.email) {
-    //   return getActionFailureResponse("E mail is required", "email");
-    // }
-    // if (!data.website) {
-    //   return getActionFailureResponse("Website is required", "webiste");
-    // }
-
-    // if (!data.address) {
-    //   return getActionFailureResponse("Address is required", "address");
-    // }
-
-    // if (!isValidEmail(data.email)) {
-    //   return getActionFailureResponse("Invalid email", "email");
-    // }
-
-    // if (!isValidWebsite(data.website)) {
-    //   return getActionFailureResponse("Invalid website", "website");
-    // }
     if (String(data.isDraft) === "false") {
       const validationError = await validateEventData(data);
-      console.log("VALIDATION ERROR  ", validationError);
       if (validationError) return validationError;
     }
+
     data.slug = data.slug.replaceAll(" ", "-").toLowerCase();
-    // Find and update the document, returning the updated version
+
     const updatedEvent = await events.findOneAndUpdate({ _id: id }, data, {
-      new: true, // Return the updated document
-      runValidators: true, // Run validation
+      new: true,
+      runValidators: true,
     });
 
     if (!updatedEvent) {
@@ -306,3 +248,67 @@ export const getSingleEvent = async (filter) => {
     return getActionFailureResponse(error.message, "toast");
   }
 };
+
+const validateEventData = async (data) => {
+  const requiredFields = [
+    { key: "event_name", message: "Event name is required" },
+    { key: "start_date", message: "Start date is required" },
+    { key: "end_date", message: "End date is required" },
+    { key: "country", message: "Country is required" },
+    { key: "city", message: "City is required" },
+    { key: "icon", message: "Icon is required" },
+    { key: "body", message: "Body is required" },
+    { key: "address", message: "Address is required" },
+    { key: "icon_alt_text", message: "Icon alt text is required" },
+    { key: "meta_title", message: "Meta title is required" },
+    { key: "meta_description", message: "Meta description is required" },
+    {
+      key: "meta_keywords",
+      message: "Meta keywords are required",
+      isArray: true,
+    },
+    { key: "slug", message: "Slug is required " },
+    { key: "email", message: "Email is required" },
+    { key: "website", message: "Website is required" },
+  ];
+
+  for (const field of requiredFields) {
+    if (
+      !data[field.key] ||
+      (field.isArray &&
+        (!Array.isArray(data[field.key]) || data[field.key].length === 0))
+    ) {
+      return getActionFailureResponse(field.message, field.key);
+    }
+  }
+
+  if (!isValidEmail(data.email)) {
+    return getActionFailureResponse("Invalid email", "email");
+  }
+
+  if (!isValidWebsite(data.website)) {
+    return getActionFailureResponse("Invalid website", "website");
+  }
+  if (data.redirect) {
+    const slugData = await findEventByRedirectSlug(data);
+  }
+
+  return null; // No errors
+};
+
+async function findEventByRedirectSlug(data) {
+  // const redirectValue = data.redirect;
+  try {
+    const result = await events.findOne({
+      slug: data.redirect,
+    });
+    if (result) {
+      return result;
+    } else {
+      throw new Error("Enter a valid redirect slug");
+    }
+  } catch (error) {
+    console.error("Error searching events:", error);
+    throw error;
+  }
+}
