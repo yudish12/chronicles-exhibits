@@ -14,17 +14,23 @@ import Cities from "../models/cities";
 import { validateEventData } from "@/utils";
 await dbConnect();
 
-export const getEventByCity = async (filter={} , city, skip, limit, projection) => {
+export const getEventByCity = async (
+  filter = {},
+  city,
+  skip,
+  limit,
+  projection
+) => {
   try {
     console.log("city", city);
-    let searchFilter = {...filter};
+    let searchFilter = { ...filter };
     // Normalize the input city by removing spaces, hyphens, and converting to lowercase
     const normalizedCity = city.replace(/[\s-]+/g, "").toLowerCase();
 
     // Construct the query using $expr and $regex
     let query = events
       .find({
-        ...searchFilter, 
+        ...searchFilter,
         $expr: {
           $regexMatch: {
             input: {
@@ -36,7 +42,7 @@ export const getEventByCity = async (filter={} , city, skip, limit, projection) 
         },
       })
       .sort({ start_date: 1 });
-    
+
     if (skip) {
       query = query.skip(skip);
     }
@@ -80,13 +86,21 @@ export const getEventByCity = async (filter={} , city, skip, limit, projection) 
   }
 };
 
-export const getAllData = async (skip, limit, projection,filter, admin=false) => {
+export const getAllData = async (
+  skip,
+  limit,
+  projection,
+  filter,
+  admin = false
+) => {
   try {
     let queryFilt = {};
-    if (filter){
+    if (filter) {
       queryFilt = filter;
     }
-  let query = events.find(queryFilt).sort(admin?{  _id: -1  }: {start_date: 1});
+    let query = events
+      .find(queryFilt)
+      .sort(admin ? { _id: -1 } : { start_date: 1 });
     if (skip) {
       query = query.skip(skip);
     }
@@ -107,7 +121,7 @@ export const getAllData = async (skip, limit, projection,filter, admin=false) =>
 
 export const getAllDataBySearch = async (searchValue) => {
   try {
-    if (searchValue.toLowerCase() === "expired"){
+    if (searchValue.toLowerCase() === "expired") {
       const data = await events.find({
         end_date: { $lte: new Date() },
       });
@@ -145,7 +159,6 @@ export const getAllLocations = async () => {
 };
 
 export const updateData = async (id, data) => {
-  console.log(data, "data of update event");
   try {
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return getActionFailureResponse("Invalid id format", "toast");
@@ -219,12 +232,11 @@ export const updateData = async (id, data) => {
     // if (!isValidWebsite(data.website)) {
     //   return getActionFailureResponse("Invalid website", "website");
     // }
-    if(String(data.isDraft) === "false")
-      {
-        const validationError = validateEventData(data);
-        console.log("VALIDATIO ERROR  " , validationError)
-        if (validationError) return validationError;
-      }
+    if (String(data.isDraft) === "false") {
+      const validationError = await validateEventData(data);
+      console.log("VALIDATION ERROR  ", validationError);
+      if (validationError) return validationError;
+    }
     data.slug = data.slug.replaceAll(" ", "-").toLowerCase();
     // Find and update the document, returning the updated version
     const updatedEvent = await events.findOneAndUpdate({ _id: id }, data, {
@@ -245,78 +257,19 @@ export const updateData = async (id, data) => {
 
 export const addData = async (data) => {
   try {
-    // if (!data.event_name) {
-    //   return getActionFailureResponse("event name is required", "description");
-    // }
-    // if (!data.start_date) {
-    //   return getActionFailureResponse("Start date is required", "description");
-    // }
-    // if (!data.end_date) {
-    //   return getActionFailureResponse("End date is required", "description");
-    // }
-    // // if (!data.slug) {
-    // //   return getActionFailureResponse("Slug is required", "slug");
-    // // }
-    // if (!data.country) {
-    //   return getActionFailureResponse("Country is required", "country");
-    // }
-    // if (!data.city) {
-    //   return getActionFailureResponse("City is required", "city");
-    // }
-    // if (!data.icon) {
-    //   return getActionFailureResponse("Icon is required", "icon");
-    // }
-    // if (!data.body) {
-    //   return getActionFailureResponse("Body is required", "body");
-    // }
-    // if (!data.address) {
-    //   return getActionFailureResponse("Address is required", "address");
-    // }
-    // if (!data.icon_alt_text) {
-    //   return getActionFailureResponse(
-    //     "Icon alt text is required",
-    //     "icon_alt_text"
-    //   );
-    // }
-    // if (!data.meta_title) {
-    //   return getActionFailureResponse("Meta title is required", "meta_title");
-    // }
-    // if (!data.meta_description) {
-    //   return getActionFailureResponse(
-    //     "Meta description is required",
-    //     "meta_description"
-    //   );
-    // }
-    // if (!data.meta_keywords || !Array.isArray(data.meta_keywords)) {
-    //   return getActionFailureResponse(
-    //     "Meta keywords is required",
-    //     "meta_keywords"
-    //   );
-    // }
-    // if (!data.email) {
-    //   return getActionFailureResponse("E mail is required", "email");
-    // }
-    // if (!data.website) {
-    //   return getActionFailureResponse("Website is required", "webiste");
-    // }
-
-    // if (!isValidEmail(data.email)) {
-    //   return getActionFailureResponse("Invalid email", "email");
-    // }
-
-    // if (!isValidWebsite(data.website)) {
-    //   return getActionFailureResponse("Invalid website", "website");
-    // }
     let validationError = false;
-    if(data.isDraft === "false") validationError = validateEventData(data);
-    console.log("validation error ",validationError)
+    if (data.isDraft === "false")
+      validationError = await validateEventData(data);
+    console.log("validation error ", validationError);
     if (validationError) return validationError;
+
     data.slug = data.slug.replaceAll(" ", "-").toLowerCase();
+
     const resp = await events.create(data);
-    console.log("added data ", resp);
+
     return getActionSuccessResponse(resp);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     getActionFailureResponse(error.message, "toast");
   }
 };

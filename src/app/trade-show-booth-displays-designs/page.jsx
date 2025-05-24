@@ -1,6 +1,6 @@
 import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
- 
+
 import Image from "next/image";
 import React from "react";
 import "./style.css";
@@ -10,7 +10,10 @@ import { getSinglePage } from "@/server/actions/pages";
 import Accordion from "./_components/Accordion";
 
 export async function generateMetadata({ params }) {
-  const pageData = await getSinglePage({ name: "trade-show-booth-displays-designs" }, "meta_keywords meta_title meta_description");
+  const pageData = await getSinglePage(
+    { name: "trade-show-booth-displays-designs" },
+    "meta_keywords meta_title meta_description"
+  );
   return {
     title: pageData?.data?.meta_title,
     description: pageData?.data?.meta_description,
@@ -22,13 +25,16 @@ const page = async () => {
   const boothsizes = await getAllBoothSizes();
   const cardData = boothsizes.data;
 
-  const res = await fetch("https://chronicleexhibits.com/api/page/all-booths-page", {
-    next: { revalidate: 60 },
-  })
+  const res = await fetch(
+    "https://chronicles-exhibits.vercel.app/api/page/all-booths-page",
+    {
+      next: { revalidate: 60 },
+    }
+  );
   // const res = await getSinglePage({name:"trade-show-booth-displays-designs"})
   const resp = await res.json();
   const data = resp.data;
-  console.log(data)
+  console.log(data);
 
   const questions = [
     data.fields[5].value,
@@ -58,7 +64,7 @@ const page = async () => {
       <div className="px-6 sm:px-8 md:px-12 lg:pr-20 flex items-start lg:justify-center lg:flex-row flex-col gap-12 pt-16 pb-20">
         <div className="lg:w-1/2 w-full lg:max-h-[350px] xl:max-h-[520px] 2xl:max-h-[600px] flex-shrink-0">
           <Image
-loading="eager"
+            loading="eager"
             src={data.fields[3].value}
             alt={data.fields[4].value ?? "booth design"}
             className="w-full lg:max-h-[350px] xl:max-h-[520px] 2xl:max-h-[600px]"
@@ -100,7 +106,7 @@ loading="eager"
             >
               {/* Image Section */}
               <Image
-loading="eager"
+                loading="eager"
                 src={item.image}
                 width={350}
                 height={300}

@@ -46,7 +46,8 @@ const AddEventPage = () => {
     meta_title: "",
     meta_description: "",
     meta_keywords: [],
-    isDraft : "true"
+    isDraft : "true",
+    redirect: ""
   });
 
   const router = useRouter();
@@ -56,7 +57,7 @@ const AddEventPage = () => {
     e.preventDefault();
     try {
       const resp = await addData(singleEvent);
-      console.log(resp)
+      
       if (!resp?.success) {
         toast.error(resp.err);
         return;
@@ -81,7 +82,8 @@ const AddEventPage = () => {
         website: '',
         email: '',
         address: '',
-        isDraft : ""
+        isDraft : "",
+        redirect: ""
       });
       router.push("/admin/events");
     } catch (error) {
@@ -357,6 +359,13 @@ const AddEventPage = () => {
               value={singleEvent.address}
               onChange={(e) => setSingleEvent({ ...singleEvent, address: e.target.value })}
               required
+            />
+          </div>
+          <div className="col-span-2">
+            <Label>Redirect</Label>
+            <Input
+              value={singleEvent.redirect}
+              onChange={(e) => setSingleEvent({ ...singleEvent, redirect: e.target.value})}
             />
           </div>
           </CardContent>

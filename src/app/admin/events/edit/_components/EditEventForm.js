@@ -18,7 +18,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
 
 const EditEventForm = ({ singleEvent, cities }) => {
-  console.log(singleEvent);
+  
   const [event, setEvent] = useState(singleEvent);
   const router = useRouter();
 
@@ -45,7 +45,8 @@ const EditEventForm = ({ singleEvent, cities }) => {
       meta_description: event.meta_description,
       meta_title: event.meta_title,
       meta_keywords: event.meta_keywords ?? [],
-      isDraft : event.isDraft
+      isDraft: event.isDraft,
+      redirect: event.redirect
     });
 
     if (!resp.success) {
@@ -62,7 +63,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
       ...event,
       // slug: event.event_name.toLowerCase().replaceAll(" ", "-").replace(".", ""),
     })
-  },[])
+  }, [])
 
   return (
     <form
@@ -99,7 +100,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
               required
               // pattern="^[a-z0-9-]+$"
               title="No spaces, only lowercase letters and dashes"
-            /> 
+            />
           </div>
           <div>
             <Label>Country</Label>
@@ -204,13 +205,13 @@ const EditEventForm = ({ singleEvent, cities }) => {
             />
           </div>
           <div className="col-span-2">
-          <Label className="mb-4 block">Event Status</Label>
+            <Label className="mb-4 block">Event Status</Label>
             <Select
-              value={event.isDraft ==="true" ? "true" : "false"} 
+              value={event.isDraft === "true" ? "true" : "false"}
               onValueChange={(value) =>
                 setEvent({
                   ...event,
-                  isDraft: value === "true" ? "true": "false", 
+                  isDraft: value === "true" ? "true" : "false",
                 })
               }
             >
@@ -222,7 +223,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
                 <SelectItem value="false">Publish</SelectItem>
               </SelectContent>
             </Select>
-            </div>
+          </div>
 
           <div className="col-span-2">
             <Label>Title</Label>
@@ -295,6 +296,13 @@ const EditEventForm = ({ singleEvent, cities }) => {
               value={event.address}
               onChange={(e) => setEvent({ ...event, address: e.target.value })}
               required
+            />
+          </div>
+          <div className="col-span-2">
+            <Label>Redirect</Label>
+            <Input
+              value={event.redirect ?? ""}
+              onChange={(e) => setEvent({ ...event, redirect: e.target.value ?? "" })}
             />
           </div>
         </CardContent>

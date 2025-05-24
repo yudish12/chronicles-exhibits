@@ -19,14 +19,16 @@ const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
             <h4 className="text-white text-center heading-font text-2xl uppercase font-semibold">
               {show.event_name}
             </h4>
-            <Image
-loading="eager"
-              className="rounded-full"
-              width={120}
-              height={120}
-              src={show.icon}
-              alt={show.event_name ?? "event name"}
-            />
+            <Link href={`/${show.slug}`}>
+              <Image
+                loading="eager"
+                className="rounded-full"
+                width={120}
+                height={120}
+                src={show.icon}
+                alt={show.event_name ?? "event name"}
+              />
+            </Link>
             <div className="flex flex-col gap-2 w-full px-4">
               <p className="flex text-white gap-4">
                 <MapPin color="#B0CB1F" />
