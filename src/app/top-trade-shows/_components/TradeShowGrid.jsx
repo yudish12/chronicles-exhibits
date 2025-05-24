@@ -39,10 +39,10 @@ const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
               <p className="flex gap-4">
                 <Calendar color="#B0CB1F" />
                 <span className="text-[17px] text-white">
-                  {moment(show.start_date).format("DD")}-
-                  {moment(show.end_date).format("DD")}{" "}
-                  {moment(show.start_date).format("MMMM")}{" "}
-                  {moment(show.end_date).format("YYYY")}
+                  {moment(show?.start_date).format("DD")}-
+                  {moment(show?.end_date).format("DD")}{" "}
+                  {moment(show?.start_date).format("MMMM")}{" "}
+                  {moment(show?.end_date).format("YYYY")}
                 </span>
               </p>
             </div>

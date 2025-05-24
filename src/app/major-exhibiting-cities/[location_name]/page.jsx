@@ -20,7 +20,7 @@ import { getEventByCity } from "@/server/actions/events";
 import { notFound } from "next/navigation";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import dynamic from "next/dynamic";
-const EnquiryForm = dynamic(() => import("@/components/Form"))
+const EnquiryForm = dynamic(() => import("@/components/Form"));
 import Selectbox from "./Selectbox";
 
 export async function generateMetadata({ params }) {
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }) {
 const Page = async ({ params }) => {
   const city = (await params).location_name;
   // console.log("city==" , city)
-  const eventByCity = await getEventByCity({isDraft : "false"},city, 0, 4);
+  const eventByCity = await getEventByCity({ isDraft: "false" }, city, 0, 4);
   console.log("eventByCity", eventByCity);
   // console.log("eventByCity",eventByCity.data.slice(0,3))
   let majorExhibitingCities = await getAllLocations();
@@ -48,7 +48,7 @@ const Page = async ({ params }) => {
 
   // }
   const { data } = await getLocationPagebyCity(city);
-  console.log("data",Object.keys(data),data,city , data[0].fields[0].value)
+  console.log("data", Object.keys(data), data, city, data[0].fields[0].value);
   if (!data?.length || !data[0]?.fields?.length) {
     notFound();
   }
@@ -66,12 +66,12 @@ const Page = async ({ params }) => {
   // }
   return (
     <>
-    {console.log("Rendering with data:", data)}
+      {console.log("Rendering with data:", data)}
       {/* <  /> */}
       <Header />
       <div className="single-location-bg flex flex-col justify-center">
         <h2 className="text-center font-bold text-[2.5rem] heading-font uppercase text-white">
-        {data?.[0]?.fields?.[0]?.value ?? "Default Value"}
+          {data?.[0]?.fields?.[0]?.value ?? "Default Value"}
         </h2>
         <h1 className="text-center font-bold text-[2.5rem] heading-font uppercase text-primary">
           {data[0].name}
@@ -100,8 +100,13 @@ const Page = async ({ params }) => {
           {data[0].fields[3].value}
         </h2>
 
-        <div id="show_name_desc" dangerouslySetInnerHTML={{__html:`${data[0].fields[4].value} ${data[0].fields[5].value}`}} className="text-[17px] text-balance text-justify lg:text-center ">
-        </div>
+        <div
+          id="show_name_desc"
+          dangerouslySetInnerHTML={{
+            __html: `${data[0].fields[4].value} ${data[0].fields[5].value}`,
+          }}
+          className="text-[17px] text-balance text-justify lg:text-center "
+        ></div>
       </div>
       <div className="product-bg flex flex-col lg:flex-row gap-12 px-6 md:px-12 sm:px-8 lg:px-20 py-16">
         <Image
@@ -113,10 +118,10 @@ const Page = async ({ params }) => {
           alt={data[0].fields[7].value}
         />
         <div className="w-full font-normal lg:w-1/2 flex flex-col gap-4">
-          <h2 className="text-primary lg:text-justify sm:text-center uppercase heading-font text-3xl md:text-4xl font-semibold"
-           dangerouslySetInnerHTML={{ __html: data[0].fields[8].value }}
->
-          </h2>
+          <h2
+            className="text-primary lg:text-justify sm:text-center uppercase heading-font text-3xl md:text-4xl font-semibold"
+            dangerouslySetInnerHTML={{ __html: data[0].fields[8].value }}
+          ></h2>
           <div
             id="show_name_desc"
             className="text-white"
@@ -133,33 +138,36 @@ const Page = async ({ params }) => {
         </div>
       </div>
       <div className="py-8 px-6 sm:p-12 lg:px-20 xl:px-20 2xl:px-36  pb-10">
-      {data?.[0]?.fields?.[11] && (
-        <h2 className="uppercase text-3xl heading-font-600 text-primary text-center font-semibold">
-          {data[0].fields[11].value}
-        </h2>
-      )}
+        {data?.[0]?.fields?.[11] && (
+          <h2 className="uppercase text-3xl heading-font-600 text-primary text-center font-semibold">
+            {data[0].fields[11].value}
+          </h2>
+        )}
         <p
           className="text-center md:mx-20 lg:mx-44 mt-7 custom-content "
           dangerouslySetInnerHTML={{ __html: data?.[0]?.fields?.[12]?.value }}
-        ></p>       
- <div className="mt-10 grid 2xl:max-w-[1400px] mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-x-4 gap-y-4">
+        ></p>
+        <div className="mt-10 grid 2xl:max-w-[1400px] mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-x-4 gap-y-4">
           {displayedData.map((item, index) => (
             <div
               key={index}
               className="overflow-hidden rounded-xl w-full h-[200px] sm:h-[250px] md:h-[230px]"
             >
               <Image
-loading="eager"
+                loading="eager"
                 width={370}
                 height={300}
                 className="transition-transform w-full h-full duration-300 transform hover:scale-110"
                 src={item.image}
-                alt={`${item.image_alt_text} ${city?.replaceAll("-", " ") // Replace hyphens with spaces
-                      ?.split(" ") // Split the string into words
-                      ?.map(
-                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
-                      ) // Capitalize the first letter of each word
-                      ?.join(" ") ?? ""}`}
+                alt={`${item.image_alt_text} ${
+                  city
+                    ?.replaceAll("-", " ") // Replace hyphens with spaces
+                    ?.split(" ") // Split the string into words
+                    ?.map(
+                      (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                    ) // Capitalize the first letter of each word
+                    ?.join(" ") ?? ""
+                }`}
               />
             </div>
           ))}
@@ -184,23 +192,22 @@ loading="eager"
           <h2 className="text-2xl md:text-3xl font-bold uppercase heading-font text-secondary mb-4">
             {data?.[0]?.fields?.[15]?.value}
           </h2>
-          {
-          data?.[0]?.fields?.[16] && (
-          <div
-            id="show_name_desc"
-            dangerouslySetInnerHTML={{ __html: data?.[0]?.fields?.[16]?.value }}
-          ></div>
-          )
-}
+          {data?.[0]?.fields?.[16] && (
+            <div
+              id="show_name_desc"
+              dangerouslySetInnerHTML={{
+                __html: data?.[0]?.fields?.[16]?.value,
+              }}
+            ></div>
+          )}
         </section>
       </div>
       <div className="bg-gray-200  py-10">
-        { data?.[0]?.fields?.[17]?.value && (
-        <h3 className="text-3xl px-4 heading-font text-secondary text-center uppercase">
-          {data?.[0]?.fields?.[17]?.value}
-        </h3>
-        )
-}
+        {data?.[0]?.fields?.[17]?.value && (
+          <h3 className="text-3xl px-4 heading-font text-secondary text-center uppercase">
+            {data?.[0]?.fields?.[17]?.value}
+          </h3>
+        )}
         <div className="grid place-content-center mx-auto xl:grid-cols-[270px,270px,270px,270px] lg:grid-cols-3 gap-x-8 gap-y-8 md:grid-cols-2 grid-cols-1 gap-4 px-6 sm:px-12 md:px-20 pb-10 mt-12">
           {eventByCity.data.map((show) => (
             <Link
@@ -220,32 +227,32 @@ loading="eager"
                 alt={show.title}
               />
               <div className="flex flex-col gap-2 w-full px-4">
-              <p className="flex text-black gap-4">
-                <MapPin color="#B0CB1F" />
-                <span className="text-[17px]">
-                  {show?.location_id?.city ?? show.city} | United States
-                </span>
-              </p>
-              <p className="flex gap-4">
-                <Calendar color="#B0CB1F" />
-                <span className="text-[17px] text-black">
-                  {moment(show.start_date).format("DD")}-
-                  {moment(show.end_date).format("DD")}{" "}
-                  {moment(show.start_date).format("MMMM")}{" "}
-                  {moment(show.end_date).format("YYYY")}
-                </span>
-              </p>
-            </div>
+                <p className="flex text-black gap-4">
+                  <MapPin color="#B0CB1F" />
+                  <span className="text-[17px]">
+                    {show?.location_id?.city ?? show.city} | United States
+                  </span>
+                </p>
+                <p className="flex gap-4">
+                  <Calendar color="#B0CB1F" />
+                  <span className="text-[17px] text-black">
+                    {moment(show?.start_date).format("DD")}-
+                    {moment(show?.end_date).format("DD")}{" "}
+                    {moment(show?.start_date).format("MMMM")}{" "}
+                    {moment(show?.end_date).format("YYYY")}
+                  </span>
+                </p>
+              </div>
             </Link>
           ))}
         </div>
         <div className="flex justify-center">
           {data?.[0]?.fields?.[18] && (
-          <Link href={`/top-trade-shows/`}>
-            <Button className="text-secondary p-4 py-[22px] duration-300 transition-all text-lg hover:bg-primary hover:text-secondary font-semibold bg-primary">
-            {data?.[0]?.fields?.[18]?.value }           
-             </Button>
-          </Link>
+            <Link href={`/top-trade-shows/`}>
+              <Button className="text-secondary p-4 py-[22px] duration-300 transition-all text-lg hover:bg-primary hover:text-secondary font-semibold bg-primary">
+                {data?.[0]?.fields?.[18]?.value}
+              </Button>
+            </Link>
           )}
         </div>
       </div>

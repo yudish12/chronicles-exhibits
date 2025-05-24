@@ -31,6 +31,13 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 const AddEventPage = () => {
   const [cityLoading, setCityLoading] = React.useState(true);
   const [singleEvent, setSingleEvent] = React.useState({
@@ -260,7 +267,7 @@ const AddEventPage = () => {
               <Input
                 className="rounded-sm"
                 type="date"
-                value={singleEvent.start_date}
+                value={singleEvent?.start_date}
                 onChange={(e) =>
                   setSingleEvent({ ...singleEvent, start_date: e.target.value })
                 }
@@ -272,8 +279,8 @@ const AddEventPage = () => {
               <Input
                 className="rounded-sm"
                 type="date"
-                min={singleEvent.start_date}
-                value={singleEvent.end_date}
+                min={singleEvent?.start_date}
+                value={singleEvent?.end_date}
                 onChange={(e) =>
                   setSingleEvent({ ...singleEvent, end_date: e.target.value })
                 }

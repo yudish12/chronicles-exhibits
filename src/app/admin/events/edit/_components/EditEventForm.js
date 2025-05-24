@@ -22,6 +22,13 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 
 const EditEventForm = ({ singleEvent, cities }) => {
   const [event, setEvent] = useState(singleEvent);
@@ -191,7 +198,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
             <Label>Start Date</Label>
             <Input
               type="date"
-              value={new Date(event.start_date).toISOString().slice(0, 10)}
+              value={new Date(event?.start_date).toISOString().slice(0, 10)}
               onChange={(e) => {
                 console.log(typeof e.target.value);
                 setEvent({ ...event, start_date: e.target.value });
@@ -204,7 +211,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
             <Label>End Date</Label>
             <Input
               type="date"
-              min={event.start_date}
+              min={event?.start_date}
               value={new Date(event.end_date).toISOString().slice(0, 10)}
               onChange={(e) => setEvent({ ...event, end_date: e.target.value })}
             />

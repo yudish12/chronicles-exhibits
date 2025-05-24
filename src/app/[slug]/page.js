@@ -159,11 +159,11 @@ const Page = async ({ params }) => {
       return redirect(`/${eventData.redirect}`);
     }
 
-    const date = new Date(eventData.start_date).toISOString().split("T")[0];
+    const date = new Date(eventData?.start_date).toISOString().split("T")[0];
     const eventName = eventData.event_name;
     const eventCity = eventData.city;
 
-    const startDate = eventData.start_date;
+    const startDate = eventData?.start_date;
     const targetDate = eventData.end_date;
 
     const isExpired = moment(targetDate).isBefore(moment());
