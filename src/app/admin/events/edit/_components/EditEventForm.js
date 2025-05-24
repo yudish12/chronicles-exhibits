@@ -15,10 +15,15 @@ import { Trash2 } from "lucide-react";
 import { CitySearchSelect } from "@/components/ui/city-search-select";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 
 const EditEventForm = ({ singleEvent, cities }) => {
-  
   const [event, setEvent] = useState(singleEvent);
   const router = useRouter();
 
@@ -27,8 +32,8 @@ const EditEventForm = ({ singleEvent, cities }) => {
 
     const resp = await updateData(event._id, {
       event_name: event.event_name,
-      start_date: event.start_date,
-      end_date: event.end_date,
+      start_date: new Date(event.start_date).toISOString(),
+      end_date: new Date(event.end_date).toISOString(),
       location_id: event.location_id,
       icon: event.icon,
       body: event.body,
@@ -46,7 +51,7 @@ const EditEventForm = ({ singleEvent, cities }) => {
       meta_title: event.meta_title,
       meta_keywords: event.meta_keywords ?? [],
       isDraft: event.isDraft,
-      redirect: event.redirect
+      redirect: event.redirect,
     });
 
     if (!resp.success) {
@@ -62,8 +67,8 @@ const EditEventForm = ({ singleEvent, cities }) => {
     setEvent({
       ...event,
       // slug: event.event_name.toLowerCase().replaceAll(" ", "-").replace(".", ""),
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <form
@@ -302,7 +307,9 @@ const EditEventForm = ({ singleEvent, cities }) => {
             <Label>Redirect</Label>
             <Input
               value={event.redirect ?? ""}
-              onChange={(e) => setEvent({ ...event, redirect: e.target.value ?? "" })}
+              onChange={(e) =>
+                setEvent({ ...event, redirect: e.target.value ?? "" })
+              }
             />
           </div>
         </CardContent>

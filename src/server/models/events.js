@@ -68,6 +68,27 @@ const eventSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+eventSchema.pre("save", function (next) {
+  if (this.start_date) {
+    this.start_date = new Date(this.start_date);
+  }
+  if (this.end_date) {
+    this.end_date = new Date(this.end_date);
+  }
+  next();
+});
+
+eventSchema.pre("findOneAndUpdate", function (next) {
+  const update = this.getUpdate();
+  if (update.start_date) {
+    update.start_date = new Date(update.start_date);
+  }
+  if (update.end_date) {
+    update.end_date = new Date(update.end_date);
+  }
+  next();
+});
+
 eventSchema.index({ slug: 1 }, { unique: true });
 eventSchema.index({ createdAt: -1 });
 

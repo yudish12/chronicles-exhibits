@@ -8,10 +8,8 @@ import {
   isValidEmail,
   isValidWebsite,
 } from "@/utils";
-import Locations from "../models/locations";
 import mongoose from "mongoose";
 import Cities from "../models/cities";
-import { validateEventData } from "@/utils";
 await dbConnect();
 
 export const getEventByCity = async (
@@ -250,3 +248,67 @@ export const getSingleEvent = async (filter) => {
     return getActionFailureResponse(error.message, "toast");
   }
 };
+
+const validateEventData = async (data) => {
+  const requiredFields = [
+    { key: "event_name", message: "Event name is required" },
+    { key: "start_date", message: "Start date is required" },
+    { key: "end_date", message: "End date is required" },
+    { key: "country", message: "Country is required" },
+    { key: "city", message: "City is required" },
+    { key: "icon", message: "Icon is required" },
+    { key: "body", message: "Body is required" },
+    { key: "address", message: "Address is required" },
+    { key: "icon_alt_text", message: "Icon alt text is required" },
+    { key: "meta_title", message: "Meta title is required" },
+    { key: "meta_description", message: "Meta description is required" },
+    {
+      key: "meta_keywords",
+      message: "Meta keywords are required",
+      isArray: true,
+    },
+    { key: "slug", message: "Slug is required " },
+    { key: "email", message: "Email is required" },
+    { key: "website", message: "Website is required" },
+  ];
+
+  for (const field of requiredFields) {
+    if (
+      !data[field.key] ||
+      (field.isArray &&
+        (!Array.isArray(data[field.key]) || data[field.key].length === 0))
+    ) {
+      return getActionFailureResponse(field.message, field.key);
+    }
+  }
+
+  if (!isValidEmail(data.email)) {
+    return getActionFailureResponse("Invalid email", "email");
+  }
+
+  if (!isValidWebsite(data.website)) {
+    return getActionFailureResponse("Invalid website", "website");
+  }
+  if (data.redirect) {
+    const slugData = await findEventByRedirectSlug(data);
+  }
+
+  return null; // No errors
+};
+
+async function findEventByRedirectSlug(data) {
+  // const redirectValue = data.redirect;
+  try {
+    const result = await events.findOne({
+      slug: data.redirect,
+    });
+    if (result) {
+      return result;
+    } else {
+      throw new Error("Enter a valid redirect slug");
+    }
+  } catch (error) {
+    console.error("Error searching events:", error);
+    throw error;
+  }
+}

@@ -24,7 +24,13 @@ import { CitySearchSelect } from "@/components/ui/city-search-select";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import { deleteUTFiles } from "@/server/services/uploadthing";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
 const AddEventPage = () => {
   const [cityLoading, setCityLoading] = React.useState(true);
   const [singleEvent, setSingleEvent] = React.useState({
@@ -40,24 +46,28 @@ const AddEventPage = () => {
     icon_alt_text: "",
     booth_title: "",
     booth_description: "",
-    website: '',
-    email: '',
-    address: '',
+    website: "",
+    email: "",
+    address: "",
     meta_title: "",
     meta_description: "",
     meta_keywords: [],
-    isDraft : "true",
-    redirect: ""
+    isDraft: "true",
+    redirect: "",
   });
 
   const router = useRouter();
-  const [cities,setCities] = useState([]);
+  const [cities, setCities] = useState([]);
 
   const handleAddSubmit = async (e) => {
     e.preventDefault();
     try {
-      const resp = await addData(singleEvent);
-      
+      const resp = await addData({
+        ...singleEvent,
+        start_date: new Date(event.start_date).toISOString(),
+        end_date: new Date(event.end_date).toISOString(),
+      });
+
       if (!resp?.success) {
         toast.error(resp.err);
         return;
@@ -79,11 +89,11 @@ const AddEventPage = () => {
         meta_title: "",
         meta_description: "",
         meta_keywords: [],
-        website: '',
-        email: '',
-        address: '',
-        isDraft : "",
-        redirect: ""
+        website: "",
+        email: "",
+        address: "",
+        isDraft: "",
+        redirect: "",
       });
       router.push("/admin/events");
     } catch (error) {
@@ -95,7 +105,7 @@ const AddEventPage = () => {
   const fetchCities = async () => {
     try {
       const resp = await getAllLocations();
-      console.log(resp.data)
+      console.log(resp.data);
       if (!resp.success) {
         toast.error(resp.err);
         return;
@@ -105,21 +115,21 @@ const AddEventPage = () => {
     } catch (error) {
       console.error(error);
       toast.error("An error occurred while fetching data");
-    }finally {
+    } finally {
       setCityLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     fetchCities();
-  },[])
+  }, []);
 
   useEffect(() => {
     setSingleEvent({
       ...singleEvent,
       // slug: singleEvent.event_name.toLowerCase().replaceAll(" ", "-").replace(".", ""),
-    })
-  },[])
+    });
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-start overflow-auto min-h-screen bg-gray-200 p-8 gap-y-6 w-full">
@@ -147,14 +157,14 @@ const AddEventPage = () => {
                 required
               />
             </div>
-            
+
             <div>
               <Label className="mb-4 block">Slug</Label>
               <Input
                 className="rounded-sm"
                 value={singleEvent.slug}
                 onChange={(e) =>
-                  setSingleEvent({...singleEvent,slug: e.target.value})
+                  setSingleEvent({ ...singleEvent, slug: e.target.value })
                 }
                 required
                 // pattern="^[a-z0-9-]+$"
@@ -270,25 +280,25 @@ const AddEventPage = () => {
               />
             </div>
             <div className="col-span-2">
-            <Label className="mb-4 block">Event Status</Label>
-            <Select
-              value={singleEvent.isDraft} // Use isDraft directly as a string
-              onValueChange={(value) =>
-                setSingleEvent({
-                  ...singleEvent,
-                  isDraft: value, // Store it as a string ("true" or "false")
-                })
-              }
-            >
-              <SelectTrigger className="rounded-sm border p-2 w-full">
-                <SelectValue placeholder="Select Status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="true">Draft</SelectItem>
-                <SelectItem value="false">Publish</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+              <Label className="mb-4 block">Event Status</Label>
+              <Select
+                value={singleEvent.isDraft} // Use isDraft directly as a string
+                onValueChange={(value) =>
+                  setSingleEvent({
+                    ...singleEvent,
+                    isDraft: value, // Store it as a string ("true" or "false")
+                  })
+                }
+              >
+                <SelectTrigger className="rounded-sm border p-2 w-full">
+                  <SelectValue placeholder="Select Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="true">Draft</SelectItem>
+                  <SelectItem value="false">Publish</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
 
             <div className="col-span-2">
               <Label className="mb-2 block">Title</Label>
@@ -338,36 +348,44 @@ const AddEventPage = () => {
               />
             </div>
             <div>
-            <Label>Website</Label>
-            <Input
-              value={singleEvent.website}
-              onChange={(e) => setSingleEvent({ ...singleEvent, website: e.target.value })}
-              required
-            />
-          </div>
-          <div>
-            <Label>Contact Email</Label>
-            <Input
-              value={singleEvent.email}
-              onChange={(e) => setSingleEvent({ ...singleEvent, email: e.target.value })}
-              required
-            />
-          </div>
-          <div className="col-span-2">
-            <Label>Address</Label>
-            <Input
-              value={singleEvent.address}
-              onChange={(e) => setSingleEvent({ ...singleEvent, address: e.target.value })}
-              required
-            />
-          </div>
-          <div className="col-span-2">
-            <Label>Redirect</Label>
-            <Input
-              value={singleEvent.redirect}
-              onChange={(e) => setSingleEvent({ ...singleEvent, redirect: e.target.value})}
-            />
-          </div>
+              <Label>Website</Label>
+              <Input
+                value={singleEvent.website}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, website: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div>
+              <Label>Contact Email</Label>
+              <Input
+                value={singleEvent.email}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, email: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div className="col-span-2">
+              <Label>Address</Label>
+              <Input
+                value={singleEvent.address}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, address: e.target.value })
+                }
+                required
+              />
+            </div>
+            <div className="col-span-2">
+              <Label>Redirect</Label>
+              <Input
+                value={singleEvent.redirect}
+                onChange={(e) =>
+                  setSingleEvent({ ...singleEvent, redirect: e.target.value })
+                }
+              />
+            </div>
           </CardContent>
         </Card>
         <Card>
