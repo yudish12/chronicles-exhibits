@@ -1,5 +1,3 @@
-import events from "../server/models/events";
-
 import {
   boothsizePageFields,
   FAQPageFields,
