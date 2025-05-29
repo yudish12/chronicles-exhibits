@@ -64,10 +64,9 @@ const AddEventPage = () => {
     try {
       const resp = await addData({
         ...singleEvent,
-        start_date: new Date(event.start_date).toISOString(),
-        end_date: new Date(event.end_date).toISOString(),
+        start_date: new Date(singleEvent.start_date).toISOString(),
+        end_date: new Date(singleEvent.end_date).toISOString(),
       });
-
       if (!resp?.success) {
         toast.error(resp.err);
         return;
