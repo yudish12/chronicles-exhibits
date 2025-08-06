@@ -20,14 +20,16 @@ const BoothGrid = ({ boothCodes, size }) => {
             className="shadow-one rounded-lg overflow-hidden lg:w-[380px] w-full"
           >
             <CardHeader className="p-0">
-              <Image
-loading="eager"
-                height={250}
-                width={378}
-                src={booth.thumbnail_image}
-                alt={`${booth.image_alt_text}`}
-                className="w-full lg:h-[250px] h-[220px]"
-              />
+              <Link href={`/${size}-trade-show-booth/${booth.booth_code}`}>
+                <Image
+                  loading="eager"
+                  height={250}
+                  width={378}
+                  src={booth.thumbnail_image}
+                  alt={`${booth.image_alt_text}`}
+                  className="w-full lg:h-[250px] h-[220px]"
+                />
+              </Link>
             </CardHeader>
             <CardContent className="p-4 text-center">
               <p className="font-semibold text-lg text-secondary">

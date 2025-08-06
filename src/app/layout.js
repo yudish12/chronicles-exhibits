@@ -115,6 +115,48 @@ const organizationSchema = {
   ],
 };
 
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Chronicle Exhibits LLC",
+  description:
+    "Chronicle Exhibits LLC is a Las Vegas-based trade show booth design and exhibit rental company, offering custom and turnkey solutions for businesses across the U.S.",
+  image: "https://chronicleexhibits.com/chronicle-logo-2.svg",
+  "@id": "https://chronicleexhibits.com/",
+  url: "https://chronicleexhibits.com/",
+  telephone: "+1-725-333-1920",
+  email: "info@chronicleexhibits.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "8465 W. Sahara Ave., Suite 111, Unit #1183",
+    addressLocality: "Las Vegas",
+    addressRegion: "NV",
+    postalCode: "89117",
+    addressCountry: "US",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 36.1459,
+    longitude: -115.277,
+  },
+  openingHours: ["Mo-Fr 09:00-18:00"],
+  priceRange: "$$",
+  areaServed: {
+    "@type": "Place",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "US",
+    },
+  },
+  sameAs: [
+    "https://www.facebook.com/chronicleexhibits/",
+    "https://www.instagram.com/chronicleexhibits/",
+    "https://www.linkedin.com/company/chronicle-exhibits-llc/",
+    "https://www.youtube.com/@Chronicleexhibitsllc/",
+    "https://twitter.com/chroniclexhibit/",
+  ],
+};
+
 export const metadata = {
   title: "Trade show Booth Design | Booth Builder",
   description:
@@ -143,6 +185,13 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationSchema),
+          }}
+        />
+        <Script
+          id="local-business-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(localBusinessSchema),
           }}
         />
       </head>
