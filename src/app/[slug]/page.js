@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { getAllBlogs, getSingleBlog } from "@/server/actions/blogs";
 import { getSingleEvent } from "@/server/actions/events";
-import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -166,7 +165,9 @@ const Page = async ({ params }) => {
     const startDate = eventData?.start_date;
     const targetDate = eventData.end_date;
 
-    const isExpired = moment(targetDate).isBefore(moment());
+    // Fix: Use native Date methods with UTC for consistent comparison
+    const isExpired = new Date(targetDate) < new Date();
+
     return (
       <>
         <div className="detail-trade-show-bg flex flex-col items-center gap-8 px-6 sm:px-20 py-12">
@@ -193,11 +194,17 @@ const Page = async ({ params }) => {
                   isExpired && "text-red-600 line-through	"
                 )}
               >
-                {moment(startDate).format("DD")}{" "}
-                {moment(startDate).format("MMM")} -{" "}
-                {moment(targetDate).format("DD")}{" "}
-                {moment(targetDate).format("MMM")}{" "}
-                {moment(targetDate).format("YYYY")}
+                {/* Fix: Use native Date methods for consistent date formatting */}
+                {new Date(startDate).getUTCDate().toString().padStart(2, "0")}{" "}
+                {new Date(startDate).toLocaleDateString("en-US", {
+                  month: "short",
+                })}{" "}
+                -{" "}
+                {new Date(targetDate).getUTCDate().toString().padStart(2, "0")}{" "}
+                {new Date(targetDate).toLocaleDateString("en-US", {
+                  month: "short",
+                })}{" "}
+                {new Date(targetDate).getUTCFullYear()}
               </span>
             </p>
           </div>

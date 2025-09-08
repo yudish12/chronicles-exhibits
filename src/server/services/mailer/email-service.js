@@ -15,11 +15,12 @@ export class EmailService {
     this.from = `Chronicle Exhibits LLC <${process.env.EMAIL_FROM}>`;
   }
 
-  newTransport() {
-
+  newTransport(replyTo) {
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: 465,
+      replyTo: replyTo,
+      inReplyTo: replyTo,
       secure: true,
       auth: {
         user: process.env.EMAIL_USERNAME,
@@ -35,7 +36,10 @@ export class EmailService {
 
     // Await the result of templateFunc since it is likely async
     const html = await templateFunc(fields, this.page_source);
-    let logoPath = path.join(process.cwd(), "public/chronicle-exhibits-dark-bg.png");
+    let logoPath = path.join(
+      process.cwd(),
+      "public/chronicle-exhibits-dark-bg.png"
+    );
     let attachements = [
       // filename: "chronicle-exhibits-dark-bg.png",
       // path: logoPath,
@@ -56,11 +60,13 @@ export class EmailService {
     const mailOptions = {
       from: this.from,
       to: this.to,
+      replyTo: fields.email ?? process.env.EMAIL_FROM,
+      inReplyTo: fields.email ?? process.env.EMAIL_FROM,
       subject: subject,
       attachments: attachements,
       html: html, // Ensure this is a resolved string
     };
 
-    return this.newTransport().sendMail(mailOptions);
+    return this.newTransport(fields.email ?? this.from).sendMail(mailOptions);
   }
 }
