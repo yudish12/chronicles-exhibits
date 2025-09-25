@@ -14,31 +14,31 @@
 @font-face {
   font-family: "Jost-700";
   src: url("/Oswald-Light.ttf");
-  font-display : swap
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Jost-600";
   src: url("/Oswald-Light.ttf");
-  font-display : swap
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Jost-400";
   src: url("/Oswald-Light.ttf");
-  font-display : swap
+  font-display: swap;
 }
 
 @font-face {
   font-family: "PT-sans-regular";
   src: url("/PT_Sans-Narrow-Web-Regular.ttf");
-  font-display : swap
+  font-display: swap;
 }
 
 @font-face {
   font-family: "PT-sans-bold";
   src: url("/PT_Sans-Narrow-Web-Bold.ttf");
-  font-display : swap
+  font-display: swap;
 }
 
 .cke_notifications_area {
@@ -129,12 +129,11 @@
     font-weight: 300;
     font-style: normal;
   }
- 
 }
 .custom-content a {
-  color : blue ;
+  color: blue;
   /* font-weight : bold ; */
-  text-decoration : inherit 
+  text-decoration: inherit;
 }
 .text-xl-1 {
   font-size: 1.35rem /* 20px */;
@@ -195,21 +194,32 @@
 .hero {
   position: relative;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.621);
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* makes video behave like backgroun
+  z-index: -2;
 }
 
 .hero::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  opacity: 0.8;
-  height: 100%;
-  background: url("../../public/hero-bg.gif") no-repeat center center;
-  mix-blend-mode: darken;
-  background-size: cover;
-  z-index: -2;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* optional overlay */
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
 }
 
 .hero h2 {
@@ -528,7 +538,7 @@
     height: 600px;
   }
 }
-@media (max-width : 480px ){
+@media (max-width: 480px) {
   .detail-trade-show-bg {
     height: 650px;
   }
@@ -632,7 +642,7 @@ input:focus + .flag-dropdown {
   align-items: center;
   padding: 18px 16px; /* Match padding */
   background-color: black !important;
-  color: #b0cb1f!important;
+  color: #b0cb1f !important;
   font-size: 0.875rem; /* Text size of 14px */
   font-weight: bold;
   text-transform: uppercase;
@@ -681,7 +691,7 @@ input:focus + .flag-dropdown {
 }
 
 .schedule-btn:hover {
-  color: white!important; /* Change text color on hover */
+  color: white !important; /* Change text color on hover */
 }
 
 /* Keyframes for the border animation */
@@ -699,7 +709,7 @@ input:focus + .flag-dropdown {
 }
 
 .transition-500 {
-  transition-duration: 500ms!important;
+  transition-duration: 500ms !important;
 }
 
 .tawk-icon-right > img {
@@ -707,15 +717,15 @@ input:focus + .flag-dropdown {
 }
 
 .query-form-phone-input {
-  border: 2px solid #b0cb1f!important;
-  border-radius: 0.5rem!important;
+  border: 2px solid #b0cb1f !important;
+  border-radius: 0.5rem !important;
 }
 
 .query-form-phone-input input {
-  background-color: #d1d5db!important;
-  
-  padding-block: 1.15rem!important;
+  background-color: #d1d5db !important;
+
+  padding-block: 1.15rem !important;
 }
-#top-trade-shows a{
+#top-trade-shows a {
   color: blue;
-} 
+}
