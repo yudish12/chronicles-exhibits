@@ -36,14 +36,14 @@ const ptSansNarrow = localFont({
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "chronicle exhibition llc.",
+  name: "Chronicle Exhibits LLC.",
   url: "https://chronicleexhibits.com/",
   logo: "https://chronicleexhibits.com/chronicle-logo-2.svg",
   description:
-    "chronicle exhibition llc. is a leading trade show booth design and rental company in the USA. We offer custom and rental exhibition booth services across major cities including Las Vegas, Chicago, Orlando, Anaheim, San Diego, Los Angeles, Atlanta, and New York.",
+    "Chronicle Exhibits LLC.is a leading trade show exhibit booth design and rental company in the USA.",
   address: {
     "@type": "PostalAddress",
-    streetAddress: "8465 W. Sahara Ave Suite 111 Unit #1183",
+    streetAddress: "8465 W. Sahara Ave., Suite 111,",
     addressLocality: "Las Vegas",
     addressRegion: "NV",
     postalCode: "89117",
@@ -57,10 +57,10 @@ const organizationSchema = {
     areaServed: "US",
   },
   sameAs: [
-    "https://www.facebook.com/chronicleexhibits",
-    "https://twitter.com/chroniclexhibit",
-    "https://www.youtube.com/@Chronicleexhibitsllc",
-    "https://www.linkedin.com/company/chronicle-exhibits-llc",
+    "https://www.facebook.com/chronicleexhibits/",
+    "https://x.com/chroniclexhibit",
+    "https://www.youtube.com/@Chronicleexhibitsllc/",
+    "https://www.linkedin.com/company/chronicle-exhibits-llc/",
   ],
   foundingDate: "2013",
   areaServed: [
@@ -104,14 +104,76 @@ const organizationSchema = {
       name: "New York",
       url: "https://chronicleexhibits.com/trade-show-booth-rentals-new-york/",
     },
+    {
+      "@type": "Place",
+      name: "Miami",
+      url: "https://chronicleexhibits.com/trade-show-booth-rentals-miami/",
+    },
+    {
+      "@type": "Place",
+      name: "Boston",
+      url: "https://chronicleexhibits.com/trade-show-booth-rentals-boston/",
+    },
+    {
+      "@type": "Place",
+      name: "Denver",
+      url: "https://chronicleexhibits.com/trade-show-booth-rentals-denver/",
+    },
+    {
+      "@type": "Place",
+      name: "Dallas",
+      url: "https://chronicleexhibits.com/trade-show-booth-rentals-dallas/",
+    },
   ],
-  serviceType: [
-    "Custom Trade Show Booth Design",
-    "Trade Show Booth Rental",
-    "Double Decker Booth Design",
-    "Modular Booth Construction",
-    "Portable Exhibition Booths",
-    "Turnkey Trade Show Booth Services",
+  makesOffer: [
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Custom Trade Show Booth Design",
+        serviceType: "Custom Trade Show Booth Design",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Trade Show Booth Rental",
+        serviceType: "Trade Show Booth Rental",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Double Decker Booth Design",
+        serviceType: "Double Decker Booth Design",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Modular Booth Construction",
+        serviceType: "Modular Booth Construction",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Portable Exhibition Booths",
+        serviceType: "Portable Exhibition Booths",
+      },
+    },
+    {
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name: "Turnkey Trade Show Booth Services",
+        serviceType: "Turnkey Trade Show Booth Services",
+      },
+    },
   ],
 };
 
