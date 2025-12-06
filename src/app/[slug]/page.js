@@ -77,7 +77,8 @@ const Page = async ({ params }) => {
       { isDraft: "false" },
       null,
       data.blog_count,
-      "name title slug image image_alt_text"
+      "name title slug image image_alt_text",
+      slug
     );
     const blogsToBeMapped = blogFromDb.data;
     return (

@@ -2,44 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=PT+Sans+Narrow:wght@400;700&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-
-@font-face {
-  font-family: "Jost-900";
-  src: url("/Oswald-Light.ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Jost-700";
-  src: url("/Oswald-Light.ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Jost-600";
-  src: url("/Oswald-Light.ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Jost-400";
-  src: url("/Oswald-Light.ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "PT-sans-regular";
-  src: url("/PT_Sans-Narrow-Web-Regular.ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "PT-sans-bold";
-  src: url("/PT_Sans-Narrow-Web-Bold.ttf");
-  font-display: swap;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 .cke_notifications_area {
   display: none;
@@ -125,7 +88,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "PT-sans-regular";
+    font-family: "Poppins", sans-serif;
     font-weight: 300;
     font-style: normal;
   }
@@ -164,7 +127,8 @@
 }
 
 .body-bold {
-  font-family: "PT-sans-bold";
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
 }
 
 #packge p {
@@ -320,19 +284,22 @@
 }
 
 .heading-font {
-  font-family: "Jost-900";
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
   font-optical-sizing: auto;
   font-style: normal;
 }
 
 .heading-font-700 {
-  font-family: "Jost-700";
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
   font-optical-sizing: auto;
   font-style: normal;
 }
 
 .heading-font-600 {
-  font-family: "Jost-600";
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
   font-optical-sizing: auto;
   font-style: normal;
 }

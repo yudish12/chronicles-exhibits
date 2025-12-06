@@ -7,12 +7,21 @@ import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import { validateBlogAddData } from "@/utils";
 // await dbConnect();
 
-export const getAllBlogs = async (filter , skip, limit, projection) => {
+export const getAllBlogs = async (
+  filter,
+  skip,
+  limit,
+  projection,
+  excludeSlug
+) => {
   try {
     await dbConnect();
     let searchFilter = {};
-    if(filter){
-      searchFilter = filter ;
+    if (filter) {
+      searchFilter = filter;
+    }
+    if (excludeSlug) {
+      searchFilter.slug = { $ne: excludeSlug };
     }
     let query = Blog.find(searchFilter).sort({ _id: -1 });
     if (skip) {
@@ -51,7 +60,7 @@ export const getAllDataBySearch = async (searchValue) => {
 export const updateData = async (id, data) => {
   try {
     await dbConnect();
-    console.log("function hit " , data)
+    console.log("function hit ", data);
     if (!id || !mongoose.Types.ObjectId.isValid(id)) {
       return getActionFailureResponse("Invalid id format", "toast");
     }
@@ -60,10 +69,9 @@ export const updateData = async (id, data) => {
       return getActionFailureResponse("Invalid data format", "toast");
     }
 
-    if(String(data.isDraft) === "false")
-    {
+    if (String(data.isDraft) === "false") {
       const validationError = validateBlogAddData(data);
-      console.log("VALIDATIO ERROR  " , validationError)
+      console.log("VALIDATIO ERROR  ", validationError);
       if (validationError) return validationError;
     }
     // Use findByIdAndUpdate instead of updateOne to get the updated document
@@ -81,7 +89,7 @@ export const updateData = async (id, data) => {
         image_alt_text: data.image_alt_text,
         slug: data.slug.replaceAll(" ", "-").toLowerCase(),
         blog_count: data.blog_count,
-        isDraft : data.isDraft
+        isDraft: data.isDraft,
       },
       {
         new: true, // Return the updated document
@@ -101,12 +109,12 @@ export const updateData = async (id, data) => {
 
 export const addData = async (data) => {
   try {
-    console.log("function hit" , data)
+    console.log("function hit", data);
     await dbConnect();
     let validationError = false;
-    if(data.isDraft === "false") validationError = validateBlogAddData(data);
+    if (data.isDraft === "false") validationError = validateBlogAddData(data);
 
-    console.log("validation error ",validationError)
+    console.log("validation error ", validationError);
 
     if (validationError) return validationError;
 
