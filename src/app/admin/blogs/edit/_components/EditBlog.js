@@ -1,5 +1,5 @@
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import TagsInput from "react-tagsinput";
 import "react-tagsinput/react-tagsinput.css";
 import { updateData } from "@/server/actions/blogs";
@@ -13,7 +13,14 @@ import { deleteUTFiles } from "@/server/services/uploadthing";
 import CkeEditor from "@/components/CkEditor";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
+import { RevalidatePath } from "@/server/actions/revalidate-path";
 
 const EditBlog = ({ singleBlog }) => {
   const [blog, setBlog] = useState(singleBlog);
@@ -30,12 +37,15 @@ const EditBlog = ({ singleBlog }) => {
       meta_description: blog.meta_description,
       meta_keywords: blog.meta_keywords ?? [],
       blog_count: blog.blog_count,
-      isDraft : blog.isDraft
+      isDraft: blog.isDraft,
     });
     if (!resp.success) {
       toast.error(resp.err);
       return;
     }
+    await RevalidatePath("/blog");
+    await RevalidatePath(`/${blog.slug}`);
+    await RevalidatePath(`/[slug]`, "page");
     toast.success("Blog updated successfully");
     router.push("/admin/blogs");
   };
@@ -44,8 +54,8 @@ const EditBlog = ({ singleBlog }) => {
     setBlog({
       ...blog,
       // slug: blog.title.toLowerCase().replaceAll(" ", "-").replace(".", ""),
-    })
-  },[])
+    });
+  }, []);
 
   return (
     <form
@@ -80,7 +90,7 @@ const EditBlog = ({ singleBlog }) => {
               onChange={(e) =>
                 setBlog({
                   ...blog,
-                  slug: e.target.value
+                  slug: e.target.value,
                 })
               }
               title="No spaces, only lowercase letters and dashes"
@@ -148,11 +158,11 @@ const EditBlog = ({ singleBlog }) => {
           <div>
             <Label className="mb-4 block">Blog Status</Label>
             <Select
-              value={blog.isDraft ==="true" ? "true" : "false"} // Convert boolean to string
+              value={blog.isDraft === "true" ? "true" : "false"} // Convert boolean to string
               onValueChange={(value) =>
                 setBlog({
                   ...blog,
-                  isDraft: value === "true" ? "true": "false", // Convert string back to boolean
+                  isDraft: value === "true" ? "true" : "false", // Convert string back to boolean
                 })
               }
             >
@@ -164,7 +174,7 @@ const EditBlog = ({ singleBlog }) => {
                 <SelectItem value="false">Publish</SelectItem>
               </SelectContent>
             </Select>
-            </div>
+          </div>
           <div className="col-span-2">
             <Label className="mb-4 block">Body</Label>
             <CkeEditor

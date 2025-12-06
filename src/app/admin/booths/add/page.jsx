@@ -73,6 +73,16 @@ const AddBoothPage = () => {
         toast.error(resp.err);
         return;
       }
+      await RevalidatePath(`/booth/size/[booth_size]/[booth_code]`, "page");
+      await RevalidatePath(
+        `/booth/size/${resp.data.booth_size.name.toLowerCase()}`
+      );
+      await RevalidatePath(`/booth/size/[booth_size]`, "page");
+      await RevalidatePath(
+        `/booth/size/${resp.data.booth_size.name.toLowerCase()}/${
+          resp.data.slug
+        }`
+      );
       toast.success("Booth added successfully");
       setsingleBooth({
         booth_code: "",
@@ -291,7 +301,10 @@ const AddBoothPage = () => {
               <CkeEditor
                 value={singleBooth.package_description}
                 onChange={(value) => {
-                  setsingleBooth({ ...singleBooth, package_description: value });
+                  setsingleBooth({
+                    ...singleBooth,
+                    package_description: value,
+                  });
                 }}
               />
             </div>

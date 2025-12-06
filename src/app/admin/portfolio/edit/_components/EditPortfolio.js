@@ -7,6 +7,7 @@ import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { updateAllPortfolios } from "@/server/actions/portfolio";
+import { RevalidatePath } from "@/server/actions/revalidate-path";
 const EditPortfolio = ({ singlePortfolio }) => {
   const [portfolio, setPortfolio] = useState(singlePortfolio);
   const handleEditSubmit = async (e) => {
@@ -19,6 +20,7 @@ const EditPortfolio = ({ singlePortfolio }) => {
       toast.error(resp.err);
       return;
     }
+    await RevalidatePath(`/portfolio`);
     toast.success("Blog updated successfully");
   };
   return (

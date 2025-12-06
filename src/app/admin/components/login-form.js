@@ -20,7 +20,7 @@ export default function LoginPage() {
 
     if (resp) {
       toast.success("Login successful");
-      RevalidatePath("/admin");
+      await RevalidatePath("/admin");
     } else {
       toast.error("Invalid credentials");
     }
@@ -79,14 +79,14 @@ export default function LoginPage() {
               <label htmlFor="remember-me">Remember Me</label>
             </div>
             <Dialog>
-            <DialogTrigger asChild>
-            <Link href="#" className="text-primary hover:underline">
-              Forgot Password?
-            </Link>
-            </DialogTrigger>
-            <DialogContent className="h-[350px] overflow-auto">
-            <ForgotPasswordModal />
-          </DialogContent>
+              <DialogTrigger asChild>
+                <Link href="#" className="text-primary hover:underline">
+                  Forgot Password?
+                </Link>
+              </DialogTrigger>
+              <DialogContent className="h-[350px] overflow-auto">
+                <ForgotPasswordModal />
+              </DialogContent>
             </Dialog>
           </div>
           <Button
@@ -101,7 +101,7 @@ export default function LoginPage() {
       {/* Right Section */}
       <div className="flex items-center justify-center w-1/2 bg-gray-100">
         <Image
-loading="eager"
+          loading="eager"
           src="/admin-login.svg"
           alt="Biker"
           width={400}

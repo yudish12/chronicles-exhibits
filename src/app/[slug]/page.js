@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { getAllBlogs, getSingleBlog } from "@/server/actions/blogs";
-import { getSingleEvent } from "@/server/actions/events";
+import { getAllEventsSlugs, getSingleEvent } from "@/server/actions/events";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -22,6 +22,21 @@ const WebsitePopup = dynamic(() =>
   import("../top-trade-shows/_shows_comps/_components/website-popup")
 );
 // if blog and event both are not found , then return 404
+
+export const revalidate = 86400;
+
+export async function generateStaticParams() {
+  const blogs = await getAllBlogs({ isDraft: "false" }, null, null, "slug");
+
+  const events = await getAllEventsSlugs();
+
+  const blogSlugs = blogs.data?.map((b) => ({ slug: b.slug })) || [];
+  const eventSlugs = events.data?.map((e) => ({ slug: e.slug })) || [];
+
+  return [...blogSlugs, ...eventSlugs];
+}
+
+export const dynamicParams = true;
 
 export async function generateMetadata({ params }) {
   const slug = (await params).slug;

@@ -32,9 +32,9 @@ export const getAllPages = async (skip, limit) => {
 };
 export const getSinglePage = async (query, projection) => {
   try {
-    let q = Pages.findOne(query)
-    if(projection){
-      q = q.select(projection)
+    let q = Pages.findOne(query);
+    if (projection) {
+      q = q.select(projection);
     }
     const data = await q.lean();
     return getActionSuccessResponse(data);
@@ -44,15 +44,15 @@ export const getSinglePage = async (query, projection) => {
 };
 
 export const updateData = async (name, data, islocation) => {
-  console.log("update data" , data , "FIELDS",data.fields , islocation)
+  console.log("update data", data, "FIELDS", data.fields, islocation);
   if (islocation) {
     let isValid = true;
 
     const locationPageFields = getPageFieldsByName("location");
-    console.log("LOCATION PAGE FIELDS ",locationPageFields);
+    console.log("LOCATION PAGE FIELDS ", locationPageFields);
     locationPageFields.forEach((field) => {
       const currentField = data.fields.find((f) => f.key === field.key);
-      console.log("current field " , currentField)
+      console.log("current field ", currentField);
       if (!currentField) {
         isValid = false;
         return;
@@ -69,7 +69,7 @@ export const updateData = async (name, data, islocation) => {
       }
       // console.log("ISVALID 3"  , isValid)
     });
-    console.log("ISVALID" , isValid)
+    console.log("ISVALID", isValid);
     if (!isValid) {
       return getActionFailureResponse("Invalid fields data format", "toast");
     }
@@ -81,7 +81,7 @@ export const updateData = async (name, data, islocation) => {
       data,
       { new: true }
     );
-    revalidatePath(`/locations/${name}`);
+    await revalidatePath(`/locations/${name}`);
     return getActionSuccessResponse(locPageResp);
   }
 
@@ -137,7 +137,7 @@ export const updateData = async (name, data, islocation) => {
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
-    if(name === "home") revalidatePath("/");
+    if (name === "home") revalidatePath("/");
     else revalidatePath(`/${name}`);
     return getActionSuccessResponse(resp);
   } catch (error) {

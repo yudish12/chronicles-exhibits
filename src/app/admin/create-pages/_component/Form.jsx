@@ -89,12 +89,13 @@ const PageEditForm = ({ pageData, isLocationPage }) => {
         toast.error(resp.err);
         return;
       }
-      RevalidatePath(`/${pageData.name}`)
+      await RevalidatePath(`/${pageData.name}`);
+      await RevalidatePath(`/${pageData?.slug}`);
       toast.success("Page updated successfully");
-      if(isLocationPage){
-        router.push("/admin/locations")
-      }else{
-      router.push("/admin/create-pages");
+      if (isLocationPage) {
+        router.push("/admin/locations");
+      } else {
+        router.push("/admin/create-pages");
       }
     } catch (error) {
       console.error("Error updating data:", error);

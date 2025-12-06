@@ -10,6 +10,7 @@ import {
 } from "@/utils";
 import mongoose from "mongoose";
 import Cities from "../models/cities";
+
 await dbConnect();
 
 export const getEventByCity = async (
@@ -79,6 +80,18 @@ export const getEventByCity = async (
     console.log(eventsFetched);
     const count = eventsFetched.length;
     return getActionSuccessResponse(eventsFetched, count);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
+export const getAllEventsSlugs = async () => {
+  try {
+    const eventsSlugs = await events
+      .find({ isDraft: "false" })
+      .select("slug")
+      .lean();
+    return getActionSuccessResponse(eventsSlugs);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }

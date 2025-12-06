@@ -216,7 +216,7 @@ export const addData = async (data) => {
     console.log(216);
     return getActionSuccessResponse(resp);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     getActionFailureResponse(error.message, "toast");
   }
 };
@@ -246,7 +246,9 @@ export const getDataByCode = async (boothCode, size) => {
     const data = await Booth.findOne({
       booth_code: boothCode,
       booth_size: size_id,
-    }).populate("booth_size","name").lean();
+    })
+      .populate("booth_size", "name")
+      .lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
@@ -255,8 +257,10 @@ export const getDataByCode = async (boothCode, size) => {
 
 export const findSingleBooth = async (query, populate) => {
   try {
-    if(populate){
-      const data = await Booth.findOne(query).populate("booth_size","name").lean();
+    if (populate) {
+      const data = await Booth.findOne(query)
+        .populate("booth_size", "name")
+        .lean();
       return getActionSuccessResponse(data);
     }
 
@@ -270,6 +274,18 @@ export const findSingleBooth = async (query, populate) => {
 export const getBoothsBySize = async (boothSize) => {
   try {
     const data = await Booth.find({ booth_size: boothSize }).lean();
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
+export const getBoothCodeStaticParams = async () => {
+  try {
+    const data = await Booth.find()
+      .select("booth_code")
+      .populate("booth_size", "name")
+      .lean();
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");
