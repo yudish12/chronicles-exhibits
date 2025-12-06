@@ -1,5 +1,6 @@
 import pages from "@/server/models/pages";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
+import { NextResponse } from "next/server";
 
 export async function GET(request) {
   try {
