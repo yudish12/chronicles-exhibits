@@ -22,6 +22,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { deleteUTFiles } from "@/server/services/uploadthing";
+import { RevalidatePath } from "@/server/actions/revalidate-path";
 
 const AddPage = () => {
   const router = useRouter();
@@ -50,6 +51,7 @@ const AddPage = () => {
         toast.error(resp.err);
         return;
       }
+      await RevalidatePath(`/${singlePage.slug}`);
       toast.success("Booth size added successfully");
       setSinglePage({
         name: "",
@@ -201,7 +203,7 @@ const AddPage = () => {
               data-state="closed"
             >
               <Image
-loading="eager"
+                loading="eager"
                 alt="addForm"
                 src={"/add-form.svg"}
                 width={40}

@@ -53,7 +53,8 @@ const Editboothsize = ({ singleBoothsizeData, pageData }) => {
     try {
       const resp = await updateData(singleBoothsizeData._id, singleBoothSize);
       const resp2 = await updatePageData(pageData.name, boothSizePage);
-      RevalidatePath(`/booth-sizes/${pageData.name}`)
+      await RevalidatePath(`/booth/size/${pageData?.name?.toLowerCase()}`);
+      await RevalidatePath(`/booth/size/[booth_size]`, "page");
       if (!resp.success || !resp2.success) {
         toast.error(resp.err || resp2.err);
         return;

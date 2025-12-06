@@ -1,5 +1,5 @@
 "use client";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,7 +14,14 @@ import CkeEditor from "@/components/CkEditor";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { deleteUTFiles } from "@/server/services/uploadthing";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
+import { RevalidatePath } from "@/server/actions/revalidate-path";
 const AddBlogPage = () => {
   const [blogs, setBlogs] = React.useState([]);
   const [isUploading, setIsUploading] = React.useState(false);
@@ -29,7 +36,7 @@ const AddBlogPage = () => {
     meta_keywords: [],
     body: "",
     blog_count: "",
-    isDraft : ""
+    isDraft: "",
   });
 
   const handleAddSubmit = async (e) => {
@@ -40,6 +47,9 @@ const AddBlogPage = () => {
         toast.error(resp.error);
         return;
       }
+      await RevalidatePath("/blog");
+      await RevalidatePath(`/${singleBlog.slug}`);
+      await RevalidatePath(`/[slug]`, "page");
       toast.success("Blog added successfully");
       setSingleBlog({
         title: "",
@@ -51,7 +61,7 @@ const AddBlogPage = () => {
         meta_keywords: [],
         body: "",
         blog_count: "",
-        isDraft : "false"
+        isDraft: "false",
       });
       router.push("/admin/blogs");
     } catch (error) {
@@ -64,8 +74,8 @@ const AddBlogPage = () => {
     setSingleBlog({
       ...singleBlog,
       // slug: singleBlog.title.toLowerCase().replaceAll(" ", "-").replace(".", ""),
-    })
-  },[])
+    });
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-start min-h-screen bg-gray-200 overflow-auto p-8 gap-y-6 w-full">
@@ -101,7 +111,7 @@ const AddBlogPage = () => {
                 onChange={(e) =>
                   setSingleBlog({
                     ...singleBlog,
-                    slug: e.target.value
+                    slug: e.target.value,
                   })
                 }
                 required
@@ -185,25 +195,25 @@ const AddBlogPage = () => {
               />
             </div>
             <div>
-            <Label className="mb-4 block">Blog Status</Label>
-            <Select
-              value={singleBlog.isDraft} // Use isDraft directly as a string
-              onValueChange={(value) =>
-                setSingleBlog({
-                  ...singleBlog,
-                  isDraft: value, // Store it as a string ("true" or "false")
-                })
-              }
-            >
-              <SelectTrigger className="rounded-sm border p-2 w-full">
-                <SelectValue placeholder="Select Status" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="true">Draft</SelectItem>
-                <SelectItem value="false">Publish</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+              <Label className="mb-4 block">Blog Status</Label>
+              <Select
+                value={singleBlog.isDraft} // Use isDraft directly as a string
+                onValueChange={(value) =>
+                  setSingleBlog({
+                    ...singleBlog,
+                    isDraft: value, // Store it as a string ("true" or "false")
+                  })
+                }
+              >
+                <SelectTrigger className="rounded-sm border p-2 w-full">
+                  <SelectValue placeholder="Select Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="true">Draft</SelectItem>
+                  <SelectItem value="false">Publish</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
             <div className="col-span-2">
               <Label className="mb-4 block">Body</Label>
               <CkeEditor

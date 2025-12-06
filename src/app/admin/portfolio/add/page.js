@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { UploadButton } from "@uploadthing/react";
 import { addPortfolio } from "@/server/actions/portfolio";
+import { RevalidatePath } from "@/server/actions/revalidate-path";
 const AddPortfolioPage = () => {
   const [singlePortfolio, setSinglePortfolio] = useState({
     image: "",
@@ -21,6 +22,7 @@ const AddPortfolioPage = () => {
         toast.error(resp.error);
         return;
       }
+      await RevalidatePath(`/portfolio`);
       toast.success("Portfolio added successfully");
       setSinglePortfolio({
         image: "",

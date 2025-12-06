@@ -9,7 +9,7 @@ import { Calendar, MapPin } from "lucide-react";
 import moment from "moment";
 import "./style.css";
 // import { majorExhibitingCities } from "../page";
-import { getLocationPagebyCity } from "@/server/actions/locations";
+import { getCities, getLocationPagebyCity } from "@/server/actions/locations";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import { getAllPortfolios } from "@/server/actions/portfolio";
 import { headers } from "next/headers";
@@ -22,6 +22,24 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import dynamic from "next/dynamic";
 const EnquiryForm = dynamic(() => import("@/components/Form"));
 import Selectbox from "./Selectbox";
+
+export const revalidate = 86400;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  try {
+    const cities = await getCities();
+    if (!cities.success) {
+      return [];
+    }
+    return cities.data.map((city) => ({
+      location_name: city.slug,
+    }));
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
 
 export async function generateMetadata({ params }) {
   const resolvedParams = await params;
@@ -51,7 +69,7 @@ const Page = async ({ params }) => {
 
   // }
   const { data } = await getLocationPagebyCity(city);
-  console.log("data", Object.keys(data), data, city, data[0].fields[0].value);
+
   if (!data?.length || !data[0]?.fields?.length) {
     notFound();
   }

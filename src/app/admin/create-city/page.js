@@ -32,6 +32,7 @@ import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 import { Pagination } from "./_components/Pagination";
 import Link from "next/link";
+import { RevalidatePath } from "@/server/actions/revalidate-path";
 
 export default function Cities() {
   const [cities, setCities] = React.useState([]);
@@ -90,6 +91,13 @@ export default function Cities() {
       toast.error(resp.err);
       return;
     }
+    await RevalidatePath(`/major-exhibiting-cities`);
+    await RevalidatePath(`major-exhibiting-cities/[location_name]`, "page");
+    await RevalidatePath(
+      `/major-exhibiting-cities/${singleCity.name
+        .toLowerCase()
+        .replace(" ", "-")}`
+    );
 
     const updatedCities = cities.map((city) =>
       city._id === singleCity._id ? { ...city, name: singleCity.name } : city
@@ -107,6 +115,14 @@ export default function Cities() {
       toast.error(resp.err);
       return;
     }
+
+    await RevalidatePath(`/major-exhibiting-cities`);
+    await RevalidatePath(`major-exhibiting-cities/[location_name]`, "page");
+    await RevalidatePath(
+      `/major-exhibiting-cities/${singleCity.name
+        .toLowerCase()
+        .replace(" ", "-")}`
+    );
 
     setCities([...cities, resp.data]);
     setIsAddDialogOpen(false);

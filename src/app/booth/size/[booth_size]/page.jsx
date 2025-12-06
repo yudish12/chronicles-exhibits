@@ -8,6 +8,20 @@ import TradeShowSection from "./_components/TradeShowSection";
 import { getSinglePage } from "@/server/actions/pages";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import EnquiryForm from "@/components/Form";
+import { getAllBoothSizes } from "@/server/actions/booth-sizes";
+
+export const revalidate = 86400;
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const boothSizes = await getAllBoothSizes();
+  if (!boothSizes.success) {
+    return [];
+  }
+  return boothSizes.data.map((boothSize) => ({
+    booth_size: boothSize.name.toLowerCase(),
+  }));
+}
 
 export const generateMetadata = async ({ params }) => {
   const resolvedParams = await params;

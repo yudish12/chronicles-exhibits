@@ -31,6 +31,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { RevalidatePath } from "@/server/actions/revalidate-path";
 const AddEventPage = () => {
   const [cityLoading, setCityLoading] = React.useState(true);
   const [singleEvent, setSingleEvent] = React.useState({
@@ -71,6 +72,9 @@ const AddEventPage = () => {
         toast.error(resp.err);
         return;
       }
+      await RevalidatePath(`/top-trade-shows`);
+      await RevalidatePath(`/${singleEvent.slug}`);
+      await RevalidatePath(`/[slug]`, "page");
       toast.success("Event added successfully");
       setSingleEvent({
         event_name: "",

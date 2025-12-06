@@ -4,8 +4,6 @@ import Header from "@/components/ui/header";
 import { getSinglePage } from "@/server/actions/pages";
 import React from "react";
 
-export const dynamic = "force-dynamic";
-
 export const generateMetadata = async () => {
   const { data } = await getSinglePage(
     { name: "faq" },
@@ -22,7 +20,15 @@ export const generateMetadata = async () => {
 };
 
 const page = async () => {
-  const faqPageData = await getSinglePage({ name: "faq" });
+  const response = await fetch(
+    "https://chronicle-exhibits.netlify.app/api/page/faq",
+    {
+      next: { revalidate: 86400 },
+    }
+  );
+  console.log("response", response);
+  const faqPageData = await response.json();
+  console.log("faqPageData", faqPageData);
   const faqs = faqPageData.data.fields[1].value;
 
   return (

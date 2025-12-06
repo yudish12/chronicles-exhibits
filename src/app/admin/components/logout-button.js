@@ -8,7 +8,7 @@ export default function LogoutButton() {
     try {
       await logout();
       toast.success("Logout successful");
-      RevalidatePath("/admin");
+      await RevalidatePath("/admin");
     } catch (error) {
       console.log("==error==", error);
       toast.error("Logout failed");

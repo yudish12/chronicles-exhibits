@@ -58,6 +58,9 @@ const EditEventForm = ({ singleEvent, cities }) => {
       toast.error(resp.err);
       return;
     }
+    await RevalidatePath(`/top-trade-shows`);
+    await RevalidatePath(`/${event.slug}`);
+    await RevalidatePath(`/[slug]`, "page");
 
     toast.success("Event updated successfully");
     router.push("/admin/events");
