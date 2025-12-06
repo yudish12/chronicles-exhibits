@@ -148,7 +148,7 @@ const BoothGrid = ({ size }) => {
       )}
 
       {/* No more data indicator */}
-      {!hasMore && booths.length > 0 && (
+      {!hasMore && booths.length === 0 && (
         <div className="text-center mt-8 text-gray-600">
           <p>No more booths to load</p>
         </div>

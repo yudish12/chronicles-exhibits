@@ -72,7 +72,7 @@ const Carousel = ({ fields }) => {
                   <h3 className="text-2xl font-bold text-white mb-2">
                     {item.heading}
                   </h3>
-                  <p className="text-white md:mx-16 sm:mx-10 mx-4 lg:mx-24 xl:mx-44 text-lg">
+                  <p className="text-white md:mx-16 font-medium sm:mx-10 mx-4 lg:mx-24 xl:mx-44 text-lg">
                     {item.description}
                   </p>
                 </div>

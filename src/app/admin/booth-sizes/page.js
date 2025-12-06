@@ -119,7 +119,7 @@ export default function BoothSizesTable() {
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
                     <Link
-                      href={`/booth-size/${boothSize.slug}`}
+                      href={`/${boothSize.name.toLowerCase()}-trade-show-booth`}
                       target="_blank"
                     >
                       <Button variant="outline" size="icon">
@@ -128,10 +128,7 @@ export default function BoothSizesTable() {
                       </Button>
                     </Link>
                     <Link href={`/admin/booth-sizes/edit/${boothSize._id}`}>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                      >
+                      <Button variant="outline" size="icon">
                         <Pencil className="h-4 w-4" />
                         <span className="sr-only">Edit {boothSize.name}</span>
                       </Button>

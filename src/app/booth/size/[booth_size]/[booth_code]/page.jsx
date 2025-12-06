@@ -58,14 +58,6 @@ const BoothByCode = async ({ params }) => {
     notFound();
   }
 
-  const boothCodes = await getAllData(
-    0,
-    3,
-    "booth_code thumbnail_image image_alt_text",
-    resp.data.booth_size,
-    true
-  );
-
   return (
     <>
       {/* <  /> */}
@@ -79,7 +71,7 @@ const BoothByCode = async ({ params }) => {
         boothCode={boothCode}
       />
       {/* <BoothEnquiry/> */}
-      <BoothGrid size={sizeFromHeader} boothCodes={boothCodes} />
+      <BoothGrid size={sizeFromHeader} />
       <Footer />
     </>
   );
