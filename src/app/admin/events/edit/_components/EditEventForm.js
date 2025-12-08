@@ -22,6 +22,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { RevalidatePath } from "@/server/actions/revalidate-path";
 
 const EditEventForm = ({ singleEvent, cities }) => {
   const [event, setEvent] = useState(singleEvent);

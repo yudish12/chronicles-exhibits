@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { login } from "@/server/actions/login";
-import { revalidatePath } from "next/cache";
 import { RevalidatePath } from "@/server/actions/revalidate-path";
 import Image from "next/image";
 import Link from "next/link";
