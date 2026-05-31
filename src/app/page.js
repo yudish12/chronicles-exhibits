@@ -57,6 +57,7 @@ const page = async () => {
       />
       <FactsAndFigures fields={homePageData.data.fields} />
       <Ourworks
+        pageName="home"
         title={homePageData.data.fields[35].value}
         subtitle={homePageData.data.fields[36].value}
       />

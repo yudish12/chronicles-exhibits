@@ -94,10 +94,10 @@ const page = async () => {
       </div>
 
       <div className="product-bg w-full flex flex-col items-center py-14">
-        <h3 className="text-center uppercase heading-font text-white text-[2rem] font-bold">
+        <h3 className="text-center uppercase heading-font text-secondary text-[2rem] font-bold">
           {data.fields[13].value}
         </h3>
-        <p className="text-center px-6 text-gray-300 text-md pt-4">
+        <p className="text-center px-6 text-secondary text-md pt-4">
           {data.fields[14].value}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-12 px-6 sm:px-10 lg:px-20 gap-x-6 gap-y-6 md:gap-x-8 md:gap-y-8 xl:gap-x-12 xl:gap-y-12">

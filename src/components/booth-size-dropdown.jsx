@@ -31,8 +31,8 @@ const BoothsizeDropdown = ({ className }) => {
         <ChevronDown className="ml-1 self-center h-4 w-4" />
       </button>
       {/* Dropdown */}
-      <div className="absolute left-0 hidden w-48 bg-white  shadow-md group-hover:block z-[100] ">
-        <div className="w-48 h-2 bg-black"></div>
+      <div className="absolute left-0 hidden w-max bg-white  shadow-md group-hover:block z-[100] ">
+        <div className="w-max h-2 bg-black"></div>
 
         {sizes.map((size, ind) => (
           <Link key={ind} href={`/${size}-trade-show-booth`}>

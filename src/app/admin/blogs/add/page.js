@@ -35,6 +35,8 @@ const AddBlogPage = () => {
     meta_description: "",
     meta_keywords: [],
     body: "",
+    booth_size_title: "",
+    booth_size_description: "",
     blog_count: "",
     isDraft: "",
   });
@@ -60,6 +62,8 @@ const AddBlogPage = () => {
         meta_description: "",
         meta_keywords: [],
         body: "",
+        booth_size_title: "",
+        booth_size_description: "",
         blog_count: "",
         isDraft: "false",
       });
@@ -142,7 +146,7 @@ const AddBlogPage = () => {
                     onClick={() => {
                       console.log(
                         singleBlog.image.split("f/")[1],
-                        singleBlog.image
+                        singleBlog.image,
                       );
                       const res = deleteUTFiles([
                         singleBlog.image.split("f/")[1],
@@ -213,6 +217,32 @@ const AddBlogPage = () => {
                   <SelectItem value="false">Publish</SelectItem>
                 </SelectContent>
               </Select>
+            </div>
+            <div>
+              <Label className="mb-4 block">Booth Size Title</Label>
+              <Input
+                className="rounded-sm"
+                value={singleBlog.booth_size_title}
+                onChange={(e) =>
+                  setSingleBlog({
+                    ...singleBlog,
+                    booth_size_title: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div>
+              <Label className="mb-4 block">Booth Size Description</Label>
+              <Textarea
+                className="rounded-sm"
+                value={singleBlog.booth_size_description}
+                onChange={(e) =>
+                  setSingleBlog({
+                    ...singleBlog,
+                    booth_size_description: e.target.value,
+                  })
+                }
+              />
             </div>
             <div className="col-span-2">
               <Label className="mb-4 block">Body</Label>

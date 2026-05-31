@@ -8,8 +8,8 @@ import React from "react";
 import Timer from "../top-trade-shows/_shows_comps/_components/Timer";
 import { Calendar, MapPin } from "lucide-react";
 import dynamic from "next/dynamic";
-const BoothSizeForm = dynamic(() =>
-  import("../top-trade-shows/_shows_comps/_components/BoothSizeForm")
+const BoothSizeForm = dynamic(
+  () => import("../top-trade-shows/_shows_comps/_components/BoothSizeForm"),
 );
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import Products from "../(landing)/Products";
@@ -18,8 +18,8 @@ import "./blog_id.css";
 import "./show_name.css";
 import { cn } from "@/lib/utils";
 import { notFound, redirect } from "next/navigation";
-const WebsitePopup = dynamic(() =>
-  import("../top-trade-shows/_shows_comps/_components/website-popup")
+const WebsitePopup = dynamic(
+  () => import("../top-trade-shows/_shows_comps/_components/website-popup"),
 );
 // if blog and event both are not found , then return 404
 
@@ -78,7 +78,7 @@ const Page = async ({ params }) => {
       null,
       data.blog_count,
       "name title slug image image_alt_text",
-      slug
+      slug,
     );
     const blogsToBeMapped = blogFromDb.data;
     return (
@@ -159,6 +159,16 @@ const Page = async ({ params }) => {
             </div>
           </div>
         </div>
+        <Products
+          title={
+            data.booth_size_title ?? "EYE CATCHING TRADE SHOW BOOTH DESIGNS"
+          }
+          subTitle={
+            data.booth_size_description ??
+            "Explore over 1,000 trade show booth designs by selecting your booth size. All designs are fully customizable."
+          }
+          bgColor="bg-gray-200"
+        />
       </>
     );
   }
@@ -207,7 +217,7 @@ const Page = async ({ params }) => {
               <span
                 className={cn(
                   "text-white font-semibold text-xl",
-                  isExpired && "text-red-600 line-through	"
+                  isExpired && "text-red-600 line-through	",
                 )}
               >
                 {/* Fix: Use native Date methods for consistent date formatting */}
@@ -298,7 +308,7 @@ const Page = async ({ params }) => {
           <div className="font-bold text-lg md:text-xl pt-10 text-primary">
             Are you looking for turnkey trade show booth services for
             <br />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl uppercase heading-font text-white font-bold pt-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl uppercase heading-font text-secondary font-bold pt-10">
               {eventData.title}?
             </h2>
           </div>

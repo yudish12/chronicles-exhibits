@@ -5,13 +5,11 @@ import Link from "next/link";
 import React from "react";
 import Products from "@/app/(landing)/Products";
 import Footer from "@/components/ui/footer";
-import { Calendar, MapPin } from "lucide-react";
-import moment from "moment";
 import "./style.css";
 // import { majorExhibitingCities } from "../page";
 import { getCities, getLocationPagebyCity } from "@/server/actions/locations";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
-import { getAllPortfolios } from "@/server/actions/portfolio";
+import { getPortfoliosForPage } from "@/server/actions/portfolio";
 import { headers } from "next/headers";
 import { userAgent } from "next/server";
 import { getAllLocations } from "@/server/actions/events";
@@ -22,6 +20,8 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import dynamic from "next/dynamic";
 const EnquiryForm = dynamic(() => import("@/components/Form"));
 import Selectbox from "./Selectbox";
+import PortfolioLightbox from "@/components/PortfolioLightbox";
+import LocationEventsCarousel from "./LocationEventsCarousel";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }) {
 const Page = async ({ params }) => {
   const city = (await params).location_name;
   // console.log("city==" , city)
-  const eventByCity = await getEventByCity({ isDraft: "false" }, city, 0, 4);
+  const eventByCity = await getEventByCity({ isDraft: "false" }, city, 0, 8);
   console.log("eventByCity", eventByCity);
   // console.log("eventByCity",eventByCity.data.slice(0,3))
   let majorExhibitingCities = await getAllLocations();
@@ -76,7 +76,8 @@ const Page = async ({ params }) => {
 
   const ua = userAgent({ headers: headers() });
   const isMobile = ua?.device?.type === "mobile";
-  const ourWorksData = await getAllPortfolios(0, 9);
+  const locationPageName = data[0].name;
+  const ourWorksData = await getPortfoliosForPage(locationPageName, 0, 9);
 
   const displayedData = isMobile
     ? ourWorksData.data.slice(0, 6)
@@ -145,7 +146,7 @@ const Page = async ({ params }) => {
           ></h2>
           <div
             id="show_name_desc"
-            className="text-white"
+            className="text-secondary"
             dangerouslySetInnerHTML={{ __html: data[0].fields[9].value }}
           ></div>
           <Link href={"/contact-us"}>
@@ -168,31 +169,7 @@ const Page = async ({ params }) => {
           className="text-center md:mx-20 lg:mx-44 mt-7 custom-content "
           dangerouslySetInnerHTML={{ __html: data?.[0]?.fields?.[12]?.value }}
         ></p>
-        <div className="mt-10 grid 2xl:max-w-[1400px] mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-x-4 gap-y-4">
-          {displayedData.map((item, index) => (
-            <div
-              key={index}
-              className="overflow-hidden rounded-xl w-full h-[200px] sm:h-[250px] md:h-[230px]"
-            >
-              <Image
-                loading="eager"
-                width={370}
-                height={300}
-                className="transition-transform w-full h-full duration-300 transform hover:scale-110"
-                src={item.image}
-                alt={`${item.image_alt_text} ${
-                  city
-                    ?.replaceAll("-", " ") // Replace hyphens with spaces
-                    ?.split(" ") // Split the string into words
-                    ?.map(
-                      (word) => word.charAt(0).toUpperCase() + word.slice(1)
-                    ) // Capitalize the first letter of each word
-                    ?.join(" ") ?? ""
-                }`}
-              />
-            </div>
-          ))}
-        </div>
+        <PortfolioLightbox images={displayedData} className="mt-10" />
         <Link className="flex mt-10" href="/portfolio">
           <Button
             style={{ transitionDuration: "500ms" }}
@@ -229,44 +206,7 @@ const Page = async ({ params }) => {
             {data?.[0]?.fields?.[17]?.value}
           </h3>
         )}
-        <div className="grid place-content-center mx-auto xl:grid-cols-[270px,270px,270px,270px] lg:grid-cols-3 gap-x-8 gap-y-8 md:grid-cols-2 grid-cols-1 gap-4 px-6 sm:px-12 md:px-20 pb-10 mt-12">
-          {eventByCity.data.map((show) => (
-            <Link
-              href={`/${show.slug}`}
-              key={show.id}
-              className="h-[350px] max-w-[270px] md:max-w-[400px] mx-auto w-full bg-white flex shadow-one rounded-xl flex-col gap-5 items-center p-6 justify-between"
-            >
-              <h4 className="text-secondary heading-font text-xl  font-semibold">
-                {show.event_name}
-              </h4>
-              <Image
-                loading="eager"
-                className="rounded-full"
-                width={120}
-                height={120}
-                src={show.icon}
-                alt={show.title}
-              />
-              <div className="flex flex-col gap-2 w-full px-4">
-                <p className="flex text-black gap-4">
-                  <MapPin color="#B0CB1F" />
-                  <span className="text-[17px]">
-                    {show?.location_id?.city ?? show.city} | United States
-                  </span>
-                </p>
-                <p className="flex gap-4">
-                  <Calendar color="#B0CB1F" />
-                  <span className="text-[17px] text-black">
-                    {moment(show?.start_date).format("DD")}-
-                    {moment(show?.end_date).format("DD")}{" "}
-                    {moment(show?.start_date).format("MMMM")}{" "}
-                    {moment(show?.end_date).format("YYYY")}
-                  </span>
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <LocationEventsCarousel events={eventByCity.data ?? []} />
         <div className="flex justify-center">
           {data?.[0]?.fields?.[18] && (
             <Link href={`/top-trade-shows/`}>

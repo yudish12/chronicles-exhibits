@@ -28,12 +28,18 @@ const blogSchema = new mongoose.Schema(
     blog_count: {
       type: Number,
     },
-    isDraft : {
-      type : String , 
-      default : "true"
-    }
+    booth_size_title: {
+      type: String,
+    },
+    booth_size_description: {
+      type: String,
+    },
+    isDraft: {
+      type: String,
+      default: "true",
+    },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 blogSchema.index({ slug: 1 }, { unique: true });

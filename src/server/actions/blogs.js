@@ -12,7 +12,7 @@ export const getAllBlogs = async (
   skip,
   limit,
   projection,
-  excludeSlug
+  excludeSlug,
 ) => {
   try {
     await dbConnect();
@@ -83,6 +83,8 @@ export const updateData = async (id, data) => {
         long_description: data.long_description,
         image: data.image,
         body: data.body,
+        booth_size_title: data.booth_size_title,
+        booth_size_description: data.booth_size_description,
         meta_title: data.meta_title,
         meta_description: data.meta_description,
         meta_keywords: data.meta_keywords,
@@ -94,7 +96,7 @@ export const updateData = async (id, data) => {
       {
         new: true, // Return the updated document
         runValidators: true,
-      }
+      },
     ).lean();
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");

@@ -13,11 +13,10 @@ import {
 import { Button } from "@/components/ui/button";
 import {
   getAllData,
-  addData,
   getAllLocations,
-  updateData,
   deleteData,
   getAllDataBySearch,
+  exportEventsByDateRange,
 } from "@/server/actions/events";
 import {
   Dialog,
@@ -29,7 +28,7 @@ import {
 } from "@/components/ui/dialog";
 import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import { toast } from "sonner";
-import { Eye, Pencil, Trash2 } from "lucide-react";
+import { Eye, Loader2, Pencil, Trash2 } from "lucide-react";
 import { Card, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
 import { Pagination } from "./_components/Pagination";
@@ -56,6 +55,10 @@ export default function Events() {
   });
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [isExportDialogOpen, setIsExportDialogOpen] = useState(false);
+  const [startDateFilter, setStartDateFilter] = useState("");
+  const [endDateFilter, setEndDateFilter] = useState("");
+  const [exportLoading, setExportLoading] = useState(false);
   const limit = 6;
   console.log("===single events ===", singleEvent);
   const fetchData = async (page = 1) => {
@@ -71,7 +74,7 @@ export default function Events() {
       //     return;
       //   }
       if (!eventResp.success) {
-        toast.error(resp.err);
+        toast.error(eventResp.err);
         setLoading(false);
         return;
       }
@@ -107,21 +110,26 @@ export default function Events() {
     router.push(`/admin/events/edit/${event._id}`);
   };
 
-  const handleDelete = (id) => {
-    setDeletingEventId(id);
-    setIsDeleteDialogOpen(true);
-  };
-  const handleDeleteConfirm = async () => {
-    const resp = await deleteData(deletingEventId);
-    if (!resp.success) {
-      toast.error(resp.err);
-      return;
+  const handleExportStartDateChange = (date) => {
+    setStartDateFilter(date);
+
+    // If a start date is selected, automatically set end date to one day after
+    if (date) {
+      const nextDay = new Date(date);
+      nextDay.setDate(nextDay.getDate() + 1);
+      // Format as YYYY-MM-DD
+      const nextDayString = nextDay.toISOString().split("T")[0];
+      setEndDateFilter(nextDayString);
+    } else {
+      // If start date is cleared, also clear end date
+      setEndDateFilter("");
     }
-    const updatedEvents = events.filter(
-      (event) => event._id !== deletingEventId
-    );
-    setEvents(updatedEvents);
-    setIsDeleteDialogOpen(false);
+  };
+
+  const handleExportEndDateChange = (date) => {
+    setEndDateFilter(date);
+    // Note: We don't modify the start date when end date changes
+    // This allows users to manually override the automatic behavior
   };
 
   const getEventStatus = (start_date, end_date) => {
@@ -136,6 +144,101 @@ export default function Events() {
       return { text: "Upcoming", color: "bg-green-600" };
     }
   };
+
+  const exportToCsv = async () => {
+    try {
+      setExportLoading(true);
+
+      const resp = await exportEventsByDateRange(
+        startDateFilter || null,
+        endDateFilter || null,
+      );
+
+      console.log("===resp===", resp);
+
+      if (!resp.success) {
+        toast.error(resp.err || "Failed to fetch events for export");
+        return;
+      }
+
+      const exportData = resp.data || [];
+
+      if (exportData.length === 0) {
+        toast.warning("No data to export");
+        return;
+      }
+
+      const exportDataFormatted = exportData.map((event) => ({
+        Name: event.event_name || "",
+        "Start Date": event.start_date
+          ? new Date(event.start_date).toLocaleDateString()
+          : "",
+        "End Date": event.end_date
+          ? new Date(event.end_date).toLocaleDateString()
+          : "",
+        City: event.city || "",
+        Country: event.country || "",
+        Status: getEventStatus(event.start_date, event.end_date).text,
+        Visibility: event.isDraft === "true" ? "Draft" : "Published",
+      }));
+
+      const headers = Object.keys(exportDataFormatted[0]).join(",");
+      const rows = exportDataFormatted
+        .map((row) =>
+          Object.values(row)
+            .map((value) => `"${String(value).replace(/"/g, '""')}"`)
+            .join(","),
+        )
+        .join("\n");
+
+      const csv = `${headers}\n${rows}`;
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      const dateSuffix =
+        startDateFilter || endDateFilter
+          ? `_${startDateFilter || "all"}_to_${endDateFilter || "all"}`
+          : "_all";
+      link.href = url;
+      link.download = `events-export${dateSuffix}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+
+      toast.success(
+        `Exported successfully (${exportDataFormatted.length} records)`,
+      );
+      setIsExportDialogOpen(false);
+      setStartDateFilter("");
+      setEndDateFilter("");
+    } catch (error) {
+      console.error("Error exporting events:", error);
+      toast.error(
+        "Failed to export file: " + (error.message || "Unknown error"),
+      );
+    } finally {
+      setExportLoading(false);
+    }
+  };
+
+  const handleDelete = (id) => {
+    setDeletingEventId(id);
+    setIsDeleteDialogOpen(true);
+  };
+  const handleDeleteConfirm = async () => {
+    const resp = await deleteData(deletingEventId);
+    if (!resp.success) {
+      toast.error(resp.err);
+      return;
+    }
+    const updatedEvents = events.filter(
+      (event) => event._id !== deletingEventId,
+    );
+    setEvents(updatedEvents);
+    setIsDeleteDialogOpen(false);
+  };
+
   if (loading) {
     return <TableSkeletonLoader />;
   }
@@ -144,15 +247,24 @@ export default function Events() {
     <div className="container bg-border overflow-auto mx-auto p-8">
       <Card className="flex justify-between items-center bg-white p-4">
         <h1 className="text-2xl font-bold">Events</h1>
-        <Button
-          onClick={() => {
-            // setSingleEvent({ event_name: "", start_date: "", end_date: "", location_id: "" });
-            // setIsAddDialogOpen(true);
-            router.push(`/admin/events/add/`);
-          }}
-        >
-          Add Event
-        </Button>
+        <div className="flex gap-3">
+          <Button
+            onClick={() => {
+              // setSingleEvent({ event_name: "", start_date: "", end_date: "", location_id: "" });
+              // setIsAddDialogOpen(true);
+              router.push(`/admin/events/add/`);
+            }}
+          >
+            Add Event
+          </Button>
+          <Button
+            variant="outline"
+            className="border-secondary bg-secondary text-white font-semibold px-4 py-4"
+            onClick={() => setIsExportDialogOpen(true)}
+          >
+            Export Event
+          </Button>
+        </div>
       </Card>
 
       <Card className="mt-6 bg-white p-4 border">
@@ -286,6 +398,66 @@ export default function Events() {
               onClick={() => handleDeleteConfirm(singleEvent?._id)}
             >
               Delete
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      <Dialog open={isExportDialogOpen} onOpenChange={setIsExportDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Export Events</DialogTitle>
+            <DialogDescription>
+              Select a start date to automatically set the end date to the next
+              day, or select both dates manually. Leave both empty to export all
+              events.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+            <div>
+              <label
+                htmlFor="startDate"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Start Date
+              </label>
+              <Input
+                id="startDate"
+                type="date"
+                value={startDateFilter}
+                onChange={(e) => handleExportStartDateChange(e.target.value)}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="endDate"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                End Date
+              </label>
+              <Input
+                id="endDate"
+                type="date"
+                value={endDateFilter}
+                onChange={(e) => handleExportEndDateChange(e.target.value)}
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              variant="outline"
+              onClick={() => setIsExportDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button onClick={exportToCsv} disabled={exportLoading}>
+              {exportLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Exporting...
+                </>
+              ) : (
+                "Export"
+              )}
             </Button>
           </DialogFooter>
         </DialogContent>

@@ -8,10 +8,13 @@ import { toast } from "sonner";
 import { UploadButton } from "@uploadthing/react";
 import { addPortfolio } from "@/server/actions/portfolio";
 import { RevalidatePath } from "@/server/actions/revalidate-path";
+import PortfolioPageSelector from "../_components/PortfolioPageSelector";
+
 const AddPortfolioPage = () => {
   const [singlePortfolio, setSinglePortfolio] = useState({
     image: "",
     image_alt_text: "",
+    show_on_pages: [],
   });
 
   const handleAddSubmit = async (e) => {
@@ -27,6 +30,7 @@ const AddPortfolioPage = () => {
       setSinglePortfolio({
         image: "",
         image_alt_text: "",
+        show_on_pages: [],
       });
     } catch (error) {
       console.log("error==", error);
@@ -72,6 +76,12 @@ const AddPortfolioPage = () => {
                 />
               )}
             </div>
+            <PortfolioPageSelector
+              value={singlePortfolio.show_on_pages}
+              onChange={(show_on_pages) =>
+                setSinglePortfolio({ ...singlePortfolio, show_on_pages })
+              }
+            />
             <div className="col-span-2">
               <Label className="mb-4 block">Image Alt Text</Label>
               <Input

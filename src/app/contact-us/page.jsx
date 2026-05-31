@@ -11,7 +11,7 @@ import ContactInfo from "./_components/ContactInfo";
 export async function generateMetadata({ params }) {
   const pageData = await getSinglePage(
     { name: "contact-us" },
-    "meta_keywords meta_title meta_description"
+    "meta_keywords meta_title meta_description",
   );
   return {
     title: pageData?.data?.meta_title,
@@ -26,6 +26,21 @@ export async function generateMetadata({ params }) {
 const Page = async () => {
   const contactUsPageData = await getSinglePage({ name: "contact-us" });
   const fields = contactUsPageData.data.fields;
+
+  const offices = [
+    {
+      title: "Dubai Office",
+      address: fields[8].value,
+      email: fields[7].value,
+      phone: fields[6].value,
+    },
+    {
+      title: "Europe Office",
+      address: fields[11].value,
+      email: fields[10].value,
+      phone: fields[9].value,
+    },
+  ];
 
   return (
     <>
@@ -52,7 +67,7 @@ const Page = async () => {
         </section>
 
         <LocateUs />
-        <OtherOffices />
+        <OtherOffices offices={offices} />
       </main>
       <Footer />
     </>

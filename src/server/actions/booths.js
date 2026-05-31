@@ -40,7 +40,7 @@ export const getAllData = async (
   limit,
   projection,
   size,
-  notPopulate
+  notPopulate,
 ) => {
   try {
     let filter = {};
@@ -48,7 +48,7 @@ export const getAllData = async (
       filter = { booth_size: size };
     }
 
-    let query = Booth.find(filter).sort({ _id: 1 });
+    let query = Booth.find(filter).sort({ _id: -1 });
 
     if (skip) {
       query = query.skip(skip);
@@ -103,25 +103,25 @@ export const updateData = async (id, data) => {
     if (!data.thumbnail_image) {
       return getActionFailureResponse(
         "thumbnail_image is required",
-        "thumbnail_image"
+        "thumbnail_image",
       );
     }
     if (!data.image_alt_text) {
       return getActionFailureResponse(
         "image_alt_text is required",
-        "image_alt_text"
+        "image_alt_text",
       );
     }
     if (!data.package_title) {
       return getActionFailureResponse(
         "package_title is required",
-        "package_title"
+        "package_title",
       );
     }
     if (!data.package_description) {
       return getActionFailureResponse(
         "package_description is required",
-        "package_description"
+        "package_description",
       );
     }
     if (!data.meta_title) {
@@ -130,13 +130,13 @@ export const updateData = async (id, data) => {
     if (!data.meta_description) {
       return getActionFailureResponse(
         "meta_description is required",
-        "meta_description"
+        "meta_description",
       );
     }
     if (!data.meta_keywords || !Array.isArray(data.meta_keywords)) {
       return getActionFailureResponse(
         "meta_keywords is required",
-        "meta_keywords"
+        "meta_keywords",
       );
     }
     if (!data.all_images || !Array.isArray(data.all_images)) {
@@ -175,28 +175,28 @@ export const addData = async (data) => {
     if (!data.thumbnail_image) {
       return getActionFailureResponse(
         "Thumbnail image is required",
-        "thumbnail_image"
+        "thumbnail_image",
       );
     }
 
     if (!data.image_alt_text) {
       return getActionFailureResponse(
         "Image alt text is required",
-        "image_alt_text"
+        "image_alt_text",
       );
     }
 
     if (!data.package_title) {
       return getActionFailureResponse(
         "Package title is required",
-        "package_title"
+        "package_title",
       );
     }
 
     if (!data.package_description) {
       return getActionFailureResponse(
         "Package description is required",
-        "package_description"
+        "package_description",
       );
     }
 
@@ -207,7 +207,7 @@ export const addData = async (data) => {
     if (!data.meta_description) {
       return getActionFailureResponse(
         "Meta description is required",
-        "meta_description"
+        "meta_description",
       );
     }
 

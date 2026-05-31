@@ -4,12 +4,25 @@ import dbConnect from "@/config/db-connect";
 import BoothSize from "../models/booth-sizes";
 import { getActionFailureResponse, getActionSuccessResponse } from "@/utils";
 import mongoose from "mongoose";
+import pages from "../models/pages";
 
 await dbConnect();
 
-export const getAllBoothSizes = async () => {
+export const getAllBoothSizes = async (fetchMetadata = false) => {
   try {
     const data = await BoothSize.find().sort({ name: 1 }).lean();
+    if (fetchMetadata) {
+      for (const boothSize of data) {
+        const metadata = await pages.find({ name: boothSize.name });
+        console.log("===metadata===", metadata);
+        if (metadata) {
+          boothSize.meta_title = metadata[0].meta_title;
+          boothSize.meta_description = metadata[0].meta_description;
+          boothSize.meta_keywords = metadata[0].meta_keywords;
+        }
+      }
+    }
+    console.log("===data===", data);
     return getActionSuccessResponse(data);
   } catch (error) {
     return getActionFailureResponse(error, "toast");

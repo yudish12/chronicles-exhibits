@@ -35,7 +35,7 @@ export default function BoothSizesTable() {
 
   const getData = async () => {
     try {
-      const resp = await getAllBoothSizes();
+      const resp = await getAllBoothSizes(true);
       console.log(resp);
       if (!resp.success) {
         toast.error(resp.err);
@@ -65,7 +65,7 @@ export default function BoothSizesTable() {
       return;
     }
     const updatedBoothSizes = boothSizes.filter(
-      (boothSize) => boothSize._id !== deletingBoothSizeId
+      (boothSize) => boothSize._id !== deletingBoothSizeId,
     );
     setBoothSizes(updatedBoothSizes);
     setIsDeleteDialogOpen(false);

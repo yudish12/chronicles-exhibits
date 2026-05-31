@@ -16,7 +16,10 @@ import TableSkeletonLoader from "@/components/loaders/table-skeleton";
 import {
   getAllDataBySearch,
   getAllPortfolios,
+  getPortfolioPageOptions,
 } from "@/server/actions/portfolio";
+import { formatPortfolioPageLabel } from "@/utils/portfolio-pages";
+import PortfolioMultiSelect from "./_components/PortfolioMultiSelect";
 import { Pencil, Trash2 } from "lucide-react";
 import { deletePortfolio } from "@/server/actions/portfolio";
 import {
@@ -40,12 +43,36 @@ export default function PortfolioTable() {
   const [totalPages, setTotalPages] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [searchValue, setSearchValue] = React.useState("");
+  const [locationFilter, setLocationFilter] = React.useState([]);
+  const [pageFilter, setPageFilter] = React.useState([]);
+  const [locationOptions, setLocationOptions] = React.useState([]);
+  const [pageOptions, setPageOptions] = React.useState([]);
   const limit = 6;
+
+  const activeFilters = React.useMemo(
+    () => [...pageFilter, ...locationFilter],
+    [pageFilter, locationFilter],
+  );
+
+  React.useEffect(() => {
+    getPortfolioPageOptions().then((resp) => {
+      if (resp.success) {
+        setLocationOptions(resp.data.locations ?? []);
+        setPageOptions(resp.data.pages ?? []);
+      }
+    });
+  }, []);
+
   const fetchData = async (page = 1) => {
     try {
       setLoading(true);
-      const skip = (currentPage - 1) * limit;
-      const resp = await getAllPortfolios(skip, limit);
+      const skip = (page - 1) * limit;
+      const resp = await getAllPortfolios(
+        skip,
+        limit,
+        null,
+        activeFilters.length > 0 ? activeFilters : null,
+      );
       console.log("Resp", resp);
       if (!resp.success) {
         toast.error(resp.error);
@@ -79,7 +106,7 @@ export default function PortfolioTable() {
   }
   React.useEffect(() => {
     fetchData(currentPage);
-  }, [currentPage]);
+  }, [currentPage, activeFilters]);
   const handleDeleteConfirm = async () => {
     try {
       const uploadedImage = portfolios.find(
@@ -116,11 +143,35 @@ export default function PortfolioTable() {
       </Card>
 
       <Card className="mt-6 bg-white p-4 border">
-        <CardHeader className="flex mb-4 flex-row gap-6">
+        <CardHeader className="flex mb-4 flex-row flex-wrap gap-4 items-end">
           <Search
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
           />
+          <div className="min-w-[220px] flex-1">
+            <PortfolioMultiSelect
+              label="Filter by locations"
+              placeholder="All locations"
+              options={locationOptions}
+              value={locationFilter}
+              onChange={(selected) => {
+                setLocationFilter(selected);
+                setCurrentPage(1);
+              }}
+            />
+          </div>
+          <div className="min-w-[220px] flex-1">
+            <PortfolioMultiSelect
+              label="Filter by pages"
+              placeholder="All pages"
+              options={pageOptions}
+              value={pageFilter}
+              onChange={(selected) => {
+                setPageFilter(selected);
+                setCurrentPage(1);
+              }}
+            />
+          </div>
           <Button
             onClick={handleSearchClick}
             variant="outline"
@@ -136,6 +187,7 @@ export default function PortfolioTable() {
               <TableHead>S.No.</TableHead>
               <TableHead>Image</TableHead>
               <TableHead>Image Alt Text</TableHead>
+              <TableHead>Show on pages</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -151,6 +203,13 @@ export default function PortfolioTable() {
                   />
                 </TableCell>
                 <TableCell>{portfolio.image_alt_text}</TableCell>
+                <TableCell className="max-w-[200px] text-sm">
+                  {(portfolio.show_on_pages ?? []).length > 0
+                    ? (portfolio.show_on_pages ?? [])
+                        .map((p) => formatPortfolioPageLabel(p))
+                        .join(", ")
+                    : "—"}
+                </TableCell>
                 <TableCell className="text-right">
                   <Link href={`/admin/portfolio/edit/${portfolio._id}`}>
                     <Button

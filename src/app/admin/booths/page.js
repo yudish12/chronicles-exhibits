@@ -50,7 +50,6 @@ export default function BoothTable() {
       setLoading(true);
       const skip = (page - 1) * limit;
       const resp = await getAllData(skip, limit);
-      console.log("resp booths", resp);
       const boothSizesResp = await getAllBoothSizes();
       console.log(resp);
       if (!resp.success) {
@@ -83,7 +82,7 @@ export default function BoothTable() {
       return;
     }
     const updatedBooths = booths.filter(
-      (booth) => booth._id !== deletingBoothId
+      (booth) => booth._id !== deletingBoothId,
     );
     setBooths(updatedBooths);
     setIsDeleteDialogOpen(false);
@@ -178,10 +177,7 @@ export default function BoothTable() {
                       </Button>
                     </Link>
                     <Link href={`/admin/booths/edit/${booth._id}`}>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                      >
+                      <Button variant="outline" size="icon">
                         <Pencil className="h-4 w-4" />
                       </Button>
                     </Link>

@@ -2,7 +2,7 @@ import Footer from "@/components/ui/footer";
 import Header from "@/components/ui/header";
 import React from "react";
 import { getAllPortfolios } from "@/server/actions/portfolio";
-import Lightbox from "./Lightbox";
+import PortfolioLightbox from "@/components/PortfolioLightbox";
 // import { getSinglePage } from "@/server/actions/pages";
 
 export const generateMetadata = async () => {
@@ -33,7 +33,7 @@ const Page = async () => {
           </p>
         </div>
       </div>
-      <Lightbox images={ourWorksData} />
+      <PortfolioLightbox images={ourWorksData} className="py-8" />
       <Footer />
     </>
   );

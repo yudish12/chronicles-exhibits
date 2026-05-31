@@ -115,6 +115,7 @@ const Page = async () => {
       </div>
       <div className="flex flex-col pb-0 py-8 gap-6">
         <Ourworks
+          pageName="custom-trade-show-booth-ideas"
           title={data.fields[14].value}
           subtitle={data.fields[15].value}
         />

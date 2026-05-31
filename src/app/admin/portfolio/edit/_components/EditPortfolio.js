@@ -8,13 +8,19 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { updateAllPortfolios } from "@/server/actions/portfolio";
 import { RevalidatePath } from "@/server/actions/revalidate-path";
+import PortfolioPageSelector from "../../_components/PortfolioPageSelector";
+
 const EditPortfolio = ({ singlePortfolio }) => {
-  const [portfolio, setPortfolio] = useState(singlePortfolio);
+  const [portfolio, setPortfolio] = useState({
+    ...singlePortfolio,
+    show_on_pages: singlePortfolio.show_on_pages ?? [],
+  });
   const handleEditSubmit = async (e) => {
     e.preventDefault();
     const resp = await updateAllPortfolios(portfolio._id, {
       image: portfolio.image,
       image_alt_text: portfolio.image_alt_text,
+      show_on_pages: portfolio.show_on_pages ?? [],
     });
     if (!resp.success) {
       toast.error(resp.err);
@@ -60,6 +66,12 @@ const EditPortfolio = ({ singlePortfolio }) => {
                 />
               )}
             </div>
+            <PortfolioPageSelector
+              value={portfolio.show_on_pages}
+              onChange={(show_on_pages) =>
+                setPortfolio({ ...portfolio, show_on_pages })
+              }
+            />
             <div className="col-span-2">
               <Label className="mb-4 block">Icon Alt Text</Label>
               <Input

@@ -21,6 +21,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { RevalidatePath } from "@/server/actions/revalidate-path";
+import { Textarea } from "@/components/ui/textarea";
 
 const EditBlog = ({ singleBlog }) => {
   const [blog, setBlog] = useState(singleBlog);
@@ -33,6 +34,8 @@ const EditBlog = ({ singleBlog }) => {
       image: blog.image,
       image_alt_text: blog.image_alt_text,
       body: blog.body,
+      booth_size_title: blog?.booth_size_title ?? "",
+      booth_size_description: blog?.booth_size_description ?? "",
       meta_title: blog.meta_title,
       meta_description: blog.meta_description,
       meta_keywords: blog.meta_keywords ?? [],
@@ -175,6 +178,27 @@ const EditBlog = ({ singleBlog }) => {
               </SelectContent>
             </Select>
           </div>
+          <div>
+            <Label className="mb-4 block">Booth Size Title</Label>
+            <Input
+              className="rounded-sm"
+              value={blog.booth_size_title}
+              onChange={(e) =>
+                setBlog({ ...blog, booth_size_title: e.target.value })
+              }
+            />
+          </div>
+          <div>
+            <Label className="mb-4 block">Booth Size Description</Label>
+            <Textarea
+              className="rounded-sm"
+              value={blog.booth_size_description}
+              onChange={(e) =>
+                setBlog({ ...blog, booth_size_description: e.target.value })
+              }
+            />
+          </div>
+
           <div className="col-span-2">
             <Label className="mb-4 block">Body</Label>
             <CkeEditor

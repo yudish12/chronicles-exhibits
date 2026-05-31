@@ -18,7 +18,7 @@ export const getEventByCity = async (
   city,
   skip,
   limit,
-  projection
+  projection,
 ) => {
   try {
     console.log("city", city);
@@ -102,7 +102,7 @@ export const getAllData = async (
   limit,
   projection,
   filter,
-  admin = false
+  admin = false,
 ) => {
   try {
     let queryFilt = {};
@@ -126,6 +126,31 @@ export const getAllData = async (
     //   console.log("[]" , data)
     return getActionSuccessResponse(data, count);
   } catch (error) {
+    return getActionFailureResponse(error, "toast");
+  }
+};
+
+export const exportEventsByDateRange = async (startDate, endDate) => {
+  try {
+    const filter = {};
+
+    if (startDate) {
+      const filterStart = new Date(startDate);
+      filterStart.setHours(0, 0, 0, 0);
+      filter.end_date = { $gte: filterStart };
+    }
+
+    if (endDate) {
+      const filterEnd = new Date(endDate);
+      filterEnd.setHours(23, 59, 59, 999);
+      filter.start_date = { $lte: filterEnd };
+    }
+
+    const data = await events.find(filter).sort({ start_date: 1 }).lean();
+    console.log("===data===", data);
+    return getActionSuccessResponse(data);
+  } catch (error) {
+    console.log("===error===", error);
     return getActionFailureResponse(error, "toast");
   }
 };

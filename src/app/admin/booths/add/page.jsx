@@ -23,6 +23,7 @@ import { Trash2 } from "lucide-react";
 import { deleteUTFiles } from "@/server/services/uploadthing";
 import { addData } from "@/server/actions/booths";
 import { useRouter } from "next/navigation";
+import { RevalidatePath } from "@/server/actions/revalidate-path";
 
 const AddBoothPage = () => {
   const [singleBooth, setsingleBooth] = React.useState({
@@ -75,13 +76,15 @@ const AddBoothPage = () => {
       }
       await RevalidatePath(`/booth/size/[booth_size]/[booth_code]`, "page");
       await RevalidatePath(
-        `/booth/size/${resp.data.booth_size.name.toLowerCase()}`
+        `/booth/size/${resp.data.booth_size.name.toLowerCase()}`,
+        "page",
       );
       await RevalidatePath(`/booth/size/[booth_size]`, "page");
       await RevalidatePath(
         `/booth/size/${resp.data.booth_size.name.toLowerCase()}/${
           resp.data.slug
-        }`
+        }`,
+        "page",
       );
       toast.success("Booth added successfully");
       setsingleBooth({
@@ -198,7 +201,7 @@ const AddBoothPage = () => {
                     onClick={() => {
                       console.log(
                         singleBooth.thumbnail_image.split("f/")[1],
-                        singleBooth.thumbnail_image
+                        singleBooth.thumbnail_image,
                       );
                       const res = deleteUTFiles([
                         singleBooth.thumbnail_image.split("f/")[1],
@@ -253,7 +256,7 @@ const AddBoothPage = () => {
                       className="absolute z-50 top-1 right-1 w-6 h-6"
                       onClick={() => {
                         const newImages = singleBooth.all_images.filter(
-                          (_, i) => i !== index
+                          (_, i) => i !== index,
                         );
                         deleteUTFiles([img.split("/").pop()]);
                         setsingleBooth({

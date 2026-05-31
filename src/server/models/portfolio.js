@@ -13,7 +13,11 @@ const portfolioSchema = new mongoose.Schema(
         // }
         image_alt_text: {
             type : String
-        }
+        },
+        show_on_pages: {
+            type: [String],
+            default: [],
+        },
     },
     {
         timestamps : true , 
