@@ -11,8 +11,10 @@ import {
   updateAllPortfolios,
 } from "@/server/actions/portfolio";
 import PortfolioPageSelector from "../../_components/PortfolioPageSelector";
+import { useRouter } from "next/navigation";
 
 const EditPortfolio = ({ singlePortfolio }) => {
+  const router = useRouter();
   const [portfolio, setPortfolio] = useState({
     ...singlePortfolio,
     show_on_pages: singlePortfolio.show_on_pages ?? [],
@@ -30,12 +32,13 @@ const EditPortfolio = ({ singlePortfolio }) => {
     }
     const pagesToRevalidate = [
       ...new Set([
-        ...(singlePortfolio.show_on_pages ?? []),
-        ...(portfolio.show_on_pages ?? []),
+        ...(singlePortfolio?.show_on_pages ?? []),
+        ...(portfolio?.show_on_pages ?? []),
       ]),
     ];
     await revalidatePortfolioPages(pagesToRevalidate);
-    toast.success("Blog updated successfully");
+    toast.success("Portfolio updated successfully");
+    router.push("/admin/portfolio");
   };
   return (
     <>
