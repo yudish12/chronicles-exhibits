@@ -24,6 +24,17 @@ export function getPortfolioPagePath(pageName) {
   return PORTFOLIO_PAGE_PATHS[pageName] ?? null;
 }
 
+/** Matches public URLs: /trade-show-booth-rentals-{city} */
+export function locationNameToUrlSlug(name) {
+  if (!name) return "";
+  return name.toLowerCase().replace(/\s+/g, "-").replace(/\./g, "");
+}
+
+export function withTrailingSlash(path) {
+  if (!path || path === "/") return "/";
+  return path.endsWith("/") ? path : `${path}/`;
+}
+
 export function formatPortfolioPageLabel(name) {
   if (!name) return "";
   return name

@@ -11,6 +11,8 @@ import {
   PORTFOLIO_STATIC_PAGES,
   formatPortfolioPageLabel,
   getPortfolioPagePath,
+  locationNameToUrlSlug,
+  withTrailingSlash,
 } from "@/utils/portfolio-pages";
 import { revalidatePath } from "next/cache";
 
@@ -19,26 +21,33 @@ await dbConnect();
 const DEFAULT_PORTFOLIO_LIMIT = 9;
 
 export const revalidatePortfolioPages = async (showOnPages = []) => {
-  const paths = new Set(["/portfolio"]);
+  await dbConnect();
+  const paths = new Set([withTrailingSlash("/portfolio")]);
 
   for (const pageName of showOnPages) {
     const staticPath = getPortfolioPagePath(pageName);
     if (staticPath) {
-      paths.add(staticPath);
+      paths.add(withTrailingSlash(staticPath));
       continue;
     }
 
     const location = await Locations.findOne({ name: pageName })
-      .select("slug")
+      .populate("city_id", "slug")
+      .select("name slug")
       .lean();
-    if (location?.slug) {
-      paths.add(`/major-exhibiting-cities/${location.slug}`);
-      paths.add(`/trade-show-booth-rentals-${location.slug}`);
+
+    const citySlug =
+      location?.city_id?.slug ?? locationNameToUrlSlug(location?.name ?? pageName);
+
+    if (citySlug) {
+      paths.add(withTrailingSlash(`/major-exhibiting-cities/${citySlug}`));
+      paths.add(withTrailingSlash(`/trade-show-booth-rentals-${citySlug}`));
     }
   }
 
   for (const path of paths) {
-    revalidatePath(path);
+    revalidatePath(path, "page");
+    revalidatePath(path, "layout");
   }
 };
 
@@ -103,7 +112,6 @@ export const getPortfoliosForPage = async (
     }
 
     data = await buildQuery({ show_on_pages: pageName }).lean();
-    console.log("data", data);
     if (useFallback && data.length === 0) {
       data = await buildQuery({}).lean();
     }
@@ -195,6 +203,7 @@ export const updateAllPortfolios = async (id, data) => {
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
     }
+    await revalidatePortfolioPages(data.show_on_pages ?? []);
     return getActionSuccessResponse(resp);
   } catch (error) {
     console.error("Error updating data:", error);
@@ -214,21 +223,28 @@ export const addPortfolio = async (data) => {
     //     return getActionFailureResponse("Description is required", "description");
     // }
     const resp = await Portfolio.create(data);
+    await revalidatePortfolioPages(data.show_on_pages ?? []);
     return getActionSuccessResponse(resp);
   } catch (error) {
-    getActionFailureResponse(error.message, "toast");
+    return getActionFailureResponse(error.message, "toast");
   }
 };
 
 export const deletePortfolio = async (id) => {
-  if (!id || !mongoose.Types.ObjectId.isValid(id)) {
-    return getActionFailureResponse("Invalid id format", "toast");
+  try {
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return getActionFailureResponse("Invalid id format", "toast");
+    }
+    const existing = await Portfolio.findById(id).lean();
+    const response = await Portfolio.findByIdAndDelete(id);
+    if (!response) {
+      return getActionFailureResponse("Portfolio not found ", "toast");
+    }
+    await revalidatePortfolioPages(existing?.show_on_pages ?? []);
+    return getActionSuccessResponse(response);
+  } catch (error) {
+    return getActionFailureResponse(error.message, "toast");
   }
-  const response = await Portfolio.findByIdAndDelete(id);
-  if (!response) {
-    return getActionFailureResponse("Portfolio not found ", "toast");
-  }
-  return getActionSuccessResponse(response);
 };
 
 export const addMultiImages = async (data) => {
