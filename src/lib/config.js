@@ -339,12 +339,12 @@ export const locationPageFields = [
     value: "",
   },
   {
-    key: "2nd_section_first_h2", //2 
+    key: "2nd_section_first_h2", //2
     type: "text",
     value: "",
   },
   {
-    key: "2nd_section_second_h2", // 3 
+    key: "2nd_section_second_h2", // 3
     type: "text",
     value: "",
   },
@@ -354,19 +354,19 @@ export const locationPageFields = [
     value: "",
   },
   {
-    key: "2nd_section_second_para", //5 
+    key: "2nd_section_second_para", //5
     type: "textarea",
     value: "",
   },
   {
-    key: "3rd_section_image", //6 
+    key: "3rd_section_image", //6
     type: "upload",
     value: "",
   },
   {
-    key : "3rd_section_image_alt_text",
+    key: "3rd_section_image_alt_text",
     type: "text",
-    value : ""
+    value: "",
   },
   {
     key: "3rd_section_h2", // 7
@@ -374,55 +374,55 @@ export const locationPageFields = [
     value: "",
   },
   {
-    key: "3rd_section_body", // 8 
+    key: "3rd_section_body", // 8
     type: "body",
     value: "",
   },
   {
-    key : "3rd_section_btn_text", // 9 
-    type : "text",
-    value : ""
+    key: "3rd_section_btn_text", // 9
+    type: "text",
+    value: "",
   },
   {
-    key : "portfolio_heading", // 10 
+    key: "portfolio_heading", // 10
     type: "text",
-    value : ""
+    value: "",
   },
   {
     key: "portfolio_description",
-    type: "text", 
-    value : ""
+    type: "text",
+    value: "",
   },
   {
-    key : "booth_heading", // 11 
-    type: "textarea", 
-    value : ""
+    key: "booth_heading", // 11
+    type: "textarea",
+    value: "",
   },
   {
-    key : "booth_description", // 12 
-    type : "textarea",
-    value : ""
+    key: "booth_description", // 12
+    type: "textarea",
+    value: "",
   },
   {
-    key : "last_section_title", // 13 
-    type : "text",
-    value : ""
+    key: "last_section_title", // 13
+    type: "text",
+    value: "",
   },
   {
-    key: "last_section_body", // 14 
+    key: "last_section_body", // 14
     type: "body",
     value: "",
   },
   {
-    key : "events_title", // 15 
+    key: "events_title", // 15
     type: "text",
-    value : ""
+    value: "",
   },
   {
-    key : "events_btn_text", // 16 
+    key: "events_btn_text", // 16
     type: "text",
-    value : ""
-  }
+    value: "",
+  },
 ];
 
 export const customTradeShowFields = [
@@ -638,40 +638,6 @@ export const contactUsPageFields = [
     key: "europe_address",
     type: "textarea",
     value: "Street 5 Lootah Warehouses, 11th St - Mina Jebel Ali - Dubai",
-  },
-
-  // Dubai Warehouse Fields
-  {
-    key: "dubai_warehouse_phone_number",
-    type: "text",
-    value: "+971 5434-74-645",
-  },
-  {
-    key: "dubai_warehouse_email",
-    type: "text",
-    value: "info@chronicleexhibits.ae",
-  },
-  {
-    key: "dubai_warehouse_address",
-    type: "textarea",
-    value: "Street 5 Lootah Warehouses, 11th St - Mina Jebel Ali - Dubai",
-  },
-
-  // India Office Fields
-  {
-    key: "india_phone_number",
-    type: "text",
-    value: "+91-987-037-0977",
-  },
-  {
-    key: "india_email",
-    type: "text",
-    value: "info@chronicleexhibits.in",
-  },
-  {
-    key: "india_address",
-    type: "textarea",
-    value: "E-340, East of Kailash, New Delhi - 110065",
   },
 ];
 

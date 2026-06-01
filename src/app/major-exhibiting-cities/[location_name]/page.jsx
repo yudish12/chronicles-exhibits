@@ -9,9 +9,6 @@ import "./style.css";
 // import { majorExhibitingCities } from "../page";
 import { getCities, getLocationPagebyCity } from "@/server/actions/locations";
 import { getAllBoothSizes } from "@/server/actions/booth-sizes";
-import { getPortfoliosForPage } from "@/server/actions/portfolio";
-import { headers } from "next/headers";
-import { userAgent } from "next/server";
 import { getAllLocations } from "@/server/actions/events";
 // import { useRouter } from "next/navigation";
 import { getEventByCity } from "@/server/actions/events";
@@ -20,8 +17,8 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import dynamic from "next/dynamic";
 const EnquiryForm = dynamic(() => import("@/components/Form"));
 import Selectbox from "./Selectbox";
-import PortfolioLightbox from "@/components/PortfolioLightbox";
 import LocationEventsCarousel from "./LocationEventsCarousel";
+import Ourworks from "@/app/(landing)/Ourworks";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -74,14 +71,7 @@ const Page = async ({ params }) => {
     notFound();
   }
 
-  const ua = userAgent({ headers: headers() });
-  const isMobile = ua?.device?.type === "mobile";
   const locationPageName = data[0].name;
-  const ourWorksData = await getPortfoliosForPage(locationPageName, 0, 9);
-
-  const displayedData = isMobile
-    ? ourWorksData.data.slice(0, 6)
-    : ourWorksData.data;
   // const router = useRouter();
   // const handleSearch = (city)=>{
   //   router.push(`/admin/locations/${city}`)
@@ -152,33 +142,19 @@ const Page = async ({ params }) => {
           <Link href={"/contact-us"}>
             <Button
               style={{ transitionDuration: "500ms" }}
-              className="rounded-full sm:mx-auto transition-500 lg:mx-0 w-[30%] mx-auto px-16 py-6 font-thin text-lg text-white border hover:bg-primary hover:text-black hover:font-medium mt-4 bg-transparent border-primary"
+              className="rounded-full sm:mx-auto transition-500 lg:mx-0 w-[30%] mx-auto px-12 py-5 font-medium text-lg border-2 bg-primary text-black hover:font-medium mt-4 border-black"
             >
               {data?.[0]?.fields?.[10]?.value}
             </Button>
           </Link>
         </div>
       </div>
-      <div className="py-8 px-6 sm:p-12 lg:px-20 xl:px-20 2xl:px-36  pb-10">
-        {data?.[0]?.fields?.[11] && (
-          <h2 className="uppercase text-3xl heading-font-600 text-primary text-center font-semibold">
-            {data[0].fields[11].value}
-          </h2>
-        )}
-        <p
-          className="text-center md:mx-20 lg:mx-44 mt-7 custom-content "
-          dangerouslySetInnerHTML={{ __html: data?.[0]?.fields?.[12]?.value }}
-        ></p>
-        <PortfolioLightbox images={displayedData} className="mt-10" />
-        <Link className="flex mt-10" href="/portfolio">
-          <Button
-            style={{ transitionDuration: "500ms" }}
-            className="bg-transparent hover:bg-secondary transition-500 hover:text-white mx-auto border-2 border-secondary font-semibold text-secondary text-sm sm:text-base"
-          >
-            View Portfolio
-          </Button>
-        </Link>
-      </div>
+      <Ourworks
+        pageName={locationPageName}
+        title={data?.[0]?.fields?.[11]?.value}
+        bgColor="white"
+        subtitleHtml={data?.[0]?.fields?.[12]?.value}
+      />
       <Products
         title={data?.[0].fields?.[13]?.value}
         subTitle={data?.[0]?.fields?.[14]?.value}

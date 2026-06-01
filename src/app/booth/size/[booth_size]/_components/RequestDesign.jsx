@@ -1,15 +1,15 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import GetFreeDesignForm from "@/components/GetFreeDesignForm"
+import GetFreeDesignForm from "@/components/GetFreeDesignForm";
 
 const RequestDesign = ({ fields }) => {
   return (
-    <div className="w-full product-bg flex flex-col items-center justify-center py-14 px-4 text-center">
+    <div className="w-full product-bg-hero flex flex-col items-center justify-center py-14 px-4 text-center">
       <div className="font-bold uppercase text-2xl md:text-3xl pt-10 text-[#B0CB1F]">
         {fields[4].value}
       </div>
-      <div className="text-lg sm:text-lg uppercase md:text-xl lg:text-xl sm:px-40 md:px-52 heading-font text-secondary font-bold pt-10">
+      <div className="text-lg sm:text-lg uppercase md:text-xl lg:text-xl sm:px-40 md:px-52 heading-font text-white font-bold pt-10">
         {fields[5].value}
       </div>
       <div className="py-10">

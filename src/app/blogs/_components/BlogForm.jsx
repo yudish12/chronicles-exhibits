@@ -9,10 +9,10 @@ import InputFile from "@/components/ui/input-file";
 import { toast } from "sonner";
 import { usePathname, useRouter } from "next/navigation";
 import { getPageNameAndUrl } from "@/utils";
-import { emailRegex , phoneRegex } from "@/utils/constants/regex";
-const BlogForm = ({source}) => {
+import { emailRegex, phoneRegex } from "@/utils/constants/regex";
+const BlogForm = ({ source }) => {
   const [countryCode, setCountryCode] = useState("us");
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,7 +42,7 @@ const BlogForm = ({source}) => {
       setLoading(false);
       return;
     }
-  
+
     // Validate phone number
     const digitCount = formData.phone.length;
     if (!phoneRegex.test(formData.phone) || digitCount < 11) {
@@ -53,19 +53,19 @@ const BlogForm = ({source}) => {
     setLoading(true);
     try {
       // e.preventDefault();
-      console.log(formData)
+      console.log(formData);
       const ApiData = new FormData();
       ApiData.append("name", formData.name);
       ApiData.append("email", formData.email);
       ApiData.append("phone", formData.phone);
       ApiData.append("country", formData.country);
-      ApiData.append("url",formData.url);
+      ApiData.append("url", formData.url);
       ApiData.append("message", formData.message);
       ApiData.append("boothSize", formData.boothSize);
       formData.file.forEach((file) => {
         ApiData.append("files", file);
       });
-      console.log("form data" , formData)
+      console.log("form data", formData);
       console.log("Form Data Submitted:", formData);
       const resp = await submitBlogForm(ApiData, `${source}`);
       router.push("/thank-you");
@@ -73,7 +73,7 @@ const BlogForm = ({source}) => {
     } catch (error) {
       console.log(error);
       toast.error("Failed to submit form. Please try again later.");
-    }finally {
+    } finally {
       setLoading(false);
     }
   };
@@ -90,10 +90,10 @@ const BlogForm = ({source}) => {
       }
     };
     fetchCountryCode();
-    
+
     setFormData((prevData) => ({
       ...prevData,
-      url: window.location.origin+"/"+source,
+      url: window.location.origin + "/" + source,
     }));
   }, []);
 
@@ -108,27 +108,27 @@ const BlogForm = ({source}) => {
         className="gap-6 w-full mt-2 pt-4 flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-col"
         onSubmit={handleSubmit}
       >
-      <div>
-        <Input
-          placeholder="Your Name"
-          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
-          type="name"
-          disabled={loading}
-          onChange={handleChange}
-          required
-          name="name"
-        />
+        <div>
+          <Input
+            placeholder="Your Name"
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+            type="name"
+            disabled={loading}
+            onChange={handleChange}
+            required
+            name="name"
+          />
         </div>
         <div>
-        <Input
-          placeholder="Your Email"
-          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
-          type="email"
-          disabled={loading}
-          onChange={handleChange}
-          required
-          name="email"
-        />
+          <Input
+            placeholder="Your Email"
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+            type="email"
+            disabled={loading}
+            onChange={handleChange}
+            required
+            name="email"
+          />
         </div>
         {/* <Input
             placeholder="Phone Number"
@@ -138,58 +138,63 @@ const BlogForm = ({source}) => {
             required
             name="email"
       /> */}
-      <div>
-        <PhoneInput
-          country={countryCode}
-          value={formData.phone}
-          disabled={loading}
-          onChange={handlePhoneChange}
-        />
+        <div>
+          <PhoneInput
+            country={countryCode}
+            value={formData.phone}
+            disabled={loading}
+            onChange={handlePhoneChange}
+          />
         </div>
         <div>
-        <InputFile value={formData.file} onChange={(files)=> setFormData({ ...formData, file: files })} />
+          <InputFile
+            value={formData.file}
+            onChange={(files) => setFormData({ ...formData, file: files })}
+          />
         </div>
         <div>
-        <Input
-          placeholder="Your Country Name"
-          disabled={loading}
-         className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
-          type="country"
-          onChange={handleChange}
-          required
-          name="country"
-        />
+          <Input
+            placeholder="Your Country Name"
+            disabled={loading}
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+            type="country"
+            onChange={handleChange}
+            required
+            name="country"
+          />
         </div>
         <div>
-        <Input
-          placeholder="Booth Size"
-          disabled={loading}
-          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
-          type="boothSize"
-          onChange={handleChange}
-          required
-          name="boothSize"
-        />
+          <Input
+            placeholder="Booth Size"
+            disabled={loading}
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+            type="boothSize"
+            onChange={handleChange}
+            required
+            name="boothSize"
+          />
         </div>
         <div className="col-span-2">
-        <Textarea
-          placeholder="Tell us about your requirements"
-          disabled={loading}
-          className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
-          rows={3}
-          type="message"
-          onChange={handleChange}
-          required
-          name="message"
-        />
+          <Textarea
+            placeholder="Tell us about your requirements"
+            disabled={loading}
+            className="border-[#CACACA] text-secondary placeholder:text-secondary/70"
+            rows={3}
+            type="message"
+            onChange={handleChange}
+            required
+            name="message"
+          />
         </div>
         <Button
           type="submit"
           disabled={loading}
-          className="w-1/3 mx-auto col-span-2 bg-primary text-secondary hover:text-black font-semibold py-2 rounded hover:bg-primary"
+          className="w-1/2 mx-auto col-span-2 bg-primary text-secondary hover:text-black font-semibold py-2 rounded hover:bg-primary"
         >
           Sumbit Enquuiry
-          {loading && <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>}
+          {loading && (
+            <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-b-2 border-white"></div>
+          )}
         </Button>
       </form>
     </div>

@@ -6,8 +6,10 @@ import { Input } from "@/components/ui/input";
 import { UploadButton } from "@uploadthing/react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { updateAllPortfolios } from "@/server/actions/portfolio";
-import { RevalidatePath } from "@/server/actions/revalidate-path";
+import {
+  revalidatePortfolioPages,
+  updateAllPortfolios,
+} from "@/server/actions/portfolio";
 import PortfolioPageSelector from "../../_components/PortfolioPageSelector";
 
 const EditPortfolio = ({ singlePortfolio }) => {
@@ -26,7 +28,13 @@ const EditPortfolio = ({ singlePortfolio }) => {
       toast.error(resp.err);
       return;
     }
-    await RevalidatePath(`/portfolio`);
+    const pagesToRevalidate = [
+      ...new Set([
+        ...(singlePortfolio.show_on_pages ?? []),
+        ...(portfolio.show_on_pages ?? []),
+      ]),
+    ];
+    await revalidatePortfolioPages(pagesToRevalidate);
     toast.success("Blog updated successfully");
   };
   return (

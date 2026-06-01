@@ -6,8 +6,10 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { UploadButton } from "@uploadthing/react";
-import { addPortfolio } from "@/server/actions/portfolio";
-import { RevalidatePath } from "@/server/actions/revalidate-path";
+import {
+  addPortfolio,
+  revalidatePortfolioPages,
+} from "@/server/actions/portfolio";
 import PortfolioPageSelector from "../_components/PortfolioPageSelector";
 
 const AddPortfolioPage = () => {
@@ -25,7 +27,7 @@ const AddPortfolioPage = () => {
         toast.error(resp.error);
         return;
       }
-      await RevalidatePath(`/portfolio`);
+      await revalidatePortfolioPages(singlePortfolio.show_on_pages ?? []);
       toast.success("Portfolio added successfully");
       setSinglePortfolio({
         image: "",
