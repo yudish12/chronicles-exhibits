@@ -33,6 +33,7 @@ export const revalidatePortfolioPages = async (showOnPages = []) => {
       .lean();
     if (location?.slug) {
       paths.add(`/major-exhibiting-cities/${location.slug}`);
+      paths.add(`/trade-show-booth-rentals-${location.slug}`);
     }
   }
 
