@@ -10,16 +10,44 @@ import {
   PORTFOLIO_CMS_PAGE_NAMES,
   PORTFOLIO_STATIC_PAGES,
   formatPortfolioPageLabel,
+  getPortfolioPagePath,
 } from "@/utils/portfolio-pages";
+import { revalidatePath } from "next/cache";
 
 await dbConnect();
 
 const DEFAULT_PORTFOLIO_LIMIT = 9;
 
+export const revalidatePortfolioPages = async (showOnPages = []) => {
+  const paths = new Set(["/portfolio"]);
+
+  for (const pageName of showOnPages) {
+    const staticPath = getPortfolioPagePath(pageName);
+    if (staticPath) {
+      paths.add(staticPath);
+      continue;
+    }
+
+    const location = await Locations.findOne({ name: pageName })
+      .select("slug")
+      .lean();
+    if (location?.slug) {
+      paths.add(`/major-exhibiting-cities/${location.slug}`);
+    }
+  }
+
+  for (const path of paths) {
+    revalidatePath(path);
+  }
+};
+
 export const getPortfolioPageOptions = async () => {
   try {
     await dbConnect();
-    const locations = await Locations.find().select("name").sort({ name: 1 }).lean();
+    const locations = await Locations.find()
+      .select("name")
+      .sort({ name: 1 })
+      .lean();
     const cmsPages = await pages
       .find({ name: { $in: PORTFOLIO_CMS_PAGE_NAMES } })
       .select("name")
@@ -38,7 +66,10 @@ export const getPortfolioPageOptions = async () => {
       label: loc.name,
     }));
 
-    return getActionSuccessResponse({ locations: locationOptions, pages: pageOptions });
+    return getActionSuccessResponse({
+      locations: locationOptions,
+      pages: pageOptions,
+    });
   } catch (error) {
     return getActionFailureResponse(error, "toast");
   }
@@ -71,7 +102,7 @@ export const getPortfoliosForPage = async (
     }
 
     data = await buildQuery({ show_on_pages: pageName }).lean();
-
+    console.log("data", data);
     if (useFallback && data.length === 0) {
       data = await buildQuery({}).lean();
     }
@@ -158,7 +189,7 @@ export const updateAllPortfolios = async (id, data) => {
       {
         new: true,
         runValidators: true,
-      }
+      },
     ).lean();
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");

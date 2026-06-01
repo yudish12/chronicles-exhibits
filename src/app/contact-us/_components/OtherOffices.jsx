@@ -1,7 +1,15 @@
 import React from "react";
 import Image from "next/image";
 
+const toTelHref = (phone) => {
+  const digits = phone?.replace(/[^\d+]/g, "");
+  return digits ? `tel:${digits}` : undefined;
+};
+
 const OfficeCard = ({ title, address, email, phone }) => {
+  const emailHref = email?.trim() ? `mailto:${email.trim()}` : undefined;
+  const phoneHref = toTelHref(phone);
+
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105">
       <div className="p-6">
@@ -26,7 +34,16 @@ const OfficeCard = ({ title, address, email, phone }) => {
               width={24}
               height={24}
             />
-            <p className="text-sm text-gray-600">{email}</p>
+            {emailHref ? (
+              <a
+                href={emailHref}
+                className="text-sm text-gray-600 hover:text-primary hover:underline underline-offset-2 break-all"
+              >
+                {email}
+              </a>
+            ) : (
+              <p className="text-sm text-gray-600">{email}</p>
+            )}
           </div>
           <div className="flex items-center space-x-3">
             <Image
@@ -36,7 +53,16 @@ const OfficeCard = ({ title, address, email, phone }) => {
               width={24}
               height={24}
             />
-            <p className="text-sm text-gray-600">{phone}</p>
+            {phoneHref ? (
+              <a
+                href={phoneHref}
+                className="text-sm text-gray-600 hover:text-primary hover:underline underline-offset-2"
+              >
+                {phone}
+              </a>
+            ) : (
+              <p className="text-sm text-gray-600">{phone}</p>
+            )}
           </div>
         </div>
       </div>

@@ -7,6 +7,8 @@ const Page = async ({ params }) => {
 
   const { data } = await getSinglePage({ _id: id });
 
+  console.log("data", data);
+
   return <PageEditForm isLocationPage={false} pageData={data} />;
 };
 

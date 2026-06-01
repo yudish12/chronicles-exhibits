@@ -1,64 +1,55 @@
 "use client";
+
 import Image from "next/image";
-import { MapPin, Calendar } from "lucide-react";
 import moment from "moment";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Pagination } from "./Pagination";
+
+function TradeShowCard({ show }) {
+  const city = show?.location_id?.city ?? show.city;
+  const startDate = moment(show?.start_date).format("M/D/YYYY");
+  const endDate = moment(show?.end_date).format("M/D/YYYY");
+
+  return (
+    <Link
+      href={`/${show.slug}`}
+      className="group flex w-full items-center gap-4 sm:gap-5 rounded-xl border border-[#d5dde6] bg-[#eef2f6] p-4 sm:p-5 shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-md"
+    >
+      <div className="flex h-[88px] w-[88px] sm:h-[100px] sm:w-[100px] shrink-0 items-center justify-center rounded-lg bg-white p-2 sm:p-3">
+        <Image
+          loading="eager"
+          src={show.icon}
+          alt={show.event_name ?? "Trade show logo"}
+          width={80}
+          height={80}
+          className="h-full w-full object-contain"
+        />
+      </div>
+
+      <div className="flex min-w-0 flex-1 flex-col gap-1.5 sm:gap-2 text-left">
+        <h4 className="heading-font text-base sm:text-lg font-bold leading-snug text-secondary group-hover:text-primary transition-colors">
+          {show.event_name}
+        </h4>
+        <p className="text-sm sm:text-[15px] text-[#5c6b7a] leading-snug">
+          {city} | United States
+        </p>
+        <p className="text-sm sm:text-[15px] text-[#5c6b7a] leading-snug">
+          {startDate} - {endDate}
+        </p>
+      </div>
+    </Link>
+  );
+}
 
 const TradeShowGrid = ({ tradeShows, totalPage, currentPage }) => {
   return (
-    <div className="px-0 md:px-10 lg:px-20 mt-12 w-full">
-      {/* Trade show grid */}
-      <div className="grid lg:grid-cols-3 mx-0 lg:mx-10 sm:gap-x-5 md:gap-x-10 lg:gap-x-12 gap-y-12 sm:grid-cols-2 gap-4">
+    <div className="mt-12 w-full px-4 sm:px-8 md:px-10 lg:px-20">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 sm:gap-6 lg:grid-cols-2">
         {tradeShows?.map((show) => (
-          <div
-            key={show._id}
-            className="min-h-[360px] w-full justify-between bg-[#414141] flex shadow-one rounded-xl flex-col gap-5 items-center p-6"
-          >
-            <h4 className="text-white text-center heading-font text-2xl uppercase font-semibold">
-              {show.event_name}
-            </h4>
-            <Link href={`/${show.slug}`}>
-              <Image
-                loading="eager"
-                className="rounded-full"
-                width={120}
-                height={120}
-                src={show.icon}
-                alt={show.event_name ?? "event name"}
-              />
-            </Link>
-            <div className="flex flex-col gap-2 w-full px-4">
-              <p className="flex text-white gap-4">
-                <MapPin color="#B0CB1F" />
-                <span className="text-[17px]">
-                  {show?.location_id?.city ?? show.city} | United States
-                </span>
-              </p>
-              <p className="flex gap-4">
-                <Calendar color="#B0CB1F" />
-                <span className="text-[17px] text-white">
-                  {moment(show?.start_date).format("DD")}-
-                  {moment(show?.end_date).format("DD")}{" "}
-                  {moment(show?.start_date).format("MMMM")}{" "}
-                  {moment(show?.end_date).format("YYYY")}
-                </span>
-              </p>
-            </div>
-            <Link className="w-full justify-center" href={`/${show.slug}`}>
-              <Button
-                variant="outline"
-                className="text-white w-full hover:bg-white hover:text-secondary border-white border-2 bg-transparent font-semibold py-[18px] text-[16px]"
-              >
-                View Details
-              </Button>
-            </Link>
-          </div>
+          <TradeShowCard key={show._id} show={show} />
         ))}
       </div>
 
-      {/* Pagination component */}
       <Pagination currentPage={currentPage} totalPages={totalPage} />
     </div>
   );

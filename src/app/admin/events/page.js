@@ -178,8 +178,6 @@ export default function Events() {
           : "",
         City: event.city || "",
         Country: event.country || "",
-        Status: getEventStatus(event.start_date, event.end_date).text,
-        Visibility: event.isDraft === "true" ? "Draft" : "Published",
       }));
 
       const headers = Object.keys(exportDataFormatted[0]).join(",");
