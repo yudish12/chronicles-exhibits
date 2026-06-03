@@ -3,14 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import moment from "moment";
-import { Calendar, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
-import { useCallback, useEffect } from "react";
+import { Calendar, MapPin } from "lucide-react";
+import { useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { useDotButton } from "@/components/EmblaDots";
 
 const AUTOPLAY_DELAY_MS = 4000;
-
-const arrowButtonClass =
-  "shrink-0 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-white shadow-md border border-gray-200 text-secondary hover:bg-primary/20 transition-colors";
 
 function EventCard({ show }) {
   return (
@@ -65,8 +63,8 @@ export default function LocationEventsCarousel({ events = [] }) {
     containScroll: "trimSnaps",
   });
 
-  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+  const { selectedIndex, scrollSnaps, onDotButtonClick } =
+    useDotButton(emblaApi);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -113,45 +111,37 @@ export default function LocationEventsCarousel({ events = [] }) {
 
   return (
     <div className="mt-12 pb-4 w-full px-4 md:px-12 lg:px-16">
-      <div className="flex items-center w-full gap-2 sm:gap-3 md:gap-4">
-        {showControls && (
-          <button
-            type="button"
-            onClick={scrollPrev}
-            aria-label="Previous events"
-            className={arrowButtonClass}
-          >
-            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
-          </button>
-        )}
-
-        <div
-          className="flex-1 min-w-0 overflow-hidden touch-pan-y"
-          ref={emblaRef}
-        >
-          <div className="flex">
-            {events.map((show) => (
-              <div
-                key={show._id?.toString() ?? show.slug}
-                className={slideClass}
-              >
-                <EventCard show={show} />
-              </div>
-            ))}
-          </div>
+      <div
+        className="w-full overflow-hidden touch-pan-y"
+        ref={emblaRef}
+      >
+        <div className="flex">
+          {events.map((show) => (
+            <div
+              key={show._id?.toString() ?? show.slug}
+              className={slideClass}
+            >
+              <EventCard show={show} />
+            </div>
+          ))}
         </div>
-
-        {showControls && (
-          <button
-            type="button"
-            onClick={scrollNext}
-            aria-label="Next events"
-            className={arrowButtonClass}
-          >
-            <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
-          </button>
-        )}
       </div>
+
+      {showControls && scrollSnaps.length > 0 && (
+        <div className="flex justify-center gap-2 mt-4">
+          {scrollSnaps.map((_, index) => (
+            <button
+              key={index}
+              type="button"
+              aria-label={`Go to slide ${index + 1}`}
+              onClick={() => onDotButtonClick(index)}
+              className={`w-[10px] h-[10px] rounded-full cursor-pointer ${
+                index === selectedIndex ? "bg-white" : "bg-gray-400"
+              }`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

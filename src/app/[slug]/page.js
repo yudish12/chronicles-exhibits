@@ -304,18 +304,18 @@ const Page = async ({ params }) => {
             </div>
           </div>
         </div>
-        <div className="w-full  product-bg flex flex-col items-center justify-center py-14 px-4 text-center">
-          <div className="font-bold text-lg md:text-xl pt-10 text-primary">
+        <div className="w-full product-bg-hero flex flex-col items-center justify-center py-14 px-4 text-center">
+          <div className="font-bold text-lg md:text-xl pt-10 text-[#B0CB1F]">
             Are you looking for turnkey trade show booth services for
             <br />
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl uppercase heading-font text-secondary font-bold pt-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl uppercase heading-font text-white font-bold pt-10">
               {eventData.title}?
             </h2>
           </div>
           <div className="py-10">
             <Dialog>
               <DialogTrigger asChild>
-                <Button className="bg-transparent rounded-xl text-base sm:text-lg border-2 border-primary hover:bg-[#B0CB1F] px-6 py-4 sm:py-5 font-bold text-primary transition-all duration-300 hover:text-secondary">
+                <Button className="bg-transparent rounded-xl text-base sm:text-lg border-2 border-[#B0CB1F] hover:bg-[#B0CB1F] px-6 py-4 sm:py-5 font-bold text-[#B0CB1F] transition-all duration-300 hover:text-white">
                   Get Quote
                 </Button>
               </DialogTrigger>

@@ -12,7 +12,7 @@ import Accordion from "./_components/Accordion";
 export async function generateMetadata({ params }) {
   const pageData = await getSinglePage(
     { name: "trade-show-booth-displays-designs" },
-    "meta_keywords meta_title meta_description"
+    "meta_keywords meta_title meta_description",
   );
   return {
     title: pageData?.data?.meta_title,
@@ -32,7 +32,7 @@ const page = async () => {
     "https://chronicles-exhibits.vercel.app/api/page/all-booths-page",
     {
       next: { revalidate: 60 },
-    }
+    },
   );
   // const res = await getSinglePage({name:"trade-show-booth-displays-designs"})
   const resp = await res.json();
@@ -97,7 +97,7 @@ const page = async () => {
         <h3 className="text-center uppercase heading-font text-secondary text-[2rem] font-bold">
           {data.fields[13].value}
         </h3>
-        <p className="text-center px-6 text-secondary text-md pt-4">
+        <p className="text-justify px-6 mx-0 sm:mx-16 md:mx-20 lg:mx-52 text-secondary text-md pt-4">
           {data.fields[14].value}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-12 px-6 sm:px-10 lg:px-20 gap-x-6 gap-y-6 md:gap-x-8 md:gap-y-8 xl:gap-x-12 xl:gap-y-12">

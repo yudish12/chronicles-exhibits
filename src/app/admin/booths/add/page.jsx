@@ -23,7 +23,7 @@ import { Trash2 } from "lucide-react";
 import { deleteUTFiles } from "@/server/services/uploadthing";
 import { addData } from "@/server/actions/booths";
 import { useRouter } from "next/navigation";
-import { RevalidatePath } from "@/server/actions/revalidate-path";
+import { revalidateBoothPages } from "@/server/actions/revalidate-booth";
 
 const AddBoothPage = () => {
   const [singleBooth, setsingleBooth] = React.useState({
@@ -74,18 +74,10 @@ const AddBoothPage = () => {
         toast.error(resp.err);
         return;
       }
-      await RevalidatePath(`/booth/size/[booth_size]/[booth_code]`, "page");
-      await RevalidatePath(
-        `/booth/size/${resp.data.booth_size.name.toLowerCase()}`,
-        "page",
-      );
-      await RevalidatePath(`/booth/size/[booth_size]`, "page");
-      await RevalidatePath(
-        `/booth/size/${resp.data.booth_size.name.toLowerCase()}/${
-          resp.data.slug
-        }`,
-        "page",
-      );
+      await revalidateBoothPages({
+        sizeName: resp.data.booth_size.name,
+        boothCode: resp.data.booth_code,
+      });
       toast.success("Booth added successfully");
       setsingleBooth({
         booth_code: "",

@@ -21,6 +21,7 @@ import { getAllBoothSizes } from "@/server/actions/booth-sizes";
 import { Trash2 } from "lucide-react";
 import { deleteUTFiles } from "@/server/services/uploadthing";
 import { updateData } from "@/server/actions/booths";
+import { revalidateBoothPages } from "@/server/actions/revalidate-booth";
 import { useRouter } from "next/navigation";
 
 const Editbooth = ({ boothData }) => {
@@ -28,29 +29,57 @@ const Editbooth = ({ boothData }) => {
   const [loading, setLoading] = React.useState(true);
   const [singleBooth, setsingleBooth] = React.useState(boothData);
 
+  const initialBoothRef = React.useRef({
+    booth_code: boothData.booth_code,
+    booth_size:
+      typeof boothData.booth_size === "object"
+        ? boothData.booth_size._id
+        : boothData.booth_size,
+  });
+
   const router = useRouter();
+
+  const resolveSizeName = (sizeId) => {
+    const id = sizeId?.toString?.() ?? sizeId;
+    return boothSizes
+      .find((s) => s._id?.toString() === id)
+      ?.name?.toLowerCase();
+  };
 
   const handleEditSubmit = async (e) => {
     e.preventDefault();
-    const resp = await updateData(singleBooth._id, {
-      booth_code: singleBooth.booth_code,
-      slug: singleBooth.slug,
-      booth_size: singleBooth.booth_size,
-      thumbnail_image: singleBooth.thumbnail_image,
-      all_images: singleBooth.all_images,
-      image_alt_text: singleBooth.image_alt_text,
-      package_title: singleBooth.package_title,
-      package_description: singleBooth.package_description,
-      meta_title: singleBooth.meta_title,
-      meta_description: singleBooth.meta_description,
-      meta_keywords: singleBooth.meta_keywords ?? [],
-    });
-    if (!resp.success) {
-      toast.error(resp.err);
-      return;
+    try {
+      const resp = await updateData(singleBooth._id, {
+        booth_code: singleBooth.booth_code,
+        slug: singleBooth.slug,
+        booth_size: singleBooth.booth_size,
+        thumbnail_image: singleBooth.thumbnail_image,
+        all_images: singleBooth.all_images,
+        image_alt_text: singleBooth.image_alt_text,
+        package_title: singleBooth.package_title,
+        package_description: singleBooth.package_description,
+        meta_title: singleBooth.meta_title,
+        meta_description: singleBooth.meta_description,
+        meta_keywords: singleBooth.meta_keywords ?? [],
+      });
+      if (!resp.success) {
+        toast.error(resp.err);
+        return;
+      }
+
+      await revalidateBoothPages({
+        sizeName: resp.data.booth_size.name,
+        boothCode: resp.data.booth_code,
+        previousSizeName: resolveSizeName(initialBoothRef.current.booth_size),
+        previousBoothCode: initialBoothRef.current.booth_code,
+      });
+
+      toast.success("Booth updated successfully");
+      router.push("/admin/booths");
+    } catch (error) {
+      toast.error("Failed to update booth");
+      console.error(error);
     }
-    toast.success("Booth updated successfully");
-    router.push("/admin/booths");
   };
 
   const getData = async () => {

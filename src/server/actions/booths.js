@@ -145,11 +145,12 @@ export const updateData = async (id, data) => {
     if (!data.booth_size) {
       return getActionFailureResponse("booth_size is required", "booth_size");
     }
-    // Use findByIdAndUpdate instead of updateOne to get the updated document
     const resp = await Booth.findByIdAndUpdate(id, data, {
-      new: true, // Return the updated document
+      new: true,
       runValidators: true,
-    }).lean();
+    })
+      .populate("booth_size")
+      .lean();
 
     if (!resp) {
       return getActionFailureResponse("Document not found", "toast");
@@ -211,13 +212,15 @@ export const addData = async (data) => {
       );
     }
 
-    const resp = await Booth.create(data);
+    const created = await Booth.create(data);
+    const resp = await Booth.findById(created._id)
+      .populate("booth_size")
+      .lean();
 
-    console.log(216);
     return getActionSuccessResponse(resp);
   } catch (error) {
     console.log(error);
-    getActionFailureResponse(error.message, "toast");
+    return getActionFailureResponse(error.message, "toast");
   }
 };
 

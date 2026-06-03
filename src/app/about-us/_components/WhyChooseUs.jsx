@@ -33,7 +33,7 @@ const WhyChooseUs = ({ fields }) => {
     },
   ];
   return (
-    <div className="product-bg p-6 md:px-8 lg:p-20 flex flex-col lg:flex-row gap-6 lg:gap-10">
+    <div className="product-bg-hero p-6 md:px-8 lg:p-20 flex flex-col lg:flex-row gap-6 lg:gap-10">
       <div className="w-full lg:w-1/2 px-6 sm:px-0">
         <h3
           style={{ lineHeight: "1.2" }}
